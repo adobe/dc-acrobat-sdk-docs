@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating a model file entity and exporting it to a physical file</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_A3D_API.fm" />
+ <link rel="stylesheet" href="Plugins_A3D_API.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.19.4.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_A3D_API/Handling_errors1.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_A3D_API/Creating_structure_PRC_entities.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Parsing and Creating PRC Files > Creating a PRC file that uses boundary representation" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_74492_Create_a_file_that"></a>Creating a model file entity and exporting it to a physical file </h3>
+  <p class="BodyLevel1">This section describes how to initiate the process of creating a model file and how to export that data to a physical file. </p>
+  <h6><a name="XREF_82296_Create_a_PRC_file"></a>Create a file that contains the PRC data</h6>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_97368_1_Create_a_pointer"></a>Create a pointer that references a populated model file entity. (See <a href="Creating_structure_PRC_entities.htm#XREF_77401_To_create_a_model"><span class="FM_HyperText">Create a model file entity</span></a>.) In the following example, <span class="FM_Courier">createModelFile</span>&#160;is a private function that returns a pointer to a populated model file.</p>
+  <p class="FM_CodeReference">A3DAsmModelFile* pModelFile = createModelFile();</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create the model file entity. (See <a href="Creating_structure_PRC_entities.htm#XREF_77401_To_create_a_model"><span class="FM_HyperText">Create a model file entity</span></a>.)</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Save the contents of the model file to a physical file by invoking the <span class="FM_Courier">A3DAsmModelFileWriteToFile</span>&#160;function. </p>
+  <p class="FM_CodeReference">if (p != NULL) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (_access(pcPRCName, 00) != -1) </p>
+  <p class="FM_CodeReference">_unlink(pcPRCName);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 iRet = A3DAsmModelFileWriteToFile(p, NULL, pcPRCName);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the model file populated in Step <a href="#XREF_97368_1_Create_a_pointer"><span class="FM_HyperText">1</span></a>.</p>
+  <p class="FM_CodeReference">A3DAsmModelFileDelete(pModelFile);</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>The <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable>&#160;functions in this chapter are described as though implicit linking were possible. Wherever you see a direct call to one of these functions, you should instead use the pointer to the function. See <a href="Implementing_external_linking.htm#XREF_37765_Implementing"><span class="FM_HyperText">Implementing external linking</span></a>. </p>
+  </div>
+</body>
+</html>

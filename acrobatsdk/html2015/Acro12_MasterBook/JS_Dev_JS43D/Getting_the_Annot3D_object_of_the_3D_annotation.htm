@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Getting the Annot3D object of the 3D annotation</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_JS43D.fm" />
+ <link rel="stylesheet" href="JS_Dev_JS43D.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.16.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_JS43D/Basic_concepts.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_JS43D/Annot3D_properties.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Interfacing with 3D JavaScript" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_76395_Getting_the"></a>Getting the Annot3D object of the 3D annotation</h2>
+  <p class="BodyLevel1"><a name="IX_getAnnots3D"></a><a name="IX_getAnnot3D"></a><a name="IX_accessing_3"></a><a name="IX_3D_annotations_2"></a>To get access to the JavaScript 3D API engine from an Acrobat form or link, you must first get the Annot3D object of the annotation. There are two methods for doing this: <span class="FM_Courier">Doc.getAnnot3D</span>&#160;and <span class="FM_Courier">Doc.getAnnots3D</span>.</p>
+  <p class="BodyLevel1">The Doc method <span class="FM_Courier">getAnnot3D</span> takes two parameters:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">nPage</span> — The 0-based page number that contains the 3D annotation</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">cName</span>&#160;— The <span class="FM_Courier">name</span> of the 3D annotation</p>
+  <p class="BodyLevel1">A 3D annotation is not required to have a name, and there is no UI for entering the name of the annotation, so this method may not be useful unless you’ve already programmatically assigned a name to the 3D annotation, see the Example <a href="#XREF_10514_Example16_1"><span class="FM_HyperText">Assigning a name to a 3D annotation</span></a>. For a 3D annotation on page 1 of the document with a name of <span class="FM_Courier">my3DAnnot</span>, we can acquire the Annot3D object as follows:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oMy3DAnnot = this.getAnnot3D(0, &quot;my3DAnnot&quot;);</p>
+  <p class="BodyLevel1">Note that the first argument has a value of 0 because the index of the page is one less than the page number.</p>
+  <p class="BodyLevel1">The Doc method <span class="FM_Courier">getAnnots3D</span>&#160;returns the array of all Annot3D objects on a specified page. This method takes only a parameter of <span class="FM_Courier">nPage</span>, the 0-based page number,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var aMy3DAnnots = this.getAnnots3D(0);</p>
+  <p class="BodyLevel1">The variable <span class="FM_Courier">aMy3DAnnots</span> is either undefined, or is an array of Annot3D objects.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example"><a name="XREF_10514_Example16_1"></a>Assigning a name to a 3D annotation </p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Suppose your target annotation is the first annotation on page 0 of the document. The following script is executed from the JavaScript console.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var aMy3DAnnots = this.getAnnots3D(0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>aMy3DAnnots[0].name = &quot;my3DAnnot&quot;;</p>
+  </div>
+</body>
+</html>

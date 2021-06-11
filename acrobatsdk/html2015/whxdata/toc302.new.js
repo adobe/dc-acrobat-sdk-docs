@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"contentStream","url":"Acro12_MasterBook/JS_API_AcroJS/annotAttachment_properties.htm#TOC_contentStreambc-1"},{"type":"item","name":"creationDate","url":"Acro12_MasterBook/JS_API_AcroJS/annotAttachment_properties.htm#TOC_creationDatebc-2"},{"type":"item","name":"MIMEtype","url":"Acro12_MasterBook/JS_API_AcroJS/annotAttachment_properties.htm#TOC_MIMEtypebc-3"},{"type":"item","name":"modDate","url":"Acro12_MasterBook/JS_API_AcroJS/annotAttachment_properties.htm#TOC_modDatebc-4"},{"type":"item","name":"name","url":"Acro12_MasterBook/JS_API_AcroJS/annotAttachment_properties.htm#TOC_namebc-5"},{"type":"item","name":"pathname","url":"Acro12_MasterBook/JS_API_AcroJS/annotAttachment_properties.htm#TOC_pathnamebc-6"},{"type":"item","name":"size","url":"Acro12_MasterBook/JS_API_AcroJS/annotAttachment_properties.htm#TOC_sizebc-7"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

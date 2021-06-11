@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"About handlers","url":"PDFL_MasterBook/Creating_Handlers/About_handlers.htm"},{"type":"item","name":"Action handlers","url":"PDFL_MasterBook/Creating_Handlers/Action_handlers.htm"},{"type":"item","name":"Annotation handlers","url":"PDFL_MasterBook/Creating_Handlers/Annotation_handlers.htm"},{"type":"item","name":"File specification handlers","url":"PDFL_MasterBook/Creating_Handlers/File_specification_handlers.htm"},{"type":"item","name":"File systems","url":"PDFL_MasterBook/Creating_Handlers/File_systems.htm"},{"type":"item","name":"Progress monitors","url":"PDFL_MasterBook/Creating_Handlers/Progress_monitors.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

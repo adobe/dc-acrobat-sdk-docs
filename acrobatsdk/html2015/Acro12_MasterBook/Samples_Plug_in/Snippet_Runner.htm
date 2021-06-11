@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Snippet Runner</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\SamplesGuide\book\Samples_Plug_in.fm" />
+ <link rel="stylesheet" href="Samples_Plug_in.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "1.2.1.0_11";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Samples_Plug_in/SelectionServer.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Samples_Plug_in/Stamper.htm">
+ <meta name="topic-breadcrumbs" content="Introduction to SDK > Guide to SDK Samples > Plug-in Samples" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2>Snippet Runner</h2>
+  <h4>Location</h4>
+  <p class="BodyLevel1">PluginSupport/Samples/SnippetRunner</p>
+  <h4>Description</h4>
+  <p class="BodyLevel1">The SnippetRunner plug-in provides infrastructure and utility functions to support execution of Acrobat plug-in code snippets. A snippet is a small complete portion of Acrobat plug-in code. </p>
+  <p class="BodyLevel1">More than 100 sample code snippets are provided in the SnippetRunner project to demonstrate Acrobat API methods. However, the SnippetRunner plug-in also allows developers to quickly prototype Acrobat API calls without the overhead of writing and verifying a complete plug-in.</p>
+  <p class="BodyLevel1">While this document includes information on the SnippetRunner environment and use, for more details on writing and loading original snippets, see the SnippetRunner Cookbook document, SnippetRunnerCookbook.pdf, provided in the &quot;Intro to SDK documents&quot; directory.</p>
+  <h4>Implementation details</h4>
+  <p class="BodyLevel1">Beginning in Acrobat 9 SDK, SnippetRunner interaction is via a common AIR-based graphical user interface for Windows and Mac, replacing the Java-based interface introduced for Acrobat 7.0.5 SDK, PDFL 7.0.5 SDK, and Adobe Reader 7.0 SDK for Linux. The Java-based interface is retained for PDFL and Linux SDKs.</p>
+  <p class="BodyLevel1">Note that </p>
+  <p class="BodyLevel1">This Common User Interface acts as a client to its associated SnippetRunner back-end -- the SnippetRunnerServer Acrobat plug-in or SnippetRunner PDF Library application -- and provides Acrobat and PDF Library developers with a common cross-platform GUI. By sending commands to the SnippetRunnerServer back-end and receiving feedback from it, the Common Interface executes snippet commands and provides rich information about snippets, output and document status. It also allows browsing the snippet source code from within the interface.</p>
+  <p class="BodyLevel1">For details on the new AIR-based SnippetRunner Common interface, please refer to the SnippetRunnerCookbook documentation.</p>
+  <h4>Usage</h4>
+  <p class="BodyLevel1">Some snippets will require external &quot;files&quot;. These can either be sample files for input, or resources (for UI artifacts). Example files are delivered within the <span class="FM_Courier">Examples</span> directory of the SnippetRunner plug-in.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>This plugin will not work in Adobe Reader.</p>
+  <p class="BodyLevel1">When starting Common Interface for the first time, the user is prompted for the root of the <span class="FM_Courier">SnippetRunner</span>&#160;folder. This persists between application instantiations. Note that for security measure, the root SnippetRunner folder needs to reside in the same partition as the boot partition.</p>
+  <p class="BodyLevel1">On occasions when there's a PDF document open in a browser prior to explicitly starting up Acrobat, subsequent connection attempts from the Common Interface will be made with the SnippetRunnerServer plug-in associated with the Acrobat browser plug-in process, not the Acrobat process you just started. If for no obvious reason your Common Interface suddenly fails to connect with the SnippetRunnerServer, or changes you made to a snippet are not reflected after rebuilding the plug-in and restarting Acrobat, try to first quit your browser, then restart Acrobat and Common Interface to resolve the issue.</p>
+  <p class="BodyLevel1">Included snippets</p>
+  <p class="BodyLevel1">AVAlertSnip</p>
+  <p class="BodyLevel1">AVAppFrontDocChangeNotSnip</p>
+  <p class="BodyLevel1">AVAppPrefsSnip</p>
+  <p class="BodyLevel1">AVAppRegisterForContextMenuSnip</p>
+  <p class="BodyLevel1">AVAppRegisterForPageViewDrawingSnip</p>
+  <p class="BodyLevel1">AVDocAVWindowDidChangeSnip</p>
+  <p class="BodyLevel1">AVDocCloseNotSnip</p>
+  <p class="BodyLevel1">AVDocGetSelectionTypeSnip</p>
+  <p class="BodyLevel1">AVDocOpenNotSnip</p>
+  <p class="BodyLevel1">AVDocShowAnnotPropertiesSnip</p>
+  <p class="BodyLevel1">AVDocWindowWasAddedSnip</p>
+  <p class="BodyLevel1">AVDocWindowWasRemovedSnip</p>
+  <p class="BodyLevel1">AVEnumActionHandlerSnip</p>
+  <p class="BodyLevel1">AVPageViewDrawRectSnip</p>
+  <p class="BodyLevel1">AVPageViewToggleWireframeDrawingSnip</p>
+  <p class="BodyLevel1">AVPrintSnip</p>
+  <p class="BodyLevel1">AVSaveAsRtfSnip</p>
+  <p class="BodyLevel1">AVWindowMaximizeCurrentPageViewSnip</p>
+  <p class="BodyLevel1">CallJsCreateButtonSnip</p>
+  <p class="BodyLevel1">CallJsGetFieldValueSnip</p>
+  <p class="BodyLevel1">CallJsResponseSnip</p>
+  <p class="BodyLevel1">CallJsSignatureFieldSnip</p>
+  <p class="BodyLevel1">CallJsTextFieldSnip</p>
+  <p class="BodyLevel1">CloseFrontDocSnip</p>
+  <p class="BodyLevel1">ColorSelectedBookmarksSnip</p>
+  <p class="BodyLevel1">ColorSetupSnip</p>
+  <p class="BodyLevel1">ConvertFlate2JPXSnip</p>
+  <p class="BodyLevel1">CosDecryptDataSnip</p>
+  <p class="BodyLevel1">CosEncryptDataSnip</p>
+  <p class="BodyLevel1">DocMetadataSnip</p>
+  <p class="BodyLevel1">EmitPostScriptSnip</p>
+  <p class="BodyLevel1">EnumAVConvExtSnip</p>
+  <p class="BodyLevel1">ExportFormDataSnip</p>
+  <p class="BodyLevel1">FormCalculationsSnip</p>
+  <p class="BodyLevel1">IdleProcSnip</p>
+  <p class="BodyLevel1">InvokeAccessibilityCheckerCmdSnip</p>
+  <p class="BodyLevel1">InvokeCreateAllThumbsCmdSnip</p>
+  <p class="BodyLevel1">InvokeDeleteAllThumbsCmdSnip</p>
+  <p class="BodyLevel1">InvokeDeleteCmdSnip</p>
+  <p class="BodyLevel1">InvokeFlattenOCGsCmdSnip</p>
+  <p class="BodyLevel1">InvokeMakeAccessibleCmdSnip</p>
+  <p class="BodyLevel1">InvokeOpenOptionsCmdSnip</p>
+  <p class="BodyLevel1">InvokeSummarizeCmdSnip</p>
+  <p class="BodyLevel1">LoadHowToSnip</p>
+  <p class="BodyLevel1">OpenDocumentSnip</p>
+  <p class="BodyLevel1">OptContNotificationTracerSnip</p>
+  <p class="BodyLevel1">PDEPathToggleVisibilitySnip</p>
+  <p class="BodyLevel1">PDPageNotifyContentsChangeSnip</p>
+  <p class="BodyLevel1">RegisterFileConverterSnip</p>
+  <p class="BodyLevel1">ReplaceMethodSnip</p>
+  <p class="BodyLevel1">ResetFormSnip</p>
+  <p class="BodyLevel1">SeparationsPreviewSnip</p>
+  <p class="BodyLevel1">ShowTextFieldNamesSnip</p>
+  <p class="BodyLevel1">SmartPDPageSnip</p>
+  <p class="BodyLevel1">SnapZoomSnip</p>
+  <p class="BodyLevel1">TextInfoSnip</p>
+  <p class="BodyLevel1">TransformMetadataSnip</p>
+  <p class="BodyLevel1">TransHandlerSnip</p>
+  <p class="BodyLevel1">ACEEnumProfilesSnip</p>
+  <p class="BodyLevel1">ACEEnumSettingsSnip</p>
+  <p class="BodyLevel1">ACEGetWorkingSpaceSnip</p>
+  <p class="BodyLevel1">ACETransPDETextColorSnip</p>
+  <p class="BodyLevel1">AddGlyphsSnip</p>
+  <p class="BodyLevel1">AddImageMetadataSnip</p>
+  <p class="BodyLevel1">AddImageSnip</p>
+  <p class="BodyLevel1">AddPageMetadataSnip</p>
+  <p class="BodyLevel1">AddStructureSnip</p>
+  <p class="BodyLevel1">AddTagSnip</p>
+  <p class="BodyLevel1">AddXObjectStructureSnip</p>
+  <p class="BodyLevel1">ASBigFileSnip</p>
+  <p class="BodyLevel1">ASCabPutGetSnip</p>
+  <p class="BodyLevel1">ASChangeTempFileSysSnip</p>
+  <p class="BodyLevel1">ASDateSnip</p>
+  <p class="BodyLevel1">ASFileIteratorSnip</p>
+  <p class="BodyLevel1">ASGetConfigurationSnip</p>
+  <p class="BodyLevel1">ClassMapSnip</p>
+  <p class="BodyLevel1">ConvertOCGsToRadioButSnip</p>
+  <p class="BodyLevel1">CosCryptGetVersionSnip</p>
+  <p class="BodyLevel1">CosDictKeyNameStringSnip</p>
+  <p class="BodyLevel1">CosDoc64Snip</p>
+  <p class="BodyLevel1">CosNumberObjRangeSnip</p>
+  <p class="BodyLevel1">CosObjCompressionSnip</p>
+  <p class="BodyLevel1">CosObjDecompressionSnip</p>
+  <p class="BodyLevel1">CosObjectExplorerSnip</p>
+  <p class="BodyLevel1">CosObjWeakReferenceSnip</p>
+  <p class="BodyLevel1">CosStream64Snip</p>
+  <p class="BodyLevel1">CreateAnnotOCSnip</p>
+  <p class="BodyLevel1">CreateContentXORSnip</p>
+  <p class="BodyLevel1">CreateDocStructSnip</p>
+  <p class="BodyLevel1">CreateImageContentOCSnip</p>
+  <p class="BodyLevel1">CreateTextContentOCSnip</p>
+  <p class="BodyLevel1">ExploreMetadataSnip</p>
+  <p class="BodyLevel1">ExploreStructSnip</p>
+  <p class="BodyLevel1">FontInfoSnip</p>
+  <p class="BodyLevel1">GetDocKeywordSnip</p>
+  <p class="BodyLevel1">GetDocMetadataSnip</p>
+  <p class="BodyLevel1">ImageInfoSnip</p>
+  <p class="BodyLevel1">JPXColorSpaceExplorerSnip</p>
+  <p class="BodyLevel1">JPXPaletteExplorerSnip</p>
+  <p class="BodyLevel1">MakeBookmarkSnip</p>
+  <p class="BodyLevel1">ObjShiftSnip</p>
+  <p class="BodyLevel1">OCActionControlSnip</p>
+  <p class="BodyLevel1">OCGUIReorderSnip</p>
+  <p class="BodyLevel1">OCTextAutoStateSnip</p>
+  <p class="BodyLevel1">PDCreateMasterOCGSnip</p>
+  <p class="BodyLevel1">PDDocDidDeletePagesNotSnip</p>
+  <p class="BodyLevel1">PDEContentExplorerSnip</p>
+  <p class="BodyLevel1">PDEPathDrawCurveSnip</p>
+  <p class="BodyLevel1">PDEPathDrawLineSnip</p>
+  <p class="BodyLevel1">PDEPathDrawRectSnip</p>
+  <p class="BodyLevel1">PDEPathExplorerSnip</p>
+  <p class="BodyLevel1">PDOCConfigCreateSnip</p>
+  <p class="BodyLevel1">PDOCConfigExplorerSnip</p>
+  <p class="BodyLevel1">PDOCGChangeLockedStateSnip</p>
+  <p class="BodyLevel1">PDOCGExplorerSnip</p>
+  <p class="BodyLevel1">PDOCGToggleIntentSnip</p>
+  <p class="BodyLevel1">PDOCSetDefaultConfigSnip</p>
+  <p class="BodyLevel1">PDPageSetTransparencySnip</p>
+  <p class="BodyLevel1">RaiseExcepSnip</p>
+  <p class="BodyLevel1">RemoveEmbeddedFontSnip</p>
+  <p class="BodyLevel1">RoleMapSnip</p>
+  <p class="BodyLevel1">SecureDocumentSnip</p>
+  <p class="BodyLevel1">SetDocBaseURLSnip</p>
+  <p class="BodyLevel1">SimpleSnip</p>
+  <p class="BodyLevel1">TextChangeColourSnip</p>
+  <p class="BodyLevel1">TextExtractionSnip</p>
+  <p class="BodyLevel1">UserPropertiesExplorerSnip</p>
+  </div>
+</body>
+</html>

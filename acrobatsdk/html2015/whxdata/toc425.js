@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc424.js\"  name=\"PlayerInfoList methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/PlayerInfoList_methods.htm\"><item name=\"select\" url=\"Acro12_MasterBook/JS_API_AcroJS/PlayerInfoList_methods.htm#TOC_select1bc-1\" /></data>";

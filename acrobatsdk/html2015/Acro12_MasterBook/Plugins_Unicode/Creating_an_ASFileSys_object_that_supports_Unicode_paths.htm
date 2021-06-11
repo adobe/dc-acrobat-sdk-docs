@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating an ASFileSys object that supports Unicode paths</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Unicode.fm" />
+ <link rel="stylesheet" href="Plugins_Unicode.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.15.1.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Unicode/Creating_an_ASFileSys_object.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Hft/Working_with_Host_Function_Tables.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Unicode Paths > Retrieving Unicode path values" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Creating an ASFileSys object that supports Unicode paths</h3>
+  <p class="BodyLevel1">You can invoke the <span class="FM_Courier">ASGetDefaultUnicodeFileSys</span>&#160;method to create an <span class="FM_Courier">ASFileSys</span>&#160;object that represents a file system that supports Unicode paths. On Windows, this method returns an <span class="FM_Courier">ASFileSys</span>&#160;object that uses Unicode paths. On Mac OS, this method returns the value that the <span class="FM_Courier">ASGetDefaultFileSys</span>&#160;method returns because the Mac OS default file system already supports Unicode paths. On UNIX, this method returns <span class="FM_Courier">NULL</span>&#160;because the UNIX file system does not support Unicode paths.</p>
+  <p class="BodyLevel1">A Unicode file system can be retrieved by using the <span class="FM_Courier">ASFileGetFileSysByName</span>&#160;method if you pass <span class="FM_Courier">Win</span>&#160;(or <span class="FM_Courier">ASAtomFromString(“Win”</span>)) for the <span class="FM_Courier">ASAtom</span> name argument.</p>
+  <p class="BodyLevel1">As of <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;8, a new <span class="FM_Courier">platformPathType</span>&#160;type named <span class="FM_Courier">WinUnicodePath</span>&#160;is supported. This is the Unicode version of the <span class="FM_Courier">Cstring platformPathType</span>&#160;type. It is used to get the Unicode platform path on Windows.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>The classic Windows file system supports both <span class="FM_Courier">Cstring</span>&#160;and <span class="FM_Courier">WinUnicodePath</span>&#160;in its implementation of the <span class="FM_Courier">ASFileSysAcquirePlatformPath</span>&#160;and <span class="FM_Courier">ASPlatformPathGetCstringPtr</span> methods.</p>
+  <p class="BodyLevel1">The SnippetRunner samples include a shared snippet named OpenUnicodeNamedDocSnip that demonstrates how to open a file with a Unicode (UTF-8) file name. The SnippetRunner samples are available at <span class="FM_HyperText"><a href="http://www.adobe.com/go/acrobat_developer">Acrobat Developer Center</a></span>. </p>
+  <p class="BodyLevel1">The following code example retrieves the host encoded platform path on Windows.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Retrieving a host encoded platform path</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">char* path = NULL;</p>
+  <p class="FM_CodeReference">ASPlatformPath platformPath = NULL;</p>
+  <p class="FM_CodeReference">ASInt32 result = ASFileSysAcquirePlatformPath(</p>
+  <p class="FM_CodeReference">fileSys, pathName, ASAtomFromString(&quot;Cstring&quot;), &amp;platformPath);</p>
+  <p class="FM_CodeReference">if ((result == 0) &amp;&amp; (platformPath != NULL)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>path = ASPlatformPathGetCstringPtr(platformPath);</p>
+  <p class="FM_CodeReference">ASFileSysReleasePlatformPath(fileSys, platformPath);</p>
+  <p class="BodyLevel1">In contrast, the following code example retrieves a Unicode platform path on Windows.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Retrieving a Unicode platform path</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">ASUTF16* path = NULL;</p>
+  <p class="FM_CodeReference">ASPlatformPath platformPath = NULL;</p>
+  <p class="FM_CodeReference">ASInt32 result = ASFileSysAcquirePlatformPath(</p>
+  <p class="FM_CodeReference">fileSys, pathName, ASAtomFromString(&quot;WinUnicodePath&quot;), &amp;platformPath);</p>
+  <p class="FM_CodeReference">if ((result == 0) &amp;&amp; (platformPath != NULL)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>path = (ASUTF16*)ASPlatformPathGetCstringPtr(platformPath);</p>
+  <p class="FM_CodeReference">ASFileSysReleasePlatformPath(fileSys, platformPath);</p>
+  <p class="BodyLevel1">Note that the <span class="FM_Courier">ASPlatformPathGetCstringPtr</span>&#160;method is still called to get the path string, but that a wide-char string is returned since <span class="FM_Courier">WinUnicodePath</span>&#160;was passed to the <span class="FM_Courier">ASFileSysAcquirePlatformPath</span> method.</p>
+ </div>
+</body>
+</html>

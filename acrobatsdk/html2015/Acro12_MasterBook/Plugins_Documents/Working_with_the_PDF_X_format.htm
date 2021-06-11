@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Working with the PDF/X format</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Documents.fm" />
+ <link rel="stylesheet" href="Plugins_Documents.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.5.3_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Documents/Printing_documents.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Documents/Working_with_multiple-tabs.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Documents and Files" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_68198_Working_with_the"></a>Working with the PDF/X format</h2>
+  <p class="BodyLevel1">Beginning PDF Library XI, you can convert an existing PDF file to the PDF/X format. The converter aims at creating an output PDF/X document that is self-contained and whose visual fidelity is maintained over time. The converter manages operations like font embedding, changes in colors while printing, etc., to give a seamless PDF/X conversion process. PDF/X-1a:2001 and PDF/X-3:2003 are the two PDF/X standards that are supported by the PDF processor plugin. For files containing objects that cannot be converted as per the PDF/X standards, the conversion process is aborted.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>PDFL SDK XI does not support the conversion of PDF packages or of PDF portfolios to the PDF/X format.</p>
+  <p class="BodyLevel1">The following lists how various file elements are handled during conversion:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Color Spaces: All color spaces in the input file are converted to PDF/X compliant color spaces. For PDF/X-3:2003, conversions to the US SWOP colorspace is supported.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">AcroForms: AcroForms are flattened in the PDF/X compliant output file. This may result in loss of interactivity if the source file includes annotations. In the case of text fields, only the visible text is saved.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Digital Signatures: Digital signatures are flattened and replaced by equivalent graphics operators with the same visual appearance.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Annotations and Actions: The PDF/X standard does not allow the use of annotations or actions inside the print area. Any actions present in the input file will not be available in the output PDF/X file Annotations, if present, are moved outside the print area in the converted PDF/X file. You can choose to turn off the relocation of annotations which will result in the removal of annotations altogether.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Tagged PDF: PDF files that include tags are not supported. All tagging information is lost when a tagged PDF file is converted to the PDF/X format.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Fonts: The conversion is aborted if fonts in the input file are not embedded, the fonts are not present on the system, or the font embedding permissions are not available. Any invisible text in the input file will not be available in the output PDF/X file.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Transparency: Transparency is not supported in the PDF/X format. All transparency is flattened when a file is converted to the PDF/X format</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The following APIs are avilable for conversion using the PDF Processor:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">PDFProcessorConvertAndSaveToPDFA</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">PDFProcessorConvertToPDFA</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">PDFProcessorTerminate</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">PDFProcessorConvertAndSaveToPDFX</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">PDFProcessorConvertToPDFX.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">See the <span class="FM_HyperText"><a href="http://help.adobe.com/en_US/acrobat/acrobat_dc_sdk/2015/HTMLHelp/Acro12_MasterBook/API_References_SectionPage/API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a></span> for more information.</p>
+  </div>
+</body>
+</html>

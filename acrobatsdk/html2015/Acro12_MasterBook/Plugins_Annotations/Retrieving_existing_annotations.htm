@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Retrieving existing annotations</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Annotations.fm" />
+ <link rel="stylesheet" href="Plugins_Annotations.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.8.1.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Annotations/Creating_text_annotations.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Annotations/Modifying_text_annotations.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Annotations > Working with text annotations" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_retrieving_annotations"></a><a name="IX_retrieving_1"></a><a name="IX_annotations_2"></a><a name="XREF_93262_Retrieving"></a>Retrieving existing annotations</h3>
+  <p class="BodyLevel1">You can use the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;core API to retrieve existing annotations located within a PDF document by performing the following tasks:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDDoc</span>&#160;object that represents the PDF document that contains annotations. (See <a href="../Plugins_Documents/Creating_a_PDDoc_object.htm#XREF_97094_Creating_a_PDDoc">Creating a PDDoc object </a>.)</p>
+  <p class="FM_Step"><a name="IX_PDDocGetNumPages"></a><a name="IX_PDDocGetNumPages_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Search for existing annotations by iterating through the PDF document page by page. One way to perform this task is to create a for loop structure and invoke the <span class="FM_Courier">PDDocGetNumPages</span>&#160;method. This method requires a <span class="FM_Courier">PDDoc</span>&#160;object as an argument and returns the number of pages within the document.</p>
+  <p class="FM_Step"><a name="IX_PDDocAcquirePage_1"></a><a name="IX_PDDocAcquirePage_method_1"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>For each page within the PDF document, obtain a <span class="FM_Courier">PDPage</span>&#160;object by invoking the <span class="FM_Courier">PDDocAcquirePage</span> method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">PDDoc</span> object that represents the PDF document that contains the page.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">ASInt32</span> object that represents the page number.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><a name="IX_PDPageGetNumAnnots"></a><a name="IX_PDPageGetNumAnnots_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>After you obtain a <span class="FM_Courier">PDPage</span>&#160;object, get the number of annotations located on the page by invoking the <span class="FM_Courier">PDPageGetNumAnnots</span>&#160;method. This method requires a <span class="FM_Courier">PDPage</span>&#160;object as an argument and returns an <span class="FM_Courier">ASInt32</span>&#160;object representing the number of annotations located on the page. </p>
+  <p class="FM_Step"><a name="IX_PDPageGetAnnot"></a><a name="IX_PDPageGetAnnot_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>For each annotation on a page, invoke the <span class="FM_Courier">PDPageGetAnnot</span>&#160;method. This method requires a <span class="FM_Courier">PDPage</span>&#160;object and an <span class="FM_Courier">ASInt32</span>&#160;object that represents the index of the annotation. This method returns a <span class="FM_Courier">PDAnnot</span>&#160;object. </p>
+  <p class="BodyLevel1"><a name="IX_ASAtomGetString"></a><a name="IX_ASAtomGetString_method"></a><a name="IX_annotation_subtype"></a><a name="IX_PDAnnotGetSubtype"></a><a name="IX_PDAnnotGetSubtype_method"></a>The following code example retrieves existing annotations located within a PDF document. After an annotation is retrieved, information about the annotation is displayed within an alert box. Information about the annotation is retrieved by invoking the <span class="FM_Courier">PDAnnotGetSubtype</span>&#160;method. This method returns an <span class="FM_Courier">ASAtom</span>&#160;object representing the annotation’s subtype. For example, if the annotation is a stamp, then an <span class="FM_Courier">ASAtom</span>&#160;object storing the value <span class="FM_Courier">Stamp</span>&#160;is returned. You can get the string value from an <span class="FM_Courier">ASAtom</span>&#160;object by invoking the <span class="FM_Courier">ASAtomGetString</span>&#160;method and passing the <span class="FM_Courier">ASAtom</span>&#160;object. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Retrieving existing annotations</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">PDPage page;</p>
+  <p class="FM_CodeReference">ASInt32 i,i2;</p>
+  <p class="FM_CodeReference">PDAnnot annot;</p>
+  <p class="FM_CodeReference">char* ptr;</p>
+  <p class="FM_CodeReference">char buf[200];</p>
+  <p class="FM_CodeReference">ASAtom atom;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Iterate through the PDF document page by page</p>
+  <p class="FM_CodeReference">for (i = 0; i &lt; PDDocGetNumPages(myPDDoc); i ++){</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get each page within the document</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>page = PDDocAcquirePage(myPDDoc, i);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get each annotation on the page</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (i2 = 0; i2 &lt; PDPageGetNumAnnots(page); i2++) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get a specific annotation</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>annot = PDPageGetAnnot(page,i2);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (PDAnnotIsValid(annot))<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Display subtype information about the annotation</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>atom = PDAnnotGetSubtype(annot);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Cast the ASAtom object to a character pointer</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ptr = (char*) ASAtomGetString(atom);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sprintf(buf, &quot;The annotation’s subtype is %s&quot;, ptr);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (buf);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>In the previous code example, assume a <span class="FM_Courier">PDDoc</span>&#160;object named <span class="FM_Courier">myPDDoc</span>&#160;exists. (See <a href="../Plugins_Documents/Creating_a_PDDoc_object.htm#XREF_97094_Creating_a_PDDoc">Creating a PDDoc object </a>.)</p>
+  </div>
+</body>
+</html>

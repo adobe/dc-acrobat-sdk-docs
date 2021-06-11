@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creative Suite color conversion settings</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\PDF_Creation_APIs\PDFCreationSettings\PDF_Create_UsingSettings.fm" />
+ <link rel="stylesheet" href="PDF_Create_UsingSettings.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.1.2.2.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/PDF_Create_UsingSettings/Distiller_color_conversion_settings.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/PDF_Create_UsingSettings/Color_settings_interchange.htm">
+ <meta name="topic-breadcrumbs" content="PDF Creation APIs and Specifications > Adobe PDF Creation Settings > Using PDF Creation Settings > Using the color conversion settings" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_74214_Creative_Suite"></a>Creative Suite color conversion settings</h3>
+  <p class="BodyLevel1">Creative Suite applications use several color conversion settings. The settings, which are in the <span class="FM_Courier">CreativeSuite</span>&#160;namespace, determine whether colors should be converted and which profiles should be included for which objects. They appear in the Output panel of the PDF export dialog box in the user interface. This section explains how the settings are used.</p>
+  <h4><a name="TOC_Converting_colors"></a>Converting colors</h4>
+  <p class="BodyLevel1">The <span class="FM_Courier">ConvertColors</span>&#160;setting determines whether colors should be converted. A value of <span class="FM_Courier">NoConversion</span>&#160;corresponds to “No Color Conversion” in the UI. Values of <span class="FM_Courier">ConvertToCMYK</span>&#160;and <span class="FM_Courier">ConvertToRGB</span>&#160;can correspond to either of the following UI settings, as follows:</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Convert to Destination</span>: All colors are converted to destination profile space unless profiles are same as destination profile. (Native and untagged placed objects are treated as if tagged with the corresponding document profile.)</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Convert to Destination (Preserve Numbers)</span>: (This option is not used by Photoshop.) Colors are converted to the destination profile if the color space family (for example, CMYK) does not match the destination color space family. Colors are not converted if there is no embedded profile or if the object is native (that is, created in the application itself as opposed to placed graphics such as images or PDF).</p>
+  <h4><a name="TOC_Including_profiles"></a>Including profiles</h4>
+  <p class="BodyLevel1">This section describes the settings that control whether and which color profiles should be included.</p>
+  <p class="BodyLevel1"><span class="FM_Courier">IncludeProfiles</span>&#160;is a Boolean value. If it is <span class="FM_Courier">false</span>, no profiles are included in the generated PDF. The UI setting is “Don’t Include Profiles”. If <span class="FM_Courier">IncludeProfiles</span>&#160;is <span class="FM_Courier">true</span>&#160;and colors are being converted to a destination, the UI specifies “Include Destination Profiles.”</p>
+  <p class="BodyLevel1">If <span class="FM_Courier">IncludeProfiles</span>&#160;is <span class="FM_Courier">true</span> and colors are not being converted, the options are:</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Include All Profiles</span>: Includes profiles for all content.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Include Tagged Source Profiles</span>: Leaves device-dependent colors unchanged and preserves device-independent colors as the nearest possible equivalent in PDF.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Include All RGB and Tagged Source CMYK Profiles</span>: Includes profiles for tagged RGB and tagged CMYK objects, as well as the Document RGB profile for untagged RGB objects.</p>
+  <p class="BodyLevel1">These correspond to additional settings, explained below. </p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>In the Photoshop UI, only “Include Destination Profile” is available when converting colors.</p>
+  <p class="BodyLevel1"><span class="FM_Courier">UntaggedRGBHandling</span>&#160;and <span class="FM_Courier">UntaggedCMYKHandling</span>&#160;determine what should happen to untagged RGB or CMYK objects during conversion. They can either be left untagged (<span class="FM_Courier">LeaveUntagged</span>) or tagged with the document profile (<span class="FM_Courier">UseDocumentProfile</span>).</p>
+  <p class="BodyLevel1">The choice of profiles is controlled by <span class="FM_Courier">DestinationProfileSelector</span>, which can take these values:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">NA</span> means that no color conversion takes place (<span class="FM_Courier">ConvertColors</span>&#160;is <span class="FM_Courier">NoConversion</span>).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">WorkingCMYK</span>, <span class="FM_Courier">WorkingRGB</span>, <span class="FM_Courier">DocumentCMYK</span>, and <span class="FM_Courier">DocumentRGB</span>&#160;specify the profile to be used for color conversion. When using <span class="FM_Courier">WorkingCMYK</span>&#160;or <span class="FM_Courier">DocumentCMYK</span>, Creative Suite applications also write the profile name to <span class="FM_Courier">DestinationProfileName</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">UseName</span>&#160;means that the ICC profile specified by <span class="FM_Courier">DestinationProfileName</span>&#160;should be used for color conversion.</p>
+</li>
+  </ul>
+  </div>
+</body>
+</html>

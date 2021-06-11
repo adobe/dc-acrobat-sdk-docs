@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc351.js\"  name=\"Directory methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/Directory_methods.htm\"><item name=\"connect\" url=\"Acro12_MasterBook/JS_API_AcroJS/Directory_methods.htm#TOC_connectbc-1\" /></data>";

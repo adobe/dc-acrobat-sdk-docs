@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Supported environments","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Supported_environments.htm"},{"type":"book","name":"Contents","key":"toc5","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Contents.htm"},{"type":"item","name":"Installing the PDF Library SDK","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Installing_the_PDF_Library_SDK.htm"},{"type":"book","name":"Updating to latest PDF Library SDK","key":"toc6","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Updating_to_latest_PDF_Library_SDK.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

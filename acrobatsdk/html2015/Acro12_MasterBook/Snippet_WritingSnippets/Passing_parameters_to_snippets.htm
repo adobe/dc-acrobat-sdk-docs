@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Passing parameters to snippets</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\SnippetRunnerCookbook\Snippet_WritingSnippets.fm" />
+ <link rel="stylesheet" href="Snippet_WritingSnippets.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "1.4.2.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Snippet_WritingSnippets/Writing_Snippets.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Snippet_WritingSnippets/Toggling_behavior_and_asynchronous_snippets.htm">
+ <meta name="topic-breadcrumbs" content="Introduction to SDK > Snippet Runner Cookbook > Writing Snippets" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_93537_Passing_Parameters"></a>Passing parameters to snippets</h2>
+  <p class="BodyLevel1">You can pass parameters to a snippet’s main function. To enable this mechanism, use the <span class="FM_Courier">SNIPRUN_REGISTER_WITH_DIALOG</span>&#160;macro in your snippet to bind the snippet to SnippetRunner. This call takes an extra parameter (beyond the three required by <span class="FM_Courier">SNIPRUN_REGISTER</span>), which is a single string representing default parameter(s) separated by spaces. </p>
+  <p class="BodyLevel1">When a snippet implemented with <span class="FM_Courier">SNIPRUN_REGISTER_WITH_DIALOG</span>&#160;is invoked, a dialog box with the snippet’s descriptive text appears that includes a text edit box pre-populated with the default values set by the fourth parameter. </p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>If necessary, this dialog box can be suppressed using the utility calls <span class="FM_Courier">turnParamDialogOff</span> (<span class="FM_Courier">/On</span>) and <span class="FM_Courier">toggleParamDialog</span> (see SnippetRunnerUtils.cpp).</p>
+  <p class="BodyLevel1">An example of the use of this macro and its resulting values is in the TextChangeColour snippet, whose macro call is written as follows:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>SNIPRUN_REGISTER_WITH_DIALOG(TextChangeColourSnip, &quot;PDE Layer:<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Text:Change colour&quot;,&quot;Shows how to change the colour of text <br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>in a document&quot;,&quot;0 0 65000&quot;)</p>
+  <p class="BodyLevel1">When this snippet is invoked, a dialog box displays “Shows how to change colour of text in a document” and the parameter text edit box is pre-populated with the default values: “0 0 65000”. For this example, the parameters are meant to represent RGB color values. You can edit the text in the dialog box to change the values of the parameters. </p>
+  <p class="BodyLevel1">To access the parameters passed in through the dialog box, use the <span class="FM_Courier">ParamsManager</span>&#160;class. This class (see ParamManager.cpp) provides a set of methods that allow you to obtain the input parameters as integer, string, hex, and fixed data types. (To provide support for other data types, you must extend the <span class="FM_Courier">ParamsManager</span> class.)</p>
+  <p class="BodyLevel1">For example, the <span class="FM_Courier">TextChangeColour</span>&#160;function is defined with a single parameter of type <span class="FM_Courier">ParamManager *</span>, to provide storage for the snippet’s parameters:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>void TextChangeColourSnip(ParamManager * thePM)</p>
+  <p class="BodyLevel1">The following code in the <span class="FM_Courier">TextChangeColourSnip</span>&#160;function converts the input parameter string to three separate RGB values of type integer:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 red,green,blue;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>thePM-&gt;getNextParamAsInt(red);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>thePM-&gt;getNextParamAsInt(green);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>thePM-&gt;getNextParamAsInt(blue);</p>
+  </div>
+</body>
+</html>

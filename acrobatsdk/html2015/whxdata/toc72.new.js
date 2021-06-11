@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Manipulating Acrobat and Acrobat Reader","url":"Acro12_MasterBook/Plugins_Introduction/Manipulating_Acrobat_and_Acrobat_Reader.htm"},{"type":"item","name":"Displaying a PDF document in an external window","url":"Acro12_MasterBook/Plugins_Introduction/Displaying_a_PDF_document_in_an_external_window.htm"},{"type":"item","name":"Indexed searching","url":"Acro12_MasterBook/Plugins_Introduction/Indexed_searching.htm"},{"type":"item","name":"Modifying file access","url":"Acro12_MasterBook/Plugins_Introduction/Modifying_file_access.htm"},{"type":"item","name":"Creating new annotation types","url":"Acro12_MasterBook/Plugins_Introduction/Creating_new_annotation_types.htm"},{"type":"item","name":"Dynamically adding text to PDF documents","url":"Acro12_MasterBook/Plugins_Introduction/Dynamically_adding_text_to_PDF_documents.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

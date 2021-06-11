@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Introduced in Acrobat 6.0","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Introduced_in_Acrobat_6_0.htm"},{"type":"item","name":"Modified in Acrobat 6.0","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Introduced_in_Acrobat_6_0.htm#TOC_Modified_in_Acrobat_6_0bc-1"},{"type":"item","name":"Deprecated in Acrobat 6.0","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Deprecated_in_Acrobat_6_0.htm"},{"type":"item","name":"Introduced in Acrobat 6.0.2","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Deprecated_in_Acrobat_6_0.htm#TOC_Introduced_in_Acrobat_6bc-1"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Restriction on Directory Access","url":"Acro12_MasterBook/Distiller_AutomationIntro/Restriction_on_Directory_Access.htm"},{"type":"item","name":"Windows Automation","url":"Acro12_MasterBook/Distiller_AutomationIntro/Windows_Automation.htm"},{"type":"book","name":"Methods","key":"toc193","url":"Acro12_MasterBook/Distiller_AutomationIntro/Methods.htm"},{"type":"book","name":"Properties","key":"toc194","url":"Acro12_MasterBook/Distiller_AutomationIntro/Properties.htm"},{"type":"book","name":"Events","key":"toc195","url":"Acro12_MasterBook/Distiller_AutomationIntro/Events.htm"},{"type":"book","name":"Windows Messaging","key":"toc196","url":"Acro12_MasterBook/Distiller_WinIntro/Windows_Messaging.htm"},{"type":"book","name":"Apple Events","key":"toc198","url":"Acro12_MasterBook/Distiller_Mac/Apple_Events1.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

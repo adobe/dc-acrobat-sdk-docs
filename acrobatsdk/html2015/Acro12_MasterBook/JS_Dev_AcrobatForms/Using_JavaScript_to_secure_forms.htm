@@ -1,0 +1,198 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Using JavaScript to secure forms</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_AcrobatForms.fm" />
+ <link rel="stylesheet" href="JS_Dev_AcrobatForms.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.6.4_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_AcrobatForms/Reading_order.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_RMA/Review_Markup_and_Approval.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Using JavaScript in Forms" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_34628_Using_JavaScript"></a>Using JavaScript to secure forms</h2>
+  <p class="BodyLevel1">As you learned earlier in <a href="Setting_Acrobat_form_field_properties.htm#XREF_61295_Signature"><span class="FM_HyperText">Signature fields</span></a>, you can lock any form fields you deem appropriate once a document has been signed. In addition, you can also encrypt a document.</p>
+  <p class="BodyLevel1"><a name="IX_public_key_encryption"></a><a name="IX_X_509_public_key"></a>JavaScript provides a number of objects that support security. These are managed by the <span class="FM_Courier">security</span>&#160;and <span class="FM_Courier">securityHandler</span>&#160;objects for building certificates and signatures, as well as the <span class="FM_Courier">certificate</span>, <span class="FM_Courier">directory</span>, <span class="FM_Courier">SignatureInfo</span>, and <span class="FM_Courier">dirConnection</span>&#160;objects which are used to access the user certificates. (The <span class="FM_Courier">certificate</span>&#160;object provides read-only access to an X.509 public key certificate). </p>
+  <p class="BodyLevel1"><a name="IX_encryptForRecipients_1"></a><a name="IX_encryptForRecipients"></a>These objects, in combination, provide you with the means to digitally sign or encrypt a document. Once you have built a list of authorized recipients, you can then encrypt the document using the <span class="FM_Courier">encryptForRecipients</span> method of the Doc object<span class="FM_Courier"></span>, save the document to commit the encryption, and email it to them.</p>
+  <p class="BodyLevel1">For example, you can obtain a list of recipients for which the encrypted document is available, and then encrypt the document:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Invoke the recipients dialog box to select which recipients</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// will be authorized to view the encrypted document:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oOptions = {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>bAllowPermGroups: false,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>cNote: &quot;Recipients with email and certificates&quot;,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>bRequireEmail: true,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>bUserCert: true</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>};</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oGroups = security.chooseRecipientsDialog(oOptions);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Build the mailing list</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var numCerts = oGroups[0].userEntities.length;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var cMsg = &quot;Encrypted for these recipients:\n&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var mailList = new Array;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (var i=0; i&lt;numCerts; i++) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var ue = oGroups[0].userEntities[i];</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oCert = ue.defaultEncryptCert;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (oCert == null) oCert = ue.certificates[0];</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>cMsg += oCert.subjectCN + &quot;, &quot; + ue.email + &quot;\n&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oRDN = oCert.subjectDN;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (ue.email) mailList[i] = ue.email; </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>else if (oRDN.e) mailList[i] = oRDN.e;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Now encrypt the document</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>this.encryptForRecipients(oGroups);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Mail the document.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>this.mailDoc({</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>cTo: mailList.toString(),</p>
+  <p class="FM_CodeReference">&#160;&#160;&#160;&#160;<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>cSubject: &quot;For your review&quot;,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>cMsg: &quot;Please read this before the meeting on Monday.&quot; </p>
+  <p class="FM_CodeReference">})</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="BodyLevel1">The properties and methods of the <span class="FM_Courier">security</span> object are described in the following two tables.</p>
+  <p class="FM_Z_Caption"><a name="IX_properties_4"></a>Security properties</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:6.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 22.50pt;">
+   <th style="width : 172.800pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Property</p>
+</th>
+   <th style="width : 288.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Description</p>
+</th>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">handlers</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Returns an array of security handler names</p>
+</td>
+</tr>
+   <tr style=" height : 35.00pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">validateSignaturesOnOpen</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">User preference to be automatically validated when document opens</p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="FM_Z_Caption"><a name="IX_methods_1"></a>Security methods</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:6.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 22.50pt;">
+   <th style="width : 172.800pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Method</p>
+</th>
+   <th style="width : 288.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Description</p>
+</th>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">chooseRecipientsDialog</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Opens a dialog box to choose a list of recipients</p>
+</td>
+</tr>
+   <tr style=" height : 35.00pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">chooseSecurityPolicy</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Displays a dialog box to allow a user to choose from a list of security policies, filtered according to the options.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">exportToFile</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Saves a <span class="FM_Courier">Certificate</span> object to a local disk</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">getHandler</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Obtains a security handler object</p>
+</td>
+</tr>
+   <tr style=" height : 35.00pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">getSecurityPolicies</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Returns the list of security policies currently available, filtered according to the options specified.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 172.800pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">importFromFile</p>
+</td>
+   <td style="width : 288.000pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Reads in a <span class="FM_Courier">Certificate</span> object from a local disk</p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="BodyLevel1">See the <a href="../JS_API_AcroJSPreface/JS_API_AcroJSPreface.htm#XREF_87228_JavaScript_for"><span class="FM_HyperText">JavaScript for Acrobat API Reference</span></a> for documentation on these properties and methods.</p>
+ </div>
+</body>
+</html>

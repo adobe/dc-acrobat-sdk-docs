@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc34.js\"  name=\"Navigator Samples\" url=\"Acro12_MasterBook/Samples_Navigator/Navigator_Samples.htm\"><item name=\"Navigators\" url=\"Acro12_MasterBook/Samples_Navigator/Navigator_Samples.htm#TOC_Navigatorsbc-1\" /></data>";

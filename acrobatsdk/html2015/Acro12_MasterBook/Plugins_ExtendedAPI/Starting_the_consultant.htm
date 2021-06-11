@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Starting the consultant</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_ExtendedAPI.fm" />
+ <link rel="stylesheet" href="Plugins_ExtendedAPI.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.21.1.0_6";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_ExtendedAPI/Registering_agents_with_consultants.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_ExtendedAPI/Consultant_object_type_identification.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Acrobat Extended APIs > PDF Consultant and Accessibility Checker extended API" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Starting the consultant</h3>
+  <p class="BodyLevel1">The <span class="FM_Courier">ConsultantTraverseFrom</span>&#160;method instructs the consultant to begin traversing a document, starting at a specific Cos object. The Cos object should be the catalog of a currently open document. The <span class="FM_Courier">ConsultantTraverseFrom</span>&#160;method has no return value and instead raises an exception if an error occurs. The following code example demonstrates how to use the traversal stack manipulation functions.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Using the consultant traversal stack</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">char* GetTraversalString(ConsStack stack, char *traversalString,</p>
+  <p class="FM_CodeReference">ASUns32 strLen)</p>
+  <p class="FM_CodeReference">{&nbsp;</p>
+  <p class="FM_CodeReference">ASUns32 Index, NumItems, CurStrLen;</p>
+  <p class="FM_CodeReference">char StringUns32[16];&nbsp;traversalString[0] = '\0';</p>
+  <p class="FM_CodeReference">CurStrLen = strlen(traversalString);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the number of items in the current traversal </p>
+  <p class="FM_CodeReference">NumItems = ConsStackGetCount(stack);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">for(Index = 0; (Index &lt; NumItems) &amp;&amp; (CurStrLen &lt; strLen); Index++)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if((CurStrLen += strlen(TRAVERSAL_SEP)) &lt; strLen)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcat(traversalString, TRAVERSAL_SEP);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Add the parent key, if this stack entry has one */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if(ConsStackIndexIsDict(stack, Index))</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char* strParentKey = &nbsp;&nbsp;ASAtomGetString(ConsStackIndexGetDictKey(stack,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Index));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if((CurStrLen += strlen(strParentKey)) &lt; strLen)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcat(traversalString, strParentKey);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeComment">//Add the parent index, if this stack entry has one</p>
+  <p class="FM_CodeReference">else if(ConsStackIndexIsArray(stack, Index))</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sprintf(StringUns32, &quot;%u&quot;,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ConsStackIndexGetArrayIndex(stack, Index));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if((CurStrLen += (strlen(StringUns32) + 2)) &lt; strLen)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcat(traversalString, &quot;[&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcat(traversalString, StringUns32);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcat(traversalString, &quot;]&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} </p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">return traversalString;</p>
+  <p class="FM_CodeReference">}</p>
+  </div>
+</body>
+</html>

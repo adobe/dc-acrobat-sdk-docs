@@ -1,0 +1,4674 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="Spell,,,,_t_HyphenationRecord,SpellCheckParam,kWordCreatorCode,SCALEALL_3D_CURSOR,SCROLL_CURSOR,SpellerNum_SEL,SpellerHFT_NAME,SpellerHFT_VERSION_1_1,SpellerHFT_VERSION_1_2,SpellerHFT_VERSION_1_3,SpellerHFT_LATEST_VERSION,kSpellLastBuffer,kSpellNotLastBuffer,kSpellMaxName,kSCparam_VERSION_1,kSCparam_VERSION_2,kSCparam_VERSION_3,kSCparam_LATEST_VERSION,SpellDialogResult,SpellDomainFlags,eHyphenType,SpellCheckParam,SpellCheckParamPtr,SCInitProc,SCTermProc,SCEnableProc,SCGetTextProc,SCCompletionProc,SCChangeProc,SCRTFChangeProc,HyphenationRecord,HyphenationRecordPtr,Init_SpellerHFT,gSpellerHFT,Init_SpellerHFT,Init_SpellerHFT,SpellCheck,SpellCheckText,SpellCheckWord,SpellDomainNames,SpellAddDomain,SpellRemoveDomain,SpellDictionaryNames,SpellAddDictionary,SpellRemoveDictionary,SpellUserWords,SpellAddWord,SpellRemoveWord,SpellUserDictionaryOrder,SpellGetDocDictionaryOrder,SpellSetDocDictionaryOrder,SpellCountKnownWords,SpellIgnoreAll,SpellHyphenateWord,SpellGetNextWord,SpellCheckRTF,SpellLanguages,SpellUserLanguageOrder,SpellGetDocLanguageOrder,SpellSetDocLanguageOrder,SpellCustomDictionaryClose,SpellCustomDictionaryCreate,SpellCustomDictionaryDelete,SpellCustomDictionaryExport,SpellCustomDictionaryOpen,kWordOptionCase,kWordOptionStemming,kWordOptionProximity,kWordOptionRefine,kWordOptionWholeWord,kWordOptionIgnoreFH,kWordOptionIgnoreDiacritics,kAddIndexFailed,kParserSimple,kParserCQL" name="keywords">
+<title>AV_Layer.Spell (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Spell - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?AV_Layer/Spell.html&amp;AV_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Spell</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#defineSummary">Defines</a>&nbsp;| <a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#enumerationSummary">Enumerations</a>&nbsp;| <a href="#variableSummary">Variables</a>&nbsp;| <a href="#structureSummary">Structures</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Spell"); titleBar_setSubNav(true,true,true,true,true,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">AV_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">Spell</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>
+          Acrobat provides a Spelling plug-in, which exports a Host Function Table (<a href="../AS_Layer/HFT_and_HFT_Server.html#HFT" target="">HFT</a>) implementing a
+          spell-check API for use by plug-in developers.
+        </p><p>
+          To use the Spelling HFT, a plug-in must <a href="#include" target="">include</a> the <a href="../COS_Layer/General.html#header" target="">header</a>
+          <a href="../PD_Layer/General.html#file" target="">file</a> <code>SpellerHFT.h</code>, which includes <code>Speller_Sel.h</code>.
+        </p><p>
+          The following is a typical sequence of calls made by a plug-in using the Spelling HFT. During
+          its importReplaceAndRegister() callback, the plug-in should:
+        </p><ul>
+          <li>
+            Import the HFT, using ASExtensionMgrGetHFT(), and assign the HFT returned by this call
+            to a plug-in-defined global variable named <code>gSpellerHFT</code>. The easiest
+            way to do this is to use the Init_SpellerHFT macro defined in SpellerHFT.h.
+          </li>
+          <li>
+            Allocate and initialize one SpellCheckParam block for each spelling domain the client will
+            add, if any.
+          </li>
+          <li>Add zero or more domains using the SpellAddDomain() call.</li>
+        </ul><p>During execution, the plug-in should respond to the following callbacks for each domain:</p><ul>
+          <li>
+            SCEnableProc() is called by Spelling to ask if this domain has anything that needs to
+            be checked.
+          </li>
+          <li>SCGetTextProc() is called to get a text buffer to be checked.</li>
+          <li>SCCompletionProc() is called after the user has modified the text buffer.</li>
+        </ul><p>
+          The client may call other Spelling HFT services during execution even if it did not add
+          a domain.
+        </p><p>During its <a href="../AS_Layer/General.html#unloadCallback" target="">unloadCallback</a>, the plug-in should:</p><ul>
+          <li>Remove all spelling domains added during initialization using the SpellRemoveDomain() call.</li>
+          <li>
+            Free all memory associated with SpellCheckParam block(s) (<code>scInBuffer</code>,
+            <code>scOutBuffer</code>, and <code>scClientData</code>).
+          </li>
+          <li>Free the SpellCheckParam block(s).</li>
+        </ul><p>
+          <b>Text parameters</b>
+        </p><p>
+          Several of the Spelling API methods (SpellCheck(), <a href="Spell.html#SpellCheckText()" target="">SpellCheckText</a>(), and <a href="Spell.html#SpellCheckWord()" target="">SpellCheckWord</a>()) take
+          input strings as parameters, and several methods return strings as output parameters.
+        </p><p>
+          Input strings are either big-endian Unicode strings with the
+          bytes <code>0xFE 0xFF</code> prepended, or strings with PDFDocEncoding. In either case a
+          string is expected to have the appropriate <code>NULL</code>-termination. If a string is
+          UCS-2 it may have embedded language and country information.
+        </p><p>
+          Output text is in big-endian UCS-2 format with the bytes <code>0xFE 0xFF</code> \
+          prepended. This string can be converted to a host encoded string by using ASTextFromPDText() and
+          ASTextGetEncodedCopy(). For example:
+        </p><p>
+          <code>char **altArray = NULL;</code>
+        </p><p>
+          <code>ASInt32 altCount = 0;</code>
+        </p><p>
+          <code>ASBool status = SpellCheckWord(acd, cWord, NULL, 0, &amp;altArray, &amp;altCount);</code>
+        </p><p>
+          <code>if (altCount) {</code>
+        </p><p>
+          <code>  ASText ast = ASTextFromPDText(altArray[1]);</code>
+        </p><p>
+          <code>  char* altWord = ASTextGetEncodedCopy(ast, (ASHostEncoding) PDGetHostEncoding() );</code>
+        </p><p>
+          <code>}</code>
+        </p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="defineSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Define Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Define</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#Init_SpellerHFT46">Init_SpellerHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#Init_SpellerHFT43">Init_SpellerHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#Init_SpellerHFT43">Init_SpellerHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kAddIndexFailed235">kAddIndexFailed</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kParserCQL242">kParserCQL</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kParserSimple241">kParserSimple</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSCparam_LATEST_VERSION226">kSCparam_LATEST_VERSION</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSCparam_VERSION_1223">kSCparam_VERSION_1</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSCparam_VERSION_2224">kSCparam_VERSION_2</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSCparam_VERSION_3225">kSCparam_VERSION_3</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSpellLastBuffer47">kSpellLastBuffer</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSpellMaxName49">kSpellMaxName</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSpellNotLastBuffer48">kSpellNotLastBuffer</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordCreatorCode1810">kWordCreatorCode</a>
+<div class="summaryTableDescription">Microsoft Word. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordOptionCase25">kWordOptionCase</a>
+<div class="summaryTableDescription">The search is case-sensitive. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordOptionIgnoreDiacritics64">kWordOptionIgnoreDiacritics</a>
+<div class="summaryTableDescription">SearchWordOptionsFlags </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordOptionIgnoreFH59">kWordOptionIgnoreFH</a>
+<div class="summaryTableDescription">SearchWordOptionsFlags </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordOptionProximity44">kWordOptionProximity</a>
+<div class="summaryTableDescription">Consider the proximity of results when using the AND operator to look for more than one word in a document. Without this option, ANDed terms can be anywhere in a document. Searching for "red" and "blue", for example, finds a document where "red" is the first word on the first page and "blue" is the last word on the last page. With this option, however, ANDed terms must be within two or three pages of each other to be found. Also, the closer ANDed terms appear together, the higher the relevance ranking of the document that contains them. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordOptionRefine51">kWordOptionRefine</a>
+<div class="summaryTableDescription">Do not search the entire list of indices, but only the documents that matched the previous search. This is used to refine the results of the previous search. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordOptionStemming30">kWordOptionStemming</a>
+<div class="summaryTableDescription">Find not only the specified word, but other words that have the same stem (for example, run and ran have the same stem). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kWordOptionWholeWord55">kWordOptionWholeWord</a>
+<div class="summaryTableDescription">SearchWordOptionsFlags </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCALEALL_3D_CURSOR4378">SCALEALL_3D_CURSOR</a>
+<div class="summaryTableDescription">cursorID </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCROLL_CURSOR4388">SCROLL_CURSOR</a>
+<div class="summaryTableDescription">cursorID </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellerHFT_LATEST_VERSION45">SpellerHFT_LATEST_VERSION</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellerHFT_NAME41">SpellerHFT_NAME</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellerHFT_VERSION_1_142">SpellerHFT_VERSION_1_1</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellerHFT_VERSION_1_243">SpellerHFT_VERSION_1_2</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellerHFT_VERSION_1_344">SpellerHFT_VERSION_1_3</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellerNum_SEL40">SpellerNum_SEL</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HyphenationRecord">HyphenationRecord</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#HyphenationRecordPtr">HyphenationRecordPtr</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellCheckParam">SpellCheckParam</a>
+<div class="summaryTableDescription">This parameter block is used for communication between the Spelling plug-in and a client plug-in. The client must allocate it, initialize all fields, and pass it to the Spelling plug-in when adding a domain with SpellAddDomain(). Spelling passes it back to the client when the SCEnableProc(), SCGetTextProc(), and SCCompletionProc() are called. It is passed to the client's SCGetTextProc() from the Spelling plug-in when it needs to request a text buffer from the client. After the user has completed the spell check on the scInBuffer, this same parameter block is passed to the client's SCCompletionProc() with the result of the spell check in scOutBuffer. When the SCGetTextProc() is called, scPageNum, scIndex and scAVDoc are filled in by the Spelling plugin.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SpellCheckParamPtr">SpellCheckParamPtr</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="enumerationSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Enumeration Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Enumeration</th>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#eHyphenType322"><b>eHyphenType</b></a></code>
+<div class="summaryTableDescription">The types of hyphenations. </div>
+</td>
+</div>
+</tr>
+<tr class="row0">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#SpellDialogResult55"><b>SpellDialogResult</b></a></code>
+<div class="summaryTableDescription">Possible results of the spell check when the SpellCheck() method is called. </div>
+</td>
+</div>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#SpellDomainFlags82"><b>SpellDomainFlags</b></a></code>
+<div class="summaryTableDescription">SpellingDomainFlags Valid values for the scFlags field of the 
+SpellCheckParam
+ block. For Acrobat 5 and higher, all clients should set this field to kSpellFlagAllDomain. All other bits in this flag are reserved for future use. The spelling client's private data and flags can be stored in the scClientData field. </div>
+</td>
+</div>
+</tr>
+</table>
+</div>
+<a name="variableSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Variable Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Variable</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gSpellerHFT38">gSpellerHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="structureSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Structure Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Structure</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#_t_HyphenationRecord338">_t_HyphenationRecord</a>
+<div class="summaryTableDescription">The hyphenation record. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#SpellCheckParam252">SpellCheckParam</a>
+<div class="summaryTableDescription">Spell Check parameters This parameter block is used for communication between the Spelling plug-in and a client plug-in. The client must allocate it, initialize all fields, and pass it to the Spelling plug-in when adding a domain with SpellAddDomain. Spelling passes it back to the client when the SCEnableProc(), SCGetTextProc(), and SCCompletionProc() are called.</div>
+</td>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCChangeProc206">SCChangeProc</a>
+<div class="summaryTableDescription">Called by the Spelling plug-in each time scOutBufferAStext is about to change. An SCChangeProc() is optional. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCCompletionProc188">SCCompletionProc</a>
+<div class="summaryTableDescription">An SCCompletionProc() must be provided for each domain a plug-in registers with SpellAddDomain(). It is called by the Spelling plug-in when the user has completed the spell check. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCEnableProc145">SCEnableProc</a>
+<div class="summaryTableDescription">Called by the Spelling plug-in to determine whether the Spelling menu items and toolbar button should be enabled. An SCEnableProc() must be provided for each domain a plug-in registers with SpellAddDomain(). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCGetTextProc167">SCGetTextProc</a>
+<div class="summaryTableDescription">This procedure is called by Spelling to request a text buffer to be checked by the user in the Spelling dialog box. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCInitProc125">SCInitProc</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCRTFChangeProc221">SCRTFChangeProc</a>
+<div class="summaryTableDescription">Callback proc for SpellCheckRTF. This proc is called each time the user changes something in the original input buffer. This allows the caller of SpellCheckRTF() to track text changes to a rich text buffer and overlay the plain text change onto the rich text spans to perserve formatting.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SCTermProc127">SCTermProc</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellAddDictionary59()">SpellAddDictionary</a>(char* cName, char* cFile, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bShow)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellAddDomain55()">SpellAddDomain</a>(<a href="Spell.html#SpellCheckParam" target="">SpellCheckParamPtr</a> scp)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellAddWord63()">SpellAddWord</a>(char* cWord)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">char* <a class="signatureLink" href="#SpellCheck50()">SpellCheck</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* textBuffer, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* dialogResult, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bReserved, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#SpellCheckRTF78()">SpellCheckRTF</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, void* vReserved, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astPlainText, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, <a href="Spell.html#SCRTFChangeProc" target="">SCRTFChangeProc</a> pRTFchangeProc, void* vClientData)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellCheckText51()">SpellCheckText</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* textBuffer, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>* startOffset, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>* endOffset, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellCheckWord52()">SpellCheckWord</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* cWord, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, char*** alternativeArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* alternativeCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#SpellCountKnownWords70()">SpellCountKnownWords</a>(const char* textBuffer, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* counterArray)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellCustomDictionaryClose85()">SpellCustomDictionaryClose</a>(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellCustomDictionaryCreate86()">SpellCustomDictionaryCreate</a>(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astLanguage, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bShow)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellCustomDictionaryDelete87()">SpellCustomDictionaryDelete</a>(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellCustomDictionaryExport88()">SpellCustomDictionaryExport</a>(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> folderPath, void* reserved)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellCustomDictionaryOpen89()">SpellCustomDictionaryOpen</a>(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> filePath, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bShow)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellDictionaryNames58()">SpellDictionaryNames</a>(char*** dictionaryArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* dictionaryCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellDomainNames54()">SpellDomainNames</a>(char*** domainArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* domainCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellGetDocDictionaryOrder67()">SpellGetDocDictionaryOrder</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char*** dictionaryArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* dictionaryCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellGetDocLanguageOrder82()">SpellGetDocLanguageOrder</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char*** languageArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* languageCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#SpellGetNextWord76()">SpellGetNextWord</a>(<a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a> inBuffer, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* nStart, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* nEnd, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bFilter)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#SpellHyphenateWord74()">SpellHyphenateWord</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astWord, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, <a href="Spell.html#_t_HyphenationRecord" target="">HyphenationRecordPtr</a>* hyphenationArrayPtr)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellIgnoreAll72()">SpellIgnoreAll</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char* cWord)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellLanguages80()">SpellLanguages</a>(char*** languageArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* languageCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellRemoveDictionary60()">SpellRemoveDictionary</a>(char* cName)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellRemoveDomain56()">SpellRemoveDomain</a>(<a href="Spell.html#SpellCheckParam" target="">SpellCheckParamPtr</a> scp)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellRemoveWord64()">SpellRemoveWord</a>(char* cWord)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellSetDocDictionaryOrder68()">SpellSetDocDictionaryOrder</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellSetDocLanguageOrder83()">SpellSetDocLanguageOrder</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char** languageArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> languageCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellUserDictionaryOrder66()">SpellUserDictionaryOrder</a>(char*** dictionaryArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* dictionaryCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellUserLanguageOrder81()">SpellUserLanguageOrder</a>(char*** languageArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* languageCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SpellUserWords62()">SpellUserWords</a>(<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bAdded, char*** wordArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* wordCount)</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<div class="detailSectionHeader">Defines Detail</div>
+<a name="Init_SpellerHFT46"></a><a name="Init_SpellerHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Init_SpellerHFT</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define Init_SpellerHFT ASExtensionMgrGetHFT(ASAtomFromString(SpellerHFT_NAME), SpellerHFT_LATEST_VERSION)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>46</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="Init_SpellerHFT43"></a><a name="Init_SpellerHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Init_SpellerHFT</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define Init_SpellerHFT ASExtensionMgrGetHFT(ASAtomFromString(SpellerHFT_NAME), SpellerHFT_LATEST_VERSION)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>43</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="Init_SpellerHFT43"></a><a name="Init_SpellerHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Init_SpellerHFT</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define Init_SpellerHFT ASExtensionMgrGetHFT(ASAtomFromString(SpellerHFT_NAME), SpellerHFT_LATEST_VERSION)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>43</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kAddIndexFailed235"></a><a name="kAddIndexFailed"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kAddIndexFailed</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kAddIndexFailed ((SearchIndexPtr)0)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>235</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kParserCQL242"></a><a name="kParserCQL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kParserCQL</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kParserCQL 1</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>242</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kParserSimple241"></a><a name="kParserSimple"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kParserSimple</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kParserSimple 0</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>241</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSCparam_LATEST_VERSION226"></a><a name="kSCparam_LATEST_VERSION"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSCparam_LATEST_VERSION</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSCparam_LATEST_VERSION kSCparam_VERSION_3</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>226</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSCparam_VERSION_1223"></a><a name="kSCparam_VERSION_1"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSCparam_VERSION_1</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSCparam_VERSION_1 0x0001</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>223</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSCparam_VERSION_2224"></a><a name="kSCparam_VERSION_2"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSCparam_VERSION_2</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSCparam_VERSION_2 0x0002</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>224</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSCparam_VERSION_3225"></a><a name="kSCparam_VERSION_3"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSCparam_VERSION_3</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSCparam_VERSION_3 0x0003</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>225</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSpellLastBuffer47"></a><a name="kSpellLastBuffer"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSpellLastBuffer</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSpellLastBuffer true</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>47</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSpellMaxName49"></a><a name="kSpellMaxName"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSpellMaxName</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSpellMaxName 48</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>49</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSpellNotLastBuffer48"></a><a name="kSpellNotLastBuffer"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSpellNotLastBuffer</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSpellNotLastBuffer false</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>48</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordCreatorCode1810"></a><a name="kWordCreatorCode"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordCreatorCode</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordCreatorCode ASFourCharCode('W8BN')</div>
+</code>
+<br>
+<span class="label">Description</span><p>Microsoft Word. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1810</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordOptionCase25"></a><a name="kWordOptionCase"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordOptionCase</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordOptionCase 0x00000001L</div>
+</code>
+<br>
+<span class="label">Description</span><p>The search is case-sensitive. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>25</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordOptionIgnoreDiacritics64"></a><a name="kWordOptionIgnoreDiacritics"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordOptionIgnoreDiacritics</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordOptionIgnoreDiacritics 0x00000100L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>64</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordOptionIgnoreFH59"></a><a name="kWordOptionIgnoreFH"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordOptionIgnoreFH</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordOptionIgnoreFH 0x00000080L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>59</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordOptionProximity44"></a><a name="kWordOptionProximity"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordOptionProximity</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordOptionProximity 0x00000010L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Consider the proximity of results when using the <code>AND</code> operator to look for more than one word in a document. Without this option, <code>AND</code>ed terms can be anywhere in a document. Searching for <code>"red"</code> and <code>"blue"</code>, for example, finds a document where <code>"red"</code> is the first word on the first page and <code>"blue"</code> is the last word on the last page. With this option, however, <code>AND</code>ed terms must be within two or three pages of each other to be found. Also, the closer <code>AND</code>ed terms appear together, the higher the relevance ranking of the document that contains them. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>44</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordOptionRefine51"></a><a name="kWordOptionRefine"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordOptionRefine</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordOptionRefine 0x00000020L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Do not search the entire <a href="../PDF_Library/General.html#list" target="">list</a> of indices, but only the documents that matched the previous search. This is <a href="../PDF_Library/General.html#used" target="">used</a> to refine the results of the previous search. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>51</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordOptionStemming30"></a><a name="kWordOptionStemming"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordOptionStemming</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordOptionStemming 0x00000002L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Find not only the specified word, but other words that have the same stem (for example, <code>run</code> and <code>ran</code> have the same stem). </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>30</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kWordOptionWholeWord55"></a><a name="kWordOptionWholeWord"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kWordOptionWholeWord</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kWordOptionWholeWord 0x00000040L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>55</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCALEALL_3D_CURSOR4378"></a><a name="SCALEALL_3D_CURSOR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCALEALL_3D_CURSOR</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SCALEALL_3D_CURSOR 1312</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4378</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCROLL_CURSOR4388"></a><a name="SCROLL_CURSOR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCROLL_CURSOR</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SCROLL_CURSOR 1316</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4388</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellerHFT_LATEST_VERSION45"></a><a name="SpellerHFT_LATEST_VERSION"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellerHFT_LATEST_VERSION</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SpellerHFT_LATEST_VERSION SpellerHFT_VERSION_1_3</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>45</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellerHFT_NAME41"></a><a name="SpellerHFT_NAME"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellerHFT_NAME</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SpellerHFT_NAME "Spell"</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>41</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellerHFT_VERSION_1_142"></a><a name="SpellerHFT_VERSION_1_1"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellerHFT_VERSION_1_1</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SpellerHFT_VERSION_1_1 0x00010001</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>42</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellerHFT_VERSION_1_243"></a><a name="SpellerHFT_VERSION_1_2"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellerHFT_VERSION_1_2</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SpellerHFT_VERSION_1_2 0x00010002</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>43</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellerHFT_VERSION_1_344"></a><a name="SpellerHFT_VERSION_1_3"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellerHFT_VERSION_1_3</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SpellerHFT_VERSION_1_3 0x00010003</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>44</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellerNum_SEL40"></a><a name="SpellerNum_SEL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellerNum_SEL</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SpellerNum_SEL SpellerLast_SEL - 1</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="HyphenationRecord"></a><a name="HyphenationRecord349"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">HyphenationRecord</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Spell.html#_t_HyphenationRecord" target="">_t_HyphenationRecord</a> HyphenationRecord;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>349</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="HyphenationRecordPtr"></a><a name="HyphenationRecordPtr351"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">HyphenationRecordPtr</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Spell.html#_t_HyphenationRecord" target="">HyphenationRecord</a> HyphenationRecordPtr;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>351</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCheckParam"></a><a name="SpellCheckParam118"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCheckParam</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Spell.html#SpellCheckParam" target="">SpellCheckParam</a> SpellCheckParam;</code>
+</div>
+<br><p>This parameter block is <a href="../PDF_Library/General.html#used" target="">used</a> for communication between the Spelling plug-in and a client plug-in. The client must allocate it, initialize all fields, and pass it to the Spelling plug-in when adding a domain with <a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain()</a>. Spelling passes it back to the client when the <a href="Spell.html#SCEnableProc" target="">SCEnableProc()</a>, <a href="Spell.html#SCGetTextProc" target="">SCGetTextProc()</a>, and <a href="Spell.html#SCCompletionProc" target="">SCCompletionProc()</a> are called. It is passed to the client's <a href="Spell.html#SCGetTextProc" target="">SCGetTextProc()</a> from the Spelling plug-in when it needs to request a text buffer from the client. After the user has completed the spell check on the <code><a href="../PDF_Library/General.html#scInBuffer" target="">scInBuffer</a></code>, this same parameter block is passed to the client's <a href="Spell.html#SCCompletionProc" target="">SCCompletionProc()</a> with the result of the spell check in <code><a href="../PDF_Library/General.html#scOutBuffer" target="">scOutBuffer</a></code>. When the <a href="Spell.html#SCGetTextProc" target="">SCGetTextProc()</a> is called, <code><a href="../PDF_Library/General.html#scPageNum" target="">scPageNum</a></code>, <code><a href="../PDF_Library/General.html#scIndex" target="">scIndex</a></code> and <code><a href="../PDF_Library/General.html#scAVDoc" target="">scAVDoc</a></code> are filled in by the Spelling plugin.</p><p>The SCGetTextProc should fill in <code>scInBuffer</code> and clear scOutBuffer if it is not already <code>NULL</code>.</p><p>When the spell check is completed, <a href="Spell.html#SCCompletionProc" target="">SCCompletionProc()</a> is called with <code>scOutBuffer</code> if the user made changes to <code>scInBuffer</code>. Note that the spelling client is responsible for all memory allocated including the <code>scOutBuffer</code> returned from the Spelling plug-in. The client is responsible for all parameters except where indicated. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>118</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCheckParamPtr"></a><a name="SpellCheckParamPtr120"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCheckParamPtr</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Spell.html#SpellCheckParam" target="">SpellCheckParam</a> SpellCheckParamPtr;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>120</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Enumeration Detail</div>
+<a name="eHyphenType322"></a><a name="eHyphenType"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">eHyphenType</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum eHyphenType {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><b>kHyphen_all</b>&nbsp;=&nbsp;-1,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kHyphenType_preferred</b>&nbsp;=&nbsp;0,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kHyphenType_normal</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kHyphenType_nonpreferred</b></td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>322</td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<a name="SpellDialogResult55"></a><a name="SpellDialogResult"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellDialogResult</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum SpellDialogResult {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#SpellDialogResultkSpellDone"><b>kSpellDone</b></a>&nbsp;=&nbsp;0,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#SpellDialogResultkSpellCompleted"><b>kSpellCompleted</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#SpellDialogResultkSpellFailed"><b>kSpellFailed</b></a>&nbsp;=&nbsp;-1,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kSpellResultLast</b></td>
+</tr>
+</table>}</code>
+</div>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Spell.html#SpellCheck()" target="">SpellCheck</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>55</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="SpellDialogResultkSpellDone"></a>kSpellDone&nbsp;&nbsp;</td><td><p>The user clicked the Done button to dismiss the dialog box and did not complete the spell check, but may have made changes to the <a href="#text" target="">text</a> buffer. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellDialogResultkSpellCompleted"></a>kSpellCompleted&nbsp;&nbsp;</td><td><p>The user completed spell checking the input buffer, or all words were correct. A new <a href="#text" target="">text</a> buffer is returned <a href="../PDFEdit_Layer/General.html#if" target="">if</a> corrections where made. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellDialogResultkSpellFailed"></a>kSpellFailed&nbsp;&nbsp;</td><td><p>The spell check dialog box failed due to an internal <a href="../PD_Layer/General.html#error" target="">error</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+</table>
+</div>
+<a name="SpellDomainFlags82"></a><a name="SpellDomainFlags"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellDomainFlags</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum SpellDomainFlags {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#SpellDomainFlagskSpellFlagNone"><b>kSpellFlagNone</b></a>&nbsp;=&nbsp;0x0000,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#SpellDomainFlagskSpellFlagAllDomain"><b>kSpellFlagAllDomain</b></a>&nbsp;=&nbsp;0x0001,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#SpellDomainFlagskSpellCheckStart"><b>kSpellCheckStart</b></a>&nbsp;=&nbsp;0x0002,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kSpellFlagLast</b>&nbsp;=&nbsp;0xFFFF</td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>82</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="SpellDomainFlagskSpellFlagNone"></a>kSpellFlagNone&nbsp;&nbsp;</td><td><p>Default domain behavior. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellDomainFlagskSpellFlagAllDomain"></a>kSpellFlagAllDomain&nbsp;&nbsp;</td><td><p>For Acrobat 5 and later, all registered spelling domains should set this flag. Only the All domains are called by spelling when the user clicks the Start button on the <a href="Spell.html" target="">Spell</a> Check dialog box. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellDomainFlagskSpellCheckStart"></a>kSpellCheckStart&nbsp;&nbsp;</td><td><p>Announce to the client that the spell dialog box has just been popped. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Variables Detail</div>
+<a name="gSpellerHFT38"></a><a name="gSpellerHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gSpellerHFT</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>HFT gSpellerHFT;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>38</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="structureDetail"></a>
+<div class="detailSectionHeader">Structure Detail</div>
+<a name="_t_HyphenationRecord338"></a><a name="_t_HyphenationRecord"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_t_HyphenationRecord</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct _t_HyphenationRecord {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="Spell.html#eHyphenType" target="">eHyphenType</a>&nbsp;<a href="#_t_HyphenationRecordeType"><b>eType</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>&nbsp;<a href="#_t_HyphenationRecordnPosition"><b>nPosition</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASText.html#ASText" target="">ASText</a>&nbsp;<a href="#_t_HyphenationRecordastLeft"><b>astLeft</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASText.html#ASText" target="">ASText</a>&nbsp;<a href="#_t_HyphenationRecordastRight"><b>astRight</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>The hyphenation record. </p><p>One of these is returned by HyphenateWord() in the optional hyphenation array for each known hyphenation. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>338</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="_t_HyphenationRecordeType"></a>eType&nbsp;&nbsp;</td><td><p>The <a href="../AS_Layer/General.html#type" target="">type</a> of hyphenation: preferred, normal, or non-preferred. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_HyphenationRecordnPosition"></a>nPosition&nbsp;&nbsp;</td><td><p>The hyphen <a href="../PD_Layer/General.html#index" target="">index</a>. The hyphen should follow this character. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_HyphenationRecordastLeft"></a>astLeft&nbsp;&nbsp;</td><td><p>The word part <a href="General.html#before" target="">before</a> the hyphen. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_HyphenationRecordastRight"></a>astRight&nbsp;&nbsp;</td><td><p>The word part after the hyphen. </p></td>
+</tr>
+</table>
+</div>
+<a name="SpellCheckParam252"></a><a name="SpellCheckParam"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCheckParam</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct SpellCheckParam {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>&nbsp;<a href="#SpellCheckParamscVersion"><b>scVersion</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>&nbsp;<a href="#SpellCheckParamscFlags"><b>scFlags</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>char&nbsp;<a href="#SpellCheckParamscName"><b>scName</b></a>[kSpellMaxName];</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Spell.html#SCEnableProc" target="">SCEnableProc</a>&nbsp;<b>scEnableProc</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Spell.html#SCGetTextProc" target="">SCGetTextProc</a>&nbsp;<b>scGetTextProc</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Spell.html#SCCompletionProc" target="">SCCompletionProc</a>&nbsp;<b>scCompletionProc</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVDoc.html#AVDoc" target="">AVDoc</a>&nbsp;<a href="#SpellCheckParamscAVDoc"><b>scAVDoc</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>&nbsp;<a href="#SpellCheckParamscPageNum"><b>scPageNum</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>&nbsp;<a href="#SpellCheckParamscIndex"><b>scIndex</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>char*&nbsp;<a href="#SpellCheckParamscInBuffer"><b>scInBuffer</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>char*&nbsp;<a href="#SpellCheckParamscOutBuffer"><b>scOutBuffer</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>void*&nbsp;<a href="#SpellCheckParamscClientData"><b>scClientData</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASText.html#ASText" target="">ASText</a>&nbsp;<a href="#SpellCheckParamscInBufferASText"><b>scInBufferASText</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a>&nbsp;<a href="#SpellCheckParamscOutBufferAStext"><b>scOutBufferAStext</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Spell.html#SCChangeProc" target="">SCChangeProc</a>&nbsp;<a href="#SpellCheckParamscChangeProc"><b>scChangeProc</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a>&nbsp;<a href="#SpellCheckParamscChangeText"><b>scChangeText</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>&nbsp;<a href="#SpellCheckParamscChangeStart"><b>scChangeStart</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>&nbsp;<a href="#SpellCheckParamscChangeEnd"><b>scChangeEnd</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a>&nbsp;<a href="#SpellCheckParamscMenuTitle"><b>scMenuTitle</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p><a href="Spell.html" target="">Spell</a> Check parameters This parameter block is <a href="../PDF_Library/General.html#used" target="">used</a> for communication between the Spelling plug-in and a client plug-in. The client must allocate it, initialize all fields, and pass it to the Spelling plug-in when adding a domain with <a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain</a>. Spelling passes it back to the client when the <a href="Spell.html#SCEnableProc" target="">SCEnableProc()</a>, <a href="Spell.html#SCGetTextProc" target="">SCGetTextProc()</a>, and <a href="Spell.html#SCCompletionProc" target="">SCCompletionProc()</a> are called.</p><p>It is passed to the client's <a href="Spell.html#SCGetTextProc" target="">SCGetTextProc()</a> from the Spelling plug-in when it needs to request a text buffer from the client. After the user has completed the spell check on the <code>scInBuffer</code>, this same parameter block is passed to the client's <a href="Spell.html#SCCompletionProc" target="">SCCompletionProc()</a> with the result of the spell check in <code>scOutBuffer</code>. When the <a href="Spell.html#SCGetTextProc" target="">SCGetTextProc()</a> is called, <code>scPageNum</code>, <code>scIndex</code> and <code>scAVDoc</code> are filled in by the Spelling plugin.</p><p>The SCGetTextProc should fill in <code>scInBuffer</code> and clear <code>scOutBuffer</code> if it is not already <code>NULL</code>.</p><p>When the spell check is completed, <a href="Spell.html#SCCompletionProc" target="">SCCompletionProc()</a> is called with <code>scOutBuffer</code> if the user made changes to <code>scInBuffer</code>.</p><p>Note that the spelling client is responsible for all memory allocated including the <code>scOutBuffer</code> returned from the Spelling plug-in. The client is responsible for all parameters except where indicated. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>252</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscVersion"></a>scVersion&nbsp;&nbsp;</td><td><p>Version number of this structure (<a href="Spell.html#kSCparam_LATEST_VERSION" target="">kSCparam_LATEST_VERSION</a>). </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscFlags"></a>scFlags&nbsp;&nbsp;</td><td><p>Domain control flags; see <a href="Spell.html#SpellDomainFlags" target="">SpellDomainFlags</a>. It should normally be set to <a href="Spell.html#kSpellFlagAllDomain" target="">kSpellFlagAllDomain</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscName"></a>scName&nbsp;&nbsp;</td><td><p>This <a href="../PDFEdit_Layer/General.html#name" target="">name</a> will be returned by <a href="Spell.html#SpellDomainNames()" target="">SpellDomainNames()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscAVDoc"></a>scAVDoc&nbsp;&nbsp;</td><td><p>(Passed by Spelling plug-in) The active <a href="AVDoc.html" target="">AVDoc</a> during this Spell Check session. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscPageNum"></a>scPageNum&nbsp;&nbsp;</td><td><p>(Passed by Spelling plug-in) The 0-based <a href="../PD_Layer/PDDoc.html" target="">PDDoc</a> <a href="../PDSEdit_Layer/General.html#page" target="">page</a> number of <code><a href="../PDF_Library/General.html#scAVDoc" target="">scAVDoc</a></code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscIndex"></a>scIndex&nbsp;&nbsp;</td><td><p>(Passed by Spelling plug-in) The 0-based <a href="../PD_Layer/General.html#index" target="">index</a> of this domain item. The Spelling plug-in will set <code>scIndex</code> to zero to start or restart, and request the first text buffer from this domain on <code><a href="../PDF_Library/General.html#scPageNum" target="">scPageNum</a></code>.</p><p>The Spelling plug-in will increment <code>scIndex</code> after each call to <code>scGetTextProc</code>. The client can increment <code>scIndex</code> if desired to track non-sequential domain items.  </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscInBuffer"></a>scInBuffer&nbsp;&nbsp;</td><td><p>The <a href="#text" target="">text</a> buffer from the client to the Spelling plug-in when <a href="../PDF_Library/General.html#scGetTextProc" target="">scGetTextProc()</a> is called by the Spelling plug-in. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscOutBuffer"></a>scOutBuffer&nbsp;&nbsp;</td><td><p>(Passed by Spelling plug-in) The buffer returned from the Spelling plug-in to <a href="../PDF_Library/General.html#scCompletionProc" target="">scCompletionProc()</a>. Note that the client must release this memory. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscClientData"></a>scClientData&nbsp;&nbsp;</td><td><p>Can be <a href="../PDF_Library/General.html#used" target="">used</a> by the client to store private state <a href="#data" target="">data</a>. The client is responsible for allocating memory where necessary. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscInBufferASText"></a>scInBufferASText&nbsp;&nbsp;</td><td><p>The <a href="#text" target="">text</a> buffer from the client to the Spelling plug-in when <code><a href="../PDF_Library/General.html#scGetTextProc" target="">scGetTextProc</a></code> is called by the Spelling plug-in. Note that the client must release this memory. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscOutBufferAStext"></a>scOutBufferAStext&nbsp;&nbsp;</td><td><p>Returned buffer from Spelling PI to <a href="../PDF_Library/General.html#scCompletionProc" target="">scCompletionProc()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscChangeProc"></a>scChangeProc&nbsp;&nbsp;</td><td><p>This optional callback will be invoked each time <code><a href="../PDF_Library/General.html#scOutBufferAStext" target="">scOutBufferAStext</a></code> is about to change. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscChangeText"></a>scChangeText&nbsp;&nbsp;</td><td><p><a href="General.html#New" target="">New</a> <a href="#text" target="">text</a> that will replace the text from <a href="../PDF_Library/General.html#scChangeStart" target="">scChangeStart</a> to <code><a href="../PDF_Library/General.html#scChangeEnd" target="">scChangeEnd</a></code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscChangeStart"></a>scChangeStart&nbsp;&nbsp;</td><td><p>Character <a href="../AS_Layer/General.html#offset" target="">offset</a> of the <a href="../PD_Layer/General.html#start" target="">start</a> of the change when <a href="../PDF_Library/General.html#scChangeProc" target="">scChangeProc()</a> is called </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscChangeEnd"></a>scChangeEnd&nbsp;&nbsp;</td><td><p>Character <a href="../AS_Layer/General.html#offset" target="">offset</a> of the <a href="../PD_Layer/General.html#end" target="">end</a> of the change when <a href="../PDF_Library/General.html#scChangeProc" target="">scChangeProc()</a> is called </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="SpellCheckParamscMenuTitle"></a>scMenuTitle&nbsp;&nbsp;</td><td><p>The menu <a href="General.html#title" target="">title</a> in case this is the only enabled domain (for example, <b>"In Form Fields..."</b> or <b>"In Comments..."</b>). </p></td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="SCChangeProc206"></a><a name="SCChangeProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCChangeProc</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*SCChangeProc)(<a href="Spell.html#SpellCheckParamPtr" target="">SpellCheckParamPtr</a> scp)</code>
+</div>
+<br><p>Called by the Spelling plug-in each time <code><a href="../PDF_Library/General.html#scOutBufferAStext" target="">scOutBufferAStext</a></code> is about to change. An <a href="Spell.html#SCChangeProc" target="">SCChangeProc()</a> is optional. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Spell.html#SCEnableProc" target="">SCEnableProc</a> <br><a href="Spell.html#SCGetTextProc" target="">SCGetTextProc</a> <br><a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain</a> <br><a href="Spell.html#SpellRemoveDomain()" target="">SpellRemoveDomain</a> <br><a href="Spell.html#SCCompletionProc" target="">SCCompletionProc</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">None </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>206</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCCompletionProc188"></a><a name="SCCompletionProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCCompletionProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*SCCompletionProc)(<a href="Spell.html#SpellCheckParamPtr" target="">SpellCheckParamPtr</a> scp)</code>
+</div>
+<br><p>An <a href="Spell.html#SCCompletionProc" target="">SCCompletionProc()</a> must be provided for each domain a plug-in registers with <a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain()</a>. It is called by the Spelling plug-in when the user has completed the spell check. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Spell.html#SCEnableProc" target="">SCEnableProc</a> <br><a href="Spell.html#SCGetTextProc" target="">SCGetTextProc</a> <br><a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain</a> <br><a href="Spell.html#SpellRemoveDomain()" target="">SpellRemoveDomain</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>188</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCEnableProc145"></a><a name="SCEnableProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCEnableProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*SCEnableProc)(<a href="Spell.html#SpellCheckParamPtr" target="">SpellCheckParamPtr</a> scp)</code>
+</div>
+<br><p>Called by the Spelling plug-in to determine whether the Spelling menu items and toolbar button should be enabled. An <a href="Spell.html#SCEnableProc" target="">SCEnableProc()</a> must be provided for each domain a plug-in registers with <a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain()</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Spell.html#SCCompletionProc" target="">SCCompletionProc</a> <br><a href="Spell.html#SCGetTextProc" target="">SCGetTextProc</a> <br><a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain</a> <br><a href="Spell.html#SpellRemoveDomain()" target="">SpellRemoveDomain</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>145</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCGetTextProc167"></a><a name="SCGetTextProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCGetTextProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*SCGetTextProc)(<a href="Spell.html#SpellCheckParamPtr" target="">SpellCheckParamPtr</a> scp)</code>
+</div>
+<br><p>This procedure is called by Spelling to request a <a href="#text" target="">text</a> buffer to be checked by the user in the Spelling dialog box. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Spell.html#SCCompletionProc" target="">SCCompletionProc</a> <br><a href="Spell.html#SCEnableProc" target="">SCEnableProc</a> <br><a href="Spell.html#SpellAddDomain()" target="">SpellAddDomain</a> <br><a href="Spell.html#SpellRemoveDomain()" target="">SpellRemoveDomain</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>167</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCInitProc125"></a><a name="SCInitProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCInitProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*SCInitProc)(<a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *clientData)</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>125</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCRTFChangeProc221"></a><a name="SCRTFChangeProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCRTFChangeProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*SCRTFChangeProc)(<a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *vReserved, <a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a> astNewText, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> nStartIndex, ASInt32 nEndIndex, void *vData)</code>
+</div>
+<br><p>Callback proc for <a href="Spell.html#SpellCheckRTF()" target="">SpellCheckRTF</a>. This proc is called each time the user changes something in the original input buffer. This allows the caller of <a href="Spell.html#SpellCheckRTF()" target="">SpellCheckRTF()</a> to track text changes to a rich text buffer and overlay the plain text change onto the rich text spans to perserve formatting.</p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Spell.html#SpellCheckRTF()" target="">SpellCheckRTF</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>221</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SCTermProc127"></a><a name="SCTermProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SCTermProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*SCTermProc)(<a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *clientData)</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>Speller_Sel.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>127</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="SpellAddDictionary59()"></a><a name="SpellAddDictionary()"></a><a name="SpellAddDictionary(char*,char*,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellAddDictionary</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellAddDictionary(char* cName, char* cFile, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bShow)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cName</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cFile</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bShow</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>59</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellAddDomain55()"></a><a name="SpellAddDomain()"></a><a name="SpellAddDomain(SpellCheckParamPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellAddDomain</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellAddDomain(<a href="Spell.html#SpellCheckParam" target="">SpellCheckParamPtr</a> scp)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">scp</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>55</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellAddWord63()"></a><a name="SpellAddWord()"></a><a name="SpellAddWord(char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellAddWord</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellAddWord(char* cWord)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cWord</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>63</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCheck50()"></a><a name="SpellCheck()"></a><a name="SpellCheck(AVDoc,const char*,ASInt16*,ASBool,char**,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCheck</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>char* SpellCheck(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* textBuffer, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* dialogResult, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bReserved, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">textBuffer</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dialogResult</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bReserved</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>50</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCheckRTF78()"></a><a name="SpellCheckRTF()"></a><a name="SpellCheckRTF(AVDoc,void*,ASText,char**,ASInt32,SCRTFChangeProc,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCheckRTF</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> SpellCheckRTF(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, void* vReserved, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astPlainText, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, <a href="Spell.html#SCRTFChangeProc" target="">SCRTFChangeProc</a> pRTFchangeProc, void* vClientData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">vReserved</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astPlainText</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pRTFchangeProc</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">vClientData</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>78</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCheckText51()"></a><a name="SpellCheckText()"></a><a name="SpellCheckText(AVDoc,const char*,ASUns32*,ASUns32*,char**,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCheckText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellCheckText(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* textBuffer, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>* startOffset, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>* endOffset, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">textBuffer</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">startOffset</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">endOffset</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>51</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCheckWord52()"></a><a name="SpellCheckWord()"></a><a name="SpellCheckWord(AVDoc,const char*,char**,ASInt32,char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCheckWord</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellCheckWord(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* cWord, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, char*** alternativeArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* alternativeCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cWord</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">alternativeArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">alternativeCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>52</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCountKnownWords70()"></a><a name="SpellCountKnownWords()"></a><a name="SpellCountKnownWords(const char*,ASInt32,char**,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCountKnownWords</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> SpellCountKnownWords(const char* textBuffer, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* counterArray)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">textBuffer</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">counterArray</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>70</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCustomDictionaryClose85()"></a><a name="SpellCustomDictionaryClose()"></a><a name="SpellCustomDictionaryClose(ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCustomDictionaryClose</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellCustomDictionaryClose(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astName</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>85</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCustomDictionaryCreate86()"></a><a name="SpellCustomDictionaryCreate()"></a><a name="SpellCustomDictionaryCreate(ASText,ASText,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCustomDictionaryCreate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellCustomDictionaryCreate(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astLanguage, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bShow)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astName</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astLanguage</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bShow</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>86</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCustomDictionaryDelete87()"></a><a name="SpellCustomDictionaryDelete()"></a><a name="SpellCustomDictionaryDelete(ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCustomDictionaryDelete</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellCustomDictionaryDelete(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astName</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>87</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCustomDictionaryExport88()"></a><a name="SpellCustomDictionaryExport()"></a><a name="SpellCustomDictionaryExport(ASText,ASPathName,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCustomDictionaryExport</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellCustomDictionaryExport(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> folderPath, void* reserved)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astName</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">folderPath</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">reserved</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>88</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellCustomDictionaryOpen89()"></a><a name="SpellCustomDictionaryOpen()"></a><a name="SpellCustomDictionaryOpen(ASText,ASPathName,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellCustomDictionaryOpen</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellCustomDictionaryOpen(<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astName, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> filePath, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bShow)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astName</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">filePath</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bShow</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>89</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellDictionaryNames58()"></a><a name="SpellDictionaryNames()"></a><a name="SpellDictionaryNames(char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellDictionaryNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellDictionaryNames(char*** dictionaryArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* dictionaryCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>58</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellDomainNames54()"></a><a name="SpellDomainNames()"></a><a name="SpellDomainNames(char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellDomainNames</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellDomainNames(char*** domainArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* domainCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">domainArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">domainCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>54</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellGetDocDictionaryOrder67()"></a><a name="SpellGetDocDictionaryOrder()"></a><a name="SpellGetDocDictionaryOrder(AVDoc,char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellGetDocDictionaryOrder</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellGetDocDictionaryOrder(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char*** dictionaryArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* dictionaryCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>67</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellGetDocLanguageOrder82()"></a><a name="SpellGetDocLanguageOrder()"></a><a name="SpellGetDocLanguageOrder(AVDoc,char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellGetDocLanguageOrder</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellGetDocLanguageOrder(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char*** languageArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* languageCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>82</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellGetNextWord76()"></a><a name="SpellGetNextWord()"></a><a name="SpellGetNextWord(ASConstText,ASInt32*,ASInt32*,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellGetNextWord</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> SpellGetNextWord(<a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a> inBuffer, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* nStart, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* nEnd, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bFilter)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inBuffer</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nStart</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nEnd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bFilter</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>76</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellHyphenateWord74()"></a><a name="SpellHyphenateWord()"></a><a name="SpellHyphenateWord(AVDoc,const ASText,char**,ASInt32,HyphenationRecordPtr*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellHyphenateWord</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> SpellHyphenateWord(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> astWord, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount, <a href="Spell.html#_t_HyphenationRecord" target="">HyphenationRecordPtr</a>* hyphenationArrayPtr)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">astWord</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">hyphenationArrayPtr</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>74</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellIgnoreAll72()"></a><a name="SpellIgnoreAll()"></a><a name="SpellIgnoreAll(AVDoc,char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellIgnoreAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellIgnoreAll(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char* cWord)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cWord</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>72</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellLanguages80()"></a><a name="SpellLanguages()"></a><a name="SpellLanguages(char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellLanguages</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellLanguages(char*** languageArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* languageCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>80</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellRemoveDictionary60()"></a><a name="SpellRemoveDictionary()"></a><a name="SpellRemoveDictionary(char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellRemoveDictionary</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellRemoveDictionary(char* cName)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cName</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>60</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellRemoveDomain56()"></a><a name="SpellRemoveDomain()"></a><a name="SpellRemoveDomain(SpellCheckParamPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellRemoveDomain</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellRemoveDomain(<a href="Spell.html#SpellCheckParam" target="">SpellCheckParamPtr</a> scp)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">scp</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>56</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellRemoveWord64()"></a><a name="SpellRemoveWord()"></a><a name="SpellRemoveWord(char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellRemoveWord</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellRemoveWord(char* cWord)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cWord</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>64</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellSetDocDictionaryOrder68()"></a><a name="SpellSetDocDictionaryOrder()"></a><a name="SpellSetDocDictionaryOrder(AVDoc,char**,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellSetDocDictionaryOrder</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellSetDocDictionaryOrder(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char** dictionaryArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> dictionaryCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>68</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellSetDocLanguageOrder83()"></a><a name="SpellSetDocLanguageOrder()"></a><a name="SpellSetDocLanguageOrder(AVDoc,char**,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellSetDocLanguageOrder</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellSetDocLanguageOrder(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, char** languageArray, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> languageCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageArray</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>83</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellUserDictionaryOrder66()"></a><a name="SpellUserDictionaryOrder()"></a><a name="SpellUserDictionaryOrder(char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellUserDictionaryOrder</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellUserDictionaryOrder(char*** dictionaryArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* dictionaryCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictionaryCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>66</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellUserLanguageOrder81()"></a><a name="SpellUserLanguageOrder()"></a><a name="SpellUserLanguageOrder(char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellUserLanguageOrder</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellUserLanguageOrder(char*** languageArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* languageCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">languageCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>81</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SpellUserWords62()"></a><a name="SpellUserWords()"></a><a name="SpellUserWords(ASBool,char***,ASInt32*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SpellUserWords</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SpellUserWords(<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bAdded, char*** wordArrayPtr, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>* wordCount)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bAdded</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">wordArrayPtr</span></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">wordCount</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SpellerHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>62</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->

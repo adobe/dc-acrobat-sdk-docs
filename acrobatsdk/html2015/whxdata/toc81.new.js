@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"About platform-dependent data","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/About_platform-dependent_data.htm"},{"type":"item","name":"Portability techniques","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Portability_techniques.htm"},{"type":"book","name":"Windows techniques","key":"toc82","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Windows_techniques.htm"},{"type":"book","name":"Mac OS techniques","key":"toc83","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Mac_OS_techniques.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc404.js\"  name=\"MediaReject properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/MediaReject_properties.htm\"><item name=\"rendition\" url=\"Acro12_MasterBook/JS_API_AcroJS/MediaReject_properties.htm#TOC_renditionbc-1\" /></data>";

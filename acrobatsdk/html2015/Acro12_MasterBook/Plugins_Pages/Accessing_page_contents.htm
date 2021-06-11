@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Accessing page contents</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Pages.fm" />
+ <link rel="stylesheet" href="Plugins_Pages.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.10.1.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Pages/Creating_a_PDEContent_object.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Pages/Determining_page_element_types.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Page Views and Contents > Modifying page contents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_accessing"></a><a name="IX_page_contents_1"></a>Accessing page contents</h3>
+  <p class="BodyLevel1">Before you can modify page contents, you must access them by using a <span class="FM_Courier">PDEContent</span>&#160;object, which is a collection object that stores page contents. Each page content is stored as an element within the <span class="FM_Courier">PDEContent</span>&#160;object. An element is represented by a <span class="FM_Courier">PDEElement</span>&#160;object. For example, a <span class="FM_Courier">PDEElement</span>&#160;object can contain an annotation.</p>
+  <p class="BodyLevel1">To access page contents, perform the following tasks:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDEContent</span>&#160;object. (See <a href="Creating_a_PDEContent_object.htm#XREF_91421_Creating_a">Creating a PDEContent object</a>.)</p>
+  <p class="FM_Step"><a name="IX_PDEContentGetNumElems_1"></a><a name="IX_PDEContentGetNumElems"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Invoke the <span class="FM_Courier">PDEContentGetNumElems</span>&#160;method to retrieve the number of elements located within the <span class="FM_Courier">PDEContent</span>&#160;object. This method requires a <span class="FM_Courier">PDEContent</span>&#160;object and returns an <span class="FM_Courier">ASInt32</span>&#160;object that specifies the number of elements.</p>
+  <p class="FM_Step"><a name="IX_PDEContentGetElem"></a><a name="IX_PDEContentGetElem_method"></a><a name="IX_page_elements"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Iterate through the <span class="FM_Courier">PDEContent</span>&#160;object and retrieve each element by invoking the <span class="FM_Courier">PDEContentGetElem</span>&#160;method. This method requires a <span class="FM_Courier">PDEContent</span>&#160;object and an <span class="FM_Courier">ASInt32</span>&#160;object that specifies the element index (this is a zero-based value) and returns a <span class="FM_Courier">PDEElement</span>&#160;object that represents a specific page property.</p>
+  <p class="BodyLevel1">The following code example accesses each element located in a <span class="FM_Courier">PDEContent</span>&#160;object. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example"><a name="XREF_26389_Example5_3"></a>Accessing page contents</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Declare a PDEElement object</p>
+  <p class="FM_CodeReference">PDEElement pdeElement; </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the number of elements in the PDEContent object</p>
+  <p class="FM_CodeReference">ASInt32 eleNum = &#160;PDEContentGetNumElems(pdeContent); </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get each element in the PDEContent object</p>
+  <p class="FM_CodeReference">for (int j=0; j&lt;eleNum; j++){</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeElement = PDEContentGetElem(pdeContent, j);</p>
+  <p class="FM_CodeReference">}</p>
+  </div>
+</body>
+</html>

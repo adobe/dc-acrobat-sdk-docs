@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Defining root-level attributes for a PRC entity</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_A3D_API.fm" />
+ <link rel="stylesheet" href="Plugins_A3D_API.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.19.4.0_7";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_A3D_API/Creating_geometry_PRC_entities.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_A3D_API/Creating_a_3D_annotation_that_references_the_PRC_file.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Parsing and Creating PRC Files > Creating a PRC file that uses boundary representation" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_49152_Define_cascaded"></a>Defining root-level attributes for a PRC entity</h3>
+  <p class="BodyLevel1">The <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable>&#160;lets you create a set of attributes named <span class="FM_Italic">root-level attributes</span>&#160;that can be applied to any PRC entity. These attributes are packaged as an <span class="FM_Courier">A3DRootBase</span>&#160;entity that is referenced from the PRC entity they describe. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">A3DRootBaseData</span>. This structure has a name and can have pointers to multiple <span class="FM_Courier">A3DMiscAttribute</span> entities.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">A3DMiscAttributeData</span>. This structure has a name and can reference a single <span class="FM_Courier">A3DMiscSingle</span>&#160;structure.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">A3DMiscSingleAttributeData</span>. This structure is used for modeler data, such as string or time. It has a title, a type designation, and data. The name in the parent <span class="FM_Courier">A3DMiscAttributeData</span>&#160;must match the title in the <span class="FM_Courier">A3DMiscSingleAttributeData</span>. This structure is terminal.</p>
+</li>
+  </ul>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>See the <span class="FM_HyperText"><a href="./API_References/PRCReference/3D_API_Reference/index.html">Acrobat 3D API Reference</a></span>&#160;for limitations on including modeler data in the root-level attributes for a PRC entity.</p>
+  <p class="BodyLevel1">Here is a diagram that shows the structure of the <span class="FM_Courier">A3DRootBase</span>&#160;entity that can be associated with any PRC entity. The <span class="FM_Courier">A3DMiscSingleAttributeData</span>&#160;structures are used only for modeler attributes. The sample code that comes after the following task descriptions exemplifies this structure.</p>
+  <p class="FM_GraphicBody"><img alt=" " style=" width:100%; margin-bottom:0.000pt; max-width:457.993pt;" id="image6" src="PRC_RootAttributes.jpg" />&nbsp;</p>
+  <h6><a name="XREF_41376_Define"></a>Define miscellaneous attributes that omit modeler data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Determine the string to use at the top level of the attributes and (optionally) the strings to use at subordinate levels. </p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_49803_2_Create_an_array"></a>Declare an array to accommodate pointers to the <span class="FM_Courier">A3DMiscAttribute</span>&#160;entities that you will create in a subsequent step.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>For each subordinate-level string, declare and initialize an <span class="FM_Courier">A3DMiscAttributeData</span>&#160;structure. Set the <span class="FM_Courier">m_pcTitle</span>&#160;member to the subordinate-level string. Leave the <span class="FM_Courier">m_uiSize</span>&#160;and <span class="FM_Courier">m_pSingleAttributesData</span> members set to 0 because this structure omits modeler data.</p>
+  <p class="FM_Step"><a name="IX_A3DMiscAttributeCreate"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_80766_4_Package_each"></a>Package each <span class="FM_Courier">A3DMiscAttributeData</span>&#160;structure as an <span class="FM_Courier">A3DMiscAttribute</span>&#160;entity by invoking the <span class="FM_Courier">A3DMiscAttributeCreate</span>&#160;function. Save the entity pointer in the array created in Step <a href="#XREF_49803_2_Create_an_array"><span class="FM_HyperText">2</span></a>.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_71665_5_Create_and"></a>Declare and initialize an <span class="FM_Courier">A3DRootBaseData</span>&#160;structure. Set its <span class="FM_Courier">m_pcName</span>&#160;member to the top-level string. Set the <span class="FM_Courier">m_ppAttributes</span>&#160;member to reference the array that contains pointers to the <span class="FM_Courier">A3DMiscAttribute</span> entities.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>6.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_44847_6_Package_the"></a>Invoke the A3DRootBaseSet function to package the <span class="FM_Courier">A3DRootBaseData</span>&#160;structure as an <span class="FM_Courier">A3DRootBase</span>&#160;entity associated with a PRC entity. The first argument in this call is a pointer to the entity, and the second is a pointer to the <span class="FM_Courier">A3DRootBaseData</span> structure.</p>
+  <h6>Define miscellaneous attributes that include modeler data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Determine the strings to use for modeler data and the type represented by each string. Here are the possible types and the enumerations that identify them:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">kA3DModellerAttributeTypeInt</span>&#160;&#160;integer (32 bits) &#160;</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">kA3DModellerAttributeTypeReal</span>&#160;&#160;floating point &#160;</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">kA3DModellerAttributeTypeTime</span>&#160;&#160;integer (32 bits), which uses the same conventions as the <span class="FM_Courier">time_t</span>&#160;C datatype. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">kA3DModellerAttributeTypeString</span>&#160;&#160;UTF-8 character string </p>
+</li>
+  </ul>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Determine the titles to use for each piece of modeler data.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_41483_3_Create_an_array"></a>Declare an array to accommodate pointers to the <span class="FM_Courier">A3DMiscAttributeData</span>&#160;entities that you will create in a subsequent step.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>For each modeler attribute associated with the root base entity, do the following:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">Declare and initialize an <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DMiscSingleAttributeData</span>&#160;structure. Set the <span class="FM_Courier">m_eType</span>&#160;member to the type of the data, set the <span class="FM_Courier">m_pcData</span>&#160;member to a string that represents the data, and set the <span class="FM_Courier">m_pcTitle</span> member to a title that identifies the data.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">Declare and initialize an <span class="FM_Courier">A3DMiscAttributeData</span>&#160;structure. Set the <span class="FM_Courier">m_pcTitle</span>&#160;member to the same title used in the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DMiscSingleAttributeData</span>&#160;structure. Set the <span class="FM_Courier">m_uiSize</span>&#160;member to 1, and the <span class="FM_Courier">m_pSingleAtttributesData</span>&#160;member to reference the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DMiscSingleAttributeData</span> structure.</p>
+</li>
+  </ul>
+  <p class="FM_NoteIndent"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>Each <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DMiscSingleAttributeData</span>&#160;structure that references another <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DMiscSingleAttributeData</span>&#160;structure must reference only one such structure and must have the same title as that structure.</p>
+  <p class="FM_Step"><a name="IX_A3DMiscAttributeCreate_1"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_96802_5_Package_each"></a>Package each <span class="FM_Courier">A3DMiscAttributeData</span>&#160;structure as an <span class="FM_Courier">A3DMiscAttribute</span>&#160;entity by invoking the <span class="FM_Courier">A3DMiscAttributeCreate</span>&#160;function. Save the entity pointer in the array created in Step <a href="#XREF_41483_3_Create_an_array"><span class="FM_HyperText">3</span></a>.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>6.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Declare and initialize an <span class="FM_Courier">A3DRootBaseData</span>&#160;structure. (See Step <a href="#XREF_71665_5_Create_and"><span class="FM_HyperText">5</span></a>&#160;in <a href="#XREF_41376_Define"><span class="FM_HyperText">Define miscellaneous attributes that omit modeler data</span></a>.)</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>7.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Package the <span class="FM_Courier">A3DRootBaseData</span>&#160;structure as an <span class="FM_Courier">A3DRootBase</span>&#160;entity. (See Step <a href="#XREF_44847_6_Package_the"><span class="FM_HyperText">6</span></a>&#160;in <a href="#XREF_41376_Define"><span class="FM_HyperText">Define miscellaneous attributes that omit modeler data</span></a>.) </p>
+  <p class="BodyLevel1">The following sample code creates base root attributes that describe three sets of modeler data. For information about the relationships between the structures and entities that represent this data, see the diagram provided in <a href="#XREF_49152_Define_cascaded"><span class="FM_HyperText">Defining root-level attributes for a PRC entity</span></a>.</p>
+  <p class="FM_CodeReference">A3DVoid setAttributes(A3DEntity* p)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DMiscSingleAttributeData Single;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3D_INITIALIZE_DATA(Single);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Single.m_eType = kA3DModellerAttributeTypeString;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Single.m_pcTitle = &quot;Title&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Single.m_pcData = &quot;Simple Brep building demonstration&quot;;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DMiscAttributeData sAttribs;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3D_INITIALIZE_DATA(sAttribs);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sAttribs.m_pcTitle = Single.m_pcTitle;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sAttribs.m_pSingleAttributesData = &amp;Single;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sAttribs.m_uiSize = 1;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 iRet = A3DMiscAttributeCreate(&amp;sAttribs, &amp;pAttr[0]);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Single.m_pcTitle = &quot;Author&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Single.m_pcData = &quot;Adobe Lyon&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sAttribs.m_pcTitle = Single.m_pcTitle;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>iRet = A3DMiscAttributeCreate(&amp;sAttribs, &amp;pAttr[1]);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Single.m_pcTitle = &quot;Company&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Single.m_pcData = &quot;Adobe Systems Incorporated&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sAttribs.m_pcTitle = Single.m_pcTitle;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>iRet = A3DMiscAttributeCreate(&amp;sAttribs, &amp;pAttr[2]);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DRootBaseData sRootData;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3D_INITIALIZE_DATA(sRootData);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sRootData.m_pcName = &quot;Trimmed surface&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sRootData.m_ppAttributes = pAttr;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sRootData.m_uiSize = 3;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>iRet = A3DRootBaseSet(p, &amp;sRootData);</p>
+  <p class="FM_CodeReference">}</p>
+  </div>
+</body>
+</html>

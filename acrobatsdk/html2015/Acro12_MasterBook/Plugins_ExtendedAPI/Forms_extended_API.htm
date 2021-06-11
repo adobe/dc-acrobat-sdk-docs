@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Forms extended API</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_ExtendedAPI.fm" />
+ <link rel="stylesheet" href="Plugins_ExtendedAPI.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.21.2_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_ExtendedAPI/Understanding_the_process.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_ExtendedAPI/Weblink_extended_API.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Acrobat Extended APIs" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_64489_Forms_extended_API"></a>Forms extended API</h2>
+  <p class="BodyLevel1">The <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;Forms plug-in exports its own Host Function Table (HFT), whose methods can be used by other plug-ins. To use the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> Forms plug-in’s HFT, a plug-in must:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Include the FormsHFT.h header file (which includes AF_ExpT.h and AF_Sel.h).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Import the HFT using the <span class="FM_Courier">ASExtensionMgrGetHFT</span>&#160;method. A convenient way to perform this task is to use the <span class="FM_Courier">Init_AcroFormHFT</span> macro defined in FORMSHFT.H.</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>#define Init_AcroFormHFT</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASExtensionMgrGetHFT(ASAtomFromString(AcroFormHFT_NAME),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AcroFormHFT_LATEST_VERSION)</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Assign the HFT returned by this call to a plug-in-defined global variable named <span class="FM_Courier">gAcroFormHFT</span>.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Data may be imported and exported into <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;Forms in forms data format (FDF). FDF is used to submit form data to a server, as well as to receive the response and incorporate it into a form. FDF is based on PDF and uses the same syntax and set of basic object types as PDF. It also has the same file structure, except that the cross-reference table is optional. See the <uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable><span class="FM_Italic"></span>&#160;for more information about the structure of a PDF document. The reference can be found within the portfolio called <span class="FM_HyperText"><a href="www.adobe.com/go/acrobatsdk_pdf_reference">PDF Reference and Related Documentation</a></span>, which is located at the <span class="FM_HyperText"><a href="http://www.adobe.com/go/pdf_developer">Adobe PDF Technology Center</a></span>.</p>
+  <p class="BodyLevel1">For information about the APIs included in the Forms extended API, see the <span class="FM_HyperText"><a href="http://help.adobe.com/en_US/acrobat/acrobat_dc_sdk/2015/HTMLHelp/Acro12_MasterBook/API_References_SectionPage/API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a></span>. </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Retrieving all bookmarks</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Bookmark.fm" />
+ <link rel="stylesheet" href="Plugins_Bookmark.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.9.2.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Bookmark/Retrieving_a_specific_bookmark.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Bookmark/Deleting_bookmarks.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Bookmarks > Retrieving bookmarks" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_PDBookmarkGetTitle"></a><a name="IX_PDBookmarkGetTitle_method"></a>Retrieving all bookmarks</h3>
+  <p class="BodyLevel1">You can use the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;core API to retrieve all bookmarks located within a PDF document. For example, you can retrieve the title of every bookmark that is located within a PDF document.</p>
+  <p class="BodyLevel1">The following code example creates a recursive user-defined function named <span class="FM_Courier">VisitAllBookmarks</span>. First it invokes the <span class="FM_Courier">PDBookmarkIsValid</span>&#160;method to ensure that the bookmark that is passed is valid (the root bookmark is always valid.)</p>
+  <p class="BodyLevel1">Second, this user-defined function retrieves the title of the bookmark by invoking the<span class="FM_Courier">&#160;PDBookmarkGetTitle</span> method. This method requires the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">A <span class="FM_Courier">PDBookmark</span> object that contains the title to retrieve.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">A character pointer that is populated with the bookmarks title.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">ASInt32</span> object that represents the size of the character pointer.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Because the size of the bookmark’s title is unknown, the <span class="FM_Courier">PDBookmarkGetTitle</span>&#160;is invoked twice. The first time it is invoked, <span class="FM_Courier">NULL</span>&#160;is passed as the buffer address (second argument) and <span class="FM_Courier">0</span>&#160;is specified as the buffer size (third argument). The text length is returned to an <span class="FM_Courier">ASInt32</span>&#160;object named <span class="FM_Courier">bufSize</span>. The <span class="FM_Courier">ASmalloc</span>&#160;method is invoked which allocates <span class="FM_Courier">bufSize</span> bytes to the character pointer.</p>
+  <p class="BodyLevel1">The second time <span class="FM_Courier">PDBookmarkGetTitle</span>&#160;is invoked, the allocated character pointer is passed as well as the <span class="FM_Courier">ASInt32</span>&#160;object named <span class="FM_Courier">bufSize</span>. The character pointer is populated with the bookmark’s title. The <span class="FM_Courier">AVAlertNote</span>&#160;method is invoked and the character pointer is passed as an argument that results in the bookmark’s title being displayed within a message box.</p>
+  <p class="BodyLevel1"><a name="IX_PDBookmarkHasChildren_1"></a><a name="IX_PDBookmarkHasChildren"></a>The <span class="FM_Courier">PDBookmarkHasChildren</span>&#160;method is invoked to determine whether there are any child bookmarks under the current bookmark. If there are child bookmarks, the <span class="FM_Courier">PDBookmarkGetFirstChild</span>&#160;method is invoked to retrieve the first child bookmark. A recursive call is made to <span class="FM_Courier">VisitAllBookmarks</span>&#160;(that is, the user-defined method is invoking itself) until there are no more children bookmarks. Then the <span class="FM_Courier">PDBookmarkGetNext</span>&#160;method is invoked to get a sibling bookmark and the process continues until there are no more bookmarks within the PDF document.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Retrieving existing bookmarks</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Recursively go through bookmark tree to visit each bookmark</p>
+  <p class="FM_CodeReference">void VisitAllBookmarks (PDBookmark aBookmark)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDBookmark treeBookmark;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>DURING</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Ensure that the bookmark is valid</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (!PDBookmarkIsValid(aBookmark))</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>E_RTRN_VOID</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the title of the bookmark</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char * bmBuf; </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 bufSize = PDBookmarkGetTitle(aBookmark, NULL, 0) +1;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Allocate the size of bufSize to the character pointer</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>bmBuf = (char*)ASmalloc((os_size_t)bufSize);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Populate bmBuf with the bookmark's title</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDBookmarkGetTitle(aBookmark, bmBuf, bufSize);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Display the title of the bookmark within a message box</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(bmBuf);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Determine if the current bookmark has children bookmark</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (PDBookmarkHasChildren (aBookmark))</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the first child of the bookmark</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>treeBookmark = PDBookmarkGetFirstChild(aBookmark);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>while (PDBookmarkIsValid (treeBookmark))<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>VisitAllBookmarks (treeBookmark);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>treeBookmark = PDBookmarkGetNext(treeBookmark);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HANDLER</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>END_HANDLER</p>
+  <p class="FM_CodeReference">}</p>
+  </div>
+</body>
+</html>

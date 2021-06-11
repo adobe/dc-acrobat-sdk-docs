@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Add","url":"Acro12_MasterBook/IAC_API_FormsIntro/Methods2.htm#TOC_Add3bc-1"},{"type":"item","name":"AddDocJavascript","url":"Acro12_MasterBook/IAC_API_FormsIntro/Methods2.htm#TOC_AddDocJavascriptbc-2"},{"type":"item","name":"ExecuteThisJavascript","url":"Acro12_MasterBook/IAC_API_FormsIntro/Methods2.htm#TOC_ExecuteThisJavascriptbc-3"},{"type":"item","name":"ExportAsFDF","url":"Acro12_MasterBook/IAC_API_FormsIntro/Methods2.htm#TOC_ExportAsFDF1bc-4"},{"type":"item","name":"ExportAsHtml","url":"Acro12_MasterBook/IAC_API_FormsIntro/Methods2.htm#TOC_ExportAsHtmlbc-5"},{"type":"item","name":"ImportAnFDF","url":"Acro12_MasterBook/IAC_API_FormsIntro/Methods2.htm#TOC_ImportAnFDF1bc-6"},{"type":"item","name":"Remove","url":"Acro12_MasterBook/IAC_API_FormsIntro/Methods2.htm#TOC_Remove4bc-7"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Determining page element types</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Pages.fm" />
+ <link rel="stylesheet" href="Plugins_Pages.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.10.1.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Pages/Accessing_page_contents.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Pages/Modifying_text_elements.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Page Views and Contents > Modifying page contents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_PDEObjectGetType"></a><a name="IX_PDEObjectGetType_method"></a><a name="IX_determining_element_types"></a>Determining page element types</h3>
+  <p class="BodyLevel1">You can determine the element type that a <span class="FM_Courier">PDEElement</span>&#160;object represents by invoking the <span class="FM_Courier">PDEObjectGetType</span>&#160;method. This method requires a <span class="FM_Courier">PDEObject</span>; however, you can pass a <span class="FM_Courier">PDEElement</span>&#160;object and cast it to a <span class="FM_Courier">PDEObject</span>. This method returns an <span class="FM_Courier">ASInt32</span>&#160;object that specifies the element type. For example, if the element is a text element, this method returns <span class="FM_Courier">kPDEText</span>. For a listing of all element types, see the <span class="FM_HyperText"><a href="http://help.adobe.com/en_US/acrobat/acrobat_dc_sdk/2015/HTMLHelp/Acro12_MasterBook/API_References_SectionPage/API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a></span>.</p>
+  <p class="BodyLevel1">The following code example determines the element type by adding application logic to the application logic introduced in <a href="Accessing_page_contents.htm#XREF_26389_Example5_3">Accessing page contents</a>. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Determining page element types</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Declare a PDEElement object</p>
+  <p class="FM_CodeReference">PDEElement pdeElement; </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the number of elements located in the PDEContent object</p>
+  <p class="FM_CodeReference">ASInt32 eleNum = &#160;PDEContentGetNumElems(pdeContent); </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get each element located within the PDEContent object</p>
+  <p class="FM_CodeReference">for (int j=0; j&lt;eleNum; j++){</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeElement = PDEContentGetElem(pdeContent, j);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Determine if the element is a text element</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (PDEObjectGetType((PDEObject)pdeElement) == kPDEText){</p>
+  <p class="FM_CodeComment">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Perform an action</p>
+  <p class="FM_CodeReference">}</p>
+  </div>
+</body>
+</html>

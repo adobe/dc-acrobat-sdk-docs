@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Running commands</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Handlers.fm" />
+ <link rel="stylesheet" href="Plugins_Handlers.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.12.1.1_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Handlers/Configuring_AVCommands.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Handlers/Exposing_AVCommands_to_the_batch_framework.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Handlers > AVCommand handlers" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_55225_Running_an"></a>Running commands</h3>
+  <p class="BodyLevel1">The following code example shows an entire example of creating an <span class="FM_Courier">AVCommand</span> and running it.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example"><a name="XREF_70559_Example5_5_Running"></a>Running an AVCommand</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference"><span class="FM_Bold">void InitializeCommandHandler()</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment">//Declare local variables </p>
+  <p class="FM_CodeReference">static AVCommandHandlerRec gAVCmdHandler;</p>
+  <p class="FM_CodeReference">const char *kCmdName = &quot;MinimalCommand&quot;;</p>
+  <p class="FM_CodeReference">ASAtom cmdName;</p>
+  <p class="FM_CodeReference">AVCommand cmd;</p>
+  <p class="FM_CodeReference">const char *docTitleValue = &quot;Document Title&quot;;</p>
+  <p class="FM_CodeReference">const char *docSubjectValue = &quot;Document Subject&quot;;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a PDDoc object based on the current PDF document</p>
+  <p class="FM_CodeReference">AVDoc avDoc = AVAppGetActiveDoc();</p>
+  <p class="FM_CodeReference">AVPageView pageView = AVDocGetPageView(avDoc);</p>
+  <p class="FM_CodeReference">PDPageNumber pageNum = AVPageViewGetPageNum(pageView);</p>
+  <p class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(avDoc);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an AVCommandHandlerRec object</p>
+  <p class="FM_CodeReference">memset (&amp;gAVCmdHandler, 0, sizeof(AVCommandHandlerRec));</p>
+  <p class="FM_CodeReference">gAVCmdHandler.size = sizeof(AVCommandHandlerRec);</p>
+  <p class="FM_CodeReference">gAVCmdHandler.Work = ASCallbackCreateProto (AVCommandWorkProc, DoWorkImpl);</p>
+  <p class="FM_CodeReference">AVAppRegisterCommandHandler (ASAtomFromString(kCmdName),&amp;gAVCmdHandler);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Invoke the AVCommand</p>
+  <p class="FM_CodeReference">cmdName = ASAtomFromString (&quot;MinimalCommand&quot;);</p>
+  <p class="FM_CodeReference">cmd = AVCommandNew(cmdName);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Set the input parameters</p>
+  <p class="FM_CodeReference">ASCab inputs = ASCabNew();</p>
+  <p class="FM_CodeReference">ASCabPutPointer (inputs, kAVCommandKeyPDDoc, PDDoc, pdDoc, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Set the input parameters and destroy the container ASCab </p>
+  <p class="FM_CodeReference">if (kAVCommandReady != AVCommandSetInputs (cmd, inputs)) {</p>
+  <p class="FM_CodeReference">// Handle error</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an ASCab object to hold command parameters</p>
+  <p class="FM_CodeReference">ASCab params = ASCabNew();</p>
+  <p class="FM_CodeReference">ASText text = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetEncoded(text, docTitleValue,(ASHostEncoding)PDGetHostEncoding());</p>
+  <p class="FM_CodeReference">ASCabPutText (params, docTitleValue, text);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Clear the ASText object</p>
+  <p class="FM_CodeReference">text = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetEncoded(text, docSubjectValue,(ASHostEncoding)PDGetHostEncoding());</p>
+  <p class="FM_CodeReference">ASCabPutText(params, docSubjectValue, text);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Invoke the command</p>
+  <p class="FM_CodeReference">AVCommandExecute(cmd);</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">static ACCB1 AVCommandStatus ACCB2 DoWorkImpl (AVCommand cmd)</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference">AVAlertNote(&quot;The DoWorkImpl method was invoked&quot;);</p>
+  <p class="FM_CodeReference">return kAVCommandDone;</p>
+  <p class="FM_CodeReference">}</p>
+  </div>
+</body>
+</html>

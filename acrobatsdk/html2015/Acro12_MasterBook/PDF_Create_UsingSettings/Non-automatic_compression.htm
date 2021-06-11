@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Non-automatic compression</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\PDF_Creation_APIs\PDFCreationSettings\PDF_Create_UsingSettings.fm" />
+ <link rel="stylesheet" href="PDF_Create_UsingSettings.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.1.2.1.2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_image_settings.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/PDF_Create_UsingSettings/Downsampling_and_subsampling_images.htm">
+ <meta name="topic-breadcrumbs" content="PDF Creation APIs and Specifications > Adobe PDF Creation Settings > Using PDF Creation Settings > Using the image settings" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Non-automatic compression</h3>
+  <p class="BodyLevel1">This section describes the compression options that are available when automatic compression is not chosen. (Automatic compression does not apply to monochrome images.)</p>
+  <h4><a name="TOC_Color_and_grayscale"></a>Color and grayscale images</h4>
+  <p class="BodyLevel1">Grayscale images have one color component and more than one 1 bit per component. Color images have more than one color component and 1 or more bits per component:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">For grayscale images that have 2 or 4 bits per component or color images with 1, 2, or 4 bits per component, only Flate compression is permitted</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">For grayscale or color images with 8 bits per component, JPEG, JPEG2000, and Flate are permitted</p>
+</li>
+  </ul>
+  <p class="FM_NoteIndent"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>For grayscale or color images with more than 8 bits per component, the least significant bits of each image sample are removed, yielding 8 bits per sample. </p>
+  <p class="BodyLevel1">When image compression is selected (with <span class="FM_Courier">EncodeColorImages</span>, <span class="FM_Courier">EncodeGrayImages</span>, or <span class="FM_Courier">EncodeMonoImages</span>), the <span class="FM_Courier">ColorImageFilter</span>, <span class="FM_Courier">GrayImageFilter</span>, or <span class="FM_Courier">MonoImageFilter</span>&#160;settings specify which compression filter should be used. If no filter name is specified (is absent), lossless Flate is used in all cases. Invalid filter names generate an error.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>The following filters are <span class="FM_Italic">never</span>&#160;selected, even if they are specified in the Adobe PDF settings file: <span class="FM_Courier">LZWEncode</span>, <span class="FM_Courier">ASCII85Encode</span>, and <span class="FM_Courier">ASCIIHexEncode</span>. </p>
+  <p class="BodyLevel1">Under the following conditions, <span class="FM_Courier">FlateEncode</span> is used even if another filter is specified:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">The selected filter is <span class="FM_Courier">CCITTFaxEncode</span> and the image is wide (more than 40,000 columns).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The selected filter is <span class="FM_Courier">JPXEncode</span>&#160;and the image is indexed or ChromaKeyed or <span class="FM_Courier">CompatibilityLevel</span> is less than 1.5.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The selected filter is <span class="FM_Courier">DCTEncode</span>&#160;and the image is wide (more than 40,000 columns), indexed, deviceN or ChromaKeyed.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The selected filter is not supported for the number of colors or sample depth of the particular image being compressed.</p>
+</li>
+  </ul>
+  <h4><a name="TOC_Monochrome_black_and"></a><a name="XREF_90740_Setting_Image"></a><a name="XREF_82343_Setting_Image"></a>Monochrome (black and white) images</h4>
+  <p class="BodyLevel1">Monochrome images are defined as images with only one color component and one bit per sample. For monochrome image compression, the available filters are <span class="FM_Courier">CCITTFaxEncode</span>, <span class="FM_Courier">RunLengthEncode</span>, and <span class="FM_Courier">FlateEncode</span>.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">CCITTFaxEncode</span>&#160;parameter dictionary specifies options for CCITT compression. See “CCITTFaxEncode Filter” in Section 3.13.3 of the <span class="FM_Italic">PostScript Language Reference</span>&#160;for details. The <span class="FM_Courier">MonoImageDict</span>&#160;setting is a dictionary that contains the same keys as the <span class="FM_Courier">CCITTFaxEncode</span>&#160;parameter dictionary; any of the keys can be customized.</p>
+  <p class="BodyLevel1"><a name="IX_CCITTFaxEncode_1"></a><a name="IX_CCITTFaxEncode"></a><span class="FM_Courier">CCITTFaxEncode</span>&#160;(CCITT Group 4) compression typically yields the best compression of monochrome images. It is specified by a value of -1 for the <span class="FM_Courier">K</span>&#160;key in the <span class="FM_Courier">CCITTFaxEncode</span>&#160;parameter dictionary, for two-dimensional encoding. A value of 0 for this key corresponds to CCITT Group 3 (one-dimensional encoding).</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>With the exceptions of the <span class="FM_Courier">AntiAliasMonoImages</span>&#160;and <span class="FM_Courier">MonoImageDepth</span>&#160;parameters, the monochrome image compression parameters also can be applied to stencil masks created by the <span class="FM_Courier">imagemask</span>&#160;operator. Parameter behavior is the same in both cases. For details on <span class="FM_Courier">imagemask</span>, see the <span class="FM_Italic">PostScript Language Reference</span>.</p>
+  </div>
+</body>
+</html>

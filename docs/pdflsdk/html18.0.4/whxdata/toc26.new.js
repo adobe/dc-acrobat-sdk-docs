@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Defining bookmark actions","url":"PDFL_MasterBook/Working_with_Bookmarks/Creating_bookmarks.htm#TOC_Defining_bookmark_actionsbc-1"},{"type":"item","name":"Creating a PDViewDestination object","url":"PDFL_MasterBook/Working_with_Bookmarks/Creating_bookmarks.htm#TOC_Creating_a1bc-2"},{"type":"item","name":"Creating a AVPageView object","url":"PDFL_MasterBook/Working_with_Bookmarks/Creating_bookmarks.htm#TOC_Creating_a_AVPageViewbc-3"},{"type":"item","name":"Assigning an action to a bookmark","url":"PDFL_MasterBook/Working_with_Bookmarks/Creating_bookmarks.htm#TOC_Assigning_an_action_to_abc-4"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

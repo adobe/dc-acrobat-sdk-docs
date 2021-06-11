@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc320.js\"  name=\"catalog methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/catalog_methods.htm\"><item name=\"getIndex\" url=\"Acro12_MasterBook/JS_API_AcroJS/catalog_methods.htm#TOC_getIndexbc-1\" /><item name=\"remove\" url=\"Acro12_MasterBook/JS_API_AcroJS/catalog_methods.htm#TOC_remove1bc-2\" /></data>";

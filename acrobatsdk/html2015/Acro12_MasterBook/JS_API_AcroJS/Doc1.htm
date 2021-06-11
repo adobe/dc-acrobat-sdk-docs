@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Doc</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJS\JS_API_AcroJS.fm" />
+ <link rel="stylesheet" href="JS_API_AcroJS.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.2.1.24";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_API_AcroJS/Directory_methods.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_API_AcroJS/Doc_properties.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > JavaScript for Acrobat API Reference > JavaScript API" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_53130_Doc_Object"></a>Doc</h2>
+  <p class="BodyLevel1">This object provides the interface between a PDF document open in the viewer and the JavaScript interpreter. It provides methods and properties for accessing the PDF document. </p>
+  <p class="BodyLevel1">You can access the Doc object from JavaScript in a variety of ways: </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">The <span class="FM_Courier">this</span>&#160;object usually points to the Doc object of the underlying document. </p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Some properties and methods, such as <span class="FM_Courier">extractPages</span>, <span class="FM_Courier">app.activeDocs</span>, and <span class="FM_Courier">app. openDoc</span>, return the Doc object.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The Doc object can often be accessed through <span class="FM_Courier">event</span> objects, which are created for each event by which a JavaScript is executed:</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">For <span class="FM_Courier">mouse</span>, <span class="FM_Courier">focus</span>, <span class="FM_Courier">blur</span>, <span class="FM_Courier">calculate</span>, <span class="FM_Courier">validate</span>, and <span class="FM_Courier">format</span>&#160;events, <span class="FM_Courier">event.target</span>&#160;returns the Field object that initiated the event. You can then access the Doc object through the Doc method of the Field object.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">For all other events, <span class="FM_Courier">event.target</span>&#160;points to the Doc. </p>
+</li>
+  </ul>
+  <h5>Example 1: Access through this object</h5>
+  <p class="BodyLevel1">Use <span class="FM_Courier">this</span> to get the number of pages in this document:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var nPages = this.numPages;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Get the crop box for &quot;this&quot; document:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var aCrop = this.getPageBox();</p>
+  <h5>Example 2: Access through return values</h5>
+  <p class="BodyLevel1">Return values from one document to open, modify, save and close another. </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Path relative to &quot;this&quot; doc:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var myDoc = app.openDoc(&quot;myNovel.pdf&quot;, this); </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myDoc.info.Title = &quot;My Great Novel&quot;; </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myDoc.saveAs(myDoc.path);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myDoc.closeDoc(true);</p>
+  <h5>Example 3: Access through the event object.</h5>
+  <p class="BodyLevel1">For mouse, calculate, validate, format, focus, and blur events:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var myDoc = event.target.doc;</p>
+  <p class="BodyLevel1">For all other events (for example, batch or console events):</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var myDoc = event.target;</p>
+  </div>
+</body>
+</html>

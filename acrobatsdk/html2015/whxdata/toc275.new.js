@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Searching all PDF files in a specific location","url":"Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Searching_across_multiple_PDF_documents.htm#TOC_Searching_all_PDF_filesbc-1"},{"type":"item","name":"Using advanced search options for multiple document searches","url":"Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Searching_across_multiple_PDF_documents.htm#TOC_Using_advanced_search1bc-2"},{"type":"item","name":"Searching PDF index files","url":"Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Searching_across_multiple_PDF_documents.htm#TOC_Searching_PDF_index_filesbc-3"},{"type":"item","name":"Using Boolean queries","url":"Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Searching_across_multiple_PDF_documents.htm#TOC_Using_Boolean_queriesbc-4"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

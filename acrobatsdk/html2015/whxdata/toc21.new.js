@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"book","name":"Adobe XML architecture","key":"toc22","url":"Acro12_MasterBook/Overview_XML/Adobe_XML_architecture.htm"},{"type":"item","name":"SOAP and web services","url":"Acro12_MasterBook/Overview_XML/SOAP_and_web_services.htm"},{"type":"item","name":"Conversion of PDF documents to XML format","url":"Acro12_MasterBook/Overview_XML/Conversion_of_PDF_documents_to_XML_format.htm"},{"type":"item","name":"XML-based information","url":"Acro12_MasterBook/Overview_XML/XML-based_information.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

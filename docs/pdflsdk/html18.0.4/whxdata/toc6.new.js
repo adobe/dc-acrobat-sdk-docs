@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"All platforms","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Updating_to_latest_PDF_Library_SDK.htm#TOC_All_platformsbc-1"},{"type":"item","name":"Windows","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Updating_to_latest_PDF_Library_SDK.htm#TOC_Windowsbc-2"},{"type":"item","name":"Mac OS","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Updating_to_latest_PDF_Library_SDK.htm#TOC_Mac_OSbc-3"},{"type":"item","name":"Linux","url":"PDFL_MasterBook/About_the_PDF_Library_SDK/Updating_to_latest_PDF_Library_SDK.htm#TOC_Linuxbc-4"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

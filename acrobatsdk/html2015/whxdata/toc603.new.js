@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Event","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Define-event-list.htm#TOC_Event2bc-1"},{"type":"item","name":"Call-proc-list","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Define-event-list.htm#TOC_Call_proc_listbc-2"},{"type":"item","name":"Walk-children","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Define-event-list.htm#TOC_Walk_childrenbc-3"},{"type":"item","name":"Proc-doc-text","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Define-event-list.htm#TOC_Proc_doc_textbc-4"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

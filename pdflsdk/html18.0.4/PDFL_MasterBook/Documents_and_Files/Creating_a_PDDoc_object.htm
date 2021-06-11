@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating a PDDoc object</title>
+
+ 
+
+ <link rel="stylesheet" href="Documents_and_Files.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.5.0_8";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Documents_and_Files/Bridging_core_API_layers.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Documents_and_Files/Creating_a_PDDoc_object_based_on_an_open_PDF_document.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Working with Documents and Files" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="IX_ASGetDefaultFileSys_3"></a><a name="IX_ASGetDefaultFileSys_2"></a><a name="IX_PDDocOpen"></a><a name="IX_PDDocOpen_method"></a><a name="IX_access_contents"></a><a name="XREF_97094_Creating_a_PDDoc"></a>Creating a PDDoc object </p>
+  <p dir="ltr" class="FM_Body">You can access a PDF file’s contents without displaying the PDF file in <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>. To perform this task, create a <span class="FM_Courier">PDDoc</span>&#160;object by invoking the <span class="FM_Courier">PDDocOpen</span>&#160;method and passing the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASPathName</span>&#160;object that specifies the PDF file on which the <span class="FM_Courier">PDDoc</span>&#160;is based. For information about creating an <span class="FM_Courier">ASPathName</span>&#160;object, see <a href="Opening_PDF_documents.htm#XREF_65430_Opening_a_PDF"><span class="FM_HyperText">Opening PDF documents</span></a>.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASFileSys</span>&#160;object that represents the file system in which the PDF file is located. (See <a href="../Unicode_Paths/Retrieving_Unicode_path_values.htm#XREF_67382_Creating_an"><span class="FM_HyperText">Creating an ASFileSys object</span></a>.)</p>
+  <p dir="ltr" class="FM_Bullet1"><a name="IX_PDAuthProc_authorization"></a><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">PDAuthProc</span>&#160;authorization callback that is invoked only if the file has been secured (that is, if the file has either the user or the master password set). This callback must obtain required information to determine whether the user is authorized to open the file. You can pass <span class="FM_Courier">NULL</span>&#160;if an authorization callback is not required.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASBool</span>&#160;value. When set to <span class="FM_Courier">true</span>, an attempt to repair a damaged file is performed. If <span class="FM_Courier">false</span>, an attempt to repair a damaged file is not performed.</p>
+  <p dir="ltr" class="FM_Body">The following code example creates a <span class="FM_Courier">PDDoc</span>&#160;object that is based on a PDF file named PurchaseOrder.pdf and located in the root of the C drive. This code example is located within a user-defined function named <span class="FM_Courier">getDocument</span>.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Creating a PDDoc object</p>
+  <p dir="ltr" class="FM_CodeReference"><span class="FM_Bold">PDDoc getDocument()</span>&#160;</p>
+  <p dir="ltr" class="FM_CodeReference">{</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Declare a PDDoc object</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDDoc myPDDoc;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Declare a PDAuthProc callback</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDAuthProc myAuthProcPtr;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Specify the PDF file on which to base the PDDoc object</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>const char * myPath = &quot;C:\\PurchaseOrder.pdf&quot;; </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASAtom pathType = ASAtomFromString(&quot;Cstring&quot;);</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create an ASPathName object</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASFileSys fileSys = ASGetDefaultFileSysForPath(pathType, myPath);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASPathName pathName = ASFileSysCreatePathName(fileSys,pathType,</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myPath,NULL);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create the authentication callback</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myAuthProcPtr = ASCallbackCreateProto (PDAuthProc,&amp;authProc);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a PDDoc object</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myPDDoc = PDDocOpen (pathName, fileSys, myAuthProcPtr, false);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Release the callback</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASCallbackDestroy (myAuthProcPtr);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return myPDDoc; </p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeReference"><span class="FM_Bold">ASBool authProc(PDDoc TheDoc)</span>&#160;</p>
+  <p dir="ltr" class="FM_CodeReference">{</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Define business logic that authenticates the user</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return true;</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

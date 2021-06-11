@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"createComplianceProfile","url":"Acro12_MasterBook/JS_API_AcroJS/Preflight_methods.htm#TOC_createComplianceProfilebc-1"},{"type":"item","name":"getNthProfile","url":"Acro12_MasterBook/JS_API_AcroJS/Preflight_methods.htm#TOC_getNthProfilebc-2"},{"type":"item","name":"getNumProfiles","url":"Acro12_MasterBook/JS_API_AcroJS/Preflight_methods.htm#TOC_getNumProfilesbc-3"},{"type":"item","name":"getProfileByName","url":"Acro12_MasterBook/JS_API_AcroJS/Preflight_methods.htm#TOC_getProfileByNamebc-4"},{"type":"item","name":"getProfileByFingerPrint","url":"Acro12_MasterBook/JS_API_AcroJS/Preflight_methods.htm#TOC_getProfileByFingerPrintbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

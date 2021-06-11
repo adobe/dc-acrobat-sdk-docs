@@ -1,0 +1,665 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<title>fontembd.c</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../cdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'fontembd.c';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html'); loadPackageListFrame('../../../../package-list.html')" href="../../../../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../../../../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../../../../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../../../../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../../../../index.html?Samples/CodeSamples/fontembd/sources/fontembd.c.html&amp;Samples/CodeSamples/sample-file-list.html&amp;Samples/CodeSamples/samples-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../../../../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">fontembd.c</td><td align="right" id="subNav" class="titleTableSubNav"></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("fontembd.c"); titleBar_setSubNav(false,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="1"></a> /* 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="2"></a> // 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="3"></a> //&nbsp; &nbsp;ADOBE&nbsp;SYSTEMS&nbsp;INCORPORATED 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="4"></a> //&nbsp; &nbsp;Copyright&nbsp;(C)&nbsp;2000-2003&nbsp;Adobe&nbsp;Systems&nbsp;Incorporated 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="5"></a> //&nbsp; &nbsp;All&nbsp;rights&nbsp;reserved. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="6"></a> // 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="7"></a> //&nbsp; &nbsp;NOTICE:&nbsp;Adobe&nbsp;permits&nbsp;you&nbsp;to&nbsp;use,&nbsp;modify,&nbsp;and&nbsp;distribute&nbsp;this&nbsp;file 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="8"></a> //&nbsp; &nbsp;in&nbsp;accordance&nbsp;with&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;Adobe&nbsp;license&nbsp;agreement 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="9"></a> //&nbsp; &nbsp;accompanying&nbsp;it.&nbsp;If&nbsp;you&nbsp;have&nbsp;received&nbsp;this&nbsp;file&nbsp;from&nbsp;a&nbsp;source&nbsp;other 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="10"></a> //&nbsp; &nbsp;than&nbsp;Adobe,&nbsp;then&nbsp;your&nbsp;use,&nbsp;modification,&nbsp;or&nbsp;distribution&nbsp;of&nbsp;it 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="11"></a> //&nbsp; &nbsp;requires&nbsp;the&nbsp;prior&nbsp;written&nbsp;permission&nbsp;of&nbsp;Adobe. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="12"></a> // 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="13"></a> */  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="14"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="15"></a>  /* 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="16"></a> // 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="17"></a> //&nbsp;Project:&nbsp; &nbsp;-&nbsp;Font&nbsp;enumeration,&nbsp;font&nbsp;embedding 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="18"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="19"></a> //&nbsp;Steps: 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="20"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="21"></a> //&nbsp;*&nbsp;Call&nbsp;PDEnumSysFonts()&nbsp;to&nbsp;find&nbsp;the&nbsp;font&nbsp;in&nbsp;question 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="22"></a> //&nbsp;*&nbsp;To&nbsp;embed&nbsp;an&nbsp;entire&nbsp;font,&nbsp;pass&nbsp;the&nbsp;flag&nbsp;kPDEFontCreateEmbedded&nbsp;when 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="23"></a> //&nbsp; &nbsp; &nbsp;creating&nbsp;the&nbsp;font&nbsp;with&nbsp;PDEFontCreateFromSysFont. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="24"></a> //&nbsp;*&nbsp;To&nbsp;embed&nbsp;and&nbsp;subset&nbsp;a&nbsp;font,&nbsp;pass&nbsp;both&nbsp;the&nbsp;flags&nbsp;kPDEFontCreateEmbedded&nbsp;and 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="25"></a> //&nbsp; &nbsp; &nbsp;kPDEFontWillSubset&nbsp;(or&nbsp;them&nbsp;together)&nbsp;with&nbsp;PDEFontCreateFromSysFont. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="26"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="27"></a> //&nbsp;This&nbsp;sample&nbsp;demonstrates&nbsp;also&nbsp;demonstrates&nbsp;use&nbsp;of&nbsp;the&nbsp;enumeration&nbsp;methods 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="28"></a> //&nbsp;in&nbsp;the&nbsp;Acrobat&nbsp;API.&nbsp;The&nbsp;most&nbsp;important&nbsp;thing&nbsp;to&nbsp;know&nbsp;about&nbsp;the&nbsp;enumerators 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="29"></a> //&nbsp;is&nbsp;that&nbsp;you&nbsp;should&nbsp;not&nbsp;depend&nbsp;on&nbsp;anything&nbsp;getting&nbsp;done&nbsp;in&nbsp;them.&nbsp;If&nbsp;the&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="30"></a> //&nbsp;Library&nbsp;cannot&nbsp;find&nbsp;the&nbsp;fonts&nbsp;***&nbsp;The&nbsp;enumeration&nbsp;Callback&nbsp;will&nbsp;not&nbsp;get 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="31"></a> //&nbsp;called***&nbsp;Notice&nbsp;how&nbsp;the&nbsp;PDEFont&nbsp;is&nbsp;set&nbsp;as&nbsp;a&nbsp;global&nbsp;in&nbsp;this&nbsp;sample&nbsp;code&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="32"></a> //&nbsp;and&nbsp;then&nbsp;we&nbsp;test&nbsp;to&nbsp;see&nbsp;if&nbsp;it&nbsp;was&nbsp;set&nbsp;in&nbsp;the&nbsp;callback&nbsp;and&nbsp;if&nbsp;not&nbsp;we&nbsp;bail. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="33"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="34"></a> */  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="35"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="36"></a>  #ifndef&nbsp;MAC_ENV 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="37"></a>  #include&nbsp;&lt;sys/types.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="38"></a>  #include&nbsp;&lt;sys/stat.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="39"></a>  #endif 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="40"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="41"></a>  #include&nbsp;&lt;stdio.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="42"></a>  #include&nbsp;&lt;stdlib.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="43"></a>  #include&nbsp;&lt;string.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="44"></a>  #include&nbsp;&lt;fcntl.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="45"></a>  #include&nbsp;&lt;stddef.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="46"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="47"></a>  #include&nbsp;"PDFInit.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="48"></a>  #include&nbsp;"<a href="../../../../COS_Layer/General.html#CosCalls.h" target="">CosCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="49"></a>  #include&nbsp;"<a href="../../../../AS_Layer/General.html#CorCalls.h" target="">CorCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="50"></a>  #include&nbsp;"<a href="../../../../AS_Layer/General.html#ASCalls.h" target="">ASCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="51"></a>  #include&nbsp;"<a href="../../../../PD_Layer/General.html#PDCalls.h" target="">PDCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="52"></a>  #include&nbsp;"<a href="../../../../PDFEdit_Layer/General.html#PERCalls.h" target="">PERCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="53"></a>  #include&nbsp;"<a href="../../../../PDFEdit_Layer/General.html#PEWCalls.h" target="">PEWCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="54"></a>  #include&nbsp;"PSFCalls.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="55"></a>  #include&nbsp;"PagePDECntCalls.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="56"></a>  #include&nbsp; &nbsp;"MyPDFLibUtils.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="57"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="58"></a>  #ifdef&nbsp;MAC_ENV&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="59"></a>  #include&nbsp;"MacUtils.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="60"></a>  #endif 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="61"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="62"></a>  #define&nbsp;FONT_NAME&nbsp;"CourierStd" 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="63"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="64"></a>  <a href="../../../../PDFEdit_Layer/PDEFont.html#PDEFont" target="">PDEFont</a> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gfont &nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="65"></a>  <a href="../../../../AS_Layer/General.html#Uns8" target="">Uns8</a>**&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; encoding; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="66"></a>  char  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fontName[100],&nbsp; fontType[100], 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="67"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; fontCharSet[100],fontEncoding[100]; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="68"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="69"></a> ACCB1&nbsp; <a href="../../../../AS_Layer/General.html#ASBool" target="">ASBool</a> &nbsp; ACCB2 &nbsp; fontEnumProc(<a href="../../../../PDFEdit_Layer/PDSysFont.html#PDSysFont" target="">PDSysFont</a> &nbsp;sysFont,&nbsp;  void  &nbsp;*clientData); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="70"></a> ACCB1&nbsp; <a href="../../../../AS_Layer/General.html#ASBool" target="">ASBool</a> &nbsp; ACCB2 &nbsp; fontEnumProc(<a href="../../../../PDFEdit_Layer/PDSysFont.html#PDSysFont" target="">PDSysFont</a> &nbsp;sysFont,&nbsp;  void  &nbsp;*clientData) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="71"></a> { 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="72"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  char  &nbsp;buf[256]; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="73"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEFont.html#_t_PDEFontInfo" target="">PDEFontInfoRec</a> &nbsp;info; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="74"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> &nbsp;encname; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="75"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEFont.html#_t_PDEFontAttrs" target="">PDEFontAttrs</a> &nbsp;attrs; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="76"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="77"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strcpy_safe(buf,&nbsp;  sizeof (buf),&nbsp; <a href="../../../../AS_Layer/ASAtom.html#ASAtomGetString()" target="">ASAtomGetString</a>(<a href="../../../../PDFEdit_Layer/PDSysFont.html#PDSysFontGetName()" target="">PDSysFontGetName</a>(sysFont))); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="78"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if  &nbsp;(!strcmp(buf,&nbsp;( char  &nbsp;*)clientData)) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="79"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="80"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Various&nbsp;methods&nbsp;to&nbsp;obtain&nbsp;information&nbsp;about&nbsp;the&nbsp;system&nbsp;font&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="81"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDSysFont.html#PDSysFontGetAttrs()" target="">PDSysFontGetAttrs</a>(sysFont,&nbsp;&amp;attrs,&nbsp;  sizeof (<a href="../../../../PDFEdit_Layer/PDEFont.html#_t_PDEFontAttrs" target="">PDEFontAttrs</a>)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="82"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="83"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Checking&nbsp;font&nbsp;embedding&nbsp;policy&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="84"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if  &nbsp;(attrs.<a href="../../../../PDFEdit_Layer/General.html#cantEmbed" target="">cantEmbed</a> &nbsp;!=&nbsp;0)&nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="85"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;printf( "This&nbsp;font&nbsp;cannot&nbsp;be&nbsp;embedded" ); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="86"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  return  &nbsp;  false ; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="87"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="88"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="89"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; encoding &nbsp;=&nbsp; <a href="../../../../PDFEdit_Layer/PDSysFont.html#PDSysFontGetEncoding()" target="">PDSysFontGetEncoding</a>(sysFont,&nbsp;&amp;encname); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="90"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if  &nbsp;(encoding &nbsp;==&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>){ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="91"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strcpy_safe(fontEncoding,&nbsp;  sizeof (fontEncoding),&nbsp;  "Default" ); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="92"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="93"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  else { 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="94"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strcpy_safe(fontEncoding,&nbsp;  sizeof (fontEncoding),&nbsp; <a href="../../../../AS_Layer/ASAtom.html#ASAtomGetString()" target="">ASAtomGetString</a>(encname)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="95"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="96"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="97"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDSysFont.html#PDSysFontGetInfo()" target="">PDSysFontGetInfo</a>(sysFont,&nbsp;&amp;info,&nbsp;  sizeof (<a href="../../../../PDFEdit_Layer/PDEFont.html#_t_PDEFontInfo" target="">PDEFontInfoRec</a>)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="98"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="99"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strcpy_safe(fontName,&nbsp;  sizeof (fontName),&nbsp; <a href="../../../../AS_Layer/ASAtom.html#ASAtomGetString()" target="">ASAtomGetString</a>(info.<a href="../../../../PDFEdit_Layer/General.html#name" target="">name</a>)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="100"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strcpy_safe(fontType,&nbsp;  sizeof (fontType),&nbsp; <a href="../../../../AS_Layer/ASAtom.html#ASAtomGetString()" target="">ASAtomGetString</a>(info.<a href="../../../../PDFEdit_Layer/General.html#type" target="">type</a>)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="101"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; strcpy_safe(fontCharSet,&nbsp;  sizeof (fontCharSet),&nbsp; <a href="../../../../AS_Layer/ASAtom.html#ASAtomGetString()" target="">ASAtomGetString</a>(info.<a href="../../../../PDFEdit_Layer/General.html#charSet" target="">charSet</a>)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="102"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="103"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;We&nbsp;want&nbsp;to&nbsp;both&nbsp;embed&nbsp;the&nbsp;font&nbsp;and&nbsp;subset&nbsp;it,&nbsp;so&nbsp;pass&nbsp;those&nbsp;flags&nbsp;in. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="104"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;The&nbsp;font&nbsp;will&nbsp;not&nbsp;actually&nbsp;be&nbsp;subset&nbsp;until&nbsp;PDEFontSubsetNow&nbsp;is&nbsp;called 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="105"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;after&nbsp;the&nbsp;text&nbsp;is&nbsp;added&nbsp;(so&nbsp;we&nbsp;know&nbsp;what&nbsp;characters&nbsp;to&nbsp;subset). 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="106"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="107"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gfont &nbsp;=&nbsp; <a href="../../../../PDFEdit_Layer/PDEFont.html#PDEFontCreateFromSysFont()" target="">PDEFontCreateFromSysFont</a>(sysFont,&nbsp;(<a href="../../../../PDFEdit_Layer/PDEFont.html#kPDEFontCreateEmbedded" target="">kPDEFontCreateEmbedded</a>|<a href="../../../../PDFEdit_Layer/PDEFont.html#kPDEFontWillSubset" target="">kPDEFontWillSubset</a>)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="108"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="109"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;We&nbsp;found&nbsp;our&nbsp;font&nbsp;-&nbsp;stop&nbsp;the&nbsp;enum&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="110"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  return  &nbsp;  false ;&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="111"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="112"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;We&nbsp;didn't&nbsp;find&nbsp;our&nbsp;font&nbsp;-&nbsp;continue&nbsp;enum&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="113"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  return  &nbsp;  true ;&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="114"></a> } 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="115"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="116"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="117"></a>  void  &nbsp; MainProc( void ); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="118"></a>  void  &nbsp; MainProc( void ) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="119"></a> { 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="120"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> &nbsp;pdDoc&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="121"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/General.html#ASBool" target="">ASBool</a> &nbsp;b; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="122"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Fixed_Point_Math.html#_t_ASFixedRect" target="">ASFixedRect</a> &nbsp;mediaBox&nbsp;=&nbsp;{0,&nbsp; <a href="../../../../AS_Layer/Fixed_Point_Math.html#Int16ToFixed" target="">Int16ToFixed</a>(5*72),&nbsp; <a href="../../../../AS_Layer/Fixed_Point_Math.html#Int16ToFixed" target="">Int16ToFixed</a>(8*72),&nbsp;0}; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="123"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDPage.html#PDPage" target="">PDPage</a> &nbsp;pdPage; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="124"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEContent.html#PDEContent" target="">PDEContent</a> &nbsp;pdeContent&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="125"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#PDEText" target="">PDEText</a> &nbsp;pdeText&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="126"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/General.html#_t_PDEGraphicState" target="">PDEGraphicState</a> &nbsp;gState; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="127"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEColorSpace.html#PDEColorSpace" target="">PDEColorSpace</a> &nbsp;pdeColorSpace&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;ColorSpace&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="128"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/General.html#_t_ASDoubleMatrix" target="">ASDoubleMatrix</a> &nbsp;txtMatrix; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="129"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/General.html#Int32" target="">Int32</a> &nbsp;err&nbsp;=&nbsp;0; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="130"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> &nbsp;outPath&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="131"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="132"></a>  /*==================================================================*\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="133"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Create&nbsp;Doc,&nbsp;Page,&nbsp;Content&nbsp;Container&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="134"></a> \*==================================================================*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="135"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="136"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#DURING" target="">DURING</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="137"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="138"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#DURING" target="">DURING</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="139"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="140"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;enumerate&nbsp;the&nbsp;fonts,&nbsp;looking&nbsp;for&nbsp;the&nbsp;font&nbsp;in&nbsp;question&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="141"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;See&nbsp;the&nbsp;top&nbsp;of&nbsp;this&nbsp;file&nbsp;for&nbsp;information&nbsp;on&nbsp;the&nbsp;correct&nbsp;use 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="142"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;of&nbsp;enumerators*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="143"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDSysFont.html#PDEnumSysFonts()" target="">PDEnumSysFonts</a>(fontEnumProc,&nbsp;( void *)&nbsp; FONT_NAME); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="144"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="145"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /***********************************************************/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="146"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if  &nbsp;(gfont) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="147"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="148"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pdDoc&nbsp;=&nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocCreate()" target="">PDDocCreate</a>();&nbsp;  /*&nbsp;create&nbsp;new&nbsp;document&nbsp; &nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="149"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pdPage&nbsp;=&nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocCreatePage()" target="">PDDocCreatePage</a>(pdDoc,&nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocGetNumPages()" target="">PDDocGetNumPages</a>(pdDoc)&nbsp;-&nbsp;1,&nbsp;mediaBox); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="150"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="151"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Acquire&nbsp;PDEContent&nbsp;container&nbsp;for&nbsp;page&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="152"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pdeContent&nbsp;=&nbsp; PDPageAcquirePDEContent(pdPage,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>);&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="153"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="154"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Fill&nbsp;out&nbsp;the&nbsp;text&nbsp;matrix&nbsp;for&nbsp;a&nbsp;14&nbsp;point&nbsp;font&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="155"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;memset(&amp;txtMatrix,&nbsp;0,&nbsp;  sizeof (txtMatrix)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="156"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#a" target="">a</a> &nbsp;=&nbsp;14; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="157"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#d" target="">d</a> &nbsp;=&nbsp;14; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="158"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="159"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;The&nbsp;following&nbsp;code&nbsp;sets&nbsp;up&nbsp;the&nbsp;default&nbsp;Graphics&nbsp;state.&nbsp; &nbsp;We&nbsp;do&nbsp;this&nbsp;so&nbsp;that 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="160"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;we&nbsp;can&nbsp;free&nbsp;the&nbsp;PDEColorSpace&nbsp;objects.&nbsp; &nbsp;The&nbsp;code&nbsp;below&nbsp;to&nbsp;set&nbsp;up&nbsp;the&nbsp;default 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="161"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;gState&nbsp;is&nbsp;exactly&nbsp;the&nbsp;same&nbsp;as&nbsp;calling&nbsp;PDEDefaultGState() 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="162"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="163"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pdeColorSpace&nbsp;=&nbsp; <a href="../../../../PDFEdit_Layer/PDEColorSpace.html#PDEColorSpaceCreateFromName()" target="">PDEColorSpaceCreateFromName</a>(<a href="../../../../AS_Layer/ASAtom.html#ASAtomFromString()" target="">ASAtomFromString</a>( "DeviceGray" )); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="164"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;memset(&amp;gState,&nbsp;0,&nbsp;  sizeof (<a href="../../../../PDFEdit_Layer/General.html#_t_PDEGraphicState" target="">PDEGraphicState</a>)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="165"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gState.<a href="../../../../PDFEdit_Layer/General.html#strokeColorSpec" target="">strokeColorSpec</a>.<a href="../../../../PDFEdit_Layer/General.html#space" target="">space</a> &nbsp;=&nbsp;gState.<a href="../../../../PDFEdit_Layer/General.html#fillColorSpec" target="">fillColorSpec</a>.<a href="../../../../PDFEdit_Layer/General.html#space" target="">space</a> &nbsp;=&nbsp;pdeColorSpace; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="166"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gState.<a href="../../../../PDFEdit_Layer/General.html#miterLimit" target="">miterLimit</a> &nbsp;=&nbsp; <a href="../../../../AS_Layer/Fixed_Point_Math.html#fixedTen" target="">fixedTen</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="167"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gState.<a href="../../../../PDFEdit_Layer/General.html#flatness" target="">flatness</a> &nbsp;=&nbsp; <a href="../../../../AS_Layer/Fixed_Point_Math.html#fixedOne" target="">fixedOne</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="168"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;gState.<a href="../../../../PDFEdit_Layer/General.html#lineWidth" target="">lineWidth</a> &nbsp;=&nbsp; <a href="../../../../AS_Layer/Fixed_Point_Math.html#fixedOne" target="">fixedOne</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="169"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="170"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Create&nbsp;a&nbsp;PDEText&nbsp;object&nbsp;to&nbsp;store&nbsp;the&nbsp;text&nbsp;strings&nbsp;we&nbsp;want&nbsp;to&nbsp;add&nbsp;to&nbsp;the&nbsp;page&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="171"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pdeText&nbsp;=&nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#PDETextCreate()" target="">PDETextCreate</a>(); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="172"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="173"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Specify&nbsp;the&nbsp;horizontal&nbsp;and&nbsp;verical&nbsp;position&nbsp;of&nbsp;the&nbsp;text&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="174"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#h" target="">h</a> &nbsp;=&nbsp;0.25&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="175"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#v" target="">v</a> &nbsp;=&nbsp;4&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="176"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#PDETextAddEx()" target="">PDETextAddEx</a>(pdeText,&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;add&nbsp;text:&nbsp;font&nbsp;name&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="177"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#kPDETextRun" target="">kPDETextRun</a>, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="178"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="179"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(<a href="../../../../AS_Layer/General.html#Uns8" target="">Uns8</a> &nbsp;*)&nbsp; fontName, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="180"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;strlen(fontName), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="181"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gfont, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="182"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;gState,&nbsp;  sizeof (gState), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="183"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0,&nbsp;0, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="184"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;txtMatrix, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="185"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="186"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="187"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Specify&nbsp;the&nbsp;horizontal&nbsp;and&nbsp;verical&nbsp;position&nbsp;of&nbsp;the&nbsp;text&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="188"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#h" target="">h</a> &nbsp;=&nbsp;0.25&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="189"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#v" target="">v</a> &nbsp;=&nbsp;3&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="190"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#PDETextAddEx()" target="">PDETextAddEx</a>(pdeText,&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;add&nbsp;text:&nbsp;font&nbsp;type&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="191"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#kPDETextRun" target="">kPDETextRun</a>, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="192"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0,&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="193"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(<a href="../../../../AS_Layer/General.html#Uns8" target="">Uns8</a> &nbsp;*)&nbsp; fontType, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="194"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;strlen(fontType), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="195"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gfont, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="196"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;gState,&nbsp;  sizeof (gState), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="197"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0,&nbsp;0, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="198"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;txtMatrix, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="199"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="200"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="201"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Specify&nbsp;the&nbsp;horizontal&nbsp;and&nbsp;verical&nbsp;position&nbsp;of&nbsp;the&nbsp;text&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="202"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#h" target="">h</a> &nbsp;=&nbsp;0.25&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="203"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#v" target="">v</a> &nbsp;=&nbsp;2&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="204"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="205"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;printf&nbsp;( "fontCharSet&nbsp;=&nbsp;%s,&nbsp;len&nbsp;=&nbsp;%d\n" ,&nbsp; fontCharSet,&nbsp;strlen(fontCharSet)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="206"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Check&nbsp;if&nbsp;fontCharSet&nbsp;in&nbsp;charstring&nbsp;dictionary&nbsp;is&nbsp;NULL.&nbsp;If&nbsp;not,&nbsp;add&nbsp;char&nbsp;set&nbsp;text&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="207"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if  &nbsp;(strlen(fontCharSet)&nbsp;!=&nbsp;0){ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="208"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#PDETextAddEx()" target="">PDETextAddEx</a>(pdeText,&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;add&nbsp;text:&nbsp;font&nbsp;char&nbsp;set&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="209"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#kPDETextRun" target="">kPDETextRun</a>, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="210"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0,&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="211"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(<a href="../../../../AS_Layer/General.html#Uns8" target="">Uns8</a> &nbsp;*)&nbsp; fontCharSet, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="212"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;strlen(fontCharSet), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="213"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gfont, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="214"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;gState,&nbsp;  sizeof (gState), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="215"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0,&nbsp;0, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="216"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;txtMatrix, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="217"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="218"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="219"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Specify&nbsp;the&nbsp;horizontal&nbsp;and&nbsp;verical&nbsp;position&nbsp;of&nbsp;the&nbsp;text&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="220"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#h" target="">h</a> &nbsp;=&nbsp;0.25&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="221"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;txtMatrix.<a href="../../../../AS_Layer/General.html#v" target="">v</a> &nbsp;=&nbsp;1&nbsp;*&nbsp;72; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="222"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="223"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#PDETextAddEx()" target="">PDETextAddEx</a>(pdeText,&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;add&nbsp;text:&nbsp;font&nbsp;encoding&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="224"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEText.html#kPDETextRun" target="">kPDETextRun</a>, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="225"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0,&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="226"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;(<a href="../../../../AS_Layer/General.html#Uns8" target="">Uns8</a> &nbsp;*)&nbsp; fontEncoding, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="227"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;strlen(fontEncoding), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="228"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; gfont, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="229"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;gState,&nbsp;  sizeof (gState), 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="230"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;0,&nbsp;0, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="231"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&amp;txtMatrix, 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="232"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="233"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="234"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Add&nbsp;the&nbsp;text&nbsp;elements,&nbsp;including&nbsp;each&nbsp;of&nbsp;the&nbsp;text&nbsp;runs,&nbsp;to&nbsp;the&nbsp;PDEContent 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="235"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;for&nbsp;the&nbsp;page 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="236"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="237"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEContent.html#PDEContentAddElem()" target="">PDEContentAddElem</a>(pdeContent,&nbsp; <a href="../../../../PDFEdit_Layer/General.html#kPDEAfterLast" target="">kPDEAfterLast</a>,&nbsp;(<a href="../../../../PDFEdit_Layer/PDEElement.html#PDEElement" target="">PDEElement</a>)&nbsp;pdeText); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="238"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="239"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Set&nbsp;the&nbsp;PDEContent&nbsp;for&nbsp;the&nbsp;page&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="240"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;b&nbsp;=&nbsp; PDPageSetPDEContent(pdPage,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="241"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="242"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Tell&nbsp;the&nbsp;toolkit&nbsp;to&nbsp;subset&nbsp;the&nbsp;font.&nbsp; &nbsp;This&nbsp;must&nbsp;be&nbsp;done 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="243"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;after&nbsp;the&nbsp;text&nbsp;block&nbsp;has&nbsp;been&nbsp;created&nbsp;so&nbsp;that&nbsp;we&nbsp;know&nbsp;what&nbsp;characters 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="244"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;to&nbsp;subset.&nbsp; &nbsp;In&nbsp;addition,&nbsp;subsetting&nbsp;the&nbsp;font&nbsp;must&nbsp;occur&nbsp;after&nbsp;the&nbsp;page 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="245"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*&nbsp;contents&nbsp;have&nbsp;been&nbsp;set. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="246"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="247"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEFont.html#PDEFontSubsetNow()" target="">PDEFontSubsetNow</a>(gfont,&nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocGetCosDoc()" target="">PDDocGetCosDoc</a>(pdDoc)); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="248"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="249"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  else  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="250"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="251"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ASRaise(<a href="../../../../AS_Layer/Errors.html#ASRegisterErrorString()" target="">ASRegisterErrorString</a>(ErrAlways, "Sample&nbsp;Application&nbsp;Error&nbsp;\n&nbsp;Font&nbsp;not&nbsp;found&nbsp;in&nbsp;PDEnumSysFonts()&nbsp;:&nbsp;No&nbsp;Output&nbsp;Produced" )); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="252"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="253"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="254"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#HANDLER" target="">HANDLER</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="255"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="256"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; RERAISE(); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="257"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="258"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#END_HANDLER" target="">END_HANDLER</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="259"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="260"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="261"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*==================================================================*\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="262"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Save&nbsp;Document 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="263"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\*==================================================================*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="264"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="265"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;save&nbsp;document&nbsp;to&nbsp;a&nbsp;file&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="266"></a>  #if&nbsp;!MAC_ENV 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="267"></a>   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;outPath&nbsp;=&nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASFileSysCreatePathFromDIPath" target="">ASFileSysCreatePathFromDIPath</a>(&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,&nbsp;  "out.pdf" ,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a> &nbsp;); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="268"></a>  #else 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="269"></a>   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;outPath&nbsp;=&nbsp; GetMacPath( "out.pdf" ); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="270"></a>  #endif 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="271"></a>   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocSave()" target="">PDDocSave</a>(pdDoc,&nbsp; <a href="../../../../PD_Layer/General.html#PDSaveFull" target="">PDSaveFull</a> &nbsp;|&nbsp; <a href="../../../../PD_Layer/General.html#PDSaveLinearized" target="">PDSaveLinearized</a>,&nbsp;outPath,&nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASGetDefaultFileSys()" target="">ASGetDefaultFileSys</a>(),&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="272"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="273"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#HANDLER" target="">HANDLER</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="274"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="275"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;err&nbsp;=&nbsp; <a href="../../../../AS_Layer/Errors.html#ERRORCODE" target="">ERRORCODE</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="276"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="277"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#END_HANDLER" target="">END_HANDLER</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="278"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="279"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (err) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="280"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DisplayError(err); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="281"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="282"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;Release&nbsp;all&nbsp;of&nbsp;the&nbsp;objects&nbsp;we&nbsp;acquired&nbsp;or&nbsp;created&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="283"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (gfont)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEObject.html#PDERelease()" target="">PDERelease</a>((<a href="../../../../PDFEdit_Layer/PDEObject.html#PDEObject" target="">PDEObject</a>)gfont); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="284"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (pdeText)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEObject.html#PDERelease()" target="">PDERelease</a>((<a href="../../../../PDFEdit_Layer/PDEObject.html#PDEObject" target="">PDEObject</a>)&nbsp;pdeText); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="285"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (pdeColorSpace)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PDFEdit_Layer/PDEObject.html#PDERelease()" target="">PDERelease</a>((<a href="../../../../PDFEdit_Layer/PDEObject.html#PDEObject" target="">PDEObject</a>)&nbsp;pdeColorSpace); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="286"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (pdPage) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="287"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="288"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; PDPageReleasePDEContent(pdPage,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="289"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDPage.html#PDPageRelease()" target="">PDPageRelease</a>(pdPage); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="290"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="291"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (outPath)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASFileSysReleasePath()" target="">ASFileSysReleasePath</a>(&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,&nbsp;outPath); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="292"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (pdDoc)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocClose()" target="">PDDocClose</a>(pdDoc); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="293"></a> } 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="294"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="295"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="296"></a>  #define&nbsp;INCLUDE_MYPDFLIBAPP_CPP&nbsp;1 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="297"></a>  #include&nbsp;"MyPDFLibApp.cpp"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="298"></a>  #undef&nbsp;INCLUDE_MYPDFLIBAPP_CPP 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="299"></a>   
+    
+</div>
+</body>
+</html>

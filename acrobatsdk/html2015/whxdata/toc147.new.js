@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"The PubSec layer","url":"Acro12_MasterBook/Plugins_ExtendedAPI/The_PubSec_layer.htm"},{"type":"item","name":"Digital signature components","url":"Acro12_MasterBook/Plugins_ExtendedAPI/Digital_signature_components.htm"},{"type":"item","name":"Digital signature scenarios","url":"Acro12_MasterBook/Plugins_ExtendedAPI/Digital_signature_scenarios.htm"},{"type":"item","name":"Initializing the digital signature plug-in","url":"Acro12_MasterBook/Plugins_ExtendedAPI/Initializing_the_digital_signature_plug-in.htm"},{"type":"item","name":"Understanding the process","url":"Acro12_MasterBook/Plugins_ExtendedAPI/Understanding_the_process.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

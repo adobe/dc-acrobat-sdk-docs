@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Modifying page contents","url":"PDFL_MasterBook/Page_Views_and_Contents/Displaying_page_views.htm#TOC_Modifying_page_contentsbc-1"},{"type":"item","name":"Creating a PDEContent object","url":"PDFL_MasterBook/Page_Views_and_Contents/Displaying_page_views.htm#TOC_Creating_a_PDEContentbc-2"},{"type":"item","name":"Accessing page contents","url":"PDFL_MasterBook/Page_Views_and_Contents/Displaying_page_views.htm#TOC_Accessing_page_contentsbc-3"},{"type":"item","name":"Determining page element types","url":"PDFL_MasterBook/Page_Views_and_Contents/Displaying_page_views.htm#TOC_Determining_page_elementbc-4"},{"type":"item","name":"Modifying text elements","url":"PDFL_MasterBook/Page_Views_and_Contents/Displaying_page_views.htm#TOC_Modifying_text_elementsbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

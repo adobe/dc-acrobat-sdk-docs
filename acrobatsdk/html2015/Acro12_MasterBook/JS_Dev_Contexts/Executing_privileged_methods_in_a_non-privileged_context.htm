@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Executing privileged methods in a non-privileged context</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_Contexts.fm" />
+ <link rel="stylesheet" href="JS_Dev_Contexts.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.3.2.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_Contexts/Privileged_versus_non-privileged_context.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_Contexts/Executing_privileged_methods_through_the_menu.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > JavaScript Contexts in Acrobat > Privileged versus non-privileged context" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_30303_Executing"></a>Executing privileged methods in a non-privileged context</h3>
+  <p class="BodyLevel1">To illustrate the techniques required, let’s work with a specific method, <span class="FM_Courier">app.browseForFile</span>. According to the <a href="../JS_API_AcroJSPreface/JS_API_AcroJSPreface.htm#XREF_87228_JavaScript_for"><span class="FM_HyperText">JavaScript for Acrobat API Reference</span></a>, this method can only be executed during batch or console events. This means that we are free to executed this method in the console, or to use it as a part of a batch sequence.</p>
+  <p class="BodyLevel1">What happens when we execute this method in a non-privileged context? Create an<span class="FM_Bold">&#160;</span><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;form button, and attach the following script as a mouse up JavaScript action.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oRetn = app.browseForDoc({bSave: true});</p>
+  <p class="BodyLevel1"><a name="IX_throwing_an_exception"></a><a name="IX_exceptions"></a>After clicking the button, an exception is thrown; the console displays the following message:</p>
+  <p class="FM_CodeReference">NotAllowedError: Security settings prevent access to this property or method.</p>
+  <p class="FM_CodeReference">app.browseForDoc:1:Field Button1:Mouse Up</p>
+  <p class="BodyLevel1">This shows that we have violated the documented security restriction.</p>
+  <p class="BodyLevel1">If we really want this method in our workflow what do we need to do? We need to move this method to folder JavaScript and declare it as a trusted function. Why move it to the folder context? Because you can only declare a function trusted from a folder (console or batch) context.</p>
+  <p class="BodyLevel1">Navigate to the user JavaScript folder and open the file <span class="FM_Courier">config.js</span>&#160;in your text editor. Paste the following script into <span class="FM_Courier">config.js</span>:</p>
+  <p class="FM_CodeReference">myTrustedBrowseForDoc = app.trustedFunction( function ( oArgs )</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>app.beginPriv();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var myTrustedRetn = app.browseForDoc( oArgs ); </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>app.endPriv();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return myTrustedRetn;</p>
+  <p class="FM_CodeReference">});</p>
+  <p class="BodyLevel1"><a name="IX_endPriv"></a><a name="IX_beginPriv"></a><a name="IX_trustedFunction_1"></a>For the syntax details of <span class="FM_Courier">app.trustedFunction</span>, see the <uservariable x-value="JavaScript for Acrobat API Reference" x-showvalue="TRUE" name="Ref_JavaAPI" x-format="Ref_JavaAPI"><span class="FM_Italic">JavaScript for Acrobat API Reference</span></uservariable><span class="FM_Italic"></span>. Note that the privileged script must be enclosed by the <span class="FM_Courier">app.beginPriv</span>&#160;and <span class="FM_Courier">app.endPriv</span> pair.</p>
+  <p class="BodyLevel1">Save the file and restart <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> (folder JavaScript is read only at startup).</p>
+  <p class="BodyLevel1">Now create a PDF with a single button on it. The script for that button is</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>try {</p>
+  <p class="FM_CodeReference">&#160;&#160;&#160;&#160;<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oRetn = myTrustedBrowseForDoc({bSave: true}); &#160;&#160;&#160;</p>
+  <p class="FM_CodeReference">&#160;&#160;&#160;&#160;<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(oRetn.toSource());</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} catch(e) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;User cancelled Save As dialog box&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="BodyLevel1">Clicking the button now executes the <span class="FM_Courier">app.browseForDoc</span>&#160;method without throwing the security exception.</p>
+  <p class="BodyLevel1">Here is another, more complex, example.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example"><a name="IX_executing_privileged"></a>Executing privileged methods</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">In this example, we use the <span class="FM_Courier">app.browseForDoc</span>&#160;and the <span class="FM_Courier">Doc.saveAs</span>&#160;methods, both of which have security restrictions.</p>
+  <p class="BodyLevel1">In <span class="FM_Courier">config.js</span>, paste both the <span class="FM_Courier">myTrustedBrowseForDoc</span> script listed above, and paste this script:</p>
+  <p class="FM_CodeReference">myTrustedSaveAs = app.trustedFunction( function ( doc, oArgs )</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>app.beginPriv();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var myTrustedRetn = doc.saveAs( oArgs ); </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>app.endPriv();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return myTrustedRetn;</p>
+  <p class="FM_CodeReference">});</p>
+  <p class="BodyLevel1">Note that the Doc object is passed to this trusted function. Now, revise the button described above to read as follows:</p>
+  <p class="FM_CodeReference">try {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var oRetn = myTrustedBrowseForDoc({bSave: true}); &#160;&#160;&#160;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>try { </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myTrustedSaveAs(this, { cPath: oRetn.cPath, cFS:oRetn.cFS });</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} catch(e) { console.println(&quot;Save not allowed, perhaps readonly.&quot;); }</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} catch(e) { console.println(&quot;User cancelled Save As dialog box&quot;);}</p>
+  <p class="BodyLevel1">Now, the PDF document, through a mouse up button action, can open a Save As dialog box and save the current document.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc192.js\"  name=\"Apple Events\" url=\"Acro12_MasterBook/Distiller_Mac/Apple_Events1.htm\"><book name=\"Objects\" url=\"Acro12_MasterBook/Distiller_Mac/Objects.htm\" src=\"toc199.js\" /><book name=\"Events\" url=\"Acro12_MasterBook/Distiller_Mac/Events1.htm\" src=\"toc200.js\" /></data>";

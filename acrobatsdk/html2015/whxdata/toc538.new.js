@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"getSelection","url":"Acro12_MasterBook/Tracker_InboxAPI/Dialog_object.htm#TOC_getSelectionbc-1"},{"type":"item","name":"isFeedSelection","url":"Acro12_MasterBook/Tracker_InboxAPI/Dialog_object.htm#TOC_isFeedSelectionbc-2"},{"type":"item","name":"isItemSelection","url":"Acro12_MasterBook/Tracker_InboxAPI/Dialog_object.htm#TOC_isItemSelectionbc-3"},{"type":"item","name":"isGroupSelection","url":"Acro12_MasterBook/Tracker_InboxAPI/Dialog_object.htm#TOC_isGroupSelectionbc-4"},{"type":"item","name":"getFeed","url":"Acro12_MasterBook/Tracker_InboxAPI/Dialog_object.htm#TOC_getFeedbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Displaying page views</title>
+
+ 
+
+ <link rel="stylesheet" href="Page_Views_and_Contents.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.8.1";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Page_Views_and_Contents/About_page_views.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Working_with_Words/Working_with_Words.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Working with Page Views and Contents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="IX_page_views_2"></a><a name="XREF_52579_Displaying_a_page"></a>Displaying page views </p>
+  <p dir="ltr" class="FM_Body">Using the <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;core API, you can programmatically display a page view by performing the following tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create an <span class="FM_Courier">AVDoc</span>&#160;object that represents the PDF document that contains the page on which the page view is based. (See <a href="../Documents_and_Files/Opening_PDF_documents.htm#XREF_65430_Opening_a_PDF"><span class="FM_HyperText">Opening PDF documents</span></a>.)</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_PDDocGetNumPages_1"></a><a name="IX_PDDocGetNumPages_method_1"></a><a name="IX_AVDocGetPDDoc_1"></a><a name="IX_AVDocGetPDDoc_method_1"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>If desired, ensure that the specified page number does not exceed the number of pages located in the document. Convert the <span class="FM_Courier">AVDoc</span>&#160;object to a <span class="FM_Courier">PDDoc</span>&#160;object by invoking the <span class="FM_Courier">AVDocGetPDDoc</span>&#160;method. This method requires an <span class="FM_Courier">AVDoc</span>&#160;and returns a <span class="FM_Courier">PDDoc</span>&#160;object. Get the total number of pages located within the document by invoking the <span class="FM_Courier">PDDocGetNumPages</span>&#160;method. This method requires a <span class="FM_Courier">PDDoc</span>&#160;object and returns an <span class="FM_Courier">ASInt32</span> object representing the number of pages within the document.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVDocGetPageView_2"></a><a name="IX_AVDocGetPageView_method_2"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create an <span class="FM_Courier">AVPageView</span>&#160;object that represents the page view by invoking the <span class="FM_Courier">AVDocGetPageView</span>&#160;method. This method requires an <span class="FM_Courier">AVDoc</span>&#160;object and returns an <span class="FM_Courier">AVPageView</span> object.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVPageViewGoTo"></a><a name="IX_AVPageViewGoTo_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Specify the page view’s page number by invoking the <span class="FM_Courier">AVPageViewGoTo</span>&#160;method. This method requires an <span class="FM_Courier">AVPageView</span>&#160;object that represents the page view and an <span class="FM_Courier">ASInt32</span>&#160;object that specifies the page number. The page number uses a zero-based index value. Therefore the value of the first page is <span class="FM_Courier">0</span>.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVPageViewDrawNow"></a><a name="IX_AVPageViewDrawNow_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Display the page view by invoking the <span class="FM_Courier">AVPageViewDrawNow</span>&#160;method and passing the <span class="FM_Courier">AVPageView </span>object. When you invoke a method that affects a page view, you must invoke this method to redraw the page and display the page view. Otherwise, changes to a page view are not displayed.</p>
+  <p dir="ltr" class="FM_Body">The following code example displays a page view that is based on an <span class="FM_Courier">AVDoc</span>&#160;object named <span class="FM_Courier">myDocument</span>. The specified page of the page view is 40 (which displays page 41). For information about creating an <span class="FM_Courier">AVDoc</span>&#160;object, see <a href="../Documents_and_Files/Opening_PDF_documents.htm#XREF_65430_Opening_a_PDF"><span class="FM_HyperText">Opening PDF documents</span></a>.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Displaying a page view</p>
+  <p dir="ltr" class="FM_CodeComment">//Create local variables</p>
+  <p dir="ltr" class="FM_CodeReference">ASInt32 totalPages; </p>
+  <p dir="ltr" class="FM_CodeReference">ASInt32 pageNum= 40;</p>
+  <p dir="ltr" class="FM_CodeReference">AVPageView pageView;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Convert the AVDoc to a PDDoc and get the page count</p>
+  <p dir="ltr" class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(myDocument);</p>
+  <p dir="ltr" class="FM_CodeReference">totalPages= PDDocGetNumPages(pdDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeReference">if (pageNum &lt; totalPages){</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get a AVPageView object and display it</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pageView = AVDocGetPageView(myDocument);<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewGoTo(pageView,pageNum);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewDrawNow (pageView);</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Modifying_page_contents"></a><a name="IX_PDDocAcquirePage_2"></a><a name="IX_PDDocAcquirePage_method_2"></a><a name="IX_AVDocGetPDDoc_2"></a><a name="IX_AVDocGetPDDoc_method_2"></a><a name="IX_PDPage"></a><a name="IX_PDPage_typedef"></a><a name="IX_modifying_1"></a><a name="IX_page_contents"></a><a name="XREF_23519_Modifying_page"></a>Modifying page contents</p>
+  <p dir="ltr" class="FM_Body">Pages in a PDF document are represented by a <span class="FM_Courier">PDPage</span>&#160;object. Pages can contain properties such as annotations, contents, resources, bounding box, media box, crop box, rotation state, and Cos objects. These properties make up the page’s content. <span class="FM_Courier">PDPage</span>&#160;methods enable you to perform tasks such as retrieving objects such as annotations, adding new objects, removing objects, and modifying existing objects.</p>
+  <p dir="ltr" class="FM_Body">To access a <span class="FM_Courier">PDPage</span>&#160;object, you must obtain the applicable <span class="FM_Courier">PDDoc</span>&#160;object, either directly or by invoking the <span class="FM_Courier">AVDocGetPDDoc</span>&#160;method. You can then invoke the <span class="FM_Courier">PDDocAcquirePage</span>&#160;method to acquire the page (the <span class="FM_Courier">PDPage</span> object).</p>
+  <p dir="ltr" class="FM_Body">To access the contents of PDF pages, you use <span class="FM_Courier">PD</span>&#160;layer methods. In addition, the <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;core API provides the <span class="FM_Courier">PDFEdit</span>&#160;typedef, which provides an easy way to access to the contents of a PDF page. <span class="FM_Courier">PDFEdit</span>&#160;methods are useful when working with page items such as images, paths, graphics, and text objects. This API treats the contents of a page as a list of objects whose values and attributes can be modified.</p>
+  <p dir="ltr" class="FM_Body">Each <span class="FM_Courier">PDFEdit</span>&#160;object encapsulates all the relevant information about itself. A <span class="FM_Courier">PDEText</span>&#160;object, for example, contains text and its attributes such as font and position on the page. It can access single characters or multiple character strings, but not words. To access words, you need to use <span class="FM_Courier">PD</span>&#160;layer methods. For information see <a href="../Introduction_Plug-ins/About_the_Acrobatcore_API-jya.htm#XREF_55631_Portable_document"><span class="FM_HyperText">Portable Document layer</span></a>.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Creating_a_PDEContent"></a><a name="IX_PDEContent"></a><a name="IX_PDEContent_typedef"></a><a name="XREF_91421_Creating_a"></a>Creating a PDEContent object</p>
+  <p dir="ltr" class="FM_Body">A <span class="FM_Courier">PDEContent</span>&#160;object is a container object that contains modifiable contents of a <span class="FM_Courier">PDPage</span>&#160;including <span class="FM_Courier">PDEText</span>, <span class="FM_Courier">PDEPath</span>, and <span class="FM_Courier">PDEImage</span>&#160;objects. After you create a <span class="FM_Courier">PDEContent</span>&#160;object, you can access and modify objects that it contains. </p>
+  <p dir="ltr" class="FM_Body">Create a <span class="FM_Courier">PDEContent</span> object by performing the following tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><a name="IX_AVAppGetActiveDoc_1"></a><a name="IX_AVAppGetActiveDoc_method_1"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create an <span class="FM_Courier">AVDoc</span>&#160;object by invoking the <span class="FM_Courier">AVAppGetActiveDoc</span>&#160;method. This method gets the frontmost document located within <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;or <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVDocGetPageView_3"></a><a name="IX_AVDocGetPageView_method_3"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create an <span class="FM_Courier">AVPageView</span>&#160;object by invoking the <span class="FM_Courier">AVDocGetPageView</span>&#160;method. This method requires an <span class="FM_Courier">AVDoc</span>&#160;object and returns an <span class="FM_Courier">AVPageView</span> object.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVPageViewGetPageNum_1"></a><a name="IX_AVPageViewGetPageNum"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Get the current page number of the PDF document by invoking the <span class="FM_Courier">AVPageViewGetPageNum</span>&#160;method. This method requires an <span class="FM_Courier">AVPageView</span>&#160;object and returns a <span class="FM_Courier">PDPageNumber</span>&#160;object that represents the current page number.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVDocGetPDDoc_3"></a><a name="IX_AVDocGetPDDoc_method_3"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDDoc</span>&#160;object by invoking the <span class="FM_Courier">AVDocGetPDDoc</span>&#160;method. This method requires an <span class="FM_Courier">AVDoc</span>&#160;object and returns a <span class="FM_Courier">PDDoc</span> object.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_PDDocAcquirePage_3"></a><a name="IX_PDDocAcquirePage_method_3"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDPage</span>&#160;object by invoking the <span class="FM_Courier">PDDocAcquirePage</span>&#160;method. This method requires a <span class="FM_Courier">PDDoc</span>&#160;object and a <span class="FM_Courier">PDPageNumber</span>&#160;object as arguments and returns a <span class="FM_Courier">PDPage</span> object.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_PDPageAcquirePDEContent_1"></a><a name="IX_PDPageAcquirePDEContent"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>6.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDEContent</span>&#160;object by invoking the <span class="FM_Courier">PDPageAcquirePDEContent</span>&#160;method and passing a <span class="FM_Courier">PDPageNumber</span>&#160;object and an <span class="FM_Courier">ASExtension</span>&#160;object that represents the identity of the caller. For plug-ins, you can use the <span class="FM_Courier">gExtensionID</span> extension (this is defined in the PIMain.c file).</p>
+  <p dir="ltr" class="FM_Body">The following code example creates a <span class="FM_Courier">PDEContent</span> object.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Creating a PDEContent object</p>
+  <p dir="ltr" class="FM_CodeReference">AVDoc avDoc = AVAppGetActiveDoc();</p>
+  <p dir="ltr" class="FM_CodeReference">AVPageView pageView = AVDocGetPageView(avDoc);</p>
+  <p dir="ltr" class="FM_CodeReference"><span class="FM_Courier">PDPageNumber </span>pageNum = AVPageViewGetPageNum(pageView);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">/* Bridge method to PD doc*/</p>
+  <p dir="ltr" class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(avDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">/* Acquire current page */</p>
+  <p dir="ltr" class="FM_CodeReference"><span class="FM_Courier">PDPage </span>pdPage = PDDocAcquirePage(pdDoc, pageNum);</p>
+  <p dir="ltr" class="FM_CodeReference"><span class="FM_Courier">PDEContent </span>pdeContent = PDPageAcquirePDEContent(pdPage, gExtensionID);</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Accessing_page_contents"></a><a name="IX_accessing"></a><a name="IX_page_contents_1"></a>Accessing page contents</p>
+  <p dir="ltr" class="FM_Body">Before you can modify page contents, you must access them by using a <span class="FM_Courier">PDEContent</span>&#160;object, which is a collection object that stores page contents. Each page content is stored as an element within the <span class="FM_Courier">PDEContent</span>&#160;object. An element is represented by a <span class="FM_Courier">PDEElement</span>&#160;object. For example, a <span class="FM_Courier">PDEElement</span>&#160;object can contain an annotation.</p>
+  <p dir="ltr" class="FM_Body">To access page contents, perform the following tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDEContent</span>&#160;object. (See <a href="#XREF_91421_Creating_a"><span class="FM_HyperText">Creating a PDEContent object</span></a>.)</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_PDEContentGetNumElems_1"></a><a name="IX_PDEContentGetNumElems"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Invoke the <span class="FM_Courier">PDEContentGetNumElems</span>&#160;method to retrieve the number of elements located within the <span class="FM_Courier">PDEContent</span>&#160;object. This method requires a <span class="FM_Courier">PDEContent</span>&#160;object and returns an <span class="FM_Courier">ASInt32</span>&#160;object that specifies the number of elements.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_PDEContentGetElem"></a><a name="IX_PDEContentGetElem_method"></a><a name="IX_page_elements"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Iterate through the <span class="FM_Courier">PDEContent</span>&#160;object and retrieve each element by invoking the <span class="FM_Courier">PDEContentGetElem</span>&#160;method. This method requires a <span class="FM_Courier">PDEContent</span>&#160;object and an <span class="FM_Courier">ASInt32</span>&#160;object that specifies the element index (this is a zero-based value) and returns a <span class="FM_Courier">PDEElement</span>&#160;object that represents a specific page property.</p>
+  <p dir="ltr" class="FM_Body">The following code example accesses each element located in a <span class="FM_Courier">PDEContent</span>&#160;object. </p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span><a name="XREF_26389_Example5_3"></a>Accessing page contents</p>
+  <p dir="ltr" class="FM_CodeComment">//Declare a PDEElement object</p>
+  <p dir="ltr" class="FM_CodeReference">PDEElement pdeElement; </p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Get the number of elements in the PDEContent object</p>
+  <p dir="ltr" class="FM_CodeReference">ASInt32 eleNum = &#160;PDEContentGetNumElems(pdeContent); </p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Get each element in the PDEContent object</p>
+  <p dir="ltr" class="FM_CodeReference">for (int j=0; j&lt;eleNum; j++){</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeElement = PDEContentGetElem(pdeContent, j);</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Determining_page_element"></a><a name="IX_PDEObjectGetType"></a><a name="IX_PDEObjectGetType_method"></a><a name="IX_determining_element_types"></a>Determining page element types</p>
+  <p dir="ltr" class="FM_Body">You can determine the element type that a <span class="FM_Courier">PDEElement</span>&#160;object represents by invoking the <span class="FM_Courier">PDEObjectGetType</span>&#160;method. This method requires a <span class="FM_Courier">PDEObject</span>; however, you can pass a <span class="FM_Courier">PDEElement</span>&#160;object and cast it to a <span class="FM_Courier">PDEObject</span>. This method returns an <span class="FM_Courier">ASInt32</span>&#160;object that specifies the element type. For example, if the element is a text element, this method returns <span class="FM_Courier">kPDEText</span>. For a listing of all element types, see the <span class="FM_HyperText"><a href="../../API_References/PDFL_API_Reference/index.html">PDF Library API Reference</a></span>.</p>
+  <p dir="ltr" class="FM_Body">The following code example determines the element type by adding application logic to the application logic introduced in <a href="#XREF_26389_Example5_3"><span class="FM_HyperText">Accessing page contents</span></a>. </p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Determining page element types</p>
+  <p dir="ltr" class="FM_CodeComment">//Declare a PDEElement object</p>
+  <p dir="ltr" class="FM_CodeReference">PDEElement pdeElement; </p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Get the number of elements located in the PDEContent object</p>
+  <p dir="ltr" class="FM_CodeReference">ASInt32 eleNum = &#160;PDEContentGetNumElems(pdeContent); </p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Get each element located within the PDEContent object</p>
+  <p dir="ltr" class="FM_CodeReference">for (int j=0; j&lt;eleNum; j++){</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeElement = PDEContentGetElem(pdeContent, j);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Determine if the element is a text element</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (PDEObjectGetType((PDEObject)pdeElement) == kPDEText){</p>
+  <p dir="ltr" class="FM_CodeComment">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Perform an action</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Modifying_text_elements"></a><a name="IX_text_runs"></a><a name="IX_PDColorValueRec_object"></a><a name="IX_text_elements"></a>Modifying text elements</p>
+  <p dir="ltr" class="FM_Body">You can modify elements located within a <span class="FM_Courier">PDEContent</span>&#160;object. This section discusses modifying text elements by placing a red border around them. To place a red border around a text element, you must create a <span class="FM_Courier">PDColorValueRec</span> object and define its attributes.</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a PDColorValue and define red</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDColorValueRec red;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.space = PDDeviceRGB;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.value[0] = ASInt32ToFixed(1);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.value[1] = 0;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.value[2] = 0;</p>
+  <p dir="ltr" class="FM_Body"><a name="IX_AVPageViewSetColor"></a><a name="IX_AVPageViewSetColor_method"></a>After you create a <span class="FM_Courier">PDColorValueRec</span>&#160;object, you can attach it to an <span class="FM_Courier">AVPageView</span>&#160;object by invoking the <span class="FM_Courier">AVPageViewSetColor</span>&#160;method. This method requires an <span class="FM_Courier">AVPageView</span>&#160;object and a <span class="FM_Courier">PDVColorValueRec</span> object. Once set, this color is used in drawing operations.</p>
+  <p dir="ltr" class="FM_Body"><a name="IX_PDETextGetNumRuns"></a><a name="IX_PDETextGetNumRuns_method"></a>A text element is represented by a <span class="FM_Courier">PDEText</span>&#160;object, which is a container of text runs. A text run can be a single character or multiple characters having the same attributes in a PDF file. You can get the number of text runs located within a <span class="FM_Courier">PDEElement</span>&#160;object by invoking the <span class="FM_Courier">PDETextGetNumRuns</span>&#160;method and passing the <span class="FM_Courier">PDEElement</span>&#160;object and casting it as a <span class="FM_Courier">PDEText</span> object.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>int numRuns = PDETextGetNumRuns((PDEText) pdeElement);</p>
+  <p dir="ltr" class="FM_Body">You can draw a red border around each <span class="FM_Courier">PDEText</span> object by performing the following tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><a name="IX_PDETextGetBBox"></a><a name="IX_PDETextGetBBox_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Get the bounding box of the <span class="FM_Courier">PDEText</span>&#160;object by invoking the <span class="FM_Courier">PDETextGetBBox</span>&#160;method and passing the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">PDEText</span>&#160;object that represents the text element whose bounding box is obtained. </p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">PDETextFlags</span>&#160;value that specifies whether index refers to the character offset from the beginning of the text object or the index of the text run. Must be either <span class="FM_Courier">kPDETextChar</span>&#160;for a text character or <span class="FM_Courier">kPDETextRun</span> for a text run.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASInt32</span> value that specifies the index of the character or text run.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The address of an <span class="FM_Courier">ASFixedRect</span>&#160;object that is populated with the coordinates of the bounding box of a specified character or text run.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVPageViewRectToDevice_3"></a><a name="IX_AVPageViewRectToDevice_2"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Transform the bounding box's coordinates from user space to device space by invoking the <span class="FM_Courier">AVPageViewRectToDevice</span> method and passing the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">AVPageView</span>&#160;object that represents the page view for which the coordinates are transformed. Use the same <span class="FM_Courier">AVPageView</span>&#160;object that was used to create a <span class="FM_Courier">PDEContent</span>&#160;object. (See <a href="#XREF_91421_Creating_a"><span class="FM_HyperText">Creating a PDEContent object</span></a>.)</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The address of the <span class="FM_Courier">ASFixedRect</span>&#160;object that was passed to the <span class="FM_Courier">PDETextGetBBox</span>&#160;method. This object contains coordinate data that is transformed.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The address of an <span class="FM_Courier">AVRect</span> object that is populated with device space coordinates.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_AVPageViewDrawRectOutline_1"></a><a name="IX_AVPageViewDrawRectOutline"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Draw a stroked, but not filled, rectangle by invoking the <span class="FM_Courier">AVPageViewDrawRectOutline</span>&#160;method and passing the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">AVPageView</span> object that represents the page view in which the rectangle is drawn.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The address of the <span class="FM_Courier">AVRect</span>&#160;object that specifies device space coordinates. You can pass the address of the same <span class="FM_Courier">AVRect</span>&#160;object that was passed to the <span class="FM_Courier">AVPageViewRectToDevice</span> method.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">AVDevSize</span> object that specifies the border width in pixels.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The address of an <span class="FM_Courier">ASFixed</span>&#160;object whose elements specify the length of dashes and gaps. You can specify <span class="FM_Courier">NULL</span> to draw a solid outline.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">AVTArraySize</span>&#160;object that specifies the number of elements in the <span class="FM_Courier">ASFixed</span>&#160;object. This value is ignored if you specified <span class="FM_Courier">Null</span>&#160;as the previous argument. As a result, you can specify <span class="FM_Courier">0</span>&#160;for this argument. The maximum allowed number of elements is currently 10.</p>
+  <p dir="ltr" class="FM_Body">The following code example modifies page contents by placing a red border around text elements and places a blue border around other elements that are located within a <span class="FM_Courier">PDEContent</span> object.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Modifying page contents</p>
+  <p dir="ltr" class="FM_CodeComment">//Declare objects used in this code example</p>
+  <p dir="ltr" class="FM_CodeReference">PDEElement pdeElement; </p>
+  <p dir="ltr" class="FM_CodeReference">ASFixedRect bbox;</p>
+  <p dir="ltr" class="FM_CodeReference">AVRect rect;</p>
+  <p dir="ltr" class="FM_CodeReference">PDColorValueRec red, blue;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Define red </p>
+  <p dir="ltr" class="FM_CodeReference">red.space = PDDeviceRGB;</p>
+  <p dir="ltr" class="FM_CodeReference">red.value[0] = ASInt32ToFixed(1);</p>
+  <p dir="ltr" class="FM_CodeReference">red.value[1] = 0;</p>
+  <p dir="ltr" class="FM_CodeReference">red.value[2] = 0;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Define blue</p>
+  <p dir="ltr" class="FM_CodeReference">blue.space = PDDeviceRGB;</p>
+  <p dir="ltr" class="FM_CodeReference">blue.value[0] = 0; </p>
+  <p dir="ltr" class="FM_CodeReference">blue.value[1] = 0; </p>
+  <p dir="ltr" class="FM_CodeReference">blue.value[2] = ASInt32ToFixed(1);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Create a PDEContent object based on the current page view</p>
+  <p dir="ltr" class="FM_CodeReference">AVDoc avDoc = AVAppGetActiveDoc();</p>
+  <p dir="ltr" class="FM_CodeReference">AVPageView pageView = AVDocGetPageView(avDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">PDPageNumber pageNum = AVPageViewGetPageNum(pageView);</p>
+  <p dir="ltr" class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(avDoc); </p>
+  <p dir="ltr" class="FM_CodeReference">PDPage pdPage = PDDocAcquirePage(pdDoc, pageNum); </p>
+  <p dir="ltr" class="FM_CodeReference">PDEContent pdeContent = PDPageAcquirePDEContent(pdPage, gExtensionID);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Get the number of elements located in the PDEContent object</p>
+  <p dir="ltr" class="FM_CodeReference">ASInt32 eleNum = PDEContentGetNumElems(pdeContent); </p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Retrieve each element in the PDEContent object</p>
+  <p dir="ltr" class="FM_CodeReference">for (int &#160;j=0; j &lt; eleNum; j++){</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get a specific element</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeElement = PDEContentGetElem(pdeContent, j);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Determine if the object is of type text</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (PDEObjectGetType((PDEObject) pdeElement) == kPDEText){</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the number of text runs in the text element </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>int numTextRuns = PDETextGetNumRuns((PDEText) pdeElement);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Assign red to the page view </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewSetColor(pageView, &amp;red);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (int i = 0; i &lt; numTextRuns; i++){</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the bounding box of the text run</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDETextGetBBox ((PDEText) pdeElement, kPDETextRun, i, &amp;bbox);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Convert from user space bbox to device space rect</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewRectToDevice (pageView, &amp;bbox, &amp;rect);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Draw the rect</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewDrawRectOutline (pageView,&amp;rect, &#160;1, NULL, 0);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>else</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Assign blue to the page view<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewSetColor(pageView, &amp;blue);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the bounding box of the non-text element</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEElementGetBBox (pdeElement, &amp;bbox);</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Convert from user space bbox to device space rect</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewRectToDevice (pageView, &amp;bbox, &amp;rect);</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Draw the rect</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewDrawRectOutline (pageView, &amp;rect, 1, NULL, 0);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Release objects</p>
+  <p dir="ltr" class="FM_CodeReference">PDPageRelease(pdPage);</p>
+  <p dir="ltr" class="FM_CodeReference">PDPageReleasePDEContent (pdPage, gExtensionID);</p>
+ </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

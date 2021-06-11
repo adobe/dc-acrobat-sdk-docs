@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<title>mergepdf.c</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../cdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'mergepdf.c';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html'); loadPackageListFrame('../../../../package-list.html')" href="../../../../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../../../../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../../../../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../../../../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../../../../index.html?Samples/CodeSamples/mergepdf/sources/mergepdf.c.html&amp;Samples/CodeSamples/sample-file-list.html&amp;Samples/CodeSamples/samples-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../../../../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">mergepdf.c</td><td align="right" id="subNav" class="titleTableSubNav"></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("mergepdf.c"); titleBar_setSubNav(false,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="1"></a> /* 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="2"></a> // 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="3"></a> //&nbsp; &nbsp;ADOBE&nbsp;SYSTEMS&nbsp;INCORPORATED 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="4"></a> //&nbsp; &nbsp;Copyright&nbsp;(C)&nbsp;2000-2003&nbsp;Adobe&nbsp;Systems&nbsp;Incorporated 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="5"></a> //&nbsp; &nbsp;All&nbsp;rights&nbsp;reserved. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="6"></a> // 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="7"></a> //&nbsp; &nbsp;NOTICE:&nbsp;Adobe&nbsp;permits&nbsp;you&nbsp;to&nbsp;use,&nbsp;modify,&nbsp;and&nbsp;distribute&nbsp;this&nbsp;file 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="8"></a> //&nbsp; &nbsp;in&nbsp;accordance&nbsp;with&nbsp;the&nbsp;terms&nbsp;of&nbsp;the&nbsp;Adobe&nbsp;license&nbsp;agreement 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="9"></a> //&nbsp; &nbsp;accompanying&nbsp;it.&nbsp;If&nbsp;you&nbsp;have&nbsp;received&nbsp;this&nbsp;file&nbsp;from&nbsp;a&nbsp;source&nbsp;other 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="10"></a> //&nbsp; &nbsp;than&nbsp;Adobe,&nbsp;then&nbsp;your&nbsp;use,&nbsp;modification,&nbsp;or&nbsp;distribution&nbsp;of&nbsp;it 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="11"></a> //&nbsp; &nbsp;requires&nbsp;the&nbsp;prior&nbsp;written&nbsp;permission&nbsp;of&nbsp;Adobe. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="12"></a> // 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="13"></a> */  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="14"></a>  /* 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="15"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="16"></a> //&nbsp;Project:&nbsp;Mergepdf&nbsp;-&nbsp;merging&nbsp;two&nbsp;pdf&nbsp;files 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="17"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="18"></a> //&nbsp;Note:&nbsp;By&nbsp;default,&nbsp;this&nbsp;example&nbsp;program&nbsp;opens&nbsp;two&nbsp;files&nbsp;called&nbsp;mergepdf1.PDF 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="19"></a> //&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;mergepdf2.pdf&nbsp;in&nbsp;the&nbsp;source&nbsp;directory.&nbsp;It&nbsp;merges&nbsp;these&nbsp;two&nbsp;files&nbsp;and&nbsp;output 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="20"></a> //&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;the&nbsp;resulting&nbsp;file&nbsp;to&nbsp;"out.pdf"&nbsp;under&nbsp;the&nbsp;working&nbsp;directory. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="21"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="22"></a> //&nbsp;Steps:&nbsp;font 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="23"></a> //&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="24"></a> //&nbsp;*&nbsp;Open&nbsp;two&nbsp;PDF&nbsp;documents 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="25"></a> //&nbsp;*&nbsp;Insert&nbsp;pdDoc2&nbsp;to&nbsp;pdDoc1 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="26"></a> //&nbsp;*&nbsp;Save&nbsp;pdDoc1&nbsp;as&nbsp;out.pdf 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="27"></a> */  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="28"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="29"></a>  #ifdef&nbsp;MAC_ENV 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="30"></a>  #include&nbsp;&lt;Carbon/Carbon.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="31"></a>  #else 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="32"></a>  #include&nbsp;&lt;sys/types.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="33"></a>  #include&nbsp;&lt;sys/stat.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="34"></a>  #endif 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="35"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="36"></a>  #include&nbsp;&lt;stdio.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="37"></a>  #include&nbsp;&lt;stdlib.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="38"></a>  #include&nbsp;&lt;string.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="39"></a>  #include&nbsp;&lt;fcntl.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="40"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="41"></a>  #include&nbsp;"PDFInit.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="42"></a>  #include&nbsp;"<a href="../../../../COS_Layer/General.html#CosCalls.h" target="">CosCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="43"></a>  #include&nbsp;"<a href="../../../../AS_Layer/General.html#CorCalls.h" target="">CorCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="44"></a>  #include&nbsp;"<a href="../../../../AS_Layer/General.html#ASCalls.h" target="">ASCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="45"></a>  #include&nbsp;"<a href="../../../../PD_Layer/General.html#PDCalls.h" target="">PDCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="46"></a>  #include&nbsp;"<a href="../../../../PDFEdit_Layer/General.html#PERCalls.h" target="">PERCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="47"></a>  #include&nbsp;"<a href="../../../../PDFEdit_Layer/General.html#PEWCalls.h" target="">PEWCalls.h</a>"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="48"></a>  #include&nbsp;"MyPDFLibUtils.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="49"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="50"></a>  /************************************************************************** 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="51"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Please&nbsp;use&nbsp;the&nbsp;appropriate&nbsp;relative&nbsp;path&nbsp;for&nbsp;the&nbsp;input&nbsp;file&nbsp;if&nbsp;you&nbsp;want 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="52"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;to&nbsp;run&nbsp;the&nbsp;application&nbsp;from&nbsp;the&nbsp;final&nbsp;folder.&nbsp;If&nbsp;you&nbsp;want&nbsp;to&nbsp;run&nbsp;the 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="53"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;application&nbsp;from&nbsp;the&nbsp;MS&nbsp;IDE&nbsp;or&nbsp;the&nbsp;Mac&nbsp;default&nbsp;build&nbsp;directory,&nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="54"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;use&nbsp;the&nbsp;default&nbsp;paths&nbsp;below. 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="55"></a> **************************************************************************/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="56"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="57"></a>  #define&nbsp;PDF_FNAME1&nbsp; &nbsp;"../sources/mergepdf1.pdf" 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="58"></a>  #define&nbsp;PDF_FNAME2&nbsp; &nbsp;"../sources/mergepdf2.pdf" 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="59"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="60"></a>  #include&nbsp;"PagePDECntCalls.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="61"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="62"></a>  #ifdef&nbsp;MAC_ENV 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="63"></a>  #include&nbsp;"MacUtils.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="64"></a>  #endif 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="65"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="66"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="67"></a>  void  &nbsp; MainProc( void ); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="68"></a>  void  &nbsp; MainProc( void ) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="69"></a> { 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="70"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> &nbsp;pdDoc1&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,&nbsp;pdDoc2&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;reference&nbsp;to&nbsp;a&nbsp;PDF&nbsp;document&nbsp; &nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="71"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> &nbsp;outPath&nbsp;=&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="72"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#ASErrorCode" target="">ASErrorCode</a> &nbsp;errCode&nbsp;=&nbsp;0; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="73"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="74"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*==================================================================*\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="75"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Open&nbsp;Doc 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="76"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\*==================================================================*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="77"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="78"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#DURING" target="">DURING</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="79"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pdDoc1&nbsp;=&nbsp; MyPDDocOpen(PDF_FNAME1); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="80"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if  &nbsp;(!pdDoc1) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="81"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="82"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fprintf(stdout, "Unable&nbsp;to&nbsp;open&nbsp;file&nbsp;%s&nbsp;\n" ,PDF_FNAME1); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="83"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="84"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  else  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="85"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="86"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pdDoc2&nbsp;=&nbsp; MyPDDocOpen(PDF_FNAME2); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="87"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if  &nbsp;(!pdDoc2) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="88"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="89"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fprintf(stdout, "Unable&nbsp;to&nbsp;open&nbsp;file&nbsp;%s&nbsp;\n" ,PDF_FNAME2); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="90"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="91"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  else  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="92"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;{ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="93"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*==================================================================*\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="94"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Insert&nbsp;pdDoc2&nbsp;to&nbsp;the&nbsp;end&nbsp;of&nbsp;pdDoc1&nbsp;and&nbsp;save&nbsp;PdDoc1&nbsp;as&nbsp;out.pdf 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="95"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;\*==================================================================*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="96"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="97"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocInsertPages()" target="">PDDocInsertPages</a> &nbsp;(pdDoc1,<a href="../../../../PD_Layer/General.html#PDLastPage" target="">PDLastPage</a>,pdDoc2,&nbsp;0,&nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDAllPages" target="">PDAllPages</a>,<a href="../../../../PD_Layer/PDDoc.html#PDInsertAll" target="">PDInsertAll</a>,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,<a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,<a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,<a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="98"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="99"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  /*&nbsp;save&nbsp;document&nbsp;to&nbsp;a&nbsp;file&nbsp;*/  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="100"></a>  #if&nbsp;!MAC_ENV 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="101"></a>   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;outPath&nbsp;=&nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASFileSysCreatePathFromDIPath" target="">ASFileSysCreatePathFromDIPath</a>(&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,&nbsp;  "out.pdf" ,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a> &nbsp;); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="102"></a>  #else 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="103"></a>   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;outPath&nbsp;=&nbsp; GetMacPath( "out.pdf" ); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="104"></a>  #endif 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="105"></a>   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocSave()" target="">PDDocSave</a>(pdDoc1,&nbsp; <a href="../../../../PD_Layer/General.html#PDSaveFull" target="">PDSaveFull</a> &nbsp;|&nbsp; <a href="../../../../PD_Layer/General.html#PDSaveLinearized" target="">PDSaveLinearized</a>,&nbsp;outPath,&nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASGetDefaultFileSys()" target="">ASGetDefaultFileSys</a>(),&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="106"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="107"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;} 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="108"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#HANDLER" target="">HANDLER</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="109"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;errCode&nbsp;=&nbsp; <a href="../../../../AS_Layer/Errors.html#ERRORCODE" target="">ERRORCODE</a>; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="110"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/Errors.html#END_HANDLER" target="">END_HANDLER</a>  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="111"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="112"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (errCode) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="113"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DisplayError(errCode); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="114"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="115"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (outPath)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../AS_Layer/ASFileSys.html#ASFileSysReleasePath()" target="">ASFileSysReleasePath</a>(&nbsp; <a href="../../../../AS_Layer/General.html#NULL" target="">NULL</a>,&nbsp;outPath); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="116"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (pdDoc1)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocRelease()" target="">PDDocRelease</a>(pdDoc1); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="117"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  if (pdDoc2)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="../../../../PD_Layer/PDDoc.html#PDDocRelease()" target="">PDDocRelease</a>(pdDoc2); 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="118"></a> } 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="119"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="120"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="121"></a>  #define&nbsp;INCLUDE_MYPDFLIBAPP_CPP&nbsp;1 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="122"></a>  #include&nbsp;"MyPDFLibApp.cpp"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="123"></a>  #undef&nbsp;INCLUDE_MYPDFLIBAPP_CPP 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="124"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="125"></a>  
+    
+</div>
+</body>
+</html>

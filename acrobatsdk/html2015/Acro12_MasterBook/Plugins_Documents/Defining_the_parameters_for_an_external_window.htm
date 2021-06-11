@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Defining the parameters for an external window</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Documents.fm" />
+ <link rel="stylesheet" href="Plugins_Documents.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.5.1.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Documents/Creating_a_Window.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Documents/Creating_a_handler_for_an_external_window.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Documents and Files > Opening a PDF document in an external window" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_defining_parameters"></a><a name="XREF_64706_Creating_an"></a>Defining the parameters for an external window </h3>
+  <p class="BodyLevel1">You must create an <span class="FM_Courier">AVDocOpenParamsRec</span>&#160;object in order to open and display a PDF document in an external window. This object defines required parameters for opening a PDF document within an external window. After you create an <span class="FM_Courier">AVDocOpenParamsRec</span>&#160;object, allocate its buffer size and set the following attributes:</p>
+  <p class="FM_Indent1"><span class="FM_Bold">size</span>: The size of the data structure. This attribute must be set to <span class="FM_Courier">sizeof(AVDocOpenParamsRec)</span>.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">useFrame</span>: If <span class="FM_Courier">true</span>, the <span class="FM_Courier">frame</span>&#160;attribute specifies the size and location of the window in which the PDF document is displayed. If <span class="FM_Courier">false</span>, the <span class="FM_Courier">frame</span> attribute is ignored and a default frame is used.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">frame</span>: An <span class="FM_Courier">AVRect</span>&#160;object specifying the size and location of the window in which the PDF document is displayed. In the Windows operating system, the coordinates are MDI client coordinates. In Mac OS, the coordinates are global screen coordinates. This attribute is ignored if the <span class="FM_Courier">useFrame</span>&#160;attribute is <span class="FM_Courier">false</span>.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">useVisible</span>: If <span class="FM_Courier">true</span>, the <span class="FM_Courier">visible</span>&#160;attribute determines whether the window is visible after the PDF document is opened. If this attribute is <span class="FM_Courier">false</span>, then the <span class="FM_Courier">visible</span> attribute is ignored.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">visible</span>: Specifies the window's visibility. If this attribute is <span class="FM_Courier">false</span>&#160;and the <span class="FM_Courier">useVisible</span>&#160;attribute is <span class="FM_Courier">true</span>, then the <span class="FM_Courier">frame</span>&#160;attribute is ignored regardless of the value of the <span class="FM_Courier">useFrame</span>&#160;attribute. </p>
+  <p class="FM_Indent1">If you are using the Windows operating system and this attribute is <span class="FM_Courier">true</span>, the PDF document is opened in a visible window. If this attribute is false, the PDF document is opened in a minimized window. This attribute is ignored if the <span class="FM_Courier">useVisible</span>&#160;attribute is <span class="FM_Courier">false</span>.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">useServerType</span>: An <span class="FM_Courier">ASBool</span>&#160;value that specifies whether the <span class="FM_Courier">serverType</span>&#160;and <span class="FM_Courier">serverCreationData</span> attributes are used.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">serverType</span>: The name of the <span class="FM_Courier">AVDoc</span>&#160;server for this <span class="FM_Courier">AVDoc</span>&#160;object. Specify <span class="FM_Courier">EXTERNAL</span>&#160;for an external window.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">serverCreationData</span>: Platform-dependent server data to associate with the <span class="FM_Courier">AVDoc</span>&#160;server. If the <span class="FM_Courier">serverType</span>&#160;attribute is <span class="FM_Courier">EXTERNAL</span>, this attribute must be assigned the address of the <span class="FM_Courier">ExternalDocServerCreationData</span> object.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">useViewType</span>: An <span class="FM_Courier">ASBool</span>&#160;value that specifies whether the <span class="FM_Courier">viewType</span> attribute is used.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">viewType</span>: Specifies the appearance of the window that contains the PDF document. The following values are valid: </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Bold">AVPageView</span>: Displays only the page view of the document. User interface components such as display scrollbars, toolbars, bookmarks, and thumbnails panes are not displayed. Annotations, such as links, are active.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Bold">AVDocView</span>: Displays the page view of the document as well as scroll bars, bookmarks, and the thumbnails pane. Annotations, such as links, are active.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Bold">AVExternalView</span>: Displays the page view of the document as well as scroll bars, toolbars, bookmarks, and the thumbnails pane. Annotations, such as links, are active.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Bold">AVEmbeddedView</span>: Embeds the PDF file in an external document such as an HTML file. The first page of the PDF document is displayed; however, user-interface component such as scroll bars, toolbars, bookmarks, and the thumbnails pane are not displayed. Annotations, such as links, are not displayed or active.</p>
+</li>
+  </ul>
+  <p class="FM_Indent1"><span class="FM_Bold">useReadOnly</span>: An <span class="FM_Courier">ASBool</span>&#160;value that specifies whether the <span class="FM_Courier">ReadOnly</span>&#160;attribute is used. </p>
+  <p class="FM_Indent1"><span class="FM_Bold">readOnly</span>: An <span class="FM_Courier">ASBool</span>&#160;value that opens the document in read-only mode if set to <span class="FM_Courier">true</span>.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">useSourceDoc</span>: An <span class="FM_Courier">ASBool</span>&#160;value that specifies whether the <span class="FM_Courier">SourceDoc</span>&#160;attribute is used. </p>
+  <p class="FM_Indent1"><span class="FM_Bold">sourceDoc</span>: An <span class="FM_Courier">AVDoc</span> whose window is taken over by the new PDF document.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>Application logic that creates an <span class="FM_Courier">AVDocOpenParamsRec</span>&#160;object is shown in <a href="Displaying_a_PDF_document_within_a_window.htm#XREF_11768_Example1_1_Opening">Opening a PDF document in an external window</a>.</p>
+  </div>
+</body>
+</html>

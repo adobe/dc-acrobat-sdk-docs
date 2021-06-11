@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Working with redaction annotations</title>
+
+ 
+
+ <link rel="stylesheet" href="Creating_Annotations.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.6.2";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Creating_Annotations/Working_with_text_annotations.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Working_with_Bookmarks/Working_with_Bookmarks.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Creating Annotations" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="XREF_44358_Working_with"></a>Working with redaction annotations</p>
+  <p dir="ltr" class="FM_Body">The PDF Library API lets you create redaction annotations and access and modify the attributes in an existing redaction annotation. It also lets you apply an existing redaction annotation, which permanently removes the redacted material from the PDF document. </p>
+  <p dir="ltr" class="FM_Body">A redaction annotation identifies content to be removed from the document. The intent of redaction annotations is to enable the following process:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create redaction annotations that identify the content to be removed from the document. The redaction annotation specifies a rectangle that covers the content to be removed and specifies the appearance of the rectangle and associated information. </p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Apply redaction annotations, which remove the content in the area specified by a set of redaction annotations. In the removed content’s place, some marking appears to indicate that the area was redacted. Also, the redaction annotations are removed from the PDF document. </p>
+  <p dir="ltr" class="FM_Indent1">A single content removal operation can remove the content specified by multiple redaction annotations.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Creating_a_redaction"></a>Creating a redaction annotation</p>
+  <p dir="ltr" class="FM_Body">To create a redaction annotation that identifies the content to be removed from the document and the appearance of the redaction annotation, perform the following tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDRedactParamsRec</span>&#160;structure and populate it with values that describe characteristics of the redaction annotation, such as the page number on which the redaction is to be applied and the regions on the page being redacted.</p>
+  <p dir="ltr" class="FM_Step"><a name="IX_PDDocCreateRedaction"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Apply the redaction annotation to the document, by invoking the <span class="FM_Courier">PDDocCreateRedaction</span>&#160;method. </p>
+  <p dir="ltr" class="FM_Body"><a name="IX_PDDocCreateRedaction_1"></a>The <span class="FM_Courier">PDDocCreateRedaction</span>&#160;function automatically sets common annotation properties, such as the annotation rectangle (<span class="FM_Courier">Rect</span>) and the annotations unique name (<span class="FM_Courier">NM</span>). Further changes to the annotation are unnecessary. However, if you want to set values for annotation properties not set by the <span class="FM_Courier">PDDocCreateRedaction</span>&#160;method, convert the <span class="FM_Courier">PDAnnot</span>&#160;object returned from that method into a Cos object and set its dictionary values. (See <a href="../Working_with_Cos_Objects/Working_with_Cos_Objects.htm#XREF_86959_Working_with_COS"><span class="FM_HyperText">Working with Cos Objects</span></a>&#160;and <a href="../Creating_3D_Annotations/Adding_3D_data_to_an_annotation.htm#XREF_26840_Creating_the"><span class="FM_HyperText">Creating the attributes dictionary</span></a>.) </p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Modifying_an_existing"></a>Modifying an existing redaction annotation</p>
+  <p dir="ltr" class="FM_Body">To modify the attributes of an existing redaction annotation, perform the following tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_94111_1_Obtain_a_pointer"></a>Obtain a pointer to the redaction annotation. (See <a href="Working_with_text_annotations.htm#XREF_93262_Retrieving"><span class="FM_HyperText">Retrieving existing annotations</span></a>.) Ensure that the pointer references an annotation with the <span class="FM_Courier">Subtype</span>&#160;value <span class="FM_Courier">Redact</span>. </p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Get the redaction annotation’s properties, by invoking the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">PDRedactionGetProps</span>&#160;function. The first argument is the pointer to the redaction annotation obtained in Step <a href="#XREF_94111_1_Obtain_a_pointer"><span class="FM_HyperText">1</span></a>&#160;and the second argument is a pointer to the <span class="FM_Courier">PDRedactParamsRec</span>&#160;structure. </p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Modify the members of the <span class="FM_Courier">PDRedactParamsRec</span>&#160;structure supplied by the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">PDRedactionGetProps</span>&#160;function. The first argument is the pointer to the redaction annotation obtained in Step <a href="#XREF_94111_1_Obtain_a_pointer"><span class="FM_HyperText">1</span></a>, and the second argument is a pointer to the <span class="FM_Courier">PDRedactParamsRec</span>&#160;structure. </p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Set the redaction annotation’s properties by invoking the <span class="FM_Courier">PDRedactionSetProps</span>&#160;function. </p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Applying_redaction"></a>Applying redaction annotations (removing redacted content)</p>
+  <p dir="ltr" class="FM_Body">To apply previously created redaction annotations, perform the following tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_30308_1_Create_an"></a>Create a <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">PDApplyRedactionParamsRec</span>&#160;structure that specifies the redaction annotations to apply. The structure also lets you provide callback functions that <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;invokes as it applies the redaction annotations. </p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Apply the redaction annotations by invoking the <span class="FM_Courier">PDDocApplyRedactions</span>&#160;function. This function name is overloaded with two forms. The simpler form specifies a first argument that is the pointer to the document, and the second argument that is the structure created in Step <a href="#XREF_30308_1_Create_an"><span class="FM_HyperText">1</span></a>. The more complex forms let you specify progress callbacks. </p>
+ </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

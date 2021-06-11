@@ -1,0 +1,444 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Populating a PDF document with a content stream</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Cos.fm" />
+ <link rel="stylesheet" href="Plugins_Cos.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.17.6.1_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Cos/Creating_Cos_streams.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_3D_samples/Creating_3D_Annotations.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Cos Objects > Working with Cos streams" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Populating a PDF document with a content stream</h3>
+  <p class="BodyLevel1">This section explains how to use the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;core API to create a new PDF document, insert a page into the document, and populate the page with a Cos content stream that inserts the text <span class="FM_Courier">Hello</span>&#160;<span class="FM_Courier">There</span>. When inserting a content stream into a PDF document, in addition to creating a stream dictionary, you must also create a resource dictionary and a page dictionary. A resource dictionary defines attributes such as the font that a content stream uses and a page dictionary defines attributes such as the page’s height and width. For information about these dictionaries, see the <uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable><span class="FM_Italic"></span>. This reference is available within the portfolio called <span class="FM_HyperText"><a href="www.adobe.com/go/acrobatsdk_pdf_reference">PDF Reference and Related Documentation</a></span>, which is located at the <span class="FM_HyperText"><a href="http://www.adobe.com/go/pdf_developer">Adobe PDF Technology Center</a></span>.</p>
+  <p class="BodyLevel1">The following example shows the resource dictionary that is created in this section.</p>
+  <p class="FM_CodeReference">4 0 obj</p>
+  <p class="FM_CodeReference">&lt;&lt;</p>
+  <p class="FM_CodeReference">/Font &lt;&lt; /F0 5 0 R &gt;&gt;</p>
+  <p class="FM_CodeReference">/ProcSet 6 0 R</p>
+  <p class="FM_CodeReference">&gt;&gt;</p>
+  <p class="FM_CodeReference">endobj</p>
+  <p class="BodyLevel1">The following example shows the font descriptor that is created in this section.</p>
+  <p class="FM_CodeReference">5 0 obj</p>
+  <p class="FM_CodeReference">&lt;&lt;</p>
+  <p class="FM_CodeReference">/Type /Font</p>
+  <p class="FM_CodeReference">/Subtype /Type1</p>
+  <p class="FM_CodeReference">/Name /F0</p>
+  <p class="FM_CodeReference">/BaseFont /Courier</p>
+  <p class="FM_CodeReference">/Encoding /WinAnsiEncoding</p>
+  <p class="FM_CodeReference">&gt;&gt;</p>
+  <p class="FM_CodeReference">endobj</p>
+  <p class="BodyLevel1">The following example shows the Procset resource created in this section. </p>
+  <p class="FM_CodeReference">This is a procset resource.</p>
+  <p class="FM_CodeReference">6 0 obj</p>
+  <p class="FM_CodeReference">[</p>
+  <p class="FM_CodeReference">/PDF /Text</p>
+  <p class="FM_CodeReference">]</p>
+  <p class="FM_CodeReference">endobj</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="BodyLevel1">The following example shows the page dictionary that is created in this section. </p>
+  <p class="FM_CodeReference">This is the page dictionary.</p>
+  <p class="FM_CodeReference">7 0 obj</p>
+  <p class="FM_CodeReference">&lt;&lt;</p>
+  <p class="FM_CodeReference">/Type /Page</p>
+  <p class="FM_CodeReference">/MediaBox [ 0 0 612 792 ]</p>
+  <p class="FM_CodeReference">/Parent 2 0 R</p>
+  <p class="FM_CodeReference">/Resources 4 0 R</p>
+  <p class="FM_CodeReference">/Contents 8 0 R</p>
+  <p class="FM_CodeReference">&gt;&gt;</p>
+  <p class="FM_CodeReference">endobj</p>
+  <p class="BodyLevel1">The following diagram shows the PDF document that is created in this section. </p>
+  <p class="FM_GraphicBody"><img alt="HelloPDF.jpg" style=" width:100%; margin-bottom:0.000pt; max-width:219.799pt;" id="image1" src="HelloPDF.jpg" />&nbsp;</p>
+  <h6>To create a PDF document and populate it with a Cos content stream:</h6>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Define the media box rectangle used in the PDF document’s page. </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASFixedRect MedBox;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>MedBox.left = ASInt32ToFixed (0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>MedBox.top = ASInt32ToFixed (792);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>MedBox.right = ASInt32ToFixed (612);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>MedBox.bottom = ASInt32ToFixed (0);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Define the stream that is written to the PDF document page, as shown in the following example.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char* StreamBuf = (char*)&quot;BT /F0 1 Tf 24 0 0 24 36 756 Tm 0 Tr 0 g 0 Tc 0 Tw \</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>(Hello There) Tj ET&quot;;</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDDoc</span>&#160;object that represents the new document by invoking the <span class="FM_Courier">PDDocCreate</span>&#160;method. After the document is created, at least one page must be added before <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;or <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;can display the document.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDDoc NewDoc = PDDocCreate ();</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDPage</span>&#160;object that represents the page by invoking the <span class="FM_Courier">PDDocCreatePage</span>&#160;method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">The <span class="FM_Courier">PDDoc</span>&#160;object that you created. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The <span class="FM_Courier">PDBeforeFirstPage</span> enum value that specifies where to place the page.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The <span class="FM_Courier">ASFixedRect</span> object that defines the media box rectangle.</p>
+</li>
+  </ul>
+  <p class="FM_Indent1">This method returns a <span class="FM_Courier">PDPage</span>&#160;object that represents the new page. </p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosObj</span>&#160;object that represents a resource dictionary. In the following code example, a resource dictionary is created in a user-defined function named <span class="FM_Courier">SetResourceForPage</span>. </p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>6.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Set the page’s resource key. In the following code example, the page’s resource’s key is set in a user-defined function named <span class="FM_Courier">CreateResourceDicts</span>.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>7.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Add a Cos stream to the page. In the following code example, a Cos stream is added to the page in a user-defined function named <span class="FM_Courier">AddStreamToPage</span>. </p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>8.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Open the PDF document in <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>. In the following code example, this task occurs in the user-defined function named <span class="FM_Courier">MakeTheFile</span>.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>9.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Save the PDF document. In the following code example, this task occurs in the user-defined function named <span class="FM_Courier">MakeTheFile</span>.</p>
+  <p class="BodyLevel1">The following code example represents an entire C source file that creates a PDF document and populates it with a Cos content stream. This source file is made up by various user-defined functions. To make it easier to view these functions, all function signatures are bolded. The entry point to this source file is the <span class="FM_Courier">MakeTheFile</span>&#160;function. You can invoke the <span class="FM_Courier">MakeTheFile</span>&#160;function from a menu item or toolbar button to execute this code example.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Creating a PDF document and populating it with a Cos content stream</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">#include &quot;ascalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;avcalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;avcalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;coscalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;pdcalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;ascalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;corcalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;dos.h&quot;</p>
+  <p class="FM_CodeReference">#include &lt;io.h&gt;</p>
+  <p class="FM_CodeReference">#include &lt;stdlib.h&gt;</p>
+  <p class="FM_CodeReference">#include &lt;stdio.h&gt;</p>
+  <p class="FM_CodeReference">#include &lt;string.h&gt;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Declare global variables</p>
+  <p class="FM_CodeReference">CosObj PageStrm; /* To hold the newly created Cos stream */</p>
+  <p class="FM_CodeReference">CosObj AttrDict; /* As returned by CreateAttribsDict */</p>
+  <p class="FM_CodeReference">CosObj EncodeDict;</p>
+  <p class="FM_CodeComment">/*</p>
+  <p class="FM_CodeComment">** Used to specify what filters are used to encode the stream if</p>
+  <p class="FM_CodeComment">** used for output.</p>
+  <p class="FM_CodeComment">*/</p>
+  <p class="FM_CodeReference">CosObj ResDict; /* Resource dictionary for the page */</p>
+  <p class="FM_CodeReference">CosObj FontDictObj;</p>
+  <p class="FM_CodeReference">CosObj FontDict;</p>
+  <p class="FM_CodeReference">CosObj procArray;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">/*</p>
+  <p class="FM_CodeComment">** Set the page’s resource key. Return true if everything is valid,</p>
+  <p class="FM_CodeComment">** else false.</p>
+  <p class="FM_CodeComment">*/</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">ASBool SetResourceForPage (PDPage page)</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference">CosObj PageCosObj;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Make sure that the page is valid</p>
+  <p class="FM_CodeReference">if (!page)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get a CosDoc object by using the PDPage page passed to this object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PageCosObj = PDPageGetCosObj(page);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (CosDictKnown (PageCosObj, ASAtomFromString (&quot;Resources&quot;) == true))</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (CosDictGet (PageCosObj, ASAtomFromString (&quot;Resources&quot;)));</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Place the ResDict object into the page's Resource Dictionary</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (PageCosObj, ASAtomFromString (&quot;Resources&quot;), ResDict);</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">return true;</p>
+  <p class="FM_CodeReference">} /* end of SetResourceForPage*/</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">/*</p>
+  <p class="FM_CodeComment">** Create the font’s resources. Return true if all is valid, else false.</p>
+  <p class="FM_CodeComment">** Creates the required font and proc set dictionaries; then creates the</p>
+  <p class="FM_CodeComment">** global resource dictionary for the PDF page</p>
+  <p class="FM_CodeComment">*/</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">ASBool CreateResourceDicts (CosDoc cd)</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ResDict = CosNewDict (cd, true, 10);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;Trying to create the resource dictionary.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>END_HANDLER</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>FontDictObj = CosNewDict (cd, true, 5);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;Trying to create the font’s dictionary.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (ResDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">/* Create this font descriptor dictionary.</p>
+  <p class="FM_CodeComment">** &lt;&lt;</p>
+  <p class="FM_CodeComment">** /Type /Font</p>
+  <p class="FM_CodeComment">** /Subtype /Type1</p>
+  <p class="FM_CodeComment">** /Name /F0</p>
+  <p class="FM_CodeComment">** /BaseFont /Courier</p>
+  <p class="FM_CodeComment">** /Encoding /WinAnsiEncoding</p>
+  <p class="FM_CodeComment">** &gt;&gt;</p>
+  <p class="FM_CodeComment">*/</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (FontDictObj, ASAtomFromString (&quot;Type&quot;),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewName (cd, false, ASAtomFromString (&quot;Font&quot;)));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (FontDictObj, ASAtomFromString (&quot;Subtype&quot;),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewName (cd, false, ASAtomFromString (&quot;Type1&quot;)));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (FontDictObj, ASAtomFromString (&quot;Name&quot;),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewName (cd, false, ASAtomFromString (&quot;F0&quot;)));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (FontDictObj, ASAtomFromString (&quot;BaseFont&quot;),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewName (cd,false, ASAtomFromString (&quot;Courier&quot;)));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (FontDictObj, ASAtomFromString (&quot;Encoding&quot;),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewName (cd,false, ASAtomFromString (&quot;WinAnsiEncoding&quot;)));</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;Trying to add key-value pairs to the Font descriptor dictionary.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDictObj);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>FontDict = CosNewDict (cd, false, 2);</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;Trying to create page’s resource dictionary.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDictObj);</p>
+  <p class="FM_CodeReference">return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeComment">/* Add entries to the page’s resource dictionary.</p>
+  <p class="FM_CodeComment">** &lt;&lt;</p>
+  <p class="FM_CodeComment">** /Font &lt;&lt; /F0 5 0 R &gt;&gt;</p>
+  <p class="FM_CodeComment">** /ProcSet 6 0 R</p>
+  <p class="FM_CodeComment">** &gt;&gt;</p>
+  <p class="FM_CodeComment">*/</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeComment">/* Add /Font key-value pair to resource dictionary */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (FontDict, ASAtomFromString (&quot;F0&quot;), FontDictObj);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (ResDict, ASAtomFromString (&quot;Font&quot;), FontDict);</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote &#160;(&quot;Trying to add key-value pairs to the page’s resource dict.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDictObj);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (ResDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeComment">/* Create the following proc set resource array.</p>
+  <p class="FM_CodeComment">** [</p>
+  <p class="FM_CodeComment">** /PDF /Text</p>
+  <p class="FM_CodeComment">** ]</p>
+  <p class="FM_CodeComment">*/</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>procArray = CosNewArray (cd, true, 5);</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote &#160;(&quot;Trying to create proc set array.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDictObj);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (ResDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference">CosArrayPut (procArray, 0, CosNewName (cd, false, ASAtomFromString (&quot;PDF&quot;)));</p>
+  <p class="FM_CodeReference">CosArrayPut (procArray, 1, CosNewName (cd, false, ASAtomFromString (&quot;Text&quot;)));</p>
+  <p class="FM_CodeComment">/*</p>
+  <p class="FM_CodeComment">** Place the proc set key-value pair into the page’s resource dictionary.</p>
+  <p class="FM_CodeComment">*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPut (ResDict, ASAtomFromString (&quot;ProcSet&quot;), procArray);</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDictObj);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (FontDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (ResDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (procArray);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">return true;</p>
+  <p class="FM_CodeReference">} </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">// Create and return the stream’s dictionary that defines the Length attribute</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">CosObj CreateAttribsDict(CosDoc Doc, ASInt32 Len)</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment">//Declare local variables</p>
+  <p class="FM_CodeReference">CosObj Dict; /* Holds newly created dictionary */</p>
+  <p class="FM_CodeReference">ASAtom Key; /* Key used to retrieve CosObj in dictionary */</p>
+  <p class="FM_CodeReference">CosObj Value; /* Assigned, then added to dictionary */</p>
+  <p class="FM_CodeReference">CosObj DecodeArray;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create the stream dictionary</p>
+  <p class="FM_CodeReference">Dict = CosNewDict(Doc, false, 10);</p>
+  <p class="FM_CodeReference">Key = ASAtomFromString(&quot;Length&quot;);</p>
+  <p class="FM_CodeReference">Value = CosNewInteger(Doc, false, Len);</p>
+  <p class="FM_CodeReference">CosDictPut(Dict, Key, Value);</p>
+  <p class="FM_CodeReference">return Dict;</p>
+  <p class="FM_CodeReference">} </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Add stream to page. Return false if there are problems</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">ASBool AddStreamToPage (PDPage page, char* StreamBuf, ASInt32 StreamBufLen)</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment">//Declare local variables</p>
+  <p class="FM_CodeReference">CosDoc cd;</p>
+  <p class="FM_CodeReference">ASStm Stm=NULL;</p>
+  <p class="FM_CodeReference">CosObj PageStrm;</p>
+  <p class="FM_CodeReference">CosObj EncodeParms = CosNewNull();</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create the CosDoc object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>cd = PDDocGetCosDoc (PDPageGetDoc (page));</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;Unable to get CosDoc&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Retrieve the Attributes dictionary</p>
+  <p class="FM_CodeReference">AttrDict = CreateAttribsDict (cd, StreamBufLen);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">if (CosObjEqual (AttrDict, CosNewNull ()) == true){</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;Not making stream. Attribs dict not created.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeComment">//Read the stream into memory by invoking the ASMemStmRdOpen method</p>
+  <p class="FM_CodeReference">Stm = ASMemStmRdOpen (StreamBuf, StreamBufLen);</p>
+  <p class="FM_CodeReference">if (!Stm){</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;Unable to open data stream to create content stream.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Creates a new Cos stream using data from the ASStm object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PageStrm = CosNewStream(cd, true, Stm, -1,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>false,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AttrDict, /* attributesDict */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>EncodeParms,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>-1);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">ASStmClose (Stm);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;Trying to create new CosStream.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObjDestroy (AttrDict);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASStmClose (Stm);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Add the content stream to the page</p>
+  <p class="FM_CodeReference">PDPageAddCosContents (page, PageStrm);</p>
+  <p class="FM_CodeReference">return true;</p>
+  <p class="FM_CodeReference">} /* end of AddStreamToPage */</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create the new PDF document</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">void MakeTheFile (void)</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment">//Declare local variables</p>
+  <p class="FM_CodeReference">volatile PDDoc NewDoc = NULL;</p>
+  <p class="FM_CodeReference">volatile PDPage NewPage;</p>
+  <p class="FM_CodeReference">ASFixedRect MedBox;</p>
+  <p class="FM_CodeReference">ASInt32 PageCount = 0;</p>
+  <p class="FM_CodeReference">char* StreamBuf = NULL;</p>
+  <p class="FM_CodeReference">int StreamBufLen = 0;</p>
+  <p class="FM_CodeReference">ASBool result ; </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Set up the page’s media box.</p>
+  <p class="FM_CodeReference">MedBox.left = ASInt32ToFixed (0);</p>
+  <p class="FM_CodeReference">MedBox.top = ASInt32ToFixed (792);</p>
+  <p class="FM_CodeReference">MedBox.right = ASInt32ToFixed (612);</p>
+  <p class="FM_CodeReference">MedBox.bottom = ASInt32ToFixed (0);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Define a stream to set the text matrix and write out the text</p>
+  <p class="FM_CodeReference">StreamBuf = (char*)&quot;BT /F0 1 Tf 24 0 0 24 36 756 Tm 0 Tr 0 g 0 Tc 0 Tw \(Hello There) Tj ET&quot;;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the length of StreamBufLen - this is where is it determined</p>
+  <p class="FM_CodeReference">StreamBufLen = strlen (StreamBuf);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a PDDoc object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>NewDoc = PDDocCreate();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (NewDoc)<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Invoke the PDDocCreatePage method</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>NewPage = PDDocCreatePage(NewDoc, PDBeforeFirstPage, MedBox);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (!NewPage)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASRaise (0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Invoke CreateResourceDicts</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (CreateResourceDicts(PDDocGetCosDoc(NewDoc)) == false)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASRaise (0);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Invoke SetResourceForPage method</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>result = SetResourceForPage(NewPage);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Invoke AddStreamToPage</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>result = AddStreamToPage (NewPage, StreamBuf, StreamBufLen);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (result == false) </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASRaise (0);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDPageRelease (NewPage);</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;Problem creating document.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (NewPage) PDPageRelease (NewPage);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (NewDoc) PDDocClose (NewDoc);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Open the new doc</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVDocOpenFromPDDoc(NewDoc, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Save the PDF document to the root of C and name it cosPDFDocument.pdf</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDDocSave(NewDoc, PDSaveFull | PDSaveLinearized ,ASPathFromPlatformPath<br />(&quot;C:\\cosPDFDocument.pdf&quot;), NULL, NULL, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;Cannot open new document.&quot;);</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+ </div>
+</body>
+</html>

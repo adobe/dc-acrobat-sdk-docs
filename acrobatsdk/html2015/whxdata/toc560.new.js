@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Synchronous messaging","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Synchronous_messaging.htm"},{"type":"item","name":"MDI applications","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/MDI_applications.htm"},{"type":"item","name":"Event handling in child windows","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Event_handling_in_child_windows.htm"},{"type":"item","name":"Determining if an Acrobat application is running","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Determining_if_an_Acrobat_application_is_running.htm"},{"type":"item","name":"Exiting from an application","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Exiting_from_an_application.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Top-level XObject","url":"Acro12_MasterBook/DigSig_PublicKeySigInterop/Example_signatures.htm#TOC_Top_level_XObjectbc-3"},{"type":"item","name":"Second-level XObject","url":"Acro12_MasterBook/DigSig_PublicKeySigInterop/Example_signatures.htm#TOC_Second_level_XObjectbc-4"},{"type":"item","name":"Layer n0","url":"Acro12_MasterBook/DigSig_PublicKeySigInterop/Example_signatures.htm#TOC_Layer_n0bc-5"},{"type":"item","name":"Layer n2","url":"Acro12_MasterBook/DigSig_PublicKeySigInterop/Example_signatures.htm#TOC_Layer_n2bc-6"},{"type":"item","name":"Signature annotation with no appearance","url":"Acro12_MasterBook/DigSig_PublicKeySigInterop/Example_signatures.htm#TOC_Signature_annotationbc-7"},{"type":"item","name":"Signature objects","url":"Acro12_MasterBook/DigSig_PublicKeySigInterop/Example_signatures.htm#TOC_Signature_objectsbc-8"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

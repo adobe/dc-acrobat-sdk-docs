@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Initialization and termination</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_CreatingSimplePlug.fm" />
+ <link rel="stylesheet" href="Plugins_CreatingSimplePlug.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.3.3.2_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_CreatingSimplePlug/Developing_applications_with_the_Adobe_PDF_Library.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_CreatingSimplePlug/Multithreading.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Plug-in and PDF Library Applications > Creating a sample PDF Library application" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Initialization and termination</h3>
+  <p class="BodyLevel1">Applications must initialize and terminate the Adobe PDF Library appropriately:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Call <span class="FM_Courier">PDFLInit</span>&#160;to set up internal data structures, locate required resources such as fonts, and perform initialization (such as setting client-provided memory allocation routines). Calling most library functions without successfully initializing the library results in error conditions. The rest of this section provides details on using PDFLInit.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Call <span class="FM_Courier">PDFLTerm</span>&#160;to clean up before an application terminates or when access to PDF Library functionality is no longer needed.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Since the PDF Library supports thread-safety (since version 6.1.2), initialization and termination are handled on a per-thread basis.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">PDFLInit</span>&#160;function takes as a parameter a <span class="FM_Courier">PDFLData</span>&#160;structure, defined in the API header file PDFInit.h. You must provide valid values for the following members of the structure before passing it to <span class="FM_Courier">PDFLInit</span>:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">size denotes the size of the structure and can be obtained with <span class="FM_Courier">sizeof(PDFLDataRec)</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">listLen is the number of directories listed in dirList.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">dirList is an array of directories that contain font resources. The following discussion explains how to use this member on each of the supported platforms.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">In Windows and Mac OS, the PDF Library searches for fonts in the default system and in their subdirectories (to 99 levels). You can specify additional font directories to search (also to 99 levels) in the dirList array. (Note that this can affect performance.)</p>
+  <p class="BodyLevel1">Here is an example showing how to pass the font paths to dirList for Windows:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdflLibData.dirList[0]= strdup(&quot;C:\\Myfontfolder\\CMap&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdflLibData.dirList[1]= strdup(&quot;C:\\Myfontfolder\\CIDFont&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdflLibData.dirList[2]= strdup(&quot;C:\\Myfontfolder\\Font&quot;);</p>
+  <p class="BodyLevel1">The paths can be either full paths or paths relative to the directory from which the executable linking in the Adobe PDF Library was started. You can set the value <span class="FM_Courier">kPDFLInitIgnoreDefaultDirectories</span>&#160;in the flags field of the<span class="FM_Courier"> PDFLData</span>&#160;structure to indicate that the default font directories should not be searched but only the directories provided in dirList.</p>
+  <p class="BodyLevel1">For more details, see the functions <span class="FM_Courier">PDFLGetDirList_Win</span>&#160;and <span class="FM_Courier">PDFLGetDirList_Mac</span>&#160;in the MyPDFLibUtils.cpp file in the <span class="FM_Courier">Samples/utils</span> directory.</p>
+  <p class="BodyLevel1">In UNIX, the PDF Library searches by default for fonts in the directory from which the application was started. Use dirList member to specify additional locations of font resources.</p>
+  <p class="BodyLevel1">For more details, see the function <span class="FM_Courier">PDFLGetDirList_Unx </span>in the MyPDFLibUtils.cpp file in the <span class="FM_Courier">Samples/utils</span> directory.</p>
+  </div>
+</body>
+</html>

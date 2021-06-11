@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Enhancements to Doc object</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJS\JS_API_AcroJSChanges.fm" />
+ <link rel="stylesheet" href="JS_API_AcroJSChanges.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.2.2.2.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_API_AcroJSChanges/Enhancements_to_PDFOptPDFVersion.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_API_AcroJSChanges/Signature_support_for_Emerging_PAdES_ETSI_ESI_standard.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > JavaScript for Acrobat API Reference > New Features and Changes > Acrobat X changes" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Enhancements to Doc object</h3>
+  <p class="BodyLevel1">In this release, the following enhancements have been made to the <span class="FM_Courier">Doc</span> object:</p>
+  <h4><a name="TOC_Enhancements_to_the"></a>Enhancements to the getDataObjectContents method</h4>
+  <p class="BodyLevel1">A <span class="FM_Courier">NotAllowedError</span>&#160;is thrown and the method fails if it attempts to access the content of an embedded file attachment for which any of the following conditions is true (all file name extension matching is case-insensitive):</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>The attachment's file name extension is &quot;.SWF&quot;. If a legitimate .SWF application or module run as part of Acrobat's Rich Media Annotation or PDF Portfolio navigator is allowed access to the content bytes of .SWF embedded file attachments, it is possible that the legitimate .SWF will load a malicious .SWF. </p>
+</li>
+  </ul>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>If you use the <span class="FM_Courier">Data.MIMEType</span>&#160;property to check whether a Data object represents a .SWF file, note that the MIME type for .SWF files is <span class="FM_Courier">application/x-shockwave-flash</span>.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">The attachment's file name extension is &quot;.GIF&quot;, &quot;.JPG&quot;, &quot;.JPEG&quot;, or &quot;.PNG&quot; and the first three bytes of its content have the header signature of a .SWF file (&quot;FWS&quot; or &quot;CWS&quot;). The reason for this security restriction is that the same <span class="FM_Courier">ActionScriptflash.display.Loader class load()</span>&#160;method that can be used to load GIF, JPEG, and PNG images can also be used to load a SWF file. If a malicious SWF file's extension has been altered to that of one of these image types, the SWF could be loaded.</p>
+</li>
+  </ul>
+  <h4><a name="TOC_Enhancements_to_the1"></a>Enhancements to the SaveAs Method </h4>
+  <p class="BodyLevel1">The following enhancements have been made to the <span class="FM_Courier">SaveAs</span>&#160;method of the <span class="FM_Courier">Doc</span> object:</p>
+  <h5>New Values of cConvID</h5>
+  <p class="BodyLevel1">The following new values of cConvID have been added:</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-left:4.00pt; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:430.13pt;" cellspacing="0">
+   <tr style=" height : 20.50pt;">
+   <th style="width : 223.128pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Value</p>
+</th>
+   <th style="width : 207.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Valid Extension</p>
+</th>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td style="width : 223.128pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">com.adobe.acrobat.docx</span></p>
+</td>
+   <td style="width : 207.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">docx</span></p>
+</td>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td style="width : 223.128pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">com.adobe.acrobat.xlsx<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></span></p>
+</td>
+   <td style="width : 207.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">xlsx</span></p>
+</td>
+</tr>
+  </table>
+</div>
+  <h5>Deprecated Values of cConvID</h5>
+  <p class="BodyLevel1">The conversion IDs listed below are deprecated in Acrobat X. They are not registered but (only when used with the JavaScript <span class="FM_Courier">doc.saveAs</span>&#160;call) are internally mapped to valid, registered conversion IDs. Support for the deprecated conversion IDs will be fully removed in subsequent Acrobat releases.<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-left:4.00pt; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:453.25pt;" cellspacing="0">
+   <tr style=" height : 20.50pt;">
+   <th style="width : 257.503pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Deprecated cConvID</p>
+</th>
+   <th style="width : 195.750pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Equivalent Valid cConvID</p>
+</th>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td style="width : 257.503pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">com.adobe.acrobat.html-3-20<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></span></p>
+</td>
+   <td style="width : 195.750pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">com.adobe.acrobat.html</span></p>
+</td>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td style="width : 257.503pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">com.adobe.acrobat.htm l- 4-01-css-1-00</span></p>
+</td>
+   <td style="width : 195.750pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody" style="font-family : 'Courier Std'; font-size  : 10.0pt;"><span class="FM_Courier">com.adobe.acrobat.html</span></p>
+</td>
+</tr>
+  </table>
+</div>
+  <h4><a name="TOC_New_timestampSign_and"></a>New timestampSign and certifyInvisibleSign Doc methods</h4>
+  <p class="BodyLevel1">For more information on the new Doc methods <span class="FM_Courier">timestampSign and certifyInvisibleSign</span>, see the next section, Signature support for Emerging PAdES ETSI ESI standard.</p>
+  </div>
+</body>
+</html>

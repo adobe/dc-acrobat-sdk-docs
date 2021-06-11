@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Parsing tessellation PRC entities</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_A3D_API.fm" />
+ <link rel="stylesheet" href="Plugins_A3D_API.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.19.3.0_6";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_A3D_API/Parsing_representation_items.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_A3D_API/Parsing_topology_PRC_entities.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Parsing and Creating PRC Files > Parsing a PRC file" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_89274_Parsing"></a>Parsing tessellation PRC entities</h3>
+  <p class="BodyLevel1">Tessellation entities represent polygon facets. </p>
+  <h6><a name="XREF_56897_Parse_tessellation"></a>Parse tessellation base data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><a name="IX_A3DTessBaseGet_function"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_69214_1_Populate_an"></a>Populate an <span class="FM_Courier">A3DTessBaseData</span>&#160;structure with the tessellation base data by invoking the <span class="FM_Courier">A3DTessBaseGet</span> function. The first argument (<span class="FM_Courier">p</span>&#160;in the following example) is a pointer to the tessellation base data, and the second argument (<span class="FM_Courier">&amp;sData</span>&#160;in the following example) is the location of the <span class="FM_Courier">A3DTessBaseData</span> structure.</p>
+  <p class="FM_CodeReference">A3DTessBaseData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTessBaseGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Export the coordinate size (<span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">sData.m_uiCoordSize</span>), the coordinates array (<span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">sData.m_pdCoords</span>), and the calculate attributes (<span class="FM_Courier">sData.m_bIsCalculated</span>) to your tessellation base data element.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the tessellation data based on its type. The PRC format defines these types for tessellation data:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">kA3DTypeTess3D</span>, which is used for solids and surfaces (See <a href="#XREF_81753_Parse_3D"><span class="FM_HyperText">Parse 3D tessellation data</span></a>.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">kA3DTypeTess3DWire</span>, which is used for 3D wireframes </p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">kA3DTypeTessMarkup</span>, which is used for markups</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">A3DEEntityType eType;</p>
+  <p class="FM_CodeReference">ASInt32 iErr = A3DEntityGetType(p, &amp;eType);</p>
+  <p class="FM_CodeReference">if (iErr == A3D_SUCCESS) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>switch(eType) {</p>
+  <p class="FM_CodeReference">case kA3DTypeTess3D:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parse3DTess(p, pRepItem, pFatherAttr);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>break;</p>
+  <p class="FM_CodeReference">case kA3DTypeTess3DWire:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parse3DWireTess(p);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>break;</p>
+  <p class="FM_CodeReference">case kA3DTypeTessMarkup:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parse3DTessMarkup(p); </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>break;</p>
+  <p class="FM_CodeReference">default:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// error response.</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DTessBaseData</span>&#160;created in Step <a href="#XREF_69214_1_Populate_an"><span class="FM_HyperText">2</span></a>&#160;by invoking the <span class="FM_Courier">A3DRiBrepModelGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span> and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sData</span>&#160;in the following example).</p>
+  <p class="FM_CodeReference">A3DTessBaseGet(NULL, &amp;sData);</p>
+  <h6><a name="XREF_81753_Parse_3D"></a>Parse 3D tessellation data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><a name="IX_A3DTess3DGet_function"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_64792_1_Populate_an"></a>Populate an <span class="FM_Courier">A3DTess3DData</span>&#160;structure with the tessellation data by invoking the <span class="FM_Courier">A3DTess3DGet</span>&#160;function.&#160;</p>
+  <p class="FM_CodeReference">A3DTess3DData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTess3DGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Represent relevant data from the 3D tessellation data element in your export structure.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>For each face in the tessellation data, create and push the cascaded attributes face data and then access its data members. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_84985_Creating_and"><span class="FM_HyperText">Parsing graphic attributes using miscellaneous cascaded attributes</span></a>.) In the following example, the <span class="FM_Courier">CreateAndPushCascadedAttributesFace</span>&#160;is a private function that pushes the miscellaneous cascaded attributes for a tessellation face onto the stack. </p>
+  <p class="FM_CodeReference">ASUns32 uiNumberOfFaces = sData.m_uiFaceTessSize;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">for (ASUns32 ui = 0; ui &lt; uiNumberOfFaces; ui++) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DTessFaceData&amp; sTessFaceData = sData.m_psFaceTessData[ui];</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DMiscCascadedAttributes* pAttr;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DMiscCascadedAttributesData sAttrData;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Read CascadedAttributes for one of the facec</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CreateAndPushCascadedAttributesFace(pRepItem, p, &amp;sTessFaceData, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ui, pFatherAttr, &amp;pAttr, &amp;sAttrData);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DMiscCascadedAttributesDelete(pAttr);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DMiscCascadedAttributesGet(NULL, &amp;sAttrData);</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the cascaded attributes data structure.</p>
+  <p class="FM_CodeReference">A3DMiscCascadedAttributesDelete(pAttr);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>6.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the cascaded attributes structure.</p>
+  <p class="FM_CodeReference">A3DMiscCascadedAttributesGet(NULL, &amp;sAttrData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>7.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span class="FM_Courier">A3DTess3DData</span>&#160;structure created in Step <a href="#XREF_64792_1_Populate_an"><span class="FM_HyperText">2</span></a>. </p>
+  <p class="FM_CodeReference">A3DTess3DGet(NULL, &amp;sData);</p>
+  </div>
+</body>
+</html>

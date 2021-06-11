@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc435.js\"  name=\"PreflightResult methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/PreflightResult_methods.htm\"><item name=\"report\" url=\"Acro12_MasterBook/JS_API_AcroJS/PreflightResult_methods.htm#TOC_reportbc-1\" /></data>";

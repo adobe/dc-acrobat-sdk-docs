@@ -1,0 +1,2451 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="PDOCContext,,,,PDOCContextInitPolicy,PDOCContextChangeType,PDOCContext,PDOCContextNew,PDOCContextFree,PDOCContextGetPDDoc,PDOCContextInit,PDOCContextMakeCopy,PDOCContextNewWithOCDisabled,PDOCContextNewWithInitialState,PDOCContextGetOCGStates,PDOCContextSetOCGStates,PDOCContextMakeCopyWithAutoStateChanges,PDOCContextFindAutoStateChanges,PDOCContextApplyAutoStateChanges,PDOCContextSetOCDrawEnumType,PDOCContextGetOCDrawEnumType,PDOCContextSetIntent,PDOCContextGetIntent,PDOCContextSetNonOCDrawing,PDOCContextGetNonOCDrawing,PDOCContextResetOCMDStack,PDOCContextPushOCMD,PDOCContextPopOCMD,PDOCContextContentIsVisible,PDOCContextXObjectIsVisible,PDOCContextClearAllUserOverrides,PDOCContextWillChange,PDOCContextDidChange" name="keywords">
+<title>PD_Layer.PDOCContext (PDFL)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'PDOCContext - PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?PD_Layer/PDOCContext.html&amp;PD_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">PDOCContext</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#enumerationSummary">Enumerations</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PDOCContext"); titleBar_setSubNav(false,true,true,false,false,false,false,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">PD_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">PDOCContext</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>The PDOCContext object represents an optional-content context in a document, within which 
+document objects such as words or annotations are <a href="General.html#visible" target="">visible</a> or hidden. The context keeps track 
+of the ON-OFF states of all of the optional-content groups (OCGs, represented by the <a href="PDOCG.html" target="">PDOCG</a> object) 
+in a document. Content is or is not visible with respect to the OCG states stored in a specific 
+context. The context does not correspond to any explicit PDF specification.
+</p><p>The <a href="PDDoc.html" target="">PDDoc</a> has a default context that it uses for on-screen drawing and that determines the 
+default state for any other drawing or content enumeration. The context has <a href="../PDFEdit_Layer/General.html#flags" target="">flags</a> that control 
+whether to draw or enumerate content that is marked as optional (<a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType</a>), and whether 
+to draw content that is not marked as optional (NonOCDrawing).</p><p>There can be more than one PDOCContext object, representing different combinations of OCG 
+states. You can change the states of OCGs within any context. You can build contexts with your 
+own combination of OCG states, and issue drawing or enumeration commands using that context 
+instead of the document's default context. For example, you can pass an optional-content context 
+to <a href="PDPage.html#PDPageDrawContentsWithParams()" target="">PDPageDrawContentsWithParams</a>() through the <a href="General.html#PDDrawParams" target="">PDDrawParams</a> structure. You can save the resulting 
+state information as part of the configuration, but the context itself has no corresponding 
+PDF form, and is not saved.</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDOCContext">PDOCContext</a>
+<div class="summaryTableDescription">A PDOCContext is an object that keeps track the on/off states of all of the OCGs in a document. There can be more than one PDOCContext object, representing different combinations of OCG states. The PDDoc contains an internal PDOCContext that is used for on-screen drawing and as the default state used for any other drawing or content enumeration. Clients can change the states of OCGs within any PDOCContext. Clients can build (and save in the PDF file) PDOCContext objects with their own combination of OCG states, and issue drawing or enumeration commands using their own PDOCContext instead of the document's internal PDOCContext. All discussion of visibility of content is therefore meant to be with respect to the OCG states stored in a specific PDOCContext. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="enumerationSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Enumeration Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Enumeration</th>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#PDOCContextChangeType5645"><b>PDOCContextChangeType</b></a></code>
+<div class="summaryTableDescription">The optional-content group (OCG) state is changing. </div>
+</td>
+</div>
+</tr>
+<tr class="row0">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#PDOCContextInitPolicy5574"><b>PDOCContextInitPolicy</b></a></code>
+<div class="summaryTableDescription">PDOCContextInitPolicy is used to specify how to initialize the states of Optional Content Groups (OCGs) when calling PDOCContextNew() or PDOCContextInit(). </div>
+</td>
+</div>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDOCContextApplyAutoStateChanges9578()">PDOCContextApplyAutoStateChanges</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ctx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> cfg, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> event)</div>
+<div class="summaryTableDescription">Calls PDOCContextFindAutoStateChanges() to find optional-content groups whose ON-OFF states should be toggled, based on usage application directives contained in the configuration's AS array, and applies the changes within the given context.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextClearAllUserOverrides10325()">PDOCContextClearAllUserOverrides</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ctx)</div>
+<div class="summaryTableDescription">Removes usage override marks in all optional-content groups in the given context.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDOCContextContentIsVisible9836()">PDOCContextContentIsVisible</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Tests whether content is visible in the optional-content context. The method considers the context's current OCMD stack, the group ON-OFF states, the non-OC drawing status, the drawing and enumeration type, and the intent.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextDidChange2345()">PDOCContextDidChange</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCContext.html#PDOCContextChangeType" target="">PDOCContextChangeType</a> whatHappened, void* objects, <a href="../AS_Layer/Errors.html#ASErrorCode" target="">ASErrorCode</a> error, void* clientData)</div>
+<div class="summaryTableDescription">An optional-content context changed in a way that could affect the visibility state of content. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDOCG* <a class="signatureLink" href="#PDOCContextFindAutoStateChanges9549()">PDOCContextFindAutoStateChanges</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ctx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> cfg, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> event)</div>
+<div class="summaryTableDescription">Finds optional-content groups whose ON-OFF states should be toggled in the context, based on usage application directives contained in the configuration's AS array.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextFree9350()">PDOCContextFree</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Destroys an optional-content context object and frees the associated memory as needed. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASAtom* <a class="signatureLink" href="#PDOCContextGetIntent9666()">PDOCContextGetIntent</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Gets the intent list for an optional-content context. An intent is an ASAtom value broadly describing the intended use, either View or Design.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDOCContextGetNonOCDrawing9707()">PDOCContextGetNonOCDrawing</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Gets the non-OC drawing status for an optional-content context. Content that is not marked as optional content is drawn when NonOCDrawing is true, and not drawn when NonOCDrawing is false.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDOCDrawEnumType <a class="signatureLink" href="#PDOCContextGetOCDrawEnumType9616()">PDOCContextGetOCDrawEnumType</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Gets the drawing and enumeration type for an optional-content context. This type, together with the visibility determined by the OCG and Optional Content Membership Dictionary (OCMD) states, controls whether content that is marked as optional content is drawn or enumerated.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextGetOCGStates9473()">PDOCContextGetOCGStates</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCG.html#PDOCG" target="">PDOCG</a>* pdocgs, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* states)</div>
+<div class="summaryTableDescription">Gets the ON-OFF states for the given optional-content groups (OCGs) in the given optional-content context. It returns the states in the states array, which must be large enough to hold as many ASBool values as there are OCGs. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDDoc <a class="signatureLink" href="#PDOCContextGetPDDoc9374()">PDOCContextGetPDDoc</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Gets the document that contains an optional-content context.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextInit9393()">PDOCContextInit</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCContext.html#PDOCContextInitPolicy" target="">PDOCContextInitPolicy</a> policy, <a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> otherCtx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> pdOCCfg)</div>
+<div class="summaryTableDescription">Initializes the ON-OFF states of all optional-content groups (OCGs) within an existing context. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDOCContext <a class="signatureLink" href="#PDOCContextMakeCopy9412()">PDOCContextMakeCopy</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Creates a new context object to represent an optional-content state of the document, using an existing context as a template.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDOCContext <a class="signatureLink" href="#PDOCContextMakeCopyWithAutoStateChanges9521()">PDOCContextMakeCopyWithAutoStateChanges</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> inCtx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> cfg, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> event)</div>
+<div class="summaryTableDescription">Creates a new context object that represents an optional-content state of the document, using an existing context as a template, but applying an automatic state change for the specified event. An automatic state change toggles all groups' ON-OFF states when the triggering event occurs.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDOCContext <a class="signatureLink" href="#PDOCContextNew9340()">PDOCContextNew</a>(<a href="PDOCContext.html#PDOCContextInitPolicy" target="">PDOCContextInitPolicy</a> policy, <a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> otherCtx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> pdOCCfg, <a href="PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc)</div>
+<div class="summaryTableDescription">Creates a context object that represents an optional-content state of the document, initializing it in the same way as PDOCContextInit(). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDOCContext <a class="signatureLink" href="#PDOCContextNewWithInitialState9455()">PDOCContextNewWithInitialState</a>(<a href="PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc)</div>
+<div class="summaryTableDescription">Creates a context object that represents an optional-content state of the document, using the current state as the initial state for each group (OCG), as determined by the document's optional-content configuration (returned by PDDocGetOCConfig(pdDoc)).</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDOCContext <a class="signatureLink" href="#PDOCContextNewWithOCDisabled9437()">PDOCContextNewWithOCDisabled</a>(<a href="PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc)</div>
+<div class="summaryTableDescription">Creates a context object that represents an optional-content state of the document, with the PDOCDrawEnumType property set to kPDOC_NoOC, so that no content marked as optional content is drawn, regardless of the visibility according to the OCGs and OCMDs.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextPopOCMD9816()">PDOCContextPopOCMD</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</div>
+<div class="summaryTableDescription">Pops the optional-content membership dictionary (OCMD) stack for an optional-content context. The stack is used to track nesting of optional-content states as contents are enumerated or drawn:</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextPushOCMD9784()">PDOCContextPushOCMD</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> pdOCContext, <a href="PDOCMD.html#PDOCMD" target="">PDOCMD</a> pdOCMD)</div>
+<div class="summaryTableDescription">Pushes a new optional-content membership dictionary (OCMD) onto the stack for an optional-content context.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextResetOCMDStack9754()">PDOCContextResetOCMDStack</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> pdOCContext)</div>
+<div class="summaryTableDescription">Clears the Optional Content Membership Dictionary (OCMD) stack for an optional-content context, and resets the current visibility for the context based on the context's non-OC drawing setting (see PDOCContextSetNonOCDrawing()). Call this method at the start of an enumeration or drawing operation that uses a given context.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextSetIntent9642()">PDOCContextSetIntent</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a>* intent)</div>
+<div class="summaryTableDescription">Sets the Intent entry in an optional-content context's Cos dictionary. An intent is an ASAtom value broadly describing the intended use, either View or Design.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextSetNonOCDrawing9686()">PDOCContextSetNonOCDrawing</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> drawNonOC)</div>
+<div class="summaryTableDescription">Sets the non-OC status for an optional-content context. Content that is not marked as optional content is drawn when NonOCDrawing is true, and not drawn when NonOCDrawing is false.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextSetOCDrawEnumType9597()">PDOCContextSetOCDrawEnumType</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType</a> dt)</div>
+<div class="summaryTableDescription">Sets the drawing and enumeration type for an optional-content context. This type, together with the visibility determined by the OCG and OCMD states, controls whether content that is marked as optional content is drawn or enumerated.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextSetOCGStates9491()">PDOCContextSetOCGStates</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCG.html#PDOCG" target="">PDOCG</a>* pdocgs, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* newStates)</div>
+<div class="summaryTableDescription">Sets the ON-OFF states for the given optional-content groups (OCGs) in the given optional-content context. The newStates array must be large enough to hold as many ASBool values as there are OCGs. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDOCContextWillChange2318()">PDOCContextWillChange</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCContext.html#PDOCContextChangeType" target="">PDOCContextChangeType</a> whatWillHappen, void* objects, void* clientData)</div>
+<div class="summaryTableDescription">An optional-content context is changing in a way that could affect the visibility state of content. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDOCContextXObjectIsVisible9858()">PDOCContextXObjectIsVisible</a>(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> pdOCContext, <a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a> obj)</div>
+<div class="summaryTableDescription">Tests whether an XObject form or image contained in obj is visible in the optional-content context. The method considers the context's current OCMD stack, optional-content group ON-OFF states, the non-OC drawing status, the drawing and enumeration type, the intent, and the specific OCG.</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="PDOCContext"></a><a name="PDOCContext5544"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContext</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_PDOCContext* PDOCContext;</code>
+</div>
+<br><p>A PDOCContext is an object that keeps track the on/off states of all of the OCGs in a document. There can be more than one PDOCContext object, representing different combinations of OCG states. The <a href="PDDoc.html" target="">PDDoc</a> contains an internal PDOCContext that is <a href="../PDF_Library/General.html#used" target="">used</a> for on-screen drawing and as the default state used for any other drawing or content enumeration. Clients can change the states of OCGs within any PDOCContext. Clients can build (and save in the PDF <a href="General.html#file" target="">file</a>) PDOCContext objects with their own combination of OCG states, and issue drawing or enumeration commands using their own PDOCContext instead of the document's internal PDOCContext. All discussion of <i>visibility</i> of content is therefore meant to be with respect to the OCG states stored in a specific PDOCContext. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5544</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Enumeration Detail</div>
+<a name="PDOCContextChangeType5645"></a><a name="PDOCContextChangeType"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextChangeType</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum PDOCContextChangeType {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#PDOCContextChangeTypekPDOCGState"><b>kPDOCGState</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDOCContextChangeTypekPDOCContextDrawEnumType"><b>kPDOCContextDrawEnumType</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDOCContextChangeTypekPDOCContextNonOCDrawing"><b>kPDOCContextNonOCDrawing</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDOCContextChangeTypekPDOCContextIntent"><b>kPDOCContextIntent</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDOCContextChangeTypekPDOCContextInit"><b>kPDOCContextInit</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kPDOC_LastContextChangeType</b>&nbsp;=&nbsp;kPDOCContextInit</td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5645</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="PDOCContextChangeTypekPDOCGState"></a>kPDOCGState&nbsp;&nbsp;</td><td><p>The OCGs' states are changing. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDOCContextChangeTypekPDOCContextDrawEnumType"></a>kPDOCContextDrawEnumType&nbsp;&nbsp;</td><td><p>The <a href="PDOCContext.html" target="">PDOCContext</a> object's PDDrawEnumType is changing. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDOCContextChangeTypekPDOCContextNonOCDrawing"></a>kPDOCContextNonOCDrawing&nbsp;&nbsp;</td><td><p>The <a href="PDOCContext.html" target="">PDOCContext</a> object's non-optional content drawing is changing. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDOCContextChangeTypekPDOCContextIntent"></a>kPDOCContextIntent&nbsp;&nbsp;</td><td><p>The <a href="PDOCContext.html" target="">PDOCContext</a> object's <a href="../PDFEdit_Layer/General.html#intent" target="">intent</a> is changing. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDOCContextChangeTypekPDOCContextInit"></a>kPDOCContextInit&nbsp;&nbsp;</td><td><p>The <a href="PDOCContext.html" target="">PDOCContext</a> is being reset using <a href="PDOCContext.html#PDOCContextInit()" target="">PDOCContextInit()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+</table>
+</div>
+<a name="PDOCContextInitPolicy5574"></a><a name="PDOCContextInitPolicy"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextInitPolicy</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum PDOCContextInitPolicy {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><b>kOCCInit_OFF</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kOCCInit_ON</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kOCCInit_FromOtherContext</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kOCCInit_FromConfig</b></td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5574</td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<br>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="PDOCContextApplyAutoStateChanges9578()"></a><a name="PDOCContextApplyAutoStateChanges()"></a><a name="PDOCContextApplyAutoStateChanges(PDOCContext,PDOCConfig,ASAtom)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextApplyAutoStateChanges</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDOCContextApplyAutoStateChanges(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ctx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> cfg, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> event)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Calls <a href="PDOCContext.html#PDOCContextFindAutoStateChanges()" target="">PDOCContextFindAutoStateChanges()</a> to find optional-content groups whose <code>ON-OFF</code> states should be toggled, based on usage application directives contained in the configuration's AS array, and applies the changes within the given context.</p><p>The AS array defines how usage entries are <a href="../PDF_Library/General.html#used" target="">used</a> to automatically manipulate the OCG states. It associates an event (<code>View</code>, <code>Print</code>, or <code>Export</code>) with a list of OCGs and a category, or list of usage keys identifying OCG usage dictionary entries. See the <i>PDF Reference</i>, and the <b>OCTextAutoStateSnip</b> example in the Snippet Runner.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ctx</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the visibility state is changed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cfg</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The configuration whose usage directives are <a href="../PDF_Library/General.html#used" target="">used</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">event</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The event for which an <code>ON-OFF</code> state is automatically changed. Events are <code>View</code>, <code>Export</code>, and <code>Print</code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if successful, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextFindAutoStateChanges()" target="">PDOCContextFindAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextMakeCopyWithAutoStateChanges()" target="">PDOCContextMakeCopyWithAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextClearAllUserOverrides()" target="">PDOCContextClearAllUserOverrides</a> <br><a href="PDOCG.html#PDOCGGetUserOverride()" target="">PDOCGGetUserOverride</a> <br><a href="PDOCG.html#PDOCGSetUserOverride()" target="">PDOCGSetUserOverride</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9578</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextClearAllUserOverrides10325()"></a><a name="PDOCContextClearAllUserOverrides()"></a><a name="PDOCContextClearAllUserOverrides(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextClearAllUserOverrides</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextClearAllUserOverrides(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ctx)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Removes usage override marks in all optional-content groups in the given context.</p><p>When an optional-content group is marked as having had its state set explicitly in a specified context, automatic state changes caused by the <code>View</code> event are prevented. When a group's automatic state change is caused by the <code>Export</code> or <code>Print</code> event, the user-override setting for the group is ignored. </p><p>A configuration's AS array defines how usage entries are used to automatically manipulate the OCG states. It associates an event (<code>View</code>, <code>Print</code>, or <code>Export</code>) with a list of OCGs and a category, or list of usage keys identifying OCG usage dictionary entries. See the <i>PDF Reference</i>, and the <b>OCTextAutoStateSnip</b> example in the Snippet Runner. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ctx</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the user override marks are removed. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCG.html#PDOCGGetUserOverride()" target="">PDOCGGetUserOverride</a> <br><a href="PDOCG.html#PDOCGSetUserOverride()" target="">PDOCGSetUserOverride</a> <br><a href="PDOCContext.html#PDOCContextApplyAutoStateChanges()" target="">PDOCContextApplyAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextFindAutoStateChanges()" target="">PDOCContextFindAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextMakeCopyWithAutoStateChanges()" target="">PDOCContextMakeCopyWithAutoStateChanges</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>10325</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextContentIsVisible9836()"></a><a name="PDOCContextContentIsVisible()"></a><a name="PDOCContextContentIsVisible(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextContentIsVisible</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDOCContextContentIsVisible(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether content is <a href="General.html#visible" target="">visible</a> in the optional-content context. The method considers the context's current OCMD stack, the group <code>ON-OFF</code> states, the non-OC drawing status, the drawing and enumeration type, and the intent.</p><p>Use this method in conjunction with the OCMD stack methods. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the visibility state is desired. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the content is visible, <code>false</code> otherwise.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD</a> <br><a href="PDOCContext.html#PDOCContextPushOCMD()" target="">PDOCContextPushOCMD</a> <br><a href="PDOCContext.html#PDOCContextResetOCMDStack()" target="">PDOCContextResetOCMDStack</a> <br><a href="PDOCContext.html#PDOCContextXObjectIsVisible()" target="">PDOCContextXObjectIsVisible</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9836</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextDidChange2345()"></a><a name="PDOCContextDidChange()"></a><a name="PDOCContextDidChange(PDOCContext,PDOCContextChangeType,void*,ASErrorCode,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextDidChange</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextDidChange(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCContext.html#PDOCContextChangeType" target="">PDOCContextChangeType</a> whatHappened, void* objects, <a href="../AS_Layer/Errors.html#ASErrorCode" target="">ASErrorCode</a> error, void* clientData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>An optional-content context changed in a way that could affect the visibility state of content. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="PDOCContext.html" target="">PDOCContext</a> whose visibility state changed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">whatHappened</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../AS_Layer/General.html#type" target="">type</a> of change that occurred. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">objects</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to the object that changed. The kind of object this can be depends on the <a href="../AS_Layer/General.html#type" target="">type</a> of change that occurred:</p><p>
+
+</p><table ><tr>
+<th>
+<p>Value</p>
+</th><th>
+<p>Type of object </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGCreate</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCG</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGDestroy</code>
+</p>
+</td><td valign="top">
+<p>
+<code>NULL</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGProperties</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCG</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCConfigChange</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCConfig</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCConfigCreate</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCConfig</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCConfigDestroy</code>
+</p>
+</td><td valign="top">
+<p>
+<code>NULL</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGReplace</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCG</code> (the replacement) </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDDocRemoveOC</code>
+</p>
+</td><td valign="top">
+<p>
+<code>NULL</code> </p>
+</td>
+</tr></table></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">error</span></code>&nbsp;&mdash;&nbsp;</td><td><p>If non-zero, indicates an <a href="General.html#error" target="">error</a> that occurred while setting the optional-content context. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">clientData</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> block of user-supplied <a href="#data" target="">data</a> that was passed when the client registered for this notification using <code>AVAppRegisterNotification()</code>. </p></td>
+</tr>
+</table>
+</p>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PIPokes.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2345</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextFindAutoStateChanges9549()"></a><a name="PDOCContextFindAutoStateChanges()"></a><a name="PDOCContextFindAutoStateChanges(PDOCContext,PDOCConfig,ASAtom)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextFindAutoStateChanges</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDOCG.html#PDOCG" target="">PDOCG</a> PDOCContextFindAutoStateChanges(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ctx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> cfg, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> event)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Finds optional-content groups whose <code>ON-OFF</code> states should be toggled in the context, based on usage application directives contained in the configuration's AS array.</p><p>The AS array defines how usage entries are <a href="../PDF_Library/General.html#used" target="">used</a> to automatically manipulate the OCG states. It associates an event (<code>View</code>, <code>Print</code>, or <code>Export</code>) with a list of OCGs and a category, or list of usage keys identifying OCG usage dictionary entries. See the <i>PDF Reference</i>, and the <b>OCTextAutoStateSnip</b> example in the Snippet Runner.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ctx</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the visibility state should be changed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cfg</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The configuration whose usage directives are <a href="../PDF_Library/General.html#used" target="">used</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">event</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The event for which an <code>ON-OFF</code> state is automatically changed. Events are <code>View</code>, <code>Export</code>, and <code>Print</code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated array of optional-content group objects. The client is responsible for freeing it using <a href="../AS_Layer/Memory_Allocation.html#ASfree()" target="">ASfree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextApplyAutoStateChanges()" target="">PDOCContextApplyAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextMakeCopyWithAutoStateChanges()" target="">PDOCContextMakeCopyWithAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextClearAllUserOverrides()" target="">PDOCContextClearAllUserOverrides</a> <br><a href="PDOCG.html#PDOCGGetUserOverride()" target="">PDOCGGetUserOverride</a> <br><a href="PDOCG.html#PDOCGSetUserOverride()" target="">PDOCGSetUserOverride</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9549</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextFree9350()"></a><a name="PDOCContextFree()"></a><a name="PDOCContextFree(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextFree</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextFree(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Destroys an optional-content context object and frees the associated memory as needed. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context object to free. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextInit()" target="">PDOCContextInit</a> <br><a href="PDOCContext.html#PDOCContextNew()" target="">PDOCContextNew</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9350</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextGetIntent9666()"></a><a name="PDOCContextGetIntent()"></a><a name="PDOCContextGetIntent(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextGetIntent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> PDOCContextGetIntent(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="../PDFEdit_Layer/General.html#intent" target="">intent</a> <a href="../PDF_Library/General.html#list" target="">list</a> for an optional-content context. An intent is an <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> <a href="General.html#value" target="">value</a> broadly describing the intended use, either <code>View</code> or <code>Design</code>.</p><p>A group's content is considered to be optional (that is, the group's state is considered in its visibility) if any intent in its list matches an intent of the context. The intent list of the context is usually set from the intent list of the document configuration. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which an <a href="../PDFEdit_Layer/General.html#intent" target="">intent</a> is desired. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An array containing <a href="../PDFEdit_Layer/General.html#intent" target="">intent</a> entries (<a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> objects) terminated by <a href="../AS_Layer/ASAtom.html#ASAtomNull" target="">ASAtomNull</a>. The client is responsible for freeing it using <a href="../AS_Layer/Memory_Allocation.html#ASfree()" target="">ASfree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextSetIntent()" target="">PDOCContextSetIntent</a> <br><a href="PDOCConfig.html#PDOCConfigGetIntent()" target="">PDOCConfigGetIntent</a> <br><a href="PDOCG.html#PDOCGGetIntent()" target="">PDOCGGetIntent</a> <br><a href="PDOCG.html#PDOCGUsedInOCConfig()" target="">PDOCGUsedInOCConfig</a> <br><a href="PDOCG.html#PDOCGUsedInOCContext()" target="">PDOCGUsedInOCContext</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9666</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextGetNonOCDrawing9707()"></a><a name="PDOCContextGetNonOCDrawing()"></a><a name="PDOCContextGetNonOCDrawing(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextGetNonOCDrawing</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDOCContextGetNonOCDrawing(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the non-OC drawing status for an optional-content context. Content that is not marked as optional content is drawn when NonOCDrawing is <code>true</code>, and not drawn when NonOCDrawing is <code>false</code>.</p><p>Together, this <a href="General.html#value" target="">value</a> and the <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType</a> value of the context determine how both optional and non-optional content on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a> is drawn or enumerated. See <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the non-OC drawing status is desired. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the context's NonOCDrawing is <code>true</code>, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextSetNonOCDrawing()" target="">PDOCContextSetNonOCDrawing</a> <br><a href="PDOCContext.html#PDOCContextGetOCDrawEnumType()" target="">PDOCContextGetOCDrawEnumType</a> <br><a href="PDOCContext.html#PDOCContextNewWithOCDisabled()" target="">PDOCContextNewWithOCDisabled</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9707</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextGetOCDrawEnumType9616()"></a><a name="PDOCContextGetOCDrawEnumType()"></a><a name="PDOCContextGetOCDrawEnumType(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextGetOCDrawEnumType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType</a> PDOCContextGetOCDrawEnumType(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the drawing and enumeration <a href="../AS_Layer/General.html#type" target="">type</a> for an optional-content context. This type, together with the visibility determined by the OCG and Optional Content Membership Dictionary (OCMD) states, controls whether content that is marked as optional content is drawn or enumerated.</p><p>Together, this <a href="General.html#value" target="">value</a> and the NonOCDrawing value of the context determine how both optional and non-optional content on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a> is drawn or enumerated. See <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the drawing and enumeration <a href="../AS_Layer/General.html#type" target="">type</a> is desired. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The drawing and enumeration <a href="../AS_Layer/General.html#type" target="">type</a> <a href="General.html#value" target="">value</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextGetNonOCDrawing()" target="">PDOCContextGetNonOCDrawing</a> <br><a href="PDOCContext.html#PDOCContextSetOCDrawEnumType()" target="">PDOCContextSetOCDrawEnumType</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9616</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextGetOCGStates9473()"></a><a name="PDOCContextGetOCGStates()"></a><a name="PDOCContextGetOCGStates(PDOCContext,PDOCG*,ASBool*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextGetOCGStates</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextGetOCGStates(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCG.html#PDOCG" target="">PDOCG</a>* pdocgs, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* states)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <code>ON-OFF</code> states for the given optional-content groups (OCGs) in the given optional-content context. It returns the states in the <code>states</code> array, which must be large enough to hold as many ASBool values as there are OCGs. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the OCG states are desired. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdocgs</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated array of optional-content groups whose states are obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">states</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) An array of OCG states corresponding to the array of OCGs, <code>true</code> for ON and <code>false</code> for <code>OFF</code>. The array must be large enough to hold as many states as there are non-<code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> OCGs. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextSetOCGStates()" target="">PDOCContextSetOCGStates</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9473</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextGetPDDoc9374()"></a><a name="PDOCContextGetPDDoc()"></a><a name="PDOCContextGetPDDoc(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextGetPDDoc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDDoc.html#PDDoc" target="">PDDoc</a> PDOCContextGetPDDoc(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the document that contains an optional-content context.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which <a href="#a" target="">a</a> document is desired. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The document object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocGetOCContext()" target="">PDDocGetOCContext</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9374</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextInit9393()"></a><a name="PDOCContextInit()"></a><a name="PDOCContextInit(PDOCContext,PDOCContextInitPolicy,PDOCContext,PDOCConfig)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextInit</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextInit(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCContext.html#PDOCContextInitPolicy" target="">PDOCContextInitPolicy</a> policy, <a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> otherCtx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> pdOCCfg)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Initializes the <code>ON-OFF</code> states of all optional-content groups (OCGs) within an existing context. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context to initialize. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">policy</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The initialization policy for the context. This <a href="General.html#value" target="">value</a> determines whether optional-content groups are initially <code>ON</code> or <code>OFF</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">otherCtx</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Another context from which to take initial OCG states when the policy is kPDOCInit_FromOtherContext. It is ignored for other policies. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdOCCfg</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A configuration from which to take initial OCG states when the policy is kPDOCInit_FromConfig. It is ignored for other policies. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextNew()" target="">PDOCContextNew</a> <br><a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9393</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextMakeCopy9412()"></a><a name="PDOCContextMakeCopy()"></a><a name="PDOCContextMakeCopy(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextMakeCopy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> PDOCContextMakeCopy(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new context object to represent an optional-content state of the document, using an existing context as a template.</p><p>This is the same as the following call: </p><p>
+<code>PDOCCOntextNew(kOCCInit_FromOtherContext, ocContext, <code>NULL</code>, PDOCContextGetPDDoc(ocContext)); </code>
+</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context to copy. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The new <a href="PDOCContext.html" target="">PDOCContext</a> object. The client is responsible for freeing the context using <a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocGetOCContext()" target="">PDDocGetOCContext</a> <br><a href="PDOCContext.html#PDOCContextInit()" target="">PDOCContextInit</a> <br><a href="PDOCContext.html#PDOCContextNew()" target="">PDOCContextNew</a> <br><a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9412</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextMakeCopyWithAutoStateChanges9521()"></a><a name="PDOCContextMakeCopyWithAutoStateChanges()"></a><a name="PDOCContextMakeCopyWithAutoStateChanges(PDOCContext,PDOCConfig,ASAtom)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextMakeCopyWithAutoStateChanges</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> PDOCContextMakeCopyWithAutoStateChanges(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> inCtx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> cfg, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> event)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new context object that represents an optional-content state of the document, using an existing context as a template, but applying an automatic state change for the specified event. An automatic state change toggles all groups' <code>ON-OFF</code> states when the triggering event occurs.</p><p>A configuration's AS array defines how usage entries are <a href="../PDF_Library/General.html#used" target="">used</a> to automatically manipulate the OCG states. It associates an event (<code>View</code>, <code>Print</code>, or <code>Export</code>) with a list of OCGs and a category, or list of usage keys identifying OCG usage dictionary entries. See the <i>PDF Reference</i>, and the <b>OCTextAutoStateSnip</b> example in the Snippet Runner. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inCtx</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context to copy. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cfg</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The configuration in which the automatic state change applies. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">event</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The event for which state will automatically change. Events are <code>View</code>, <code>Export</code>, and <code>Print</code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The new <a href="PDOCContext.html" target="">PDOCContext</a> object. The client is responsible for freeing the context using <a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextApplyAutoStateChanges()" target="">PDOCContextApplyAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextFindAutoStateChanges()" target="">PDOCContextFindAutoStateChanges</a> <br><a href="PDOCContext.html#PDOCContextClearAllUserOverrides()" target="">PDOCContextClearAllUserOverrides</a> <br><a href="PDOCG.html#PDOCGGetUserOverride()" target="">PDOCGGetUserOverride</a> <br><a href="PDOCG.html#PDOCGSetUserOverride()" target="">PDOCGSetUserOverride</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9521</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextNew9340()"></a><a name="PDOCContextNew()"></a><a name="PDOCContextNew(PDOCContextInitPolicy,PDOCContext,PDOCConfig,PDDoc)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextNew</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> PDOCContextNew(<a href="PDOCContext.html#PDOCContextInitPolicy" target="">PDOCContextInitPolicy</a> policy, <a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> otherCtx, <a href="PDOCConfig.html#PDOCConfig" target="">PDOCConfig</a> pdOCCfg, <a href="PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a context object that represents an optional-content state of the document, initializing it in the same way as <a href="PDOCContext.html#PDOCContextInit()" target="">PDOCContextInit()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">policy</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The initialization policy for the new context. This <a href="General.html#value" target="">value</a> determines whether optional-content groups (OCGs) are initially <code>ON</code> or <code>OFF</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">otherCtx</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Another context from which to take initial OCG states when the policy is kPDOCInit_FromOtherContext. It is ignored for other policies. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdOCCfg</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A configuration from which to take initial OCG states when the policy is kPDOCInit_FromConfig. It is ignored for other policies. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The document for which to create a context. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The new <a href="PDOCContext.html" target="">PDOCContext</a> object. The client is responsible for freeing the context using <a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextInit()" target="">PDOCContextInit</a> <br><a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9340</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextNewWithInitialState9455()"></a><a name="PDOCContextNewWithInitialState()"></a><a name="PDOCContextNewWithInitialState(PDDoc)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextNewWithInitialState</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> PDOCContextNewWithInitialState(<a href="PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a context object that represents an optional-content state of the document, using the current state as the initial state for each group (OCG), as determined by the document's optional-content configuration (returned by <code><a href="PDDoc.html#PDDocGetOCConfig()" target="">PDDocGetOCConfig</a>(<a href="../PDF_Library/General.html#pdDoc" target="">pdDoc</a>)</code>).</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The document for which to create a context. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The new <a href="PDOCContext.html" target="">PDOCContext</a> object. The client is responsible for freeing the context using <a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocGetOCConfig()" target="">PDDocGetOCConfig</a> <br><a href="PDOCContext.html#PDOCContextInit()" target="">PDOCContextInit</a> <br><a href="PDOCContext.html#PDOCContextNew()" target="">PDOCContextNew</a> <br><a href="PDOCContext.html#PDOCContextNewWithOCDisabled()" target="">PDOCContextNewWithOCDisabled</a> <br><a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9455</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextNewWithOCDisabled9437()"></a><a name="PDOCContextNewWithOCDisabled()"></a><a name="PDOCContextNewWithOCDisabled(PDDoc)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextNewWithOCDisabled</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> PDOCContextNewWithOCDisabled(<a href="PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a context object that represents an optional-content state of the document, with the <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType</a> property set to kPDOC_NoOC, so that no content marked as optional content is drawn, regardless of the visibility according to the OCGs and OCMDs.</p><p>Content that is not marked as optional content may still be drawn, depending on the NonOCDrawing property. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The document for which to create a context. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The new <a href="PDOCContext.html" target="">PDOCContext</a> object. The client is responsible for freeing the context using <a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextInit()" target="">PDOCContextInit</a> <br><a href="PDOCContext.html#PDOCContextNew()" target="">PDOCContextNew</a> <br><a href="PDOCContext.html#PDOCContextNewWithInitialState()" target="">PDOCContextNewWithInitialState</a> <br><a href="PDOCContext.html#PDOCContextFree()" target="">PDOCContextFree</a> <br><a href="PDOCContext.html#PDOCContextGetNonOCDrawing()" target="">PDOCContextGetNonOCDrawing</a> <br><a href="PDOCContext.html#PDOCContextGetOCDrawEnumType()" target="">PDOCContextGetOCDrawEnumType</a> <br><a href="PDOCContext.html#PDOCContextSetNonOCDrawing()" target="">PDOCContextSetNonOCDrawing</a> <br><a href="PDOCContext.html#PDOCContextSetOCDrawEnumType()" target="">PDOCContextSetOCDrawEnumType</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9437</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextPopOCMD9816()"></a><a name="PDOCContextPopOCMD()"></a><a name="PDOCContextPopOCMD(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextPopOCMD</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextPopOCMD(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Pops the optional-content membership dictionary (OCMD) stack for an optional-content context. The stack is <a href="../PDF_Library/General.html#used" target="">used</a> to track nesting of optional-content states as contents are enumerated or drawn:</p><p>
+
+</p><ul>
+<li>
+<p>Call the <a href="PDOCContext.html#PDOCContextPushOCMD()" target="">PDOCContextPushOCMD()</a> method when entering BDC for optional content or beginning to process a form or annotation that has a OC entry.  </p>
+</li>
+<li>
+<p>Call this method to pop the stack when encountering EMC, or finishing the processing of a form or annotation appearance.  </p>
+</li>
+</ul><p>To track nested content that is not for optional content, pass in <code>NULL</code> for pdOCMD when pushing the OCMD stack for BMC, patterns, and charprocs, for BDC with no optional content, or for forms or annotations that do not have an OC entry. When finished processing any of these objects, you can call <a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD()</a> without worrying about whether the content was optional. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which to pop the OCMD stack. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextPushOCMD()" target="">PDOCContextPushOCMD</a> <br><a href="PDOCContext.html#PDOCContextResetOCMDStack()" target="">PDOCContextResetOCMDStack</a> <br><a href="PDOCContext.html#PDOCContextContentIsVisible()" target="">PDOCContextContentIsVisible</a> <br><a href="PDOCContext.html#PDOCContextXObjectIsVisible()" target="">PDOCContextXObjectIsVisible</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9816</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextPushOCMD9784()"></a><a name="PDOCContextPushOCMD()"></a><a name="PDOCContextPushOCMD(PDOCContext,PDOCMD)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextPushOCMD</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextPushOCMD(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> pdOCContext, <a href="PDOCMD.html#PDOCMD" target="">PDOCMD</a> pdOCMD)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Pushes <a href="#a" target="">a</a> new optional-content membership dictionary (OCMD) onto the stack for an optional-content context.</p><p>The stack is <a href="../PDF_Library/General.html#used" target="">used</a> to track nesting of optional-content states as contents are enumerated or drawn. Call this method when entering the BDC for optional content or beginning to process a form or annotation that has a OC entry. Call <a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD()</a> when encountering an EMC, or finishing the processing of a form or annotation appearance. </p><p>To make it easier to track nested content that is not for optional content, pass <code>NULL</code> for pdOCMD when encountering BMC, patterns, and charprocs. Also pass <code>NULL</code> for a BDC with no optional content or for forms or annotations that do not have an OC entry. When finished processing any of these objects, you can call <a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD()</a> without worrying about whether the content was optional. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdOCContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context containing the OCMD stack.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdOCMD</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The OCMD to push onto the stack. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD</a> <br><a href="PDOCContext.html#PDOCContextResetOCMDStack()" target="">PDOCContextResetOCMDStack</a> <br><a href="PDOCContext.html#PDOCContextContentIsVisible()" target="">PDOCContextContentIsVisible</a> <br><a href="PDOCContext.html#PDOCContextXObjectIsVisible()" target="">PDOCContextXObjectIsVisible</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9784</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextResetOCMDStack9754()"></a><a name="PDOCContextResetOCMDStack()"></a><a name="PDOCContextResetOCMDStack(PDOCContext)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextResetOCMDStack</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextResetOCMDStack(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> pdOCContext)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Clears the Optional Content Membership Dictionary (OCMD) stack for an optional-content context, and resets the current visibility for the context based on the context's non-OC drawing setting (see <a href="PDOCContext.html#PDOCContextSetNonOCDrawing()" target="">PDOCContextSetNonOCDrawing()</a>). Call this method at the start of an enumeration or drawing operation that uses a given context.</p><p>The OCMD stack contains optional-content membership dictionary objects. The OCMD stack methods and the various methods that test visibility (such as <a href="PDAnnot.html#PDAnnotIsCurrentlyVisible()" target="">PDAnnotIsCurrentlyVisible()</a>) work together as content is being enumerated or drawn to determine whether particular graphical elements are visible or not. Visibility is based on the context's collection of <code>ON-OFF</code> states for optional-content groups, the context's current settings for NonOCDrawing and PDOCDrawEnumType, and the state of the OCMD stack. </p><p>Any custom drawing or enumerating code that needs to keep track of visibility of content must make a private copy of the PDOCContext if that context could be accessed by some other client, in order to avoid conflicting state changes. In particular, you must copy the document's default context (as returned by <a href="PDDoc.html#PDDocGetOCContext()" target="">PDDocGetOCContext()</a>). To enforce this, this reset method does nothing when given a document's default context. Similarly, the push and pop stack operations raise an error for the default context. </p><p>If you are using the PD-level draw and enumeration methods, you do not need to copy the context or explicitly call the OCMD stack methods, as the PD-level methods do this internally. </p><p>Clients of PDFEdit and other libraries that enumerate contents need to use these three methods when traversing the <a href="../PDFEdit_Layer/PDEContent.html" target="">PDEContent</a> structure. When entering a new PDEContent, call <a href="PDOCContext.html#PDOCContextPushOCMD()" target="">PDOCContextPushOCMD()</a> (passing an OCMD object or <code>NULL</code>). Upon finishing the traversal, call <a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdOCContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which to reset the OCMD stack. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD</a> <br><a href="PDOCContext.html#PDOCContextPushOCMD()" target="">PDOCContextPushOCMD</a> <br><a href="PDOCContext.html#PDOCContextContentIsVisible()" target="">PDOCContextContentIsVisible</a> <br><a href="PDOCContext.html#PDOCContextXObjectIsVisible()" target="">PDOCContextXObjectIsVisible</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9754</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextSetIntent9642()"></a><a name="PDOCContextSetIntent()"></a><a name="PDOCContextSetIntent(PDOCContext,ASAtom*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextSetIntent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextSetIntent(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a>* intent)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the Intent entry in an optional-content context's Cos dictionary. An <a href="../PDFEdit_Layer/General.html#intent" target="">intent</a> is an <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> <a href="General.html#value" target="">value</a> broadly describing the intended use, either <code>View</code> or <code>Design</code>.</p><p>A group's content is considered to be optional (that is, the group's state is considered in its visibility) if any intent in its <a href="../PDF_Library/General.html#list" target="">list</a> matches an intent of the context. The intent list of the context is usually set from the intent list of the document configuration. </p><p>It raises an exception if the context is busy. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which to set the <a href="../PDFEdit_Layer/General.html#intent" target="">intent</a>.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">intent</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The new Intent entry <a href="General.html#value" target="">value</a>, an array of atoms terminated with <a href="../AS_Layer/ASAtom.html#ASAtomNull" target="">ASAtomNull</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextGetIntent()" target="">PDOCContextGetIntent</a> <br><a href="PDOCConfig.html#PDOCConfigSetIntent()" target="">PDOCConfigSetIntent</a> <br><a href="PDOCG.html#PDOCGSetIntent()" target="">PDOCGSetIntent</a> <br><a href="PDOCG.html#PDOCGUsedInOCConfig()" target="">PDOCGUsedInOCConfig</a> <br><a href="PDOCG.html#PDOCGUsedInOCContext()" target="">PDOCGUsedInOCContext</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9642</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextSetNonOCDrawing9686()"></a><a name="PDOCContextSetNonOCDrawing()"></a><a name="PDOCContextSetNonOCDrawing(PDOCContext,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextSetNonOCDrawing</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextSetNonOCDrawing(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> drawNonOC)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the non-OC status for an optional-content context. Content that is not marked as optional content is drawn when NonOCDrawing is <code>true</code>, and not drawn when NonOCDrawing is <code>false</code>.</p><p>Together, this <a href="General.html#value" target="">value</a> and the <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType</a> value of the context determine how both optional and non-optional content on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a> is drawn or enumerated. See <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which to set the non-OC drawing status. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">drawNonOC</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The new <a href="General.html#value" target="">value</a> for the non-OC drawing status, <code>true</code> or <code>false</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextGetNonOCDrawing()" target="">PDOCContextGetNonOCDrawing</a> <br><a href="PDOCContext.html#PDOCContextGetOCDrawEnumType()" target="">PDOCContextGetOCDrawEnumType</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9686</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextSetOCDrawEnumType9597()"></a><a name="PDOCContextSetOCDrawEnumType()"></a><a name="PDOCContextSetOCDrawEnumType(PDOCContext,PDOCDrawEnumType)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextSetOCDrawEnumType</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextSetOCDrawEnumType(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType</a> dt)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the drawing and enumeration <a href="../AS_Layer/General.html#type" target="">type</a> for an optional-content context. This type, together with the visibility determined by the OCG and OCMD states, controls whether content that is marked as optional content is drawn or enumerated.</p><p>Together, this <a href="General.html#value" target="">value</a> and the NonOCDrawing value of the context determine how both optional and non-optional content on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a> is drawn or enumerated. See <a href="PDDoc.html#PDOCDrawEnumType" target="">PDOCDrawEnumType()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the drawing and enumeration <a href="../AS_Layer/General.html#type" target="">type</a> is desired. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dt</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The new drawing and enumeration <a href="../AS_Layer/General.html#type" target="">type</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextGetOCDrawEnumType()" target="">PDOCContextGetOCDrawEnumType</a> <br><a href="PDOCContext.html#PDOCContextSetNonOCDrawing()" target="">PDOCContextSetNonOCDrawing</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9597</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextSetOCGStates9491()"></a><a name="PDOCContextSetOCGStates()"></a><a name="PDOCContextSetOCGStates(PDOCContext,PDOCG*,ASBool*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextSetOCGStates</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextSetOCGStates(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCG.html#PDOCG" target="">PDOCG</a>* pdocgs, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* newStates)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the <code>ON-OFF</code> states for the given optional-content groups (OCGs) in the given optional-content context. The <code>newStates</code> array must be large enough to hold as many ASBool values as there are OCGs. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which the OCG states are set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdocgs</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated array of optional-content groups. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">newStates</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An array of new OCG states corresponding to the array of OCGs, <code>true</code> for ON and <code>false</code> for <code>OFF</code>. The array must contain as many states as there are non-<code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> OCGs in the <code>pdocgs</code> array. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextGetOCGStates()" target="">PDOCContextGetOCGStates</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9491</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextWillChange2318()"></a><a name="PDOCContextWillChange()"></a><a name="PDOCContextWillChange(PDOCContext,PDOCContextChangeType,void*,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextWillChange</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDOCContextWillChange(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> ocContext, <a href="PDOCContext.html#PDOCContextChangeType" target="">PDOCContextChangeType</a> whatWillHappen, void* objects, void* clientData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>An optional-content context is changing in a way that could affect the visibility state of content. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ocContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="PDOCContext.html" target="">PDOCContext</a> whose visibility state will change. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">whatWillHappen</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../AS_Layer/General.html#type" target="">type</a> of change that will occur. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">objects</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to the object that will change. The kind of object this can be depends on the <a href="../AS_Layer/General.html#type" target="">type</a> of change that will occur:</p><p>
+
+</p><table ><tr>
+<th>
+<p>Value</p>
+</th><th>
+<p>Type of object </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGCreate</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCG</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGDestroy</code>
+</p>
+</td><td valign="top">
+<p>
+<code>NULL</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGProperties</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCG</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCConfigChange</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCConfig</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCConfigCreate</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCConfig</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCConfigDestroy</code>
+</p>
+</td><td valign="top">
+<p>
+<code>NULL</code> </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDOCGReplace</code>
+</p>
+</td><td valign="top">
+<p>
+<code>PDOCG</code> (the replacement) </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>kPDDocRemoveOC</code>
+</p>
+</td><td valign="top">
+<p>
+<code>NULL</code> </p>
+</td>
+</tr></table></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">clientData</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> block of user-supplied <a href="#data" target="">data</a> that was passed when the client registered for this notification using <code>AVAppRegisterNotification()</code>. </p></td>
+</tr>
+</table>
+</p>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PIPokes.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2318</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDOCContextXObjectIsVisible9858()"></a><a name="PDOCContextXObjectIsVisible()"></a><a name="PDOCContextXObjectIsVisible(PDOCContext,CosObj)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDOCContextXObjectIsVisible</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDOCContextXObjectIsVisible(<a href="PDOCContext.html#PDOCContext" target="">PDOCContext</a> pdOCContext, <a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a> obj)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether an XObject form or image contained in <code>obj</code> is visible in the optional-content context. The method considers the context's current OCMD stack, optional-content group <code>ON-OFF</code> states, the non-OC drawing status, the drawing and enumeration type, the intent, and the specific OCG.</p><p>Use this method in conjunction with the OCMD stack methods. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdOCContext</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The context for which to test visibility.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">obj</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The external object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the external object is visible, <code>false</code> otherwise.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDOCContext.html#PDOCContextContentIsVisible()" target="">PDOCContextContentIsVisible</a> <br><a href="PDOCContext.html#PDOCContextPopOCMD()" target="">PDOCContextPopOCMD</a> <br><a href="PDOCContext.html#PDOCContextPushOCMD()" target="">PDOCContextPushOCMD</a> <br><a href="PDOCContext.html#PDOCContextResetOCMDStack()" target="">PDOCContextResetOCMDStack</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9858</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. <br>Tue Jun 23 2020, 12:30 AM GMT+05:30 </center>
+</div>
+</body>
+</html>
+<!-- Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. Tue Jun 23 2020, 12:30 AM GMT+05:30 -->

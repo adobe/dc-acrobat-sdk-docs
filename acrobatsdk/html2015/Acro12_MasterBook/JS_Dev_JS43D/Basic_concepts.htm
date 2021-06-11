@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Basic concepts</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_JS43D.fm" />
+ <link rel="stylesheet" href="JS_Dev_JS43D.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.16.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_JS43D/Interfacing_with_3D_JavaScript.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_JS43D/Getting_the_Annot3D_object_of_the_3D_annotation.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Interfacing with 3D JavaScript" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_28979_Basic_Concepts"></a>Basic concepts</h2>
+  <p class="BodyLevel1">To create 3D annotations and attach scripts to them using the JavaScript for 3D API you need <uservariable x-value="Acrobat&nbsp;Professional&nbsp;DC" x-showvalue="TRUE" name="AcrobatProfProd" x-format="AcrobatProfProd">Acrobat&nbsp;Professional&nbsp;DC</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;3D. Those scripts can run on <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;3D, <uservariable x-value="Acrobat&nbsp;Professional&nbsp;DC" x-showvalue="TRUE" name="AcrobatProfProd" x-format="AcrobatProfProd">Acrobat&nbsp;Professional&nbsp;DC</uservariable>, <uservariable x-value="Acrobat&nbsp;Standard&nbsp;DC" x-showvalue="TRUE" name="AcrobatStdProd" x-format="AcrobatStdProd">Acrobat&nbsp;Standard&nbsp;DC</uservariable>, and <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;for Windows and Mac OS platforms. Unless otherwise noted, all JavaScript objects, properties, and methods have support starting in version 7.0.</p>
+  <p class="BodyLevel1">When you create a 3D annotation, it has certain default behaviors that allow the user to interact with the 3D model. These behaviors, which are accessed through the 3D Annotation’s toolbar, are Rotate, Spin, Pan, Zoom, Measurement, Play/Pause Animation, Use Perspective/Orthographic Projection, Model Render Mode, Lighting Scheme, Background Color and Toggle Cross Section.</p>
+  <p class="BodyLevel1">If you wish to enhance the user’s 3D experience beyond the default behaviors, you must use the JavaScript API for 3D annotations. With the 3D JavaScript engine, you can specify the render modes and 3D matrix transformations of any of the individual meshes; set camera position, target, and field of view; detect mouse and keyboard events; control animations, and many more behaviors. The document <a href="../JS_3D_Intro/JS_3D_Intro.htm#XREF_99639_JavaScript_for"><span class="FM_HyperText">JavaScript for Acrobat 3D Annotations API Reference</span></a> is the complete reference for the JavaScript API for 3D annotations.</p>
+  <p class="BodyLevel1"><a name="IX_about_22"></a>The 3D JavaScript engine, which is distinct from the JavaScript engine for Acrobat, can be accessed in one of two ways: </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><a name="IX_default_script"></a>The primary way is by attaching a <span class="FM_Italic">default script</span>&#160;to the 3D annotation. This can be accomplished while placing a 3D annotation using the 3D Tool or on an existing 3D annotation by accessing its properties dialog box using the Select Object tool. This script will be run directly by the 3D JavaScript engine.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><a name="IX_accessing_2"></a><a name="IX_context3D"></a>Acrobat provides a mechanism to directly access the entire 3D JavaScript engine API from within Acrobat’s own scripting engine by means of the JavaScript <span class="FM_Courier">Annot3D.context3D</span>&#160;property. This allows the author to wire up elements on the PDF page, such as buttons and links, to manipulate the 3D content.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The second method is the primary focus of this chapter, but we must necessarily address the default script of the 3D annotation.</p>
+  </div>
+</body>
+</html>

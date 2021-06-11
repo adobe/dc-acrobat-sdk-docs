@@ -1,0 +1,1504 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="PDEContainer,,,,PDEContainerXAPMetadataDidChangeProc,PDEContainerGetXAPMetadata,PDEContainerSetXAPMetadata,PDEContainer,PDEBeginContainer,PDEEndContainer,PDEContainerGetMCTag,PDEContainerGetDict,PDEContainerGetContent,PDEBeginContainerGetMCTag,PDEBeginContainerGetDict,PDEContainerCreate,PDEContainerSetMCTag,PDEContainerSetDict,PDEContainerSetContent,PDEBeginContainerCreate,PDEBeginContainerSetMCTag,PDEBeginContainerSetDict,PDEEndContainerCreate" name="keywords">
+<title>PDFEdit_Layer.PDEContainer (PDFL)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'PDEContainer - PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?PDFEdit_Layer/PDEContainer.html&amp;PDFEdit_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">PDEContainer</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PDEContainer"); titleBar_setSubNav(false,true,false,false,false,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">PDFEdit_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">PDEContainer</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>
+        A group of PDEElements on <a href="#a" target="">a</a> <a href="../PDSEdit_Layer/General.html#page" target="">page</a> in a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. In the PDF file, containers are
+        delimited by Marked Content BMC/EMC or BDC/EMC pairs. Every PDEContainer
+        has a Marked Content tag associated with it. In addition to grouping a set of elements,
+        a BDC/EMC pair specifies a property <a href="../PDF_Library/General.html#list" target="">list</a> to be associated with the grouping. Thus a
+        PDEContainer corresponding to a BDC/EMC pair also has a property list dictionary
+        associated with it.
+      </p><p>
+        <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> and <a href="PDEContainer.html#PDEEndContainer" target="">PDEEndContainer</a> can be <a href="../PDF_Library/General.html#used" target="">used</a> to build a stream, and must be paired together.
+      </p><p>A PDEContainer contains a group of <a href="PDEElement.html" target="">PDEElement</a> objects on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a>. In the PDF <a href="../PD_Layer/General.html#file" target="">file</a>, containers are 
+delimited by the Marked Content operator pairs BMC/EMC or BDC/EMC. Every PDEContainer has a 
+Marked Content tag associated with it. In addition to grouping a set of elements, a BDC/EMC pair 
+specifies a property <a href="../PDF_Library/General.html#list" target="">list</a> to be associated with the grouping. Thus a PDEContainer corresponding to 
+a BDC/EMC operator pair also has a property list dictionary associated with it.
+</p><p>For example, the following PDF marking operators would correspond to a PDEContainer 
+that contains several paths and has the tag PathABC:</p><p><code>\PathABC BMC</code></p><p><code>1 g</code></p><p><code>84.96 745.2 449.28 -9.596 ref</code></p><p><code>1 g</code></p><p><code>427.957 153.071 m</code></p><p><code>435.4 153.071 441.436 159.107 441.436 166.549</code></p><p><code>c</code></p><p><code>441.436 173.993 435.4 180.028 427.957 180.028</code></p><p><code>c</code></p><p><code>420.514 180.028 414.479 173.993 414.479</code></p><p><code>166.549 c</code></p><p><code>414.479 159.107 420.514 153.071 427.957</code></p><p><code>153.071 c</code></p><p><code>b</code></p><p><code>EMC</code></p><p>A PDEContainer is itself a PDEElement, so a PDEContainer can contain other PDEContainer 
+objects, which would reflect nested marked content operator pairs.</p><p>Marked content is useful for adding structure information to a PDF file. For instance, a 
+<a href="../PDF_Library/General.html#text" target="">text</a> processing program may have <a href="../PD_Layer/General.html#font" target="">font</a> and <a href="../PD_Layer/General.html#style" target="">style</a> information associated with a paragraph. You may 
+want to retain this information in the PDF file, and marked content provides a means to do so.</p><p>See Section 10.5, <i>Marked Content</i>, in the <i>PDF Reference</i>, 
+for information on marked content and property lists.</p><p>A <a href="PDEPlace.html" target="">PDEPlace</a> object allows marking a single point in a PDF file with information rather than 
+marking a group of objects.</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDEBeginContainer">PDEBeginContainer</a>
+<div class="summaryTableDescription">The PDFEdit representation of the opening bracket of a marked-content sequence. Elements of this type must be paired with elements of type PDEEndContainer. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDEContainer">PDEContainer</a>
+<div class="summaryTableDescription">A group of PDEElement objects on a page in a PDF file. In the PDF file, containers are delimited by Marked Content BMC/EMC or BDC/EMC pairs. Every PDEContainer has a Marked Content tag associated with it. In addition to grouping a set of elements, a BDC/EMC pair specifies a property list to be associated with the grouping. Thus, a PDEContainer corresponding to a BDC/EMC pair also has a property list dictionary associated with it. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDEEndContainer">PDEEndContainer</a>
+<div class="summaryTableDescription">The PDFEdit representation of the closing bracket of a marked-content sequence. Elements of this type must be paired with elements of type PDEBeginContainer. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDEContainerXAPMetadataDidChangeProc92">PDEContainerXAPMetadataDidChangeProc</a>
+<div class="summaryTableDescription">Receives the notification that the XMP metadata describing a marked content sequence has changed.</div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDEBeginContainer <a class="signatureLink" href="#PDEBeginContainerCreate1831()">PDEBeginContainerCreate</a>(IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</div>
+<div class="summaryTableDescription">Creates a new PDEBeginContainer object. Call PDERelease to dispose of the returned PDEBeginContainer object when finished with it. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEBeginContainerGetDict2080()">PDEBeginContainerGetDict</a>(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer, OUT<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* dictP, OUT<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* isInlineP)</div>
+<div class="summaryTableDescription">Gets the property list dictionary associated with a PDEBeginContainer object. The property list is stored in a Cos dictionary. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASAtom <a class="signatureLink" href="#PDEBeginContainerGetMCTag2057()">PDEBeginContainerGetMCTag</a>(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer)</div>
+<div class="summaryTableDescription">Gets the marked content tag associated with a PDEBeginContainer object. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEBeginContainerSetDict1869()">PDEBeginContainerSetDict</a>(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* pdeBeginContainerDictP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</div>
+<div class="summaryTableDescription">Sets the property list for a PDEBeginContainer. The property list is passed as a Cos dictionary that can be emitted inline or referenced from the \Properties key in the \Resources dictionary of the containing stream.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEBeginContainerSetMCTag1845()">PDEBeginContainerSetMCTag</a>(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer, IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag)</div>
+<div class="summaryTableDescription">Sets the marked content tag for a PDEBeginContainer. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDEContainer <a class="signatureLink" href="#PDEContainerCreate1313()">PDEContainerCreate</a>(IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</div>
+<div class="summaryTableDescription">Creates a container object.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDEContent <a class="signatureLink" href="#PDEContainerGetContent1593()">PDEContainerGetContent</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer)</div>
+<div class="summaryTableDescription">Gets the PDEContent for a PDEContainer.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEContainerGetDict1576()">PDEContainerGetDict</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, OUT<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* placeDictP, OUT<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* isInline)</div>
+<div class="summaryTableDescription">Gets the Marked Content dictionary for a container. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASAtom <a class="signatureLink" href="#PDEContainerGetMCTag1554()">PDEContainerGetMCTag</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer)</div>
+<div class="summaryTableDescription">Gets the Marked Content tag for a container. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEContainerGetXAPMetadata310()">PDEContainerGetXAPMetadata</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, OUT<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a>* metadataASText)</div>
+<div class="summaryTableDescription">Gets the XMP metadata associated with a PDEContainer. If there is XMP metadata, it is returned as an ASText in the output parameter metadataASText. The ASText returned becomes the property of the client, which is free to alter or destroy it. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEContainerSetContent1370()">PDEContainerSetContent</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="PDEContent.html#PDEContent" target="">PDEContent</a> pdeContent)</div>
+<div class="summaryTableDescription">Sets the content for a container. The existing PDEContent is released by this method.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEContainerSetDict1351()">PDEContainerSetDict</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* placeDictP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</div>
+<div class="summaryTableDescription">Sets the Marked Content dictionary for a PDEContainer. The dictionary can be emitted inline or referenced from the \Properties key in the \Resources dictionary of the containing stream.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEContainerSetMCTag1328()">PDEContainerSetMCTag</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag)</div>
+<div class="summaryTableDescription">Sets the Marked Content tag for a PDEContainer. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEContainerSetXAPMetadata339()">PDEContainerSetXAPMetadata</a>(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc, IN<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> metadataASText)</div>
+<div class="summaryTableDescription">Sets the XMP metadata associated with a PDEContainer. Replaces the XMP metadata associated with pdeContainer with the XMP metadata stored in metadataASText. The contents of metadataASText must be well-formed XML and Resource Description Format (RDF), as defined by the W3C (see http://www.w3.org/RDF), that also forms valid XMP. PDEContainerSetXAPMetadtata() will not destroy metadataASText or alter its text. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDEEndContainer <a class="signatureLink" href="#PDEEndContainerCreate2210()">PDEEndContainerCreate</a>()</div>
+<div class="summaryTableDescription">Creates a new PDEEndContainer object. Call PDERelease to dispose of the returned PDEEndContainer object when finished with it. </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="PDEBeginContainer"></a><a name="PDEBeginContainer270"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEBeginContainer</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_PDEBeginContainer* PDEBeginContainer;</code>
+</div>
+<br><p>The PDFEdit representation of the opening bracket of a marked-content sequence. Elements of this <a href="../AS_Layer/General.html#type" target="">type</a> must be paired with elements of type <a href="PDEContainer.html#PDEEndContainer" target="">PDEEndContainer</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEElement.html" target="">PDEElement</a> (superclass) <br><a href="PDEContainer.html#PDEBeginContainerCreate()" target="">PDEBeginContainerCreate</a> <br><a href="PDEObject.html#PDERelease()" target="">PDERelease</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>270</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainer"></a><a name="PDEContainer245"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainer</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_PDEContainer* PDEContainer;</code>
+</div>
+<br><p>A group of <a href="PDEElement.html" target="">PDEElement</a> objects on <a href="#a" target="">a</a> <a href="../PDSEdit_Layer/General.html#page" target="">page</a> in a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. In the PDF file, containers are delimited by Marked Content BMC/EMC or BDC/EMC pairs. Every PDEContainer has a Marked Content tag associated with it. In addition to grouping a set of elements, a BDC/EMC pair specifies a property <a href="../PDF_Library/General.html#list" target="">list</a> to be associated with the grouping. Thus, a PDEContainer corresponding to a BDC/EMC pair also has a property list dictionary associated with it. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerCreate()" target="">PDEContainerCreate</a> <br><a href="PDEObject.html#PDERelease()" target="">PDERelease</a> </div>
+<p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/MTSerialNums/Sources/Watermark.cpp.html#272"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer = <a href="PDEContainer.html#PDEContainerCreate()" target="">PDEContainerCreate</a>(<a href="../AS_Layer/ASAtom.html#ASAtomFromString()" target="">ASAtomFromString</a>( "Watermark" ), <a href="../AS_Layer/General.html#NULL" target="">NULL</a>, false);</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>245</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEEndContainer"></a><a name="PDEEndContainer278"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEEndContainer</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_PDEEndContainer* PDEEndContainer;</code>
+</div>
+<br><p>The PDFEdit representation of the closing bracket of a marked-content sequence. Elements of this <a href="../AS_Layer/General.html#type" target="">type</a> must be paired with elements of type <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEElement.html" target="">PDEElement</a> (superclass) <br><a href="PDEContainer.html#PDEEndContainerCreate()" target="">PDEEndContainerCreate</a> <br><a href="PDEObject.html#PDERelease()" target="">PDERelease</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>278</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="PDEContainerXAPMetadataDidChangeProc92"></a><a name="PDEContainerXAPMetadataDidChangeProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerXAPMetadataDidChangeProc</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*PDEContainerXAPMetadataDidChangeProc)(<a href="PDEContainer.html" target="">PDEContainer</a> container, <a href="../AS_Layer/ASText.html" target="">ASText</a> newMetadata, void *data)</code>
+</div>
+<br><p>Receives the notification that the XMP metadata describing a marked content sequence has changed.</p><p>
+<span class="label">Notifications</span>
+</p>
+<div class="seeAlso">PDEContainerXAPMetadataDidChange </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDMetadataExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>92</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="PDEBeginContainerCreate1831()"></a><a name="PDEBeginContainerCreate()"></a><a name="PDEBeginContainerCreate(INASAtom,INCosObj*,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEBeginContainerCreate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> PDEBeginContainerCreate(IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> object. Call <a href="PDEObject.html#PDERelease()" target="">PDERelease</a> to dispose of the returned PDEBeginContainer object when finished with it. </p><p>Call <a href="PDEObject.html#PDERelease()" target="">PDERelease()</a> to dispose of the returned PDEBeginContainer object when finished with it.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">mcTag</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The tag <a href="../PDF_Library/General.html#name" target="">name</a> for the marked-content sequence. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cosObjP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (May be <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>) A CosDict object containing the property list for the sequence. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">isInline</span></code>&nbsp;&mdash;&nbsp;</td><td><p>If <code>true</code>, it emits the container's dictionary into the content stream inline. If <code>false</code>, then the dictionary is emitted outside of the content stream and referenced by name. See the Property Lists section in the <i>PDF Reference</i> for more details. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1831</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEBeginContainerGetDict2080()"></a><a name="PDEBeginContainerGetDict()"></a><a name="PDEBeginContainerGetDict(INPDEBeginContainer,OUTCosObj*,OUTASBool*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEBeginContainerGetDict</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEBeginContainerGetDict(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer, OUT<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* dictP, OUT<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* isInlineP)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the property <a href="../PDF_Library/General.html#list" target="">list</a> dictionary associated with a <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> object. The property list is stored in a Cos dictionary. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeBeginContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">dictP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) The property <a href="../PDF_Library/General.html#list" target="">list</a> associated with the <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">isInlineP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) If <code>true</code>, the dictionary is emitted into the page content stream inline. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if dictP points to a Cos dictionary; <code>false</code> otherwise.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType if <code>pdeBeginContainer</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> or not the right type.</div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">Either <code>dictP</code> or <code>isInlineP</code> may be <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if that information is not required. </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2080</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEBeginContainerGetMCTag2057()"></a><a name="PDEBeginContainerGetMCTag()"></a><a name="PDEBeginContainerGetMCTag(INPDEBeginContainer)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEBeginContainerGetMCTag</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> PDEBeginContainerGetMCTag(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the marked content tag associated with a <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> object. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeBeginContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The mark content tag. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEBeginContainerSetMCTag()" target="">PDEBeginContainerSetMCTag</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType if pdeBeginContainer is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> or not the right type. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2057</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEBeginContainerSetDict1869()"></a><a name="PDEBeginContainerSetDict()"></a><a name="PDEBeginContainerSetDict(INPDEBeginContainer,INCosObj*,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEBeginContainerSetDict</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEBeginContainerSetDict(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* pdeBeginContainerDictP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the property <a href="../PDF_Library/General.html#list" target="">list</a> for <a href="#a" target="">a</a> <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a>. The property list is passed as a Cos dictionary that can be <a href="../PDF_Library/General.html#emitted" target="">emitted</a> inline or referenced from the <code>\Properties</code> key in the <code>\Resources</code> dictionary of the containing stream.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeBeginContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeBeginContainerDictP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (May be <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>) The Cos dictionary containing the property list. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">isInline</span></code>&nbsp;&mdash;&nbsp;</td><td><p>If <code>true</code>, it emits the container's dictionary into the content stream inline. If <code>false</code>, then the dictionary is emitted outside of the content stream and referenced by name. See the <i>Property Lists</i> section in the <i>PDF Reference</i> for more details. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType is raised if <code>pdeBeginContainer</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> or not the right type. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">If cosObjP is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, the property list is cleared. </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1869</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEBeginContainerSetMCTag1845()"></a><a name="PDEBeginContainerSetMCTag()"></a><a name="PDEBeginContainerSetMCTag(INPDEBeginContainer,INASAtom)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEBeginContainerSetMCTag</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEBeginContainerSetMCTag(IN<a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> pdeBeginContainer, IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the marked content tag for a <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeBeginContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="PDEContainer.html#PDEBeginContainer" target="">PDEBeginContainer</a> object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">mcTag</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The tag <a href="../PDF_Library/General.html#name" target="">name</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType if <code>pdeBeginContainer</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> or is not the right type. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1845</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerCreate1313()"></a><a name="PDEContainerCreate()"></a><a name="PDEContainerCreate(INASAtom,INCosObj*,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerCreate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> PDEContainerCreate(IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a container object.</p><p>Call <a href="PDEObject.html#PDERelease()" target="">PDERelease()</a> to dispose of the returned container object when finished with it.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">mcTag</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The tag <a href="../PDF_Library/General.html#name" target="">name</a> for the container. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cosObjP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT An optional Marked Content dictionary for the container. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">isInline</span></code>&nbsp;&mdash;&nbsp;</td><td><p>If <code>true</code>, it emits the container's dictionary into the content stream inline. If <code>false</code>, then the dictionary is emitted outside of the content stream and referenced by name. See the Property Lists section in the <i>PDF Reference</i> for more details. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created container object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerGetMCTag()" target="">PDEContainerGetMCTag</a> <br><a href="PDEContainer.html#PDEContainerSetMCTag()" target="">PDEContainerSetMCTag</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">pdErrOpNotPermitted </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00040000 </div>
+<p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/MTSerialNums/Sources/Watermark.cpp.html#272"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer = <a href="PDEContainer.html#PDEContainerCreate()" target="">PDEContainerCreate</a>(<a href="../AS_Layer/ASAtom.html#ASAtomFromString()" target="">ASAtomFromString</a>( "Watermark" ), <a href="../AS_Layer/General.html#NULL" target="">NULL</a>, false);</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1313</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerGetContent1593()"></a><a name="PDEContainerGetContent()"></a><a name="PDEContainerGetContent(INPDEContainer)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerGetContent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDEContent.html#PDEContent" target="">PDEContent</a> PDEContainerGetContent(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="PDEContent.html" target="">PDEContent</a> for <a href="#a" target="">a</a> <a href="PDEContainer.html" target="">PDEContainer</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The container whose content is obtained.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="PDEContent.html" target="">PDEContent</a> for the <code>pdeContainer</code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerSetContent()" target="">PDEContainerSetContent</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">pdErrOpNotPermitted <br>peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00040000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">This method does not change the reference <a href="#count" target="">count</a> of the returned <a href="PDEContent.html" target="">PDEContent</a>. </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1593</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerGetDict1576()"></a><a name="PDEContainerGetDict()"></a><a name="PDEContainerGetDict(INPDEContainer,OUTCosObj*,OUTASBool*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerGetDict</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEContainerGetDict(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, OUT<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* placeDictP, OUT<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* isInline)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the Marked Content dictionary for a container. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A container. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">placeDictP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) The Marked Content dictionary for <code>pdeContainer</code>. <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if <code>pdeContainer</code> has no Marked Content dictionary. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">isInline</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) <code>true</code> if the dictionary is inline, <code>false</code> otherwise. It is undefined if <code>pdeContainer</code> has no Marked Content dictionary. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code>pdeContainer</code> has a Marked Content dictionary, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerSetDict()" target="">PDEContainerSetDict</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType <br><a href="../COS_Layer/General.html#cosErrInvalidObj" target="">cosErrInvalidObj</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1576</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerGetMCTag1554()"></a><a name="PDEContainerGetMCTag()"></a><a name="PDEContainerGetMCTag(INPDEContainer)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerGetMCTag</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> PDEContainerGetMCTag(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the Marked Content tag for a container. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A container. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The Marked Content tag of <code>pdeContainer</code>. It returns ASAtomNull if <code>pdeContainer</code> has no Marked Content tag. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerCreate()" target="">PDEContainerCreate</a> <br><a href="PDEContainer.html#PDEContainerSetMCTag()" target="">PDEContainerSetMCTag</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType <br>genErrBadParm </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1554</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerGetXAPMetadata310()"></a><a name="PDEContainerGetXAPMetadata()"></a><a name="PDEContainerGetXAPMetadata(INPDEContainer,OUTASText*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerGetXAPMetadata</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEContainerGetXAPMetadata(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, OUT<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a>* metadataASText)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the XMP metadata associated with a <a href="PDEContainer.html" target="">PDEContainer</a>. If there is XMP metadata, it is returned as an <a href="../AS_Layer/ASText.html" target="">ASText</a> in the output parameter <code>metadataASText</code>. The ASText returned becomes the property of the client, which is free to alter or destroy it. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The container whose metadata is retrieved.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">metadataASText</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) If there is XMP metadata, it is returned as an <a href="../AS_Layer/ASText.html" target="">ASText</a> object in this parameter. The ASText object returned becomes the property of the client, which is free to alter or destroy it. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> exactly when the <code>pdeContainer</code> has XMP metadata. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerSetXAPMetadata()" target="">PDEContainerSetXAPMetadata</a></div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#ErrSysPDModel" target="">ErrSysPDModel</a> <br>pdMetadataErrCouldntCreateMetaXAP <br>peErrWrongPDEObjectType <br><a href="../COS_Layer/General.html#cosErrInvalidObj" target="">cosErrInvalidObj</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso">PI_PDMETADATA_VERSION &gt;= 0x00050000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">The term <i>XAP</i> refers to an early internal code name for Adobe's Extensible Metadata Platform (XMP). For more information on this protocol, see the Adobe XMP specification.</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDMetadataProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>310</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerSetContent1370()"></a><a name="PDEContainerSetContent()"></a><a name="PDEContainerSetContent(INPDEContainer,INPDEContent)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerSetContent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEContainerSetContent(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="PDEContent.html#PDEContent" target="">PDEContent</a> pdeContent)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the content for <a href="#a" target="">a</a> container. The existing <a href="PDEContent.html" target="">PDEContent</a> is released by this method.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A container. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContent</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The content of <code>pdeContainer</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerGetContent()" target="">PDEContainerGetContent</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType <br>genErrBadParm </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00040000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">This method decrements the reference <a href="#count" target="">count</a> of the previous content of the container and increments the reference count of the new <a href="PDEContent.html" target="">PDEContent</a>. </div>
+<p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/MTSerialNums/Sources/Watermark.cpp.html#277"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="PDEContainer.html#PDEContainerSetContent()" target="">PDEContainerSetContent</a>( pdeContainer, textContent );</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1370</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerSetDict1351()"></a><a name="PDEContainerSetDict()"></a><a name="PDEContainerSetDict(INPDEContainer,INCosObj*,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerSetDict</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEContainerSetDict(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* placeDictP, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> isInline)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the Marked Content dictionary for a <a href="PDEContainer.html" target="">PDEContainer</a>. The dictionary can be <a href="../PDF_Library/General.html#emitted" target="">emitted</a> inline or referenced from the <code>\Properties</code> key in the <code>\Resources</code> dictionary of the containing stream.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The container whose dictionary is changed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">placeDictP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The Marked Content dictionary being set into <code>pdeContainer</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">isInline</span></code>&nbsp;&mdash;&nbsp;</td><td><p>If <code>true</code>, it emits the container's dictionary into the content stream inline. If <code>false</code>, then the dictionary is emitted outside of the content stream and referenced by name. See the <i>Property Lists</i> section in the <i>PDF Reference</i> for more details. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerGetDict()" target="">PDEContainerGetDict</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType <br>genErrBadParm </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1351</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerSetMCTag1328()"></a><a name="PDEContainerSetMCTag()"></a><a name="PDEContainerSetMCTag(INPDEContainer,INASAtom)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerSetMCTag</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEContainerSetMCTag(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> mcTag)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the Marked Content tag for a <a href="PDEContainer.html" target="">PDEContainer</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The container to tag. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">mcTag</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The Marked Content tag. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerCreate()" target="">PDEContainerCreate</a> <br><a href="PDEContainer.html#PDEContainerGetMCTag()" target="">PDEContainerGetMCTag</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType <br>genErrBadParm </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1328</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEContainerSetXAPMetadata339()"></a><a name="PDEContainerSetXAPMetadata()"></a><a name="PDEContainerSetXAPMetadata(INPDEContainer,INPDDoc,INASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEContainerSetXAPMetadata</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEContainerSetXAPMetadata(IN<a href="PDEContainer.html#PDEContainer" target="">PDEContainer</a> pdeContainer, IN<a href="../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc, IN<a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> metadataASText)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the XMP metadata associated with a <a href="PDEContainer.html" target="">PDEContainer</a>. Replaces the XMP metadata associated with <code>pdeContainer</code> with the XMP metadata stored in <code>metadataASText</code>. The contents of <code>metadataASText</code> must be well-formed XML and Resource Description Format (RDF), as defined by the W3C (see ), that also forms valid XMP. PDEContainerSetXAPMetadtata() will not destroy <code>metadataASText</code> or alter its text. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeContainer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The container whose metadata is set.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The document containing <code>pdeContainer</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">metadataASText</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Well-formed XML and RDF that also forms valid XMP. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEContainer.html#PDEContainerGetXAPMetadata()" target="">PDEContainerGetXAPMetadata</a></div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#ErrSysPDModel" target="">ErrSysPDModel</a> <br>peErrWrongPDEObjectType <br><a href="../COS_Layer/General.html#cosErrInvalidObj" target="">cosErrInvalidObj</a> </div>
+<p>
+<span class="label">Notifications</span>
+</p>
+<div class="seeAlso">PDEContainerXAPMetadataDidChange </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso">PI_PDMETADATA_VERSION &gt;= 0x00050000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">The term <i>XAP</i> refers to an early internal code name for Adobe's Extensible Metadata Platform (XMP). For more information on this protocol, see the Adobe XMP specification.</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDMetadataProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>339</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEEndContainerCreate2210()"></a><a name="PDEEndContainerCreate()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEEndContainerCreate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDEContainer.html#PDEEndContainer" target="">PDEEndContainer</a> PDEEndContainerCreate()</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="PDEContainer.html#PDEEndContainer" target="">PDEEndContainer</a> object. Call <a href="PDEObject.html#PDERelease()" target="">PDERelease</a> to dispose of the returned PDEEndContainer object when finished with it. </p><p>Call <a href="PDEObject.html#PDERelease()" target="">PDERelease()</a> to dispose of the returned PDEEndContainer object when finished with it.  </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2210</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. <br>Tue Jun 23 2020, 12:30 AM GMT+05:30 </center>
+</div>
+</body>
+</html>
+<!-- Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. Tue Jun 23 2020, 12:30 AM GMT+05:30 -->

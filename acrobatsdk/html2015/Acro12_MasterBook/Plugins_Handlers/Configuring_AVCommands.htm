@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Configuring AVCommands</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Handlers.fm" />
+ <link rel="stylesheet" href="Plugins_Handlers.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.12.1.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Handlers/Invoking_AVCommands.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Handlers/Running_commands.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Handlers > AVCommand handlers" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Configuring AVCommands</h3>
+  <p class="BodyLevel1">Prior to executing an <span class="FM_Courier">AVCommand</span>, you configure three categories of properties:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Input parameters (required)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Configuration parameters (optional - initialized to defaults)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">AVCommand parameters (optional - initialized to defaults)</p>
+</li>
+  </ul>
+  <h4><a name="TOC_Setting_input_parameters"></a>Setting input parameters</h4>
+  <p class="BodyLevel1">At minimum, you must configure input parameters. The command must be provided with a <span class="FM_Courier">PDDoc</span>&#160;object that represents the PDF document on which to operate, as shown in the following example. For information about a <span class="FM_Courier">PDDoc</span>&#160;object, see <a href="../Plugins_Documents/Creating_a_PDDoc_object.htm#XREF_97094_Creating_a_PDDoc">Creating a PDDoc object </a>.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Setting input parameters</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Create a PDDoc object based on the current PDF document</p>
+  <p class="FM_CodeReference">AVDoc avDoc = AVAppGetActiveDoc();</p>
+  <p class="FM_CodeReference">AVPageView pageView = AVDocGetPageView(avDoc);</p>
+  <p class="FM_CodeReference">PDPageNumber pageNum = AVPageViewGetPageNum(pageView);</p>
+  <p class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(avDoc);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an ASCab object to store input parameters</p>
+  <p class="FM_CodeReference">ASCab inputs = ASCabNew();</p>
+  <p class="FM_CodeReference">ASCabPutPointer (inputs, kAVCommandKeyPDDoc, PDDoc, pdDoc, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Set the input parameters</p>
+  <p class="FM_CodeReference">if (kAVCommandReady != AVCommandSetInputs(cmd, inputs)) {</p>
+  <p class="FM_CodeComment">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Handle error</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Destroy the ASCab container</p>
+  <p class="FM_CodeReference">ASCabDestroy (inputs);</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>For more information about the <span class="FM_Courier">AVCommandSetInputs</span>&#160;method, see the <span class="FM_HyperText"><a href="http://help.adobe.com/en_US/acrobat/acrobat_dc_sdk/2015/HTMLHelp/Acro12_MasterBook/API_References_SectionPage/API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a></span>.</p>
+  <h4><a name="TOC_Setting_configuration"></a>Setting configuration parameters</h4>
+  <p class="BodyLevel1">Optionally you can set configuration parameters. The default UI policy is for commands to be fully interactive. To invoke the command programmatically, create an <span class="FM_Courier">ASCab</span>&#160;object and populate it with the appropriate parameters, as shown in the following example.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Setting configuration parameters</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">// Create an ASCab object to store config parameters</p>
+  <p class="FM_CodeReference">ASCab config = ACabNew();</p>
+  <p class="FM_CodeReference">ASCabPutInt (config, &quot;UIPolicy&quot;, kAVCommandUISilent);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">if (kAVCommandReady != AVCommandSetConfig (cmd, config)) {</p>
+  <p class="FM_CodeComment">// Handle error </p>
+  <p class="FM_CodeReference">ASCabDestroy (config);</p>
+  <p class="FM_CodeReference">}</p>
+  <h4><a name="TOC_Setting_AVCommand"></a>Setting AVCommand parameters</h4>
+  <p class="BodyLevel1">An <span class="FM_Courier">AVCommand</span>&#160;parameter set is specific to each command. For example, the Document Summary command accepts values for these parameters: <span class="FM_Courier">Title</span>, <span class="FM_Courier">Subject</span>, <span class="FM_Courier">Author</span>, <span class="FM_Courier">Keywords</span>, <span class="FM_Courier">Binding</span>, and <span class="FM_Courier">LeaveAsIs</span>. (See the <span class="FM_HyperText"><a href="http://help.adobe.com/en_US/acrobat/acrobat_dc_sdk/2015/HTMLHelp/Acro12_MasterBook/API_References_SectionPage/API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a></span>.)</p>
+  <p class="BodyLevel1">You can create an <span class="FM_Courier">ASCab</span>&#160;object to store the appropriate parameters; then create empty <span class="FM_Courier">ASText</span>&#160;objects to hold the parameter values and place these values into the <span class="FM_Courier">ASCabs</span>&#160;object. The following example uses this approach to set the Document Summary <span class="FM_Courier">Title</span>&#160;and <span class="FM_Courier">Subject</span> values.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Setting AVCommand parameters</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">const char *docTitleValue = &quot;Document Title&quot;;</p>
+  <p class="FM_CodeReference">const char *docSubjectValue = &quot;Document Subject&quot;;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an ASCab object to hold command parameters</p>
+  <p class="FM_CodeReference">ASCab params = ASCabNew();</p>
+  <p class="FM_CodeReference">ASText text = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetEncoded(text, docTitleValue,(ASHostEncoding)PDGetHostEncoding());</p>
+  <p class="FM_CodeReference">ASCabPutText (params, docTitleValue, text);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Clear the ASText object</p>
+  <p class="FM_CodeReference">text = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetEncoded(text, docSubjectValue,(ASHostEncoding)PDGetHostEncoding());</p>
+  <p class="FM_CodeReference">ASCabPutText(params, docSubjectValue, text);</p>
+  </div>
+</body>
+</html>

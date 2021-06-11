@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"SecurityPolicy\" url=\"Acro12_MasterBook/JS_API_AcroJS/SecurityPolicy.htm\"><item name=\"SecurityPolicy properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/SecurityPolicy_properties.htm\" /></data>";

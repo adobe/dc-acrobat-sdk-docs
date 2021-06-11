@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Deleting bookmarks</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Bookmark.fm" />
+ <link rel="stylesheet" href="Plugins_Bookmark.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.9.2_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Bookmark/Retrieving_all_bookmarks.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Pages/Working_with_Page_Views_and_Contents.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Bookmarks" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="IX_PDBookmarkDestroy"></a><a name="IX_PDBookmarkDestroy_method"></a><a name="IX_deleting_bookmarks"></a><a name="IX_deleting_1"></a><a name="XREF_89164_Deleting_bookmarks"></a>Deleting bookmarks</h2>
+  <p class="BodyLevel1">You can use the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;core API to delete an existing bookmark. Deleting a bookmark deletes child bookmarks; however, PDF document content is not affected. To delete a bookmark, you must invoke the <span class="FM_Courier">PDBookmarkDestroy</span>&#160;method and pass a <span class="FM_Courier">PDBookmark</span>&#160;object that represents the bookmark to delete. For example, consider the bookmark structure shown in the following diagram.</p>
+  <p class="FM_GraphicBody"><img alt="A bookmark structure containing (in order) a parent and one child, and a parent and two children. Both parents are open." style=" width:100%; margin-bottom:0.000pt; max-width:182.000pt;" id="image1" src="bookmarkDel.jpg" />&nbsp;</p>
+  <p class="BodyLevel1">Assume, for example, that you want to delete the bookmark titled Copying LiveCycle Print files. Once you delete this bookmark, the API files and XDC files bookmarks are also deleted. To delete the Copying LiveCycle Print files bookmark, you must create a <span class="FM_Courier">PDBookmark</span>&#160;object that represents this bookmark and pass this object to the <span class="FM_Courier">PDBookmarkDestroy</span> method.</p>
+  <p class="BodyLevel1">The following code example deletes a bookmark. Included in this code example is application logic that retrieves a specific bookmark. (See <a href="Retrieving_a_specific_bookmark.htm#XREF_90691_Retrieving_a">Retrieving a specific bookmark</a>.)</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Deleting a bookmark</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Retrieve a bookmark whose title is Samples</p>
+  <p class="FM_CodeReference">PDBookmark rootBookmark, myBookmark;</p>
+  <p class="FM_CodeReference">char* bookmarkTitle = &quot;Copying LiveCycle Print files&quot;;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the root bookmark</p>
+  <p class="FM_CodeReference">rootBookmark = PDDocGetBookmarkRoot(myPDDoc);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Retrieve a specific bookmark</p>
+  <p class="FM_CodeReference">myBookmark = PDBookmarkGetByTitle(rootBookmark, bookmarkTitle, strlen(bookmarkTitle), -1);</p>
+  <p class="FM_CodeReference">if (PDBookmarkIsValid (myBookmark)) </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;The bookmark was retrieved&quot;);</p>
+  <p class="FM_CodeReference">else </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;The bookmark was not retrieved&quot;);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Delete this bookmark</p>
+  <p class="FM_CodeReference">PDBookmarkDestroy(myBookmark);</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>In the previous code example, a <span class="FM_Courier">PDDoc</span>&#160;object named <span class="FM_Courier">myPDDoc</span>&#160;is passed to the <span class="FM_Courier">PDDocGetBookmarkRoot</span>&#160;method. For information about creating this object, see <a href="../Plugins_Documents/Creating_a_PDDoc_object.htm#XREF_97094_Creating_a_PDDoc">Creating a PDDoc object </a>.</p>
+ </div>
+</body>
+</html>

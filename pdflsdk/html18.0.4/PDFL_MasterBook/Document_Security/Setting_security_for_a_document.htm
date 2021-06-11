@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Setting security for a document</title>
+
+ 
+
+ <link rel="stylesheet" href="Document_Security.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.11.2";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Document_Security/About_security_handlers.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Unicode_Paths/Unicode_Paths.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Working with Document Security" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="XREF_67978_Setting_security"></a>Setting security for a document</p>
+  <p dir="ltr" class="FM_Body"><span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;calls the new security handler’s <span class="FM_Courier">PDCryptUpdateSecurityDataProc</span>&#160;callback to present whatever user interface the security handler has for allowing the user to set security, passwords, and so forth.</p>
+  <p dir="ltr" class="FM_Body">When security is set, the security handler obtains the permissions and authorization data (such as passwords) to be used for the file. The settings do not take effect until the file is saved, as described in the previous section.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Saving_a_file_with_an"></a>Saving a file with an encryption dictionary</p>
+  <p dir="ltr" class="FM_Body">To save a file with a new encryption dictionary, use the following callbacks in the <span class="FM_Courier">PDCryptHandlerRec</span>:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">PDCryptNewSecurityDataProc</span>&#160;creates and initializes a security data structure. It is called with <span class="FM_Courier">encryptDict </span>(a Cos object) set either to NULL or to a valid encryption dictionary, in which case the fields of the encryption dictionary are read and placed into the security data structure. For information about a Cos object, see <a href="../Working_with_Cos_Objects/Working_with_Cos_Objects.htm#XREF_86959_Working_with_COS"><span class="FM_HyperText">Working with Cos Objects</span></a>.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">PDCryptUpdateSecurityDataProc</span>&#160;gets the current security data structure by invoking the <span class="FM_Courier">PDDocGetNewSecurityData</span>&#160;method. It then makes a copy of the structure with which to work. This new copy is freed if an error or cancel condition is encountered. The user is requested to log in to their PKI infrastructure to access the user’s keys and certificates.</p>
+  <p dir="ltr" class="FM_Indent1">If the security data structure was seeded with information from <span class="FM_Courier">encryptDict</span>, an internal authorize procedure is called. This procedure decrypts and examines the data fields in the security data structure copy that are set to indicate the user’s permissions and, possibly, information relating to the document symmetric key.</p>
+  <p dir="ltr" class="FM_Indent1">A user interface is provided to enable your plug-in to specify a list of recipients for the document. If all goes well, the <span class="FM_Courier">secDataP</span>&#160;argument to <span class="FM_Courier">PDCryptUpdateSecurityDataProc</span>&#160;is sent to the copy of the security data structure, and <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span> frees the original security data structure.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">PDCryptFillEncryptDictProc</span>&#160;writes data from the security data structure into the encryption dictionary. When <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;is done with the security data structure, it invokes the <span class="FM_Courier">PDCryptFreeSecurityDataPro</span>c method.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Opening_an_encrypted_file"></a>Opening an encrypted file</p>
+  <p dir="ltr" class="FM_Body">The following callbacks are used when opening an encrypted file:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">PDCryptNewSecurityDataPr</span>oc is invoked as described in the previous section.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">PDCryptAuthorizeExProc</span>&#160;is invoked and returns NULL since the authorization permissions have not been determined. This callback should not present a user interface.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The plug-in does not use the authorization data structure, but instead only the security data structure. It calls an internal authorization procedure that determines the authorization level of the logged-in user. This authorization procedure is the same procedure as is called by <span class="FM_Courier">PDCryptUpdateSecurityDataProc</span> in the previous section.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">PDCryptAuthorizeEx</span>&#160;or <span class="FM_Courier">PDCryptAuthorize</span>. The authorization permissions have now been established (by the call to get the authorization data) and are returned. <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span> opens the file.</p>
+ </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

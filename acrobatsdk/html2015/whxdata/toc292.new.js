@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Basic concepts","url":"Acro12_MasterBook/JS_Dev_JS43D/Basic_concepts.htm"},{"type":"book","name":"Getting the Annot3D object of the 3D annotation","key":"toc293","url":"Acro12_MasterBook/JS_Dev_JS43D/Getting_the_Annot3D_object_of_the_3D_annotation.htm"},{"type":"item","name":"Using the default script of a 3D annotation","url":"Acro12_MasterBook/JS_Dev_JS43D/Using_the_default_script_of_a_3D_annotation.htm"},{"type":"item","name":"Initializing upon activation","url":"Acro12_MasterBook/JS_Dev_JS43D/Initializing_upon_activation.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

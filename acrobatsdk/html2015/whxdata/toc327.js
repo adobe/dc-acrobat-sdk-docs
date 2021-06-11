@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"Collab\" url=\"Acro12_MasterBook/JS_API_AcroJS/Collab.htm\"><book name=\"Collab methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/Collab_methods.htm\" src=\"toc328.js\" /></data>";

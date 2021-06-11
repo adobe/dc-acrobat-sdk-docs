@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Setting the activation dictionary</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_3D_samples.fm" />
+ <link rel="stylesheet" href="Plugins_3D_samples.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.18.1.1_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_3D_samples/Setting_the_annotation_appearance.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_A3D_API/Parsing_and_Creating_PRC_Files.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating 3D Annotations > Adding 3D data to an annotation" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_16449_Setting_the"></a>Setting the activation dictionary</h3>
+  <p class="BodyLevel1">The optional <span class="FM_Courier">3DA</span>&#160;entry of the 3D annotation specifies an <span class="FM_Italic">activation dictionary</span>&#160;whose entries indicate when the annotation should be activated and deactivated and the state of the 3D content at these times. </p>
+  <p class="BodyLevel1">When an annotation is inactive, it displays its normal appearance. (See <a href="Setting_the_annotation_appearance.htm#XREF_59797_Setting_the">Setting the annotation appearance</a>.) When it is activated, one of its views (specified by the <span class="FM_Courier">3DV</span>&#160;entry) is displayed. </p>
+  <p class="BodyLevel1">First the dictionary is created and set as the <span class="FM_Courier">3DA</span> entry of the 3D annotation:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObj activationDict = CosNewDict(CosObjGetDoc(cosAnnot), false, 1);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString (cosAnnot, &quot;3DA&quot;, activationDict);</p>
+  <p class="BodyLevel1">It is not necessary to set any entries whose default values are acceptable. Here the non-default entries are set.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">DIS</span>&#160;entry of the activation dictionary specifies the state of the 3D content when it is deactivated. In this case, it is set to <span class="FM_Courier">I</span>, meaning that it should be instantiated. (The default is <span class="FM_Courier">U</span> for uninstantiated.)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString (activationDict, &quot;DIS&quot;, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewNameFromString (cosDoc, false, &quot;I&quot;));</p>
+  <p class="BodyLevel1">The code provides a variable to determine the value of the <span class="FM_Courier">A</span>&#160;entry. The default value is <span class="FM_Courier">XA</span>, meaning that the annotation needs to be explicitly activated. <span class="FM_Courier">PO</span>&#160;means that the annotation should be activated as soon as the page containing the annotation is opened:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Optional activation choice</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if(gbShowDefaultViewWhenOpenPage == true)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(activationDict, &quot;A&quot;, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewNameFromString (cosDoc, false, &quot;PO&quot;));</p>
+ </div>
+</body>
+</html>

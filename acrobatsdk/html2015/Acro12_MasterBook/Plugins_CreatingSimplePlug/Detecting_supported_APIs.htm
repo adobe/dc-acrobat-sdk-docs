@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Detecting supported APIs</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_CreatingSimplePlug.fm" />
+ <link rel="stylesheet" href="Plugins_CreatingSimplePlug.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.3.4.0_5";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_CreatingSimplePlug/Upgrading_plug-in_projects_on_Mac_OS_Acrobat_7_to_Acrobat_8.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_CreatingSimplePlug/Migrating_a_PDF_Library_application_from_CodeWarrior_to_Xcode.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Plug-in and PDF Library Applications > Upgrading existing plug-ins" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Detecting supported APIs</h3>
+  <p class="BodyLevel1"><uservariable x-value="Acrobat&nbsp;Professional&nbsp;DC" x-showvalue="TRUE" name="AcrobatProfProd" x-format="AcrobatProfProd">Acrobat&nbsp;Professional&nbsp;DC</uservariable>&#160;and <uservariable x-value="Acrobat&nbsp;Pro&nbsp;Extended" x-showvalue="TRUE" name="AcrobatProExtProd" x-format="AcrobatProExtProd">Acrobat&nbsp;Pro&nbsp;Extended</uservariable>&#160;support the full set of APIs. For <uservariable x-value="Acrobat&nbsp;Standard&nbsp;DC" x-showvalue="TRUE" name="AcrobatStdProd" x-format="AcrobatStdProd">Acrobat&nbsp;Standard&nbsp;DC</uservariable>&#160;and <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>, if you try to use an API that is not supported, nothing will happen. The same HFT version numbers are used across products, so all APIs are callable on all products, but some APIs simply do not work on certain products. </p>
+  <p class="BodyLevel1">Additionally, the Extended APIs provided by plug-ins do not work if an <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;product does not support the use of those APIs. The HFTs do not load, so you must check whether the HFT was successfully imported.</p>
+  <p class="BodyLevel1">It is possible to determine in your code whether the HFT you are expecting is in fact the one that you are importing, and whether it imported at all: simply check for a <span class="FM_Courier">NULL</span>&#160;return value. For example, a <span class="FM_Courier">NULL</span>&#160;will be returned in the following call if <span class="FM_Courier">AcroColorHFTNAME</span> with the specified version is not available:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gAcroColorHFT = ASExtensionMgrGetHFT(ASAtomFromString(AcroColorHFTNAME),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PI_ACROCOLOR_VERSION);</p>
+  <p class="BodyLevel1">Plug-ins that use new HFTs introduced with the current <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;version do not run on earlier <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;versions. Whether or not an attempt to load these HFTs forces the plug-in to fail is controlled by flags in PIMain.c of the form<span class="FM_Courier"> PI_HFT_OPTIONAL</span>. By default, these flags are undefined, so if your plug-in attempts to load HFT and cannot, initialization fails. If you define <span class="FM_Courier">PI_HFT_OPTIONAL</span>&#160;with some value (preferably 1) and the load is not successful, initialization continues.</p>
+  <p class="BodyLevel1">Use the <span class="FM_Courier">ASGetConfiguration</span>&#160;method to determine the configuration on which the plug-in is running. Use conditional logic in your code so that it makes calls only to APIs that are supported on that particular configuration. In any case, your code should check for <span class="FM_Courier">NULL</span>&#160;HFTs so that it does not call APIs that are not supported on the current configuration.</p>
+  <p class="BodyLevel1">Under <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>, when a rights-enabled PDF file is opened, a flag is set that allows a plug-in to use APIs that become enabled as a result of loading the rights-enabled PDF. Familiarize yourself with the features available on the different configurations of <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;to ensure that you install plug-in menus and toolbars appropriately at initialization. Ensure that you make calls only to APIs supported on the platform detected.</p>
+  </div>
+</body>
+</html>

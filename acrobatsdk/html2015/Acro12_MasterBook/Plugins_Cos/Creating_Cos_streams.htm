@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating Cos streams</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Cos.fm" />
+ <link rel="stylesheet" href="Plugins_Cos.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.17.6.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Cos/Working_with_Cos_streams.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Cos/Populating_a_PDF_document_with_a_content_stream.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Cos Objects > Working with Cos streams" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_cos_streams_1"></a>Creating Cos streams</h3>
+  <p class="BodyLevel1">You can create a data stream in memory and then insert the stream into a PDF document page. The following diagram shows the result of a data stream that creates a thin black line segment being inserted into a PDF document.</p>
+  <p class="FM_GraphicBody"><img alt="lineStream.jpg" style=" width:100%; margin-bottom:0.000pt; max-width:157.077pt;" id="image0" src="lineStream.jpg" />&nbsp;</p>
+  <p class="BodyLevel1">The following example shows the syntax of a stream that creates a thin line segment:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>150 250 m 150 350 l S</p>
+  <p class="BodyLevel1">In contrast, the following example shows the syntax of a stream that inserts the text <span class="FM_Courier">Hello</span>&#160;<span class="FM_Courier">There</span>&#160;into a PDF document:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>BT /F0 1 Tf 24 0 0 24 36 756 Tm 0 Tr 0 g 0 Tc 0 Tw \(Hello There) Tj ET</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>For information about stream syntax, see the <uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable><span class="FM_Italic"></span>. This reference is available within the portfolio called <span class="FM_HyperText"><a href="www.adobe.com/go/acrobatsdk_pdf_reference">PDF Reference and Related Documentation</a></span>, which is located at the <span class="FM_HyperText"><a href="http://www.adobe.com/go/pdf_developer">Adobe PDF Technology Center</a></span>.</p>
+  <h4><a name="TOC_Creating_a_stream"></a><a name="IX_cos_stream_dictionary"></a><a name="XREF_71942_Creating_a_stream"></a>Creating a stream dictionary</h4>
+  <p class="BodyLevel1">Each Cos stream has a stream dictionary that contains a <span class="FM_Courier">Length</span>&#160;entry that indicates how many bytes are used for the stream’s data (if the stream has a filter, the <span class="FM_Courier">Length</span>&#160;entry is the number of bytes of encoded data). A limit of 4096 bytes exists for the <span class="FM_Courier">Length</span>&#160;entry. A stream dictionary also has optional entries that are not discussed in this section. For more information about stream dictionaries, see the <span class="FM_Italic"><uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable></span>.</p>
+  <p class="BodyLevel1">In addition, most filters are defined so that the data is self-limiting; that is, they use an encoding scheme in which an explicit end-of-data (EOD) marker delimits the extent of the data. Finally, streams are used to represent many objects from whose length attributes can be inferred. All of these constraints must be consistent.</p>
+  <p class="BodyLevel1">For example, an image with 10 rows and 20 columns, using a single color component and 8 bits per component, requires exactly 200 bytes of image data. If the stream uses a filter, there must be enough bytes of encoded data in the PDF file to produce those 200 bytes. An error occurs if the <span class="FM_Courier">Length</span>&#160;entry is too small, if an explicit EOD marker occurs too soon, or if the decoded data does not contain 200 bytes. It is also an error if the stream contains too much data, with the exception that there may be an extra end-of-line marker in the PDF file before the <span class="FM_Courier">endstream</span>&#160;keyword. All streams created in this section have a stream dictionary defined.</p>
+  <p class="BodyLevel1">For each stream that you want to insert into a PDF document, create a stream dictionary that contains at least the <span class="FM_Courier">Length</span> entry, as shown in the following example:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&lt;&lt;/Length 100&gt;&gt;</p>
+  <h6>To create a stream dictionary with the Length entry defined:</h6>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosDoc</span>&#160;object that represents a PDF file by invoking the <span class="FM_Courier">PDDocGetCosDoc</span> method.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create an <span class="FM_Courier">ASUns32</span> object that represents the stream length.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosObj</span>&#160;object that represents the length of the stream by invoking the <span class="FM_Courier">CosNewInteger</span>&#160;method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">CosDoc</span> object that you created in step 1.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">ASBool</span>&#160;object that specifies whether the <span class="FM_Courier">CosObj</span>&#160;object is an indirect or direct object. If <span class="FM_Courier">true</span>, the string is an indirect object. If <span class="FM_Courier">false</span>, the string is a direct object. (See <a href="About_direct_and_indirect_objects.htm#XREF_86862_About_direct_and">About direct and indirect objects</a>.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The <span class="FM_Courier">ASUns32</span> object created in step 2 that represents the stream length.</p>
+</li>
+  </ul>
+  <p class="FM_Indent1">The <span class="FM_Courier">CosNewInteger</span>&#160;method returns a <span class="FM_Courier">CosObj</span> object that represents the stream length.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosObj</span>&#160;object that represents the Cos dictionary. (See <a href="Creating_Cos_dictionaries.htm#XREF_10844_Creating_a_Cos">Creating Cos dictionaries</a>.) </p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Set the stream dictionary key and value by invoking the <span class="FM_Courier">CosDictPutKeyString</span>&#160;method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">The <span class="FM_Courier">CosObj</span>&#160;object that you created in step 4 that represents the dictionary. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">A character pointer that specifies the name of the key, which in this situation is <span class="FM_Courier">Length</span>. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The <span class="FM_Courier">CosObj</span> object created in step 3 that specifies the length of the stream.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The following code example creates a stream dictionary. The first part of this code example creates a <span class="FM_Courier">PDPage</span>&#160;object by using an <span class="FM_Courier">AVDoc</span>&#160;object. For information about this application logic, see <a href="../Plugins_Pages/Creating_a_PDEContent_object.htm#XREF_91421_Creating_a">Creating a PDEContent object</a>. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Creating a stream dictionary</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Create a PDPage object using the current page</p>
+  <p class="FM_CodeReference">AVDoc avDoc = AVAppGetActiveDoc();</p>
+  <p class="FM_CodeReference">AVPageView pageView = AVDocGetPageView(avDoc);</p>
+  <p class="FM_CodeReference">PDPageNumber pageNum = AVPageViewGetPageNum(pageView);</p>
+  <p class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(avDoc); </p>
+  <p class="FM_CodeReference">PDPage pdPage = PDDocAcquirePage(pdDoc, pageNum);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Use the PDPage object to get the CosDoc object</p>
+  <p class="FM_CodeReference">CosDoc cd = PDDocGetCosDoc(PDPageGetDoc(pdPage));</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Define a stream to draw a line</p>
+  <p class="FM_CodeReference">char buf [500]; </p>
+  <p class="FM_CodeReference">sprintf(buf,&quot;150 250 m 150 350 l S&quot;);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the stream length</p>
+  <p class="FM_CodeReference">ASUns32 streamLength = (ASUns32)strlen(buf);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a CosObj object that represents the stream length</p>
+  <p class="FM_CodeReference">CosObj LengthEntry = CosNewInteger(cd, false,streamLength);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a CosObj that represents a stream dictionary</p>
+  <p class="FM_CodeComment">//and sets its key-value pairs</p>
+  <p class="FM_CodeReference">CosObj AttrDict = CosNewDict(cd, false, 5);</p>
+  <p class="FM_CodeReference">char *Length_KStr = &quot;Length&quot;;</p>
+  <p class="FM_CodeReference">CosDictPutKeyString(AttrDict, Length_KStr, LengthEntry);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Determine if the stream dictionary is valid</p>
+  <p class="FM_CodeReference">if (CosObjEqual (AttrDict, CosNewNull ()) == true)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;The attributes dictionary could not be created.&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return;</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>This code example creates a <span class="FM_Courier">CosObj</span>&#160;object named <span class="FM_Courier">AttrDict</span> that represents a stream dictionary.</p>
+  <h4><a name="TOC_Inserting_a_Cos_stream"></a><a name="IX_inserting_a_cos_stream"></a>Inserting a Cos stream into a PDF document</h4>
+  <p class="BodyLevel1">When inserting a stream into a PDF document, ensure that the stream is valid; otherwise, a run-time error occurs. This section explains how to create a stream that draws a thin black line segment and then inserts the stream into the current PDF page. </p>
+  <h6>To insert a stream into the current PDF document page:</h6>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">PDPage</span>&#160;object that represents the current PDF page. (See <a href="../Plugins_Pages/Creating_a_PDEContent_object.htm#XREF_91421_Creating_a">Creating a PDEContent object</a>.)</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosDoc</span>&#160;object that represents a PDF file by invoking the <span class="FM_Courier">PDDocGetCosDoc</span> method.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Define the stream that draws a thin black line segment. You can populate a character array with a stream by invoking the <span class="FM_Courier">sprintf</span> method.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create an <span class="FM_Courier">ASUns32</span> object that represents the stream length.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosObj</span>&#160;object that represents the stream dictionary. (See <a href="#XREF_71942_Creating_a_stream">Creating a stream dictionary</a>.)</p>
+  <p class="FM_Step"><a name="IX_ASMemStmRdOpen"></a><a name="IX_ASMemStmRdOpen_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>6.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Read the stream into memory by invoking the <span class="FM_Courier">ASMemStmRdOpen</span>&#160;method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">A character pointer that contains the data stream</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">ASUns32</span> object that specifies the stream length</p>
+</li>
+  </ul>
+  <p class="FM_Indent1">This method returns an <span class="FM_Courier">ASStm</span> object that represents an in-memory data stream.</p>
+  <p class="FM_Step"><a name="IX_CosNewStream"></a><a name="IX_CosNewStream_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>7.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a new Cos stream that is based on data located in the <span class="FM_Courier">ASStm</span>&#160;object by invoking the <span class="FM_Courier">CosNewStream</span> method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">CosDoc</span>&#160;object that specifies the PDF document in which the Cos stream is inserted (pass the <span class="FM_Courier">CosDoc</span> object created in step 2).</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">ASBool</span>&#160;object that specifies whether the Cos stream is an indirect object. Because all streams are indirect objects, this argument must be set to <span class="FM_Courier">true</span>. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">ASStm</span>&#160;object that contains the stream data (pass the <span class="FM_Courier">ASStm</span>&#160;object created in step 6). </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">CosStreamStartAndCode</span>&#160;object that specifies the byte offset from which data reading starts. You can pass <span class="FM_Courier">0</span>&#160;to ensure that data reading starts at the beginning of the stream. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">ASBool</span>&#160;object that specifies whether the data is encoded using filters specified in the stream dictionary before it is written to the Cos stream.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">CosObj</span>&#160;object that represents the stream dictionary (pass the <span class="FM_Courier">CosObj</span>&#160;object created in step 5). </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">CosObj</span>&#160;object that represents the parameters that are used by the encoding filter if the source data is encoded before it is written to the file. If encoding parameters are not required, this value is ignored. For information about encoding filters, see the <uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable><span class="FM_Italic"></span>. This reference is available within the portfolio called <span class="FM_HyperText"><a href="www.adobe.com/go/acrobatsdk_pdf_reference">PDF Reference and Related Documentation</a></span>, which is located at the <span class="FM_HyperText"><a href="http://www.adobe.com/go/pdf_developer">Adobe PDF Technology Center</a></span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">CosByteMax</span>&#160;object that specifies the amount of data read from the source. If this value is <span class="FM_Courier">-1</span>, data is read from the source until it reaches the end of the stream.</p>
+</li>
+  </ul>
+  <p class="FM_Indent1">The <span class="FM_Courier">CosNewStream</span>&#160;method returns a <span class="FM_Courier">CosObj</span>&#160;object that represents the Cos stream. </p>
+  <p class="FM_Step"><a name="IX_PDPageAddCosContents_1"></a><a name="IX_PDPageAddCosContents"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>8.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Replace the contents of the specified page with the Cos stream by invoking the <span class="FM_Courier">PDPageAddCosContents</span> method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">PDPage</span>&#160;object that represents the current page of the PDF document (pass the <span class="FM_Courier">PDPage</span>&#160;object created in step 1). </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">CosObj</span>&#160;object that contains the Cos stream. </p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The following code example creates a Cos stream and inserts it into the current page of a PDF document. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Inserting a Cos stream into a PDF document page</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Declare local variables used in this code example</p>
+  <p class="FM_CodeReference">CosDoc cd;</p>
+  <p class="FM_CodeReference">CosObj PageStrm, LengthEntry, AttrDict;</p>
+  <p class="FM_CodeReference">CosObj EncodeParms = CosNewNull();</p>
+  <p class="FM_CodeReference">ASStm OpenedStream;</p>
+  <p class="FM_CodeReference">char buf [500];</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a PDPage object using the current page</p>
+  <p class="FM_CodeReference">AVDoc avDoc = AVAppGetActiveDoc();</p>
+  <p class="FM_CodeReference">AVPageView pageView = AVDocGetPageView(avDoc);</p>
+  <p class="FM_CodeReference">PDPageNumber pageNum = AVPageViewGetPageNum(pageView);</p>
+  <p class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(avDoc);</p>
+  <p class="FM_CodeReference">PDPage pdPage = PDDocAcquirePage(pdDoc, pageNum); // acquire current page</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Use the PDPage object to create a CosDoc object</p>
+  <p class="FM_CodeReference">cd = PDDocGetCosDoc(PDPageGetDoc(pdPage));</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Define a stream that creates a thin line segment</p>
+  <p class="FM_CodeReference">sprintf(buf,&quot;150 250 m 150 350 l S&quot;);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the stream length</p>
+  <p class="FM_CodeReference">ASUns32 streamLength = (ASUns32)strlen(buf);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a CosObj object that represents the stream length</p>
+  <p class="FM_CodeReference">LengthEntry = CosNewInteger(cd, false,streamLength);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a CosObj that represents a stream dictionary</p>
+  <p class="FM_CodeComment">//and set it key-value pairs</p>
+  <p class="FM_CodeReference">AttrDict = CosNewDict(cd, false,5);</p>
+  <p class="FM_CodeReference">char *Length_KStr = &quot;Length&quot;;</p>
+  <p class="FM_CodeReference">CosDictPutKeyString(AttrDict, Length_KStr, LengthEntry);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Determine if the stream dictionary is valid</p>
+  <p class="FM_CodeReference">if (CosObjEqual (AttrDict, CosNewNull ()) == true)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote (&quot;The stream dictionary could not be created&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return;</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeComment">//Read the stream into memory by invoking the ASMemStmRdOpen method</p>
+  <p class="FM_CodeReference">OpenedStream = ASMemStmRdOpen(buf,streamLength);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a new Cos stream using data from the ASStm object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PageStrm = CosNewStream(cd, true, OpenedStream, 0,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&#160;false, // StmDataIsNotDecoded </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span> AttrDict, //The stream dictionary</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span> EncodeParms, -1);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Close the stream</p>
+  <p class="FM_CodeReference">ASStmClose(OpenedStream);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference">AVAlertNote (&quot;Trying to create new CosStream&quot;);</p>
+  <p class="FM_CodeReference">CosObjDestroy (AttrDict);</p>
+  <p class="FM_CodeReference">ASStmClose (OpenedStream);</p>
+  <p class="FM_CodeReference">return;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Completely replace the contents of the specified page with newContents</p>
+  <p class="FM_CodeReference">PDPageAddCosContents (pdPage, PageStrm);</p>
+  <p class="FM_NoteCaution"><span class="FM_Z_NoteCaution">Caution:<span style="padding-left: 7pt;" class="FMAutoNumber_1"></span></span>If you execute this code example without having a PDF document open, you will cause an <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;run-time error. The run-time error occurs because this code example creates a <span class="FM_Courier">PDPage</span> object that is based on the current PDF document page.</p>
+  </div>
+</body>
+</html>

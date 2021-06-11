@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc432.js\"  name=\"PreflightProfile methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/PreflightProfile_methods.htm\"><item name=\"hasConversion\" url=\"Acro12_MasterBook/JS_API_AcroJS/PreflightProfile_methods.htm#TOC_hasConversionbc-1\" /></data>";

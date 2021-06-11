@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Registering for Event Notifications</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Notification.fm" />
+ <link rel="stylesheet" href="Plugins_Notification.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.13";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Handlers/Adding_message_handling.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Notification/Registering_event_notifications.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h1><a name="XREF_14583_Registering_for"></a>Registering for Event Notifications</h1>
+  <p class="BodyLevel1">This chapter explains how to register for notification of a specific event. The <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;core API provides a notification mechanism so that plug-ins can synchronize their actions with <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;or <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>. Notifications enable plug-ins to indicate that they are interested in a specified event (such as the initialization of <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>) and to provide a callback function that is invoked by <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> each time an event occurs.</p>
+  <p class="BodyLevel1">The order in which notifications occur may vary depending on the platform. For example, after opening a PDF document on the Windows platform, notifications occur in this order:</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVPageViewDidChange</span>&#160;</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVDocDidOpen</span>&#160;</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVDocDidActivate</span>&#160;</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVPageViewDidChange</span>&#160;</p>
+  <p class="BodyLevel1">In contrast, after opening a PDF document in Mac OS, notifications occur in this order:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVPageViewDidChange</span>&#160;</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVDocDidActivate</span>&#160;</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVPageViewDidChange</span>&#160;</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span class="FM_Courier">AVDocDidOpen</span>&#160;</p>
+  <p class="BodyLevel1">This chapter contains the following information.</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:6.00pt; float:alignleft; width:100%; direction:ltr; max-width:387.15pt;" cellspacing="0">
+   <tr style=" height : 22.50pt;">
+   <th style="width : 161.474pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Topic</p>
+</th>
+   <th style="width : 225.678pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Description</p>
+</th>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 161.474pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody"><a href="Registering_event_notifications.htm#XREF_85504_Registering_for_an"><span class="FM_HyperText">Registering event notifications</span></a></p>
+</td>
+   <td style="width : 225.678pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Describes how to register for event notifications.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 161.474pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody"><a href="Unregistering_event_notifications.htm#XREF_48988_Unregistering"><span class="FM_HyperText">Unregistering event notifications</span></a>&#160;</p>
+</td>
+   <td style="width : 225.678pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Describes how to unregister event notifications.</p>
+</td>
+</tr>
+  </table>
+</div>
+  </div>
+</body>
+</html>

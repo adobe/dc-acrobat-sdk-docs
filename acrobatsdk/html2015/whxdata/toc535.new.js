@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Customizing the user interface","url":"Acro12_MasterBook/Tracker_InboxAPI/Channel_extensions.htm#TOC_Customizing_the_userbc-1"},{"type":"item","name":"Grouping items within a feed","url":"Acro12_MasterBook/Tracker_InboxAPI/Channel_extensions.htm#TOC_Grouping_items_within_abc-2"},{"type":"item","name":"Sorting items within a feed","url":"Acro12_MasterBook/Tracker_InboxAPI/Channel_extensions.htm#TOC_Sorting_items_within_abc-3"},{"type":"item","name":"Assigning icons to feeds","url":"Acro12_MasterBook/Tracker_InboxAPI/Channel_extensions.htm#TOC_Assigning_icons_to_feedsbc-4"},{"type":"item","name":"Marking feed items as unread","url":"Acro12_MasterBook/Tracker_InboxAPI/Channel_extensions.htm#TOC_Marking_feed_items_asbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

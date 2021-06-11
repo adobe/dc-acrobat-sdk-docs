@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Adding and editing renditions</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_DigitalMedia.fm" />
+ <link rel="stylesheet" href="JS_Dev_DigitalMedia.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.8.2.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_DigitalMedia/Controlling_multimedia_with_a_Run_a_JavaScript_action.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_DigitalMedia/Setting_multimedia_preferences.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Working with Digital Media in PDF Documents > Integrating media into documents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_69782_Comparing_Two"></a>Adding and editing renditions</h3>
+  <p class="BodyLevel1"><a name="IX_about_17"></a>A <span class="FM_Courier">rendition</span>&#160;object contains information needed to play a media clip, including embedded media data (or a URL), and playback settings, and corresponds to the rendition in the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;user interface. When you add a movie or sound clip to your document, a default rendition is listed in the Multimedia Properties dialog box and is assigned to a <span class="FM_Courier">Mouse</span>&#160;<span class="FM_Courier">Up</span>&#160;action. In case the rendition cannot be played, you can add other renditions or edit the existing ones.</p>
+  <p class="BodyLevel1"><a name="IX_selecting"></a>If you add alternate versions of the media clip, these become new renditions that can serve as alternates in case the default choice cannot be played. It is then possible to invoke the <span class="FM_Courier">rendition</span>&#160;object’s <span class="FM_Courier">select</span>&#160;method to obtain the available media players for each rendition.</p>
+  <p class="BodyLevel1">There are several types of settings that can be specified for a given rendition: media settings, playback settings, playback location, system requirements, and playback requirements. You can use JavaScript to customize some of these settings through the <span class="FM_Courier">rendition</span>&#160;object. There are several properties to which you have read-only access when editing a rendition. These are listed in the following table.</p>
+  <p class="FM_Z_Caption">Rendition object properties</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:6.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 22.50pt;">
+   <th style="width : 86.400pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Property</p>
+</th>
+   <th style="width : 374.400pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Description</p>
+</th>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 86.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">altText</p>
+</td>
+   <td style="width : 374.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The alternate text string for the rendition.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 86.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">doc</p>
+</td>
+   <td style="width : 374.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The document that contains the rendition.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 86.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">fileName</p>
+</td>
+   <td style="width : 374.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Returns the file name or URL of an external media clip.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 86.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">type</p>
+</td>
+   <td style="width : 374.400pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">A <span class="FM_Courier">MediaRendition</span> object or a rendition list.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 86.400pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">uiName</p>
+</td>
+   <td style="width : 374.400pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The name of the rendition.</p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="BodyLevel1"><a name="IX_getting_player_settings"></a>In addition to these properties, you can invoke the <span class="FM_Courier">rendition</span>&#160;object’s <span class="FM_Courier">getPlaySettings</span>&#160;method, which returns a <span class="FM_Courier">MediaSettings</span>&#160;object. As you learned earlier in <a href="Specifying_playback_settings.htm#XREF_33983_Emailing_Adobe_PDF"><span class="FM_HyperText">Specifying playback settings</span></a>, you can adjust the settings through this object. You can also invoke its <span class="FM_Courier">testCriteria</span>&#160;method, with which you can test the rendition against any criteria specified in the PDF file, such as minimum bandwidth.</p>
+  </div>
+</body>
+</html>

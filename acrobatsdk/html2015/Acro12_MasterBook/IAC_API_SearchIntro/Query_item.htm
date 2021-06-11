@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Query item</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\InterApplication_Communication\IACReference\IAC_API_SearchIntro.fm" />
+ <link rel="stylesheet" href="IAC_API_SearchIntro.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "6.2.6.1.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/IAC_API_SearchIntro/Simple_query_item.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/IAC_API_SearchIntro/Manipulating_indexes_through_DDE.htm">
+ <meta name="topic-breadcrumbs" content="Acrobat Interapplication Communication > Interapplication Communication API Reference > Acrobat Search Plug-in > Search plug-in using DDE" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Query item</h3>
+  <p class="BodyLevel1">A query has the item name “<span class="FM_Courier">Query</span>”. When using query, a <span class="FM_Courier">QueryData</span>&#160;structure is used. This structure contains the query, as well as specifying the query parser to use and additional options.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hszItemName = DdeCreateStringHandle(id, &quot;Query&quot;, 0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>DdeClientTransaction(qd, nLen, hConv, hszItemName, CF_TEXT, XTYP_POKE,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>1000, &amp;dwResult);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>DdeDisconnect(hConv)</p>
+  <p class="BodyLevel1">The global data handle (<span class="FM_Courier">qd</span>) passed to the server must be in the following format:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>typedef struct _QueryData { <br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>eQLangType qlt;<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>boolean bOverrideWordOptions;<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>uns32 nWordOptions;<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>uns16 nMaxDocs;<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>uns16 nQueryOffset;<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>uns16 nNumSorts; //deprecated in Acrobat 6.0<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>uns16 nSortOffset[QP_MAX_SORT_FIELDS]; //deprecated in Acrobat 6.0<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>boolean bSortWays[QP_MAX_SORT_FIELDS]; //deprecated in Acrobat 6.0<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>unsigned char cData[1];<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} QueryData;</p>
+  <h4><a name="TOC_Query_options"></a>Query options</h4>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 33.00pt;">
+   <td style="width : 144.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">qlt</p>
+</td>
+   <td style="width : 316.800pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The query language type. Must be one of the values shown in <a href="#XREF_97440_Query_language">Query language type constants</a>.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">bOverrideWordOptions</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Indicates that the client wishes to use different word options than those currently set by the user.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">nWordOptions&#160;</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The word options. Must be an <span class="FM_Courier">OR</span>&#160;of the values shown in <a href="#XREF_78200_Word_option_bit">Word option bit-flag constants</a>.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">nMaxDocs</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">If non-zero, the client wishes to use a different limit for the maximum number of documents than the limit currently set by the user.</p>
+</td>
+</tr>
+   <tr style=" height : 68.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">nSortOffsets&#160;</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">A list of offsets into the <span class="FM_Courier">cData</span>&#160;chunk. Each offset points to a <span class="FM_Courier">NULL</span>-terminated string containing the field name.</p>
+   <p class="BodyLevel1">This value has no effect in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;6.0 or later, because sort options are not valid.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">nQueryOffset&#160;</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">An offset into the <span class="FM_Courier">cData</span>&#160;chunk that points to a <span class="FM_Courier">NULL</span>-terminated string containing the query to execute.</p>
+</td>
+</tr>
+   <tr style=" height : 68.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">nNumSorts</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The number of fields in the sort spec. If this number is <span class="FM_Courier">0</span>, the plug-in uses the current sort spec set by the user. </p>
+   <p class="BodyLevel1">This value has no effect in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;6.0 or later, because sort options are not valid.</p>
+</td>
+</tr>
+   <tr style=" height : 68.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">bSortWays&#160;</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">A list of sort order flags, one for each sort field. <span class="FM_Courier">true</span>&#160;indicates an ascending sort, and <span class="FM_Courier">false</span> indicates a descending sort.</p>
+   <p class="BodyLevel1">This value has no effect in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;6.0 or later, because sort options are not valid.</p>
+</td>
+</tr>
+  </table>
+</div>
+  <h4><a name="TOC_Query_language_type"></a><a name="XREF_97440_Query_language"></a>Query language type constants</h4>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 50.50pt;">
+   <td style="width : 144.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QLangType_Simple</p>
+</td>
+   <td style="width : 316.800pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Allows only simple phrase searches; does not allow Boolean searching.</p>
+   <p class="FM_TableBody">This query type does not work in the DDE interface of the Search plug-in shipped with version 2.0 of <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QLangType_CQL</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Allows Boolean searches using <span class="FM_Courier">AND</span>, <span class="FM_Courier">OR</span>, and <span class="FM_Courier">NOT</span>, as described in the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> Search plug-in’s online help file.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QLangType_Passthrough</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The Verity BooleanPlus query language. Contact Verity for further information on this language.</p>
+</td>
+</tr>
+  </table>
+</div>
+  <h4><a name="TOC_Word_option_bit_flag"></a><a name="XREF_78200_Word_option_bit"></a>Word option bit-flag constants</h4>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 20.50pt;">
+   <td style="width : 111.600pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QPON_Case</p>
+</td>
+   <td style="width : 349.200pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The search is case-sensitive.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 111.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QPON_Stemming</p>
+</td>
+   <td style="width : 349.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Find not only the specified word, but other words that have the same stem. For example, run and ran have the same stem.</p>
+</td>
+</tr>
+   <tr style=" height : 20.50pt;">
+   <td style="width : 111.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QPON_SoundsLike</p>
+</td>
+   <td style="width : 349.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Find not only the specified word, but other words that sound like it.</p>
+</td>
+</tr>
+   <tr style=" height : 20.50pt;">
+   <td style="width : 111.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QPON_Thesaurus</p>
+</td>
+   <td style="width : 349.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Find not only the specified word, but other words that have the same meaning.</p>
+</td>
+</tr>
+   <tr style=" height : 108.00pt;">
+   <td style="width : 111.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QPON_Proximity</p>
+</td>
+   <td style="width : 349.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Consider the proximity of results when using the <span class="FM_Courier">AND</span>&#160;operator to look for more than one word in a document. Without this option, <span class="FM_Courier">AND</span>&#160;terms can be anywhere in a document. Searching for “red” and “blue,” for example, finds a document where “red” is the first word on the first page and where “blue” is the last word on the last page. With this option, however, <span class="FM_Courier">AND</span>&#160;terms must be within two or three pages of each other to be found. Also, the closer <span class="FM_Courier">AND</span>&#160;terms appear together, the higher the relevance ranking of the document that contains them.</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 111.600pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">QPON_Refine</p>
+</td>
+   <td style="width : 349.200pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Do not search the entire list of indexes, but only the documents that matched the previous search. This is used to refine the results of the previous search.</p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="BodyLevel1">To create and populate this structure correctly, the client must know the sum of the lengths of each sort field (<span class="FM_Courier">sls</span>), the length of the query (<span class="FM_Courier">lq</span>), and the size of the <span class="FM_Courier">QueryData</span>&#160;structure. The client then allocates memory as follows:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>nSize = sizeof(QueryData) + sls + lq;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>qd = (QueryData *)malloc(nSize);</p>
+  <p class="BodyLevel1">For example, if the query was “Adobe” and the sort spec was “Title” ascending and “Score” descending then the structure would be packed as follows:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>memset(qd, 0, nSize);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>qd-&gt;nQueryOffset = 0;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcpy(&amp;cData[0], &quot;Adobe&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>qd-&gt;nNumSort = 2;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>qd-&gt;nSortOffset[0] = strlen(&quot;Adobe&quot;) + 1;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>qd-&gt;bSortWays[0] = TRUE; </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcpy(&amp;cData[qd-&gt;nSortOffset[0]], &quot;Title&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>qd-&gt;bSortWays[1] = FALSE;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>qd-&gt;nSortOffset[1] = qd-&gt;nSortOffset[0] + strlen(&quot;Title&quot;) + 1;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strcpy(&amp;cData[qd-&gt;nSortOffset[1]], &quot;Score&quot;);</p>
+  </div>
+</body>
+</html>

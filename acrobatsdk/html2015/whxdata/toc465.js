@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc464.js\"  name=\"Sound properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/Sound_properties.htm\"><item name=\"name\" url=\"Acro12_MasterBook/JS_API_AcroJS/Sound_properties.htm#TOC_name19bc-1\" /></data>";

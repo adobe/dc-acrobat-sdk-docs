@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"addFeed","url":"Acro12_MasterBook/Tracker_InboxAPI/RSS_object.htm#TOC_addFeedbc-1"},{"type":"item","name":"removeFeed","url":"Acro12_MasterBook/Tracker_InboxAPI/RSS_object.htm#TOC_removeFeedbc-2"},{"type":"item","name":"getContents","url":"Acro12_MasterBook/Tracker_InboxAPI/RSS_object.htm#TOC_getContentsbc-3"},{"type":"item","name":"update","url":"Acro12_MasterBook/Tracker_InboxAPI/RSS_object.htm#TOC_update1bc-4"},{"type":"item","name":"addUI","url":"Acro12_MasterBook/Tracker_InboxAPI/RSS_object.htm#TOC_addUIbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

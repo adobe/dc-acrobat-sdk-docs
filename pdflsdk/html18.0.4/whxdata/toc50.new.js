@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Creating exception handlers","url":"PDFL_MasterBook/Handling_Exceptions/Creating_exception_handlers.htm"},{"type":"item","name":"Returning a value from an exception handler","url":"PDFL_MasterBook/Handling_Exceptions/Returning_a_value_from_an_exception_handler.htm"},{"type":"item","name":"Raising exceptions","url":"PDFL_MasterBook/Handling_Exceptions/Raising_exceptions.htm"},{"type":"book","name":"Exception handling scenarios","key":"toc51","url":"PDFL_MasterBook/Handling_Exceptions/Exception_handling_scenarios.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

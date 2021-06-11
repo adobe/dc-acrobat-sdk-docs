@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Page crops (PAGE, PAGES)</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\PDF_Creation_APIs\pdfMarkReference\pdfmark_Basic.fm" />
+ <link rel="stylesheet" href="pdfmark_Basic.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.3.2.2_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/pdfmark_Basic/Named_images_NI.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/pdfmark_Basic/Page_label_and_plate_color_PAGELABEL.htm">
+ <meta name="topic-breadcrumbs" content="PDF Creation APIs and Specifications > pdfmark Reference > Basic Features" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="IX_PAGES_1"></a><a name="IX_PAGE"></a><a name="IX_crops"></a><a name="IX_page_crops"></a><a name="XREF_42582_3_4_Page_cropping"></a>Page crops (PAGE, PAGES)</h2>
+  <p class="BodyLevel1">Page cropping is used to specify the dimensions of a page or pages in a PDF file that will be displayed or printed, without altering the actual data in the file. Cropping is specified by using the pdfmark operator with the names <span class="FM_Courier">PAGE</span>&#160;(for an individual page) or <span class="FM_Courier">PAGES</span> (for the entire document).</p>
+  <p class="BodyLevel1">The syntax for specifying a non-default page cropping for a particular page in a document is as follows:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>[<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/CropBox [<span class="FM_Italic">xll yll xur yur</span>]<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/PAGE pdfmark</p>
+  <p class="BodyLevel1">The syntax for specifying the default page cropping for a document is as follows:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>[<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/CropBox [<span class="FM_Italic">xll yll xur yur</span>]<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/PAGES pdfmark</p>
+  <p class="BodyLevel1"><a name="IX_CropBox_key"></a>The <span class="FM_Courier">CropBox</span>&#160;key is an array representing the location and size of the viewable area of the page. <span class="FM_Courier">CropBox</span>&#160;is an array of four numbers [<span class="FM_CourierItalic">xll, yll, xur, yur</span>] specifying the lower-left x, lower-left y, upper-right x, and upper-right y coordinates—measured in default user space—of the rectangle defining the cropped page. The minimum allowed page size is .04 x .04 inch (3 x 3 units) and the maximum allowed page size is 200 x 200 inches (14,400 x 14,400 units) in the default user space coordinate system.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">PAGE</span>&#160;pdfmark must be placed before the <span class="FM_Courier">showpage</span>&#160;operator for the page it is to affect. It is recommended that it be placed before any marks are made on the page. For example, it affects only the first page of a document if it is placed before any marks are made on the first page.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">PAGES</span>&#160;pdfmark can be placed anywhere in the PostScript language program, but it is recommended that it be placed at the beginning of the file, in the Document Setup section between the document structuring comments <span class="FM_Courier">%%BeginSetup</span>&#160;and <span class="FM_Courier">%%EndSetup</span>, before any marks are placed on the first page. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Crop this page</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference"><span class="FM_CourierComment">% ...<br /></span>[<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/CropBox [0 0 288 288] /PAGE pdfmark<br />/Helvetica findfont 12 scalefont setfont<br />/DrawBorder<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>10 278 moveto 278 278 lineto 278 10 lineto<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>10 10 lineto closepath stroke<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} bind def<br />%%EndSetup<br />%%Page: 1 1<br />DrawBorder<br />75 250 moveto (This is Page 3) show<br />75 230 moveto (Click here to go to page 1.) show<br />75 200 moveto (Click here to open test.doc.) show</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Crop all pages</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference"><span class="FM_CourierComment">% ...<br /></span>[<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/CropBox [54 403 558 720] /PAGES pdfmark<br />/DrawBorder<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>58 407 moveto 554 407 lineto 554 716 lineto<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>58 716 lineto closepath stroke<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} bind def<br />/Helvetica findfont 10 scalefont setfont<br />%%EndSetup<br />%%Page: 1 1<br />DrawBorder<br />75 690 moveto (This is Page 1) show<br />75 670 moveto (Below is a closed, default note created using pdfmark:) show<br />75 570 moveto (Below is an open note with a custom color and label:) show<br />400 670 moveto (Below is a closed note) show<br />400 655 moveto (containing private data:) show<br />400 570 moveto (Below is a custom annotation.) show<br />400 555 moveto (It should appear as an unknown) show<br />400 540 moveto (annotation icon:) show</p>
+  </div>
+</body>
+</html>

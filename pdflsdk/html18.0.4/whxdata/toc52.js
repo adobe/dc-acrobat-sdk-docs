@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc7.js\"  name=\"Working with Acrobat Extended APIs\" url=\"PDFL_MasterBook/Acrobat_Extended_APIs/Acrobat_Extended_APIs.htm\"><item name=\"AcroColor extended API\" url=\"PDFL_MasterBook/Acrobat_Extended_APIs/AcroColor_extended_API.htm\" /></data>";

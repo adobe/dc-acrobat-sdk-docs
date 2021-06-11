@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"SOAP\" url=\"Acro12_MasterBook/JS_API_AcroJS/SOAP1.htm\"><book name=\"SOAP properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/SOAP_properties.htm\" src=\"toc462.js\" /><book name=\"SOAP methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/SOAP_methods.htm\" src=\"toc463.js\" /></data>";

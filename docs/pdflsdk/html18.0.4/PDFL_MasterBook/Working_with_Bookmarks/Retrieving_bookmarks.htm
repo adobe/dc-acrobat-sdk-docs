@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Retrieving bookmarks</title>
+
+ 
+
+ <link rel="stylesheet" href="Working_with_Bookmarks.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.7.3";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Working_with_Bookmarks/Removing_bookmark_actions.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Working_with_Bookmarks/Deleting_bookmarks.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Working with Bookmarks" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="IX_retrieving_1"></a><a name="IX_bookmarks_2"></a><a name="XREF_51089_Retrieving"></a>Retrieving bookmarks</p>
+  <p dir="ltr" class="FM_Body">You can use the PDF Library API to retrieve bookmarks located within a PDF document. You can retrieve the root bookmark, retrieve a specific bookmark, or retrieve all bookmarks that are located within a PDF document.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Retrieving_the_root"></a><a name="IX_PDBookmarkGetFirstChild_1"></a><a name="IX_PDBookmarkGetFirstChild"></a><a name="IX_PDDocGetBookmarkRoot_3"></a><a name="IX_PDDocGetBookmarkRoot_2"></a>Retrieving the root bookmark</p>
+  <p dir="ltr" class="FM_Body">Every PDF document has a root bookmark. The root bookmark does not represent a physical bookmark, but is the root from which all bookmarks in the tree are descended.</p>
+  <p dir="ltr" class="FM_Body">The following code example shows how to get a PDF document’s root bookmark by creating application logic within a user-defined function named <span class="FM_Courier">GetFirstBookmark</span>. First, the <span class="FM_Courier">PDDocGetBookmarkRoot</span>&#160;method is invoked to get the bookmark root. This method requires a <span class="FM_Courier">PDDoc</span>&#160;object that represents the PDF document from which the root bookmark is retrieved and returns a <span class="FM_Courier">PDBookmark</span>&#160;object that represents the root bookmark. (See <a href="../Documents_and_Files/Creating_a_PDDoc_object.htm#XREF_97094_Creating_a_PDDoc"><span class="FM_HyperText">Creating a PDDoc object</span></a>.) </p>
+  <p dir="ltr" class="FM_Body">Next, the <span class="FM_Courier">PDBookmarkGetFirstChild</span>&#160;method is invoked to get the first child of the root. If there are no bookmarks, <span class="FM_Courier">PDBookmarkGetFirstChild</span>&#160;returns <span class="FM_Courier">NULL</span>.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Retrieving the root bookmark</p>
+  <p dir="ltr" class="FM_CodeReference">PDBookmark GetFirstBookmark(PDDoc doc)</p>
+  <p dir="ltr" class="FM_CodeReference">{</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDBookmark theroot, childBookmark;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>theroot = PDDocGetBookmarkRoot(doc);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>childBookmark = PDBookmarkGetFirstChild(theroot);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return childBookmark;</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Retrieving_a_specific"></a><a name="IX_PDBookmarkGetByTitle_1"></a><a name="IX_PDBookmarkGetByTitle"></a><a name="XREF_90691_Retrieving_a"></a>Retrieving a specific bookmark</p>
+  <p dir="ltr" class="FM_Body">You can retrieve a specific bookmark by specifying its title. The following code example retrieves a specific bookmark by invoking the <span class="FM_Courier">PDDocGetBookmarkRoot</span>&#160;method to get the document’s root bookmark as a starting point for the search. It then invokes the <span class="FM_Courier">PDBookmarkGetByTitle</span>&#160;method to retrieve the first bookmark whose title matches the specified title. This method requires the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The root of the bookmark tree that is searched.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A character pointer that specifies the title of the bookmark.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASInt32</span> object that specifies the length of the character pointer.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASInt32</span>&#160;object that specifies the number of bookmark levels to search. The value <span class="FM_Courier">-1</span>&#160;specifies to search the entire sub-tree. The value <span class="FM_Courier">1</span>&#160;specifies to search only child bookmarks of the current bookmark. The value <span class="FM_Courier">0</span> specifies to look at the current bookmark.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Retrieving a specific bookmark</p>
+  <p dir="ltr" class="FM_CodeComment">//Retrieve a bookmark whose title is Samples</p>
+  <p dir="ltr" class="FM_CodeReference">PDBookmark rootBookmark, myBookmark;</p>
+  <p dir="ltr" class="FM_CodeReference">char* bookmarkTitle = &quot;Samples&quot;;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Get the root bookmark</p>
+  <p dir="ltr" class="FM_CodeReference">rootBookmark = PDDocGetBookmarkRoot(myPDDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Retrieve a specific bookmark</p>
+  <p dir="ltr" class="FM_CodeReference">myBookmark = PDBookmarkGetByTitle (rootBookmark, bookmarkTitle, strlen(bookmarkTitle), -1);</p>
+  <p dir="ltr" class="FM_CodeReference">if (PDBookmarkIsValid (myBookmark)) </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;The bookmark was retrieved&quot;);</p>
+  <p dir="ltr" class="FM_CodeReference">else </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;The bookmark was not retrieved&quot;);</p>
+  <p dir="ltr" class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>In the previous code example, a <span class="FM_Courier">PDDoc</span>&#160;object named <span class="FM_Courier">myPDDoc</span>&#160;is passed to the <span class="FM_Courier">PDDocGetBookmarkRoot</span>&#160;method. For information about creating this object, see <a href="../Documents_and_Files/Creating_a_PDDoc_object.htm#XREF_97094_Creating_a_PDDoc"><span class="FM_HyperText">Creating a PDDoc object</span></a>. </p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Retrieving_all_bookmarks"></a><a name="IX_PDBookmarkGetTitle"></a><a name="IX_PDBookmarkGetTitle_method"></a>Retrieving all bookmarks</p>
+  <p dir="ltr" class="FM_Body">You can use the PDF Library API to retrieve all bookmarks located within a PDF document. For example, you can retrieve the title of every bookmark that is located within a PDF document.</p>
+  <p dir="ltr" class="FM_Body">The following code example creates a recursive user-defined function named <span class="FM_Courier">VisitAllBookmarks</span>. First it invokes the <span class="FM_Courier">PDBookmarkIsValid</span>&#160;method to ensure that the bookmark that is passed is valid (the root bookmark is always valid.)</p>
+  <p dir="ltr" class="FM_Body">Second, this user-defined function retrieves the title of the bookmark by invoking the<span class="FM_Courier">&#160;PDBookmarkGetTitle</span> method. This method requires the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">PDBookmark</span> object that contains the title to retrieve.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A character pointer that is populated with the bookmarks title.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASInt32</span> object that represents the size of the character pointer.</p>
+  <p dir="ltr" class="FM_Body">Because the size of the bookmark’s title is unknown, the <span class="FM_Courier">PDBookmarkGetTitle</span>&#160;is invoked twice. The first time it is invoked, <span class="FM_Courier">NULL</span>&#160;is passed as the buffer address (second argument) and <span class="FM_Courier">0</span>&#160;is specified as the buffer size (third argument). The text length is returned to an <span class="FM_Courier">ASInt32</span>&#160;object named <span class="FM_Courier">bufSize</span>. The <span class="FM_Courier">ASmalloc</span>&#160;method is invoked which allocates <span class="FM_Courier">bufSize</span> bytes to the character pointer.</p>
+  <p dir="ltr" class="FM_Body">The second time <span class="FM_Courier">PDBookmarkGetTitle</span>&#160;is invoked, the allocated character pointer is passed as well as the <span class="FM_Courier">ASInt32</span>&#160;object named <span class="FM_Courier">bufSize</span>. The character pointer is populated with the bookmark’s title. The <span class="FM_Courier">AVAlertNote</span>&#160;method is invoked and the character pointer is passed as an argument that results in the bookmark’s title being displayed within a message box.</p>
+  <p dir="ltr" class="FM_Body"><a name="IX_PDBookmarkHasChildren_1"></a><a name="IX_PDBookmarkHasChildren"></a>The <span class="FM_Courier">PDBookmarkHasChildren</span>&#160;method is invoked to determine whether there are any child bookmarks under the current bookmark. If there are child bookmarks, the <span class="FM_Courier">PDBookmarkGetFirstChild</span>&#160;method is invoked to retrieve the first child bookmark. A recursive call is made to <span class="FM_Courier">VisitAllBookmarks</span>&#160;(that is, the user-defined method is invoking itself) until there are no more children bookmarks. Then the <span class="FM_Courier">PDBookmarkGetNext</span>&#160;method is invoked to get a sibling bookmark and the process continues until there are no more bookmarks within the PDF document.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Retrieving existing bookmarks</p>
+  <p dir="ltr" class="FM_CodeComment">//Recursively go through bookmark tree to visit each bookmark</p>
+  <p dir="ltr" class="FM_CodeReference">void VisitAllBookmarks (PDBookmark aBookmark)</p>
+  <p dir="ltr" class="FM_CodeReference">{</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDBookmark treeBookmark;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>DURING</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Ensure that the bookmark is valid</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (!PDBookmarkIsValid(aBookmark))</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>E_RTRN_VOID</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the title of the bookmark</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char * bmBuf; </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 bufSize = PDBookmarkGetTitle(aBookmark, NULL, 0) +1;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Allocate the size of bufSize to the character pointer</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>bmBuf = (char*)ASmalloc((os_size_t)bufSize);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Populate bmBuf with the bookmark's title</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDBookmarkGetTitle(aBookmark, bmBuf, bufSize);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Display the title of the bookmark within a message box</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(bmBuf);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Determine if the current bookmark has children bookmark</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (PDBookmarkHasChildren (aBookmark))</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p dir="ltr" class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the first child of the bookmark</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>treeBookmark = PDBookmarkGetFirstChild(aBookmark);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>while (PDBookmarkIsValid (treeBookmark))<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>VisitAllBookmarks (treeBookmark);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>treeBookmark = PDBookmarkGetNext(treeBookmark);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HANDLER</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>END_HANDLER</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

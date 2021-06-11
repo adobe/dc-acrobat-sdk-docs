@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"book","name":"Introduction","key":"toc202","url":"Acro12_MasterBook/pdfmark_Syntax/Introduction7.htm"},{"type":"book","name":"Basic Features","key":"toc205","url":"Acro12_MasterBook/pdfmark_Basic/Basic_Features.htm"},{"type":"book","name":"Actions and Destinations","key":"toc210","url":"Acro12_MasterBook/pdfmark_Actions/Actions_and_Destinations.htm"},{"type":"book","name":"Logical Structure","key":"toc213","url":"Acro12_MasterBook/pdfmark_Logical/Logical_Structure.htm"},{"type":"book","name":"Examples","key":"toc219","url":"Acro12_MasterBook/pdfmark_Examples/Examples.htm"},{"type":"book","name":"JDF Features","key":"toc220","url":"Acro12_MasterBook/pdfmark_JDF/JDF_Features.htm"},{"type":"book","name":"Distilling Optional Content","key":"toc221","url":"Acro12_MasterBook/pdfmark_OC_Interface/Distilling_Optional_Content.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

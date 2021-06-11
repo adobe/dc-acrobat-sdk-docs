@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Writing Snippets</title>
+
+ 
+
+ <link rel="stylesheet" href="Writing_Snippets.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.2";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Introduction_Snippets/Using_the_Common_Interface.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Writing_Snippets/Passing_parameters_to_snippets.htm">
+ <meta name="topic-breadcrumbs" content="Snippet Runner Cookbook" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  
+  <p dir="ltr" class="FM_2Head"><a name="XREF_57730_Writing_Snippets"></a>Writing Snippets</p>
+  <p dir="ltr" class="FM_Body">A code snippet must contain at least the following:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A single main function that acts as its entry point. Snippets may contain additional functions as needed.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A macro call that binds the snippet to the SnippetRunner environment. </p>
+  <p dir="ltr" class="FM_Body">An example of a single-function snippet that is included with the SnippetRunner project, SimpleSnip.cpp, is shown below. The code for this snippet also includes comments (not shown here) that provide useful development hints.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>#include &quot;SnippetRunner.h&quot;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>#include &quot;SnippetRunnerUtils.h&quot;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>void SimpleSnip()</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Console::displayString(&quot;This is a simple snippet.&quot;);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>Console::displayString(&quot;Simple snippet executed\n&quot;);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>SNIPRUN_REGISTER(SimpleSnip, &quot;Simple Framework&quot;, &quot;SimpleSnip creates a<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>framework for a snippet.&quot;)</p>
+  <p dir="ltr" class="FM_Body">This snippet has a single function, SimpleSnip, which writes two messages to the output pane of the Common Interface (see <a href="../Introduction_Snippets/Using_the_Common_Interface.htm#XREF_24853_Using_the_Common"><span class="FM_HyperText">Using the Common Interface</span></a>) using the utility function <span class="FM_Courier">Console::displayString</span>. This function enables you to perform memory dumps and view strings (<span class="FM_Courier">char *</span>), <span class="FM_Courier">ASText</span>&#160;objects, and Cos objects. (See the source files SnippetRunnerUtils.cpp and Console.cpp for details.)</p>
+  <p dir="ltr" class="FM_Body">Because the <span class="FM_Courier">SimpleSnip</span>&#160;function requires no parameters, it uses the macro call <span class="FM_Courier">SNIPRUN_REGISTER</span>&#160;to bind to the SnippetRunner environment. (See <a href="Passing_parameters_to_snippets.htm#XREF_93537_Passing_Parameters"><span class="FM_HyperText">Passing parameters to snippets</span></a>&#160;for other possibilities.) This macro requires three parameters: </p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The name of the function that is the entry point for the snippet (the same as the snippet’s file name). </p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A string indicating where the snippet’s node is to appear in the Snippet Collection pane of the Common Interface user interface. If the snippet location is not at the root level of the hierarchy, the string specifies the path to the snippet, with folder names separated by colons. For example, the GetFontInfoSnip snippet would specify: “PD Layer:Fonts:Get Font Info”.</p>
+  <p dir="ltr" class="FM_NoteIndent"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>A snippet’s node name is limited to 49 characters.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A string of descriptive text to be presented in the Snippet Description pane.</p>
+  <p dir="ltr" class="FM_Body">SimpleSnip is a <span class="FM_Italic">synchronous</span>&#160;or “one-shot” snippet, meaning that it executes and then terminates. See <a href="Toggling_behavior_and_asynchronous_snippets.htm#XREF_52396_Toggling_and"><span class="FM_HyperText">Toggling behavior and asynchronous snippets</span></a> for other possibilities.</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

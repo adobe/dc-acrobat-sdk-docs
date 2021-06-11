@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Validating signatures</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_Security.fm" />
+ <link rel="stylesheet" href="JS_Dev_Security.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.12.2.1_4";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_Security/Certifying_a_document.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_Security/Setting_digital_signature_properties_with_seed_values.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Security > Digitally signing PDF documents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Validating signatures</h3>
+  <p class="BodyLevel1"><a name="IX_validating_1"></a><a name="IX_signatureValidate"></a>To validate a signature, invoke the signature field’s <span class="FM_Courier">signatureValidate</span>&#160;method. It returns one of the following integer validity status values:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">-1</span> — not a signature field</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">0</span> — signature is blank</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">1</span> — unknown status</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">2</span> — signature is invalid</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">3</span> — signature is valid, identity of signer could not be verified</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">4</span> — signature and identity of signer are both valid</p>
+  <p class="BodyLevel1">The method accepts two parameters:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">oSig</span>&#160;— the security handler used to validate the signature (a <span class="FM_Courier">securityHandler</span>&#160;or <span class="FM_Courier">SignatureParameters</span> object)</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">bUI</span> — determines whether the user interface is shown when validating the data file</p>
+  <p class="BodyLevel1">A <span class="FM_Courier">SignatureParameters</span> object contains two properties:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">oSecHdlr</span> — the security handler object</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">bAltSecHdlr</span> — determines whether an alternate security handler may be used</p>
+  <p class="BodyLevel1">In the following example, <span class="FM_Courier">mySignatureField</span> is analyzed for validity:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Obtain the signature field:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var f = this.getField(&quot;mySignatureField&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Validate the signature field:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var status = f.signatureValidate();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Obtain the signature information</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var sigInfo = f.signatureInfo();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Check the status returned from the validation:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (status &lt; 3)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var msg = &quot;Signature is not valid: &quot; + sigInfo.statusText;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>else</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var msg = &quot;Signature is valid: &quot; + sigInfo.statusText;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Display the status message:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>app.alert(msg);</p>
+  </div>
+</body>
+</html>

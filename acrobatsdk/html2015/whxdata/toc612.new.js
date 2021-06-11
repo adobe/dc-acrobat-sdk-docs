@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Service name","url":"Acro12_MasterBook/Collab_Admin/Service_name.htm"},{"type":"item","name":"Service type","url":"Acro12_MasterBook/Collab_Admin/Service_type.htm"},{"type":"item","name":"Default DNS domain","url":"Acro12_MasterBook/Collab_Admin/Default_DNS_domain.htm"},{"type":"item","name":"DNS Service Name","url":"Acro12_MasterBook/Collab_Admin/DNS_Service_Name.htm"},{"type":"item","name":"PTR DNS record","url":"Acro12_MasterBook/Collab_Admin/PTR_DNS_record.htm"},{"type":"item","name":"SRV DNS record","url":"Acro12_MasterBook/Collab_Admin/SRV_DNS_record.htm"},{"type":"item","name":"TXT DNS record","url":"Acro12_MasterBook/Collab_Admin/SRV_DNS_record.htm#TOC_TXT_DNS_recordbc-1"},{"type":"item","name":"Testing the DNS service","url":"Acro12_MasterBook/Collab_Admin/Testing_the_DNS_service.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

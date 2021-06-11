@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Root node","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Root_node.htm"},{"type":"item","name":"Emit-string","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Emit-string.htm"},{"type":"item","name":"Walk-structure","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Walk-structure.htm"},{"type":"book","name":"Define-event-list","key":"toc603","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Define-event-list.htm"},{"type":"book","name":"Define-proc-list","key":"toc604","url":"Acro12_MasterBook/SaveAsXML_DeveloperInfo/Define-proc-list.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

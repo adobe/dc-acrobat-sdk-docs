@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc577.js\"  name=\"Miscellaneous events\" url=\"Acro12_MasterBook/IAC_API_AppleEvtObjects/Miscellaneous_events.htm\"><item name=\"do script\" url=\"Acro12_MasterBook/IAC_API_AppleEvtObjects/do_script.htm\" /></data>";

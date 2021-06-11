@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"fileName","url":"Acro12_MasterBook/JS_API_AcroJS/Error_properties.htm#TOC_fileNamebc-1"},{"type":"item","name":"lineNumber","url":"Acro12_MasterBook/JS_API_AcroJS/Error_properties.htm#TOC_lineNumberbc-2"},{"type":"item","name":"extMessage","url":"Acro12_MasterBook/JS_API_AcroJS/Error_properties.htm#TOC_extMessagebc-3"},{"type":"item","name":"message","url":"Acro12_MasterBook/JS_API_AcroJS/Error_properties.htm#TOC_messagebc-4"},{"type":"item","name":"name","url":"Acro12_MasterBook/JS_API_AcroJS/Error_properties.htm#TOC_name8bc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

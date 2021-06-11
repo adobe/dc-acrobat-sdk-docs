@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Distiller-only image settings</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\PDF_Creation_APIs\PDFCreationSettings\PDF_Create_UsingSettings.fm" />
+ <link rel="stylesheet" href="PDF_Create_UsingSettings.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.1.2.1.4";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/PDF_Create_UsingSettings/Setting_compression_of_text_line_art_and_objects.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_font_settings.htm">
+ <meta name="topic-breadcrumbs" content="PDF Creation APIs and Specifications > Adobe PDF Creation Settings > Using PDF Creation Settings > Using the image settings" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_99863_Distiller_only"></a>Distiller-only image settings</h3>
+  <p class="BodyLevel1"><a name="IX_Distiller_specific_2"></a>The following options apply only to Distiller and are not supported by Creative Suite applications.</p>
+  <h4><a name="TOC_Controlling_bit_depth"></a><a name="XREF_95410_2_2_9_Controlling"></a>Controlling bit depth</h4>
+  <p class="BodyLevel1"><a name="IX_bit_depth"></a><span class="FM_Italic">Bit depth</span>&#160;is the number of bits used to represent each color component of each sample of an image. (For example, red, green, and blue are the color components in an RGB image). Distiller supports the control of bit depth by means of the <span class="FM_Courier">ColorImageDepth</span>, <span class="FM_Courier">GrayImageDepth</span>, and <span class="FM_Courier">MonoImageDepth</span> settings.</p>
+  <p class="BodyLevel1">The bit depth of an image can be decreased (for example, from 8 bits per sample to 4 bits per sample) to save space, regardless of whether the image is downsampled.</p>
+  <p class="BodyLevel1"><a name="IX_anti_aliasing"></a>If an image is downsampled, the bit depth can be increased to provide <span class="FM_Italic">anti-aliasing</span>. Anti-aliasing increases the number of bits per sample to preserve some of the information that is otherwise lost by downsampling. Anti-aliasing occurs only in the following conditions:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">The image depth setting specifies a bit depth greater than that of the incoming image.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The value of the appropriate setting <span class="FM_Courier">AntiAliasColorImages</span>, <span class="FM_Courier">AntiAliasGrayImages</span>, or <span class="FM_Courier">AntiAliasMonoImages</span>&#160;is <span class="FM_Courier">true</span>. (They need not be <span class="FM_Courier">true</span> to decrease the bit depth.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Sampling is enabled and the downsample thresholds are met; therefore, sampling actually occurs.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">In these cases, Distiller first increases the bit depth, then downsamples the image.</p>
+  <p class="BodyLevel1">For example, suppose a 300 pixel-per-inch monochrome image is downsampled to 150 pixels per inch. If <span class="FM_Courier">MonoImageDepth</span>&#160;is 4 and <span class="FM_Courier">AntiAliasMonoImages</span>&#160;is <span class="FM_Courier">true</span>, the bit depth of the image is increased prior to downsampling so that it becomes a 4-bit grayscale image. Each of the samples in the downsampled image is produced from four samples in the input image; because each of the input samples can be either on or off, there are 16 possible values for each sample in the downsampled image. </p>
+  <p class="BodyLevel1">Note that after the bit depth settings have been applied, an input grayscale or monochrome image may be changed to the other type. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">A grayscale image specified to have a <span class="FM_Courier">GrayImageDepth</span> of 1 is treated as a monochrome image.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">A monochrome image that has a <span class="FM_Courier">MonoImageDepth</span> of 2, 4, or 8 becomes a grayscale image.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Distiller determines whether to apply compression settings <span class="FM_Italic">after</span>&#160;downsampling has taken place. If the bit depth has changed, the resulting image type determines which encoding setting is examined. For example, if a monochrome image was changed to have a bit depth of 2 or more, the <span class="FM_Courier">EncodeGrayImages</span>&#160;setting would be checked. If encoding is enabled, the image is compressed using the filter type and filter parameter dictionary specified by the settings for the resulting image type.</p>
+  <p class="BodyLevel1">The PostScript example below shows a code fragment specifying that monochrome images be downsampled to 72 pixels per inch, converted to 2 bits per sample, and encoded using Flate compression. Because the downsampled images are grayscale, the filter is specified using the grayscale rather than the monochrome image settings. Also, assuming that the input image is a 300-pixels-per-inch image, it is downsampled to 75 pixels per inch, the closest possible value to the 72 pixels per inch requested.</p>
+  <p class="FM_CodeReference"><a name="IX_bit_depth_1"></a>&nbsp;&nbsp;&lt;&lt;&nbsp;&nbsp;&nbsp;&nbsp;/DownsampleMonoImages true<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/MonoImageResolution 72<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/MonoImageDepth 2<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/EncodeGrayImages true<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/AntiAliasMonoImages true<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/GrayImageFilter /FlateEncode<br />&nbsp;&nbsp;&gt;&gt; setdistillerparams</p>
+  <h4><a name="TOC_Specifying_a_minimum"></a><a name="XREF_75361_Specify_a_Lower"></a>Specifying a minimum resolution of sampled images</h4>
+  <p class="BodyLevel1">In addition to the downsampling settings, starting with version 7.0, Distiller provides settings to check whether images meet a minimum resolution.</p>
+  <p class="BodyLevel1"><span class="FM_Courier">ColorImageMinResolution</span>, <span class="FM_Courier">GrayImageMinResolution</span>, and <span class="FM_Courier">MonoImageMinResolution</span>&#160;are settings that specify an integer between 9 to 64000 representing the minimum resolution for an image. </p>
+  <p class="BodyLevel1"><span class="FM_Courier">ColorImageMinResolutionPolicy</span>, <span class="FM_Courier">GrayImageMinResolutionPolicy</span>, and <span class="FM_Courier">MonoImageMinResolutionPolicy</span>&#160;are settings that specify what happens when images are found that do not meet the minimum resolution. They are names that can take one of the following values:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">OK</span>: the minimum resolution settings are ignored.</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">Warning</span>: Any image with a resolution smaller than the specified minimum generates a warning when the PDF file is created.</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">Error</span>: Any image with a resolution smaller than the specified minimum generates an error, and the job fails with a limit check error. </p>
+  <p class="BodyLevel1">The default values for these settings in the predefined Adobe PDF settings files are chosen to be the same as the values for the default downsampling resolution. With these default values, Distiller’s default behavior does not change; that is, Distiller does not enforce any lower limit on image resolution. </p>
+  <p class="BodyLevel1">These settings can be used to ensure that a PDF file does not have any images with lower resolution than the defined limit. This feature is primarily for prepress people who want to detect that no low resolution images make it into a PDF file. An example is a sampled image in an advertisement where the image must be of a certain quality.</p>
+  <p class="BodyLevel1">If you get a warning or error about a low resolution image and the settings are correct according to your requirements, you need to go to the source of the image and regenerate it with a higher resolution. Distiller cannot actively alter these images because it doesn’t support up-sampling.</p>
+  <p class="BodyLevel1">In the following example, Distiller issues a warning every time a sampled gray image with resolution smaller than 100 ppi is placed in the PDF file:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/GrayImageMinResolution 100<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/GrayImageMinResolutionPolicy /Warning</p>
+  <p class="BodyLevel1">The warning messages will look like this:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>%%[ Warning: Gray image resolution (92 ppi) is<br /><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>lower than /GrayImageMinResolution (100 ppi) ]%%</p>
+  <p class="BodyLevel1">If <span class="FM_Courier">GrayImageMinResolutionPolicy</span>&#160;is set to <span class="FM_Courier">Error</span>, then an error message is emitted and the job fails with a <span class="FM_Courier">limitcheck</span>&#160;error. If <span class="FM_Courier">GrayImageMinResolutionPolicy</span>&#160;is set to <span class="FM_Courier">OK</span>, then distillation continues normally.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>While there are no dependencies or interaction between the downsampling settings and the minimum resolution settings, normally you would not set the resolution policy to <span class="FM_Courier">Warning</span>&#160;or <span class="FM_Courier">Error</span>&#160;and at the same time set the minimum resolution to a value that is higher than the downsampling threshold. If you do this, the result is that <span class="FM_Italic">all</span>&#160;images are flagged as having too low a resolution. If the resolution policy is <span class="FM_Courier">Error</span>, then only PDF files with no images would be distilled.</p>
+  <h4><a name="TOC_Controlling_downsampling"></a><a name="XREF_36967_2_2_8_Controlling"></a>Controlling downsampling and encoding for each sampled image</h4>
+  <p class="BodyLevel1">You can separately control the downsampling and encoding of each sampled image in a PostScript file. To do this, you must make adjustments to the Distiller parameters in the file just before, and appropriate to, each image.</p>
+  <h4><a name="TOC_Disabling_of_image"></a><a name="IX_cropping"></a><a name="XREF_16777_Disabling_of_Image"></a>Disabling of image cropping</h4>
+  <p class="BodyLevel1">Distiller determines whether more than 10 percent of an image sample falls outside the existing clip path. If so, Distiller normally discards (crops) the image samples that fall outside the clip area, resulting in smaller images and PDF files. </p>
+  <p class="BodyLevel1">For workflows in which the full-size (non-cropped) images must be extracted for special-purpose image manipulation, it is possible to disable cropping, using the settings <span class="FM_Courier">CropColorImages</span>, <span class="FM_Courier">CropGrayImages</span>, and <span class="FM_Courier">CropMonoImages</span>&#160;for color, grayscale, and monochrome images, respectively. These settings are Boolean values:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">false</span>: indicates that Distiller should not clip image samples regardless of the current clip area. </p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">true</span>: (the default) indicates that Distiller should crop only if the 10 percent criteria is met.</p>
+  <p class="FM_Note"><a name="IX_image_settings_1"></a><a name="IX_Distiller_specific_3"></a><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>InDesign uses a separate setting, <span class="FM_Courier">CropImagesToFrames</span>, to control cropping.</p>
+  </div>
+</body>
+</html>

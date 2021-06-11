@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Extracting and displaying words</title>
+
+ 
+
+ <link rel="stylesheet" href="Working_with_Words.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.9.1_2";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Working_with_Words/Creating_a_PDWordFinder_object.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Working_with_Words/Highlighting_words.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Working with Words" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="IX_extracting_words"></a><a name="IX_displaying_words"></a><a name="XREF_65675_Extracting_and"></a>Extracting and displaying words</p>
+  <p dir="ltr" class="FM_Body">You can use a <span class="FM_Courier">PDWordFinder</span>&#160;object to extract and display all words that are located either in the entire document or the current page by creating a callback function that is invoked for each word found. To create a callback function that is invoked when a word is found, declare a <span class="FM_Courier">PDWordProc</span>&#160;object that represents the callback:</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDWordProc wordProc;</p>
+  <p dir="ltr" class="FM_Body"><span class="FM_Courier">PDWordProc</span>&#160;is a callback that is invoked when a word is located. After you create a <span class="FM_Courier">PDWordProc</span>&#160;object, you can invoke the <span class="FM_Courier">ASCallbackCreateProto</span>&#160;macro to convert a user-defined function to an <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;callback. For example, you can invoke <span class="FM_Courier">ASCallbackCreateProto</span>&#160;to convert a user-defined function named <span class="FM_Courier">wordEnumerator</span>&#160;to a callback function. The <span class="FM_Courier">ASCallbackCreateProto</span>&#160;macro requires the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The callback type. In this situation, specify <span class="FM_Courier">PDWordProc</span>.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The address of the user-defined function to convert to a callback function.</p>
+  <p dir="ltr" class="FM_Body">The <span class="FM_Courier">ASCallbackCreateProto</span>&#160;macro returns a callback of the specified type that invokes the user-defined function whose address was passed as the second argument. The following lines of code shows the <span class="FM_Courier">ASCallbackCreateProto</span>&#160;macro converting the <span class="FM_Courier">wordEnumerator</span>&#160;user-defined function to a <span class="FM_Courier">PDWordProc</span> callback.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDWordProc wordProc;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>wordProc= ASCallbackCreateProto(PDWordProc, &amp;<span class="FM_Courier">wordEnumerator</span>);</p>
+  <p dir="ltr" class="FM_Body">After you create a callback function, invoke the <span class="FM_Courier">PDWordFinderEnumWords</span>&#160;method to extract all words from the specified page and pass the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">PDWordFinder</span>&#160;object that is responsible for finding and extracting words. </p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASInt32</span> value that represents the page number from which to extract words.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">PDWordProc</span>&#160;object that represents the callback function to invoke when a word is located. </p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A pointer to user-supplied data to pass to the callback function. Pass <span class="FM_Courier">NULL</span>&#160;if you do not want to pass user-supplied data.</p>
+  <p dir="ltr" class="FM_Body">To illustrate how to display words that are located on a page, this section contains a code example that creates a callback function named <span class="FM_Courier">wordEnumerator</span> that performs the following tasks:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Removes punctuation characters from the word by invoking the <span class="FM_Courier">PDWordFilterWord</span>&#160;method. The encoding information passed to the <span class="FM_Courier">PDDocCreateWordFinderEx</span>&#160;method determines which characters are removed.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Invokes the <span class="FM_Courier">PDWordGetString</span> method to get the word as a string.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Displays the string in an alert box by invoking the <span class="FM_Courier">AVAlertConfirm</span>&#160;method. If the user clicks OK, the next word is displayed until all words for the document page have been displayed. If the user clicks Cancel, this callback function returns <span class="FM_Courier">false</span>. </p>
+  <p dir="ltr" class="FM_Body">The following code example extracts and displays all words that are located on the current PDF document page. Included in this code example is application logic that creates a <span class="FM_Courier">PDWordFinder</span>&#160;object. (See <a href="Creating_a_PDWordFinder_object.htm#XREF_28279_Creating_a"><span class="FM_HyperText">Creating a PDWordFinder object</span></a>.)</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Extracting and displaying words</p>
+  <p dir="ltr" class="FM_CodeReference"><span class="FM_Bold">ACCB1 void ACCB2 DisplayWords(void *data)</span>&#160;</p>
+  <p dir="ltr" class="FM_CodeReference">{</p>
+  <p dir="ltr" class="FM_CodeComment">//Get the current PDF document page number</p>
+  <p dir="ltr" class="FM_CodeReference">AVDoc currentAVDoc = AVAppGetActiveDoc();</p>
+  <p dir="ltr" class="FM_CodeReference">PDDoc currentPDDoc = AVDocGetPDDoc(currentAVDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">AVPageView currentPageView = AVDocGetPageView (currentAVDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">ASInt32 pageNum = AVPageViewGetPageNum(currentPageView); </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p dir="ltr" class="FM_CodeComment">//Create a PDWordFinderConfigRec object;</p>
+  <p dir="ltr" class="FM_CodeReference">PDWordFinderConfigRec pConfig;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Set the DWordFinderConfigRec object's attributes</p>
+  <p dir="ltr" class="FM_CodeReference">memset(&amp;pConfig, 0, sizeof(PDWordFinderConfigRec));</p>
+  <p dir="ltr" class="FM_CodeReference">pConfig.recSize = sizeof(PDWordFinderConfigRec);</p>
+  <p dir="ltr" class="FM_CodeReference">pConfig.ignoreCharGaps = true;</p>
+  <p dir="ltr" class="FM_CodeReference">pConfig.ignoreLineGaps = true;</p>
+  <p dir="ltr" class="FM_CodeReference">pConfig.noAnnots = true;</p>
+  <p dir="ltr" class="FM_CodeReference">pConfig.noEncodingGuess = true;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Create a PDWordFinder object</p>
+  <p dir="ltr" class="FM_CodeReference">PDWordFinder pdWordFinder = PDDocCreateWordFinderEx(currentPDDoc, WF_LATEST_VERSION, false, &amp;pConfig);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Create a callback function</p>
+  <p dir="ltr" class="FM_CodeReference">PDWordProc wordProc = NULL;</p>
+  <p dir="ltr" class="FM_CodeReference">wordProc= ASCallbackCreateProto(PDWordProc, &amp;wordEnumerator);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Extract and display words</p>
+  <p dir="ltr" class="FM_CodeReference">PDWordFinderEnumWords(pdWordFinder, pageNum, wordProc, NULL);</p>
+  <p dir="ltr" class="FM_CodeReference">PDWordFinderDestroy(pdWordFinder);</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_CodeReference"><span class="FM_Bold">ACCB1 ASBool ACCB2 wordEnumerator(PDWordFinder wObj, PDWord wInfo, ASInt32 pgNum, void *clientData)</span>&#160;</p>
+  <p dir="ltr" class="FM_CodeReference">{</p>
+  <p dir="ltr" class="FM_CodeReference">char stringBuffer[100];</p>
+  <p dir="ltr" class="FM_CodeReference">ASInt16 wordLength;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Remove punctuation </p>
+  <p dir="ltr" class="FM_CodeReference">PDWordFilterWord(wInfo, stringBuffer, 99, &amp;wordLength);</p>
+  <p dir="ltr" class="FM_CodeReference">stringBuffer[wordLength] = 0;</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Populate the char array with text that represents the word</p>
+  <p dir="ltr" class="FM_CodeReference">PDWordGetString (wInfo, stringBuffer, 99);</p>
+  <p dir="ltr" class="FM_CodeReference">return AVAlertConfirm(stringBuffer);</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>In the previous code example, assume that the <span class="FM_Courier">DisplayWords</span>&#160;function was invoked from a menu item.</p>
+  <p dir="ltr" class="FM_NoteCaution"><span class="FM_Z_NoteCaution">Caution:<span style="padding-left: 7pt;" class="FMAutoNumber_1"></span></span>If you pass <span class="FM_Courier">true</span>&#160;as the <span class="FM_Courier">PDDocCreateWordFinderEx</span>&#160;method’s third argument, then the word finder encodes the extracted text in Unicode format. As a result, words will not be displayed within the alert box. Notice in this code example, the value <span class="FM_Courier">false</span>&#160;is passed as the <span class="FM_Courier">PDDocCreateWordFinderEx</span> method’s third argument.</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

@@ -1,0 +1,1925 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="PDEExtGState,,,,PDEExtGState,PDEExtGStateGetCosObj,PDEExtGStateGetOPM,PDEExtGStateGetOPFill,PDEExtGStateGetOPStroke,PDEExtGStateGetOpacityFill,PDEExtGStateGetOpacityStroke,PDEExtGStateGetBlendMode,PDEExtGStateGetAIS,PDEExtGStateHasSoftMask,PDEExtGStateAcquireSoftMask,PDEExtGStateGetTK,PDEExtGStateGetSA,PDEExtGStateCreate,PDEExtGStateCreateNew,PDEExtGStateSetOPM,PDEExtGStateSetOPFill,PDEExtGStateSetOPStroke,PDEExtGStateSetOpacityFill,PDEExtGStateSetOpacityStroke,PDEExtGStateSetBlendMode,PDEExtGStateSetAIS,PDEExtGStateSetSoftMask,PDEExtGStateSetTK,PDEExtGStateSetSA" name="keywords">
+<title>PDFEdit_Layer.PDEExtGState (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'PDEExtGState - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?PDFEdit_Layer/PDEExtGState.html&amp;PDFEdit_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">PDEExtGState</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PDEExtGState"); titleBar_setSubNav(false,true,false,false,false,false,false,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">PDFEdit_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">PDEExtGState</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>A PDEExtGState object is a reference to an ExtGState resource <a href="../PDF_Library/General.html#used" target="">used</a> on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a>. It specifies a 
+<a href="PDEElement.html" target="">PDEElement</a> object's extended graphics state, which is part of its graphics state, as specified in 
+a <a href="General.html#PDEGraphicState" target="">PDEGraphicState</a> structure. See Section 4.3.4 in the <i>PDF Reference</i> for 
+information on extended graphics states.</p><p>The graphics state controls the various <a href="../PD_Layer/General.html#style" target="">style</a> properties 
+of the <a href="#text" target="">text</a> including <a href="../PD_Layer/General.html#color" target="">color</a>, weight, and so forth, as shown in the following example:
+</p><p><code>memset (&amp;gState, 0, sizeof(PDEGraphicState));</code></p><p><code>gState.strokeColorSpec.space = gState.fillColorSpec.space = pdeColorSpace;</code></p><p><code>gState.miterLimit = fixedTen;</code></p><p><code>gState.flatness = fixedOne;</code></p><p><code>gState.lineWidth = fixedOne;</code></p><p><code>gState.extGState = pdeExtGState;</code></p><p><code>gState.wasSetFlags = kPDEMiterLimitWasSet | kPDEFlatnessWasSet | kPDELineWidthWasSet | kPDEExtGStateWasSet;</code></p><p>You can get or set the graphics state associated with a PDEElement or <a href="PDEText.html" target="">PDEText</a> object with 
+the <a href="PDEElement.html#PDEElementGetGState()" target="">PDEElementGetGState</a>() or <a href="PDEElement.html#PDEElementSetGState()" target="">PDEElementSetGState</a> methods().</p><p><b>Setting the Opacity of an Object</b></p><p>With Acrobat 5.0 and PDF 1.4 and later, every object has an <a href="../PD_Layer/General.html#opacity" target="">opacity</a> property 
+(default is opaque) in the extended graphics state. The code snippet below shows how to add the 
+opacity property to either existing or new elements:</p><p><code>DURING</code></p><p><code>  pdeExtGState = PDEExtGStateCreateNew (PDDocGetCosDoc(pdDoc));</code></p><p><code>  PDEExtGStateSetOpacityFill (pdeExtGState, FloatToFixed(0.5));</code></p><p><code>  PDEExtGStateSetOpacityStroke (pdeExtGState, FloatToFixed(0.5));</code></p><p><code>HANDLER</code></p><p><code>  if (pdeExtGState) {</code></p><p><code>    PDERelease ((PDEObject) pdeExtGState);</code></p><p><code>    pdeExtGState = NULL;</code></p><p><code>  }</code></p><p><code>END_HANDLER</code></p><p>For information on <a href="../AV_Layer/General.html#transparency" target="">transparency</a>, see Chapter 7 in the the <i>PDF Reference</i>.</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDEExtGState">PDEExtGState</a>
+<div class="summaryTableDescription">A reference to an ExtGState resource used on a page in a PDF file. It specifies a PDEElement object's extended graphics state, which is part of its graphics state. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDESoftMask <a class="signatureLink" href="#PDEExtGStateAcquireSoftMask2393()">PDEExtGStateAcquireSoftMask</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Acquires the soft mask of the extended graphic state. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDEExtGState <a class="signatureLink" href="#PDEExtGStateCreate1226()">PDEExtGStateCreate</a>(IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP)</div>
+<div class="summaryTableDescription">Creates a new PDEExtGState from a Cos object. See Section 4.3.4 in the PDF Reference for more information about extended graphics states.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDEExtGState <a class="signatureLink" href="#PDEExtGStateCreateNew2026()">PDEExtGStateCreateNew</a>(IN<a href="../COS_Layer/CosDoc.html#CosDoc" target="">CosDoc</a> cosDoc)</div>
+<div class="summaryTableDescription">Creates a new extended graphics state object. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEExtGStateGetAIS2365()">PDEExtGStateGetAIS</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns the value of the Alpha Is Shape (AIS) member of the graphics state. If AIS is true, the sources of alpha are treated as shape; otherwise they are treated as opacity values. If the value is not set, the default value of false is returned. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASAtom <a class="signatureLink" href="#PDEExtGStateGetBlendMode2349()">PDEExtGStateGetBlendMode</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns the blend mode for the color composite for each object painted. The following are valid names:</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateGetCosObj1461()">PDEExtGStateGetCosObj</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> extGState, OUT<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP)</div>
+<div class="summaryTableDescription">Gets a Cos object for a PDEExtGState. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFixed <a class="signatureLink" href="#PDEExtGStateGetOpacityFill2300()">PDEExtGStateGetOpacityFill</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns the opacity value for painting operations other than stroking. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFixed <a class="signatureLink" href="#PDEExtGStateGetOpacityStroke2315()">PDEExtGStateGetOpacityStroke</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns the opacity value for stroke painting operations for paths and glyph outlines. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEExtGStateGetOPFill2270()">PDEExtGStateGetOPFill</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns whether overprint is enabled for painting operations other than stroking. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#PDEExtGStateGetOPM2255()">PDEExtGStateGetOPM</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns the overprint mode used by this graphics state.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEExtGStateGetOPStroke2285()">PDEExtGStateGetOPStroke</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns whether overprint is enabled for stroke painting operations. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEExtGStateGetSA2531()">PDEExtGStateGetSA</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns whether stroke adjustment is enabled in the graphics state. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEExtGStateGetTK2481()">PDEExtGStateGetTK</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns whether text knockout is enabled in the graphics state. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDEExtGStateHasSoftMask2379()">PDEExtGStateHasSoftMask</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</div>
+<div class="summaryTableDescription">Returns whether the graphics state contains a soft mask.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetAIS2155()">PDEExtGStateSetAIS</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> alphaIsShape)</div>
+<div class="summaryTableDescription">Specifies if the alpha is to be interpreted as a shape or opacity mask. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetBlendMode2138()">PDEExtGStateSetBlendMode</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> blendMode)</div>
+<div class="summaryTableDescription">Sets the blend mode for the color composites for each object painted.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetOpacityFill2086()">PDEExtGStateSetOpacityFill</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/Fixed_Point_Math.html#ASFixed" target="">ASFixed</a> opacity)</div>
+<div class="summaryTableDescription">Sets the opacity value for painting operations other than stroking. The value must be in the range from 0 to 1 inclusive. It corresponds to the / ca key within the ExtGState's dictionary. The value from 0 to 1 refers to a float number (not an ASFixed value) that should be converted to ASFixed using FloatToASFixed().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetOpacityStroke2103()">PDEExtGStateSetOpacityStroke</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/Fixed_Point_Math.html#ASFixed" target="">ASFixed</a> opacity)</div>
+<div class="summaryTableDescription">Sets the opacity value for stroke operations. The value must be in the range from 0 to 1 inclusive. It corresponds to the / CA key within the ExtGState's dictionary. The value from 0 to 1 refers to a float number (not an ASFixed value) that should be converted to ASFixed using FloatToASFixed().</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetOPFill2054()">PDEExtGStateSetOPFill</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> overprint)</div>
+<div class="summaryTableDescription">Specifies if overprint is enabled for painting operations other than stroking. It corresponds to the / op key within the ExtGState's dictionary. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetOPM2039()">PDEExtGStateSetOPM</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> opm)</div>
+<div class="summaryTableDescription">Sets the overprint mode. It corresponds to the / OPM key within the ExtGState's dictionary. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetOPStroke2069()">PDEExtGStateSetOPStroke</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> overprint)</div>
+<div class="summaryTableDescription">Specifies if overprint is enabled for stroke operations. It corresponds to the / OP key within the ExtGState's dictionary.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetSA2471()">PDEExtGStateSetSA</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> strokeAdjust)</div>
+<div class="summaryTableDescription">Specifies whether stroke adjustment is enabled in the graphics state. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetSoftMask2167()">PDEExtGStateSetSoftMask</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="PDESoftMask.html#PDESoftMask" target="">PDESoftMask</a> pdeSoftMask)</div>
+<div class="summaryTableDescription">Sets the soft mask of the extended graphics state. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDEExtGStateSetTK2280()">PDEExtGStateSetTK</a>(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bk)</div>
+<div class="summaryTableDescription">Specifies whether text knockout is enabled in the graphics state. This corresponds to the / TK key in the ExtGState's dictionary. </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="PDEExtGState"></a><a name="PDEExtGState347"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGState</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_PDEExtGState* PDEExtGState;</code>
+</div>
+<br><p>A reference to an ExtGState resource <a href="../PDF_Library/General.html#used" target="">used</a> on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a> in a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. It specifies a <a href="PDEElement.html" target="">PDEElement</a> object's extended graphics state, which is part of its graphics state. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEExtGState.html#PDEExtGStateCreate()" target="">PDEExtGStateCreate</a> <br><a href="PDEObject.html#PDERelease()" target="">PDERelease</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>347</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="PDEExtGStateAcquireSoftMask2393()"></a><a name="PDEExtGStateAcquireSoftMask()"></a><a name="PDEExtGStateAcquireSoftMask(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateAcquireSoftMask</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDESoftMask.html#PDESoftMask" target="">PDESoftMask</a> PDEExtGStateAcquireSoftMask(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Acquires the soft mask of the extended graphic state. </p><p>Call <a href="PDEObject.html#PDERelease()" target="">PDERelease()</a> to dispose of the PDESoftMask when finished with it.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The extended graphics state object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The soft mask or <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if the ExtGState dictionary does not contain the SMask key. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType <a href="General.html#if" target="">if</a> pdeExtGState is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> or is not of type <br><a href="PDEExtGState.html#kPDEExtGState" target="">kPDEExtGState</a>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2393</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateCreate1226()"></a><a name="PDEExtGStateCreate()"></a><a name="PDEExtGStateCreate(INCosObj*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateCreate</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> PDEExtGStateCreate(IN<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="PDEExtGState.html" target="">PDEExtGState</a> from a Cos object. See Section 4.3.4 in the <i>PDF Reference</i> for more information about extended graphics states.</p><p>Call <a href="PDEObject.html#PDERelease()" target="">PDERelease()</a> to dispose of the returned PDEExtGState when finished with it. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cosObjP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A Cos object for <a href="#a" target="">a</a> dictionary of <a href="../AS_Layer/General.html#type" target="">type</a> ExtGState. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="PDEExtGState.html" target="">PDEExtGState</a> for <code>cosObjP</code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEElement.html#PDEElementSetGState()" target="">PDEElementSetGState</a> <br><a href="PDEExtGState.html#PDEExtGStateGetCosObj()" target="">PDEExtGStateGetCosObj</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1226</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateCreateNew2026()"></a><a name="PDEExtGStateCreateNew()"></a><a name="PDEExtGStateCreateNew(INCosDoc)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateCreateNew</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> PDEExtGStateCreateNew(IN<a href="../COS_Layer/CosDoc.html#CosDoc" target="">CosDoc</a> cosDoc)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new extended graphics state object. </p><p>Call <a href="PDEObject.html#PDERelease()" target="">PDERelease()</a> to dispose of the returned PDEExtGState object when finished with it.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cosDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The document within which the object will be <a href="../PDF_Library/General.html#used" target="">used</a>.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2026</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetAIS2365()"></a><a name="PDEExtGStateGetAIS()"></a><a name="PDEExtGStateGetAIS(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetAIS</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEExtGStateGetAIS(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the <a href="../PD_Layer/General.html#value" target="">value</a> of the Alpha Is Shape (AIS) member of the graphics state. If AIS is <code>true</code>, the sources of alpha are treated as shape; otherwise they are treated as opacity values. If the value is not set, the default value of <code>false</code> is returned. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>See above. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2365</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetBlendMode2349()"></a><a name="PDEExtGStateGetBlendMode()"></a><a name="PDEExtGStateGetBlendMode(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetBlendMode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> PDEExtGStateGetBlendMode(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the blend mode for the <a href="../PD_Layer/General.html#color" target="">color</a> composite for each object painted. The following are valid <a href="General.html#names" target="">names</a>:</p><p>
+
+</p><ul>
+<li>
+<p>Compatible </p>
+</li>
+<li>
+<p>Normal </p>
+</li>
+<li>
+<p>Multiply </p>
+</li>
+<li>
+<p>Screen </p>
+</li>
+<li>
+<p>Difference </p>
+</li>
+<li>
+<p>Darken </p>
+</li>
+<li>
+<p>Lighten </p>
+</li>
+<li>
+<p>ColorDodge </p>
+</li>
+<li>
+<p>ColorBurn </p>
+</li>
+<li>
+<p>Exclusion </p>
+</li>
+<li>
+<p>HardLight </p>
+</li>
+<li>
+<p>Overlay </p>
+</li>
+<li>
+<p>SoftLight </p>
+</li>
+<li>
+<p>Luminosity </p>
+</li>
+<li>
+<p>Hue </p>
+</li>
+<li>
+<p>Saturation </p>
+</li>
+<li>
+<p>Color </p>
+</li>
+</ul><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>If the <a href="../PD_Layer/General.html#value" target="">value</a> has not been set, a value of Compatible is returned. See above. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2349</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetCosObj1461()"></a><a name="PDEExtGStateGetCosObj()"></a><a name="PDEExtGStateGetCosObj(INPDEExtGState,OUTCosObj*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetCosObj</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateGetCosObj(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> extGState, OUT<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a>* cosObjP)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> Cos object for a <a href="PDEExtGState.html" target="">PDEExtGState</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">extGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A <a href="PDEExtGState.html" target="">PDEExtGState</a> whose Cos object is obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cosObjP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) The Cos object for <code><a href="General.html#extGState" target="">extGState</a></code>.</p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDEExtGState.html#PDEExtGStateCreate()" target="">PDEExtGStateCreate</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1461</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetOpacityFill2300()"></a><a name="PDEExtGStateGetOpacityFill()"></a><a name="PDEExtGStateGetOpacityFill(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetOpacityFill</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/Fixed_Point_Math.html#ASFixed" target="">ASFixed</a> PDEExtGStateGetOpacityFill(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the <a href="../PD_Layer/General.html#opacity" target="">opacity</a> <a href="../PD_Layer/General.html#value" target="">value</a> for painting operations other than stroking. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns the <a href="../PD_Layer/General.html#value" target="">value</a> of the / ca key in the ExtGState dictionary. If the value is not found, the default value of <code>1</code> is returned.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2300</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetOpacityStroke2315()"></a><a name="PDEExtGStateGetOpacityStroke()"></a><a name="PDEExtGStateGetOpacityStroke(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetOpacityStroke</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/Fixed_Point_Math.html#ASFixed" target="">ASFixed</a> PDEExtGStateGetOpacityStroke(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the <a href="../PD_Layer/General.html#opacity" target="">opacity</a> <a href="../PD_Layer/General.html#value" target="">value</a> for stroke painting operations for paths and glyph outlines. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns the <a href="../PD_Layer/General.html#value" target="">value</a> of the / CA key in the ExtGState dictionary. If the value is not found, the default value of <code>1</code> is returned.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2315</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetOPFill2270()"></a><a name="PDEExtGStateGetOPFill()"></a><a name="PDEExtGStateGetOPFill(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetOPFill</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEExtGStateGetOPFill(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns whether overprint is enabled for painting operations other than stroking. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns the <a href="../PD_Layer/General.html#value" target="">value</a> of the / op key in the ExtGState dictionary. If the value is not found, the default value of <code>false</code> is returned. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2270</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetOPM2255()"></a><a name="PDEExtGStateGetOPM()"></a><a name="PDEExtGStateGetOPM(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetOPM</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> PDEExtGStateGetOPM(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the overprint mode <a href="../PDF_Library/General.html#used" target="">used</a> by this graphics state.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The Cos integer <a href="../PD_Layer/General.html#value" target="">value</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2255</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetOPStroke2285()"></a><a name="PDEExtGStateGetOPStroke()"></a><a name="PDEExtGStateGetOPStroke(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetOPStroke</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEExtGStateGetOPStroke(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns whether overprint is enabled for stroke painting operations. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns the <a href="../PD_Layer/General.html#value" target="">value</a> of the / OP key in the ExtGState dictionary. If the value is not found, the default value of <code>false</code> is returned. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2285</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetSA2531()"></a><a name="PDEExtGStateGetSA()"></a><a name="PDEExtGStateGetSA(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetSA</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEExtGStateGetSA(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns whether stroke adjustment is enabled in the graphics state. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns the <a href="../PD_Layer/General.html#value" target="">value</a> of the / SA key in the ExtGState dictionary. If the value is not set, the default value of <code>false</code> is returned.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2531</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateGetTK2481()"></a><a name="PDEExtGStateGetTK()"></a><a name="PDEExtGStateGetTK(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateGetTK</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEExtGStateGetTK(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns whether <a href="#text" target="">text</a> knockout is enabled in the graphics state. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns the <a href="../PD_Layer/General.html#value" target="">value</a> of the / TK key in the ExtGState dictionary. If the value is not found, the default value of <code>true</code> is returned. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2481</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateHasSoftMask2379()"></a><a name="PDEExtGStateHasSoftMask()"></a><a name="PDEExtGStateHasSoftMask(INPDEExtGState)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateHasSoftMask</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDEExtGStateHasSoftMask(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns whether the graphics state contains a soft mask.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns <code>true</code> if the ExtGState dictionary contains the / SMask key; otherwise <code>false</code> is returned. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_READ_VERSION" target="">PI_PDFEDIT_READ_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PERProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2379</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetAIS2155()"></a><a name="PDEExtGStateSetAIS()"></a><a name="PDEExtGStateSetAIS(INPDEExtGState,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetAIS</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetAIS(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> alphaIsShape)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Specifies if the alpha is to be interpreted as a shape or <a href="../PD_Layer/General.html#opacity" target="">opacity</a> mask. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">alphaIsShape</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Indicates whether the sources of alpha are to be treated as shape (<code>true</code>) or opacity (<code>false</code>). This determines the interpretation of the constant alpha (ca or CA) and soft mask (SMask) parameters of the graphics state, as well as a soft-mask image (Smask entry) of an image XObject. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2155</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetBlendMode2138()"></a><a name="PDEExtGStateSetBlendMode()"></a><a name="PDEExtGStateSetBlendMode(INPDEExtGState,INASAtom)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetBlendMode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetBlendMode(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> blendMode)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the blend mode for the <a href="../PD_Layer/General.html#color" target="">color</a> composites for each object painted.</p><p>The following mode <a href="General.html#names" target="">names</a> are valid: 
+</p><ul>
+<li>
+<p>Compatible </p>
+</li>
+<li>
+<p>Normal </p>
+</li>
+<li>
+<p>Multiply </p>
+</li>
+<li>
+<p>Screen </p>
+</li>
+<li>
+<p>Difference </p>
+</li>
+<li>
+<p>Darken </p>
+</li>
+<li>
+<p>Lighten </p>
+</li>
+<li>
+<p>ColorDodge </p>
+</li>
+<li>
+<p>ColorBurn </p>
+</li>
+<li>
+<p>Exclusion  </p>
+</li>
+<li>
+<p>HardLight </p>
+</li>
+<li>
+<p>Overlay </p>
+</li>
+<li>
+<p>SoftLight </p>
+</li>
+<li>
+<p>Luminosity </p>
+</li>
+<li>
+<p>Hue </p>
+</li>
+<li>
+<p>Saturation </p>
+</li>
+<li>
+<p>Color  </p>
+</li>
+</ul><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">blendMode</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The new blend mode. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2138</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetOpacityFill2086()"></a><a name="PDEExtGStateSetOpacityFill()"></a><a name="PDEExtGStateSetOpacityFill(INPDEExtGState,INASFixed)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetOpacityFill</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetOpacityFill(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/Fixed_Point_Math.html#ASFixed" target="">ASFixed</a> opacity)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the <a href="../PD_Layer/General.html#opacity" target="">opacity</a> <a href="../PD_Layer/General.html#value" target="">value</a> for painting operations other than stroking. The value must be in the range from <code>0</code> to <code>1</code> inclusive. It corresponds to the / ca key within the ExtGState's dictionary. The value from <code>0</code> to <code>1</code> refers to <a href="#a" target="">a</a> float number (not an ASFixed value) that should be converted to ASFixed using <a href="../AS_Layer/Fixed_Point_Math.html#FloatToASFixed()" target="">FloatToASFixed()</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">opacity</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The new <a href="../PD_Layer/General.html#opacity" target="">opacity</a> <a href="../PD_Layer/General.html#value" target="">value</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2086</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetOpacityStroke2103()"></a><a name="PDEExtGStateSetOpacityStroke()"></a><a name="PDEExtGStateSetOpacityStroke(INPDEExtGState,INASFixed)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetOpacityStroke</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetOpacityStroke(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/Fixed_Point_Math.html#ASFixed" target="">ASFixed</a> opacity)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the <a href="../PD_Layer/General.html#opacity" target="">opacity</a> <a href="../PD_Layer/General.html#value" target="">value</a> for stroke operations. The value must be in the range from <code>0</code> to <code>1</code> inclusive. It corresponds to the / CA key within the ExtGState's dictionary. The value from <code>0</code> to <code>1</code> refers to <a href="#a" target="">a</a> float number (not an ASFixed value) that should be converted to ASFixed using <a href="../AS_Layer/Fixed_Point_Math.html#FloatToASFixed()" target="">FloatToASFixed()</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">opacity</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The new <a href="../PD_Layer/General.html#opacity" target="">opacity</a> <a href="../PD_Layer/General.html#value" target="">value</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2103</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetOPFill2054()"></a><a name="PDEExtGStateSetOPFill()"></a><a name="PDEExtGStateSetOPFill(INPDEExtGState,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetOPFill</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetOPFill(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> overprint)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Specifies if overprint is enabled for painting operations other than stroking. It corresponds to the / op key within the ExtGState's dictionary. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">overprint</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT Pass <code>true</code> to enable overprint, <code>false</code> to disable overprint.</p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2054</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetOPM2039()"></a><a name="PDEExtGStateSetOPM()"></a><a name="PDEExtGStateSetOPM(INPDEExtGState,INASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetOPM</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetOPM(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> opm)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the overprint mode. It corresponds to the / OPM key within the ExtGState's dictionary. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">opm</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT Overprint mode. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2039</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetOPStroke2069()"></a><a name="PDEExtGStateSetOPStroke()"></a><a name="PDEExtGStateSetOPStroke(INPDEExtGState,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetOPStroke</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetOPStroke(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> overprint)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Specifies if overprint is enabled for stroke operations. It corresponds to the / OP key within the ExtGState's dictionary.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">overprint</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT Pass <code>true</code> to enable overprint, <code>false</code> to disable overprint.</p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2069</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetSA2471()"></a><a name="PDEExtGStateSetSA()"></a><a name="PDEExtGStateSetSA(INPDEExtGState,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetSA</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetSA(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> strokeAdjust)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Specifies whether stroke adjustment is enabled in the graphics state. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">strokeAdjust</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT Pass <code>true</code> to enable stroke adjustment, <code>false</code> to disable stroke adjustment.</p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">peErrWrongPDEObjectType </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2471</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetSoftMask2167()"></a><a name="PDEExtGStateSetSoftMask()"></a><a name="PDEExtGStateSetSoftMask(INPDEExtGState,INPDESoftMask)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetSoftMask</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetSoftMask(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="PDESoftMask.html#PDESoftMask" target="">PDESoftMask</a> pdeSoftMask)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the soft mask of the extended graphics state. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeSoftMask</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The soft mask object. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2167</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDEExtGStateSetTK2280()"></a><a name="PDEExtGStateSetTK()"></a><a name="PDEExtGStateSetTK(INPDEExtGState,INASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDEExtGStateSetTK</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDEExtGStateSetTK(IN<a href="PDEExtGState.html#PDEExtGState" target="">PDEExtGState</a> pdeExtGState, IN<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bk)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Specifies whether <a href="#text" target="">text</a> knockout is enabled in the graphics state. This corresponds to the / TK key in the ExtGState's dictionary. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdeExtGState</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The extended graphics state object.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bk</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT Pass <code>true</code> to enable text knockout, <code>false</code> to disable text knockout. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDFEDIT_WRITE_VERSION" target="">PI_PDFEDIT_WRITE_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PEWProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2280</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->
