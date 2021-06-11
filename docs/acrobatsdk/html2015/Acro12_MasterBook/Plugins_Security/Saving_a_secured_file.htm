@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Saving a secured file</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Security.fm" />
+ <link rel="stylesheet" href="Plugins_Security.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.14.1.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Security/Opening_a_secured_file.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Security/Setting_security_for_a_document.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Document Security > About security handlers" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Saving a secured file</h3>
+  <p class="BodyLevel1">When saving a file, it is important to remember the following information:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">When a user selects document encryption for the first time or has selected a different security handler for an already encrypted file, the newly-selected handler does not take effect until the document is saved.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">To be allowed to save a file, the user must have <span class="FM_Courier">PDPermReqOprModify</span>&#160;or either <span class="FM_Courier">pdPermEdit</span>&#160;or <span class="FM_Courier">pdPermEditNotes</span> permission.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">In <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> 5.0, a save operation forces a complete encrypted copy of the file to be written.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The following information is applicable to when a secured file is saved:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">If the file is being saved in an encrypted form for the first time or if a different security handler is selected, <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;calls the new security handler’s <span class="FM_Courier">PDCryptNewSecurityDataProc</span>&#160;callback. This action creates a new copy of the new security handler’s security data structure.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">If the file is saved in an encrypted form for the first time or if a different security handler is selected, <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;calls the new security handlerfs <span class="FM_Courier">PDCryptUpdateSecurityDataProc</span>&#160;callback. This presents whatever user interface the security handler has for enabling the user to set permissions.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;invokes the new security handler’s <span class="FM_Courier">PDCryptFillEncryptDictProc</span>&#160;callback to encrypt and write into the PDF file’s encryption dictionary whatever data the security handler wants to save in the PDF file.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> writes out the encrypted file.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> sets the new security handler as the document’s current security handler.</p>
+</li>
+  </ul>
+  </div>
+</body>
+</html>

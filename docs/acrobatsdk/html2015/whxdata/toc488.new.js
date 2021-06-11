@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Enhancements to the getDataObjectContents method","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Enhancements_to_Doc_object.htm#TOC_Enhancements_to_thebc-1"},{"type":"item","name":"Enhancements to the SaveAs Method","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Enhancements_to_Doc_object.htm#TOC_Enhancements_to_the1bc-2"},{"type":"item","name":"New timestampSign and certifyInvisibleSign Doc methods","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Enhancements_to_Doc_object.htm#TOC_New_timestampSign_andbc-3"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

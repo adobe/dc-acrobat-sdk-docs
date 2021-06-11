@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating an AVCommand handler</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Handlers.fm" />
+ <link rel="stylesheet" href="Plugins_Handlers.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.12.1.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Handlers/AVCommand_handlers.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Handlers/Invoking_AVCommands.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Handlers > AVCommand handlers" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Creating an AVCommand handler</h3>
+  <p class="BodyLevel1"><span class="FM_Courier">AVCommand</span>&#160;handlers consist of a series of callback functions contained in the <span class="FM_Courier">AVCommandHandlerRec</span>&#160;structure (see AVExpt.h). To create a command handler, perform the following tasks:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Initialize an instance of the <span class="FM_Courier">AVCommandHandlerRec</span> structure.</p>
+  <p class="FM_Step"><a name="IX_AVAppRegisterCommandHandl_1"></a><a name="IX_AVAppRegisterCommandHandl"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Register the <span class="FM_Courier">AVCommandHandlerRec</span>&#160;structure by invoking the <span class="FM_Courier">AVAppRegisterCommandHandler</span>&#160;method.</p>
+  <p class="BodyLevel1">The following code example creates an <span class="FM_Courier">AVCommand</span> handler.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Creating an AVCommand handler</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">static AVCommandHandlerRec gAVCmdHandler;</p>
+  <p class="FM_CodeReference">const char *kCmdName = &quot;MinimalCommand&quot;;</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">static ACCB1 AVCommandStatus ACCB2 DoWorkImpl (AVCommand cmd)</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAlertNote(&quot;The DoWorkImpl method was invoked&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return kAVCommandDone;</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference"><span class="FM_Bold">void InitializeCommandHandler()</span>&#160;</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>memset (&amp;gAVCmdHandler, 0, sizeof(AVCommandHandlerRec));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gAVCmdHandler.size = sizeof(AVCommandHandlerRec);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gAVCmdHandler.Work = ASCallbackCreateProto (AVCommandWorkProc,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&amp;DoWorkImpl);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAppRegisterCommandHandler (ASAtomFromString(kCmdName),</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&amp;gAVCmdHandler);</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>To view a complete example, see <a href="Running_commands.htm#XREF_55225_Running_an">Running commands</a>.</p>
+  </div>
+</body>
+</html>

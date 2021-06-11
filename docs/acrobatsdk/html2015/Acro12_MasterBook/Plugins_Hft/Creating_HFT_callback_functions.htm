@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating HFT callback functions</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Hft.fm" />
+ <link rel="stylesheet" href="Plugins_Hft.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.16.1.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Hft/Creating_HFT_method_definitions.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Hft/Creating_new_Host_Function_Tables.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Host Function Tables > Exporting host function tables" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_88064_Creating_HTF"></a>Creating HFT callback functions</h3>
+  <p class="BodyLevel1">You must create an HFT callback function in order to successfully export an HFT. It is recommended that you place the application logic to create an HFT callback in the <span class="FM_Courier">PluginExportHFTs</span>&#160;method. This is a handshaking method that enables your plug-in to export an HFT. For information about handshaking, see <a href="../Plugins_Pimech/Handshaking.htm#XREF_89824_Handshaking_and">Handshaking </a>.</p>
+  <p class="BodyLevel1">To create an HFT callback function, declare an HFT <span class="FM_Courier">ServerProvideHFTProc</span>&#160;object that represents the callback:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HFTServerProvideHFTProc provideMyHFTCallback</p>
+  <p class="BodyLevel1"><span class="FM_Courier">HFTServerProvideHFTProc</span>&#160;is a callback for an HFT server. After you create an <span class="FM_Courier">HFTServerProvideHFTProc</span>&#160;object, you can invoke the <span class="FM_Courier">ASCallbackCreateProto</span>&#160;macro to convert a user-defined function to an HFT callback function. For example, you can invoke <span class="FM_Courier">ASCallbackCreateProto</span>&#160;to convert a user-defined function named <span class="FM_Courier">ProvideMyHFT</span>&#160;to a callback function.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">ASCallbackCreateProto</span> macro requires the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">The callback type. In this situation, specify <span class="FM_Courier">HFTServerProvideHFTProc</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The address of the user-defined function that you want to convert to a callback function. </p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The <span class="FM_Courier">ASCallbackCreateProto</span>&#160;macro returns a callback of the specified type that invokes the user-defined function whose address was passed as the second argument. The following lines of code show the <span class="FM_Courier">ASCallbackCreateProto</span>&#160;macro converting the <span class="FM_Courier">ProvideMyHFT</span>&#160;user-defined function to a <span class="FM_Courier">PDWordProc</span> callback.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HFTServerProvideHFTProc provideMyHFTCallback =</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASCallbackCreateProto(HFTServerProvideHFTProc, &amp;ProvideMyHFT);</p>
+  <p class="BodyLevel1"><a name="IX_HFTServerNew"></a><a name="IX_HFTServerNew_method"></a>The callback function is invoked when another plug-in attempts to use the HFT. After you create an HFT callback function, you can invoke the <span class="FM_Courier">HFTServerNew</span>&#160;method to obtain an HFT <span class="FM_Courier">Server</span>&#160;object, which is responsible for handling requests to obtain or destroy its HFT. An <span class="FM_Courier">HFTServe</span>r object is required in order to create a new <span class="FM_Courier">HFT</span> object.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">HFTServerNew</span> method requires the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">A character pointer that specifies the name of the HFT server. An HFT server name is used to import the HFT. (See <a href="Importing_an_existing_HFT.htm#XREF_72145_Importing_an">Importing an existing HFT</a>.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">HFTServerProvideHFTProc</span> object that specifies the HFT callback function.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">HFTServerDestroyProc</span>&#160;object that specifies the HFT callback function that releases memory from the HFT. This argument is optional and you can specify <span class="FM_Courier">NULL</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">A pointer to user-supplied data to pass to the HFT server. This argument is optional and you can specify <span class="FM_Courier">NULL</span>.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The following code example creates an HFT callback function within the <span class="FM_Courier">PluginExportHFTs</span>&#160;method. After the <span class="FM_Courier">HFTServerProvideHFTProc</span>&#160;object is created, the <span class="FM_Courier">HFTServerNew</span>&#160;method is invoked which creates an <span class="FM_Courier">HFTServer</span>&#160;object. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Creating an HFT callback function</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">ACCB1 ASBool ACCB2 PluginExportHFTs(void)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference">gMyHFT = NULL;</p>
+  <p class="FM_CodeReference">gMyHFTServer = NULL;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create an HFT callback function</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>provideMyHFTCallback = ASCallbackCreateProto(HFTServerProvideHFTProc,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&amp;ProvideMyHFT);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create an HFT server</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gMyHFTServer = HFTServerNew(&quot;MyHFT&quot;, provideMyHFTCallback,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>NULL, NULL);</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gSomethingWentWrong=1; </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">return true;</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>In the previous code example, the <span class="FM_Courier">gMyHFT</span>, <span class="FM_Courier">gMyHFTServer</span>, and <span class="FM_Courier">gSomethingWentWrong</span>&#160;variables are declared as global variables. To view the complete code example, including the location of where these global variables are declared, see <a href="Examining_HFT_header_and_source_files.htm#XREF_55636_Examining_HFT">Examining HFT header and source files</a>.</p>
+  </div>
+</body>
+</html>

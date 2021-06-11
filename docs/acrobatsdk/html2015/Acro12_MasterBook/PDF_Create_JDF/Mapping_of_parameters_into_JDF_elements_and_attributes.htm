@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Mapping of parameters into JDF elements and attributes</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\PDF_Creation_APIs\PDFCreationSettings\PDF_Create_JDF.fm" />
+ <link rel="stylesheet" href="PDF_Create_JDF.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.1.5.3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/PDF_Create_JDF/Pre-separated_single-colorant_jobs.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/PDF_Create_JDF/Image_compression.htm">
+ <meta name="topic-breadcrumbs" content="PDF Creation APIs and Specifications > Adobe PDF Creation Settings > Conversions Related to JDF" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_32105_8_5_Mapping_of"></a>Mapping of parameters into JDF elements and attributes </h2>
+  <p class="BodyLevel1">This section describes how Distiller converts parameter settings into JDF element and attribute settings. It presents one section for each category of parameter, as follows:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><a href="#XREF_13790_14_3_1_General"><span class="FM_HyperText">General</span></a></p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><a href="Image_compression.htm#XREF_32363_14_3_2_Image"><span class="FM_HyperText">Image compression</span></a></p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><a href="Fonts.htm#XREF_57108_14_3_3_Fonts"><span class="FM_HyperText">Fonts</span></a></p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><a href="Color_conversion.htm#XREF_92088_14_3_4_Color"><span class="FM_HyperText">Color conversion</span></a></p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><a href="Advanced.htm#XREF_32417_14_3_5_Advanced"><span class="FM_HyperText">Advanced</span></a></p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Distiller produces only those JDF attributes described in this section. Some parameters (such as <span class="FM_Courier">CreateJobTicket</span>) do not have JDF attribute counterparts. In contrast, some JDF attributes in applicable elements do not correlate with parameters, such as the <span class="FM_Courier">RenderingIntent</span>&#160;attribute in the <span class="FM_Courier">ColorSpaceConversionParams</span>&#160;element. </p>
+  <p class="BodyLevel1">Distiller represents parameters as values for the attributes in the following resource elements:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">PSToPDFConversionParams</span>&#160;</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">FontParams</span>&#160;</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">ImageCompressionParams</span>&#160;</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">ColorSpaceConversionParams</span>&#160;</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Distiller does not create the optional <span class="FM_Courier">ColorantControl</span>&#160;element. </p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>Version 1.1a of the JDF Specification changed the <span class="FM_Courier">ColorantControl</span>&#160;element in a PSToPDFConversion process node from required to optional.</p>
+  <h3><a name="TOC_General"></a><a name="XREF_13790_14_3_1_General"></a>General </h3>
+  <p class="BodyLevel1">The following table specifies the conversion from Distiller general parameters into JDF elements.</p>
+  <p class="FM_Z_Caption">Conversion from Distiller general parameters into JDF attributes</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:6.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 22.50pt;">
+   <th style="width : 144.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Parameter</p>
+</th>
+   <th style="width : 316.800pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Attribute name in the PSToPDFConversionParams resource</p>
+</th>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">AutoRotatePages</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ AutoRotatePages</p>
+</td>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">Binding</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ Binding</p>
+</td>
+</tr>
+   <tr style=" height : 76.50pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">CompatibilityLevel</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ PDFVersion and ColorSpaceConversionParams&nbsp;/@ Operation</p>
+   <p class="FM_TableBody">The table <a href="Color_conversion.htm#XREF_73690_Conversion_from">Conversion from ColorConversionStrategy into Operation</a>&#160;describes the role of <span class="FM_Courier">CompatibilityLevel</span>&#160;in deriving the <span class="FM_Courier">Operation</span> value</p>
+</td>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">CompressObjects</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ADBE:CompressObjects</p>
+</td>
+</tr>
+   <tr style=" height : 35.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">CoreDistVersion</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Not represented in JDF. <span class="FM_Courier">CoreDistVersion</span>&#160;is a read-only parameter that is meaningless in JDF. </p>
+</td>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">DoThumbnails</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ DoThumbnails</p>
+</td>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">EndPage</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ EndPage</p>
+</td>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ImageMemory</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ ImageMemory</p>
+</td>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">Optimize</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ Optimize</p>
+</td>
+</tr>
+   <tr style=" height : 22.00pt;">
+   <td style="width : 144.000pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">StartPage</p>
+</td>
+   <td style="width : 316.800pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">@ StartPage</p>
+</td>
+</tr>
+  </table>
+</div>
+  </div>
+</body>
+</html>

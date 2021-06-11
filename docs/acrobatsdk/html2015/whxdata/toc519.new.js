@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"getByGUID","url":"Acro12_MasterBook/JS_3D_API/getByGUID.htm"},{"type":"item","name":"getByID","url":"Acro12_MasterBook/JS_3D_API/getByID.htm"},{"type":"item","name":"getByIndex","url":"Acro12_MasterBook/JS_3D_API/getByIndex.htm"},{"type":"item","name":"getByName","url":"Acro12_MasterBook/JS_3D_API/getByName.htm"},{"type":"item","name":"removeAll","url":"Acro12_MasterBook/JS_3D_API/removeAll.htm"},{"type":"item","name":"removeByIndex","url":"Acro12_MasterBook/JS_3D_API/removeByIndex.htm"},{"type":"item","name":"removeItem","url":"Acro12_MasterBook/JS_3D_API/removeItem.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"book","name":"Objects","key":"toc578","url":"Acro12_MasterBook/IAC_API_AppleEvtObjects/Objects1.htm"},{"type":"book","name":"Required suite events","key":"toc579","url":"Acro12_MasterBook/IAC_API_AppleEvtObjects/Required_suite_events.htm"},{"type":"book","name":"Core suite events","key":"toc580","url":"Acro12_MasterBook/IAC_API_AppleEvtObjects/Core_suite_events.htm"},{"type":"book","name":"Acrobat application events","key":"toc581","url":"Acro12_MasterBook/IAC_API_AppleEvtObjects/Acrobat_application_events.htm"},{"type":"book","name":"Miscellaneous events","key":"toc582","url":"Acro12_MasterBook/IAC_API_AppleEvtObjects/Miscellaneous_events.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

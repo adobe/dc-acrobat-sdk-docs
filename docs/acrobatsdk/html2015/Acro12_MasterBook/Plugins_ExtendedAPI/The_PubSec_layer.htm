@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>The PubSec layer</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_ExtendedAPI.fm" />
+ <link rel="stylesheet" href="Plugins_ExtendedAPI.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.21.2.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_ExtendedAPI/Digital_signature_extended_API.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_ExtendedAPI/Digital_signature_components.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Acrobat Extended APIs > Digital signature extended API" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>The PubSec layer</h3>
+  <p class="BodyLevel1">The PubSec layer, introduced in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;6.0, is an interface for <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;public-key security handlers. PubSec forms a high-level interface to the digital signature facility; the PubSec code uses DigSig for digital signature operations, but provides many additional benefits. Developers are encouraged to use the PubSec HFT rather then DigSig HFT.</p>
+  <p class="BodyLevel1">PubSec methods enable you to perform the following tasks:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Count and close encrypted documents.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Validate a specific signature field.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Access and create digests for data buffers.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Import and export certificate data, and manage the certificates in the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> Address Book (AAB).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Manage signature appearances (DSAP files).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Register and unregister handlers. Handlers can register as PubSec handlers to provide the following cryptographic services:</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">Do private-key signing and signature validation</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">Act as a cryptographic source for decrypting using private keys</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">Act as a directory source for certificate-based identity authentication</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Handlers can call back into the PubSec HFT for various services. Most calls to PubSec pass an opaque state object called a <span class="FM_Courier">PSEngine</span>. You specify a default engine upon registering the handler, and the default engine can make use of the security UI dialog boxes provided by PubSec and DigSig.</p>
+  <p class="BodyLevel1">To register a handler with PubSec, perform the following tasks:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Implement the callbacks you need to provide customized functionality. Many of the callbacks for PubSec can be specified as NULL, in which case PubSec provides default behavior. It is recommended that you use the default behavior when possible.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Fill in the handler structure with pointers to your callback implementations (PubSecHandler).</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Register the handler with PubSec by invoking the <span class="FM_Courier">PSRegisterHandler</span> method.</p>
+  </div>
+</body>
+</html>

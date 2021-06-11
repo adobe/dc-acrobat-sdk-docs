@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"SignatureInfo object public key security handler properties","url":"Acro12_MasterBook/JS_API_AcroJS/SignatureInfo_properties.htm#TOC_SignatureInfo_objectbc-1"},{"type":"item","name":"status and idValidity properties","url":"Acro12_MasterBook/JS_API_AcroJS/SignatureInfo_properties.htm#TOC_status_and_idValiditybc-2"},{"type":"item","name":"Validity Values","url":"Acro12_MasterBook/JS_API_AcroJS/SignatureInfo_properties.htm#TOC_Validity_Valuesbc-3"},{"type":"item","name":"Private Validity Values","url":"Acro12_MasterBook/JS_API_AcroJS/SignatureInfo_properties.htm#TOC_Private_Validity_Valuesbc-4"},{"type":"item","name":"Modification Detection and Prevention (MDP) Values","url":"Acro12_MasterBook/JS_API_AcroJS/SignatureInfo_properties.htm#TOC_Modification_Detectionbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Initializing the Acrobat&#160;3D&#160;API</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_A3D_API.fm" />
+ <link rel="stylesheet" href="Plugins_A3D_API.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.19.3.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_A3D_API/Copying_the_embedded_PRC_file_to_a_separate_file.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_A3D_API/Parsing_structure_PRC_entities.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Parsing and Creating PRC Files > Parsing a PRC file" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_64942_Initialize_the"></a>Initializing the <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable>&#160;</h3>
+  <p class="BodyLevel1">This section explains how to initialize the <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable>. </p>
+  <h6><a name="XREF_18062_Initialize_your"></a>Initialize your interface with the <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable></h6>
+  <p class="FM_Step"><a name="IX_A3DDllGetVersion_function"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Verify that your plug-in is compatible with the <uservariable x-value="Acrobat&nbsp;3D&nbsp;Library" x-showvalue="TRUE" name="ProdPart_Acro3DLib" x-format="ProdPart_Acro3DLib">Acrobat&nbsp;3D&nbsp;Library</uservariable>&#160;by comparing the version of the <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable>&#160;against which you compiled and the version of the <uservariable x-value="Acrobat&nbsp;3D&nbsp;Library" x-showvalue="TRUE" name="ProdPart_Acro3DLib" x-format="ProdPart_Acro3DLib">Acrobat&nbsp;3D&nbsp;Library</uservariable>&#160;available to your plug-in. Obtain the version identifiers for the currently installed <uservariable x-value="Acrobat&nbsp;3D&nbsp;Library" x-showvalue="TRUE" name="ProdPart_Acro3DLib" x-format="ProdPart_Acro3DLib">Acrobat&nbsp;3D&nbsp;Library</uservariable>&#160;by invoking the <span class="FM_Courier">A3DDllGetVersion</span> function. Evaluate the returned values as follows:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">Ensure that the value of the <span class="FM_Courier">piMajorVersion</span>&#160;argument matches the <span class="FM_Courier">A3D_DLL_MAJORVERSION</span>&#160;enumeration. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">Ensure that the value of the <span class="FM_Courier">piMinorVersion</span>&#160;argument is equal to or greater than the <span class="FM_Courier">A3D_DLL_MINORVERSION</span>&#160;enumeration. The <uservariable x-value="Acrobat&nbsp;3D&nbsp;Library" x-showvalue="TRUE" name="ProdPart_Acro3DLib" x-format="ProdPart_Acro3DLib">Acrobat&nbsp;3D&nbsp;Library</uservariable>&#160;provides backward compatibility for earlier releases of the API that have the same major version identifier.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Initialize the <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable> by supplying the version identifiers for the <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable>. </p>
+  <p class="FM_CodeReference">if(iErr == A3D_SUCCESS) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 iRet = A3DCALL(</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>A3DDllInitialize,(A3D_DLL_MAJORVERSION, A3D_DLL_MINORVERSION));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if(iRet == A3D_SUCCESS) { … }</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_NoteIndent"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>For simplicity, this example uses a syntax that assumes the import library is available. That library is not publically available, so your code must use a syntax that supports external linking (see <a href="Implementing_external_linking_in_your_plug-in.htm#XREF_20817_Implementing"><span class="FM_HyperText">Implementing external linking in your plug-in</span></a>). The following example shows the syntax to use:</p>
+  </div>
+</body>
+</html>

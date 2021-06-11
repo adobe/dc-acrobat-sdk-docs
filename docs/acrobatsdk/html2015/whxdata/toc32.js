@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc31.js\"  name=\"Changes for Existing Plugins\" url=\"Acro12_MasterBook/Acrobat_SDK_whats_new/Changes_for_Existing_Plugins.htm\"><item name=\"Document Cloud Product Tracks\" url=\"Acro12_MasterBook/Acrobat_SDK_whats_new/Changes_for_Existing_Plugins.htm#TOC_Document_Cloud_Productbc-1\" /></data>";

@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc522.js\"  name=\"StateEventHandler\" url=\"Acro12_MasterBook/JS_3D_API/StateEventHandler1.htm\"><item name=\"Syntax\" url=\"Acro12_MasterBook/JS_3D_API/StateEventHandler1.htm#TOC_Syntax3bc-1\" /></data>";

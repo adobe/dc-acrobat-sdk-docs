@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>CapiSamples</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\SamplesGuide\book\Samples_Plug_in.fm" />
+ <link rel="stylesheet" href="Samples_Plug_in.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "1.2.1.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Samples_Plug_in/BatesNumbering.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Samples_Plug_in/DdeServer.htm">
+ <meta name="topic-breadcrumbs" content="Introduction to SDK > Guide to SDK Samples > Plug-in Samples" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2>CapiSamples</h2>
+  <h4>Location</h4>
+  <p class="BodyLevel1">Plugins/Samples/CapiSamples</p>
+  <h4>Description</h4>
+  <p class="BodyLevel1">There are two samples in this demonstration. One is SampleCsp. It is a DLL, and it is the actual Cryptographic Service Provider (CSP). The other one is SampleRegistrar that uses the services provided by SampleCsp.</p>
+  <p class="BodyLevel1">The purpose of SampleCsp is to provide a reference implementation which can be used with Acrobat 6+. The cryptographic functionality of this CSP is all passed through to the Microsoft Enhanced Crypto Provider. This implementation currently works on PFX files. SampleCsp opens the PFX files and uses the credential within them.</p>
+  <p class="BodyLevel1">SampleRegistrar is a separate application allowing users to manage the certificates bound to SampleCsp. This application interacts with SampleCsp to do the following:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">Register a digital ID file (PFX file) and add its certificates to the windows &quot;My&quot; store.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">Un-register a digital ID file and remove its certificates from the windows &quot;My&quot; store.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">List the registered digital IDs.</p>
+</li>
+  </ul>
+  <h4>Usage</h4>
+  <p class="BodyLevel1">To be able to run on Microsoft operating systems, a CSP must be digitally signed by Microsoft. A Microsoft signed version of SampleCsp can be located under the MsSignedSampleCsp directory. The test signing utility cspSign.exe can be downloaded from Microsoft website http://www.microsoft.com/downloads/details.aspx?familyid=0F436C75-2304-42BB-B81A-BA0C2C47BAC2&amp;displaylang=en</p>
+  <p class="BodyLevel1">To manage certificates by SampleRegistrar, follow these steps:</p>
+  <p class="BodyLevel1">1. Compile SampleRegistrar.</p>
+  <p class="BodyLevel1">2. Register SampleCsp by doing the following:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">At Dos prompt, go to the MsSignedSampleCsp directory.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">Type in Command 'regsvr32 SampleCsp.dll'.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">3. At Dos prompt, go to the directory where SampleRegistrar.exe resides.</p>
+  <p class="BodyLevel1">4. Use the following commands to manage certificates:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">To list registered PFXs: 'SampleRegistrar.exe -l'</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">To register PFX: 'SampleRegistrar.exe -r mycert.pfx password'</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">To un-register PFX: 'SampleRegistrar.exe -u &lt;hex-encoded-sha1-cert-digest&gt;'</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">There are some easy tests you can run to check the CSP is working with Acrobat:</p>
+  <p class="BodyLevel1">1. Register a digital ID via the CSP. It must show up in the Security Settings under &quot;Windows Digital IDs&quot;.</p>
+  <p class="BodyLevel1">2. Try to make a digital signature with the registered digital ID.</p>
+  <p class="BodyLevel1">3. Encrypt a file for this certificate and then try to decrypt it. You need to close the document and reopen it.</p>
+  <p class="BodyLevel1">If all of these tests pass, then the CSP is working. The effect should be to un-register the digital ID, not to actually delete the file.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>This plug-in is Windows only.</p>
+  </div>
+</body>
+</html>

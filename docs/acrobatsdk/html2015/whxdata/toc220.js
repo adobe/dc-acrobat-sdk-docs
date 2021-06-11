@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc201.js\"  name=\"JDF Features\" url=\"Acro12_MasterBook/pdfmark_JDF/JDF_Features.htm\"><item name=\"Syntax\" url=\"Acro12_MasterBook/pdfmark_JDF/Syntax.htm\" /><item name=\"Examples\" url=\"Acro12_MasterBook/pdfmark_JDF/Examples1.htm\" /></data>";

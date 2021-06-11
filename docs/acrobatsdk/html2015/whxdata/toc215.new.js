@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"StPNE","url":"Acro12_MasterBook/pdfmark_Logical/StPNE.htm"},{"type":"item","name":"StBookmarkRoot","url":"Acro12_MasterBook/pdfmark_Logical/StBookmarkRoot.htm"},{"type":"item","name":"StPush","url":"Acro12_MasterBook/pdfmark_Logical/StPush.htm"},{"type":"item","name":"StPop","url":"Acro12_MasterBook/pdfmark_Logical/StPop.htm"},{"type":"item","name":"StPopAll","url":"Acro12_MasterBook/pdfmark_Logical/StPopAll.htm"},{"type":"item","name":"StUpdate","url":"Acro12_MasterBook/pdfmark_Logical/StUpdate.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc23.js\"  name=\"About Acrobat forms\" url=\"Acro12_MasterBook/Overview_Forms/About_Acrobat_forms.htm\"><item name=\"Forms API\" url=\"Acro12_MasterBook/Overview_Forms/Forms_API.htm\" /><item name=\"OLE automation\" url=\"Acro12_MasterBook/Overview_Forms/OLE_automation.htm\" /></data>";

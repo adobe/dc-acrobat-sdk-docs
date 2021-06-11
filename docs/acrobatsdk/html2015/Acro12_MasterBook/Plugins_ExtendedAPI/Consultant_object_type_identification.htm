@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Consultant object type identification</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_ExtendedAPI.fm" />
+ <link rel="stylesheet" href="Plugins_ExtendedAPI.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.21.1.0_7";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_ExtendedAPI/Starting_the_consultant.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_ExtendedAPI/Creating_an_agent_class.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Acrobat Extended APIs > PDF Consultant and Accessibility Checker extended API" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Consultant object type identification</h3>
+  <p class="BodyLevel1">One of the main features the PDF Consultant and Accessibility Checker framework gives you is the use of its identification engine. This engine can look at Cos objects in a PDF file and, based on properties of the objects and of the object’s parents, assign PDF object type identifiers to them.</p>
+  <p class="BodyLevel1">Each Cos object has a simple Cos type and attributes, in the scheme of the document as a whole each object serves a particular purpose. The PDF object type assigned to each object represents that object's role in the PDF document.</p>
+  <p class="BodyLevel1">Some PDF object types represent higher-level, conceptually-familiar objects like <span class="FM_Courier">PT_PAGE</span>&#160;(which indicates that the object is a page in the document), while others (like <span class="FM_Courier">PT_AADICTIONARY</span>) are a bit more obscure, particularly to those who are not familiar with the PDF document format. PDF object types are represented using the enumerated type <span class="FM_Courier">PDFObjType</span>, which is defined in ConsObTp.h. A good way to see all of the various PDF object types that the consultant can identify is to look at the constants defined in that file.</p>
+  <p class="BodyLevel1">Some object types (in particular many simpler objects such as strings and numbers) are not assigned a particular type. The consultant can identify those objects that are of most use to you. If the consultant cannot identify a specific object, it assigns the identity of <span class="FM_Courier">PT_UNKNOWN</span>&#160;to the object. Just because the consultant assigns this value to an object does not mean the object is foreign or invalid (although it can potentially mean that), it may simply mean that the object type is not particularly significant in the realm of the PDF document format, and thus the consultant does not know about it.</p>
+  <p class="BodyLevel1">To allow for greater agent flexibility, the consultant understands PDF object type subclasses and superclasses. Certain PDF object types are members of more generic classes of PDF object type. Agents can often make use of this information, so the consultant assigns object types that are actually arrays of types.</p>
+  <p class="BodyLevel1">The consultant assigns to an object the most specific classification as well as the more generic classes of which the object is a member. Agent structures include a field called <span class="FM_Courier">WantSubclasses</span>&#160;that indicates whether or not the agent wants to be called for all the interesting objects’ subclasses as well as their directly interesting types.</p>
+  <p class="BodyLevel1">For example, the <span class="FM_Courier">PT_ANNOTATION</span>&#160;object type has a number of more specific subclasses such as <span class="FM_Courier">PT_LINKANNOTATION</span>,<span class="FM_Courier"> PT_LINEANNOTATION</span>, and so on. If an agent requests only objects of type <span class="FM_Courier">PT_ANNOTATION</span>, and its <span class="FM_Courier">WantSubclasses</span>&#160;member is <span class="FM_Courier">false</span>, it may not be called back for very many objects. If the <span class="FM_Courier">WantSubclasses</span>&#160;member is <span class="FM_Courier">true</span>, then the consultant will invoke the agent back for objects of all specific types of annotations as well as those classified only as <span class="FM_Courier">PT_ANNOTATION</span>. This also means that when an agent retrieves the type of an object, it must specify which type it wants. The types in the array that is the classification of the object always go from the most specific (at index 0) to the least specific (the last index in the array).</p>
+  </div>
+</body>
+</html>

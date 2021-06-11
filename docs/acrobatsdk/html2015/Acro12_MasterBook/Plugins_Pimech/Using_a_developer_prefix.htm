@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Using a developer prefix</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Pimech.fm" />
+ <link rel="stylesheet" href="Plugins_Pimech.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.2.3.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Pimech/Obtaining_a_developer_prefix.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Pimech/Modifying_the_Acrobat_or_Acrobat_Reader_user_interface.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Understanding Plug-ins > Using plug-in prefixes" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Using a developer prefix</h3>
+  <p class="BodyLevel1">Every plug-in must use the prefix to name its various elements as well as private data it writes into PDF documents. The following sections describe and provide an example of each element that must use a prefix.</p>
+  <h4><a name="TOC_Plug_in_name"></a>Plug-in name</h4>
+  <p class="BodyLevel1"><span class="FM_Courier">ExtensionName</span>, used in plug-in handshaking, must use the following syntax: <span class="FM_Courier">Prefix_PluginName</span>. </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hsData-&gt;extensionName = ASAtomFromString(&quot;ADBE_SuperCrop&quot;);</p>
+  <h4><a name="TOC_Menu_prefixes"></a>Menu prefixes</h4>
+  <p class="BodyLevel1">Menu names must use the following syntax: <span class="FM_Courier">Prefix:MenuName</span>. </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>SuperCropMenu = AVMenuNew(SuperCrop, &quot;ADBE:SuperCropMenu&quot;, gExtensionID);</p>
+  <p class="BodyLevel1">For information about invoking the <span class="FM_Courier">AVMenuNew</span>&#160;method, see <a href="../Plugins_Menu/Adding_menu_commands_to_menus.htm#XREF_63428_Adding_menu">Adding menu commands to menus</a>. </p>
+  <h4><a name="TOC_Menu_items_prefixes"></a>Menu items prefixes</h4>
+  <p class="BodyLevel1">Menu item names must use the following syntax: <span class="FM_Courier">Prefix:MenuItem</span>.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>SelSuperCropTool = AVMenuItemNew(SuperCrop, &quot;ADBE:SuperCropMItem&quot;, NULL,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>false, '9', AV_OPTION, SuperCropIcon, gExtensionID);</p>
+  <h4><a name="TOC_Tool_prefixes"></a>Tool prefixes </h4>
+  <p class="BodyLevel1">Tools names must use the following syntax: <span class="FM_Courier">Prefix:Tool</span>.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>static ACCB1 ASAtom ACCB2 SuperCropToolGetType(AVTool tool)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return ASAtomFromString(&quot;ADBE:SuperCropTool&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <h4><a name="TOC_Toolbar_button_prefixes"></a>Toolbar button prefixes</h4>
+  <p class="BodyLevel1">Toolbar buttons must use the following syntax: <span class="FM_Courier">Prefix:ToolbarButton</span>.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myButton = AVToolButtonNew(ASAtomFromString(&quot;ADBE:HelloWorld&quot;), (void *)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myBM, false, false);</p>
+  <p class="BodyLevel1">For information about creating a toolbar button, see <a href="../Plugins_Toolbutton/Creating_toolbar_buttons.htm#XREF_92880_Creating_toolbar">Creating toolbar buttons</a>. </p>
+  <h4><a name="TOC_Private_data_identified"></a>Private data identified using second-class names</h4>
+  <p class="BodyLevel1">If you add private data to keys defined in a Cos dictionary and you want the document to be readable to others outside your company, you must identify the data using second-class names. Such key names use the syntax <span class="FM_CourierItalic">Prefix_PrivateDataName</span>, where <span class="FM_CourierItalic">Prefix</span>&#160;identifies the company or other entity that introduces the key, and <span class="FM_CourierItalic">PrivateDataName</span> identifies the data.</p>
+  <p class="BodyLevel1">When adding keys that are directly referenced from private keys, it is not necessary to use the developer prefix. In the following example, the keys named <span class="FM_Courier">First</span>&#160;and <span class="FM_Courier">Second</span>&#160;cannot be referenced from any object in the PDF file except the private key that uses an appropriate prefix. Therefore, there is no need to use a prefix for the latter two keys.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/ACME_aName &lt;&lt; /First 2 /Second &lt;&lt; /Third [ 2 3 ] &gt;&gt;&#160;&gt;&gt;</p>
+  <p class="BodyLevel1">For information on second-class names, see the <uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable><span class="FM_Italic"></span>. This reference is available within the portfolio called <span class="FM_HyperText"><a href="www.adobe.com/go/acrobatsdk_pdf_reference">PDF Reference and Related Documentation</a></span>, which is located at the <span class="FM_HyperText"><a href="http://www.adobe.com/go/pdf_developer">Adobe PDF Technology Center</a></span>.</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>For information about Cos dictionaries, such as the one shown in the previous example, see <a href="../Plugins_Cos/Working_with_Cos_dictionaries.htm#XREF_96656_Working_with_Cos">Working with Cos dictionaries</a>. </p>
+  <h4><a name="TOC_Action_prefixes"></a>Action prefixes</h4>
+  <p class="BodyLevel1">Actions must use the following syntax: <span class="FM_Courier">Prefix_ActionName</span>.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAppRegisterActionHandler(&amp;BkmkHandler, NULL, &quot;ADBE_HWAction&quot;, &quot;HWAct&quot;);</p>
+  <h4><a name="TOC_Annotation_prefixes"></a>Annotation prefixes</h4>
+  <p class="BodyLevel1">Annotation prefixes must use the following syntax: <span class="FM_Courier">Prefix_AnnotType</span>.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return(ASAtomFromString(“ADBE_MarkUpAnnot”);</p>
+  <h4><a name="TOC_HFT_prefixes"></a>HFT prefixes</h4>
+  <p class="BodyLevel1">When your plug-in exposes any HFTs of its own, it must use an HFT name that conforms to the following syntax: <span class="FM_Courier">Prefix_HFTName</span>.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gDebuggWinHFTServer =</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HFTServerNew(&quot;ADBE_DebugWin&quot;,provideDebugWinHFTCallback, NULL, NULL);</p>
+  <p class="BodyLevel1">For information about HFTs, see <a href="../Plugins_Hft/Working_with_Host_Function_Tables.htm#XREF_37928_Working_with_Host">Working with Host Function Tables</a>.</p>
+  </div>
+</body>
+</html>

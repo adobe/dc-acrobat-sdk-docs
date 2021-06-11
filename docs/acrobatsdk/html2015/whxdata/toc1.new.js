@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"book","name":"Overview","key":"toc2","url":"Acro12_MasterBook/Overview_GettingStarted/Overview_GettingStarted.htm"},{"type":"book","name":"Guide to SDK Samples","key":"toc34","url":"Acro12_MasterBook/Samples_Plug_in/Samples_Plug_in.htm"},{"type":"book","name":"Developer FAQ","key":"toc41","url":"Acro12_MasterBook/DevFAQ_Introduction/DevFAQ_Introduction.htm"},{"type":"book","name":"Snippet Runner Cookbook","key":"toc53","url":"Acro12_MasterBook/Snippet_SnippetRunnerCookbook/Snippet_SnippetRunnerCookbook.htm"},{"type":"book","name":"Developing for Acrobat Reader","key":"toc59","url":"Acro12_MasterBook/Reader_GettingStarted/Reader_GettingStarted.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating forms</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_AcrobatForms.fm" />
+ <link rel="stylesheet" href="JS_Dev_AcrobatForms.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.6.2.1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_AcrobatForms/Setting_the_hierarchy_of_form_fields.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_AcrobatForms/Defining_the_tabbing_order.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Using JavaScript in Forms > Task-based topics" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_72725_Creating_Forms"></a>Creating forms</h3>
+  <p class="BodyLevel1"><a name="IX_creating_12"></a><a name="IX_addField_2"></a>In this section you learn how to create a form field using the Doc object <span class="FM_Courier">addField</span>&#160;method. Topics include:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><a href="#XREF_38340_Positioning_form"><span class="FM_HyperText">Positioning form fields</span></a>&#160;</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><a href="#XREF_58000_Duplicating_Form"><span class="FM_HyperText">Duplicating form fields</span></a>&#160;</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><a href="#XREF_92085_Creating_Multiple"><span class="FM_HyperText">Creating multiple form fields</span></a>&#160;</p>
+</li>
+  </ul>
+  <p class="FM_TableAnchor">&nbsp;</p>
+  <h4><a name="TOC_Positioning_form_fields"></a><a name="XREF_38340_Positioning_form"></a>Positioning form fields</h4>
+  <p class="BodyLevel1"><a name="IX_rotated_user_space_1"></a>Remember that form field positioning takes place in Rotated User Space, in which the origin of a page is located at the bottom left corner. </p>
+  <p class="BodyLevel1">If you are accustomed to calculating the positions of form fields from the top left corner of a page, the following example will serve as a template for obtaining the correct position. </p>
+  <p class="BodyLevel1">In this example, we will position a 1 inch by 2 inch form field 0.5 inches from the top of the page and 1 inch from the left side:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// 1 inch = 72 points</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var inch = 72; </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Obtain the page coordinates in Rotated User Space</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var aRect = this.getPageBox({nPage: 2}); </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Position the top left corner 1 inch from the left side</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>aRect[0] += 1 * inch; </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Make the rectangle 1 inch wide</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>aRect[2] = aRect[0] + 1*inch; </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// The top left corner is 0.5 inch down from the top of the page</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>aRect[1] -= 0.5*inch; </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Make the rectangle 2 inches tall</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>aRect[3] = aRect[1] - 2*inch;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Draw the button</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var f = this.addField(&quot;myButton&quot;, &quot;button&quot;, 2, aRect);</p>
+  <p class="BodyLevel1">Normally, when you create a form field, you do so using the UI; creating a form field using the <span class="FM_Courier">addField </span>has limited applications because the exact positioning of the field on the page (and relative to its content) is usually not known. The <span class="FM_Courier">addField</span>&#160;method is useful in situations when you either know the positioning of the field, or you can acquire that information from another method; the Example <a href="#XREF_77049_Example6_8"><span class="FM_HyperText">Inserting navigation buttons on each page</span></a>&#160;illustrates the use of <span class="FM_Courier">addField</span>&#160;when the positioning of the fields are known in advance.</p>
+  <h4><a name="TOC_Duplicating_form_fields"></a><a name="XREF_58000_Duplicating_Form"></a>Duplicating form fields</h4>
+  <p class="BodyLevel1">It may sometimes be useful to duplicate a form field in other pages of the document. For example, you may wish to insert navigation form buttons at the bottom of your document to help the user navigate.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example"><a name="XREF_77049_Example6_8"></a>Inserting navigation buttons on each page</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The script that follows can be executed in the console, or it can be used as batch sequence JavaScript. Additional customizations are possible.</p>
+  <p class="FM_CodeReference">var aPage = this.getPageBox();</p>
+  <p class="FM_CodeReference">var w = 45; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;// Width of each button</p>
+  <p class="FM_CodeReference">var h = 12 &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;// Height of each button</p>
+  <p class="FM_CodeReference">var nNavi = 4; &#160;&#160;&#160;&#160;&#160;// Number of buttons to be placed</p>
+  <p class="FM_CodeReference">var g = 6; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;// Gap between buttons</p>
+  <p class="FM_CodeReference">var totalWidth = nNavi * w + (nNavi - 1) * g; // total width of navi bar</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">var widthPage = aPage[2] - aPage[0];</p>
+  <p class="FM_CodeReference">// Horizontal offset to center navi bar</p>
+  <p class="FM_CodeReference">var hoffset = (widthPage - totalWidth) / 2; </p>
+  <p class="FM_CodeReference">var voffset = 12; <span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// vertical offset from bottom</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">for (var nPage = 0; nPage &lt; this.numPages; nPage++) {</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;// Create the fields</p>
+  <p class="FM_CodeReference">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;var pp = this.addField(&quot;PrevPage&quot;, &quot;button&quot;, nPage, &#160;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>[ hoffset, voffset, hoffset + w, voffset + h ] );</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;pp.buttonSetCaption(pp.name);</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;pp.fillColor=color.ltGray;</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;pp.setAction(&quot;MouseUp&quot;, &quot;this.pageNum--&quot;);</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;var np = this.addField(&quot;NextPage&quot;, &quot;button&quot;, nPage,</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ hoffset + w + g, voffset, hoffset + 2*w + g, voffset + h ] );</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;np.buttonSetCaption(np.name);</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;np.fillColor=color.ltGray;</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;np.setAction(&quot;MouseUp&quot;, &quot;this.pageNum++&quot;);</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;var pv = this.addField(&quot;PrevView&quot;, &quot;button&quot;, nPage,</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ hoffset + 2*w + 2*g, voffset, hoffset + 3*w + 2*g, voffset + h ] );</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;pv.buttonSetCaption(pv.name);</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;pv.fillColor=color.ltGray;</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;pv.setAction(&quot;MouseUp&quot;, &quot;app.goBack()&quot;);</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;var nv = this.addField(&quot;NextView&quot;, &quot;button&quot;, nPage,</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;[ hoffset + 3*w + 3*g, voffset, hoffset + 4*w + 3*g, voffset + h ] );</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;nv.buttonSetCaption(nv.name);</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;nv.fillColor=color.ltGray;</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;nv.setAction(&quot;MouseUp&quot;, &quot;app.goForward()&quot;);</p>
+  <p class="FM_CodeReference">}</p>
+  <h4><a name="TOC_Creating_multiple_form"></a><a name="XREF_92085_Creating_Multiple"></a>Creating multiple form fields</h4>
+  <p class="BodyLevel1">The best approach to creating a row, column, or grid of form fields is to use array notation in combination with hierarchical naming.</p>
+  <p class="BodyLevel1">For example, the following code creates a column of three text fields:</p>
+  <p class="FM_CodeReference">var myColumn = new Array();</p>
+  <p class="FM_CodeReference">myColumn[0] = &quot;myFieldCol.name&quot;;</p>
+  <p class="FM_CodeReference">myColumn[1] = &quot;myFieldCol.birthday&quot;;</p>
+  <p class="FM_CodeReference">myColumn[2] = &quot;myFieldCol.ssn&quot;;</p>
+  <p class="FM_CodeReference">var initialPosition = [ 36, 36 ];</p>
+  <p class="FM_CodeReference">var w = 2*72;</p>
+  <p class="FM_CodeReference">var h = 12;</p>
+  <p class="FM_CodeReference">var vGap = 6;</p>
+  <p class="FM_CodeReference">var aRect = [initialPosition[0], initialPosition[1]-(h+vGap),</p>
+  <p class="FM_CodeReference">initialPosition[0]+w, initialPosition[1]-h-(h+vGap)];</p>
+  <p class="FM_CodeReference">for (var i=0; i&lt;myColumn.length; i++)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;aRect[1] += (h+vGap); // move the next field down 100 points</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;aRect[3] += (h+vGap); // move the next field down 100 points</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;var f = this.addField(myColumn[i], &quot;text&quot;, 0, aRect);</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">f = this.getField(&quot;myFieldCol&quot;);</p>
+  <p class="FM_CodeReference">f.strokeColor = color.black; // set some common properties</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Creation of the basic JDF file","url":"Acro12_MasterBook/PDF_Create_JDF/Creation_of_the_basic_JDF_file.htm"},{"type":"book","name":"Representation of PostScript keys as JDF entries","key":"toc189","url":"Acro12_MasterBook/PDF_Create_JDF/Representation_of_PostScript_keys_as_JDF_entries.htm"},{"type":"book","name":"Mapping of DSC comments into JDF elements and attributes","key":"toc190","url":"Acro12_MasterBook/PDF_Create_JDF/Mapping_of_DSC_comments_into_JDF_elements_and_attributes.htm"},{"type":"book","name":"Mapping of parameters into JDF elements and attributes","key":"toc191","url":"Acro12_MasterBook/PDF_Create_JDF/Mapping_of_parameters_into_JDF_elements_and_attributes.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

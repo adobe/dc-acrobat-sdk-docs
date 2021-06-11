@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"FDF\" url=\"Acro12_MasterBook/JS_API_AcroJS/FDF.htm\"><book name=\"FDF properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/FDF_properties.htm\" src=\"toc374.js\" /><book name=\"FDF methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/FDF_methods.htm\" src=\"toc375.js\" /></data>";

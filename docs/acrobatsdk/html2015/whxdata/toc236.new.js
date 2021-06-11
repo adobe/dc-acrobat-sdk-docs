@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Combining PDF documents","url":"Acro12_MasterBook/JS_Dev_PDFCreation/Combining_PDF_documents.htm"},{"type":"item","name":"Combining and extracting files","url":"Acro12_MasterBook/JS_Dev_PDFCreation/Combining_and_extracting_files.htm"},{"type":"item","name":"Creating file attachments","url":"Acro12_MasterBook/JS_Dev_PDFCreation/Creating_file_attachments.htm"},{"type":"book","name":"Cropping and rotating pages","key":"toc237","url":"Acro12_MasterBook/JS_Dev_PDFCreation/Cropping_and_rotating_pages.htm"},{"type":"item","name":"Extracting, moving, deleting, replacing, and copying pages","url":"Acro12_MasterBook/JS_Dev_PDFCreation/Extracting_moving_deleting_replacing_and_copying_pages.htm"},{"type":"item","name":"Adding watermarks and backgrounds","url":"Acro12_MasterBook/JS_Dev_PDFCreation/Adding_watermarks_and_backgrounds.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

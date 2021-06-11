@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Attaching a button to a toolbar</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Toolbutton.fm" />
+ <link rel="stylesheet" href="Plugins_Toolbutton.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.7.2_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Toolbutton/Retrieving_existing_toolbar_buttons.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Toolbutton/Exposing_a_button_in_a_web_browser.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Toolbars and Buttons" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="IX_attaching_to_toolbars"></a><a name="IX_attaching_a_toolbar"></a><a name="IX_attaching_a_button"></a><a name="XREF_75762_Attaching_a_button"></a>Attaching a button to a toolbar</h2>
+  <p class="BodyLevel1">After you create a new button, you must attach it to a toolbar. A button must be attached to a toolbar before it is visible within <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>. To attach a button to a toolbar, invoke the <span class="FM_Courier">AVToolBarAddButton</span> method and pass the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">AVToolBar</span> object that represents the toolbar to which the button is attached.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">AVToolButton</span> object that represents the button that is attached.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">ASBool</span>&#160;object that specifies the location of where the button is attached. If <span class="FM_Courier">true</span>, the button is attached before the button specified by the <span class="FM_Courier">otherButton</span>&#160;argument. If <span class="FM_Courier">false</span>, the button is attached after the button specified by the <span class="FM_Courier">otherButton</span>&#160;argument. If <span class="FM_Courier">otherButton</span>&#160;is NULL and this value is <span class="FM_Courier">true</span>, the button is attached at the beginning of the toolbar. If <span class="FM_Courier">otherButton</span>&#160;is NULL and this value is <span class="FM_Courier">false</span>, the button is attached at the end of the toolbar.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">AVToolButton</span>&#160;object (the name of this argument is <span class="FM_Courier">otherButton</span>) that is used in conjunction with the <span class="FM_Courier">ASBool</span>&#160;object that specifies the location of where the <span class="FM_Courier">AVToolButton</span> object is attached.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">Before a button has functionality, you must create a callback function. (See <a href="Creating_toolbar_button_callback_functions.htm#XREF_31936_Creating_toolbar">Creating toolbar button callback functions</a>.)</p>
+  <p class="BodyLevel1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;9 adds the <span class="FM_Courier">AVToolBarAddButtonEx</span>&#160;method for creating a new button. This method takes a structure that lets you specify where you want the button to appear and whether the button should be hidden by default. </p>
+  <p class="BodyLevel1">The following code example attaches a newly created button to the File toolbar.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Attaching a button to a toolbar</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Declare an AVToolButton object</p>
+  <p class="FM_CodeReference">AVToolButton MyButton = NULL;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a AVIcon object </p>
+  <p class="FM_CodeReference">AVIcon myIcon = (AVCursor)LoadBitmap(gHINSTANCE, MAKEINTRESOURCE(IDB_BITMAP1)); </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a new button</p>
+  <p class="FM_CodeReference">MyButton = AVToolButtonNew (ASAtomFromString(&quot;MyExtn:MyButton&quot;), myIcon, FALSE, FALSE);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Retrieve the File toolbar</p>
+  <p class="FM_CodeReference">const char * toolbarName= &quot;File&quot;; </p>
+  <p class="FM_CodeReference">AVToolBar ToolBar = AVAppGetToolBarByName(toolbarName);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Attach the button</p>
+  <p class="FM_CodeReference">AVToolBarAddButton(ToolBar, MyButton, FALSE, NULL);</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>For information about creating a button, see <a href="Creating_toolbar_buttons.htm#XREF_92880_Creating_toolbar">Creating toolbar buttons</a>.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Spelling extended API</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_ExtendedAPI.fm" />
+ <link rel="stylesheet" href="Plugins_ExtendedAPI.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.21.3_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_ExtendedAPI/Writing_a_custom_driver.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_ExtendedAPI/AcroColor_extended_API.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Acrobat Extended APIs" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_11716_Spelling_extended"></a>Spelling extended API</h2>
+  <p class="BodyLevel1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;provides a Spelling plug-in, which exports a Host Function Table (HFT) implementing a spell-check API for use by plug-in developers. </p>
+  <p class="BodyLevel1">To use the spelling HFT, a plug-in must include the header file SpellerHFT.h, which includes Speller_Sel.h.</p>
+  <p class="BodyLevel1">The following is a typical sequence of calls made by a plug-in using the Spelling HFT. During its <span class="FM_Courier">importReplaceAndRegister</span> callback, the plug-in should:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Import the HFT, using <span class="FM_Courier">ASExtensionMgrGetHFT</span>, and assign the HFT returned by this call to a plug-in-defined global variable named <span class="FM_Courier">gSpellerHFT</span>. The easiest way to do this is to use the Init_SpellerHFT macro defined in SpellerHFT.h.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Allocate and initialize one <span class="FM_Courier">SpellCheckParam</span> block for each spelling domain the client will add.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Add zero or more domains using the <span class="FM_Courier">SpellAddDomain</span> call.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">During execution, a plug-in performs the following tasks:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Respond to the following callbacks for each domain:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">SCEnableProc</span> is called by Spelling to ask if this domain has anything that needs to be checked</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">SCGetTextProc</span> is called to get a text buffer to be checked.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">SCCompletionProc</span> is called after the user has modified the text buffer.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The client may call other Spelling HFT services during execution even if it did not add a domain.</p>
+  <p class="BodyLevel1">During its <span class="FM_Courier">unloadCallback</span>, a plug-in should perform the following tasks:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Remove all spelling domains added during initialization using the <span class="FM_Courier">SpellRemoveDomain</span> method.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Free all memory associated with <span class="FM_Courier">SpellCheckParam</span> block(s) (<span class="FM_Courier">scInBuffer</span>, <span class="FM_Courier">scOutBuffer</span>, and <span class="FM_Courier">scClientData</span>).</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Free the <span class="FM_Courier">SpellCheckParam</span> block(s).</p>
+  <p class="BodyLevel1">Several of the Spelling API methods (<span class="FM_Courier">SpellCheck</span>, <span class="FM_Courier">SpellCheckText</span>, and <span class="FM_Courier">SpellCheckWord</span>) take input strings as parameters, and several methods return strings as output parameters.</p>
+  <p class="BodyLevel1">Input strings are either big-endian Unicode strings with the bytes 0xFE 0xFF prepended, or strings with <span class="FM_Courier">PDFDocEncoding</span>. In either case a string is expected to have the appropriate null-termination. If a string is UCS-2 it may have embedded language and country information.</p>
+  <p class="BodyLevel1">Output text is in big-endian UCS-2 format with the bytes 0xFE 0xFF prepended. This string can be converted to a host encoded string by using the <span class="FM_Courier">ASTextFromPDText</span>&#160;and <span class="FM_Courier">ASTextGetEncodedCopy</span>&#160;methods.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char **altArray = NULL;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 altCount = 0;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASBool status = SpellCheckWord(acd, cWord, NULL, 0, &amp;altArray, &amp;altCount);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (altCount) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASText ast = ASTextFromPDText(altArray[1]);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char* altWord = ASTextGetEncodedCopy(ast, (ASHostEncoding)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDGetHostEncoding() );</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  </div>
+</body>
+</html>

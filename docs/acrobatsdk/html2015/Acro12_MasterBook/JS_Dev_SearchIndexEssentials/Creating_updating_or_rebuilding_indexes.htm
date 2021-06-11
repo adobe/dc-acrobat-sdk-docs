@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating, updating, or rebuilding indexes</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_SearchIndexEssentials.fm" />
+ <link rel="stylesheet" href="JS_Dev_SearchIndexEssentials.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.11.2.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Indexing_multiple_PDF_documents.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Searching_metadata.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Search and Index Essentials > Indexing multiple PDF documents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Creating, updating, or rebuilding indexes</h3>
+  <p class="BodyLevel1">To determine which indexes are available, use the <span class="FM_Courier">search</span>&#160;object <span class="FM_Courier">indexes</span>&#160;property, which contains an array of <span class="FM_Courier">index</span>&#160;objects. For each object in the array, you can determine its name by using its <span class="FM_Courier">name</span>&#160;property. In the code below, the names and paths of all available selected indexes are printed to the console:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var arr = search.indexes;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (var i=0; i&lt;arr.length; i++)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (arr[i].selected)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var str = &quot;Index[&quot; + i + &quot;] = &quot; + arr[i].name;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>str += &quot;\nPath = &quot; + arr[i].path;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(str);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="BodyLevel1"><a name="IX_getIndex"></a>To build an index, first invoke the <span class="FM_Courier">catalog</span>&#160;object <span class="FM_Courier">getIndex</span>&#160;method to retrieve the <span class="FM_Courier">index</span>&#160;object. This method accepts a parameter containing the path of the <span class="FM_Courier">index</span>&#160;object. Then invoke the <span class="FM_Courier">index</span>&#160;object <span class="FM_Courier">build</span>&#160;method, which returns a <span class="FM_Courier">catalogJob</span> object. The method accepts two parameters:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">cExpr</span> — a JavaScript expression executed once the build operation is complete</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">bRebuildAll</span>&#160;— indicates whether to perform a clean build in which the existing index is first deleted and then completely built</p>
+  <p class="BodyLevel1">Finally, the returned <span class="FM_Courier">catalogJob</span>&#160;object contains three properties providing useful information about the indexing job:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">path</span> — the device-independent path of the index</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">type</span> — the type of indexing operation (<span class="FM_Courier">Build</span>, <span class="FM_Courier">Rebuild</span>, or <span class="FM_Courier">Delete</span>)</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">status</span> — the status of the indexing operation (<span class="FM_Courier">Pending</span>, <span class="FM_Courier">Processing</span>, <span class="FM_Courier">Completed</span>, or <span class="FM_Courier">CompletedWithErrors</span>)</p>
+  <p class="BodyLevel1">In the code shown below, the index <span class="FM_Courier">myIndex</span> is completely rebuilt, after which its status is reported:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Retrieve the Index object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var idx = catalog.getIndex(&quot;/C/myIndex.pdx&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Build the index</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var job = idx.build(&quot;app.alert('Index build');&quot;, true);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Confirm the path of the rebuilt index:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Path of rebuilt index: &quot; + job.path);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Confirm that the index was rebuilt:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Type of operation: &quot; + job.type);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Report the job status</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Status: &quot; + job.status);</p>
+  </div>
+</body>
+</html>

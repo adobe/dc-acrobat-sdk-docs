@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Assessing requirements and resources","url":"Acro12_MasterBook/Collab_ChoosingRepos/Assessing_requirements_and_resources.htm"},{"type":"item","name":"Network folder repositories","url":"Acro12_MasterBook/Collab_ChoosingRepos/Network_folder_repositories.htm"},{"type":"item","name":"WebDAV repositories","url":"Acro12_MasterBook/Collab_ChoosingRepos/WebDAV_repositories.htm"},{"type":"item","name":"SharePoint Services repositories","url":"Acro12_MasterBook/Collab_ChoosingRepos/SharePoint_Services_repositories.htm"},{"type":"item","name":"Repository comparison table","url":"Acro12_MasterBook/Collab_ChoosingRepos/Repository_comparison_table.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

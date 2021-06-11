@@ -1,0 +1,213 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Modifying text elements</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Pages.fm" />
+ <link rel="stylesheet" href="Plugins_Pages.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.10.1.0_4";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Pages/Determining_page_element_types.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Words/Working_with_Words.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Page Views and Contents > Modifying page contents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_text_runs"></a><a name="IX_PDColorValueRec_object"></a><a name="IX_text_elements"></a>Modifying text elements</h3>
+  <p class="BodyLevel1">You can modify elements located within a <span class="FM_Courier">PDEContent</span>&#160;object. This section discusses modifying text elements by placing a red border around them. To place a red border around a text element, you must create a <span class="FM_Courier">PDColorValueRec</span> object and define its attributes.</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a PDColorValue and define red</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDColorValueRec red;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.space = PDDeviceRGB;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.value[0] = ASInt32ToFixed(1);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.value[1] = 0;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>red.value[2] = 0;</p>
+  <p class="BodyLevel1"><a name="IX_AVPageViewSetColor"></a><a name="IX_AVPageViewSetColor_method"></a>After you create a <span class="FM_Courier">PDColorValueRec</span>&#160;object, you can attach it to an <span class="FM_Courier">AVPageView</span>&#160;object by invoking the <span class="FM_Courier">AVPageViewSetColor</span>&#160;method. This method requires an <span class="FM_Courier">AVPageView</span>&#160;object and a <span class="FM_Courier">PDVColorValueRec</span> object. Once set, this color is used in drawing operations.</p>
+  <p class="BodyLevel1"><a name="IX_PDETextGetNumRuns"></a><a name="IX_PDETextGetNumRuns_method"></a>A text element is represented by a <span class="FM_Courier">PDEText</span>&#160;object, which is a container of text runs. A text run can be a single character or multiple characters having the same attributes in a PDF file. You can get the number of text runs located within a <span class="FM_Courier">PDEElement</span>&#160;object by invoking the <span class="FM_Courier">PDETextGetNumRuns</span>&#160;method and passing the <span class="FM_Courier">PDEElement</span>&#160;object and casting it as a <span class="FM_Courier">PDEText</span> object.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>int numRuns = PDETextGetNumRuns((PDEText) pdeElement);</p>
+  <p class="BodyLevel1">You can draw a red border around each <span class="FM_Courier">PDEText</span> object by performing the following tasks:</p>
+  <p class="FM_StepReset"><a name="IX_PDETextGetBBox"></a><a name="IX_PDETextGetBBox_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Get the bounding box of the <span class="FM_Courier">PDEText</span>&#160;object by invoking the <span class="FM_Courier">PDETextGetBBox</span>&#160;method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">PDEText</span>&#160;object that represents the text element whose bounding box is obtained. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">A <span class="FM_Courier">PDETextFlags</span>&#160;value that specifies whether index refers to the character offset from the beginning of the text object or the index of the text run. Must be either <span class="FM_Courier">kPDETextChar</span>&#160;for a text character or <span class="FM_Courier">kPDETextRun</span> for a text run.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">ASInt32</span> value that specifies the index of the character or text run.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The address of an <span class="FM_Courier">ASFixedRect</span>&#160;object that is populated with the coordinates of the bounding box of a specified character or text run.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><a name="IX_AVPageViewRectToDevice_3"></a><a name="IX_AVPageViewRectToDevice_2"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Transform the bounding box's coordinates from user space to device space by invoking the <span class="FM_Courier">AVPageViewRectToDevice</span> method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">AVPageView</span>&#160;object that represents the page view for which the coordinates are transformed. Use the same <span class="FM_Courier">AVPageView</span>&#160;object that was used to create a <span class="FM_Courier">PDEContent</span>&#160;object. (See <a href="Creating_a_PDEContent_object.htm#XREF_91421_Creating_a">Creating a PDEContent object</a>.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The address of the <span class="FM_Courier">ASFixedRect</span>&#160;object that was passed to the <span class="FM_Courier">PDETextGetBBox</span>&#160;method. This object contains coordinate data that is transformed.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The address of an <span class="FM_Courier">AVRect</span> object that is populated with device space coordinates.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><a name="IX_AVPageViewDrawRectOutline_1"></a><a name="IX_AVPageViewDrawRectOutline"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Draw a stroked, but not filled, rectangle by invoking the <span class="FM_Courier">AVPageViewDrawRectOutline</span>&#160;method and passing the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">AVPageView</span> object that represents the page view in which the rectangle is drawn.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The address of the <span class="FM_Courier">AVRect</span>&#160;object that specifies device space coordinates. You can pass the address of the same <span class="FM_Courier">AVRect</span>&#160;object that was passed to the <span class="FM_Courier">AVPageViewRectToDevice</span> method.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">AVDevSize</span> object that specifies the border width in pixels.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The address of an <span class="FM_Courier">ASFixed</span>&#160;object whose elements specify the length of dashes and gaps. You can specify <span class="FM_Courier">NULL</span> to draw a solid outline.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">AVTArraySize</span>&#160;object that specifies the number of elements in the <span class="FM_Courier">ASFixed</span>&#160;object. This value is ignored if you specified <span class="FM_Courier">Null</span>&#160;as the previous argument. As a result, you can specify <span class="FM_Courier">0</span>&#160;for this argument. The maximum allowed number of elements is currently 10.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The following code example modifies page contents by placing a red border around text elements and places a blue border around other elements that are located within a <span class="FM_Courier">PDEContent</span> object.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Modifying page contents</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Declare objects used in this code example</p>
+  <p class="FM_CodeReference">PDEElement pdeElement; </p>
+  <p class="FM_CodeReference">ASFixedRect bbox;</p>
+  <p class="FM_CodeReference">AVRect rect;</p>
+  <p class="FM_CodeReference">PDColorValueRec red, blue;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Define red </p>
+  <p class="FM_CodeReference">red.space = PDDeviceRGB;</p>
+  <p class="FM_CodeReference">red.value[0] = ASInt32ToFixed(1);</p>
+  <p class="FM_CodeReference">red.value[1] = 0;</p>
+  <p class="FM_CodeReference">red.value[2] = 0;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Define blue</p>
+  <p class="FM_CodeReference">blue.space = PDDeviceRGB;</p>
+  <p class="FM_CodeReference">blue.value[0] = 0; </p>
+  <p class="FM_CodeReference">blue.value[1] = 0; </p>
+  <p class="FM_CodeReference">blue.value[2] = ASInt32ToFixed(1);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create a PDEContent object based on the current page view</p>
+  <p class="FM_CodeReference">AVDoc avDoc = AVAppGetActiveDoc();</p>
+  <p class="FM_CodeReference">AVPageView pageView = AVDocGetPageView(avDoc);</p>
+  <p class="FM_CodeReference">PDPageNumber pageNum = AVPageViewGetPageNum(pageView);</p>
+  <p class="FM_CodeReference">PDDoc pdDoc = AVDocGetPDDoc(avDoc); </p>
+  <p class="FM_CodeReference">PDPage pdPage = PDDocAcquirePage(pdDoc, pageNum); </p>
+  <p class="FM_CodeReference">PDEContent pdeContent = PDPageAcquirePDEContent(pdPage, gExtensionID);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Get the number of elements located in the PDEContent object</p>
+  <p class="FM_CodeReference">ASInt32 eleNum = PDEContentGetNumElems(pdeContent); </p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Retrieve each element in the PDEContent object</p>
+  <p class="FM_CodeReference">for (int &#160;j=0; j &lt; eleNum; j++){</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get a specific element</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeElement = PDEContentGetElem(pdeContent, j);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Determine if the object is of type text</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (PDEObjectGetType((PDEObject) pdeElement) == kPDEText){</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the number of text runs in the text element </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>int numTextRuns = PDETextGetNumRuns((PDEText) pdeElement);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Assign red to the page view </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewSetColor(pageView, &amp;red);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (int i = 0; i &lt; numTextRuns; i++){</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the bounding box of the text run</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDETextGetBBox ((PDEText) pdeElement, kPDETextRun, i, &amp;bbox);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Convert from user space bbox to device space rect</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewRectToDevice (pageView, &amp;bbox, &amp;rect);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Draw the rect</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewDrawRectOutline (pageView,&amp;rect, &#160;1, NULL, 0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>else</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Assign blue to the page view<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewSetColor(pageView, &amp;blue);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Get the bounding box of the non-text element</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEElementGetBBox (pdeElement, &amp;bbox);</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Convert from user space bbox to device space rect</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewRectToDevice (pageView, &amp;bbox, &amp;rect);</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Draw the rect</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVPageViewDrawRectOutline (pageView, &amp;rect, 1, NULL, 0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Release objects</p>
+  <p class="FM_CodeReference">PDPageRelease(pdPage);</p>
+  <p class="FM_CodeReference">PDPageReleasePDEContent (pdPage, gExtensionID);</p>
+ </div>
+</body>
+</html>

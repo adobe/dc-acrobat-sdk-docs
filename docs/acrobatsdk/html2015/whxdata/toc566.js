@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc562.js\"  name=\"AcroExch.HiliteList\" url=\"Acro12_MasterBook/IAC_API_OLE_Objects/AcroExch_HiliteList.htm\"><item name=\"Add\" url=\"Acro12_MasterBook/IAC_API_OLE_Objects/Add1.htm\" /></data>";

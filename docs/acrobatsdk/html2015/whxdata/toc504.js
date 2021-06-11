@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc496.js\"  name=\"FlashEventHandler\" url=\"Acro12_MasterBook/JS_3D_API/FlashEventHandler.htm\"><item name=\"onEvent\" url=\"Acro12_MasterBook/JS_3D_API/onEvent1.htm\" /><item name=\"FlashEventHandler\" url=\"Acro12_MasterBook/JS_3D_API/FlashEventHandler1.htm\" /></data>";

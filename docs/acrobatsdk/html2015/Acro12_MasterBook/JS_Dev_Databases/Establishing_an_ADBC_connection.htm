@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Establishing an ADBC connection</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_Databases.fm" />
+ <link rel="stylesheet" href="JS_Dev_Databases.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.14.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_Databases/About_ADBC.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_Databases/Executing_SQL_statements.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Interacting with Databases" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_73593_Adobe_Reader"></a>Establishing an ADBC connection</h2>
+  <p class="BodyLevel1"><a name="IX_Data_Source_Name_DSN"></a><a name="IX_establishing_connections"></a>There are normally two steps required to establish an ADBC connection. First, obtain a list of accessible databases by invoking the <span class="FM_Courier">ADBC</span>&#160;object’s <span class="FM_Courier">getDataSourceList</span>&#160;method. Then establish the connection by passing the Data Source Name (DSN) of one of the databases in the list to the <span class="FM_Courier">ADBC</span>&#160;object’s <span class="FM_Courier">newConnection</span> method.</p>
+  <p class="BodyLevel1">The <span class="FM_Courier">getDataSourceList</span>&#160;method returns an array of <span class="FM_Courier">DataSourceInfo</span>&#160;generic objects, each of which contains the following properties:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">name</span> — a string identifying the database</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">description</span> — a description containing specific information about the database</p>
+  <p class="BodyLevel1">In the following example, a list of all available databases is retrieved, and the DSN of the <span class="FM_Courier">DataSourceInfo</span>&#160;object representing <span class="FM_Courier">Q32000Data</span>&#160;is identified and stored in the variable <span class="FM_Courier">DB</span>:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Obtain a list of accessible databases:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var databaseList = ADBC.getDataSourceList();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Search the DataSourceInfo objects for the “Q32000Data” database:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (databaseList != null) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var DB = &quot;&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (var i=0; i&lt;databaseList.length; i++)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (databaseList[i].name == &quot;Q32000Data&quot;) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>DB = databaseList[i].name;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>break;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="BodyLevel1">To establish the database connection, invoke the <span class="FM_Courier">ADBC</span>&#160;object’s <span class="FM_Courier">newConnection</span>&#160;method, which accepts the following parameters:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">cDSN</span> — the Data Source Name (DSN) of the database</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">cUID</span> — the user ID</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">cPWD</span> — the password</p>
+  <p class="BodyLevel1"><a name="IX_statement_object"></a><a name="IX_connection_object"></a>The <span class="FM_Courier">newConnection</span>&#160;method returns a connection object, which encapsulates the connection by providing methods which allow you to create a statement object, obtain information about the list of tables in the database or columns within a table, and close the connection.</p>
+  <p class="BodyLevel1">In the following example, a connection is established with the <span class="FM_Courier">Q32000Data</span> database:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (DB != &quot;&quot;) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Connect to the database and obtain a Connection object:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var myConnection = ADBC.newConnection(DB.name);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="BodyLevel1"><a name="IX_connection_see_connection"></a>Normally, the DSN is known on the system, so searching for it is not necessary. You can connect in a more direct way:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var myConnection = ADBC.newConnection(&quot;Q32000Data&quot;);</p>
+  <p class="BodyLevel1">The connection object provides the methods shown in the following table.</p>
+  <p class="FM_Z_Caption"><a name="IX_methods_5"></a>Connection object</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:6.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 22.50pt;">
+   <th style="width : 129.600pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Method</p>
+</th>
+   <th style="width : 331.200pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Description</p>
+</th>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 129.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">close</p>
+</td>
+   <td style="width : 331.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Closes the database connection.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 129.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">newStatement</p>
+</td>
+   <td style="width : 331.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Creates a statement object used to execute SQL statements.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 129.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">getTableList</p>
+</td>
+   <td style="width : 331.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Retrieves information about the tables within the database.</p>
+</td>
+</tr>
+   <tr style=" height : 22.50pt;">
+   <td style="width : 129.600pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">getColumnList</p>
+</td>
+   <td style="width : 331.200pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Retrieves information about the various columns within a table.</p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="BodyLevel1"><a name="IX_getting_a_list_of_tables"></a>The connection object’s <span class="FM_Courier">getTableList</span>&#160;method returns an array of <span class="FM_Courier">TableInfo</span>&#160;generic objects, each of which corresponds to a table within the database and contains the following properties:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">name</span> — the table name</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">description</span> — a description of database-dependent information about the table</p>
+  <p class="BodyLevel1">In the following example, the name and description of every table in the database is printed to the console:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Obtain the array of TableInfo objects representing the database tables:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var tableArray = myConnection.getTableList();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Print the name and description of each table to the console:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (var i=0; i&lt;tableArray.length; i++) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Table Name: &quot; + tableArray[i].name);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Table Description: &quot; + tableArray[i].description);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="BodyLevel1"><a name="IX_getting_a_column_list"></a>The<span class="FM_Bold">&#160;</span>connection object’s <span class="FM_Courier">getColumnList</span>&#160;method accepts a parameter containing the name of one of the database tables, and returns an array of <span class="FM_Courier">ColumnInfo</span>&#160;generic objects, each of which corresponds to a column within the table and contains the following properties:</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">name</span> — the name of the column</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">description</span> — a description of database-dependent information about the column</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">type</span>&#160;— a numeric identifier representing an <span class="FM_Courier">ADBC</span> SQL type</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">typeName</span> — a database-dependent string representing the data type</p>
+  <p class="BodyLevel1">In the following example, a complete description of every column in the <span class="FM_Courier">Q32000Data</span>&#160;database table called <span class="FM_Courier">Sales</span> is printed to the console:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Obtain the array of ColumnInfo objects representing the Sales table:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var columnArray = myConnection.getColumnList(&quot;Sales&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>// Print a complete description of each column to the console:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (var i=0; i&lt;columnArray.length; i++) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Column Name: &quot; + columnArray[i].name);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Column Description: &quot; + columnArray[i].description);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Column SQL Type: &quot; + columnArray[i].type);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Column Type Name: &quot; + columnArray[i].typeName);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  </div>
+</body>
+</html>

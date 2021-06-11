@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"About digital ID providers","url":"Acro12_MasterBook/JS_Dev_Security/Digital_IDs.htm#TOC_About_digital_IDbc-1"},{"type":"item","name":"Creating a digital ID (default certificate security)","url":"Acro12_MasterBook/JS_Dev_Security/Digital_IDs.htm#TOC_Creating_a_digital_IDbc-2"},{"type":"item","name":"Using digital IDs (default certificate security)","url":"Acro12_MasterBook/JS_Dev_Security/Digital_IDs.htm#TOC_Using_digital_IDsbc-3"},{"type":"item","name":"Managing digital IDs (Windows certificate security)","url":"Acro12_MasterBook/JS_Dev_Security/Digital_IDs.htm#TOC_Managing_digital_IDsbc-4"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

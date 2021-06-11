@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc.js\"  name=\"Plug-ins and Applications\" url=\"Acro12_MasterBook/Plugins_and_Apps_SectionPage/Plugins_and_Apps_SectionPage.htm\"><book name=\"Overview\" url=\"Acro12_MasterBook/Plugins_Introduction/Plugins_Introduction.htm\" src=\"toc69.js\" /></data>";

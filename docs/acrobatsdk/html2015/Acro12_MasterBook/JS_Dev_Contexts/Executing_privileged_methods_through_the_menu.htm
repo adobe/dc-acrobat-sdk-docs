@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Executing privileged methods through the menu</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_Contexts.fm" />
+ <link rel="stylesheet" href="JS_Dev_Contexts.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.3.2.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_Contexts/Executing_privileged_methods_in_a_non-privileged_context.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_PDFCreation/Creating_and_Modifying_PDF_Documents.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > JavaScript Contexts in Acrobat > Privileged versus non-privileged context" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_40133_Executing"></a>Executing privileged methods through the menu</h3>
+  <p class="BodyLevel1"><a name="IX_privileged_methods"></a>In versions of <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;previous to 7.0, executing JavaScript through a menu was non-privileged. This is no longer the case. To execute <span class="FM_Italic">privileged</span> JavaScript through a menu event there are now two choices:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Ask the user to enable the Enable Menu Items JavaScript Execution Privileges option, in the JavaScript section of the Preferences.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Use the trusted function approach discussed above.</p>
+  <p class="BodyLevel1">In this section we discuss the first alternative. </p>
+  <p class="BodyLevel1"><a name="IX_adding"></a>Open <span class="FM_Courier">config.js</span>, found in the user’s JavaScript folder, and paste the following script:</p>
+  <p class="FM_CodeReference">app.addSubMenu({ cName: &quot;New&quot;, cParent: &quot;File&quot;, nPos: 0 })</p>
+  <p class="FM_CodeReference"><a name="IX_creating_5"></a><a name="IX_newDoc"></a>app.addMenuItem({ cName: &quot;Letter&quot;, cParent: &quot;New&quot;, cExec: &quot;app.newDoc();&quot;});</p>
+  <p class="FM_CodeReference">app.addMenuItem({ cName: &quot;A4&quot;, cParent: &quot;New&quot;, cExec: &quot;app.newDoc(420,595)&quot;});</p>
+  <p class="BodyLevel1">As usual, restart <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;so that the <span class="FM_Courier">config.js</span>&#160;file is read. Under the File menu, there is now a menu item named New, with a sub menu with two items, Letter and A4.</p>
+  <p class="BodyLevel1">With the Enable Menu Items JavaScript Execution Privileges option <span class="FM_Italic">not</span>&#160;enabled, upon the execution of one of these menu items, either File &gt;&#160;New &gt;&#160;Letter or File &gt;&#160;New &gt; A4 are executed, an alert box appears declaring that “An internal error occurred”, and the console shows the following error message:</p>
+  <p class="FM_CodeReference">1:Menu Letter:Exec</p>
+  <p class="FM_CodeReference">NotAllowedError: Security settings prevent access to this property or method.</p>
+  <p class="FM_CodeReference">app.newDoc:1:Menu Letter:Exec</p>
+  <p class="BodyLevel1">The problem is <span class="FM_Courier">app.newDoc</span>, a method that has a <span class="FM_Italic">security restriction</span>. </p>
+  <p class="BodyLevel1">Now enable the Enable Menu Items JavaScript Execution Privileges option and execute the same menu item again, a new document is created, the menu operates as designed.</p>
+  <p class="BodyLevel1">The above discussion shows what happens when you try to executed a privileged method through the menu system and how to work around the restrictions on privileged methods by enabling the Enable Menu Items JavaScript Execution Privileges option of the JavaScript section of the Preferences.</p>
+  <p class="BodyLevel1">A note of caution. An <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;developer, cannot assume the user has enabled the JavaScript execution privileges options; indeed, in a corporate setting, enabling this option may not be allowed for security reasons. An <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;developer using JavaScript should perhaps use the trusted function approach, as discussed in <a href="Executing_privileged_methods_in_a_non-privileged_context.htm#XREF_30303_Executing"><span class="FM_HyperText">Executing privileged methods in a non-privileged context</span></a>, which necessarily implies the installation of folder JavaScript on the user’s system.</p>
+  <h3><a name="TOC_Executing_privileged2"></a><a name="IX_executing_privileged_1"></a>Executing privileged methods in a certified document</h3>
+  <p class="BodyLevel1">Many of the JavaScript methods in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;are restricted for security reasons, and their execution is only allowed during batch, console or menu events. This restriction is a limitation when enterprise customers try to develop solutions that require these methods and know that their environment is secure.</p>
+  <p class="BodyLevel1">Three requirements must be met to make restricted JavaScript methods available to users. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><a name="IX_for_certifying_a_document"></a>You must obtain a digital ID.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">You must sign the PDF document containing the restricted JavaScript methods using the digital ID.</p>
+</li>
+  </ul>
+  <p class="FM_Indent1">For details on where you can obtain digital IDs and the procedures for using them to sign documents, see <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> Help.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">The recipient should trust the signer for certified documents and JavaScript. </p>
+</li>
+  </ul>
+  <p class="FM_Indent1">For details, see <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> Help.</p>
+  <p class="BodyLevel1"><a name="IX_trusted_certificates"></a>All trusted certificates can be accessed by selecting Certificates from Preferences &gt;&#160;Signatures &gt; Identies &amp; Trusted Certificates &gt; more in the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> main menu.</p>
+ </div>
+</body>
+</html>

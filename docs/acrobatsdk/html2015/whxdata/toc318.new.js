@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"children","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_properties.htm#TOC_childrenbc-1"},{"type":"item","name":"color","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_properties.htm#TOC_colorbc-2"},{"type":"item","name":"doc","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_properties.htm#TOC_doc2bc-3"},{"type":"item","name":"name","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_properties.htm#TOC_name4bc-4"},{"type":"item","name":"open","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_properties.htm#TOC_openbc-5"},{"type":"item","name":"parent","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_properties.htm#TOC_parentbc-6"},{"type":"item","name":"style","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_properties.htm#TOC_style1bc-7"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

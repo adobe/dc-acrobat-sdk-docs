@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Cos strings","url":"Acro12_MasterBook/Plugins_Cos/About_Cos_object_types.htm#TOC_Cos_stringsbc-1"},{"type":"item","name":"Cos arrays","url":"Acro12_MasterBook/Plugins_Cos/About_Cos_object_types.htm#TOC_Cos_arraysbc-2"},{"type":"item","name":"Cos names","url":"Acro12_MasterBook/Plugins_Cos/About_Cos_object_types.htm#TOC_Cos_namesbc-3"},{"type":"item","name":"Cos dictionaries","url":"Acro12_MasterBook/Plugins_Cos/About_Cos_object_types.htm#TOC_Cos_dictionariesbc-4"},{"type":"item","name":"Cos streams","url":"Acro12_MasterBook/Plugins_Cos/About_Cos_object_types.htm#TOC_Cos_streamsbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

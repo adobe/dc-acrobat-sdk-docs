@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating an ASFileSys object</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Unicode.fm" />
+ <link rel="stylesheet" href="Plugins_Unicode.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.15.1.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Unicode/Retrieving_Unicode_path_values.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Unicode/Creating_an_ASFileSys_object_that_supports_Unicode_paths.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Unicode Paths > Retrieving Unicode path values" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_Unicode_named_files"></a><a name="IX_file_systems"></a><a name="XREF_67382_Creating_an"></a>Creating an ASFileSys object</h3>
+  <p class="BodyLevel1">Regardless whether you are working with Unicode paths or non-Unicode paths, you must create an <span class="FM_Courier">ASFileSys</span>&#160;object when performing tasks that manipulate files, such as opening a PDF file. An <span class="FM_Courier">ASFileSys</span> object represents the file system in which the file that you are manipulating is located.</p>
+  <p class="BodyLevel1">To create an <span class="FM_Courier">ASFileSys</span>&#160;object, invoke the <span class="FM_Courier">ASGetDefaultFileSysForPath</span>&#160;method and specify the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">ASAtom</span>&#160;object that defines the format of the <span class="FM_Courier">pathSpec</span>&#160;argument (second argument). To create an <span class="FM_Courier">ASAtom</span>&#160;object, invoke the <span class="FM_Courier">ASAtomFromString</span> method and pass one of the following values:</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">DIPathWithASText</span>&#160;if the <span class="FM_Courier">pathSpec</span>&#160;is a <span class="FM_Courier">DIPath</span>&#160;being passed to <span class="FM_Courier">ASFileSysPathFromDIPathEx</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">ASTextPath</span>&#160;for Windows </p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">FSRef</span>, <span class="FM_Courier">CFURLRef</span>, <span class="FM_Courier">POSIXPath</span>, <span class="FM_Courier">FSSpec</span>&#160;or <span class="FM_Courier">Cstring</span> for Mac OS</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">Cstring</span> for UNIX</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">A void pointer that specifies the location of the file.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">On Windows, the <span class="FM_Courier">ASGetDefaultFileSysForPath</span>&#160;method checks the specified path values and decides if the classic default file system is used works or if the Unicode file system is used. On Mac OS and UNIX, the default file system is always returned (because neither has a separate Unicode file system; Mac OS already supports Unicode-named paths).</p>
+  <p class="BodyLevel1">The following code example creates an <span class="FM_Courier">ASFileSys</span>&#160;object as part of the process of opening a PDF file. (See <a href="../Plugins_Documents/Opening_PDF_documents.htm#XREF_65430_Opening_a_PDF">Opening PDF documents</a>.)</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Creating an ASFileSys object</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">#if NOT_USING_UNICODE</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Specify the PDF file to open (host encoded names only)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>const char* myPath = &quot;C\:\PurchaseOrder.pdf&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASAtom pathType = ASAtomFromString(&quot;<span class="FM_Courier">ASTextPath</span>&quot;);</p>
+  <p class="FM_CodeReference">#else</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Specify the PDF file to open (Unicode)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>const ASUns16* myPath = L&quot;C:\\PurchaseOrder(assumeUnicodeCharacters).pdf&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASAtom pathType = ASAtomFromString(&quot;ASTextPath&quot;); &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p>
+  <p class="FM_CodeReference">#endif</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an ASText object</p>
+  <p class="FM_CodeReference">ASText titleText = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetPDText(titleText, &quot;This PDF was opened by using the Acrobat SDK&quot;);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an ASPathName object</p>
+  <p class="FM_CodeReference">ASFileSys fileSys = ASGetDefaultFileSysForPath(pathType, myPath);</p>
+  <p class="FM_CodeReference">ASPathName pathName = ASFileSysCreatePathName(fileSys, pathType, myPath, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Open the PDF file</p>
+  <p class="FM_CodeReference">AVDoc myDoc = AVDocOpenFromFile(pathName, fileSys, titleText);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Do some clean up</p>
+  <p class="FM_CodeReference">ASFileSysReleasePath(fileSys, pathName);</p>
+  <p class="FM_CodeReference">ASTextDestroy(titleText);</p>
+  </div>
+</body>
+</html>

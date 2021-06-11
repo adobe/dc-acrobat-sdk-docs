@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"createChild","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_methods.htm#TOC_createChildbc-1"},{"type":"item","name":"execute","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_methods.htm#TOC_executebc-2"},{"type":"item","name":"insertChild","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_methods.htm#TOC_insertChildbc-3"},{"type":"item","name":"remove","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_methods.htm#TOC_removebc-4"},{"type":"item","name":"setAction","url":"Acro12_MasterBook/JS_API_AcroJS/Bookmark_methods.htm#TOC_setActionbc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

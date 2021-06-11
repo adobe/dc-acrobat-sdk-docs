@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Executing privileged methods in a non-privileged context","url":"Acro12_MasterBook/JS_Dev_Contexts/Executing_privileged_methods_in_a_non-privileged_context.htm"},{"type":"item","name":"Executing privileged methods through the menu","url":"Acro12_MasterBook/JS_Dev_Contexts/Executing_privileged_methods_through_the_menu.htm"},{"type":"item","name":"Executing privileged methods in a certified document","url":"Acro12_MasterBook/JS_Dev_Contexts/Executing_privileged_methods_through_the_menu.htm#TOC_Executing_privileged2bc-1"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

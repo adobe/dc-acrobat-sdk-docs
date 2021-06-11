@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"available","url":"Acro12_MasterBook/JS_API_AcroJS/spell_properties.htm#TOC_available2bc-1"},{"type":"item","name":"dictionaryNames","url":"Acro12_MasterBook/JS_API_AcroJS/spell_properties.htm#TOC_dictionaryNamesbc-2"},{"type":"item","name":"dictionaryOrder","url":"Acro12_MasterBook/JS_API_AcroJS/spell_properties.htm#TOC_dictionaryOrderbc-3"},{"type":"item","name":"domainNames","url":"Acro12_MasterBook/JS_API_AcroJS/spell_properties.htm#TOC_domainNamesbc-4"},{"type":"item","name":"languages","url":"Acro12_MasterBook/JS_API_AcroJS/spell_properties.htm#TOC_languagesbc-5"},{"type":"item","name":"languageOrder","url":"Acro12_MasterBook/JS_API_AcroJS/spell_properties.htm#TOC_languageOrderbc-6"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

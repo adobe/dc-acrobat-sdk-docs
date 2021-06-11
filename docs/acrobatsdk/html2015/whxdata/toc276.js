@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc272.js\"  name=\"Indexing multiple PDF documents\" url=\"Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Indexing_multiple_PDF_documents.htm\"><item name=\"Creating, updating, or rebuilding indexes\" url=\"Acro12_MasterBook/JS_Dev_SearchIndexEssentials/Creating_updating_or_rebuilding_indexes.htm\" /></data>";

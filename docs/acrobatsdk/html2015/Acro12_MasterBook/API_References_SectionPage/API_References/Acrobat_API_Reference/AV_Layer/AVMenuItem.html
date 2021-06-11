@@ -1,0 +1,2028 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="AVMenuItem,,,,AVMenuItem,AVMenuItemPredicate,AVMenuItemNew,AVMenuItemAcquire,AVMenuItemRelease,AVMenuItemRemove,AVMenuItemGetName,AVMenuItemGetTitle,AVMenuItemSetTitle,AVMenuItemGetShortcut,AVMenuItemGetLongOnly,AVMenuItemSetExecuteProc,AVMenuItemSetComputeEnabledProc,AVMenuItemSetComputeMarkedProc,AVMenuItemAcquireSubmenu,AVMenuItemIsEnabled,AVMenuItemIsMarked,AVMenuItemExecute,AVMenuItemGetParentMenu,AVMenuItemNewWithASText,AVMenuItemGetTitleAsASText,AVMenuItemSetTitleWithASText,AVMenuItemClone,AVMenuItemSetComputeVisibleProc,AVMenuItemIsVisible,AVMenuItemIsScriptable" name="keywords">
+<title>AV_Layer.AVMenuItem (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'AVMenuItem - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?AV_Layer/AVMenuItem.html&amp;AV_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">AVMenuItem</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AVMenuItem"); titleBar_setSubNav(false,true,false,false,false,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">AV_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">AVMenuItem</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>An AVMenuItem is <a href="#a" target="">a</a> menu item in a menu. It has attributes, including the following:</p><ul>
+<li>A name.</li>
+<li>A keyboard shortcut.</li>
+<li>A procedure to execute when the menu item is selected.</li>
+<li>A procedure to compute whether the menu item is enabled.</li>
+<li>A procedure to compute whether the menu item is checkmarked, and whether it has a submenu.</li>
+</ul><p>Menu items also may serve as separators between menu items. You are encouraged to position 
+your plug-in menu items relative to a separator. This helps ensure that <a href="../PDFEdit_Layer/General.html#if" target="">if</a> a block of menu items 
+is moved in a future <a href="General.html#version" target="">version</a> of Acrobat, your plug-in's menu items also are moved.</p><p>In Acrobat 4.0 and later, plug-ins can be liberal in their use of separators. 
+After initialization, Acrobat 4.0 and later clean up by removing separators at the beginning 
+or <a href="../PD_Layer/General.html#end" target="">end</a> of menus as well as removing duplicate separators.</p><p>A plug-in can simulate a user selecting a menu item by calling <a href="AVMenuItem.html#AVMenuItemExecute()" target="">AVMenuItemExecute</a>(). 
+If the menu item is disabled, AVMenuItemExecute() returns without doing anything. 
+AVMenuItemExecute() works even when the menu item is not displayed (for example, if it 
+has not been added to a menu, its menu is not displayed, or the menu bar is not <a href="General.html#visible" target="">visible</a>). 
+Plug-ins can set all attributes of menu items they create, but must not set the <b>Execute</b> 
+procedure of the Acrobat built-in menu items.</p><p>Your plug-in can specify menu item <a href="../PDFEdit_Layer/General.html#names" target="">names</a> using either the names seen by a user, or 
+language-independent names. The latter allows your plug-in to locate the Print menu item 
+without knowing, for example, that it is called Imprimer in French and Drucken 
+in German.</p><p>You are strongly encouraged to begin your plug-in's language-independent menu item names 
+with your plug-in's name (separated by a colon) to avoid name collisions when more than one 
+plug-in is present. For example, if your plug-in is named <code>myPlug</code>, it might add 
+menu items whose names are <code>myPlug:Open</code> and <code>myPlug:Find</code>.</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVMenuItem">AVMenuItem</a>
+<div class="summaryTableDescription">A menu item under a menu in the Acrobat viewer. It has a number of attributes, including a name, a keyboard shortcut, a procedure to execute when the menu item is selected, a procedure to compute whether the menu item is enabled, a procedure to compute whether the menu item is check marked, and whether or not it has a submenu. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVMenuItemPredicate1487">AVMenuItemPredicate</a>
+<div class="summaryTableDescription">A callback that is called for each menu item enumerated by AVMenubarAcquireMenuItemByPredicate(). The first menu item for which this callback returns true is acquired. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVMenuItem <a class="signatureLink" href="#AVMenuItemAcquire1766()">AVMenuItemAcquire</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Acquires a menu item. It increments the menu item's reference count. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVMenu <a class="signatureLink" href="#AVMenuItemAcquireSubmenu1950()">AVMenuItemAcquireSubmenu</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Acquires the submenu attached to the specified menu item, if there is one. When you are done with the submenu, release it using AVMenuRelease(). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVMenuItem <a class="signatureLink" href="#AVMenuItemClone8973()">AVMenuItemClone</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Creates a new menu item object using an existing menu item as a template. If the menu item contains a submenu, that submenu is also copied. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemExecute1989()">AVMenuItemExecute</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Executes a menu item's AVExecuteProc(). It does nothing if menuItem is NULL, if menuItem has no AVExecuteProc, or if menuItem is not enabled.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVMenuItemGetLongOnly1873()">AVMenuItemGetLongOnly</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Gets the flag indicating whether a menu item is visible only in long-menus mode. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASAtom <a class="signatureLink" href="#AVMenuItemGetName1805()">AVMenuItemGetName</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Gets the atom for the language-independent name of the menu item. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVMenu <a class="signatureLink" href="#AVMenuItemGetParentMenu2002()">AVMenuItemGetParentMenu</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Gets the menu in which the specified menu item appears.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVMenuItemGetShortcut1859()">AVMenuItemGetShortcut</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, char* key, <a href="General.html#AVFlagBits16" target="">AVFlagBits16</a>* flags)</div>
+<div class="summaryTableDescription">Gets the shortcut key for the specified menu item. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVTArraySize <a class="signatureLink" href="#AVMenuItemGetTitle1826()">AVMenuItemGetTitle</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, char* buffer, <a href="General.html#AVTArraySize" target="">AVTArraySize</a> bufferSize)</div>
+<div class="summaryTableDescription">Gets a menu item's title, which is the string that appears in the user interface. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemGetTitleAsASText8233()">AVMenuItemGetTitleAsASText</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> title)</div>
+<div class="summaryTableDescription">Gets the menu item's title as it appears in the user interface, as an ASText object. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVMenuItemIsEnabled1962()">AVMenuItemIsEnabled</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Tests whether the specified menu item is enabled. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVMenuItemIsMarked1975()">AVMenuItemIsMarked</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Tests whether menuItem is marked (for example, it appears with a check mark). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVMenuItemIsScriptable9791()">AVMenuItemIsScriptable</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Determines whether the given menu item is an executable menu item. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVMenuItemIsVisible9233()">AVMenuItemIsVisible</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Tests whether the specified menu item is visible on its parent menu. The visibility state is calculated using the AVComputeVisibleProc(). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVMenuItem <a class="signatureLink" href="#AVMenuItemNew1753()">AVMenuItemNew</a>(const char* title, const char* name, <a href="AVMenu.html#AVMenu" target="">AVMenu</a> submenu, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> longMenusOnly, char shortcut, <a href="General.html#AVFlagBits16" target="">AVFlagBits16</a> flags, <a href="General.html#AVIcon" target="">AVIcon</a> icon, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner)</div>
+<div class="summaryTableDescription">Creates and acquires a new AVMenuItem. The menu item can be added to a menu using AVMenuAddMenuItem().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVMenuItem <a class="signatureLink" href="#AVMenuItemNewWithASText8218()">AVMenuItemNewWithASText</a>(<a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a> title, const char* name, <a href="AVMenu.html#AVMenu" target="">AVMenu</a> submenu, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> longMenusOnly, char shortcut, <a href="General.html#AVFlagBits16" target="">AVFlagBits16</a> flags, <a href="General.html#AVIcon" target="">AVIcon</a> icon, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner)</div>
+<div class="summaryTableDescription">Creates and acquires a new AVMenuItem. The menu item can be added to a menu using AVMenuAddMenuItem().</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemRelease1778()">AVMenuItemRelease</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Releases a menu item. It decrements the reference count and destroys the menu item if the count is zero. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemRemove1792()">AVMenuItemRemove</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</div>
+<div class="summaryTableDescription">Removes a menu item from the menu hierarchy and releases it. It does nothing if menuItem is NULL.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemSetComputeEnabledProc1912()">AVMenuItemSetComputeEnabledProc</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVComputeEnabledProc" target="">AVComputeEnabledProc</a> proc, void* data)</div>
+<div class="summaryTableDescription">Sets the user-supplied procedure to call to determine whether the menu item is enabled. It does nothing if menuItem is NULL.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemSetComputeMarkedProc1936()">AVMenuItemSetComputeMarkedProc</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVComputeMarkedProc" target="">AVComputeMarkedProc</a> proc, void* data)</div>
+<div class="summaryTableDescription">Sets the user-supplied procedure that determines whether the menu item appears with a check mark. It does nothing if menuItem is NULL. If the menu item has no AVExecuteProc() (see AVMenuItemSetExecuteProc()), its AVComputeMarkedProc() is never called. To avoid this, add an AVExecuteProc() that does nothing, and if you wish the menu item to gray out, also add an AVComputeEnabledProc() that always returns false.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemSetComputeVisibleProc9218()">AVMenuItemSetComputeVisibleProc</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVComputeVisibleProc" target="">AVComputeVisibleProc</a> proc, void* data)</div>
+<div class="summaryTableDescription">Sets the user-supplied procedure that determines whether the menu item appears when its parent menu is opened. It does nothing if menuItem is NULL. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemSetExecuteProc1891()">AVMenuItemSetExecuteProc</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVExecuteProc" target="">AVExecuteProc</a> proc, void* data)</div>
+<div class="summaryTableDescription">Sets the user-supplied procedure to execute whenever the menu item is chosen. It does nothing if menuItem is NULL. Clients must not set the execute procedure of the Acrobat viewer's built-in menu items. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemSetTitle1840()">AVMenuItemSetTitle</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, const char* title)</div>
+<div class="summaryTableDescription">Sets a menu item's title, which is the string that appears in the user interface. Use this method to manage menu items whose titles change (such as 'show/hide fooWindow'), instead of inserting and removing menu items on the fly. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVMenuItemSetTitleWithASText8247()">AVMenuItemSetTitleWithASText</a>(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a> title)</div>
+<div class="summaryTableDescription">Sets a menu item's title, which is the string that appears in the user interface, from a constant text object. Use this method to manage menu items whose titles change (such as 'show/hide fooWindow'), instead of inserting and removing menu items on the fly. </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="AVMenuItem"></a><a name="AVMenuItem1391"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItem</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_AVMenuItem* AVMenuItem;</code>
+</div>
+<br><p>A menu item under <a href="#a" target="">a</a> menu in the Acrobat viewer. It has a number of attributes, including a <a href="../PDFEdit_Layer/General.html#name" target="">name</a>, a keyboard shortcut, a procedure to execute when the menu item is selected, a procedure to compute whether the menu item is enabled, a procedure to compute whether the menu item is check marked, and whether or not it has a submenu. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemNew()" target="">AVMenuItemNew</a> <br><a href="AVMenuItem.html#AVMenuItemAcquire()" target="">AVMenuItemAcquire</a> <br><a href="AVMenubar.html#AVMenubarAcquireMenuByName()" target="">AVMenubarAcquireMenuByName</a> <br><a href="AVMenubar.html#AVMenubarAcquireMenuItemByPredicate()" target="">AVMenubarAcquireMenuItemByPredicate</a> <br><a href="AVMenu.html#AVMenuAcquireMenuItemByIndex()" target="">AVMenuAcquireMenuItemByIndex</a> <br><a href="AVMenu.html#AVMenuGetParentMenuItem()" target="">AVMenuGetParentMenuItem</a> <br><a href="AVMenuItem.html#AVMenuItemRelease()" target="">AVMenuItemRelease</a> <br><a href="AVMenuItem.html#AVMenuItemRemove()" target="">AVMenuItemRemove</a> <br><a href="AVMenu.html#AVMenuGetMenuItemIndex()" target="">AVMenuGetMenuItemIndex</a> <br><a href="AVMenuItem.html#AVMenuItemAcquireSubmenu()" target="">AVMenuItemAcquireSubmenu</a> <br><a href="AVMenuItem.html#AVMenuItemGetLongOnly()" target="">AVMenuItemGetLongOnly</a> <br><a href="AVMenuItem.html#AVMenuItemGetName()" target="">AVMenuItemGetName</a> <br><a href="AVMenuItem.html#AVMenuItemGetParentMenu()" target="">AVMenuItemGetParentMenu</a> <br><a href="AVMenuItem.html#AVMenuItemGetShortcut()" target="">AVMenuItemGetShortcut</a> <br><a href="AVMenuItem.html#AVMenuItemGetTitle()" target="">AVMenuItemGetTitle</a> <a href="AVMenuItem.html#AVMenuItemSetTitle()" target="">AVMenuItemSetTitle</a> <br><a href="AVMenuItem.html#AVMenuItemIsEnabled()" target="">AVMenuItemIsEnabled</a> <br><a href="AVMenuItem.html#AVMenuItemIsMarked()" target="">AVMenuItemIsMarked</a> <br><a href="AVMenuItem.html#AVMenuItemSetComputeEnabledProc()" target="">AVMenuItemSetComputeEnabledProc</a> <br><a href="AVMenuItem.html#AVMenuItemSetComputeMarkedProc()" target="">AVMenuItemSetComputeMarkedProc</a> <br><a href="AVMenuItem.html#AVMenuItemSetComputeVisibleProc()" target="">AVMenuItemSetComputeVisibleProc</a> <br><a href="AVMenuItem.html#AVMenuItemSetExecuteProc()" target="">AVMenuItemSetExecuteProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1391</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="AVMenuItemPredicate1487"></a><a name="AVMenuItemPredicate"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemPredicate</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*AVMenuItemPredicate)(<a href="AVMenuItem.html" target="">AVMenuItem</a> menuItem, <a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *clientData)</code>
+</div>
+<br><p>A callback that is called for each menu item enumerated by <a href="AVMenubar.html#AVMenubarAcquireMenuItemByPredicate()" target="">AVMenubarAcquireMenuItemByPredicate()</a>. The first menu item for which this callback returns <code>true</code> is acquired. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenubar.html#AVMenubarAcquireMenuItemByPredicate()" target="">AVMenubarAcquireMenuItemByPredicate</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1487</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="AVMenuItemAcquire1766()"></a><a name="AVMenuItemAcquire()"></a><a name="AVMenuItemAcquire(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemAcquire</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> AVMenuItemAcquire(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Acquires <a href="#a" target="">a</a> menu item. It increments the menu item's reference <a href="#count" target="">count</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The menu item to acquire. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The menu item acquired. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemRelease()" target="">AVMenuItemRelease</a> <br><a href="AVMenubar.html#AVMenubarAcquireMenuItemByPredicate()" target="">AVMenubarAcquireMenuItemByPredicate</a> <br><a href="AVMenubar.html#AVMenubarAcquireMenuItemByName()" target="">AVMenubarAcquireMenuItemByName</a> <br><a href="AVMenu.html#AVMenuAcquireMenuItemByIndex()" target="">AVMenuAcquireMenuItemByIndex</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1766</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemAcquireSubmenu1950()"></a><a name="AVMenuItemAcquireSubmenu()"></a><a name="AVMenuItemAcquireSubmenu(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemAcquireSubmenu</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVMenu.html#AVMenu" target="">AVMenu</a> AVMenuItemAcquireSubmenu(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Acquires the submenu attached to the specified menu item, if there is one. When you are done with the submenu, release it using <a href="AVMenu.html#AVMenuRelease()" target="">AVMenuRelease()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The menu item whose submenu is obtained.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The specified menu item's submenu. It returns <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> or if <code>menuItem</code> does not have a submenu. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenu.html#AVMenuAcquire()" target="">AVMenuAcquire</a> <br><a href="AVMenu.html#AVMenuRelease()" target="">AVMenuRelease</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1950</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemClone8973()"></a><a name="AVMenuItemClone()"></a><a name="AVMenuItemClone(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemClone</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> AVMenuItemClone(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new menu item object using an existing menu item as a template. If the menu item contains a submenu, that submenu is also copied. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item to copy. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The new menu item object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemNew()" target="">AVMenuItemNew</a> <br><a href="AVMenuItem.html#AVMenuItemNewWithASText()" target="">AVMenuItemNewWithASText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8973</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemExecute1989()"></a><a name="AVMenuItemExecute()"></a><a name="AVMenuItemExecute(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemExecute</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemExecute(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Executes <a href="#a" target="">a</a> menu item's <a href="General.html#AVExecuteProc" target="">AVExecuteProc()</a>. It does nothing if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, if <code>menuItem</code> has no AVExecuteProc, or if <code>menuItem</code> is not enabled.</p><p>You cannot execute a menu item that has a submenu (for example, the Pages menu item in the Document menu).  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item to execute. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemSetExecuteProc()" target="">AVMenuItemSetExecuteProc</a> <br><a href="AVMenuItem.html#AVMenuItemIsEnabled()" target="">AVMenuItemIsEnabled</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1989</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemGetLongOnly1873()"></a><a name="AVMenuItemGetLongOnly()"></a><a name="AVMenuItemGetLongOnly(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemGetLongOnly</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVMenuItemGetLongOnly(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the flag indicating whether a menu item is <a href="General.html#visible" target="">visible</a> only in long-menus mode. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose flag is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the menu item is visible only in long-menus mode. <code>false</code> if the menu item is visible in both long and short menus, or if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1873</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemGetName1805()"></a><a name="AVMenuItemGetName()"></a><a name="AVMenuItemGetName(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemGetName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> AVMenuItemGetName(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the atom for the language-independent <a href="../PDFEdit_Layer/General.html#name" target="">name</a> of the menu item. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The menu item whose language-independent <a href="../PDFEdit_Layer/General.html#name" target="">name</a> is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> corresponding to the <a href="../PDFEdit_Layer/General.html#name" target="">name</a> of the specified menu item, or <a href="../AS_Layer/ASAtom.html#ASAtomNull" target="">ASAtomNull</a> if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>. The ASAtom can be converted to <a href="#a" target="">a</a> string using <a href="../AS_Layer/ASAtom.html#ASAtomGetString()" target="">ASAtomGetString()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemGetTitle()" target="">AVMenuItemGetTitle</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1805</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemGetParentMenu2002()"></a><a name="AVMenuItemGetParentMenu()"></a><a name="AVMenuItemGetParentMenu(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemGetParentMenu</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVMenu.html#AVMenu" target="">AVMenu</a> AVMenuItemGetParentMenu(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the menu in which the specified menu item appears.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The menu item whose parent menu is obtained.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The menu in which the specified menu item appears. It returns <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if this menu item is not in a menu. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenu.html#AVMenuGetParentMenuItem()" target="">AVMenuGetParentMenuItem</a> <br><a href="AVMenuItem.html#AVMenuItemAcquireSubmenu()" target="">AVMenuItemAcquireSubmenu</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2002</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemGetShortcut1859()"></a><a name="AVMenuItemGetShortcut()"></a><a name="AVMenuItemGetShortcut(AVMenuItem,char*,AVFlagBits16*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemGetShortcut</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVMenuItemGetShortcut(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, char* key, <a href="General.html#AVFlagBits16" target="">AVFlagBits16</a>* flags)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the shortcut key for the specified menu item. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose shortcut is obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">key</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) The key that is a shortcut for the menu item (an ASCII character). The <a href="../PD_Layer/General.html#value" target="">value</a> <a href="General.html#NO_SHORTCUT" target="">NO_SHORTCUT</a> (see <a href="General.html#AVExpT.h" target="">AVExpT.h</a>) indicates that the menu item has no shortcut.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) Modifier keys, if any, <a href="../PDF_Library/General.html#used" target="">used</a> as part of the shortcut. It must be an OR of the Modifier Keys values, except that <a href="General.html#AV_COMMAND" target="">AV_COMMAND</a> will never be present. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code>menuItem</code> is not <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> and <code>menuItem</code> has a shortcut, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemNew()" target="">AVMenuItemNew</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1859</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemGetTitle1826()"></a><a name="AVMenuItemGetTitle()"></a><a name="AVMenuItemGetTitle(AVMenuItem,char*,AVTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemGetTitle</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#AVTArraySize" target="">AVTArraySize</a> AVMenuItemGetTitle(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, char* buffer, <a href="General.html#AVTArraySize" target="">AVTArraySize</a> bufferSize)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> menu item's <a href="General.html#title" target="">title</a>, which is the string that appears in the user interface. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose <a href="General.html#title" target="">title</a> is obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">buffer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A buffer to hold the <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated name. If title is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, it returns the length of the menu item's name, but does not fill the buffer.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bufferSize</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The maximum number of characters that can be placed into <code><a href="General.html#title" target="">title</a></code>. If the name is longer than this, only the first <code>bufferSize - 1</code> characters are placed into <code>buffer</code>, and the buffer is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> of the <a href="General.html#title" target="">title</a>. It returns <code>0</code> if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemSetTitle()" target="">AVMenuItemSetTitle</a> <br><a href="AVMenuItem.html#AVMenuItemGetName()" target="">AVMenuItemGetName</a> <br><a href="AVMenuItem.html#AVMenuItemGetTitleAsASText()" target="">AVMenuItemGetTitleAsASText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1826</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemGetTitleAsASText8233()"></a><a name="AVMenuItemGetTitleAsASText()"></a><a name="AVMenuItemGetTitleAsASText(AVMenuItem,ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemGetTitleAsASText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemGetTitleAsASText(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> title)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the menu item's <a href="General.html#title" target="">title</a> as it appears in the user interface, as an <a href="../AS_Layer/ASText.html" target="">ASText</a> object. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose <a href="General.html#title" target="">title</a> is obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">title</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) The <a href="#text" target="">text</a> object containing the <a href="General.html#title" target="">title</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenu.html#AVMenuGetTitleAsASText()" target="">AVMenuGetTitleAsASText</a> <br><a href="AVMenuItem.html#AVMenuItemSetTitleWithASText()" target="">AVMenuItemSetTitleWithASText</a> <br><a href="AVMenuItem.html#AVMenuItemGetName()" target="">AVMenuItemGetName</a> <br><a href="AVMenuItem.html#AVMenuItemGetTitle()" target="">AVMenuItemGetTitle</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8233</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemIsEnabled1962()"></a><a name="AVMenuItemIsEnabled()"></a><a name="AVMenuItemIsEnabled(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemIsEnabled</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVMenuItemIsEnabled(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether the specified menu item is enabled. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose enabled flag is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code>menuItem</code> is enabled, if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, or <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>menuItem</code> has no <a href="General.html#AVComputeEnabledProc" target="">AVComputeEnabledProc()</a>. It returns <code>false</code> if the menu item is disabled or its <a href="General.html#AVComputeEnabledProc" target="">AVComputeEnabledProc()</a> raises an exception. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemSetComputeEnabledProc()" target="">AVMenuItemSetComputeEnabledProc</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1962</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemIsMarked1975()"></a><a name="AVMenuItemIsMarked()"></a><a name="AVMenuItemIsMarked(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemIsMarked</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVMenuItemIsMarked(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether <code>menuItem</code> is marked (for example, it appears with a check mark). </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose marked state is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code>menuItem</code> is marked. It returns <code>false</code> if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, if the menu item does not have an <a href="General.html#AVComputeMarkedProc" target="">AVComputeMarkedProc()</a>, or <a href="../PDFEdit_Layer/General.html#if" target="">if</a> it raises an exception. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemSetComputeMarkedProc()" target="">AVMenuItemSetComputeMarkedProc</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1975</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemIsScriptable9791()"></a><a name="AVMenuItemIsScriptable()"></a><a name="AVMenuItemIsScriptable(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemIsScriptable</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVMenuItemIsScriptable(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Determines whether the given menu item is an executable menu item. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The given menu item. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the given menu item is executable. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00080000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9791</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemIsVisible9233()"></a><a name="AVMenuItemIsVisible()"></a><a name="AVMenuItemIsVisible(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemIsVisible</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVMenuItemIsVisible(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether the specified menu item is <a href="General.html#visible" target="">visible</a> on its parent menu. The visibility state is calculated using the <a href="General.html#AVComputeVisibleProc" target="">AVComputeVisibleProc()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose visibility state is tested. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code>menuItem</code> is visible, or if <code>menuItem</code> has no <a href="General.html#AVComputeVisibleProc" target="">AVComputeVisibleProc()</a>. It returns <code>false</code> if the menu item is not visible, if its <a href="General.html#AVComputeVisibleProc" target="">AVComputeVisibleProc()</a> raises an exception (this is not recommended), or if <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemSetComputeVisibleProc()" target="">AVMenuItemSetComputeVisibleProc</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9233</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemNew1753()"></a><a name="AVMenuItemNew()"></a><a name="AVMenuItemNew(const char*,const char*,AVMenu,ASBool,char,AVFlagBits16,AVIcon,ASExtension)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemNew</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> AVMenuItemNew(const char* title, const char* name, <a href="AVMenu.html#AVMenu" target="">AVMenu</a> submenu, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> longMenusOnly, char shortcut, <a href="General.html#AVFlagBits16" target="">AVFlagBits16</a> flags, <a href="General.html#AVIcon" target="">AVIcon</a> icon, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates and acquires a new <a href="AVMenuItem.html" target="">AVMenuItem</a>. The menu item can be added to a menu using <a href="AVMenu.html#AVMenuAddMenuItem()" target="">AVMenuAddMenuItem()</a>.</p><p><a href="General.html#Release" target="">Release</a> the AVMenuItem using <a href="AVMenuItem.html#AVMenuItemRelease()" target="">AVMenuItemRelease()</a> after it has been added to a menu.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">title</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The string shown in the user interface for this menu item. Use a hyphen to create a separator menu item. This <a href="../PD_Layer/General.html#value" target="">value</a> is also returned by <a href="AVMenuItem.html#AVMenuItemGetTitle()" target="">AVMenuItemGetTitle()</a>. On Windows, an ampersand (<code>&amp;</code>) character in the string results in underlining the character after it on the menu item.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">name</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The language-independent <a href="../PDFEdit_Layer/General.html#name" target="">name</a> of the menu item to create. This is the <a href="../PD_Layer/General.html#value" target="">value</a> returned by <a href="AVMenuItem.html#AVMenuItemGetName()" target="">AVMenuItemGetName()</a>. <code><a href="../PDFEdit_Layer/General.html#name" target="">name</a></code> must not contain any spaces. Client developers should prefix the names of menu items they add with the name of their client and a colon, to avoid collisions in the menu item name space. For example, a client named <code>myPlug</code> might add menu items named <code>myPlug:Scan</code> and <code>myPlug:Find</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">submenu</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A submenu (<a href="../PDFEdit_Layer/General.html#if" target="">if</a> any) for which this menu item is the parent. Pass <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if this menu item does not have a submenu. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">longMenusOnly</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Ignored in Acrobat 3.0 or later) If <code>true</code>, the menu item is visible only when the user selects Full Menus. If <code>false</code>, the menu item is visible for both Full Menus and Short Menus modes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">shortcut</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The key to use as a shortcut for the menu item (an ASCII character). Use <a href="General.html#NO_SHORTCUT" target="">NO_SHORTCUT</a> (see <a href="General.html#AVExpT.h" target="">AVExpT.h</a>) if the menu item has no shortcut. The Acrobat viewer does not check for conflicts between shortcuts. The consequences of multiple menu items having the same shortcut is undefined. On Windows, the shortcut is not displayed for any menu item that also has an icon, although the shortcut will work. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Modifier keys, if any, <a href="../PDF_Library/General.html#used" target="">used</a> as part of the shortcut. It must be an OR of the Modifier Keys values, except that <a href="General.html#AV_COMMAND" target="">AV_COMMAND</a> cannot be specified. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">icon</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The icon to <a href="General.html#show" target="">show</a> in the menu item, or <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if no icon is shown. On Windows, <code>icon</code> is a 24x24 sample monochrome <code>HBITMAP</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">owner</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <code><a href="../AS_Layer/General.html#gExtensionID" target="">gExtensionID</a></code> extension registering the menu item. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created menu item. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenu.html#AVMenuAddMenuItem()" target="">AVMenuAddMenuItem</a> <br><a href="AVMenuItem.html#AVMenuItemRelease()" target="">AVMenuItemRelease</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1753</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemNewWithASText8218()"></a><a name="AVMenuItemNewWithASText()"></a><a name="AVMenuItemNewWithASText(ASConstText,const char*,AVMenu,ASBool,char,AVFlagBits16,AVIcon,ASExtension)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemNewWithASText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> AVMenuItemNewWithASText(<a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a> title, const char* name, <a href="AVMenu.html#AVMenu" target="">AVMenu</a> submenu, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> longMenusOnly, char shortcut, <a href="General.html#AVFlagBits16" target="">AVFlagBits16</a> flags, <a href="General.html#AVIcon" target="">AVIcon</a> icon, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates and acquires a new <a href="AVMenuItem.html" target="">AVMenuItem</a>. The menu item can be added to a menu using <a href="AVMenu.html#AVMenuAddMenuItem()" target="">AVMenuAddMenuItem()</a>.</p><p><a href="General.html#Release" target="">Release</a> the AVMenuItem using <a href="AVMenuItem.html#AVMenuItemRelease()" target="">AVMenuItemRelease()</a> after it has been added to a menu.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">title</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A constant <a href="#text" target="">text</a> object containing the string shown in the user interface for this menu item. Use a hyphen to create a separator menu item. This <a href="../PD_Layer/General.html#value" target="">value</a> is also returned by <a href="AVMenuItem.html#AVMenuItemGetTitleAsASText()" target="">AVMenuItemGetTitleAsASText()</a>. On Windows, an ampersand (<code>&amp;</code>) character in the string results in underlining the character after it on the menu item. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">name</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The language-independent <a href="../PDFEdit_Layer/General.html#name" target="">name</a> of the menu item to create. This is the <a href="../PD_Layer/General.html#value" target="">value</a> returned by <a href="AVMenuItem.html#AVMenuItemGetName()" target="">AVMenuItemGetName()</a>. <code><a href="../PDFEdit_Layer/General.html#name" target="">name</a></code> must not contain any spaces. Client developers should prefix the names of menu items they add with the name of their client and a colon, to avoid collisions in the menu item name space. For example, a client named <code>myPlug</code> might add menu items named m<code>yPlug:Scan</code> and <code>myPlug:Find</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">submenu</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The submenu (<a href="../PDFEdit_Layer/General.html#if" target="">if</a> any) for which this menu item is the parent. Pass <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if this menu item does not have a submenu. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">longMenusOnly</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Ignored in Acrobat 3.0 or later) If <code>true</code>, the menu item is visible only when the user selects Full Menus. If <code>false</code>, the menu item is visible for both Full Menus and Short Menus modes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">shortcut</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The key to use as a shortcut for the menu item (an ASCII character). Use <code><a href="General.html#NO_SHORTCUT" target="">NO_SHORTCUT</a></code> (see <a href="General.html#AVExpT.h" target="">AVExpT.h</a>) if the menu item has no shortcut. The Acrobat viewer does not check for conflicts between shortcuts. The consequences of multiple menu items having the same shortcut is undefined. On Windows, the shortcut is not displayed for any menu item that also has an icon, although the shortcut will work. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Modifier keys, if any, <a href="../PDF_Library/General.html#used" target="">used</a> as part of the shortcut. It must be an OR of the Modifier Keys values, except that <code><a href="General.html#AV_COMMAND" target="">AV_COMMAND</a></code> cannot be specified. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">icon</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The icon to <a href="General.html#show" target="">show</a> in the menu item, or <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if no icon is shown. On Windows, <code>icon</code> is a 24x24 sample monochrome <code>HBITMAP</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">owner</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../AS_Layer/General.html#gExtensionID" target="">gExtensionID</a> <a href="General.html#extension" target="">extension</a> registering the menu item. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created menu item. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenu.html#AVMenuAddMenuItem()" target="">AVMenuAddMenuItem</a> <br><a href="AVMenuItem.html#AVMenuItemGetTitleAsASText()" target="">AVMenuItemGetTitleAsASText</a> <br><a href="AVMenuItem.html#AVMenuItemRelease()" target="">AVMenuItemRelease</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8218</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemRelease1778()"></a><a name="AVMenuItemRelease()"></a><a name="AVMenuItemRelease(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemRelease</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemRelease(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Releases a menu item. It decrements the reference <a href="#count" target="">count</a> and destroys the menu item <a href="../PDFEdit_Layer/General.html#if" target="">if</a> the count is zero. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The menu item to release. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemAcquire()" target="">AVMenuItemAcquire</a> <br><a href="AVMenubar.html#AVMenubarAcquireMenuItemByPredicate()" target="">AVMenubarAcquireMenuItemByPredicate</a> <br><a href="AVMenubar.html#AVMenubarAcquireMenuItemByName()" target="">AVMenubarAcquireMenuItemByName</a> <br><a href="AVMenu.html#AVMenuAcquireMenuItemByIndex()" target="">AVMenuAcquireMenuItemByIndex</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1778</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemRemove1792()"></a><a name="AVMenuItemRemove()"></a><a name="AVMenuItemRemove(AVMenuItem)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemRemove</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemRemove(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Removes <a href="#a" target="">a</a> menu item from the menu hierarchy and releases it. It does nothing <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>.</p><p>Keyboard accelerators for the Acrobat viewer's built-in menu items will always work, even if the menu item is removed. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The menu item to <a href="../AS_Layer/General.html#remove" target="">remove</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemAcquire()" target="">AVMenuItemAcquire</a> <br><a href="AVMenuItem.html#AVMenuItemRelease()" target="">AVMenuItemRelease</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1792</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemSetComputeEnabledProc1912()"></a><a name="AVMenuItemSetComputeEnabledProc()"></a><a name="AVMenuItemSetComputeEnabledProc(AVMenuItem,AVComputeEnabledProc,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemSetComputeEnabledProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemSetComputeEnabledProc(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVComputeEnabledProc" target="">AVComputeEnabledProc</a> proc, void* data)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the user-supplied procedure to call to determine whether the menu item is enabled. It does nothing <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose <a href="General.html#AVComputeEnabledProc" target="">AVComputeEnabledProc()</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">proc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A user-supplied callback to call whenever the Acrobat viewer needs to know whether <code>menuItem</code> should be enabled. This procedure is called every time the menu is displayed, so it should not do time-intensive processing.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">data</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to user-supplied <a href="#data" target="">data</a> to pass to <code>proc</code> each time it is called. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemIsEnabled()" target="">AVMenuItemIsEnabled</a> <br><a href="AVMenuItem.html#AVMenuItemSetComputeMarkedProc()" target="">AVMenuItemSetComputeMarkedProc</a> <br><a href="AVMenuItem.html#AVMenuItemSetExecuteProc()" target="">AVMenuItemSetExecuteProc</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1912</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemSetComputeMarkedProc1936()"></a><a name="AVMenuItemSetComputeMarkedProc()"></a><a name="AVMenuItemSetComputeMarkedProc(AVMenuItem,AVComputeMarkedProc,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemSetComputeMarkedProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemSetComputeMarkedProc(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVComputeMarkedProc" target="">AVComputeMarkedProc</a> proc, void* data)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the user-supplied procedure that determines whether the menu item appears with a check mark. It does nothing <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>. If the menu item has no <a href="General.html#AVExecuteProc" target="">AVExecuteProc()</a> (see <a href="AVMenuItem.html#AVMenuItemSetExecuteProc()" target="">AVMenuItemSetExecuteProc()</a>), its <a href="General.html#AVComputeMarkedProc" target="">AVComputeMarkedProc()</a> is never called. To avoid this, add an <a href="General.html#AVExecuteProc" target="">AVExecuteProc()</a> that does nothing, and if you wish the menu item to gray out, also add an <a href="General.html#AVComputeEnabledProc" target="">AVComputeEnabledProc()</a> that always returns <code>false</code>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose <a href="General.html#AVComputeMarkedProc" target="">AVComputeMarkedProc()</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">proc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A user-supplied callback to call whenever the Acrobat viewer needs to know whether <code>menuItem</code> should be marked. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">data</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to user-supplied <a href="#data" target="">data</a> to pass to <code>proc</code> each time it is called. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemIsMarked()" target="">AVMenuItemIsMarked</a> <br><a href="AVMenuItem.html#AVMenuItemSetExecuteProc()" target="">AVMenuItemSetExecuteProc</a> <br><a href="AVMenuItem.html#AVMenuItemSetComputeEnabledProc()" target="">AVMenuItemSetComputeEnabledProc</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1936</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemSetComputeVisibleProc9218()"></a><a name="AVMenuItemSetComputeVisibleProc()"></a><a name="AVMenuItemSetComputeVisibleProc(AVMenuItem,AVComputeVisibleProc,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemSetComputeVisibleProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemSetComputeVisibleProc(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVComputeVisibleProc" target="">AVComputeVisibleProc</a> proc, void* data)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the user-supplied procedure that determines whether the menu item appears when its parent menu is opened. It does nothing <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose visibility procedure is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">proc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>User-supplied procedure to call when the Acrobat viewer needs to know <a href="../PDFEdit_Layer/General.html#if" target="">if</a> the menu item is <a href="General.html#visible" target="">visible</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">data</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to user-supplied <a href="#data" target="">data</a> to pass to <code>proc</code> each time it is called. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemIsVisible()" target="">AVMenuItemIsVisible</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9218</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemSetExecuteProc1891()"></a><a name="AVMenuItemSetExecuteProc()"></a><a name="AVMenuItemSetExecuteProc(AVMenuItem,AVExecuteProc,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemSetExecuteProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemSetExecuteProc(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="General.html#AVExecuteProc" target="">AVExecuteProc</a> proc, void* data)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the user-supplied procedure to execute whenever the menu item is chosen. It does nothing <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>menuItem</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>. Clients must not set the execute procedure of the Acrobat viewer's built-in menu items. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose execute procedure is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">proc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A user-supplied callback to call whenever <code>menuItem</code> is selected. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">data</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to user-supplied <a href="#data" target="">data</a> to pass to <code>proc</code> each time it is called. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemExecute()" target="">AVMenuItemExecute</a> <br><a href="AVMenuItem.html#AVMenuItemSetComputeMarkedProc()" target="">AVMenuItemSetComputeMarkedProc</a> <br><a href="AVMenuItem.html#AVMenuItemSetComputeEnabledProc()" target="">AVMenuItemSetComputeEnabledProc</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1891</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemSetTitle1840()"></a><a name="AVMenuItemSetTitle()"></a><a name="AVMenuItemSetTitle(AVMenuItem,const char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemSetTitle</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemSetTitle(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, const char* title)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets <a href="#a" target="">a</a> menu item's <a href="General.html#title" target="">title</a>, which is the string that appears in the user interface. Use this method to manage menu items whose titles change (such as 'show/hide fooWindow'), instead of inserting and removing menu items on the fly. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The menu item whose <a href="General.html#title" target="">title</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">title</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The new menu <a href="General.html#title" target="">title</a>. It must be <a href="#a" target="">a</a> <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated string. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemGetTitle()" target="">AVMenuItemGetTitle</a> <br><a href="AVMenuItem.html#AVMenuItemGetName()" target="">AVMenuItemGetName</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1840</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVMenuItemSetTitleWithASText8247()"></a><a name="AVMenuItemSetTitleWithASText()"></a><a name="AVMenuItemSetTitleWithASText(AVMenuItem,ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVMenuItemSetTitleWithASText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVMenuItemSetTitleWithASText(<a href="AVMenuItem.html#AVMenuItem" target="">AVMenuItem</a> menuItem, <a href="../AS_Layer/ASText.html#ASConstText" target="">ASConstText</a> title)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets <a href="#a" target="">a</a> menu item's <a href="General.html#title" target="">title</a>, which is the string that appears in the user interface, from a constant <a href="#text" target="">text</a> object. Use this method to manage menu items whose titles change (such as <code>'show/hide fooWindow'</code>), instead of inserting and removing menu items on the fly. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">menuItem</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The menu item whose <a href="General.html#title" target="">title</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">title</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The new menu <a href="General.html#title" target="">title</a>, as a constant <a href="#text" target="">text</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVMenuItem.html#AVMenuItemGetTitleAsASText()" target="">AVMenuItemGetTitleAsASText</a> <br><a href="AVMenuItem.html#AVMenuItemGetName()" target="">AVMenuItemGetName</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8247</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->

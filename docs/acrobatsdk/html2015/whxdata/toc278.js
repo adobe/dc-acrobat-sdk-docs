@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc277.js\"  name=\"Security essentials\" url=\"Acro12_MasterBook/JS_Dev_Security/Security_essentials.htm\"><book name=\"Methods for adding security to PDF documents\" url=\"Acro12_MasterBook/JS_Dev_Security/Methods_for_adding_security_to_PDF_documents.htm\" src=\"toc279.js\" /></data>";

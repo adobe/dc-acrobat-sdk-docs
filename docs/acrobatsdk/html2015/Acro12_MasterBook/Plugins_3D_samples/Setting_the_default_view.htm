@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Setting the default view</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_3D_samples.fm" />
+ <link rel="stylesheet" href="Plugins_3D_samples.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.18.1.1_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_3D_samples/Specifying_the_3D_stream.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_3D_samples/Setting_the_annotation_appearance.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating 3D Annotations > Adding 3D data to an annotation" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_69581_Setting_the"></a>Setting the default view</h3>
+  <p class="BodyLevel1">A 3D <span class="FM_Italic">view </span>specifies parameters such as position, orientation, and projection style, which are applied to the <span class="FM_Italic">virtual camera</span>&#160;associated with the 3D annotation (see section 9.5.3 in the <uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable><span class="FM_Italic"></span>). The <span class="FM_Italic">default view</span>&#160;is the view that is chosen when the annotation is activated.</p>
+  <p class="BodyLevel1">3D data typically contains a default initial view. This view is used by default if not otherwise specified. In addition, views can be specified by the entries in a view dictionary. </p>
+  <p class="BodyLevel1">The <span class="FM_Courier">VA</span>&#160;entry in the 3D stream dictionary is an array of view dictionaries. One of the views can be chosen as the default by means of the <span class="FM_Courier">3DV</span>&#160;entry in the 3D annotation dictionary or the <span class="FM_Courier">DV</span>&#160;entry in a 3D stream dictionary.</p>
+  <p class="BodyLevel1">The following code creates a view dictionary and specifies its entries. The code assumes the Cos objects <span class="FM_Courier">cosAnnot</span>&#160;for the annotation and <span class="FM_Courier">cosDoc</span>&#160;for the document have already been obtained. First, a view dictionary is created by invoking the <span class="FM_Courier">CosNewDict</span> method:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObj cosView = CosNewDict (cosDoc, true, 8);</p>
+  <p class="BodyLevel1">Next, the code sets the following entries: (See Table 9.39 in the <uservariable x-value="PDF Reference" x-showvalue="TRUE" name="Ref_DocPDF" x-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></uservariable><span class="FM_Italic"></span>&#160;for more detailed information.)</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">Type</span>&#160;(optional): If present, must be the name <span class="FM_Courier">3DView</span>.</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">XN</span> (required): The name of the view, a string that can be displayed in the user interface.</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">IN</span>&#160;(optional): The internal name of the view, a string that can be used to refer to the view from other objects, such as in JavaScript code.</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">C2W</span>&#160;(optional): A transformation matrix specifying the camera position. To use this, it is also necessary to set the value of the <span class="FM_Courier">MS</span>&#160;entry to <span class="FM_Courier">M</span>.</p>
+  <p class="FM_Indent1"><span class="FM_CourierBold">CO</span> (optional): A number indicating the distance to the center of orbit for this view.</p>
+  <p class="BodyLevel1">The following code creates an array of type <span class="FM_Courier">double</span> and specifies values for views:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char* externalViewName = &quot;Default View&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char* internalViewName = &quot;Sample3dView&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>double gMatrixVals[12] = </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{1.0, 0.0, 0.0, 0.0, 0.0000000000000000612303, -1.0, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>0.0, 1.0, 0.0000000000000000612303, 82.9517, -883.324, 115.166};</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>float gCOvalue = (float) 725.305;</p>
+  <p class="BodyLevel1">Now the values of the dictionary entries are set:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(cosView, &quot;Type&quot;, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewNameFromString(cosDoc, false,&quot;3DView&quot;));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(cosView, &quot;XN&quot;, CosNewString(cosDoc, false, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>externalViewName, strlen(externalViewName))); </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(cosView, &quot;IN&quot;, CosNewString(cosDoc, false, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>internalViewName, strlen(internalViewName))); </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(cosView, &quot;MS&quot;, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewNameFromString(cosDoc, false, &quot;M&quot;));</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(cosView, &quot;CO&quot;, CosNewFixed(cosDoc, false,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>FloatToASFixed(gCOvalue)));</p>
+  <p class="BodyLevel1">Here the <span class="FM_Courier">C2W</span> matrix is populated with the appropriate values:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosObj matrixArray = CosNewArray(cosDoc, false, 12);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for(int i=0; i&lt;12; i++) </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosArrayPut(matrixArray, i, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosNewFloat(cosDoc, false, (float) gMatrixVals[i]));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(cosView, &quot;C2W&quot;, matrixArray);</p>
+  <p class="BodyLevel1">Last, the dictionary is set as the value of the <span class="FM_Courier">3DV</span>&#160;key in the annotation dictionary: </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>CosDictPutKeyString(cosAnnot, &quot;3DV&quot;, cosView);</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"certified","url":"Acro12_MasterBook/JS_API_AcroJS/PlugIn_properties.htm#TOC_certifiedbc-1"},{"type":"item","name":"loaded","url":"Acro12_MasterBook/JS_API_AcroJS/PlugIn_properties.htm#TOC_loadedbc-2"},{"type":"item","name":"name","url":"Acro12_MasterBook/JS_API_AcroJS/PlugIn_properties.htm#TOC_name16bc-3"},{"type":"item","name":"path","url":"Acro12_MasterBook/JS_API_AcroJS/PlugIn_properties.htm#TOC_path4bc-4"},{"type":"item","name":"version","url":"Acro12_MasterBook/JS_API_AcroJS/PlugIn_properties.htm#TOC_version2bc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

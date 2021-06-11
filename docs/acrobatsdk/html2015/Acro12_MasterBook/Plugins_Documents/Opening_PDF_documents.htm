@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Opening PDF documents</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Documents.fm" />
+ <link rel="stylesheet" href="Plugins_Documents.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.5.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Documents/Working_with_Documents_and_Files.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Documents/Opening_a_PDF_document_in_an_external_window.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Documents and Files" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="IX_ASFileSysCreatePathName_1"></a><a name="IX_ASFileSysCreatePathName"></a><a name="IX_ASPathName_typedef"></a><a name="IX_ASPathName"></a><a name="IX_AVDocOpenFromFile"></a><a name="IX_AVDocOpenFromFile_method"></a><a name="IX_opening"></a><a name="IX_PDF_documents"></a><a name="XREF_65430_Opening_a_PDF"></a>Opening PDF documents</h2>
+  <p class="BodyLevel1">You can use the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;core API to create application logic that opens a PDF document in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;or <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>. The method that opens a PDF file is <span class="FM_Courier">AVDocOpenFromFile</span>. Before you invoke this method, you must create an <span class="FM_Courier">ASPathName</span>&#160;object, which is a platform-independent path value that specifies the PDF file to open.</p>
+  <p class="BodyLevel1">With <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;or <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;8.0 and later, you can open PDF documents that are based on Unicode-named files. (See <a href="../Plugins_Unicode/Working_with_Unicode_Paths.htm#XREF_14583_Registering_for">Working with Unicode Paths</a>.)</p>
+  <p class="BodyLevel1">You can create an <span class="FM_Courier">ASPathName</span>&#160;object by using different techniques. This section describes how to create an <span class="FM_Courier">ASPathName</span>&#160;object by invoking the <span class="FM_Courier">ASFileSysCreatePathName</span>&#160;method to convert a platform specific path name to an <span class="FM_Courier">ASPathName</span> object. This method requires the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><a name="IX_ASGetDefaultFileSys_1"></a><a name="IX_ASGetDefaultFileSys"></a>An <span class="FM_Courier">ASFileSys</span>&#160;object that represents the file system in which you are creating an <span class="FM_Courier">ASPathName</span>&#160;object. (See <a href="../Plugins_Unicode/Creating_an_ASFileSys_object.htm#XREF_67382_Creating_an">Creating an ASFileSys object</a>.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">ASAtom</span>&#160;object that specifies the data type of the third argument. You can specify <span class="FM_Courier">Cstring</span>, which is accepted by the default file system on all platforms. In Windows, the path can be absolute (<span class="FM_Courier">C:\\folder\\file.pdf</span>) or relative (<span class="FM_Courier">...\folder\file.pdf</span>). In Mac OS, it must be an absolute path separated by colons (<span class="FM_Courier">VolumeName:Folder:file.pdf</span>). In UNIX, the path can be absolute (<span class="FM_Courier">/folder/file.pdf</span>) or relative (<span class="FM_Courier">.../folder/file.pdf</span>). For information about additional supported values, see the <span class="FM_Courier">ASFileSysCreatePathName</span>&#160;method in the <span class="FM_HyperText"><a href="http://help.adobe.com/en_US/acrobat/acrobat_dc_sdk/2015/HTMLHelp/Acro12_MasterBook/API_References_SectionPage/API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a></span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">A null- terminated character that specifies the PDF file on which the <span class="FM_Courier">ASPathName</span> object is based.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">A null- terminated character that specifies additional data that you can use. You can pass <span class="FM_Courier">NULL</span>. For more information, see the <span class="FM_Courier">ASFileSysCreatePathName</span>&#160;method in the <span class="FM_HyperText" style="text-decoration  : underline  ;
+		"><a href="http://help.adobe.com/en_US/acrobat/acrobat_dc_sdk/2015/HTMLHelp/Acro12_MasterBook/API_References_SectionPage/API_References/Acrobat_API_Reference/index.html"></a></span><span class="FM_HyperText">Acrobat and PDF Library API Reference</span>.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The <span class="FM_Courier">ASFileSysCreatePathName</span>&#160;method returns an <span class="FM_Courier">ASPathName</span>&#160;object. You can also create an <span class="FM_Courier">ASPathName</span>&#160;object by displaying an open dialog box. (See <a href="Displaying_an_open_dialog_box.htm#XREF_57499_Displaying_an_open">Displaying an open dialog box</a>.)</p>
+  <p class="BodyLevel1">To programmatically open a PDF file in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;or <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>, invoke the <span class="FM_Courier">AVDocOpenFromFile</span>&#160;method and pass the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">ASPathName</span>&#160;object that specifies the PDF file to open. </p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">ASFileSys</span>&#160;object that represents the file system in which the PDF file is located. (See <a href="../Plugins_Unicode/Creating_an_ASFileSys_object.htm#XREF_67382_Creating_an">Creating an ASFileSys object</a>.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">An <span class="FM_Courier">ASText</span>&#160;object that specifies a string value to display in the <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> title bar.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The following code example opens a PDF document that is based on a file named PurchaseOrder.pdf.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Opening a PDF file</p>
+</li>
+  </ul>
+  <p class="FM_CodeComment">//Specify the PDF file to open (host encoded names only)</p>
+  <p class="FM_CodeReference">const char* myPath = &quot;C:\\PurchaseOrder.pdf&quot;;</p>
+  <p class="FM_CodeReference">ASAtom pathType = ASAtomFromString(&quot;Cstring&quot;);</p>
+  <p class="FM_CodeComment">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an ASText object</p>
+  <p class="FM_CodeReference">ASText titleText = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetPDText(titleText, &quot;This PDF was opened by using the Acrobat SDK&quot;);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Create an ASPathName object</p>
+  <p class="FM_CodeReference">ASFileSys fileSys = ASGetDefaultFileSysForPath(pathType, myPath);</p>
+  <p class="FM_CodeReference">ASPathName pathName = ASFileSysCreatePathName(fileSys, pathType, myPath, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Open the PDF file</p>
+  <p class="FM_CodeReference">AVDoc myDoc = AVDocOpenFromFile(pathName, fileSys, titleText);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment">//Do some clean up</p>
+  <p class="FM_CodeReference">ASFileSysReleasePath(fileSys, pathName);</p>
+  <p class="FM_CodeReference">ASTextDestroy(titleText);</p>
+  </div>
+</body>
+</html>

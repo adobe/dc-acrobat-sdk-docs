@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Examining a PDF Library application source file</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Insertext.fm" />
+ <link rel="stylesheet" href="Plugins_Insertext.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.4.1_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Insertext/Saving_the_PDF_document.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Documents/Working_with_Documents_and_Files.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Inserting Text into PDF Documents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h2><a name="XREF_84098_Examining_PDFL"></a>Examining a PDF Library application source file</h2>
+  <p class="BodyLevel1">This section shows the entire source file that is responsible for importing text into a PDF document. All concepts shown in this source file are explained earlier in this chapter. (See <a href="About_inserting_text_into_a_PDF_document.htm#XREF_13045_About_inserting">About inserting text into a PDF document</a>.)</p>
+  <p class="BodyLevel1">The following image shows the PDF that is created when this source file is executed. </p>
+  <p class="FM_GraphicBody">&#160;<img alt="insertText.bmp" style=" width:100%; margin-bottom:1.500pt; margin-left:0.750pt; margin-top:0.750pt; margin-right:1.500pt; max-width:309.750pt;" id="image0" src="insertText.bmp" /></p>
+  <p class="BodyLevel1">The following code example is a source file that inserts text into a PDF document. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Examining a PDF Library applicati<span class="FM_Bold">on so</span>urce file </p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">#ifdef MAC_ENV</p>
+  <p class="FM_CodeReference">#include &lt;Carbon/Carbon.h&gt;</p>
+  <p class="FM_CodeReference">#else</p>
+  <p class="FM_CodeReference">#include &lt;sys/types.h&gt;</p>
+  <p class="FM_CodeReference">#include &lt;sys/stat.h&gt;</p>
+  <p class="FM_CodeReference">#endif</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">#include &lt;stdio.h&gt;</p>
+  <p class="FM_CodeReference">#include &lt;stdlib.h&gt;</p>
+  <p class="FM_CodeReference">#include &lt;string.h&gt;</p>
+  <p class="FM_CodeReference">#include &lt;fcntl.h&gt;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">#include &quot;PDFInit.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;CosCalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;CorCalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;ASCalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;PDCalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;PSFCalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;PERCalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;PEWCalls.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;PIExcept.h&quot;</p>
+  <p class="FM_CodeReference">#include &quot;PagePDECntCalls.h&quot;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">#ifdef MAC_ENV </p>
+  <p class="FM_CodeReference">#include &quot;macUtils.h&quot;</p>
+  <p class="FM_CodeReference">#endif</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">void MainProc(void)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char buf[256];</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASInt32 i;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASBool b;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDDoc pdDoc; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Reference to a PDF document &#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDPage pdPage; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Reference to a page in doc */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEContent pdeContent; &#160;&#160;&#160;/* Container for page content */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASFixedRect mediaBox; &#160;&#160;&#160;&#160;/* Dimensions of page */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDSysFont sysFont;<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span> &#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Used by PDEFont creation */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEFont pdeFont; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Reference to a font used on a page */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEFontAttrs pdeFontAttrs; /* Font attributes &#160;&#160;&#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEText pdeText; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Container for text */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASFixedMatrix textMatrix; &#160;/* Transformation matrix for text */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEColorSpace pdeColorSpace; /* ColorSpace */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEGraphicState gState; &#160;&#160;&#160;/* Graphic state to apply to operation */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>char *HelloWorldStr = &quot;Hello There&quot;; // Text to write to the PDF</p>
+  <p class="FM_CodeReference">#ifdef MAC_ENV</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASPathName macPath;</p>
+  <p class="FM_CodeReference">#endif</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">/*==================================================================*\</p>
+  <p class="FM_CodeReference">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Create the doc, page, and content container &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</p>
+  <p class="FM_CodeReference">\*==================================================================*/</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">DURING</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdDoc = PDDocCreate(); &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Create new document &#160;*/</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>mediaBox.left &#160;&#160;= fixedZero; &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Dimensions of page &#160;&#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>mediaBox.top &#160;&#160;&#160;= Int16ToFixed(4*72); &#160;&#160;&#160;/* In this case 5&quot; x 4&quot; */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>mediaBox.right &#160;= Int16ToFixed(5*72);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>mediaBox.bottom = fixedZero;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a page with those dimensions and insert it as the first page</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdPage = PDDocCreatePage(pdDoc, PDBeforeFirstPage, mediaBox);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Acquire a PDEContent container for the page</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeContent = PDPageAcquirePDEContent(pdPage, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">/*==================================================================*\</p>
+  <p class="FM_CodeReference">&#160;&#160;&#160;&#160;&#160;&#160;Acquire a font, add text, and insert into page content container </p>
+  <p class="FM_CodeReference">\*==================================================================*/</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Set the size of the PDSysFont and set its attributes</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>memset(&amp;pdeFontAttrs, 0, sizeof(pdeFontAttrs));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeFontAttrs.name = ASAtomFromString(&quot;CourierStd&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeFontAttrs.type = ASAtomFromString(&quot;Type1&quot;);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sysFont = PDFindSysFont(&amp;pdeFontAttrs, sizeof(PDEFontAttrs), 0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeFont = PDEFontCreateFromSysFont(sysFont, kPDEFontDoNotEmbed);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/* The following code sets up the default graphics state. &#160;We do this so that</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span> * we can free the PDEColorSpace objects</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span> */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//PDEColorSpace pdeColorSpace; /* ColorSpace */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//PDEGraphicState gState; &#160;&#160;&#160;/* Graphic state to apply to operation */</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a PDEGraphicState object and set its attributes</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeColorSpace = PDEColorSpaceCreateFromName(ASAtomFromString(&quot;DeviceGray&quot;));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>memset(&amp;gState, 0, sizeof(PDEGraphicState));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gState.strokeColorSpec.space = gState.fillColorSpec.space = pdeColorSpace;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gState.miterLimit = fixedTen;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gState.flatness = fixedOne;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gState.lineWidth = fixedOne;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create an ASFixedMatrix object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>memset(&amp;textMatrix, 0, sizeof(textMatrix)); &#160;&#160;&#160;/* Set the buffer size */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>textMatrix.a = Int16ToFixed(24); &#160;&#160;&#160;&#160;/* Set font width and height */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>textMatrix.d = Int16ToFixed(24); &#160;&#160;&#160;&#160;/* to 24 point size &#160;&#160;&#160;&#160;&#160;&#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>textMatrix.h = Int16ToFixed(1*72); &#160;&#160;/* x,y coordinate on page */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>textMatrix.v = Int16ToFixed(2*72); &#160;&#160;/* In this case, 1&quot; x 2&quot; &#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a PDEText object</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeText = PDETextCreate(); &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Create new text run &#160;&#160;&#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDETextAdd(pdeText, &#160;&#160;&#160;&#160;&#160;&#160;/* Text container to add to &#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>kPDETextRun, &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* kPDETextRun, kPDETextChar */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>0, &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Index */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HelloWorldStr, &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Text to add &#160;&#160;&#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>strlen(HelloWorldStr), /* Length of text */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pdeFont, &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Font to apply to text */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&amp;gState, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>sizeof(gState), &#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Graphic state to apply to text &#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>NULL,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>0, &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Text state and size of structure*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&amp;textMatrix, &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Transformation matrix for text &#160;*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>NULL); &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;/* Stroke matrix &#160;*/</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"> &#160;/* Insert text into the page content */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDEContentAddElem(pdeContent, kPDEAfterLast, (PDEElement) pdeText);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">/*==================================================================*\</p>
+  <p class="FM_CodeReference"> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;Convert to objects, add to page, and release resources</p>
+  <p class="FM_CodeReference">\*==================================================================*/</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/* Set the PDEContent for the page */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>b = PDPageSetPDEContent(pdPage, NULL);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/* Save document to a file */</p>
+  <p class="FM_CodeReference">#if !MAC_ENV</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDDocSave(pdDoc, PDSaveFull | PDSaveLinearized ,ASPathFromPlatformPath<br />(&quot;out.pdf&quot;), NULL, NULL, NULL);</p>
+  <p class="FM_CodeReference">#else</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>macPath = GetMacPath(&quot;out.pdf&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDDocSave(pdDoc, PDSaveFull | PDSaveLinearized, macPath , NULL, NULL, NULL);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASFileSysReleasePath(NULL,macPath);</p>
+  <p class="FM_CodeReference">#endif</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">&#160;&#160;//Release all objects </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDERelease((PDEObject) pdeFont);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDERelease((PDEObject) pdeText);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>i = PDPageReleasePDEContent(pdPage, NULL);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDERelease((PDEObject)pdeColorSpace);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDPageRelease(pdPage);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PDDocRelease(pdDoc);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASGetErrorString(ERRORCODE, buf, sizeof(buf));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>fprintf(stderr, &quot;Error code: %ld, Error Message: %s\n&quot;, ERRORCODE, buf);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>exit (-1);</p>
+  <p class="FM_CodeReference">END_HANDLER</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">#define INCLUDE_MYPDFLIBAPP_CPP<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>1</p>
+  <p class="FM_CodeReference">#include &quot;MyPDFLibApp.cpp&quot;</p>
+  <p class="FM_CodeReference">#undef INCLUDE_MYPDFLIBAPP_CPP</p>
+ </div>
+</body>
+</html>

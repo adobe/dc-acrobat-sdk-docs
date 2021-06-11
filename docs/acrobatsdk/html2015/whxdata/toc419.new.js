@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"constants","url":"Acro12_MasterBook/JS_API_AcroJS/OCG_properties.htm#TOC_constants1bc-1"},{"type":"item","name":"initState","url":"Acro12_MasterBook/JS_API_AcroJS/OCG_properties.htm#TOC_initStatebc-2"},{"type":"item","name":"locked","url":"Acro12_MasterBook/JS_API_AcroJS/OCG_properties.htm#TOC_lockedbc-3"},{"type":"item","name":"name","url":"Acro12_MasterBook/JS_API_AcroJS/OCG_properties.htm#TOC_name14bc-4"},{"type":"item","name":"state","url":"Acro12_MasterBook/JS_API_AcroJS/OCG_properties.htm#TOC_state1bc-5"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

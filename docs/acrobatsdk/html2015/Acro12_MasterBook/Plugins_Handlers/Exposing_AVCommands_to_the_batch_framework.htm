@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Exposing AVCommands to the batch framework</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Handlers.fm" />
+ <link rel="stylesheet" href="Plugins_Handlers.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.12.1.2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Handlers/Running_commands.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Handlers/File_format_conversion_handlers.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Creating Handlers > AVCommand handlers" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Exposing AVCommands to the batch framework</h3>
+  <p class="BodyLevel1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;or <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;builds the list of commands that users see in the <span class="FM_Courier">Batch Sequences</span> and<span class="FM_Courier">&#160;Batch Edit Sequence</span>&#160;dialog boxes from an internal list of <span class="FM_Courier">AVCommands</span>&#160;referred to as the global command list.</p>
+  <h4><a name="TOC_Adding_a_handler_to_the"></a>Adding a handler to the global command list</h4>
+  <p class="BodyLevel1">To expose a command to the batch framework, the <span class="FM_Courier">AVCommand</span>&#160;handler must first add an instance of the command to this global list by invoking the <span class="FM_Courier">AVAppRegisterGlobalCommand</span> method.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVCommand cmd = AVCommandNew(ASAtomFromString(kCmdName));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAppRegisterGlobalCommand(cmd);</p>
+  <p class="BodyLevel1">Although this step can be performed at any time once the command handler is registered, handlers commonly register commands from within the <span class="FM_Courier">AVCommandRegisterCommandsProc</span>&#160;callback (of the <span class="FM_Courier">AVCommandHandlerRec</span> structure).</p>
+  <h4><a name="TOC_Supporting_properties"></a>Supporting properties</h4>
+  <p class="BodyLevel1">When building a list of batchable commands, <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;iterates through its internal command list, querying each command for the <span class="FM_Courier">CanBatch</span>&#160;and <span class="FM_Courier">GroupTitle</span>&#160;properties. To be exposed through the batch framework user interface, a command must support these properties (that is, return <span class="FM_Courier">true</span>&#160;and a valid <span class="FM_Courier">ASText</span>&#160;object, respectively). The <span class="FM_Courier">AVCommand</span>&#160;handler must implement the <span class="FM_Courier">GetProps</span>&#160;callback of the <span class="FM_Courier">AVCommandHandlerRec</span> structure.</p>
+  <p class="BodyLevel1">If an <span class="FM_Courier">AVCommand</span>&#160;supports these properties, <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;or <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;queries a number of additional properties as the user interacts with the batch framework. Of these additional properties, only two are required: <span class="FM_Courier">Title</span>&#160;and <span class="FM_Courier">Generic Title</span>. A command must provide the title strings that will be displayed in the Batch Sequences and Batch Edit Sequence dialog boxes. </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Exposing AVCommands to the batch framework</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">const char *kCmdTitle = &quot;Command Title&quot;;</p>
+  <p class="FM_CodeReference">const char *kGroupTitle = &quot;Group Title&quot;;</p>
+  <p class="FM_CodeReference">const char *kCmdGenericTitle = &quot;Generic Title&quot;;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference">ASBool doItAll = false;</p>
+  <p class="FM_CodeReference">if (ASCabNumEntries(params) == 0)</p>
+  <p class="FM_CodeReference">doItAll = true;</p>
+  <p class="FM_CodeReference">if (doItAll || ASCabKnown (params, kAVCommandKeyGroupTitle))</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment">// Create a new text object and insert it into the ASCab</p>
+  <p class="FM_CodeReference">text = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetEncoded (text, kGroupTitle, (</p>
+  <p class="FM_CodeReference">ASHostEncoding)PDGetHostEncoding());</p>
+  <p class="FM_CodeReference">ASCabPutText(params, kAVCommandKeyGroupTitle, text);</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">if (doItAll || ASCabKnown (params, kAVCommandKeyCanBatch))</p>
+  <p class="FM_CodeReference">ASCabPutBool (params, kAVCommandKeyCanBatch, true );</p>
+  <p class="FM_CodeReference">if (doItAll || ASCabKnown (params, kAVCommandKeyGenericTitle))</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment">//Create a new text object and insert it into the ASCab</p>
+  <p class="FM_CodeReference">text = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetEncoded (text, kCmdGenericTitle,</p>
+  <p class="FM_CodeReference">(ASHostEncoding)PDGetHostEncoding());</p>
+  <p class="FM_CodeReference">ASCabPutText (params, kAVCommandKeyGenericTitle, text);</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_CodeReference">if (doItAll || ASCabKnown (params, kAVCommandKeyTitle))</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment">// Create another text object and insert it into the ASCab </p>
+  <p class="FM_CodeReference">text = ASTextNew();</p>
+  <p class="FM_CodeReference">ASTextSetEncoded (text, kCmdTitle,</p>
+  <p class="FM_CodeReference">(ASHostEncoding)PDGetHostEncoding());</p>
+  <p class="FM_CodeReference">ASCabPutText (params, kAVCommandKeyTitle, text);</p>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>The <span class="FM_Courier">params</span>&#160;object was declared in <a href="Running_commands.htm#XREF_70559_Example5_5_Running">Running an AVCommand</a>.</p>
+  </div>
+</body>
+</html>

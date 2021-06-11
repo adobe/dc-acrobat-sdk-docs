@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Color settings interchange</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\PDF_Creation_APIs\PDFCreationSettings\PDF_Create_UsingSettings.fm" />
+ <link rel="stylesheet" href="PDF_Create_UsingSettings.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.1.2.2.2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/PDF_Create_UsingSettings/Creative_Suite_color_conversion_settings.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_advanced_Adobe_PDF_settings.htm">
+ <meta name="topic-breadcrumbs" content="PDF Creation APIs and Specifications > Adobe PDF Creation Settings > Using PDF Creation Settings > Using the color conversion settings" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_35911_Color_Settings"></a>Color settings interchange </h3>
+  <p class="BodyLevel1">This section describes how Creative Suite applications decide whether to use the <span class="FM_Courier">CreativeSuite</span>&#160;namespace settings or the <span class="FM_Courier">Common</span>&#160;settings and what values they store when saving settings files. </p>
+  <h4><a name="TOC_When_common_settings_are"></a>When common settings are used</h4>
+  <p class="BodyLevel1">Creative Suite applications use the Common settings when the CreativeSuite settings are not present in the settings file or when there is an inconsistency between the two types of settings. This section describes when the Common settings are used.</p>
+  <p class="BodyLevel1">The following settings indicate that the settings file was not created by a Creative Suite application:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">A value for <span class="FM_Courier">ColorSettingsFile</span>&#160;other than the empty string or <span class="FM_Courier">(None)</span>. In this case, the other Common settings are used. </p>
+</li>
+   <li>
+   <p class="FM_Bullet1">A value of <span class="FM_Courier">UseDeviceIndependentColorForImages</span>&#160;for <span class="FM_Courier">ColorConversionStrategy</span>. In this case, Creative Suite applications override this value and use <span class="FM_Courier">LeaveColorsUnchanged</span>.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">In other cases, the Common settings and CreativeSuite settings are present but inconsistent, indicating that the settings file must have been modified subsequent to being written by a Creative Suite application. In these cases, <span class="FM_Courier">ColorSettingsFile</span> is empty or unspecified and the following values are present:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">The value of <span class="FM_Courier">ColorConversionStrategy</span>&#160;is <span class="FM_Courier">UseDeviceIndependentColorForImages</span>. In this case, Creative Suite applications override this value and use <span class="FM_Courier">LeaveColorsUnchanged</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The value of <span class="FM_Courier">ColorConversionStrategy</span>&#160;is <span class="FM_Courier">CMYK</span>&#160;and the value of <span class="FM_Courier">ConvertColors</span>&#160;(Creative Suite) is <span class="FM_Courier">ConvertToRGB</span>&#160;or <span class="FM_Courier">NoConversion</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The value of <span class="FM_Courier">ColorConversionStrategy</span>&#160;is <span class="FM_Courier">sRGB</span>&#160;and the value of <span class="FM_Courier">ConvertColors</span>&#160;is <span class="FM_Courier">ConvertToCMYK</span>&#160;or <span class="FM_Courier">NoConversion</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The value of <span class="FM_Courier">ColorConversionStrategy</span>&#160;is <span class="FM_Courier">LeaveColorsUnchanged</span>&#160;and the value of <span class="FM_Courier">ConvertColors</span>&#160;is <span class="FM_Courier">ConvertToCMYK</span>&#160;or <span class="FM_Courier">ConvertToRGB</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The value of <span class="FM_Courier">ColorConversionStrategy</span>&#160;is <span class="FM_Courier">LeaveColorsUnchanged</span>, the value of <span class="FM_Courier">ConvertColors</span>&#160;is <span class="FM_Courier">NoConversion</span>, <span class="FM_Courier">IncludeProfiles</span>&#160;is <span class="FM_Courier">true</span>, and <span class="FM_Courier">UntaggedCMYKHandling</span>&#160;is <span class="FM_Courier">UseDocumentProfile</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The value of <span class="FM_Courier">ColorConversionStrategy</span>&#160;is <span class="FM_Courier">UseDeviceIndependentColor</span>&#160;and the value of <span class="FM_Courier">ConvertColors</span>&#160;is <span class="FM_Courier">ConvertToCMYK</span>&#160;or <span class="FM_Courier">ConvertToRGB</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">The value of <span class="FM_Courier">ColorConversionStrategy</span>&#160;is <span class="FM_Courier">UseDeviceIndependentColor</span>, the value of <span class="FM_Courier">ConvertColors</span>&#160;is <span class="FM_Courier">NoConversion</span>, and <span class="FM_Courier">IncludeProfiles</span>&#160;is <span class="FM_Courier">false</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">CalCMYKProfile</span>&#160;has a non-empty value, <span class="FM_Courier">DestinationProfileName</span>&#160;has a non-empty value that does not match <span class="FM_Courier">CalCMYKProfile</span>&#160;, and the value of <span class="FM_Courier">ConvertColors</span>&#160;is <span class="FM_Courier">ConvertToCMYK</span>.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">In all other cases, the CreativeSuite settings are used.</p>
+  <p class="BodyLevel1">When the Common settings are used, the following table shows how the Common setting <span class="FM_Courier">ColorConversionStrategy</span>&#160;determines the values of the Creative Suite UI elements. (See the table <a href="#XREF_68602_Conversion_from">Conversion from CreativeSuite settings to Common settings</a>&#160;for additional information.) Note that in all cases, if color management is off, the Profile Inclusion Policy defaults to “Don’t Include Profiles.”</p>
+  <p class="FM_Z_Caption">Creative Suite equivalents for ColorConversionStrategy</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:6.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 22.50pt;">
+   <th style="width : 223.200pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">ColorConversionStrategy</p>
+</th>
+   <th style="width : 237.600pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">UI elements</p>
+</th>
+</tr>
+   <tr style=" height : 52.50pt;">
+   <td style="width : 223.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveColorsUnchanged</p>
+</td>
+   <td style="width : 237.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Color Conversion = No Conversion</p>
+   <p class="FM_TableBody">Profile Inclusion Policy = Include Tagged Source Profiles</p>
+</td>
+</tr>
+   <tr style=" height : 40.00pt;">
+   <td style="width : 223.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDeviceIndependentColor</p>
+</td>
+   <td style="width : 237.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Color Conversion = No Conversion</p>
+   <p class="FM_TableBody">Profile Inclusion Policy = Include All Profiles</p>
+</td>
+</tr>
+   <tr style=" height : 52.50pt;">
+   <td style="width : 223.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDeviceIndependentColorForImages</p>
+</td>
+   <td style="width : 237.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Color Conversion = No Conversion</p>
+   <p class="FM_TableBody">Profile Inclusion Policy = Include Tagged Source Profiles</p>
+</td>
+</tr>
+   <tr style=" height : 57.50pt;">
+   <td style="width : 223.200pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">sRGB</p>
+</td>
+   <td style="width : 237.600pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Color Conversion = Convert to Destination</p>
+   <p class="FM_TableBody">Profile Inclusion Policy = Include All Profiles</p>
+   <p class="FM_TableBody">Destination Profile = sRGBProfile</p>
+</td>
+</tr>
+   <tr style=" height : 70.00pt;">
+   <td style="width : 223.200pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">CMYK</p>
+</td>
+   <td style="width : 237.600pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Color Conversion = Convert to Destination (Preserve Numbers)</p>
+   <p class="FM_TableBody">Profile Inclusion Policy = Don’t Include Profiles</p>
+   <p class="FM_TableBody">Destination Profile = CalCMYKProfile</p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>When specifying PDF/X-1a compliance (that is, the value of <span class="FM_Courier">CheckCompliance</span>&#160;is either [<span class="FM_Courier">PDFX1a:2001</span>] or [<span class="FM_Courier">PDFX1a:2003</span>]), Creative Suite applications always use <span class="FM_Courier">CMYK</span>&#160;as the value of <span class="FM_Courier">ColorConversionStrategy</span>. See <a href="Using_the_standards_settings.htm#XREF_86848_Using_the_PDF_X">Using the standards settings</a>&#160;for more information. </p>
+  <h4><a name="TOC_Saving_common_settings"></a>Saving common settings equivalents</h4>
+  <p class="BodyLevel1">When saving settings files, the Creative Suite applications write the best possible approximations of their color settings to the Common settings. <span class="FM_Courier">ColorSettingsFile</span>&#160;is always set to <span class="FM_Courier">()</span>. This section describes how the other settings are determined.</p>
+  <p class="BodyLevel1">The following table shows the relationship between the Creative Suite UI, the Creative Suite settings and the Common settings. The first four columns show the possible values of <span class="FM_Courier">ConvertColors</span>, <span class="FM_Courier">IncludeProfiles</span>, <span class="FM_Courier">UntaggedCMYKHandling</span>, and <span class="FM_Courier">UntaggedRGBHandling</span>. The last column shows the Common settings that correspond to them. The first column also shows what UI names correspond to the groups of settings.</p>
+  <p class="FM_Z_Caption"><a name="XREF_68602_Conversion_from"></a>Conversion from CreativeSuite settings to Common settings</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-left:4.00pt; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:521.85pt;" cellspacing="0">
+   <tr style=" height : 33.00pt;">
+   <th style="width : 88.560pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">ConvertColors<br />/UI Name</p>
+</th>
+   <th style="width : 46.080pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Include<br />Profiles </p>
+</th>
+   <th style="width : 118.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">UntaggedCMYK<br />Handling</p>
+</th>
+   <th style="width : 118.008pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">UntaggedRGB<br />Handling</p>
+</th>
+   <th style="width : 151.200pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableHead">Common settings</p>
+</th>
+</tr>
+   <tr style=" height : 50.00pt;">
+   <td style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">NoConversion</p>
+   <p class="FM_TableBody">Don’t Include Profiles</p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">false</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+   <td rowspan="3" style="width : 151.200pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ColorConversionStrategy <br />= LeaveColorsUnchanged</p>
+</td>
+</tr>
+   <tr style=" height : 33.00pt;">
+   <td style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Include Tagged Source Profiles</p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">true</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+</tr>
+   <tr style=" height : 45.50pt;">
+   <td style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Include All RGB &amp; Tagged Source CMYK Profiles</p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">true</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+</tr>
+   <tr style=" height : 92.00pt;">
+   <td style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Include All Profiles</p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">true</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td style="width : 151.200pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ColorConversionStrategy <br />= UseDeviceIndependent<br />Color</p>
+   <p class="FM_CodeReference">CalCMYKProfile = Document CMYK</p>
+   <p class="FM_CodeReference">CalRGBProfile = Document RGB</p>
+</td>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td rowspan="2" style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ConvertToCMYK</p>
+   <p class="FM_TableBody">Convert To Destination </p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">false</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td rowspan="4" style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td rowspan="4" style="width : 151.200pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ColorConversionStrategy = CMYK</p>
+   <p class="FM_TableBody"><span class="FM_Courier">CalCMYKProfile = </span>destination CMYK profile name </p>
+   <p class="FM_TableBody"><span class="FM_Courier">CalRGBProfile = </span>document RGB profile name</p>
+</td>
+</tr>
+   <tr style=" height : 30.00pt;">
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">true</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td rowspan="2" style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">Convert To Destination</p>
+   <p class="FM_TableBody">(Preserve Numbers)</p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">false</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged </p>
+</td>
+</tr>
+   <tr style=" height : 43.00pt;">
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">true</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td rowspan="2" style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ConvertToRGB</p>
+   <p class="FM_TableBody">Convert To Destination</p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">false</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td rowspan="4" style="width : 151.200pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ColorConversionStrategy = RGB </p>
+   <p class="FM_TableBody"><span class="FM_Courier">CalCMYKProfile = </span>document CMYK profile name</p>
+   <p class="FM_TableBody"><span class="FM_Courier">CalRGBProfile = </span>document RGB profile name</p>
+</td>
+</tr>
+   <tr style=" height : 30.00pt;">
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">true</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+</tr>
+   <tr style=" height : 20.00pt;">
+   <td rowspan="2" style="width : 88.560pt; border-left-style: solid; border-left-width: 0px; border-left-color: #999999; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">ConvertToRGB</p>
+   <p class="FM_TableBody">Convert To Destination</p>
+   <p class="FM_TableBody">(Preserve Numbers)</p>
+</td>
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">false</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+</tr>
+   <tr style=" height : 60.00pt;">
+   <td style="width : 46.080pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">true</p>
+</td>
+   <td style="width : 118.000pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">UseDocumentProfile</p>
+</td>
+   <td style="width : 118.008pt; border-right-style: solid; border-right-width: 0px; border-right-color: #999999; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">LeaveUntagged</p>
+</td>
+</tr>
+  </table>
+</div>
+  </div>
+</body>
+</html>

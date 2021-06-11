@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating HFT method definitions</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Hft.fm" />
+ <link rel="stylesheet" href="Plugins_Hft.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.16.1.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Hft/Creating_HFT_methods.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Hft/Creating_HFT_callback_functions.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Host Function Tables > Exporting host function tables" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_49266_Defining_HFT"></a>Creating HFT method definitions</h3>
+  <p class="BodyLevel1">When you invoke a method in an HFT, the methods are accessed through a function pointer. Part of the process of defining a function pointer through which HFT methods are accessed is to create an enumeration that specifies the index of each method that you want to include within an HFT. The following enumeration enables indexing into the HFT. Note that the first element is not used.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>enum</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>DUMMYBLANKSELECTOR, /* 0 */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>BeepOnceSEL, <span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/* 1 */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>BeepTwiceSEL, /* 2 */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>BeepNTimesSEL, /* 3 */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>NUMSELECTORSPlusOne /* 4 */</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>};</p>
+  <p class="BodyLevel1">The indexes are called selectors, hence the <span class="FM_Courier">SEL</span>&#160;at the end of the method names. <span class="FM_Courier">BeepOnce</span>&#160;is at index 1; <span class="FM_Courier">BeepTwice</span>, at index 2; and <span class="FM_Courier">BeepNTimes</span>, at index 3. You can specify the number of indexes in the HFT by defining the following statement:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>#define NUMSELECTORS (NUMSELECTORSPlusOne - 1);</p>
+  <p class="BodyLevel1">Also declare a global <span class="FM_Courier">HFT</span> object that is used in various tasks:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>extern HFT gMyHFT</p>
+  <p class="BodyLevel1">For example, to define an HFT method name, you must specify an HFT object. (See <a href="#XREF_60887_Define_a_HFT">Defining an HFT method name </a>.)</p>
+  <h5>Defining function prototypes</h5>
+  <p class="BodyLevel1">After you define an enumeration and an HFT object, you can define a function pointer for each method by using the following syntax:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>typdef ACCBPROTO1 return_type (ACCBPROTO2 <span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>*function_nameSELPROTO)(parameters);</p>
+  <p class="BodyLevel1">The following table describes this syntax.</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 20.50pt;">
+   <td style="width : 100.800pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">return_type</p>
+</td>
+   <td style="width : 360.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The return type of the HFT method</p>
+</td>
+</tr>
+   <tr style=" height : 20.50pt;">
+   <td style="width : 100.800pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">function_name</p>
+</td>
+   <td style="width : 360.000pt; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The name of the HFT method</p>
+</td>
+</tr>
+   <tr style=" height : 20.50pt;">
+   <td style="width : 100.800pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">parameters</p>
+</td>
+   <td style="width : 360.000pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The HFT method’s parameters with their types </p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="BodyLevel1">For example, to define a function pointer to the <span class="FM_Courier">BeepNTimes</span> method, specify the following syntax:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>typedef ACCBPROTO1 void (ACCBPROTO2 *BeepNTimesSELPROTO)(ASInt32 numtimes);</p>
+  <p class="BodyLevel1"><span class="FM_Courier">ACCBPROTO1</span>&#160;and <span class="FM_Courier">ACCBPROTO2</span>&#160;are macros whose definitions are platform-specific (for example, in Mac OS, <span class="FM_Courier">ACCBPROTO1</span>&#160;is defined as <span class="FM_Courier">pascal</span>). <span class="FM_Courier">BeepNTimesSELPROTO</span>&#160;specifies a pointer to the <span class="FM_Courier">BeepNTimes</span>&#160;method. Without using these macros, you would have to use the following syntax:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>typedef void (*func)(ASInt32 numtimes);</p>
+  <h5><a name="XREF_60887_Define_a_HFT"></a>Defining an HFT method name </h5>
+  <p class="BodyLevel1">You must specify a name for each method that is used to invoke the HFT method from other plug-ins. You can define an HFT method name by using the following syntax:</p>
+  <p class="FM_CodeReference"><span class="FM_Courier"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>#define method_name (*((method_nameSELPROTO)(HFTname [method_nameSEL])))</span></p>
+  <p class="BodyLevel1">The following table describes this syntax.</p>
+<div width="100%" align="left">
+  <table dir="ltr" style=" border-spacing:0; padding-top:6.00pt; padding-right:6.00pt; padding-bottom:4.00pt; float:alignleft; width:100%; direction:ltr; max-width:460.80pt;" cellspacing="0">
+   <tr style=" height : 33.00pt;">
+   <td style="width : 100.800pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">method_name</p>
+</td>
+   <td style="width : 360.000pt; border-top-style: solid; border-top-width: 1px; border-top-color: #000000; border-bottom-style: solid; border-bottom-width: 0px; border-bottom-color: #999999; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The name of the HFT method that is used to invoke the method from external plug-ins</p>
+</td>
+</tr>
+   <tr style=" height : 20.50pt;">
+   <td style="width : 100.800pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_CodeReference">HFTname</p>
+</td>
+   <td style="width : 360.000pt; border-bottom-style: solid; border-bottom-width: 1px; border-bottom-color: #000000; vertical-align : top;padding-left: 6.00pt; padding-top: 3.00pt; padding-right: 6.00pt; padding-bottom: 3.00pt;">
+   <p class="FM_TableBody">The name of the HFT object</p>
+</td>
+</tr>
+  </table>
+</div>
+  <p class="BodyLevel1">For example, to define a method name for the <span class="FM_Courier">BeepNTimesImplementation</span>&#160;method, specify the following:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>#define BeepNTimes (*((BeepNTimesSELPROTO)(gMyHFT[BeepNTimesSEL])))</p>
+  <p class="BodyLevel1">This macro defines the symbol <span class="FM_Courier">BeepNTimes</span>, which is the HFT method name.<span class="FM_Courier">&#160;gMyHFT[BeepNTimesSEL]</span>&#160;is the function pointer obtained by indexing the HFT and <span class="FM_Courier">BeepNTimesSELPROTO</span>&#160;casts the pointer to the right type. The end result is that the method can be invoked by specifying the HFT method name:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>BeepNTimes(3);</p>
+  <p class="BodyLevel1">HFT method names and the implementation method names must be different to avoid conflict between the <span class="FM_Courier">#define</span> statement and the corresponding method name.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Distiller initialization","url":"Acro12_MasterBook/PDF_Create_Principles/Distiller_initialization.htm"},{"type":"item","name":"How Distiller processes PostScript files","url":"Acro12_MasterBook/PDF_Create_Principles/How_Distiller_processes_PostScript_files.htm"},{"type":"item","name":"Modifying settings during the job","url":"Acro12_MasterBook/PDF_Create_Principles/Modifying_settings_during_the_job.htm"},{"type":"item","name":"Using Distiller to combine PostScript files","url":"Acro12_MasterBook/PDF_Create_Principles/Using_Distiller_to_combine_PostScript_files.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

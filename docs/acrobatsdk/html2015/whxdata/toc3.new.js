@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Acrobat SDK development technologies","url":"Acro12_MasterBook/Overview_GettingStarted/Acrobat_SDK_development_technologies.htm"},{"type":"item","name":"JavaScript","url":"Acro12_MasterBook/Overview_GettingStarted/JavaScript.htm"},{"type":"book","name":"Plug-ins","key":"toc4","url":"Acro12_MasterBook/Overview_GettingStarted/Plug-ins.htm"},{"type":"book","name":"Interapplication communication","key":"toc5","url":"Acro12_MasterBook/Overview_GettingStarted/Interapplication_communication.htm"},{"type":"item","name":"Adobe PDF Library","url":"Acro12_MasterBook/Overview_GettingStarted/Adobe_PDF_Library.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

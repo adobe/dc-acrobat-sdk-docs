@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Adding and removing web links from text","url":"Acro12_MasterBook/JS_Dev_ModifyUserInterface/Links2.htm#TOC_Adding_and_removing_webbc-1"},{"type":"item","name":"Adding and removing links","url":"Acro12_MasterBook/JS_Dev_ModifyUserInterface/Links2.htm#TOC_Adding_and_removing_linksbc-2"},{"type":"item","name":"Defining the appearance of a link","url":"Acro12_MasterBook/JS_Dev_ModifyUserInterface/Links2.htm#TOC_Defining_the_appearancebc-3"},{"type":"item","name":"Opening links","url":"Acro12_MasterBook/JS_Dev_ModifyUserInterface/Links2.htm#TOC_Opening_linksbc-4"},{"type":"item","name":"Opening file attachments","url":"Acro12_MasterBook/JS_Dev_ModifyUserInterface/Links2.htm#TOC_Opening_file_attachmentsbc-5"},{"type":"item","name":"Using destinations","url":"Acro12_MasterBook/JS_Dev_ModifyUserInterface/Links2.htm#TOC_Using_destinationsbc-6"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

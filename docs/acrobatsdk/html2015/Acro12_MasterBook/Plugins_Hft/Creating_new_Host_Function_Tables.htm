@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Creating new Host Function Tables</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Hft.fm" />
+ <link rel="stylesheet" href="Plugins_Hft.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.16.1.0_4";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Hft/Creating_HFT_callback_functions.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Hft/Examining_HFT_header_and_source_files.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Host Function Tables > Exporting host function tables" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="IX_host_functions_tables"></a>Creating new Host Function Tables</h3>
+  <p class="BodyLevel1">You can create a new HFT by performing the following tasks within the HFT callback function that you define:</p>
+  <p class="FM_StepReset"><a name="IX_HFTNew"></a><a name="IX_HFTNew_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Cre<span style="font-style : italic; "></span>ate an <span class="FM_Courier">HFT</span>&#160;object by invoking the <span class="FM_Courier">HFTNew</span>&#160;method. This method requires an <span class="FM_Courier">HFTServer</span>&#160;object and the number of entries in the new HFT as arguments. The number of entries determines how many methods that the HFT contains. Each method occupies one entry.</p>
+  <p class="FM_Step"><a name="IX_HFTReplaceEntry"></a><a name="IX_HFTReplaceEntry_method"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Invoke the <span class="FM_Courier">HFTReplaceEntry</span>&#160;method to populate the entries in the <span class="FM_Courier">HFT</span>&#160;object with pointers to the HFT methods. This method requires the following arguments:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">An HFT object that you want to populate.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The entry in the <span class="FM_Courier">HFT</span>&#160;object to replace. You can specify an index value that is specified in the enumeration that you created. For example, you can specify <span class="FM_Courier">BeepTwiceSEL</span>. (See <a href="Creating_HFT_method_definitions.htm#XREF_49266_Defining_HFT">Creating HFT method definitions</a>.)</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">An <span class="FM_Courier">HFTEntry</span>&#160;object that represents a method that will become available through the HFT. You can, for example, reference the <span class="FM_Courier">BeepTwiceImplementation</span>&#160;method by passing the <span class="FM_Courier">ASCallbackCreateReplacement</span> method, as shown in the following example:</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ASCallbackCreateReplacement(BeepTwiceSEL,&amp;BeepTwiceImplementation)</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">The new entry's properties. Currently, only <span class="FM_Courier">HFTEntryReplaceable</span> is defined.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">You must invoke the <span class="FM_Courier">HFTReplaceEntry</span>&#160;method for each method that you expose through the HFT. For example, if you expose three methods through the HFT, then you invoke the <span class="FM_Courier">HFTReplaceEntry</span>&#160;method three times.</p>
+  <p class="BodyLevel1">The following code example shows the syntax of the <span class="FM_Courier">ProvideMyHFT</span>&#160;method, which is the HFT callback function defined in the previous section. Within this method, a new HFT is created. For information about HFT callback methods, see <a href="Creating_HFT_callback_functions.htm#XREF_88064_Creating_HTF">Creating HFT callback functions</a>.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_5Head_Example">Creating new Host Table Functions</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">ACCB1 HFT ACCB2 ProvideMyHFT(HFTServer server, ASUns32 version,void *rock)</p>
+  <p class="FM_CodeReference">{</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Ensure version is 1</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if (version != 1)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return NULL;</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>DURING</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>//Create a new HFT</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gMyHFT = HFTNew(gMyHFTServer, NUMSELECTORS);</p>
+  <p class="FM_CodeReference">&nbsp;</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/*</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>** Replace the entries in the HFT</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>** with the methods that you want to make available.</p>
+  <p class="FM_CodeComment"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>*/</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HFTReplaceEntry (gMyHFT,<br />BeepOnceSEL,ASCallbackCreateReplacement(BeepOnceSEL,&amp;BeepOnce<br />Implementation), 0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HFTReplaceEntry (gMyHFT,<br />BeepTwiceSEL,ASCallbackCreateReplacement(BeepTwiceSEL,&amp;BeepTwice<br />Implementation), 0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HFTReplaceEntry (gMyHFT,<br />BeepNTimesSEL,ASCallbackCreateReplacement(BeepNTimesSEL,&amp;BeepNTimes<br />Implementation), 0);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HANDLER</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return NULL;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>END_HANDLER</p>
+  <p class="FM_CodeReference">return gMyHFT;</p>
+  <p class="FM_CodeReference">}</p>
+  </div>
+</body>
+</html>

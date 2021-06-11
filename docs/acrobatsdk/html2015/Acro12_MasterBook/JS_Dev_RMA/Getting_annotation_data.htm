@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Getting annotation data</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_RMA.fm" />
+ <link rel="stylesheet" href="JS_Dev_RMA.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.7.1.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_RMA/Annotation_types.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_RMA/Adding_comments_with_JavaScript.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Review, Markup, and Approval > Working with comments using JavaScript" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_59776_Getting_annotation"></a>Getting annotation data</h3>
+  <p class="BodyLevel1"><a name="IX_getAnnots"></a><a name="IX_extracting_data"></a><a name="IX_getAnnot"></a>There are two methods for getting annotation information present in a document, or a collection of documents. These methods are <span class="FM_Courier">getAnnot</span>&#160;and <span class="FM_Courier">getAnnots</span> of the Doc object.<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></p>
+  <p class="BodyLevel1">The <span class="FM_Courier">getAnnot</span>&#160;method returns an Annotation object, an object that holds all data of the annotation. This method takes two parameters, <span class="FM_Courier">nPage</span>&#160;(page number) and <span class="FM_Courier">cName</span> (the name of the annot). For example,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var a = this.getAnnot({ nPage: 2, cName: &quot;myAnnot&quot; });</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if ( a != null ) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;This annot has type &quot; + a.type);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if ( (a.type != &quot;FileAttachment&quot;) || (a.type != &quot;Sound&quot;) )</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;The comment of this annot is &quot; + a.contents);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p class="BodyLevel1"><a name="IX_adding_1"></a><a name="IX_addAnnot"></a>When the user makes a comment using the UI, the name of the comment is randomly assigned. As a consequence, unless the annotation is created with the <span class="FM_Courier">addAnnot</span>&#160;method, in which the name of the annot can be assigned at the time of creation, the name is not typically known to the developer. </p>
+  <p class="BodyLevel1"><a name="IX_getAnnots_1"></a>In normal workflows, the problem is to gather all comments in a document and process them in some way. The tool for doing this is <span class="FM_Courier">getAnnots</span>. The method returns an array of Annotation objects based on the search parameters, all of which are optional:</p>
+  <p class="FM_Indent1"><span class="FM_Courier">nPage</span> - The page number to search for annotations, if not provided, the whole document is searched.</p>
+  <p class="FM_Indent1"><span class="FM_Courier">nSortBy</span>&#160;- The method used to sort the search results, these include page, author, and modification date.</p>
+  <p class="FM_Indent1"><span class="FM_Courier">bReverse</span> - If true, the array is reverse-sorted.</p>
+  <p class="FM_Indent1"><span class="FM_Courier">nFilterBy<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span></span>&#160;- Get anntotations satisfying certain criteria, such as getting only those annotations that can be printed, that can be viewed, or that can be edited.</p>
+  <p class="BodyLevel1">Additional discussion can be found in <a href="Sorting_comments.htm#XREF_33122_Sorting_Comments">Sorting comments</a>. See the <uservariable x-value="JavaScript for Acrobat API Reference" x-showvalue="TRUE" name="Ref_JavaAPI" x-format="Ref_JavaAPI"><span class="FM_Italic">JavaScript for Acrobat API Reference</span></uservariable><span class="FM_Italic"></span> for full descriptions of these parameters.</p>
+  <p class="BodyLevel1">The following code retrieves all annotations in the document, and sorts them by author name:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var annots = this.getAnnots({</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>nSortBy: ANSB_Author</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>});</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;\nAnnot Report for document: &quot; + this.documentFileName);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if ( annots != null ) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.show();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;Number of Annotations: &quot; + annots.length);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var msg = &quot; <span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>%s in a %s annot said: \&quot;%s\&quot;&quot;;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>for (var i = 0; i &lt; annots.length; i++)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(util.printf(msg, annots[i].author, annots[i].type,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>annots[i].contents));</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} else</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>console.println(&quot;<span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span> No annotations in this document.&quot;);</p>
+  </div>
+</body>
+</html>

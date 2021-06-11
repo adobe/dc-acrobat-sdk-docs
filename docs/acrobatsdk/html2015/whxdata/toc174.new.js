@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Using the compliance checking settings","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_compliance_checking_settings.htm"},{"type":"item","name":"Using the PDF/X output intent settings","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_compliance_checking_settings.htm#TOC_Using_the_PDF_X_outputbc-1"},{"type":"item","name":"Distiller examples","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_compliance_checking_settings.htm#TOC_Distiller_examplesbc-2"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

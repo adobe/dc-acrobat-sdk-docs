@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Writing a custom driver</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_ExtendedAPI.fm" />
+ <link rel="stylesheet" href="Plugins_ExtendedAPI.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.21.3.0_2";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_ExtendedAPI/Weblink_services.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_ExtendedAPI/Spelling_extended_API.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Acrobat Extended APIs > Weblink extended API" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Writing a custom driver</h3>
+  <p class="BodyLevel1">A driver is an <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;core plug-in, written like any other plug-in. A driver must register itself with the Weblink plug-in during the import, replace, and register phases of the plug-in initialization process by invoking <span class="FM_Courier">RegisterWebDriver</span>. You pass this method a <span class="FM_Courier">WebDriverVector</span>&#160;structure containing a version number and six pointers to functions that your driver provides to handle web-browser-specific tasks.</p>
+  <p class="BodyLevel1">A driver is responsible for performing the following tasks:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Connecting with external services (either directly or through an external application)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Communicating with external services</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Associating a base URL with a given document</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Identifying external browsers that are compatible with the driver</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">In a typical session, the following actions can occur:[Same question as page 15. Is the following numbered list sequential?]</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The user starts <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">The Weblink plug-in publishes a Host Function Table (HFT) during the <span class="FM_Courier">exportHFTsCallback</span>&#160;phase of initialization.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">During the <span class="FM_Courier">importReplaceAndRegisterCallback</span>&#160;phase, all drivers in turn invoke <span class="FM_Courier">RegisterWebDriver</span> in the Weblink plug-in’s HFT to register themselves as available.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">During the <span class="FM_Courier">initCallback</span>&#160;phase, the Weblink plug-in, if possible, selects an appropriate driver and notifies it that it is the active driver.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The user opens a PDF document with Weblinks and clicks a Weblink.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">The Weblink plug-in extracts the URL from the link and passes it to the driver.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The driver packages the URL into an interapplication communication (IAC) message and sends it to an external web browser (launching the browser application, if necessary).</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The external web browser brings itself to the foreground unless the URL’s MIME type is application/pdf.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The web browser retrieves the document and packages an IAC message.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">The driver accepts the IAC message from the browser and opens the PDF document by using the <span class="FM_Courier">AVDocOpenFromFile</span> method. The driver should associate the URL with the document.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">To resolve relative links, Weblink prepends either a base URL with the document, or if there is no base URL, the appropriate portion of the URL of the document the link is in. </p>
+</li>
+  </ul>
+  </div>
+</body>
+</html>

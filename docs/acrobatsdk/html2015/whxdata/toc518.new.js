@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"activateAnimation","url":"Acro12_MasterBook/JS_3D_API/activateAnimation.htm"},{"type":"item","name":"addFlashForeground","url":"Acro12_MasterBook/JS_3D_API/addFlashForeground.htm"},{"type":"item","name":"addModel","url":"Acro12_MasterBook/JS_3D_API/addModel.htm"},{"type":"item","name":"createClippingPlane","url":"Acro12_MasterBook/JS_3D_API/createClippingPlane.htm"},{"type":"item","name":"createLight","url":"Acro12_MasterBook/JS_3D_API/createLight.htm"},{"type":"item","name":"createSquareMesh","url":"Acro12_MasterBook/JS_3D_API/createSquareMesh.htm"},{"type":"item","name":"computeBoundingBox","url":"Acro12_MasterBook/JS_3D_API/computeBoundingBox1.htm"},{"type":"item","name":"update","url":"Acro12_MasterBook/JS_3D_API/update.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

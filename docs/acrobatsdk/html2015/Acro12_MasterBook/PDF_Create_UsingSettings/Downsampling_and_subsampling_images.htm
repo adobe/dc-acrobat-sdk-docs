@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Downsampling and subsampling images</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\PDF_Creation_APIs\PDFCreationSettings\PDF_Create_UsingSettings.fm" />
+ <link rel="stylesheet" href="PDF_Create_UsingSettings.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "4.1.2.1.3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/PDF_Create_UsingSettings/Non-automatic_compression.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/PDF_Create_UsingSettings/Setting_compression_of_text_line_art_and_objects.htm">
+ <meta name="topic-breadcrumbs" content="PDF Creation APIs and Specifications > Adobe PDF Creation Settings > Using PDF Creation Settings > Using the image settings" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_68478_Downsampling_and"></a>Downsampling and subsampling images</h3>
+  <p class="BodyLevel1"><a name="IX_sampling"></a><a name="IX_subsampling"></a><a name="IX_downsampling"></a><a name="IX_image_sampling"></a>Downsampling and subsampling are processes that reduce the number of pixels per inch in an image. To do so, pixels in a sample area are combined to make one larger pixel. </p>
+  <p class="BodyLevel1">The following subsampling and downsampling methods are available:</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Subsampling</span>: A pixel in the center of the sample area replaces the entire area at the specified resolution. Subsampling is significantly faster than downsampling but results in images that are less smooth and continuous.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Average downsampling</span>: The pixels in a sample area are averaged, and the average pixel color replaces the entire area at the specified resolution.</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Bicubic downsampling</span>: A weighted average is used to determine pixel color and usually yields better results than the simple averaging method of downsampling. This is the slowest but most precise method, resulting in the smoothest tonal gradations.</p>
+  <p class="BodyLevel1">You should downsample or subsample bitmap images when they are sampled at a higher resolution than the output device supports. The excess data increases the time it takes the device to process the image without improving image quality. For example, by reducing an image from a typical printer resolution of 300 pixels per inch to a typical monitor resolution of 72 pixels per inch, the amount of data needed to represent an image is decreased by a factor of 16, and the image can be drawn on the screen much more quickly.</p>
+  <h4><a name="TOC_Downsampling_settings"></a>Downsampling settings</h4>
+  <p class="BodyLevel1">These settings are Boolean values that specify whether images of the specified type should be downsampled: <span class="FM_Courier">DownsampleColorImages</span>, <span class="FM_Courier">DownsampleGrayImages</span>, and <span class="FM_Courier">DownsampleMonoImages</span>.</p>
+  <p class="BodyLevel1">These settings specify the resolution to which images should be downsampled: <span class="FM_Courier">ColorImageResolution</span>, <span class="FM_Courier">GrayImageResolution</span>, or <span class="FM_Courier">MonoImageResolution</span>. </p>
+  <p class="BodyLevel1">These settings specify the type of sampling (average or bicubic downsampling, subsampling, or none) <span class="FM_Courier">ColorImageDownsampleType</span>, <span class="FM_Courier">GrayImageDownsampleType</span>, or <span class="FM_Courier">MonoImageDownsampleType</span>. </p>
+  <p class="BodyLevel1">In order for downsampling to actually occur, the ratio of the input image resolution to the desired output resolution (specified by the above parameters) must exceed the <span class="FM_Italic">downsampling threshold. </span>These settings are used to set the downsampling threshold resolution: <span class="FM_Courier">ColorImageDownsampleThreshold</span>, <span class="FM_Courier">GrayImageDownsampleThreshold</span>, and <span class="FM_Courier">MonoImageDownsampleThreshold</span>.</p>
+  <p class="BodyLevel1">For example, if <span class="FM_Courier">ColorImageResolution</span>&#160;is 72 and <span class="FM_Courier">ColorImageDownsampleThreshold</span>&#160;is set to 1.5, an image is not downsampled unless its input resolution is greater than 108 pixels per inch:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>trunc((72 * 1.5) + .5) = 108 pixels per inch</p>
+  <p class="BodyLevel1">Threshold values must be between 1.0 through 10.0, inclusive, with a default value of 1.5. (If you set the threshold out of range, it reverts to 1.5.)</p>
+  <h4><a name="TOC_Controlling_the_range_of"></a><a name="XREF_70454_Controlling_the"></a>Controlling the range of bit depths for which downsampling occurs</h4>
+  <p class="BodyLevel1">You can also control the range of bit depths for which downsampling occurs. For example, in a workflow where there is a mixture of 1-bit and 8-bit data, you can downsample the 8-bit data while not touching the 1-bit data. This is done with the following settings:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">ColorImageMinDownsampleDepth</span> can be 1, 2, 4, or 8</p>
+</li>
+   <li>
+   <p class="FM_Bullet1"><span class="FM_Courier">GrayImageMinDownsampleDepth</span> can be 2, 4, or 8</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">For example, a value of 4 for <span class="FM_Courier">ColorImageMinDownsampleDepth</span>&#160;means that only 4- and 8 bits-per-sample color images are downsampled (assuming <span class="FM_Courier">DownsampleColorImages</span>&#160;is <span class="FM_Courier">true</span>). Similarly, a value of 8 for <span class="FM_Courier">GrayImageMinDownsampleDepth</span>&#160;means that only 8 bits-per-sample gray images are downsampled (assuming <span class="FM_Courier">DownsampleGrayImages</span>&#160;is <span class="FM_Courier">true</span>).</p>
+  <p class="FM_Note"><a name="IX_sampling_1"></a><a name="IX_subsampling_1"></a><a name="IX_downsampling_1"></a><a name="IX_image_sampling_1"></a><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>12 bits-per-sample images (valid in PostScript) are treated exactly as 8 bits-per-sample images because they are converted to 8 bits per sample before downsampling takes place.</p>
+  </div>
+</body>
+</html>

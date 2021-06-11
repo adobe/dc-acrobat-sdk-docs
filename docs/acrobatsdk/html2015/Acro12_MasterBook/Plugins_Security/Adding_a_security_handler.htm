@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Adding a security handler</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_Security.fm" />
+ <link rel="stylesheet" href="Plugins_Security.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.14.1.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_Security/About_security_handlers.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_Security/Opening_a_secured_file.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Working with Document Security > About security handlers" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Adding a security handler</h3>
+  <p class="BodyLevel1">You can add a security handler by performing the following tasks:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Writing a set of callback routines to perform security-related functions.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Specifying the callbacks in a <span class="FM_Courier">PDCryptHandlerRec</span>&#160;structure. </p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Registering the handler by passing the structure to <span class="FM_Courier">PDRegisterCryptHandlerEx</span>.</p>
+</li>
+  </ul>
+  <h4>Security handlers data</h4>
+  <p class="BodyLevel1">The following list describes three types of data used by security handlers:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Authorization data is the data the security handler needs to determine the user’s authorization level for a particular file (for example, not authorized to open the file, authorized to access the file with user permissions, authorized to access the file with owner permissions). Passwords are a common type of authorization data.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Security data is whatever internal data the security handler uses. It includes security information, internal flag values, seed values, and so on.</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Security information is a subset of the security data. Specifically, it is a collection of flags that contains the information that <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;uses to display the current permissions to the user. This information includes permissions and the user’s authorization level (user or owner).</p>
+</li>
+  </ul>
+  <h4>Security handler callbacks</h4>
+  <p class="BodyLevel1">A security handler must provide callbacks that performs the following tasks:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet1">Determines whether a user is authorized to open a particular file and what permissions the user has once the file is open (<span class="FM_Courier">PDCryptAuthorizeExProc</span>).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Creates and fills an authorization data structure, using whatever user interface is needed to obtain the data. For example, displaying a dialog box into which the user can type a password (<span class="FM_Courier">PDCryptGetAuthDataExProc</span>).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Creates, fills, and verifies a security data structure (<span class="FM_Courier">PDCryptNewSecurityDataProc</span>).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Extracts security information from the security data structure (<span class="FM_Courier">PDCryptGetSecurityInfoProc</span>).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Allows the user to request different security settings, usually by displaying a dialog box. (<span class="FM_Courier">PDCryptDisplaySecurityDataProc</span>)</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Sets up the encryption key used to encrypt the file (<span class="FM_Courier">PDCryptNewCryptDataProc</span>).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Fills or reads the PDF filefs encryption dictionary (<span class="FM_Courier">PDCryptFillEncryptDictProc</span>).</p>
+</li>
+   <li>
+   <p class="FM_Bullet1">Displays the current document’s permissions (required with <span class="FM_Courier">PDCryptAuthorizeExProc</span>&#160;and <span class="FM_Courier">PDCryptGetAuthDataExProc</span> callbacks).</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">With <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;5.0 and later, a finer granularity of permissions has been predefined for objects supported by a PDF document. Plug-ins can invoke the <span class="FM_Courier">PDDocPermRequest</span>&#160;method to request whether a particular operation is authorized to be performed on a specified object in a document.</p>
+  <p class="BodyLevel1">To support the <span class="FM_Courier">PDDocPermRequest</span>&#160;method, there are two new callback methods: <span class="FM_Courier">PDCryptAuthorizeExProc</span>&#160;and <span class="FM_Courier">PDCryptGetAuthDataExProc</span>. <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;5.0 and later also includes optional security handling for batch operations (operations on one or more files). There are a number of callbacks (indicated by PDCryptBatch... ) that a security handler must provide to support batch processing. These callbacks are part of a <span class="FM_Courier">PDCryptBatchHandler</span>&#160;structure. The <span class="FM_Courier">PDCryptHandlerRec</span>&#160;structure contains a new member <span class="FM_Courier">CryptBatchHandler</span>, which points to this structure.</p>
+  <p class="BodyLevel1">To support batch processing, a security handler should provide a non-NULL value for <span class="FM_Courier">CryptBatchHandler</span>&#160;and implement the batch callbacks. Prior to <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;5.0, the maximum length of the encryption key that <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;accepted was 40 bits. <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;version 5.0 or later accommodates an encryption key length of 128 bits. These length limitations are imposed to comply with export restrictions.</p>
+  <h4><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>’s authorization procedure</h4>
+  <p class="BodyLevel1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>’s built-in authorization procedure works as follows:</p>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;invokes the security handler’s authorize callback (which is either <span class="FM_Courier">PDCryptAuthorizeExProc</span>, introduced with <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;5.0, or the older <span class="FM_Courier">PDCryptAuthorizeProc</span>) to determine whether the user is allowed to open the file. It passes NULL authorization data, to handle the case where no authorization data is needed. <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable> also passes the following values:</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">PDPermReqObjDoc</span>&#160;and <span class="FM_Courier">PDPermReqOprOpen</span> when invoking<span class="FM_Courier"> PDCryptAuthorizeExProc</span>.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2"><span class="FM_Courier">pdPermOpen</span>&#160;when calling <span class="FM_Courier">PDCryptAuthorizeProc</span>.</p>
+</li>
+  </ul>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>If the authorize callback returns <span class="FM_Courier">true</span>, the file is opened. Otherwise, the authorization procedure executes the following steps up to three times, to give the user three chances to enter a password, or whatever authorization the security handler uses.</p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">It calls the security handler’s get authorization data callback (<span class="FM_Courier">PDCryptGetAuthDataExProc</span>&#160;or the older <span class="FM_Courier">PDCryptGetAuthDataProc)</span>. This callback should obtain the authorization data using whatever user interface (for example, a dialog box used to obtain a password) or other means necessary, and then creates and fills the authorization data structure.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">It calls the security handler’s authorize callback, passing the authorization data returned by the get authorization data callback. If the authorization succeeds, the authorize callback returns the permissions granted to the user, and the authorization procedure returns.</p>
+</li>
+  </ul>
+  <p class="BodyLevel1">The authorize callback can access the encrypted PDF document, allowing it to encrypt the authorization data using a mechanism that depends on the document’s contents. By doing this, someone who knows a document’s password cannot easily find out which other documents use the same password. The authorize callback can return permissions that depend on the password as well as the permissions specified when encryption was set up. This allows, for example, more rights to be granted to someone who knows a document’s owner password than to someone who knows the document’s user password.</p>
+  </div>
+</body>
+</html>

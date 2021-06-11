@@ -1,0 +1,4707 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="AVWindow,,,,_t_AVWindowHandler,AVWLunknown,AVWLnonfloating,AVWLfloating,AVWLmodal,AVWLpopup,AVWLtoolbar,AVWLhelp,AVWLmenu,AVWLtopmost,AVWIN_RESIZEABLE,AVWIN_HASCLOSEBOX,AVWIN_HASZOOMBOX,AVWIN_HASMINIMIZEBOX,AVWIN_HASDRAGBAR,AVWIN_SMALLTITLEBAR,AVWIN_AUXILIARY,AVWIN_WANTSKEY,AVWIN_TRANSIENT,AVWIN_FORMFIT,AVWIN_INTERNAL_DOC,AVWIN_UNDECORATED,AVWIN_PDFICON,AVWindowCoord,AVWindowRect,AVWindow,AVWindowLayer,AVWindowMouseDownProc,AVWindowDrawProc,AVWindowWillBeResizedProc,AVWindowAdjustCursorProc,AVWindowDidResizeProc,AVWindowDidMaximizeProc,AVWindowDidCollapseProc,AVWindowDidMoveProc,AVWindowWillCloseProc,AVWindowDidCloseProc,AVWindowDidActivateProc,AVWindowDidBecomeKeyProc,AVWindowKeyDownProc,AVWindowWillResignKeyProc,AVWindowWillDeactivateProc,AVWindowPerformEditOpProc,AVWindowCanPerformEditOpProc,AVWindowDestroyPlatformThingProc,AVWindowHandlerRec,AVWindowHandler,AVWindowDestroy,AVWindowUserClose,AVWindowMaximize,AVWindowShow,AVWindowHide,AVWindowIsVisible,AVWindowGetPlatformThing,AVWindowGetOwnerData,AVWindowSetOwnerData,AVWindowBringToFront,AVWindowDrawNow,AVWindowSetWantsKey,AVWindowIsKey,AVWindowBecomeKey,AVWindowResignKey,AVWindowHandlePlatformEvent,AVWindowCenter,AVWindowEnsureInBounds,AVWindowNew,AVWindowNewFromPlatformThing,AVWindowGetFrame,AVWindowSetFrame,AVWindowGetInterior,AVWindowInvalidateRect,AVWindowGetMinMaxSize,AVWindowSetMinMaxSize,AVWindowGetTitle,AVWindowSetTitle,AVWindowDoModal,AVWindowEndModal,AVWindowGetBorderWidths,AVWindowGetDesktopBounds,AVWindow" name="keywords">
+<title>AV_Layer.AVWindow (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'AVWindow - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?AV_Layer/AVWindow.html&amp;AV_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">AVWindow</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#defineSummary">Defines</a>&nbsp;| <a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#structureSummary">Structures</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("AVWindow"); titleBar_setSubNav(true,true,false,false,true,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">AV_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">AVWindow</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>AVWindow provides methods for creating and managing windows. Plug-ins should use AVWindow methods 
+for their own dialog boxes, floating palettes, and so forth, to ensure that those windows work well 
+with Acrobat. For example, plug-ins should ensure that under <a href="Windows.html" target="">Windows</a>, they are <a href="General.html#hidden" target="">hidden</a> when 
+Acrobat is iconified. Once the plug-in creates an AVWindow, it is free to use platform-dependent 
+code to put whatever it wants in the window.
+</p><p>Acrobat uses the concept of a <i>key window</i>. The key window is the window that 
+receives keyboard events. Only one window is the key window at any time. Windows can 
+request to become the key window, or request that they no longer be the key window.</p><p>On Mac OS, there is an essential distinction between a key window 
+and an active window. A window is a key window only if it is the target of all keystrokes 
+and menu selections. A window is the active window if mouse clicks in it are interpreted 
+without requiring an initial activation click. This state is usually indicated 
+(in modal and non-floating windows) with some highlighting in the <a href="General.html#title" target="">title</a> bar. 
+Floating windows are inactive only if hidden.</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="defineSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Define Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Define</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_AUXILIARY4980">AVWIN_AUXILIARY</a>
+<div class="summaryTableDescription">
+Auxiliary windows pass unhandled menu commands to the frontmost document window. For example, the Find dialog box is auxiliary since menu items such as Save and Close should still be enabled. A window that does not purport to operate on the topmost document window (for example, an "Establish Connection to Library of Congress" dialog box) would probably not be auxiliary. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindow28">AVWindow</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_FORMFIT4995">AVWIN_FORMFIT</a>
+<div class="summaryTableDescription">The window sizes itself to fit its child views. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_HASCLOSEBOX4951">AVWIN_HASCLOSEBOX</a>
+<div class="summaryTableDescription">The window has a close box. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_HASDRAGBAR4966">AVWIN_HASDRAGBAR</a>
+<div class="summaryTableDescription">The window has a drag bar. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_HASMINIMIZEBOX4961">AVWIN_HASMINIMIZEBOX</a>
+<div class="summaryTableDescription">The window has a minimize box. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_HASZOOMBOX4956">AVWIN_HASZOOMBOX</a>
+<div class="summaryTableDescription">The window has a zoom box. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_INTERNAL_DOC5001">AVWIN_INTERNAL_DOC</a>
+<div class="summaryTableDescription">The default internal document window for the platform. It must be combined with AVWLnonfloating. This overrides all other flags. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_PDFICON5011">AVWIN_PDFICON</a>
+<div class="summaryTableDescription">The window should have the PDF icon associated with it </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_RESIZEABLE4946">AVWIN_RESIZEABLE</a>
+<div class="summaryTableDescription">The window is resizeable. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_SMALLTITLEBAR4971">AVWIN_SMALLTITLEBAR</a>
+<div class="summaryTableDescription">The window has a small title bar. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_TRANSIENT4990">AVWIN_TRANSIENT</a>
+<div class="summaryTableDescription">The window hides itself when focus is lost. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_UNDECORATED5006">AVWIN_UNDECORATED</a>
+<div class="summaryTableDescription">The window does not have decorations such as borders, captions or edges. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWIN_WANTSKEY4985">AVWIN_WANTSKEY</a>
+<div class="summaryTableDescription">AVWindowFlags AVWIN_WANTSKEY is deprecated and ignored. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLfloating4912">AVWLfloating</a>
+<div class="summaryTableDescription">A floating window, such as a palette. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLhelp4932">AVWLhelp</a>
+<div class="summaryTableDescription">(Internal use only) A help window. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLmenu4937">AVWLmenu</a>
+<div class="summaryTableDescription">A window that occupies the same layer as popup menus, and has no title bar decorations. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLmodal4917">AVWLmodal</a>
+<div class="summaryTableDescription">A modal dialog box. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLnonfloating4907">AVWLnonfloating</a>
+<div class="summaryTableDescription">A regular window, such as a document window. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLpopup4922">AVWLpopup</a>
+<div class="summaryTableDescription">(New in Acrobat 5.0) A popup window without a caption, a one-pixel border and drop shadow. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLtoolbar4927">AVWLtoolbar</a>
+<div class="summaryTableDescription">(Internal use only) A toolbar window. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLtopmost4942">AVWLtopmost</a>
+<div class="summaryTableDescription">A top level window that has no user interface except a frame. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWLunknown4902">AVWLunknown</a>
+<div class="summaryTableDescription">AVWindowLayerFlags </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindow">AVWindow</a>
+<div class="summaryTableDescription">Creates and manages windows. Plug-ins should use AVWindows for their own dialog boxes, floating palettes, and so on, to ensure that those windows work well with the Acrobat viewer. For example, under Windows they are hidden when the Acrobat viewer is turned into an icon. Once your plug-in creates an AVWindow, it is free to use platform-dependent code to put whatever you would like in the window. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowCoord">AVWindowCoord</a>
+<div class="summaryTableDescription">An x or y coordinate in the window's space. (0,0) is at the top left, and units are in pixels. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowHandler">AVWindowHandler</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowHandlerRec">AVWindowHandlerRec</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowLayer">AVWindowLayer</a>
+<div class="summaryTableDescription">Constants that specify the layer in which a newly-created AVWindow is to appear. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowRect">AVWindowRect</a>
+<div class="summaryTableDescription">A data structure representing a rectangle (a quadrilateral having only horizontal and vertical sides) in a window's coordinate space. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="structureSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Structure Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Structure</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#_t_AVWindowHandler5256">_t_AVWindowHandler</a>
+<div class="summaryTableDescription">A data structure containing callbacks that implement a window handler. The callbacks implement the window handler functions. For example, they can resize the window, draw its contents, handle mouse clicks, and handle key presses. NULL values are acceptable; default behavior is used in such cases. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowAdjustCursorProc5067">AVWindowAdjustCursorProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called periodically while the cursor is over the AVWindow (if the window is active). Use this to adjust the cursor's appearance. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowCanPerformEditOpProc5232">AVWindowCanPerformEditOpProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called before showing the Edit menu, to determine whether to enable the Edit menu item corresponding to the given ASAtom. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDestroyPlatformThingProc5243">AVWindowDestroyPlatformThingProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called when it is time to dispose of the platformThing for the window passed to AVWindowNewFromPlatformThing(). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDidActivateProc5129">AVWindowDidActivateProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called after the window has been activated. The window being activated will not always become the front-most window. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDidBecomeKeyProc5139">AVWindowDidBecomeKeyProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called after the window becomes the key window. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDidCloseProc5120">AVWindowDidCloseProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called immediately after the window has been closed, but before it has been freed. You may want to explicitly destroy the window in this routine. See also AVWindowWillCloseProc. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDidCollapseProc5090">AVWindowDidCollapseProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called after the window has been collapsed. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDidMaximizeProc5083">AVWindowDidMaximizeProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called after the window has been maximized. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDidMoveProc5099">AVWindowDidMoveProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called after the window has been resized. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDidResizeProc5076">AVWindowDidResizeProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called after the window has been resized. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowDrawProc5045">AVWindowDrawProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called whenever the window needs to refresh some part of its interior. It should redraw the contents of the specified rectangle. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowKeyDownProc5150">AVWindowKeyDownProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called to handle keystrokes when this is the key window. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowMouseDownProc5035">AVWindowMouseDownProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. Mouse clicks in the AVWindow are dispatched through this callback. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowPerformEditOpProc5198">AVWindowPerformEditOpProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called when the user has chosen an Edit menu item and the corresponding AVWindowCanPerformEditOpProc() returned true. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowWillBeResizedProc5057">AVWindowWillBeResizedProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called when the window is about to resize. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowWillCloseProc5109">AVWindowWillCloseProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. The window is about to close. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowWillDeactivateProc5166">AVWindowWillDeactivateProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called before the window becomes deactivated or hidden. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#AVWindowWillResignKeyProc5158">AVWindowWillResignKeyProc</a>
+<div class="summaryTableDescription">A callback for AVWindowHandler. It is called before the window ceases to be the key window. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowBecomeKey3068()">AVWindowBecomeKey</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Makes win the key window (regardless of the setting of its wantsKey flag) if the window is visible.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowBringToFront3019()">AVWindowBringToFront</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Brings the specified window to the front. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowCenter5545()">AVWindowCenter</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Centers the window within its parent window or the desktop if it has no parent. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowDestroy2880()">AVWindowDestroy</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Destroys the specified window and all associated memory. It closes the window without calling the window handler's AVWindowWillCloseProc() (that is, this operation cannot be rejected). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVWindowDoModal8824()">AVWindowDoModal</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> window)</div>
+<div class="summaryTableDescription">Makes the specified window modal, so that no other window can take the keyboard focus when this window is active.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowDrawNow3028()">AVWindowDrawNow</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Redraws the invalid regions of the specified window. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVWindowEndModal8835()">AVWindowEndModal</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> window)</div>
+<div class="summaryTableDescription">Stops the specified window from being modal, so that other windows can take the keyboard focus when this window is active. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowEnsureInBounds6161()">AVWindowEnsureInBounds</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">If the win is completely outside the desktop region (it is off screen), it is moved so that it will be within the desktop region (it is on screen). No action is taken if a draggable edge of the window is within the desktop region. The desktop region does not include the task bar (Windows) or menu bar (Mac OS). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowGetBorderWidths9039()">AVWindowGetBorderWidths</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVRect</a>* rect)</div>
+<div class="summaryTableDescription">Fills a rectangle structure with the left, top, right, and bottom distances between the inner window rectangle (the frame rectangle) and the outer window rectangle. These distances include borders, title bars, and so on. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVWindowGetDesktopBounds9477()">AVWindowGetDesktopBounds</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVRect</a>* frame, <a href="Macintosh.html#AVRect" target="">AVRect</a>* bounds)</div>
+<div class="summaryTableDescription">Gets the desktop boundary for the monitor on which the window would appear if its frame was set to the specified frame. This boundary describes in global coordinates the visible area of the desktop (that is, without the menu bar, task bar, docked toolbars, and so on). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowGetFrame7494()">AVWindowGetFrame</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVScreenRect</a>* rect)</div>
+<div class="summaryTableDescription">Gets the window's frame, which specifies its size and location on the screen.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowGetInterior7529()">AVWindowGetInterior</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVWindowRect</a>* rect)</div>
+<div class="summaryTableDescription">Gets the interior rectangle of the window. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowGetMinMaxSize7562()">AVWindowGetMinMaxSize</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVRect</a>* rect)</div>
+<div class="summaryTableDescription">Gets the minimum and maximum size of the window.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void* <a class="signatureLink" href="#AVWindowGetOwnerData2988()">AVWindowGetOwnerData</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Gets a window's owner data. The owner data is private data for the use of the window's creator. For example, if a client uses its own class library, it might use the owner data field to store a pointer to the object owning the AVWindow.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVPlatformWindowRef <a class="signatureLink" href="#AVWindowGetPlatformThing2975()">AVWindowGetPlatformThing</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Returns a pointer to the platform-specific thing associated with the window. Do not confuse this with the owner data (see also AVWindowGetOwnerData).</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowGetTitle8268()">AVWindowGetTitle</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> title)</div>
+<div class="summaryTableDescription">Gets the title to display in the specified window's title bar. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVWindowHandlePlatformEvent3606()">AVWindowHandlePlatformEvent</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, void* platformEvent)</div>
+<div class="summaryTableDescription">Handles a platform-specific event. Use this method to dispatch a platform-specific event structure to an AVWindow. This method may raise exceptions, depending on the event. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowHide2933()">AVWindowHide</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Hides the specified window. Hiding a window makes it invisible; it does not minimize or icon-ize it.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowInvalidateRect7545()">AVWindowInvalidateRect</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVWindowRect</a>* rect)</div>
+<div class="summaryTableDescription">Invalidates the specified rectangular region, for eventual redraw. This is the preferred method for refreshing a portion of an AVWindow. Use AVWindowDrawNow() to force a window to redraw its invalid regions. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVWindowIsKey3054()">AVWindowIsKey</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Tests whether the specified window is the key window. The key window is the window that receives mouse clicks.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVWindowIsVisible2946()">AVWindowIsVisible</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Tests whether a window is displayed on the screen. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowMaximize2906()">AVWindowMaximize</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> maximize)</div>
+<div class="summaryTableDescription">Maximizes the specified window. On Mac OS, this corresponds to calling the ZoomWindow Toolbox function. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVWindow <a class="signatureLink" href="#AVWindowNew7423()">AVWindowNew</a>(<a href="AVWindow.html#AVWindowLayer" target="">AVWindowLayer</a> layer, <a href="General.html#AVFlagBits32" target="">AVFlagBits32</a> flags, <a href="AVWindow.html#_t_AVWindowHandler" target="">AVWindowHandler</a> handler, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner)</div>
+<div class="summaryTableDescription">Creates a new window and registers it with the Acrobat viewer.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">AVWindow <a class="signatureLink" href="#AVWindowNewFromPlatformThing7467()">AVWindowNewFromPlatformThing</a>(<a href="AVWindow.html#AVWindowLayer" target="">AVWindowLayer</a> layer, <a href="General.html#AVFlagBits32" target="">AVFlagBits32</a> flags, <a href="AVWindow.html#_t_AVWindowHandler" target="">AVWindowHandler</a> handler, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner, <a href="General.html#AVPlatformWindowRef" target="">AVPlatformWindowRef</a> platformThing)</div>
+<div class="summaryTableDescription">Creates a new window from a platform-specific structure and registers it with the Acrobat viewer.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowResignKey3083()">AVWindowResignKey</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Use this method when you want win to resign its key window status. Another window might pick up key window status as a result. You must first call AVWindowSetWantsKey() with a value of false for the wantsKey parameter or your window may immediately become the key window again.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowSetFrame7516()">AVWindowSetFrame</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVScreenRect</a>* rect)</div>
+<div class="summaryTableDescription">Sets the window's frame, which specifies its size and location on the screen.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowSetMinMaxSize7576()">AVWindowSetMinMaxSize</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVRect</a>* rect)</div>
+<div class="summaryTableDescription">Sets the minimum and maximum size of the window.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowSetOwnerData3001()">AVWindowSetOwnerData</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, void* newData)</div>
+<div class="summaryTableDescription">Sets a window's owner data. The owner data is private data for the use of the window's creator. For example, if a client uses its own class library, it might use the owner data field to store a pointer to the object owning the AVWindow.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowSetTitle8285()">AVWindowSetTitle</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> newTitle)</div>
+<div class="summaryTableDescription">Sets the title to display in the specified window's title bar. This method cannot be used to set the title of the window in which the Acrobat viewer normally opens a PDF file; it can only be used to set the title of an AVWindow created by a client. To set the title of a window in which the Acrobat viewer opens a PDF file, you must replace AVDocOpenFromASFileWithParams() and pass the window title in tempTitle. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowSetWantsKey3040()">AVWindowSetWantsKey</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> wantsKey)</div>
+<div class="summaryTableDescription">AVWIN_WANTSKEY is deprecated and ignored. Because of this, AVWindowSetWantsKey effectively does nothing.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#AVWindowShow2915()">AVWindowShow</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</div>
+<div class="summaryTableDescription">Shows the specified window. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#AVWindowUserClose2896()">AVWindowUserClose</a>(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> quitting)</div>
+<div class="summaryTableDescription">Simulates a user's click on a window's box. This calls the AVWindowWillCloseProc() of the win object's AVWindowHandler. </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<div class="detailSectionHeader">Defines Detail</div>
+<a name="AVWIN_AUXILIARY4980"></a><a name="AVWIN_AUXILIARY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_AUXILIARY</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_AUXILIARY 0x10000000</div>
+</code>
+<br>
+<span class="label">Description</span><p>
+<i>Auxiliary</i> windows pass unhandled menu commands to the frontmost document window. For example, the Find dialog box is <i>auxiliary</i> since menu items such as Save and Close should still be enabled. A window that does not purport to operate on the topmost document window (for example, an "Establish Connection to Library of Congress" dialog box) would probably not be auxiliary. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4980</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_FORMFIT4995"></a><a name="AVWIN_FORMFIT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_FORMFIT</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_FORMFIT 0x00400000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> sizes itself to fit its child views. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4995</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_HASCLOSEBOX4951"></a><a name="AVWIN_HASCLOSEBOX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_HASCLOSEBOX</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_HASCLOSEBOX 0x40000000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> has a <a href="../AS_Layer/General.html#close" target="">close</a> box. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4951</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_HASDRAGBAR4966"></a><a name="AVWIN_HASDRAGBAR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_HASDRAGBAR</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_HASDRAGBAR 0x02000000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> has a drag bar. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4966</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_HASMINIMIZEBOX4961"></a><a name="AVWIN_HASMINIMIZEBOX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_HASMINIMIZEBOX</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_HASMINIMIZEBOX 0x04000000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> has a <a href="General.html#minimize" target="">minimize</a> box. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4961</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_HASZOOMBOX4956"></a><a name="AVWIN_HASZOOMBOX"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_HASZOOMBOX</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_HASZOOMBOX 0x20000000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> has a <a href="General.html#zoom" target="">zoom</a> box. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4956</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_INTERNAL_DOC5001"></a><a name="AVWIN_INTERNAL_DOC"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_INTERNAL_DOC</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_INTERNAL_DOC 0x00200000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The default internal document <a href="../PD_Layer/General.html#window" target="">window</a> for the platform. It must be combined with <code><a href="AVWindow.html#AVWLnonfloating" target="">AVWLnonfloating</a></code>. This overrides <i>all</i> other flags. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5001</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_PDFICON5011"></a><a name="AVWIN_PDFICON"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_PDFICON</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_PDFICON 0x00200000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> should have the PDF icon associated with it </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5011</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_RESIZEABLE4946"></a><a name="AVWIN_RESIZEABLE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_RESIZEABLE</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_RESIZEABLE 0x80000000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> is resizeable. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4946</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_SMALLTITLEBAR4971"></a><a name="AVWIN_SMALLTITLEBAR"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_SMALLTITLEBAR</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_SMALLTITLEBAR 0x01000000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> has a small <a href="General.html#title" target="">title</a> bar. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4971</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_TRANSIENT4990"></a><a name="AVWIN_TRANSIENT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_TRANSIENT</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_TRANSIENT 0x00800000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> hides itself when focus is lost. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4990</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_UNDECORATED5006"></a><a name="AVWIN_UNDECORATED"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_UNDECORATED</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_UNDECORATED 0x00100000</div>
+</code>
+<br>
+<span class="label">Description</span><p>The <a href="../PD_Layer/General.html#window" target="">window</a> does not have decorations such as borders, captions or edges. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5006</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWIN_WANTSKEY4985"></a><a name="AVWIN_WANTSKEY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWIN_WANTSKEY</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWIN_WANTSKEY 0x08000000</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4985</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindow28"></a><a name="AVWindow"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindow</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWindow void*</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PIPokes.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>28</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLfloating4912"></a><a name="AVWLfloating"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLfloating</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLfloating 2</div>
+</code>
+<br>
+<span class="label">Description</span><p>A floating <a href="../PD_Layer/General.html#window" target="">window</a>, such as a palette. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4912</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLhelp4932"></a><a name="AVWLhelp"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLhelp</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLhelp 6</div>
+</code>
+<br>
+<span class="label">Description</span><p>(Internal use only) A help <a href="../PD_Layer/General.html#window" target="">window</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4932</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLmenu4937"></a><a name="AVWLmenu"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLmenu</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLmenu 7</div>
+</code>
+<br>
+<span class="label">Description</span><p>A <a href="../PD_Layer/General.html#window" target="">window</a> that occupies the same layer as popup menus, and has no <a href="General.html#title" target="">title</a> bar decorations. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4937</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLmodal4917"></a><a name="AVWLmodal"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLmodal</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLmodal 3</div>
+</code>
+<br>
+<span class="label">Description</span><p>A modal dialog box. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4917</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLnonfloating4907"></a><a name="AVWLnonfloating"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLnonfloating</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLnonfloating 1</div>
+</code>
+<br>
+<span class="label">Description</span><p>A regular <a href="../PD_Layer/General.html#window" target="">window</a>, such as a document window. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4907</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLpopup4922"></a><a name="AVWLpopup"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLpopup</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLpopup 4</div>
+</code>
+<br>
+<span class="label">Description</span><p>(<a href="General.html#New" target="">New</a> in Acrobat 5.0) A popup <a href="../PD_Layer/General.html#window" target="">window</a> without a caption, a one-pixel <a href="#border" target="">border</a> and drop shadow. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4922</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLtoolbar4927"></a><a name="AVWLtoolbar"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLtoolbar</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLtoolbar 5</div>
+</code>
+<br>
+<span class="label">Description</span><p>(Internal use only) A toolbar <a href="../PD_Layer/General.html#window" target="">window</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4927</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLtopmost4942"></a><a name="AVWLtopmost"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLtopmost</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLtopmost 8</div>
+</code>
+<br>
+<span class="label">Description</span><p>A <a href="../AS_Layer/General.html#top" target="">top</a> <a href="../PDF_Library/General.html#level" target="">level</a> <a href="../PD_Layer/General.html#window" target="">window</a> that has no user interface except a <a href="General.html#frame" target="">frame</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4942</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWLunknown4902"></a><a name="AVWLunknown"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWLunknown</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define AVWLunknown 0</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4902</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="AVWindow"></a><a name="AVWindow2466"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindow</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_AVWindow* AVWindow;</code>
+</div>
+<br><p>Creates and manages windows. Plug-ins should use AVWindows for their own dialog boxes, floating palettes, and so on, to ensure that those windows work well with the Acrobat viewer. For example, under Windows they are <a href="General.html#hidden" target="">hidden</a> when the Acrobat viewer is turned into an icon. Once your plug-in creates an AVWindow, it is free to use platform-dependent code to put whatever you would like in the window. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew</a> <br><a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing</a> <br><a href="AVDoc.html#AVDocGetAVWindow()" target="">AVDocGetAVWindow</a> <br><a href="AVWindow.html#AVWindowDestroy()" target="">AVWindowDestroy</a> <br><a href="AVWindow.html#AVWindowUserClose()" target="">AVWindowUserClose</a> <br><a href="AVWindow.html#AVWindowDrawNow()" target="">AVWindowDrawNow</a> <br><a href="AVWindow.html#AVWindowGetFrame()" target="">AVWindowGetFrame</a> <br><a href="AVWindow.html#AVWindowSetFrame()" target="">AVWindowSetFrame</a> <br><a href="AVWindow.html#AVWindowGetInterior()" target="">AVWindowGetInterior</a> <br><a href="AVWindow.html#AVWindowGetOwnerData()" target="">AVWindowGetOwnerData</a> <br><a href="AVWindow.html#AVWindowSetOwnerData()" target="">AVWindowSetOwnerData</a> <br><a href="AVWindow.html#AVWindowGetPlatformThing()" target="">AVWindowGetPlatformThing</a> <br><a href="AVWindow.html#AVWindowGetTitle()" target="">AVWindowGetTitle</a> <br><a href="AVWindow.html#AVWindowSetTitle()" target="">AVWindowSetTitle</a> <br><a href="AVWindow.html#AVWindowIsKey()" target="">AVWindowIsKey</a> <br><a href="AVWindow.html#AVWindowBecomeKey()" target="">AVWindowBecomeKey</a> <br><a href="AVWindow.html#AVWindowSetWantsKey()" target="">AVWindowSetWantsKey</a> <br><a href="AVWindow.html#AVWindowResignKey()" target="">AVWindowResignKey</a> <br><a href="AVWindow.html#AVWindowBringToFront()" target="">AVWindowBringToFront</a> <br><a href="AVWindow.html#AVWindowIsVisible()" target="">AVWindowIsVisible</a> <br><a href="AVWindow.html#AVWindowShow()" target="">AVWindowShow</a> <br><a href="AVWindow.html#AVWindowHide()" target="">AVWindowHide</a> <br><a href="AVWindow.html#AVWindowInvalidateRect()" target="">AVWindowInvalidateRect</a> <br><a href="AVWindow.html#AVWindowMaximize()" target="">AVWindowMaximize</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2466</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowCoord"></a><a name="AVWindowCoord382"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowCoord</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#AVSDKDependentInteger" target="">AVSDKDependentInteger</a> AVWindowCoord;</code>
+</div>
+<br><p>An <a href="#x" target="">x</a> or <a href="#y" target="">y</a> coordinate in the window's <a href="../PD_Layer/General.html#space" target="">space</a>. (0,0) is at the <a href="../AS_Layer/General.html#top" target="">top</a> <a href="../AS_Layer/General.html#left" target="">left</a>, and units are in pixels. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowAdjustCursorProc" target="">AVWindowAdjustCursorProc</a> <br><a href="AVWindow.html#AVWindowMouseDownProc" target="">AVWindowMouseDownProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>382</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowHandler"></a><a name="AVWindowHandler5350"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowHandler</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="AVWindow.html#_t_AVWindowHandler" target="">_t_AVWindowHandler</a> AVWindowHandler;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5350</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowHandlerRec"></a><a name="AVWindowHandlerRec5350"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowHandlerRec</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="AVWindow.html#_t_AVWindowHandler" target="">_t_AVWindowHandler</a> AVWindowHandlerRec;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5350</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowLayer"></a><a name="AVWindowLayer4899"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowLayer</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> AVWindowLayer;</code>
+</div>
+<br><p>Constants that specify the layer in which a newly-created <a href="AVWindow.html" target="">AVWindow</a> is to appear. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew</a> <br><a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>4899</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowRect"></a><a name="AVWindowRect1131"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowRect</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Macintosh.html#AVRect" target="">AVRect</a> AVWindowRect;</code>
+</div>
+<br><p>A <a href="#data" target="">data</a> structure representing a rectangle (a quadrilateral having only horizontal and vertical sides) in a window's coordinate <a href="../PD_Layer/General.html#space" target="">space</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetInterior()" target="">AVWindowGetInterior</a> <br><a href="AVWindow.html#AVWindowInvalidateRect()" target="">AVWindowInvalidateRect</a> <br><a href="AVWindow.html#AVWindowDrawProc" target="">AVWindowDrawProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1131</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<a name="structureDetail"></a>
+<div class="detailSectionHeader">Structure Detail</div>
+<a name="_t_AVWindowHandler5256"></a><a name="_t_AVWindowHandler"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_t_AVWindowHandler</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct _t_AVWindowHandler {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASSize_t" target="">ASSize_t</a>&nbsp;<a href="#_t_AVWindowHandlersize"><b>size</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowMouseDownProc" target="">AVWindowMouseDownProc</a>&nbsp;<a href="#_t_AVWindowHandlerMouseDown"><b>MouseDown</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowWillCloseProc" target="">AVWindowWillCloseProc</a>&nbsp;<a href="#_t_AVWindowHandlerWillClose"><b>WillClose</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDidCloseProc" target="">AVWindowDidCloseProc</a>&nbsp;<a href="#_t_AVWindowHandlerDidClose"><b>DidClose</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDidActivateProc" target="">AVWindowDidActivateProc</a>&nbsp;<a href="#_t_AVWindowHandlerDidActivate"><b>DidActivate</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDidBecomeKeyProc" target="">AVWindowDidBecomeKeyProc</a>&nbsp;<a href="#_t_AVWindowHandlerDidBecomeKey"><b>DidBecomeKey</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowKeyDownProc" target="">AVWindowKeyDownProc</a>&nbsp;<a href="#_t_AVWindowHandlerKeyDown"><b>KeyDown</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowWillResignKeyProc" target="">AVWindowWillResignKeyProc</a>&nbsp;<a href="#_t_AVWindowHandlerWillResignKey"><b>WillResignKey</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowWillDeactivateProc" target="">AVWindowWillDeactivateProc</a>&nbsp;<a href="#_t_AVWindowHandlerWillDeactivate"><b>WillDeactivate</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDrawProc" target="">AVWindowDrawProc</a>&nbsp;<a href="#_t_AVWindowHandlerDraw"><b>Draw</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowWillBeResizedProc" target="">AVWindowWillBeResizedProc</a>&nbsp;<a href="#_t_AVWindowHandlerWillBeResized"><b>WillBeResized</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowPerformEditOpProc" target="">AVWindowPerformEditOpProc</a>&nbsp;<a href="#_t_AVWindowHandlerPerformEditOp"><b>PerformEditOp</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowCanPerformEditOpProc" target="">AVWindowCanPerformEditOpProc</a>&nbsp;<a href="#_t_AVWindowHandlerCanPerformEditOp"><b>CanPerformEditOp</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowAdjustCursorProc" target="">AVWindowAdjustCursorProc</a>&nbsp;<a href="#_t_AVWindowHandlerAdjustCursor"><b>AdjustCursor</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDidResizeProc" target="">AVWindowDidResizeProc</a>&nbsp;<a href="#_t_AVWindowHandlerDidResize"><b>DidResize</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDestroyPlatformThingProc" target="">AVWindowDestroyPlatformThingProc</a>&nbsp;<a href="#_t_AVWindowHandlerDestroyPlatformThing"><b>DestroyPlatformThing</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDidMaximizeProc" target="">AVWindowDidMaximizeProc</a>&nbsp;<a href="#_t_AVWindowHandlerDidMaximize"><b>DidMaximize</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDidCollapseProc" target="">AVWindowDidCollapseProc</a>&nbsp;<a href="#_t_AVWindowHandlerDidCollapse"><b>DidCollapse</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="AVWindow.html#AVWindowDidMoveProc" target="">AVWindowDidMoveProc</a>&nbsp;<a href="#_t_AVWindowHandlerDidMove"><b>DidMove</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>A <a href="#data" target="">data</a> structure containing callbacks that implement a <a href="../PD_Layer/General.html#window" target="">window</a> <a href="General.html#handler" target="">handler</a>. The callbacks implement the window handler functions. For example, they can resize the window, draw its contents, handle mouse clicks, and handle key presses. <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> values are acceptable; default behavior is used in such cases. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew</a> <br><a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5256</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlersize"></a>size&nbsp;&nbsp;</td><td><p>The size of the <a href="#data" target="">data</a> structure. It must be set to <code>sizeof(<a href="AVWindow.html#AVWindowHandlerRec" target="">AVWindowHandlerRec</a>)</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerMouseDown"></a>MouseDown&nbsp;&nbsp;</td><td><p>Mouse clicks in the <a href="AVWindow.html" target="">AVWindow</a> are dispatched through this callback. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerWillClose"></a>WillClose&nbsp;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> is about to <a href="../AS_Layer/General.html#close" target="">close</a>. It returns <code>true</code> if the window should close, <code>false</code> to abort the operation. If <code>quitting</code> is <code>true</code>, the application is in the middle of trying to quit. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDidClose"></a>DidClose&nbsp;&nbsp;</td><td><p>Called immediately after the <a href="../PD_Layer/General.html#window" target="">window</a> has closed, but <a href="General.html#before" target="">before</a> it has been freed (<a href="../PDFEdit_Layer/General.html#if" target="">if</a> one-shot). </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDidActivate"></a>DidActivate&nbsp;&nbsp;</td><td><p>Called after the <a href="../PD_Layer/General.html#window" target="">window</a> becomes the frontmost, active window. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDidBecomeKey"></a>DidBecomeKey&nbsp;&nbsp;</td><td><p>Called after the <a href="../PD_Layer/General.html#window" target="">window</a> becomes the key window. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerKeyDown"></a>KeyDown&nbsp;&nbsp;</td><td><p>Called to handle keystrokes when this is the key <a href="../PD_Layer/General.html#window" target="">window</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerWillResignKey"></a>WillResignKey&nbsp;&nbsp;</td><td><p>Called <a href="General.html#before" target="">before</a> the <a href="../PD_Layer/General.html#window" target="">window</a> ceases to be the key window. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerWillDeactivate"></a>WillDeactivate&nbsp;&nbsp;</td><td><p>Called <a href="General.html#before" target="">before</a> the <a href="../PD_Layer/General.html#window" target="">window</a> becomes deactivated or <a href="General.html#hidden" target="">hidden</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDraw"></a>Draw&nbsp;&nbsp;</td><td><p>Called whenever the <a href="../PD_Layer/General.html#window" target="">window</a> needs to refresh some part of its interior. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerWillBeResized"></a>WillBeResized&nbsp;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> is about to be resized in accordance with the given rectangle. This callback may alter the contents of <code>newFrame</code> to change the new frame size. Returning <code>false</code> aborts the operation. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerPerformEditOp"></a>PerformEditOp&nbsp;&nbsp;</td><td><p>Called when the user has chosen an Edit menu item corresponding to the given <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a>, assuming the corresponding CanPerformEditProc() returned <code>true</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerCanPerformEditOp"></a>CanPerformEditOp&nbsp;&nbsp;</td><td><p>Called <a href="General.html#before" target="">before</a> showing the menus to determine whether a given Edit menu item corresponding to the given <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> should be enabled. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerAdjustCursor"></a>AdjustCursor&nbsp;&nbsp;</td><td><p>Called periodically while the cursor is over the <a href="AVWindow.html" target="">AVWindow</a> (<a href="../PDFEdit_Layer/General.html#if" target="">if</a> active). Use this to adjust the cursor's appearance. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDidResize"></a>DidResize&nbsp;&nbsp;</td><td><p>Called after a <a href="../PD_Layer/General.html#window" target="">window</a> is resized. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDestroyPlatformThing"></a>DestroyPlatformThing&nbsp;&nbsp;</td><td><p>Called during DestroyWindow() when it is time to dispose of the <code>platformThing</code> for the window passed into <a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDidMaximize"></a>DidMaximize&nbsp;&nbsp;</td><td><p>Called after a <a href="../PD_Layer/General.html#window" target="">window</a> is maximized. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDidCollapse"></a>DidCollapse&nbsp;&nbsp;</td><td><p>Called after a <a href="../PD_Layer/General.html#window" target="">window</a> is collapsed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_AVWindowHandlerDidMove"></a>DidMove&nbsp;&nbsp;</td><td><p>Called after a <a href="../PD_Layer/General.html#window" target="">window</a> is moved. </p></td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="AVWindowAdjustCursorProc5067"></a><a name="AVWindowAdjustCursorProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowAdjustCursorProc</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowAdjustCursorProc)(<a href="AVWindow.html" target="">AVWindow</a> win, <a href="AVWindow.html#AVWindowCoord" target="">AVWindowCoord</a> <a href="#x" target="">x</a>, AVWindowCoord <a href="#y" target="">y</a>)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called periodically while the cursor is over the AVWindow (<a href="../PDFEdit_Layer/General.html#if" target="">if</a> the <a href="../PD_Layer/General.html#window" target="">window</a> is active). Use this to adjust the cursor's appearance. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5067</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowCanPerformEditOpProc5232"></a><a name="AVWindowCanPerformEditOpProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowCanPerformEditOpProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*AVWindowCanPerformEditOpProc)(<a href="AVWindow.html" target="">AVWindow</a> win, <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> editOp)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called <a href="General.html#before" target="">before</a> showing the Edit menu, to determine whether to enable the Edit menu item corresponding to the given <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowPerformEditOpProc" target="">AVWindowPerformEditOpProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5232</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDestroyPlatformThingProc5243"></a><a name="AVWindowDestroyPlatformThingProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDestroyPlatformThingProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDestroyPlatformThingProc)(<a href="AVWindow.html" target="">AVWindow</a> win, <a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *platformThing)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called when it is time to dispose of the <code>platformThing</code> for the window passed to <a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing()</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5243</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDidActivateProc5129"></a><a name="AVWindowDidActivateProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDidActivateProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDidActivateProc)(<a href="AVWindow.html" target="">AVWindow</a> win)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called after the <a href="../PD_Layer/General.html#window" target="">window</a> has been activated. The window being activated will not always become the front-most window. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowWillDeactivateProc" target="">AVWindowWillDeactivateProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5129</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDidBecomeKeyProc5139"></a><a name="AVWindowDidBecomeKeyProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDidBecomeKeyProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDidBecomeKeyProc)(<a href="AVWindow.html" target="">AVWindow</a> win)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called after the <a href="../PD_Layer/General.html#window" target="">window</a> becomes the key window. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowWillResignKeyProc" target="">AVWindowWillResignKeyProc</a> <br><a href="AVWindow.html#AVWindowSetWantsKey()" target="">AVWindowSetWantsKey</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5139</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDidCloseProc5120"></a><a name="AVWindowDidCloseProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDidCloseProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDidCloseProc)(<a href="AVWindow.html" target="">AVWindow</a> win)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called immediately after the <a href="../PD_Layer/General.html#window" target="">window</a> has been closed, but <a href="General.html#before" target="">before</a> it has been freed. You may want to explicitly destroy the window in this routine. See also <a href="AVWindow.html#AVWindowWillCloseProc" target="">AVWindowWillCloseProc</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowWillCloseProc" target="">AVWindowWillCloseProc</a> <br><a href="AVWindow.html#AVWindowUserClose()" target="">AVWindowUserClose</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5120</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDidCollapseProc5090"></a><a name="AVWindowDidCollapseProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDidCollapseProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDidCollapseProc)(<a href="AVWindow.html" target="">AVWindow</a> win)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called after the <a href="../PD_Layer/General.html#window" target="">window</a> has been collapsed. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5090</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDidMaximizeProc5083"></a><a name="AVWindowDidMaximizeProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDidMaximizeProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDidMaximizeProc)(<a href="AVWindow.html" target="">AVWindow</a> win)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called after the <a href="../PD_Layer/General.html#window" target="">window</a> has been maximized. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5083</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDidMoveProc5099"></a><a name="AVWindowDidMoveProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDidMoveProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDidMoveProc)(<a href="AVWindow.html" target="">AVWindow</a> win, const <a href="General.html#AVScreenRect" target="">AVScreenRect</a> *newFrame)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called after the <a href="../PD_Layer/General.html#window" target="">window</a> has been resized. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5099</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDidResizeProc5076"></a><a name="AVWindowDidResizeProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDidResizeProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDidResizeProc)(<a href="AVWindow.html" target="">AVWindow</a> win, const <a href="General.html#AVScreenRect" target="">AVScreenRect</a> *newFrame)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called after the <a href="../PD_Layer/General.html#window" target="">window</a> has been resized. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5076</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDrawProc5045"></a><a name="AVWindowDrawProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDrawProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowDrawProc)(<a href="AVWindow.html" target="">AVWindow</a> win, const <a href="AVWindow.html#AVWindowRect" target="">AVWindowRect</a> *rect)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called whenever the <a href="../PD_Layer/General.html#window" target="">window</a> needs to refresh some part of its interior. It should redraw the contents of the specified rectangle. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowDrawNow()" target="">AVWindowDrawNow</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5045</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowKeyDownProc5150"></a><a name="AVWindowKeyDownProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowKeyDownProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowKeyDownProc)(<a href="AVWindow.html" target="">AVWindow</a> win, char key, <a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *platformEvent)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called to handle keystrokes when this is the key <a href="../PD_Layer/General.html#window" target="">window</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowMouseDownProc" target="">AVWindowMouseDownProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5150</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowMouseDownProc5035"></a><a name="AVWindowMouseDownProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowMouseDownProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowMouseDownProc)(<a href="AVWindow.html" target="">AVWindow</a> win, <a href="AVWindow.html#AVWindowCoord" target="">AVWindowCoord</a> <a href="#x" target="">x</a>, AVWindowCoord <a href="#y" target="">y</a>, <a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *platformEvent)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. Mouse clicks in the AVWindow are dispatched through this callback. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowKeyDownProc" target="">AVWindowKeyDownProc</a></div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5035</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowPerformEditOpProc5198"></a><a name="AVWindowPerformEditOpProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowPerformEditOpProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowPerformEditOpProc)(<a href="AVWindow.html" target="">AVWindow</a> win, <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> editOp)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called when the user has chosen an Edit menu item and the corresponding <a href="AVWindow.html#AVWindowCanPerformEditOpProc" target="">AVWindowCanPerformEditOpProc()</a> returned <code>true</code>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowCanPerformEditOpProc" target="">AVWindowCanPerformEditOpProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5198</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowWillBeResizedProc5057"></a><a name="AVWindowWillBeResizedProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowWillBeResizedProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*AVWindowWillBeResizedProc)(<a href="AVWindow.html" target="">AVWindow</a> win, <a href="General.html#AVScreenRect" target="">AVScreenRect</a> *newFrame)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called when the <a href="../PD_Layer/General.html#window" target="">window</a> is about to resize. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowSetFrame()" target="">AVWindowSetFrame</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5057</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowWillCloseProc5109"></a><a name="AVWindowWillCloseProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowWillCloseProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*AVWindowWillCloseProc)(<a href="AVWindow.html" target="">AVWindow</a> win, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> quitting)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. The <a href="../PD_Layer/General.html#window" target="">window</a> is about to <a href="../AS_Layer/General.html#close" target="">close</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowUserClose()" target="">AVWindowUserClose</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5109</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowWillDeactivateProc5166"></a><a name="AVWindowWillDeactivateProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowWillDeactivateProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowWillDeactivateProc)(<a href="AVWindow.html" target="">AVWindow</a> win)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called <a href="General.html#before" target="">before</a> the <a href="../PD_Layer/General.html#window" target="">window</a> becomes deactivated or <a href="General.html#hidden" target="">hidden</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowDidActivateProc" target="">AVWindowDidActivateProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5166</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowWillResignKeyProc5158"></a><a name="AVWindowWillResignKeyProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowWillResignKeyProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*AVWindowWillResignKeyProc)(<a href="AVWindow.html" target="">AVWindow</a> win)</code>
+</div>
+<br><p>A callback for <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a>. It is called <a href="General.html#before" target="">before</a> the <a href="../PD_Layer/General.html#window" target="">window</a> ceases to be the key window. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowDidBecomeKeyProc" target="">AVWindowDidBecomeKeyProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5158</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="AVWindowBecomeKey3068()"></a><a name="AVWindowBecomeKey()"></a><a name="AVWindowBecomeKey(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowBecomeKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowBecomeKey(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Makes <code>win</code> the key window (regardless of the setting of its <code>wantsKey</code> flag) if the window is visible.</p><p><a href="UNIX.html" target="">UNIX</a> developers: This method is a no-op.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> that is to become the key window.</p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowSetWantsKey()" target="">AVWindowSetWantsKey</a> <br><a href="AVWindow.html#AVWindowIsVisible()" target="">AVWindowIsVisible</a> <br><a href="AVWindow.html#AVWindowResignKey()" target="">AVWindowResignKey</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3068</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowBringToFront3019()"></a><a name="AVWindowBringToFront()"></a><a name="AVWindowBringToFront(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowBringToFront</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowBringToFront(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Brings the specified <a href="../PD_Layer/General.html#window" target="">window</a> to the front. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> to bring to the front. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowBecomeKey()" target="">AVWindowBecomeKey</a> <br><a href="AVWindow.html#AVWindowIsKey()" target="">AVWindowIsKey</a> <br><a href="AVWindow.html#AVWindowSetWantsKey()" target="">AVWindowSetWantsKey</a> </div>
+<p>
+<span class="label">Notifications</span>
+</p>
+<div class="seeAlso"><a href="AVApp.html#AVAppFrontDocDidChange()" target="">AVAppFrontDocDidChange</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3019</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowCenter5545()"></a><a name="AVWindowCenter()"></a><a name="AVWindowCenter(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowCenter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowCenter(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Centers the <a href="../PD_Layer/General.html#window" target="">window</a> within its parent window or the desktop <a href="../PDFEdit_Layer/General.html#if" target="">if</a> it has no parent. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> to <a href="../PD_Layer/General.html#center" target="">center</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>5545</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDestroy2880()"></a><a name="AVWindowDestroy()"></a><a name="AVWindowDestroy(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDestroy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowDestroy(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Destroys the specified <a href="../PD_Layer/General.html#window" target="">window</a> and all associated memory. It closes the window without calling the window handler's <a href="AVWindow.html#AVWindowWillCloseProc" target="">AVWindowWillCloseProc()</a> (that is, this operation cannot be rejected). </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> to destroy. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew</a> <br><a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2880</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDoModal8824()"></a><a name="AVWindowDoModal()"></a><a name="AVWindowDoModal(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDoModal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVWindowDoModal(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> window)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Makes the specified <a href="../PD_Layer/General.html#window" target="">window</a> modal, so that no other window can take the keyboard focus when this window is active.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">window</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> to make modal. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if successful, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowEndModal()" target="">AVWindowEndModal</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8824</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowDrawNow3028()"></a><a name="AVWindowDrawNow()"></a><a name="AVWindowDrawNow(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowDrawNow</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowDrawNow(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Redraws the invalid regions of the specified <a href="../PD_Layer/General.html#window" target="">window</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> to draw. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowInvalidateRect()" target="">AVWindowInvalidateRect</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3028</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowEndModal8835()"></a><a name="AVWindowEndModal()"></a><a name="AVWindowEndModal(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowEndModal</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVWindowEndModal(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> window)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Stops the specified <a href="../PD_Layer/General.html#window" target="">window</a> from being modal, so that other windows can take the keyboard focus when this window is active. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">window</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> to stop from being modal. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if successful, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowDoModal()" target="">AVWindowDoModal</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8835</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowEnsureInBounds6161()"></a><a name="AVWindowEnsureInBounds()"></a><a name="AVWindowEnsureInBounds(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowEnsureInBounds</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowEnsureInBounds(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>If the <code>win</code> is completely outside the desktop region (it is off screen), it is moved so that it will be within the desktop region (it is on screen). No action is taken if a draggable edge of the window is within the desktop region. The desktop region does not include the task bar (Windows) or menu bar (Mac OS). </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> to ensure is on <a href="General.html#screen" target="">screen</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetDesktopBounds()" target="">AVWindowGetDesktopBounds</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6161</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetBorderWidths9039()"></a><a name="AVWindowGetBorderWidths()"></a><a name="AVWindowGetBorderWidths(AVWindow,AVRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetBorderWidths</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowGetBorderWidths(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVRect</a>* rect)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Fills <a href="#a" target="">a</a> rectangle structure with the <a href="../AS_Layer/General.html#left" target="">left</a>, <a href="../AS_Layer/General.html#top" target="">top</a>, <a href="../AS_Layer/General.html#right" target="">right</a>, and <a href="../AS_Layer/General.html#bottom" target="">bottom</a> distances between the inner <a href="../PD_Layer/General.html#window" target="">window</a> rectangle (the <a href="General.html#frame" target="">frame</a> rectangle) and the outer window rectangle. These distances <a href="#include" target="">include</a> borders, <a href="General.html#title" target="">title</a> bars, and so on. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose <a href="#border" target="">border</a> <a href="#width" target="">width</a> is obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">rect</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A pointer to <a href="#a" target="">a</a> rectangle structure in which to return the window's <a href="#border" target="">border</a> <a href="#width" target="">width</a> rectangle, specified in global <a href="General.html#screen" target="">screen</a> coordinates. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetFrame()" target="">AVWindowGetFrame</a> <br><a href="AVWindow.html#AVWindowGetInterior()" target="">AVWindowGetInterior</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9039</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetDesktopBounds9477()"></a><a name="AVWindowGetDesktopBounds()"></a><a name="AVWindowGetDesktopBounds(AVWindow,const AVRect*,AVRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetDesktopBounds</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVWindowGetDesktopBounds(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVRect</a>* frame, <a href="Macintosh.html#AVRect" target="">AVRect</a>* bounds)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the desktop boundary for the monitor on which the <a href="../PD_Layer/General.html#window" target="">window</a> would appear <a href="../PDFEdit_Layer/General.html#if" target="">if</a> its <a href="General.html#frame" target="">frame</a> was set to the specified frame. This boundary describes in global coordinates the <a href="General.html#visible" target="">visible</a> area of the desktop (that is, without the menu bar, task bar, docked toolbars, and so on). </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose desktop <a href="General.html#bounds" target="">bounds</a> are obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">frame</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> rectangle structure for a potential <a href="../PD_Layer/General.html#window" target="">window</a> <a href="General.html#frame" target="">frame</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bounds</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A pointer to <a href="#a" target="">a</a> structure in which to return the window's desktop <a href="General.html#bounds" target="">bounds</a> rectangle, specified in global <a href="General.html#screen" target="">screen</a> coordinates. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if successful, <code>false</code> if the method cannot provide the information. In this case, the bounds are set to <code>(0,0,0,0)</code>.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowEnsureInBounds()" target="">AVWindowEnsureInBounds</a> <br><a href="AVWindow.html#AVWindowGetFrame()" target="">AVWindowGetFrame</a> <br><a href="AVWindow.html#AVWindowGetInterior()" target="">AVWindowGetInterior</a> <br><a href="AVWindow.html#AVWindowSetFrame()" target="">AVWindowSetFrame</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>9477</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetFrame7494()"></a><a name="AVWindowGetFrame()"></a><a name="AVWindowGetFrame(AVWindow,AVScreenRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetFrame</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowGetFrame(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVScreenRect</a>* rect)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the window's <a href="General.html#frame" target="">frame</a>, which specifies its <a href="General.html#size" target="">size</a> and location on the <a href="General.html#screen" target="">screen</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose <a href="General.html#frame" target="">frame</a> is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">rect</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A pointer to <a href="#a" target="">a</a> rectangle specifying the window's <a href="General.html#frame" target="">frame</a> rectangle, specified in global <a href="General.html#screen" target="">screen</a> coordinates. On Mac OS, the frame includes only the window's content region. On <a href="Windows.html" target="">Windows</a>, the frame includes only the window's client rectangle. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowSetFrame()" target="">AVWindowSetFrame</a> <br><a href="AVWindow.html#AVWindowGetInterior()" target="">AVWindowGetInterior</a></div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7494</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetInterior7529()"></a><a name="AVWindowGetInterior()"></a><a name="AVWindowGetInterior(AVWindow,AVWindowRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetInterior</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowGetInterior(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVWindowRect</a>* rect)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the interior rectangle of the <a href="../PD_Layer/General.html#window" target="">window</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose interior is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">rect</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A pointer to <a href="#a" target="">a</a> rectangle specifying the window's interior, specified as local window coordinates. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetFrame()" target="">AVWindowGetFrame</a> <br><a href="AVWindow.html#AVWindowSetFrame()" target="">AVWindowSetFrame</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7529</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetMinMaxSize7562()"></a><a name="AVWindowGetMinMaxSize()"></a><a name="AVWindowGetMinMaxSize(AVWindow,AVRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetMinMaxSize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowGetMinMaxSize(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="Macintosh.html#AVRect" target="">AVRect</a>* rect)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the minimum and maximum <a href="General.html#size" target="">size</a> of the <a href="../PD_Layer/General.html#window" target="">window</a>.</p><p>
+<code>top</code> and <code>left</code> in <code>rect</code> are for minimum size; <code>bottom</code> and <code>right</code> are for maximum size.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose <a href="General.html#size" target="">size</a> is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">rect</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A pointer to <a href="#a" target="">a</a> rectangle specifying the window's <a href="General.html#size" target="">size</a>, specified in device <a href="../PD_Layer/General.html#space" target="">space</a> coordinates. If this method is not supported on a particular platform, the minimum size returned is <code>0, 0</code> and the maximum size is <code><a href="../AS_Layer/General.html#ASMAXInt16" target="">ASMAXInt16</a>, ASMAXInt16</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowSetMinMaxSize()" target="">AVWindowSetMinMaxSize</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00040005 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7562</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetOwnerData2988()"></a><a name="AVWindowGetOwnerData()"></a><a name="AVWindowGetOwnerData(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetOwnerData</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void* AVWindowGetOwnerData(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> window's owner <a href="#data" target="">data</a>. The owner data is private data for the use of the window's creator. For example, <a href="../PDFEdit_Layer/General.html#if" target="">if</a> a client uses its own class library, it might use the owner data field to store a pointer to the object owning the <a href="AVWindow.html" target="">AVWindow</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose owner <a href="#data" target="">data</a> is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A pointer to owner <a href="#data" target="">data</a> for <code>win</code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowSetOwnerData()" target="">AVWindowSetOwnerData</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2988</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetPlatformThing2975()"></a><a name="AVWindowGetPlatformThing()"></a><a name="AVWindowGetPlatformThing(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetPlatformThing</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#AVPlatformWindowRef" target="">AVPlatformWindowRef</a> AVWindowGetPlatformThing(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns <a href="#a" target="">a</a> pointer to the platform-specific thing associated with the <a href="../PD_Layer/General.html#window" target="">window</a>. Do not confuse this with the owner <a href="#data" target="">data</a> (see also <a href="AVWindow.html#AVWindowGetOwnerData()" target="">AVWindowGetOwnerData</a>).</p><p>
+<a href="AVDoc.html#AVDocWantsToDie()" target="">AVDocWantsToDie()</a> is broadcast after <a href="AVDoc.html#AVDocSetDead()" target="">AVDocSetDead()</a> has been called, which would warn that the AVWindow associated with that window is <code>NULL</code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT Platform-dependent <a href="../PD_Layer/General.html#window" target="">window</a> thing:</p><p>
+
+</p><table ><tr>
+<th>
+<p>Operating system</p>
+</th><th>
+<p>Value </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>Windows</p>
+</td><td valign="top">
+<p>
+<code>HWND</code>. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>Mac OS</p>
+</td><td valign="top">
+<p>
+<code>WindowRef</code> for Carbon-based windows, <code>NULL</code> for Cocoa-based windows (most windows are Cocoa as of 8.0) </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>UNIX</p>
+</td><td valign="top">
+<p>
+<code>Widget</code>. </p>
+</td>
+</tr></table></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The platform-dependent thing for the <a href="../PD_Layer/General.html#window" target="">window</a>. Returns <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if the window is associated with an AVDoc that has been set dead by <a href="AVDoc.html#AVDocSetDead()" target="">AVDocSetDead()</a>.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVDoc.html#AVDocGetAVWindow()" target="">AVDocGetAVWindow</a> <br><a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing</a> <br><a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2975</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowGetTitle8268()"></a><a name="AVWindowGetTitle()"></a><a name="AVWindowGetTitle(AVWindow,ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowGetTitle</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowGetTitle(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> title)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="General.html#title" target="">title</a> to <a href="General.html#display" target="">display</a> in the specified window's title bar. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose <a href="General.html#title" target="">title</a> is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">title</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) The <a href="../PD_Layer/General.html#window" target="">window</a> <a href="General.html#title" target="">title</a> as an <a href="../AS_Layer/ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowSetTitle()" target="">AVWindowSetTitle</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8268</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowHandlePlatformEvent3606()"></a><a name="AVWindowHandlePlatformEvent()"></a><a name="AVWindowHandlePlatformEvent(AVWindow,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowHandlePlatformEvent</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVWindowHandlePlatformEvent(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, void* platformEvent)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Handles a platform-specific event. Use this method to dispatch a platform-specific event structure to an <a href="AVWindow.html" target="">AVWindow</a>. This method may raise exceptions, depending on the event. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> with the event to handle. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">platformEvent</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to <a href="#a" target="">a</a> platform-specific event structure. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the event was handled, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso">AVAppHandleAppleEvent <br><a href="AVApp.html#AVAppHandlePlatformEvent()" target="">AVAppHandlePlatformEvent</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3606</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowHide2933()"></a><a name="AVWindowHide()"></a><a name="AVWindowHide(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowHide</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowHide(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Hides the specified <a href="../PD_Layer/General.html#window" target="">window</a>. Hiding <a href="#a" target="">a</a> window makes it invisible; it does not <a href="General.html#minimize" target="">minimize</a> or icon-ize it.</p><p>On <a href="Windows.html" target="">Windows</a>, a document window can be minimized using code based on the following: </p><p>
+<code>theAVWindow = AVDocGetAVWindow( theAVDoc); </code> </p><p>
+<code>theThing = (HWND) AVWindowGetPlatformThing( theAVWindow); </code> </p><p>
+<code>wasVisible = ShowWindow(theThing, SW_MINIMIZED);</code>
+</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> to hide. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowShow()" target="">AVWindowShow</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2933</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowInvalidateRect7545()"></a><a name="AVWindowInvalidateRect()"></a><a name="AVWindowInvalidateRect(AVWindow,const AVWindowRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowInvalidateRect</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowInvalidateRect(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVWindowRect</a>* rect)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Invalidates the specified rectangular region, for eventual redraw. This is the preferred method for refreshing a portion of an <a href="AVWindow.html" target="">AVWindow</a>. Use <a href="AVWindow.html#AVWindowDrawNow()" target="">AVWindowDrawNow()</a> to force a window to redraw its invalid regions. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> in which to invalidate a region.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">rect</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> rectangle specifying the region to invalidate. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowDrawNow()" target="">AVWindowDrawNow</a> <br><a href="AVWindow.html#AVWindowGetInterior()" target="">AVWindowGetInterior</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7545</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowIsKey3054()"></a><a name="AVWindowIsKey()"></a><a name="AVWindowIsKey(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowIsKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVWindowIsKey(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether the specified <a href="../PD_Layer/General.html#window" target="">window</a> is the key window. The key window is the window that receives mouse clicks.</p><p><a href="UNIX.html" target="">UNIX</a> users: This method is a no-op.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> to test. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code>win</code> is the key window, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowBecomeKey()" target="">AVWindowBecomeKey</a> <br><a href="AVWindow.html#AVWindowBringToFront()" target="">AVWindowBringToFront</a> <br><a href="AVWindow.html#AVWindowSetWantsKey()" target="">AVWindowSetWantsKey</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3054</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowIsVisible2946()"></a><a name="AVWindowIsVisible()"></a><a name="AVWindowIsVisible(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowIsVisible</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVWindowIsVisible(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#window" target="">window</a> is displayed on the <a href="General.html#screen" target="">screen</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose visibility is tested. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the window is displayed on the screen (even if it is currently obscured by another window), <code>false</code> otherwise.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowBecomeKey()" target="">AVWindowBecomeKey</a> <br><a href="AVWindow.html#AVWindowHide()" target="">AVWindowHide</a> <br><a href="AVWindow.html#AVWindowShow()" target="">AVWindowShow</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2946</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowMaximize2906()"></a><a name="AVWindowMaximize()"></a><a name="AVWindowMaximize(AVWindow,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowMaximize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowMaximize(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> maximize)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Maximizes the specified <a href="../PD_Layer/General.html#window" target="">window</a>. On Mac OS, this corresponds to calling the ZoomWindow Toolbox function. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> to maximize. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">maximize</span></code>&nbsp;&mdash;&nbsp;</td><td><p><code>true</code> to maximize the window, <code>false</code> to return it to its non-maximized state. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2906</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowNew7423()"></a><a name="AVWindowNew()"></a><a name="AVWindowNew(AVWindowLayer,AVFlagBits32,AVWindowHandler,ASExtension)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowNew</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVWindow.html#AVWindow" target="">AVWindow</a> AVWindowNew(<a href="AVWindow.html#AVWindowLayer" target="">AVWindowLayer</a> layer, <a href="General.html#AVFlagBits32" target="">AVFlagBits32</a> flags, <a href="AVWindow.html#_t_AVWindowHandler" target="">AVWindowHandler</a> handler, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="../PD_Layer/General.html#window" target="">window</a> and registers it with the Acrobat viewer.</p><p>Because <a href="Windows.html" target="">Windows</a> and <a href="UNIX.html" target="">UNIX</a> use the platform's native window handling instead of the Acrobat viewer's <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a> mechanism (that is, the AVWindowHandler mechanism's callbacks are never called on those platforms), there is no advantage to using <a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew()</a>. Client developers on those platforms should use <a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing()</a> instead of this method. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">layer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The layer in which the <a href="../PD_Layer/General.html#window" target="">window</a> resides. On the Mac OS, it must be one of the <a href="AVWindow.html#AVWindowLayer" target="">AVWindowLayer</a> constants. On <a href="Windows.html" target="">Windows</a>, all AVWindow objects are of <a href="../AS_Layer/General.html#type" target="">type</a> <code><a href="AVWindow.html#AVWLfloating" target="">AVWLfloating</a></code>, and <code>layer</code> is ignored. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An OR of the values listed in <a href="AVWindow.html" target="">AVWindow</a> Flags. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">handler</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A structure containing the <a href="../PD_Layer/General.html#window" target="">window</a> handler's callback functions. Pass <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> in Windows and UNIX, because the window handler's callbacks are unused on those platforms. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">owner</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../AS_Layer/General.html#gExtensionID" target="">gExtensionID</a> <a href="General.html#extension" target="">extension</a> registering the <a href="../PD_Layer/General.html#window" target="">window</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created <a href="../PD_Layer/General.html#window" target="">window</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrNoMemory </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7423</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowNewFromPlatformThing7467()"></a><a name="AVWindowNewFromPlatformThing()"></a><a name="AVWindowNewFromPlatformThing(AVWindowLayer,AVFlagBits32,AVWindowHandler,ASExtension,AVPlatformWindowRef)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowNewFromPlatformThing</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="AVWindow.html#AVWindow" target="">AVWindow</a> AVWindowNewFromPlatformThing(<a href="AVWindow.html#AVWindowLayer" target="">AVWindowLayer</a> layer, <a href="General.html#AVFlagBits32" target="">AVFlagBits32</a> flags, <a href="AVWindow.html#_t_AVWindowHandler" target="">AVWindowHandler</a> handler, <a href="../AS_Layer/ASExtension.html#ASExtension" target="">ASExtension</a> owner, <a href="General.html#AVPlatformWindowRef" target="">AVPlatformWindowRef</a> platformThing)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="../PD_Layer/General.html#window" target="">window</a> from a platform-specific structure and registers it with the Acrobat viewer.</p><p>If a user creates an <code>HWND</code> or a <code>WindowRef</code> and does not register it with the viewer via <a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing()</a>, it should not be allowed to persist across event loops (that is, on Mac OS, it should be system-modal). </p><p><a href="Windows.html" target="">Windows</a> and <a href="UNIX.html" target="">UNIX</a> use the platform's native window handling instead of the Acrobat viewer's <a href="AVWindow.html#AVWindowHandler" target="">AVWindowHandler</a> mechanism (that is, the AVWindowHandler object's callbacks are never called on those platforms). Client developers on those platforms should use <a href="AVWindow.html#AVWindowNewFromPlatformThing()" target="">AVWindowNewFromPlatformThing()</a> instead of <a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew()</a>, since they have to create the window using platform-specific code anyway.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">layer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>One of the <a href="AVWindow.html#AVWindowLayer" target="">AVWindowLayer</a> constants, specifying the layer in which the <a href="../PD_Layer/General.html#window" target="">window</a> is located. For Mac OS, see <a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew()</a>. <code>layer</code> is ignored on Windows, because the equivalent information was specified when the platform thing was created. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>For Mac OS, it is an OR of the <a href="AVWindow.html" target="">AVWindow</a> Flags. It is the responsibility of the Mac client developer to ensure that <code><a href="General.html#flags" target="">flags</a></code> matches any attributes of the <i>platform-thing</i> window; the Acrobat viewer cannot determine <code><a href="General.html#flags" target="">flags</a></code> from the window itself. <code><a href="General.html#flags" target="">flags</a></code> is ignored on Windows and UNIX, because the equivalent information was specified when the platform thing was created. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">handler</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A structure containing the <a href="../PD_Layer/General.html#window" target="">window</a> handler's callback functions. Pass <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> on Windows and UNIX, because the window handler's callbacks are unused on those platforms. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">owner</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../AS_Layer/General.html#gExtensionID" target="">gExtensionID</a> <a href="General.html#extension" target="">extension</a> registering the <a href="../PD_Layer/General.html#window" target="">window</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">platformThing</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A platform-specific object (an <code>HWND</code> on Windows, a <code>WindowRef</code> on Mac OS, and a <code>Widget</code> on UNIX) that will be used for this window. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The newly created <a href="../PD_Layer/General.html#window" target="">window</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrNoMemory <a href="AVWindow.html#AVWindowNew()" target="">AVWindowNew</a> <a href="AVWindow.html#AVWindowGetPlatformThing()" target="">AVWindowGetPlatformThing</a></div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7467</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowResignKey3083()"></a><a name="AVWindowResignKey()"></a><a name="AVWindowResignKey(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowResignKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowResignKey(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Use this method when you want <code>win</code> to resign its key window status. Another window might pick up key window status as a result. You must first call <a href="AVWindow.html#AVWindowSetWantsKey()" target="">AVWindowSetWantsKey()</a> with a value of <code>false</code> for the <code>wantsKey</code> parameter or your window may immediately become the key window again.</p><p><a href="UNIX.html" target="">UNIX</a> developers: This method is a no-op.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> resigning key window status. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowBecomeKey()" target="">AVWindowBecomeKey</a> <br><a href="AVWindow.html#AVWindowSetWantsKey()" target="">AVWindowSetWantsKey</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3083</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowSetFrame7516()"></a><a name="AVWindowSetFrame()"></a><a name="AVWindowSetFrame(AVWindow,const AVScreenRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowSetFrame</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowSetFrame(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVScreenRect</a>* rect)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the window's <a href="General.html#frame" target="">frame</a>, which specifies its <a href="General.html#size" target="">size</a> and location on the <a href="General.html#screen" target="">screen</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose <a href="General.html#frame" target="">frame</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">rect</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> rectangle specifying the window's <a href="General.html#frame" target="">frame</a> rectangle, specified in global <a href="General.html#screen" target="">screen</a> coordinates. On <a href="Windows.html" target="">Windows</a>, the frame includes only the window's client rectangle. On Mac OS, the frame includes only the window's content region. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetFrame()" target="">AVWindowGetFrame</a> <br><a href="AVWindow.html#AVWindowGetInterior()" target="">AVWindowGetInterior</a></div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7516</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowSetMinMaxSize7576()"></a><a name="AVWindowSetMinMaxSize()"></a><a name="AVWindowSetMinMaxSize(AVWindow,const AVRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowSetMinMaxSize</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowSetMinMaxSize(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="Macintosh.html#AVRect" target="">AVRect</a>* rect)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the minimum and maximum <a href="General.html#size" target="">size</a> of the <a href="../PD_Layer/General.html#window" target="">window</a>.</p><p>
+<code>top</code> and <code>left</code> in <code>rect</code> are for minimum size; <code>bottom</code> and <code>right</code> are for maximum size.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose <a href="General.html#size" target="">size</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">rect</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> rectangle specifying the window's <a href="General.html#size" target="">size</a>, specified in device <a href="../PD_Layer/General.html#space" target="">space</a> coordinates. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetMinMaxSize()" target="">AVWindowGetMinMaxSize</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00040005 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7576</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowSetOwnerData3001()"></a><a name="AVWindowSetOwnerData()"></a><a name="AVWindowSetOwnerData(AVWindow,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowSetOwnerData</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowSetOwnerData(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, void* newData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets <a href="#a" target="">a</a> window's owner <a href="#data" target="">data</a>. The owner data is private data for the use of the window's creator. For example, <a href="../PDFEdit_Layer/General.html#if" target="">if</a> a client uses its own class library, it might use the owner data field to store a pointer to the object owning the <a href="AVWindow.html" target="">AVWindow</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose owner <a href="#data" target="">data</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">newData</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to the new owner <a href="#data" target="">data</a> for <code>win</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetOwnerData()" target="">AVWindowGetOwnerData</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3001</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowSetTitle8285()"></a><a name="AVWindowSetTitle()"></a><a name="AVWindowSetTitle(AVWindow,const ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowSetTitle</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowSetTitle(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, const <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> newTitle)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the <a href="General.html#title" target="">title</a> to <a href="General.html#display" target="">display</a> in the specified window's title bar. This method cannot be <a href="../PDF_Library/General.html#used" target="">used</a> to set the title of the window in which the Acrobat viewer normally opens a PDF file; it can only be used to set the title of an <a href="AVWindow.html" target="">AVWindow</a> created by a client. To set the title of a window in which the Acrobat viewer opens a PDF file, you must replace <a href="AVDoc.html#AVDocOpenFromASFileWithParams()" target="">AVDocOpenFromASFileWithParams()</a> and pass the window title in <code>tempTitle</code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#window" target="">window</a> whose <a href="General.html#title" target="">title</a> is set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">newTitle</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#title" target="">title</a> to set for <code>win</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowGetTitle()" target="">AVWindowGetTitle</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrNoMemory </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>8285</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowSetWantsKey3040()"></a><a name="AVWindowSetWantsKey()"></a><a name="AVWindowSetWantsKey(AVWindow,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowSetWantsKey</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowSetWantsKey(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> wantsKey)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p><a href="AVWindow.html#AVWIN_WANTSKEY" target="">AVWIN_WANTSKEY</a> is deprecated and ignored. Because of this, AVWindowSetWantsKey effectively does nothing.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT If <code>true</code>, <code>win</code> is willing to become the key window, <code>false</code> otherwise. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">wantsKey</span></code></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowBecomeKey()" target="">AVWindowBecomeKey</a> <br><a href="AVWindow.html#AVWindowResignKey()" target="">AVWindowResignKey</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3040</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowShow2915()"></a><a name="AVWindowShow()"></a><a name="AVWindowShow(AVWindow)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowShow</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void AVWindowShow(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Shows the specified <a href="../PD_Layer/General.html#window" target="">window</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> to <a href="General.html#show" target="">show</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowHide()" target="">AVWindowHide</a> <br><a href="AVWindow.html#AVWindowIsVisible()" target="">AVWindowIsVisible</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2915</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="AVWindowUserClose2896()"></a><a name="AVWindowUserClose()"></a><a name="AVWindowUserClose(AVWindow,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">AVWindowUserClose</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> AVWindowUserClose(<a href="AVWindow.html#AVWindow" target="">AVWindow</a> win, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> quitting)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Simulates a user's click on a window's box. This calls the <a href="AVWindow.html#AVWindowWillCloseProc" target="">AVWindowWillCloseProc()</a> of the <code>win</code> object's AVWindowHandler. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">win</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#window" target="">window</a> to <a href="../AS_Layer/General.html#close" target="">close</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">quitting</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT If <code>true</code>, assume the application is trying to quit. If <code>false</code>, assume the user clicked on the window's close box. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the window was closed, <code>false</code> if the window handler's <a href="AVWindow.html#AVWindowWillCloseProc" target="">AVWindowWillCloseProc()</a> aborted the close by returning <code>false</code>.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="AVWindow.html#AVWindowCenter()" target="">AVWindowCenter</a> <br><a href="AVWindow.html#AVWindowHide()" target="">AVWindowHide</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_ACROVIEW_VERSION" target="">PI_ACROVIEW_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AVProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2896</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->

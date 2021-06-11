@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Sharing digital ID certificates","url":"Acro12_MasterBook/JS_Dev_Security/Managing_digital_ID_certificates.htm#TOC_Sharing_digital_IDbc-1"},{"type":"item","name":"Building a list of trusted identities","url":"Acro12_MasterBook/JS_Dev_Security/Managing_digital_ID_certificates.htm#TOC_Building_a_list_ofbc-2"},{"type":"item","name":"Checking information on certificates","url":"Acro12_MasterBook/JS_Dev_Security/Managing_digital_ID_certificates.htm#TOC_Checking_information_onbc-3"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

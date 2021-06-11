@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc15.js\"  name=\"Toolbars\" url=\"Acro12_MasterBook/Overview_UserInterface/Toolbars.htm\"><item name=\"Items on a toolbar\" url=\"Acro12_MasterBook/Overview_UserInterface/Items_on_a_toolbar.htm\" /><item name=\"Toolbar creation\" url=\"Acro12_MasterBook/Overview_UserInterface/Toolbar_creation.htm\" /></data>";

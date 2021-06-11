@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc213.js\"  name=\"Structure Tree Root\" url=\"Acro12_MasterBook/pdfmark_Logical/Structure_Tree_Root.htm\"><item name=\"StRoleMap\" url=\"Acro12_MasterBook/pdfmark_Logical/StRoleMap.htm\" /><item name=\"StClassMap\" url=\"Acro12_MasterBook/pdfmark_Logical/StClassMap.htm\" /></data>";

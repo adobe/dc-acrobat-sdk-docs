@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Plug-in loading and initialization","url":"Acro12_MasterBook/Plugins_Pimech/Plug-in_loading_and_initialization.htm"},{"type":"item","name":"Handshaking","url":"Acro12_MasterBook/Plugins_Pimech/Handshaking.htm"},{"type":"item","name":"Exporting HFTs","url":"Acro12_MasterBook/Plugins_Pimech/Exporting_HFTs.htm"},{"type":"item","name":"Importing HFTs and registering for notifications","url":"Acro12_MasterBook/Plugins_Pimech/Importing_HFTs_and_registering_for_notifications.htm"},{"type":"item","name":"Initialization","url":"Acro12_MasterBook/Plugins_Pimech/Initialization.htm"},{"type":"item","name":"Unloading","url":"Acro12_MasterBook/Plugins_Pimech/Unloading.htm"},{"type":"item","name":"Summarizing a plug-in’s life cycle","url":"Acro12_MasterBook/Plugins_Pimech/Summarizing_a_plug-in’s_life_cycle.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

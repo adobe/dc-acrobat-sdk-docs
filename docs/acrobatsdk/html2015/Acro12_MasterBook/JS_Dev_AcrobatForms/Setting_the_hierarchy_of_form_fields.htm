@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Setting the hierarchy of form fields</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_AcrobatForms.fm" />
+ <link rel="stylesheet" href="JS_Dev_AcrobatForms.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.6.2.0_3";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_AcrobatForms/Making_a_form_fillable.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_AcrobatForms/Creating_forms.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Using JavaScript in Forms > Task-based topics" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_63888_Setting_the"></a>Setting the hierarchy of form fields</h3>
+  <p class="BodyLevel1"><a name="IX_naming_conventions_1"></a>Fields can be arranged hierarchically within a document. For example, form fields with names like <span class="FM_Courier">&quot;FirstName&quot;</span> and &quot;<span class="FM_Courier">LastName</span>&quot; are called flat names and there is no association between them. To change an attribute of these fields requires you to change the attribute for each field:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var f = this.getField(&quot;FirstName&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>f.textColor = color.red;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var f = this.getField(&quot;LastName&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>f.textColor = color.red;</p>
+  <p class="BodyLevel1">The above code changes the text color of each of the two fields to red.</p>
+  <p class="BodyLevel1">By changing the field names, a hierarchy of fields within the document can be created. For example, &quot;<span class="FM_Courier">Name.First</span>&quot; and &quot;<span class="FM_Courier">Name.Last</span>&quot; forms a tree of fields. The period (.) separator in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;forms denotes a hierarchy shift. &quot;<span class="FM_Courier">Name</span>&quot; in these fields is the parent; &quot;<span class="FM_Courier">First</span>&quot; and &quot;<span class="FM_Courier">Last</span>&quot; are the children. Also, the field &quot;<span class="FM_Courier">Name</span>&quot; is an internal field because it has no visible appearance. &quot;<span class="FM_Courier">First</span>&quot; and &quot;<span class="FM_Courier">Last</span>&quot; are terminal fields that appear on the page.</p>
+  <p class="BodyLevel1"><uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;form fields that share the same name also share the same value. Terminal fields can have different presentations of that data. For example, they can appear on different pages, be rotated differently, or have a different font or background color, but they have the same value. Therefore, if the value of one presentation of a terminal field is modified, all others with the same name are updated automatically.</p>
+  <p class="BodyLevel1">To repeat the above example using the naming scheme of &quot;<span class="FM_Courier">Name.First</span>&quot; and &quot;<span class="FM_Courier">Name.First</span>&quot;, the code is</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var f = this.getField(&quot;Name&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>f.textColor=color.red;</p>
+  <p class="BodyLevel1">This changes the text color of both fields to red. </p>
+  <p class="BodyLevel1">Of course, if you with to give the two fields different text colors, then you reference each field individually,</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var f = this.getField(&quot;Name.First&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>f.textColor = color.red;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var f = this.getField(&quot;Name.Last&quot;);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>f.textColor = color.blue;</p>
+  <p class="BodyLevel1"><a name="IX_widgets_2"></a><a name="IX_widgets_1"></a><a name="IX_terminal_field"></a>Each presentation of a terminal field is referred to as a widget. An individual widget does not have a name but is identified by index (0-based) within its terminal field. The index is determined by the order in which the individual widgets of this field were created (and is unaffected by tab-order).</p>
+  <p class="BodyLevel1"><a name="IX_Fields_navigation_tab"></a>You can determine the index for a specific widget by using the Fields navigation tab in <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>. The index is the number that follows the ‘#’ sign in the field name shown. (In <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;6.0 or later, the widget index is displayed only if the field has more than one widget.) You can double-click an entry in the Fields panel to go to the corresponding widget in the document. Alternatively, if you select a field in the document, the corresponding entry in the Fields panel is highlighted.</p>
+  <p class="BodyLevel1"><a name="IX_getField_1"></a>Beginning with <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;6.0, <span class="FM_Courier">getField</span>&#160;can be used to retrieve the Field object of one individual widget of a field. This notation consists of appending a period (.) followed by the widget index to the field name passed. When this approach is used, the Field object returned by <span class="FM_Courier">getField</span>&#160;encapsulates only one individual widget. You can use the Field objects returned this way anywhere you would use a Field object returned by passing the unaltered field name. </p>
+  <p class="BodyLevel1">For example, suppose you have four text fields all with the same name of <span class="FM_Courier">&quot;myTextField&quot;</span>. Executing the following code changes the text color of all four fields to red.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>this.getField(&quot;myTextField&quot;).textColor=color.red;</p>
+  <p class="BodyLevel1">To change the text color of an individual field, you would execute the following code:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>this.getField(&quot;myTextField.1&quot;).textColor=color.blue;</p>
+  <p class="BodyLevel1">This code changes the text color of the text in the second field, the one labeled as <span class="FM_Courier">&quot;myTextField#1&quot;</span>&#160;in the Fields navigation tab, to blue.</p>
+  <p class="BodyLevel1">The technique of referencing individual widgets is especially useful with radio button fields, see <a href="Setting_Acrobat_form_field_properties.htm#XREF_34428_Changing_Radio"><span class="FM_HyperText">Radio button fields</span></a> for additional discussion and examples.</p>
+  <p class="BodyLevel1"><a name="IX_widgets_3"></a><a name="IX_value_3"></a><a name="IX_value_2"></a>Some properties of the Field object, such as <span class="FM_Courier">value</span>, apply to all widgets that are children of that field. Other properties, such as <span class="FM_Courier">textColor</span>&#160;and <span class="FM_Courier">setAction</span>, are specific to individual widgets. See the section on the Field object in the <a href="../JS_API_AcroJSPreface/JS_API_AcroJSPreface.htm#XREF_87228_JavaScript_for"><span class="FM_HyperText">JavaScript for Acrobat API Reference</span></a>&#160;for a complete list of Field properties accessible at the widget level.</p>
+  </div>
+</body>
+</html>

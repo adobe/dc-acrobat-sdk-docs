@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"book","name":"Dialog object","key":"toc538","url":"Acro12_MasterBook/Tracker_InboxAPI/Dialog_object.htm"},{"type":"book","name":"Driver object","key":"toc539","url":"Acro12_MasterBook/Tracker_InboxAPI/Driver_object.htm"},{"type":"item","name":"Layout description object","url":"Acro12_MasterBook/Tracker_InboxAPI/Layout_description_object.htm"},{"type":"book","name":"RSS object","key":"toc540","url":"Acro12_MasterBook/Tracker_InboxAPI/RSS_object.htm"},{"type":"item","name":"Selection object","url":"Acro12_MasterBook/Tracker_InboxAPI/Selection_object.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

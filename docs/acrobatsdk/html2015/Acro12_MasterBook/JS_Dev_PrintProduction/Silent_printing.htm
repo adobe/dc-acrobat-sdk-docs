@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Silent printing</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Acrobat_SDK\Acrobat_12.0 - Nov 2015\docs_fm\JavaScript\AcroJSGuide\JS_Dev_PrintProduction.fm" />
+ <link rel="stylesheet" href="JS_Dev_PrintProduction.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "5.1.5.1.0_1";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/JS_Dev_PrintProduction/Printing_PDF_documents.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/JS_Dev_PrintProduction/Printing_comments_and_forms.htm">
+ <meta name="topic-breadcrumbs" content="JavaScript > Developing Acrobat Applications Using JavaScript > Print Production > Printing PDF documents" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3><a name="XREF_69102_Silent_Printing"></a>Silent printing</h3>
+  <p class="BodyLevel1">There are various ways to print a document without requiring user interaction. One way is to use the Doc object <span class="FM_Courier">print</span>&#160;method and set the <span class="FM_Courier">bSilent</span>&#160;attribute to <span class="FM_Courier">true</span>, as the following example shows.</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>this.print({bUI: false, bSilent: true, bShrinkToFit: true});</p>
+  <p class="BodyLevel1">Beginning with version 7.0, non-interactive printing can only be done in batch and console events. Using the PrintParams object, this is the script for printing silently:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var pp = this.getPrintParams();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pp.interactive = pp.constants.interactionLevel.silent;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>this.print(pp);</p>
+  <p class="BodyLevel1"><a name="IX_interactive"></a>If you would like to print without requiring user interaction, and would like the progress monitor and Cancel dialog box to be removed when printing is complete, use the <span class="FM_Courier">interactive</span>&#160;property as shown in the following example:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var pp = this.getPrintParams();</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pp.interactive = pp.constants.interactionLevel.automatic;</p>
+  <p class="BodyLevel1">There are many options you can choose without requiring user interaction. For example, you can select the paper tray:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>var fv = pp.constants.flagValues;</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>pp.flags |= fv.setPageSize;</p>
+  <p class="BodyLevel1">These coding approaches may be used in menus or buttons within a PDF file, may exist at the folder or batch levels, and are available through <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;or <uservariable x-value="Acrobat&nbsp;Reader" x-showvalue="TRUE" name="AdobeReaderProd" x-format="AdobeReaderProd">Acrobat&nbsp;Reader</uservariable>&#160;6.0 or later. For more information, see the <a href="../JS_API_AcroJSPreface/JS_API_AcroJSPreface.htm#XREF_87228_JavaScript_for"><span class="FM_HyperText">JavaScript for Acrobat API Reference</span></a>, as well as the <uservariable x-value="Acrobat" x-showvalue="TRUE" name="AcrobatProd" x-format="AcrobatProd">Acrobat</uservariable>&#160;SDK samples <span class="FM_Courier">SDKSilentPrint.js</span>&#160;and <span class="FM_Courier">SDKJSSnippet1.pdf</span>.</p>
+  </div>
+</body>
+</html>

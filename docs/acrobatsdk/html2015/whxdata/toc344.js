@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc343.js\"  name=\"dbg properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/dbg_properties.htm\"><item name=\"bps\" url=\"Acro12_MasterBook/JS_API_AcroJS/dbg_properties.htm#TOC_bpsbc-1\" /></data>";

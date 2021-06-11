@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Parsing topology PRC entities</title>
+
+ <meta name="generator" content="Adobe FrameMaker 2015" />
+ <meta name="Originator" content="ImportMif" />
+ <meta name="OriginalFile" content="C:\Users\Perforce\Work\Groups\SDK\main\Documents\Common\docs_fm\PluginAppsDeveloperGuide\Plugins_A3D_API.fm" />
+ <link rel="stylesheet" href="Plugins_A3D_API.css" type="text/css" />
+
+
+<script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "2.1.19.3.0_7";
+</script>
+ <meta name="brsprev" value="Acro12_MasterBook/Plugins_A3D_API/Parsing_tessellation_PRC_entities.htm">
+ <meta name="brsnext" value="Acro12_MasterBook/Plugins_A3D_API/Parsing_PRC_entities_that_specify_graphics.htm">
+ <meta name="topic-breadcrumbs" content="Plug-ins and Applications > Overview > Parsing and Creating PRC Files > Parsing a PRC file" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+<div dir="ltr">
+  <h3>Parsing topology PRC entities </h3>
+  <p class="BodyLevel1">The <span class="FM_HyperText"><a href="./API_References/PRCReference/3D_API_Reference/index.html">Acrobat 3D API Reference</a></span>&#160;groups the PRC entities that specify topology into the topology module. The PRC entities in this module specify the surfaces of 3D objects. This section describes how to parse the topology data in a Brep model. </p>
+  <p class="BodyLevel1">Topology data in a Brep model contains data specific to the Brep and data that is generic to topology models. </p>
+  <h5>Data specific to Brep topology models</h5>
+  <p class="BodyLevel1">The following entities contain the geometric data that represents the Brep data:</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Topology Brep data:</span>&#160;A topological boundary representation comprised of a bounding box and references to multiple Connex entities (See <a href="Creating_topology_PRC_entities.htm#XREF_82589_To_populate_a_Brep"><span class="FM_HyperText">Create a topology Brep data entity</span></a>.)</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Connex:</span>&#160;A collection of shell entities, such as a hollow sphere that contains another sphere that is represented by two connexes (See <a href="#XREF_42463_To_parse_Brep_data"><span class="FM_HyperText">Parse Connex data</span></a>.)</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Shell:</span>&#160;A collection of face entities (See <a href="#XREF_13069_To_parse_a_shell"><span class="FM_HyperText">Parse a shell entity</span></a>.)</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Face:</span>&#160;A surface and a collection of loops (See <a href="#XREF_89218_To_parse_a_face"><span class="FM_HyperText">Parse the face’s surface data</span></a>.) </p>
+  <h5>Data general to all topology models</h5>
+  <p class="BodyLevel1">The following entities contain data that applies to any topology model:</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Topology body data:</span>&#160;A mask indicating the source of the bounding box (See <a href="#XREF_37745_Parse_a_Brep_model"><span class="FM_HyperText">Parse topology body data</span></a>.)</p>
+  <p class="FM_Indent1"><span class="FM_Bold">Topology context:</span>&#160;A mask indicating the behavior of the topology context (See <a href="#XREF_86159_Parse_a_Brep_model"><span class="FM_HyperText">Parse topology context data</span></a>.)</p>
+  <h6><a name="XREF_37745_Parse_a_Brep_model"></a>Parse topology body data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><a name="IX_A3DTopoBodyGet_function"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_67857_1_Get_the_Brep"></a>Get the topology body data<span style="font-family : 'Myriad Pro Light'; font-weight : bold; font-size  : 11.0pt; ">&#160;</span>by invoking the <span class="FM_Courier">A3DTopoBodyGet</span> function. The first argument (<span class="FM_Courier">p</span>&#160;in the following example) is a pointer to the Brep model’s topology body data, and the second argument (<span class="FM_Courier">&amp;sData</span>&#160;in the following example) is the location of the <span class="FM_Courier">A3DTopoBodyData</span> structure.</p>
+  <p class="FM_CodeReference">A3DTopoBodyData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTopoBodyGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the context of the topology body context data, referenced by the <span class="FM_Courier">m_pContext</span>&#160;member. (See <a href="#XREF_86159_Parse_a_Brep_model"><span class="FM_HyperText">Parse topology context data</span></a>.)</p>
+  <p class="FM_CodeReference">parseContext(sData.m_pContext);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span class="FM_Courier">A3DTopoBodyData</span>&#160;structure created in Step <a href="#XREF_67857_1_Get_the_Brep"><span class="FM_HyperText">2</span></a>, by invoking the <span class="FM_Courier">A3DTopoBodyGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span>&#160;and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sData</span> in the following example).</p>
+  <p class="FM_CodeReference">A3DTopoBodyGet(NULL, &amp;sData);</p>
+  <h6><a name="XREF_86159_Parse_a_Brep_model"></a>Parse topology context data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><a name="IX_A3DTopoContextGet"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_30926_1_Get_the_data_in"></a>Get the data in the topology context data by invoking the <span class="FM_Courier">A3DTopoContextGet</span>&#160;function. The first argument (<span class="FM_Courier">p</span>&#160;in the following example) is a pointer to the topology context data, and the second argument (<span class="FM_Courier">&amp;sData</span>&#160;in the following example) is the location of the <span class="FM_Courier">A3DTopoContextData</span> structure.</p>
+  <p class="FM_CodeReference">A3DTopoContextData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTopoContextGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>If you plan to evaluate graphic data relative to the current surface, save the Body Scale for use in scaling the face’s surface data to fit the Nurbs surface. (See <a href="#XREF_89218_To_parse_a_face"><span class="FM_HyperText">Parse the face’s surface data</span></a>.) Body scale has no particular meaning for Nurb data conversion and can be called only on specific surface types. </p>
+  <p class="FM_CodeReference">stdContextScale = sData.m_dScale; </p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span class="FM_Courier">A3DTopoContextData</span>&#160;structure, created in Step <a href="#XREF_30926_1_Get_the_data_in"><span class="FM_HyperText">2</span></a>, by invoking the <span class="FM_Courier">A3DTopoContextGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span>&#160;and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sData</span> in the following example).</p>
+  <p class="FM_CodeReference">A3DTopoContextGet(NULL, &amp;sData);</p>
+  <h6><a name="XREF_73034_To_parse_a_Brep"></a>Parse the Brep model’s data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><a name="IX_A3DTopoBrepDataGet"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_62843_1_Get_the_data_in"></a>Get the data in the Brep model by invoking the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DTopoBrepDataGet</span>&#160;function. The first argument (<span class="FM_Courier">p</span> in the following example) is a pointer to the Brep model’s data, and the second argument (<span class="FM_Courier">&amp;sData</span>&#160;in the following example) is the location of the <span class="FM_Courier">A3DBrepDataData</span> structure.</p>
+  <p class="FM_CodeReference">A3DTopoBrepDataData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTopoBrepDataGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The Brep data can reference Connex entities. The <span class="FM_Courier">m_uiConnexSize</span>&#160;member indicates the number of such references, and the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">m_ppConnexes[]</span>&#160;member provides the references. Parse each Connex entry. (See <a href="#XREF_42463_To_parse_Brep_data"><span class="FM_HyperText">Parse Connex data</span></a>.)</p>
+  <p class="FM_CodeReference">for(ASUns32 ui = 0; ui &lt; sData.m_uiConnexSize; ui++)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parseConnex(sData.m_ppConnexes[ui]);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Save the bounding box referenced by <span class="FM_Courier">m_sBoundingBox</span>&#160;as an attribute of the Brep data element in your export structure.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span class="FM_Courier">A3DTopoBrepDataData</span>&#160;structure, created in Step <a href="#XREF_62843_1_Get_the_data_in"><span class="FM_HyperText">2</span></a>, by invoking the <span class="FM_Courier">A3DTopoBrepDataGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span>&#160;and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sData</span> in the following example).</p>
+  <p class="FM_CodeReference">A3DTopoBrepDataGet(NULL, &amp;sData);</p>
+  <h6><a name="XREF_42463_To_parse_Brep_data"></a>Parse Connex data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><a name="IX_A3DTopoConnexGet_function"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_62700_1_Get_the_data_in"></a>Get the data in the Brep model by invoking the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DTopoConnexGet</span> function. The first argument (<span class="FM_Courier">p</span>&#160;in the following example) is a pointer to the Connex entity, and the second argument (<span class="FM_Courier">&amp;sData</span>&#160;in the following example) is the location of the <span class="FM_Courier">A3DTopoConnexData</span> structure.</p>
+  <p class="FM_CodeReference">A3DTopoConnexData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTopoConnexGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The Connex data can reference multiple Shell entities. The <span class="FM_Courier">m_uiShellSize</span>&#160;member indicates the number of such references, and the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">m_ppShells[]</span>&#160;member provides the references. Parse each Shell entity. (See <a href="#XREF_13069_To_parse_a_shell"><span class="FM_HyperText">Parse a shell entity</span></a>.)</p>
+  <p class="FM_CodeReference">for(ASUns32 ui = 0; ui &lt; sData.m_uiShellSize; ui++)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parseShell(sData.m_ppShells[ui]);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span class="FM_Courier">A3DTopoConnexData</span>&#160;structure, created in Step <a href="#XREF_62700_1_Get_the_data_in"><span class="FM_HyperText">2</span></a>, by invoking the <span class="FM_Courier">A3DTopoConnexGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span>&#160;and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sData</span> in the following example).</p>
+  <p class="FM_CodeReference">A3DTopoConnexGet(NULL, &amp;sData);</p>
+  <h6><a name="XREF_13069_To_parse_a_shell"></a>Parse a shell entity</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><a name="IX_A3DTopoShellGet_function"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_30248_1_Get_the_data_in"></a>Get the data in the topology shell entity by invoking the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DTopoShellGet</span>&#160;function. The first argument (<span class="FM_Courier">p</span>&#160;in the following example) is a pointer to the topology shell entity, and the second argument (<span class="FM_Courier">&amp;sData</span>&#160;in the following example) is the location of the <span class="FM_Courier">A3DTopoShellData</span> structure.</p>
+  <p class="FM_CodeReference">A3DTopoShellData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTopoShellGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>The shell data can reference multiple face entities. The <span class="FM_Courier">m_uiFaceSize</span>&#160;member indicates the number of such references, and the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">m_ppFaces[]</span>&#160;member provides the references. Parse each face entity, as described in <a href="#XREF_89218_To_parse_a_face"><span class="FM_HyperText">Parse the face’s surface data</span></a>. [</p>
+  <p class="FM_CodeReference">for(ASUns32 ui = 0; ui &lt; sData.m_uiFaceSize; ui++)</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parseFace(ui, sData.m_ppFaces[ui]);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Save the closed indicator (the <span class="FM_Courier">m_bClosed</span>&#160;member) and the orientation of the surface normal with respect to the shell normal (the <span class="FM_Courier">m_pucOrientationWithShell</span>&#160;member) as attributes in the shell element in your export structure.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span class="FM_Courier">A3DTopoShellData</span>&#160;structure, created in Step <a href="#XREF_30248_1_Get_the_data_in"><span class="FM_HyperText">2</span></a>, by invoking the <span class="FM_Courier">A3DTopoShellGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span>&#160;and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sData</span> in the following example).</p>
+  <p class="FM_CodeReference">A3DTopoShellGet(NULL, &amp;sData);</p>
+  <h6><a name="XREF_89218_To_parse_a_face"></a>Parse the face’s surface data </h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the entity base. (See <a href="Parsing_attributes_that_appear_in_an_entity_base.htm#XREF_60919_Parsing_root_base"><span class="FM_HyperText">Parsing root-base entity data</span></a>.) Save the entity name and other relevant data to your export structure. </p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_74067_1_Get_the_data_in"></a>Get the data in the topology face entity by invoking the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; "><a name="XREF_A3DTopoFaceGet_function"></a>A3DTopoFaceGet</span>&#160;function. The first argument (<span class="FM_Courier">p</span>&#160;in the following example) is a pointer to the topology face entity, and the second argument (<span class="FM_Courier">&amp;sData</span>&#160;in the following example) is the location of the <span class="FM_Courier">A3DTopoFaceData</span> structure.</p>
+  <p class="FM_CodeReference">A3DTopoFaceData sData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sData);</p>
+  <p class="FM_CodeReference">ASInt32 iRet = A3DTopoFaceGet(p, &amp;sData);</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><a name="XREF_80778_2_Populate_the"></a>Parse the surface data referenced by the <span class="FM_Courier">m_pSurface</span>&#160;member in the <span class="FM_Courier">A3DTopoFaceData</span>&#160;structure. (See <a href="#XREF_23874_Representing_face"><span class="FM_HyperText">Parse generic surface data</span></a>.)</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>If you are converting the PRC data to a 3D model that does not support UV mapping, you must create a curve on surfaceto editors: this is a standard graphic term&#160;and convert it to Nurbs data. (See <a href="#XREF_69663_Convert_surface"><span class="FM_HyperText">Convert surface data to Nurbs (for other than UV-mapped surfaces)</span></a>.)</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>5.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Delete the <span class="FM_Courier">A3DTopoFaceData</span>&#160;structure created in Step <a href="#XREF_74067_1_Get_the_data_in"><span class="FM_HyperText">2</span></a>&#160;by invoking the <span class="FM_Courier">A3DTopoFaceGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span>&#160;and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sData</span>&#160;in the following example). </p>
+  <p class="FM_CodeReference">A3DTopoFaceGet(NULL, &amp;sData);</p>
+  <h6><a name="XREF_69663_Convert_surface"></a>Convert surface data to Nurbs (for other than UV-mapped surfaces)</h6>
+  <p class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Declare and initialize an <span class="FM_Courier">A3DCrvOnSurfData</span> structure.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Populate the <span class="FM_Courier">A3DCrvOnSurfData</span>&#160;structure with the surface base and surface domain information from the <span class="FM_Courier">A3DTopoFaceData</span> structure.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create an <span class="FM_Courier">A3DCrvOnSurf</span>&#160;PRC entity by invoking the <span class="FM_Courier">A3DCrvOnSurfCreate</span>&#160;function. The first argument in this function call is the <span class="FM_Courier">A3DCrvOnSurfData</span>&#160;structure, and the second is a pointer to the resulting PRC entity.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Convert a curve on the surface in the <span class="FM_Courier">A3DCrvOnSurf</span>&#160;PRC entity by invoking the <span class="FM_Courier">A3DCrvBaseGetAsNurbs</span>&#160;function. </p>
+  <h6><a name="XREF_23874_Representing_face"></a>Parse generic surface data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Determine the type of surface data by invoking the <span class="FM_Courier">A3DEntityGetType</span>&#160;function. The first argument references the surface, and the second is a pointer to a variable in which the function stores the type enumerator.</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Parse the surface data using the <uservariable x-value="Acrobat&nbsp;3D&nbsp;API" x-showvalue="TRUE" name="ProdPart_Acro3DAPI" x-format="ProdPart_Acro3DAPI">Acrobat&nbsp;3D&nbsp;API</uservariable>&#160;functions most appropriate for the surface type. Use the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DEntityGetType</span>&#160;function to determine surface type. If the surface type is of type <span class="FM_Courier">kA3DTypeSurfNurbs</span>&#160;or if the surface type is unknown, parse the surface data as Nurbs surface data (see <a href="#XREF_48547_Parse_the"><span class="FM_HyperText">Parse Nurbs surface data</span></a>).</p>
+  <p class="FM_CodeReference">A3DEEntityType eType;</p>
+  <p class="FM_CodeReference">iRet = A3DEntityGetType(p, &amp;eType);</p>
+  <p class="FM_CodeReference">switch (eType) {</p>
+  <p class="FM_CodeReference">case kA3DTypeSurfNurbs:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parseSurfaceNurbs(p);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>break;</p>
+  <p class="FM_CodeReference">case kA3DTypeSurfSphere:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parseSurfSphere(p);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>break;</p>
+  <p class="FM_CodeReference">case kA3DTypeSurfBlend01:</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>parseSurfaceBlend01(p);</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>break;</p>
+  <p class="FM_CodeReference">…</p>
+  <p class="FM_CodeReference">}</p>
+  <h6><a name="XREF_48547_Parse_the"></a>Parse Nurbs surface data</h6>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Declare and initialize an <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DSurfNurbsData</span> structure.</p>
+  <p class="FM_Step"><a name="IX_A3DSurfBaseGetAsNurbs"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Populate the surface Nurbs data structure by invoking the <span style="font-family : 'Courier Std'; font-size  : 10.0pt; ">A3DSurfBaseGetAsNurbs</span>&#160;function, providing the following arguments: </p>
+  <ul type="disc" style="Direction:Direction:ltr;
+;
+">
+   <li>
+   <p class="FM_Bullet2">The first argument (<span class="FM_Courier">sData.m_pSurface</span>&#160;in the following example) is a pointer to the surface base entity.</p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The second argument (<span class="FM_Courier">1e-3 / stdContextScale</span>) is a ratio that the function uses to scale the Nurbs data. The value <span class="FM_Courier">1e-3</span>&#160;specifies the desired tolerance (0.001 mm in the following example). The <span class="FM_Courier">stdContextScale</span>&#160;global variable is the Body Scale, which was obtained from the <span class="FM_Courier">A3DTopoContextData</span>&#160;structure. (See <a href="#XREF_37745_Parse_a_Brep_model"><span class="FM_HyperText">Parse topology body data</span></a>.) The adjustment is calculated by dividing the targeted tolerance by the Body Scale. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The third argument (<span class="FM_Courier">bUseSameParameterization</span>) specifies that the conversion from the surface data to Nurbs data should use the parameterization data (if any) that is already specified in the face’s surface definition. </p>
+</li>
+   <li>
+   <p class="FM_Bullet2">The fourth argument (<span class="FM_Courier">&amp;sNurbsData</span>) is a pointer to an empty structure in which the function stores the Nurbs data.</p>
+</li>
+  </ul>
+  <p class="FM_CodeReference">ASBool bUseSameParameterization = TRUE;</p>
+  <p class="FM_CodeReference">A3DSurfNurbsData sNurbsData;</p>
+  <p class="FM_CodeReference">A3D_INITIALIZE_DATA(sNurbsData);</p>
+  <p class="FM_CodeReference">iRet = A3DSurfBaseGetAsNurbs(sData.m_pSurface, 1e-3 / stdContextScale, </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>bUseSameParametrization, &amp;sNurbsData);</p>
+  <p class="FM_Step"><a name="IX_A3DSurfBaseGetAsNurbs_1"></a><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Determine the result of the <span class="FM_Courier">A3DSurfBaseGetAsNurbs</span>&#160;function. In addition to returning the standard success and failure values, this function can also return the warning <span class="FM_Courier">A3D_SRF_NURBS_CANNOT_KEEP_PARAMETERIZATION</span>. This warning indicates that the conversion yielded a valid Nurbs surface but that associated space parametric trimming curves may be unreliable.&#160;</p>
+  <p class="FM_CodeReference">if (iRet == A3D_SUCCESS || </p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>iRet == A3D_SRF_NURBS_CANNOT_KEEP_PARAMETERIZATION) {</p>
+  <p class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>…</p>
+  <p class="FM_CodeReference">}</p>
+  <p class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>4.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>If Step <a href="#XREF_80778_2_Populate_the"><span class="FM_HyperText">3</span></a>&#160;did not return with an error, delete the <span class="FM_Courier">A3DSurfNurbsData</span>&#160;structure by invoking the <span class="FM_Courier">A3DSurfNurbsGet</span>&#160;function with the first argument set to <span class="FM_Courier">NULL</span>&#160;and the second argument set to the location of the structure (<span class="FM_Courier">&amp;sNurbsData</span> in the following example).</p>
+  <p class="FM_CodeReference">A3DSurfNurbsGet(NULL, &amp;sNurbsData);</p>
+  </div>
+</body>
+</html>

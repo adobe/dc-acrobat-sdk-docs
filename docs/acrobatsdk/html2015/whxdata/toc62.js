@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc59.js\"  name=\"JavaScript APIs\" url=\"Acro12_MasterBook/Reader_JavaScript/JavaScript_APIs.htm\"><item name=\"Objects, properties and methods\" url=\"Acro12_MasterBook/Reader_JavaScript/Objects_properties_and_methods.htm\" /></data>";

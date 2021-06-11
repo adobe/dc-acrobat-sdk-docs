@@ -1,0 +1,4533 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="ASText,,,,ASUnicodeFormat,ASText,ASConstText,ASUnicodeChar,ASUTF32Val,ASUTF16Val,ASUTF8Val,ASTextEqual,ASTextFilterType,ASUniChar,ASCountryCode,ASLanguageCode,ASTextEvalProc,ASTextNew,ASTextFromUnicode,ASTextFromSizedUnicode,ASTextFromEncoded,ASTextFromSizedEncoded,ASTextFromScriptText,ASTextFromSizedScriptText,ASTextFromPDText,ASTextFromSizedPDText,ASTextDestroy,ASTextSetUnicode,ASTextSetSizedUnicode,ASTextSetEncoded,ASTextSetSizedEncoded,ASTextSetScriptText,ASTextSetSizedScriptText,ASTextSetPDText,ASTextSetSizedPDText,ASTextGetUnicode,ASTextGetUnicodeCopy,ASTextGetEncoded,ASTextGetEncodedCopy,ASTextGetScriptText,ASTextGetScriptTextCopy,ASTextGetPDTextCopy,ASTextGetBestEncoding,ASTextGetBestScript,ASTextGetCountry,ASTextSetCountry,ASTextGetLanguage,ASTextSetLanguage,ASTextCat,ASTextCatMany,ASTextCopy,ASTextDup,ASTextCmp,ASTextReplace,ASTextReplaceASCII,ASTextIsEmpty,ASTextNormalizeEndOfLine,ASTextFromInt32,ASTextFromUns32,ASTextMakeEmpty,ASTextReplaceBadChars,ASTextEval,ASTextCaseSensitiveCmp,ASTextFilter,ASTextMakeEmptyClear" name="keywords">
+<title>AS_Layer.ASText (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'ASText - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?AS_Layer/ASText.html&amp;AS_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">ASText</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#defineSummary">Defines</a>&nbsp;| <a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#enumerationSummary">Enumerations</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ASText"); titleBar_setSubNav(true,true,true,false,false,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">AS_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">ASText</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>An ASText object holds encoded <a href="#text" target="">text</a>.</p><p>In Acrobat, encoded text can be specified in one of two ways:</p><ul>
+<li>
+As a <code>NULL</code>-terminated string of multi-byte text coupled with a host encoding. 
+The host encoding is platform-specific: On Mac OS, host encoding is specified 
+as a script code. On Windows, host encoding is a <code>CHARSET</code> code.
+</li>
+<li>
+As an ASUns16 string of Unicode text terminated by an ASUns16 <code>0</code> 
+(two <code>0</code> bytes). The string can be in either <code>BigEndian</code> 
+or <code>HostEndian</code> format.
+</li>
+</ul><p>Each of the formats described in the following table can be mapped to one of the 
+two cases outlined above:</p><p>ASText objects also can be <a href="../PDF_Library/General.html#used" target="">used</a> to accomplish encoding conversions; 
+your plug-in can request a string in any of the formats specified above.</p><p>In all cases the ASText code attempts to preserve all characters. For example, 
+if your plug-in attempts to concatenate strings in separate host encoding, 
+the implementation may convert both to Unicode and perform the concatenation in Unicode <a href="../PD_Layer/General.html#space" target="">space</a>.</p><p>When creating a new ASText object, or putting new <a href="#data" target="">data</a> in an existing object, 
+Acrobat will always copy the supplied data into the ASText object. The original data 
+is yours to do with as you wish (and release if necessary).</p><p>The <a href="../AV_Layer/General.html#size" target="">size</a> of ASText data always is specified in bytes (for example, the <code>len</code> 
+argument to ASTextFromSizedUnicode() specifies the number of bytes in the string rather 
+than the number of Unicode characters).</p><p>Host encoding and Unicode strings are always terminated with a <code>NULL</code> 
+character (which consists of one <code>NULL</code> byte for host-encoded strings 
+and two <code>NULL</code> bytes for Unicode strings). You cannot create a string 
+with an embedded <code>NULL</code> character even using methods that take an 
+explicit length parameter.</p><p>The <code>GetXXX</code> methods return pointers to data held by the ASText object. 
+Your plug-in cannot free or manipulate this data directly. The <code>GetXXXCopy</code> 
+methods return data that your plug-in can manipulate at will and is responsible for freeing.</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="defineSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Define Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Define</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASTextEqual110">ASTextEqual</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASConstText">ASConstText</a>
+<div class="summaryTableDescription">An opaque object holding constant encoded text. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASCountryCode">ASCountryCode</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASLanguageCode">ASLanguageCode</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASText">ASText</a>
+<div class="summaryTableDescription">An opaque object holding encoded text.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASUniChar">ASUniChar</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASUnicodeChar">ASUnicodeChar</a>
+<div class="summaryTableDescription">An ASUnicodeChar is large enough to hold any Unicode character (at least 21 bits wide). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASUTF16Val">ASUTF16Val</a>
+<div class="summaryTableDescription">Holds a single 16-bit value from a UTF-16 encoded Unicode string. It is typically used to point to the beginning of an UTF-16 string. For example:  ASUTF16Val *utf16String = ...  </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASUTF32Val">ASUTF32Val</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASUTF8Val">ASUTF8Val</a>
+<div class="summaryTableDescription">An ASUTF8Val holds a single 8-bit value from a UTF-8 encoded Unicode string. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="enumerationSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Enumeration Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Enumeration</th>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#ASTextFilterType48"><b>ASTextFilterType</b></a></code>
+<div class="summaryTableDescription">Constants that specify filter types used to modify text objects. </div>
+</td>
+</div>
+</tr>
+<tr class="row0">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#ASUnicodeFormat3849"><b>ASUnicodeFormat</b></a></code>
+<div class="summaryTableDescription">Describes the various Unicode formats you can place into and read out of an ASText object. </div>
+</td>
+</div>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASTextEvalProc404">ASTextEvalProc</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#ASTextCaseSensitiveCmp2345()">ASTextCaseSensitiveCmp</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str1, <a href="ASText.html#ASConstText" target="">ASConstText</a> str2)</div>
+<div class="summaryTableDescription">Compares two ASConstText objects, ignoring language and country information. The comparison is case-sensitive.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextCat561()">ASTextCat</a>(<a href="ASText.html#ASText" target="">ASText</a> to, <a href="ASText.html#ASConstText" target="">ASConstText</a> from)</div>
+<div class="summaryTableDescription">Concatenates the from text to the end of the to text, altering to but not from. It does not change the language or country of to unless it has no language or country, in which case it acquires the language and country of from. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextCatMany574()">ASTextCatMany</a>(<a href="ASText.html#ASText" target="">ASText</a> to, ... )</div>
+<div class="summaryTableDescription">Concatenates a series of ASText objects to the end of the to object. Be sure to provide NULL as the last argument to the call.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#ASTextCmp616()">ASTextCmp</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str1, <a href="ASText.html#ASConstText" target="">ASConstText</a> str2)</div>
+<div class="summaryTableDescription">Compares two ASText objects. This routine can be used to sort text objects using the default collating rules of the underlying operating system before presenting them to the user. The comparison is case-sensitive. The results are suitable for displaying a sorted list of strings to the user in his chosen language and according to the rules of the platform on which the application is running. The results can vary based on the platform and user locale. If you want to compare strings in a way that is consistent across locales and platforms (but not suitable for displaying sorted strings to a user) see ASTextCaseSensitiveCmp().</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextCopy583()">ASTextCopy</a>(<a href="ASText.html#ASText" target="">ASText</a> to, <a href="ASText.html#ASConstText" target="">ASConstText</a> from)</div>
+<div class="summaryTableDescription">Copies the text in from to to, along with the country and language. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextDestroy216()">ASTextDestroy</a>(<a href="ASText.html#ASText" target="">ASText</a> str)</div>
+<div class="summaryTableDescription">Frees all memory associated with the text object. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextDup593()">ASTextDup</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str)</div>
+<div class="summaryTableDescription">Creates a new ASText object that contains the same text/country/language as the one passed in. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextEval2158()">ASTextEval</a>(<a href="ASText.html#ASText" target="">ASText</a> theText, <a href="ASCab.html#ASCab" target="">ASCab</a> params)</div>
+<div class="summaryTableDescription">Replaces percent-quoted expressions in the text object with the result of their evaluation, using key/value pairs in the ASCab. For example, for a text value containing the string "%keyone%%keytwo%", the value is replaced with the concatenation of the values of the keys keyone and keytwo in the ASCab passed in. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextFilter2382()">ASTextFilter</a>(<a href="ASText.html#ASText" target="">ASText</a> text, <a href="ASText.html#ASTextFilterType" target="">ASTextFilterType</a> filter)</div>
+<div class="summaryTableDescription">Runs the specified filter on a text object, modifying the text as specified. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromEncoded136()">ASTextFromEncoded</a>(const char* str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</div>
+<div class="summaryTableDescription">Creates a new text object from a NULL-terminated multi-byte string in the specified host encoding. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromInt321594()">ASTextFromInt32</a>(<a href="General.html#ASInt32" target="">ASInt32</a> num)</div>
+<div class="summaryTableDescription">Creates a new string from an ASInt32 by converting the number to its decimal representation without punctuation or leading zeros. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromPDText192()">ASTextFromPDText</a>(const char* str)</div>
+<div class="summaryTableDescription">Creates a new string from some PDF text taken out of a PDF file. This is either a UTF-16 string with the 0xFEFF prepended to the front or a PDFDocEncoding string. In either case the string is expected to have the appropriate NULL termination. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromScriptText162()">ASTextFromScriptText</a>(const char* str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</div>
+<div class="summaryTableDescription">Creates a new string from a NULL-terminated multi-byte string of the specified script. This is a wrapper around ASTextFromEncoded(); the script is converted to a host encoding using ASScriptToHostEncoding().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromSizedEncoded149()">ASTextFromSizedEncoded</a>(const char* str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</div>
+<div class="summaryTableDescription">Creates a new text object from a multi-byte string of the specified length in the specified host encoding. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromSizedPDText209()">ASTextFromSizedPDText</a>(const char* str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> length)</div>
+<div class="summaryTableDescription">Creates a new string from some PDF text taken out of a PDF file. This is either a UTF-16 string with the 0xFEFF prepended to the front or a PDFDocEncoding string. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. The length parameter specifies the size, in bytes, of the string. The string must not contain embedded NULL characters. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromSizedScriptText176()">ASTextFromSizedScriptText</a>(const char* str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</div>
+<div class="summaryTableDescription">Creates a new text object from the specified multi-byte string of the specified script. This is a wrapper around ASTextFromEncoded(); the script is converted to a host encoding using ASScriptToHostEncoding(). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromSizedUnicode125()">ASTextFromSizedUnicode</a>(const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucs, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len)</div>
+<div class="summaryTableDescription">Creates a new text object from the specified Unicode string. This string is not expected to have 0xFE 0xFF prepended, or country/language identifiers.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromUnicode108()">ASTextFromUnicode</a>(const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucs, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format)</div>
+<div class="summaryTableDescription">Creates a new string from a NULL-terminated Unicode string. This string is not expected to have 0xFE 0xFF prepended, or country/language identifiers. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextFromUns321605()">ASTextFromUns32</a>(<a href="General.html#ASUns32" target="">ASUns32</a> num)</div>
+<div class="summaryTableDescription">Creates a new string from an ASUns32 by converting it to a decimal representation without punctuation or leading zeros. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASHostEncoding <a class="signatureLink" href="#ASTextGetBestEncoding494()">ASTextGetBestEncoding</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> preferredEncoding)</div>
+<div class="summaryTableDescription">Returns the best host encoding for representing the text. The best host encoding is the one that is least likely to lose characters during the conversion from Unicode to host. If the string can be represented accurately in multiple encodings (for example, it is low-ASCII text that can be correctly represented in any host encoding), ASTextGetBestEncoding() returns the preferred encoding based on the preferredEncoding parameter.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASScript <a class="signatureLink" href="#ASTextGetBestScript508()">ASTextGetBestScript</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> preferredScript)</div>
+<div class="summaryTableDescription">Returns the best host script for representing the text. The functionality is similar to ASTextGetBestEncoding(), with resulting host encoding converted to a script code using ASScriptFromHostEncoding().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASCountryCode <a class="signatureLink" href="#ASTextGetCountry518()">ASTextGetCountry</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> text)</div>
+<div class="summaryTableDescription">Retrieves the country associated with an ASText object.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">const char* <a class="signatureLink" href="#ASTextGetEncoded390()">ASTextGetEncoded</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</div>
+<div class="summaryTableDescription">Returns a NULL-terminated string in the given encoding. The memory to which this string points is owned by the ASText object and may not be valid after additional operations are performed on the object.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">char* <a class="signatureLink" href="#ASTextGetEncodedCopy404()">ASTextGetEncodedCopy</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</div>
+<div class="summaryTableDescription">Returns a copy of a string in a specified encoding. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASLanguageCode <a class="signatureLink" href="#ASTextGetLanguage540()">ASTextGetLanguage</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> text)</div>
+<div class="summaryTableDescription">Retrieves the language code associated with an ASText object. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">char* <a class="signatureLink" href="#ASTextGetPDTextCopy463()">ASTextGetPDTextCopy</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a>* len)</div>
+<div class="summaryTableDescription">Returns the text in a form suitable for storage in a PDF file. If the text can be represented using PDFDocEncoding, it is; otherwise it is represented in big-endian UTF-16 format with 0xFE 0xFF prepended to the front and any country/language codes embedded in an escape sequence right after 0xFE 0xFF.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">const char* <a class="signatureLink" href="#ASTextGetScriptText422()">ASTextGetScriptText</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</div>
+<div class="summaryTableDescription">Converts the Unicode string in the ASText object to the appropriate script, and returns a pointer to the converted text. The memory to which it points is owned by the ASText object and must not be altered or destroyed by the client. The memory may also become invalid after subsequent operations are applied to the ASText object.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">char* <a class="signatureLink" href="#ASTextGetScriptTextCopy439()">ASTextGetScriptTextCopy</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</div>
+<div class="summaryTableDescription">Converts the Unicode string in the ASText object to the appropriate script and returns a pointer to the converted text. The memory to which it points is owned by the client, which is responsible for freeing it using ASfree(). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">const ASUTF16Val* <a class="signatureLink" href="#ASTextGetUnicode353()">ASTextGetUnicode</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str)</div>
+<div class="summaryTableDescription">Returns a pointer to a string in kUTF16HostEndian format (see ASUnicodeFormat). The memory to which this string points is owned by the ASText object, and may not be valid after additional operations are performed on the object.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASUTF16Val* <a class="signatureLink" href="#ASTextGetUnicodeCopy373()">ASTextGetUnicodeCopy</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format)</div>
+<div class="summaryTableDescription">Returns a pointer to a NULL-terminated string in the specified Unicode format. The memory to which this string points is owned by the client, which can modify it at will and is responsible for destroying it using ASfree.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASTextIsEmpty1571()">ASTextIsEmpty</a>(<a href="ASText.html#ASConstText" target="">ASConstText</a> str)</div>
+<div class="summaryTableDescription">Used to determine whether the ASText object contains no text. For example, it determines if retrieving Unicode text would yield a 0-length string. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextMakeEmpty1612()">ASTextMakeEmpty</a>(<a href="ASText.html#ASText" target="">ASText</a> str)</div>
+<div class="summaryTableDescription">Removes the contents of an ASText (turns it into an empty string). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextMakeEmptyClear2458()">ASTextMakeEmptyClear</a>(<a href="ASText.html#ASText" target="">ASText</a> str)</div>
+<div class="summaryTableDescription">Removes the contents of an ASText object (converts it into an empty string). It clears the released storage (for security strings). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#ASTextNew96()">ASTextNew</a>()</div>
+<div class="summaryTableDescription">Creates a new text object containing no text. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextNormalizeEndOfLine1582()">ASTextNormalizeEndOfLine</a>(<a href="ASText.html#ASText" target="">ASText</a> text)</div>
+<div class="summaryTableDescription">Replaces all end-of-line characters within the ASText object with the correct end-of-line character for the current platform. For example, on Windows, \r and \n are replaced with \r\n.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextReplace633()">ASTextReplace</a>(<a href="ASText.html#ASText" target="">ASText</a> src, <a href="ASText.html#ASConstText" target="">ASConstText</a> toReplace, <a href="ASText.html#ASConstText" target="">ASConstText</a> replacement)</div>
+<div class="summaryTableDescription">Replaces all occurrences of toReplace in src with the text specified in replacement. This uses an ASText string to indicate the toReplace string; ASTextReplaceASCII() uses a low ASCII Roman string to indicate the text to replace.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextReplaceASCII656()">ASTextReplaceASCII</a>(<a href="ASText.html#ASText" target="">ASText</a> src, const char* toReplace, <a href="ASText.html#ASConstText" target="">ASConstText</a> replacement)</div>
+<div class="summaryTableDescription">Replaces all occurrences of toReplace in src with the text specified in replacement. ASTextReplace() uses an ASText string to indicate the toReplace string; this uses a low-ASCII Roman string to indicate the text to replace.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextReplaceBadChars1631()">ASTextReplaceBadChars</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const char* pszBadCharList, char replaceChar)</div>
+<div class="summaryTableDescription">Replaces all occurrences of characters contained in the list pszBadCharList in the text with the specified replacement character.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetCountry531()">ASTextSetCountry</a>(<a href="ASText.html#ASText" target="">ASText</a> text, <a href="ASText.html#ASCountryCode" target="">ASCountryCode</a> country)</div>
+<div class="summaryTableDescription">Sets the language codes associated with a piece of text. ASText objects can have country and language codes associated with them. These can be explicitly set or parsed from the Unicode form of PDText strings.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetEncoded259()">ASTextSetEncoded</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</div>
+<div class="summaryTableDescription">Replaces the contents of an existing ASText object with a NULL-terminated multi-byte string in the specified host encoding. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetLanguage550()">ASTextSetLanguage</a>(<a href="ASText.html#ASText" target="">ASText</a> text, <a href="ASText.html#ASLanguageCode" target="">ASLanguageCode</a> language)</div>
+<div class="summaryTableDescription">Sets the language codes associated with a piece of text.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetPDText318()">ASTextSetPDText</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text)</div>
+<div class="summaryTableDescription">Alters an existing string from some PDF text taken out of a PDF file. This is either a big-endian UTF-16 string with the 0xFEFF prepended to the front or a PDFDocEncoding string. In either case the string is expected to have the appropriate NULL termination. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetScriptText287()">ASTextSetScriptText</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</div>
+<div class="summaryTableDescription">Alters an existing string from a NULL-terminated multi-byte string of the specified script. This is a wrapper around ASTextFromEncoded(); the script is converted to a host encoding using ASScriptToHostEncoding(). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetSizedEncoded274()">ASTextSetSizedEncoded</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</div>
+<div class="summaryTableDescription">Alters an existing string from a multi-byte string in the specified host encoding and of the specified length. This text does not need to be NULL-terminated, and no NULL (zero) bytes should appear in the characters passed in. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetSizedPDText337()">ASTextSetSizedPDText</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> length)</div>
+<div class="summaryTableDescription">Replaces the contents of an existing ASText object with PDF text taken out of a PDF file. This is either a big-endian UTF-16 string with the 0xFEFF prepended to the front or a PDFDocEncoding string. In either case the length parameter indicates the number of bytes in the string. The string should not be NULL-terminated and must not contain any NULL characters. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetSizedScriptText302()">ASTextSetSizedScriptText</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</div>
+<div class="summaryTableDescription">Replaces the contents of an existing ASText object with the specified multi-byte string of the specified script. This is a wrapper around ASTextFromSizedEncoded(); the script is converted to a host encoding using ASScriptToHostEncoding().</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetSizedUnicode246()">ASTextSetSizedUnicode</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucsValue, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len)</div>
+<div class="summaryTableDescription">Replaces the contents of an existing ASText object with the specified Unicode string. This string is not expected to have 0xFE 0xFF prepended or embedded country/language identifiers.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASTextSetUnicode229()">ASTextSetUnicode</a>(<a href="ASText.html#ASText" target="">ASText</a> str, const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucsValue, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format)</div>
+<div class="summaryTableDescription">Alters an existing string from a NULL-terminated Unicode string. This string is not expected to have 0xFE 0xFF prepended or embedded country/language identifiers. </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<div class="detailSectionHeader">Defines Detail</div>
+<a name="ASTextEqual110"></a><a name="ASTextEqual"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextEqual</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASTextEqual (ASTextCmp((a), (b)) == 0)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraCalls.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>110</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="ASConstText"></a><a name="ASConstText1457"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASConstText</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_ASTextRec* ASConstText;</code>
+</div>
+<br><p>An opaque object holding constant encoded <a href="#text" target="">text</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html" target="">ASText</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1457</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASCountryCode"></a><a name="ASCountryCode41"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASCountryCode</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns16" target="">ASUns16</a> ASCountryCode;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>41</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASLanguageCode"></a><a name="ASLanguageCode43"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASLanguageCode</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns16" target="">ASUns16</a> ASLanguageCode;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>43</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASText"></a><a name="ASText1451"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASText</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_ASTextRec* ASText;</code>
+</div>
+<br><p>An opaque object holding encoded <a href="#text" target="">text</a>.</p><p>An ASText object represents a Unicode string. ASText objects can also be <a href="../PDF_Library/General.html#used" target="">used</a> to <a href="../AV_Layer/General.html#convert" target="">convert</a> between Unicode and various platform-specific text encodings, as well as conversions between various Unicode formats such as UTF-16 or UTF-8. Since it is common for a Unicode string to be repeatedly converted to or from the same platform-specific text encoding, ASText objects are optimized for this operation. For example, they can cache both the Unicode and platform-specific text strings.</p><p>There are several ways of creating an ASText object depending on the <a href="General.html#type" target="">type</a> and format of the original text <a href="#data" target="">data</a>. The following terminology is used throughout this API to describe the various text formats:</p><p>
+
+</p><table ><tr>
+<th>
+<p>Text Format</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>Encoded</p>
+</td><td valign="top">
+<p>A multi-byte string terminated with a single <code>0</code> character and coupled with a specific host encoding indicator. On Mac OS, the text encoding is specified using a script code. On Windows, the text encoding is specified using a <code>CHARSET</code> code. On UNIX the only valid host encoding indicator is <code>0</code>, which specifies text in the platform's default Roman encoding. On all platforms, Asian text is typically specified using multi-byte strings. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>ScriptText</p>
+</td><td valign="top">
+<p>A multi-byte string terminated with a single <code>0</code> character and coupled with an ASScript code. This is merely another way of specifying the Encoded case; the ASScript code is converted to a host encoding using <a href="String_Encoding.html#ASScriptToHostEncoding()" target="">ASScriptToHostEncoding()</a>. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>Unicode</p>
+</td><td valign="top">
+<p>Text specified using UTF-16 or UTF-8. In the UTF-16 case, the bytes can be in either big-endian format or the endian-ness that matches the platform, and are always terminated with a single ASUns16 <code>0</code> value. In the UTF-8 case, the text is always terminated with a trailing <code>0</code> byte. Unicode usage in this case is straight Unicode without the <code>0xFE 0xFF</code> prefix or language and country codes that can be encoded inside a PDF document. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>PDText</p>
+</td><td valign="top">
+<p>A string of text pulled out of a PDF document. This will either be a big-endian Unicode string pre-appended with the bytes <code>0xFE 0xFF</code>, or a string in PDFDocEncoding. In this case, the Unicode string may have embedded language and country identifiers. ASText objects strip language and country information out of the PDText string and track them separately. See below for more details. </p>
+</td>
+</tr></table><p>ASText objects can also be used to accomplish encoding and format conversions; you can request a string in any of the formats specified above. In all cases the ASText code attempts to preserve all characters. For example, if you attempt to concatenate two strings in separate host encodings, the implementation may convert both to Unicode and perform the concatenation in Unicode <a href="../PD_Layer/General.html#space" target="">space</a>.</p><p>When creating a new ASText object or putting new data into an existing object, the implementation will always copy the supplied data into the ASText object. The original data is yours to do with as you wish (and release if necessary).</p><p>The <a href="../AV_Layer/General.html#size" target="">size</a> of ASText data is always specified in bytes. For example, the <code>len</code> argument to <a href="ASText.html#ASTextFromSizedUnicode()" target="">ASTextFromSizedUnicode()</a> specifies the number of bytes in the string, not the number of Unicode characters.</p><p>Host encoding and Unicode strings are always terminated with a <code>NULL</code> character (which consists of one <code>NULL</code> byte for host encoded strings and two <code>NULL</code> bytes for Unicode strings). You cannot create a string with an embedded <code>NULL</code> character, even using the calls which take an explicit length parameter.</p><p>The <code>Getxxx</code> calls return pointers to data held by the ASText object. You cannot free or manipulate this data directly. The <code>GetxxxCopy</code> calls return data you can manipulate and that you are responsible for freeing.</p><p>An ASText object can have language and country codes associated with it. A language code is a 2-character ISO 639 language code. A country code is a 2- character ISO 3166 country code. In both cases the 2-character codes are packed into an ASUns16 value: the first character is packed in bits 8-15, and the <a href="General.html#second" target="">second</a> character is packed in bits 0-7. These language and country codes can be encoded into a UTF-16 variant of PDText encoding using an escape sequence; see Section 3.8 in the <i>PDF Reference</i>. The ASText calls will automatically parse the language and country codes embedded inside a UTF-16 PDText object, and will also author appropriate escape sequences to embed the language and country codes (if present) when generating a UTF-16 PDText object.</p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextNew()" target="">ASTextNew</a> <br><a href="ASText.html#ASTextFromEncoded()" target="">ASTextFromEncoded</a> <br><a href="ASText.html#ASTextFromInt32()" target="">ASTextFromInt32</a> <br><a href="ASText.html#ASTextFromPDText()" target="">ASTextFromPDText</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1451</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASUniChar"></a><a name="ASUniChar39"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASUniChar</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a> ASUniChar;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>39</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASUnicodeChar"></a><a name="ASUnicodeChar3878"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASUnicodeChar</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns32" target="">ASUns32</a> ASUnicodeChar;</code>
+</div>
+<br><p>An ASUnicodeChar is large enough to hold any Unicode character (at least 21 bits wide). </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3878</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASUTF16Val"></a><a name="ASUTF16Val3891"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASUTF16Val</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns16" target="">ASUns16</a> ASUTF16Val;</code>
+</div>
+<br><p>Holds <a href="#a" target="">a</a> single 16-bit <a href="../PD_Layer/General.html#value" target="">value</a> from a UTF-16 encoded Unicode string. It is typically <a href="../PDF_Library/General.html#used" target="">used</a> to <a href="../PDFEdit_Layer/General.html#point" target="">point</a> to the beginning of an UTF-16 string. For example: <code> ASUTF16Val *utf16String = ... </code> </p><p>This <a href="#data" target="">data</a> <a href="General.html#type" target="">type</a> is not large enough to hold any arbitrary Unicode character. Use <a href="ASText.html#ASUnicodeChar" target="">ASUnicodeChar</a> to pass individual Unicode characters.  </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetUnicode()" target="">ASTextGetUnicode</a> <br><a href="ASText.html#ASTextGetUnicodeCopy()" target="">ASTextGetUnicodeCopy</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3891</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASUTF32Val"></a><a name="ASUTF32Val3879"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASUTF32Val</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns32" target="">ASUns32</a> ASUTF32Val;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3879</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASUTF8Val"></a><a name="ASUTF8Val3896"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASUTF8Val</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns8" target="">ASUns8</a> ASUTF8Val;</code>
+</div>
+<br><p>An ASUTF8Val holds a single 8-bit <a href="../PD_Layer/General.html#value" target="">value</a> from a UTF-8 encoded Unicode string. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3896</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Enumeration Detail</div>
+<a name="ASTextFilterType48"></a><a name="ASTextFilterType"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFilterType</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum ASTextFilterType {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterIdentity"><b>kASTextFilterIdentity</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterLineEndings"><b>kASTextFilterLineEndings</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterUpperCase"><b>kASTextFilterUpperCase</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterLowerCase"><b>kASTextFilterLowerCase</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterXXXDebug"><b>kASTextFilterXXXDebug</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterUpperCaseDebug"><b>kASTextFilterUpperCaseDebug</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterLowerCaseDebug"><b>kASTextFilterLowerCaseDebug</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterRemoveAmpersands"><b>kASTextFilterRemoveAmpersands</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterNormalizeFullWidthASCIIVariants"><b>kASTextFilterNormalizeFullWidthASCIIVariants</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextRemoveLineEndings"><b>kASTextRemoveLineEndings</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterRsvd1"><b>kASTextFilterRsvd1</b></a>&nbsp;=&nbsp;1000,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASTextFilterTypekASTextFilterUnknown"><b>kASTextFilterUnknown</b></a>&nbsp;=&nbsp;-1</td>
+</tr>
+</table>}</code>
+</div>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFilter()" target="">ASTextFilter</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>48</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterIdentity"></a>kASTextFilterIdentity&nbsp;&nbsp;</td><td><p>Does nothing. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterLineEndings"></a>kASTextFilterLineEndings&nbsp;&nbsp;</td><td><p>Normalizes line endings (equivalent to <a href="ASText.html#ASTextNormalizeEndOfLine()" target="">ASTextNormalizeEndOfLine()</a>). </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterUpperCase"></a>kASTextFilterUpperCase&nbsp;&nbsp;</td><td><p>Makes all <a href="#text" target="">text</a> upper case. DEPRECATED: Case is not a reliably localizable concept. Do not use this. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterLowerCase"></a>kASTextFilterLowerCase&nbsp;&nbsp;</td><td><p>Makes all <a href="#text" target="">text</a> lower case. DEPRECATED: Case is not a reliably localizable concept. Do not use this. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterXXXDebug"></a>kASTextFilterXXXDebug&nbsp;&nbsp;</td><td><p>Changes any <a href="ASText.html" target="">ASText</a> to "XXX" (for debugging). </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterUpperCaseDebug"></a>kASTextFilterUpperCaseDebug&nbsp;&nbsp;</td><td><p>Makes all <a href="#text" target="">text</a> except <code>scanf</code> format strings upper case. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterLowerCaseDebug"></a>kASTextFilterLowerCaseDebug&nbsp;&nbsp;</td><td><p>Makes all <a href="#text" target="">text</a> except <code>scanf</code> format strings lower case. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterRemoveAmpersands"></a>kASTextFilterRemoveAmpersands&nbsp;&nbsp;</td><td><p>Removes stand-alone ampersands, and turns <code>&amp;&amp;</code> into <code>&amp;</code> </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterNormalizeFullWidthASCIIVariants"></a>kASTextFilterNormalizeFullWidthASCIIVariants&nbsp;&nbsp;</td><td><p>Changes any full <a href="#width" target="">width</a> ASCII variants to their lower-ASCII <a href="../AV_Layer/General.html#version" target="">version</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextRemoveLineEndings"></a>kASTextRemoveLineEndings&nbsp;&nbsp;</td><td><p>Removes line endings and replaces them with spaces. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterRsvd1"></a>kASTextFilterRsvd1&nbsp;&nbsp;</td><td><p>Reserved. Do not use. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASTextFilterTypekASTextFilterUnknown"></a>kASTextFilterUnknown&nbsp;&nbsp;</td><td><p>An invalid <a href="#filter" target="">filter</a> <a href="General.html#type" target="">type</a>. </p></td>
+</tr>
+</table>
+</div>
+<a name="ASUnicodeFormat3849"></a><a name="ASUnicodeFormat"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASUnicodeFormat</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum ASUnicodeFormat {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#ASUnicodeFormatkUTF16BigEndian"><b>kUTF16BigEndian</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASUnicodeFormatkUTF16HostEndian"><b>kUTF16HostEndian</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASUnicodeFormatkUTF8"><b>kUTF8</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASUnicodeFormatkUTF32BigEndian"><b>kUTF32BigEndian</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASUnicodeFormatkUTF32HostEndian"><b>kUTF32HostEndian</b></a></td>
+</tr>
+</table>}</code>
+</div>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromUnicode()" target="">ASTextFromUnicode</a> <br><a href="ASText.html#ASTextFromSizedUnicode()" target="">ASTextFromSizedUnicode</a> <br><a href="ASText.html#ASTextSetUnicode()" target="">ASTextSetUnicode</a> <br><a href="ASText.html#ASTextSetSizedUnicode()" target="">ASTextSetSizedUnicode</a> <br><a href="ASText.html#ASTextGetUnicodeCopy()" target="">ASTextGetUnicodeCopy</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3849</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="ASUnicodeFormatkUTF16BigEndian"></a>kUTF16BigEndian&nbsp;&nbsp;</td><td><p>Always returns the bytes in big-endian <a href="../AV_Layer/General.html#order" target="">order</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASUnicodeFormatkUTF16HostEndian"></a>kUTF16HostEndian&nbsp;&nbsp;</td><td><p>Returns the bytes in the host's native endian <a href="../AV_Layer/General.html#order" target="">order</a>, whatever is natural for an <a href="General.html#ASUns16" target="">ASUns16</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASUnicodeFormatkUTF8"></a>kUTF8&nbsp;&nbsp;</td><td><p>Endian neutral. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASUnicodeFormatkUTF32BigEndian"></a>kUTF32BigEndian&nbsp;&nbsp;</td><td><p>Always returns the bytes in big-endian <a href="../AV_Layer/General.html#order" target="">order</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASUnicodeFormatkUTF32HostEndian"></a>kUTF32HostEndian&nbsp;&nbsp;</td><td><p>Returns the bytes in the host's native endian <a href="../AV_Layer/General.html#order" target="">order</a>, whatever is natural for an <a href="General.html#ASUns32" target="">ASUns32</a>. </p></td>
+</tr>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="ASTextEvalProc404"></a><a name="ASTextEvalProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextEvalProc</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="ASText.html#ASText" target="">ASText</a> (*ASTextEvalProc)(<a href="ASCab.html" target="">ASCab</a> <a href="../PDF_Library/General.html#params" target="">params</a>)</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>404</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="ASTextCaseSensitiveCmp2345()"></a><a name="ASTextCaseSensitiveCmp()"></a><a name="ASTextCaseSensitiveCmp(ASConstText,ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextCaseSensitiveCmp</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASInt32" target="">ASInt32</a> ASTextCaseSensitiveCmp(<a href="ASText.html#ASConstText" target="">ASConstText</a> str1, <a href="ASText.html#ASConstText" target="">ASConstText</a> str2)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Compares two <a href="ASText.html#ASConstText" target="">ASConstText</a> objects, ignoring language and country information. The comparison is case-sensitive.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str1</span></code>&nbsp;&mdash;&nbsp;</td><td><p>First <a href="#text" target="">text</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str2</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../AV_Layer/Directory_Services.html#Second" target="">Second</a> <a href="#text" target="">text</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#negative" target="">negative</a> number <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>str1 &lt; str2</code>, a positive number if <code>str1 &gt; str2</code>, and <code>0</code> if they are equal. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextCmp()" target="">ASTextCmp</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2345</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextCat561()"></a><a name="ASTextCat()"></a><a name="ASTextCat(ASText,ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextCat</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextCat(<a href="ASText.html#ASText" target="">ASText</a> to, <a href="ASText.html#ASConstText" target="">ASConstText</a> from)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Concatenates the <code>from</code> text to the end of the <code>to</code> text, altering <code>to</code> but not <code>from</code>. It does not change the language or country of <code>to</code> unless it has no language or country, in which case it acquires the language and country of <code>from</code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">to</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The encoded <a href="#text" target="">text</a> to which <code>from</code> is appended. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">from</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The encoded <a href="#text" target="">text</a> to be appended to <code>to</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>561</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextCatMany574()"></a><a name="ASTextCatMany()"></a><a name="ASTextCatMany(ASText,...)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextCatMany</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextCatMany(<a href="ASText.html#ASText" target="">ASText</a> to, ... )</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Concatenates a series of <a href="ASText.html" target="">ASText</a> objects to the <a href="../PD_Layer/General.html#end" target="">end</a> of the <code>to</code> object. Be sure to provide <code><a href="General.html#NULL" target="">NULL</a></code> as the last argument to the call.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">to</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASText.html" target="">ASText</a> object to which the subsequent ASText arguments are concatenated. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label"></span></code></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>574</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextCmp616()"></a><a name="ASTextCmp()"></a><a name="ASTextCmp(ASConstText,ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextCmp</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASInt32" target="">ASInt32</a> ASTextCmp(<a href="ASText.html#ASConstText" target="">ASConstText</a> str1, <a href="ASText.html#ASConstText" target="">ASConstText</a> str2)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Compares two <a href="ASText.html" target="">ASText</a> objects. This routine can be <a href="../PDF_Library/General.html#used" target="">used</a> to sort <a href="#text" target="">text</a> objects using the default collating rules of the underlying operating system <a href="../AV_Layer/General.html#before" target="">before</a> presenting them to the user. The comparison is case-sensitive. The results are suitable for displaying a sorted <a href="../PDF_Library/General.html#list" target="">list</a> of strings to the user in his chosen language and according to the rules of the platform on which the application is running. The results can vary based on the platform and user locale. If you want to compare strings in a way that is consistent across locales and platforms (but not suitable for displaying sorted strings to a user) see <a href="ASText.html#ASTextCaseSensitiveCmp()" target="">ASTextCaseSensitiveCmp()</a>.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str1</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The first <a href="#text" target="">text</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str2</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#second" target="">second</a> <a href="#text" target="">text</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A <a href="../PD_Layer/General.html#negative" target="">negative</a> number <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>str1 &lt; str2</code>, a positive number if <code>str1 &gt; str2</code>, and <code>0</code> if they are equal. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextCaseSensitiveCmp()" target="">ASTextCaseSensitiveCmp</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>616</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextCopy583()"></a><a name="ASTextCopy()"></a><a name="ASTextCopy(ASText,ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextCopy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextCopy(<a href="ASText.html#ASText" target="">ASText</a> to, <a href="ASText.html#ASConstText" target="">ASConstText</a> from)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Copies the <a href="#text" target="">text</a> in <code>from</code> to <code>to</code>, along with the country and language. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">to</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The destination <a href="#text" target="">text</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">from</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The source <a href="#text" target="">text</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>583</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextDestroy216()"></a><a name="ASTextDestroy()"></a><a name="ASTextDestroy(ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextDestroy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextDestroy(<a href="ASText.html#ASText" target="">ASText</a> str)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Frees all memory associated with the <a href="#text" target="">text</a> object. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A <a href="#text" target="">text</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>216</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextDup593()"></a><a name="ASTextDup()"></a><a name="ASTextDup(ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextDup</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextDup(<a href="ASText.html#ASConstText" target="">ASConstText</a> str)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="ASText.html" target="">ASText</a> object that contains the same text/country/language as the one passed in. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <a href="#text" target="">text</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code><a href="General.html#str" target="">str</a></code> is <code><a href="General.html#NULL" target="">NULL</a></code>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>593</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextEval2158()"></a><a name="ASTextEval()"></a><a name="ASTextEval(ASText,ASCab)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextEval</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextEval(<a href="ASText.html#ASText" target="">ASText</a> theText, <a href="ASCab.html#ASCab" target="">ASCab</a> params)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces percent-quoted expressions in the <a href="#text" target="">text</a> object with the result of their evaluation, using key/value pairs in the <a href="ASCab.html" target="">ASCab</a>. For example, for a text value containing the string <code>"%keyone%%keytwo%"</code>, the value is replaced with the concatenation of the values of the keys <code>keyone</code> and <code>keytwo</code> in the ASCab passed in. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">theText</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <a href="#text" target="">text</a> object containing percent-quoted expressions to replace. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">params</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="ASCab.html" target="">ASCab</a> containing the key/value pairs to use for <a href="#text" target="">text</a> replacement. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>theText</code> is <code><a href="General.html#NULL" target="">NULL</a></code>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2158</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFilter2382()"></a><a name="ASTextFilter()"></a><a name="ASTextFilter(ASText,ASTextFilterType)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFilter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextFilter(<a href="ASText.html#ASText" target="">ASText</a> text, <a href="ASText.html#ASTextFilterType" target="">ASTextFilterType</a> filter)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Runs the specified <a href="#filter" target="">filter</a> on <a href="#a" target="">a</a> <a href="#text" target="">text</a> object, modifying the text as specified. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <a href="#text" target="">text</a> object modified by the method. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">filter</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="#filter" target="">filter</a> to run on the <a href="#text" target="">text</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code><a href="#text" target="">text</a></code> is <code><a href="General.html#NULL" target="">NULL</a></code> or if an invalid filter is specified. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2382</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromEncoded136()"></a><a name="ASTextFromEncoded()"></a><a name="ASTextFromEncoded(const char*,ASHostEncoding)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromEncoded</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromEncoded(const char* str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="#text" target="">text</a> object from a <code><a href="General.html#NULL" target="">NULL</a></code>-terminated multi-byte string in the specified host encoding. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The input string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">encoding</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The host <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromSizedEncoded()" target="">ASTextFromSizedEncoded</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>136</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromInt321594()"></a><a name="ASTextFromInt32()"></a><a name="ASTextFromInt32(ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromInt32</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromInt32(<a href="General.html#ASInt32" target="">ASInt32</a> num)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new string from an <a href="General.html#ASInt32" target="">ASInt32</a> by converting the number to its decimal representation without punctuation or <a href="../PDFEdit_Layer/General.html#leading" target="">leading</a> zeros. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">num</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A number of <a href="General.html#type" target="">type</a> <a href="General.html#ASInt32" target="">ASInt32</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromUns32()" target="">ASTextFromUns32</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1594</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromPDText192()"></a><a name="ASTextFromPDText()"></a><a name="ASTextFromPDText(const char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromPDText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromPDText(const char* str)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new string from some PDF <a href="#text" target="">text</a> taken out of a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. This is either a UTF-16 string with the <code>0xFEFF</code> prepended to the front or a PDFDocEncoding string. In either case the string is expected to have the appropriate <code><a href="General.html#NULL" target="">NULL</a></code> termination. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromSizedPDText()" target="">ASTextFromSizedPDText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>192</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromScriptText162()"></a><a name="ASTextFromScriptText()"></a><a name="ASTextFromScriptText(const char*,ASScript)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromScriptText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromScriptText(const char* str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new string from a <code><a href="General.html#NULL" target="">NULL</a></code>-terminated multi-byte string of the specified script. This is a wrapper around <a href="ASText.html#ASTextFromEncoded()" target="">ASTextFromEncoded()</a>; the script is converted to a host encoding using <a href="String_Encoding.html#ASScriptToHostEncoding()" target="">ASScriptToHostEncoding()</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">script</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The specified script. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromSizedScriptText()" target="">ASTextFromSizedScriptText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>162</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromSizedEncoded149()"></a><a name="ASTextFromSizedEncoded()"></a><a name="ASTextFromSizedEncoded(const char*,ASTArraySize,ASHostEncoding)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromSizedEncoded</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromSizedEncoded(const char* str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="#text" target="">text</a> object from a multi-byte string of the specified <a href="../PD_Layer/General.html#length" target="">length</a> in the specified host <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> in bytes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">encoding</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The specified host <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromEncoded()" target="">ASTextFromEncoded</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code><a href="../Acrobat_Forms_Layer/General.html#len" target="">len</a> &lt; 0</code>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>149</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromSizedPDText209()"></a><a name="ASTextFromSizedPDText()"></a><a name="ASTextFromSizedPDText(const char*,ASTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromSizedPDText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromSizedPDText(const char* str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> length)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new string from some PDF <a href="#text" target="">text</a> taken out of a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. This is either a UTF-16 string with the <code>0xFEFF</code> prepended to the front or a PDFDocEncoding string. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. The <code><a href="../PD_Layer/General.html#length" target="">length</a></code> parameter specifies the size, in bytes, of the string. The string must not contain embedded <code><a href="General.html#NULL" target="">NULL</a></code> characters. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">length</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> in bytes. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromPDText()" target="">ASTextFromPDText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>209</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromSizedScriptText176()"></a><a name="ASTextFromSizedScriptText()"></a><a name="ASTextFromSizedScriptText(const char*,ASTArraySize,ASScript)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromSizedScriptText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromSizedScriptText(const char* str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="#text" target="">text</a> object from the specified multi-byte string of the specified script. This is a wrapper around <a href="ASText.html#ASTextFromEncoded()" target="">ASTextFromEncoded()</a>; the script is converted to a host encoding using <a href="String_Encoding.html#ASScriptToHostEncoding()" target="">ASScriptToHostEncoding()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> in bytes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">script</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The specified script. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromScriptText()" target="">ASTextFromScriptText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>176</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromSizedUnicode125()"></a><a name="ASTextFromSizedUnicode()"></a><a name="ASTextFromSizedUnicode(const ASUTF16Val*,ASUnicodeFormat,ASTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromSizedUnicode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromSizedUnicode(const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucs, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="#text" target="">text</a> object from the specified Unicode string. This string is not expected to have <code>0xFE 0xFF</code> prepended, or country/language identifiers.</p><p>The string cannot contain an <a href="../AV_Layer/General.html#embedded" target="">embedded</a> <code>NULL</code> character. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ucs</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The Unicode string </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">format</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The Unicode format of <code>ucs</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> of <code>ucs</code> in bytes. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromUnicode()" target="">ASTextFromUnicode</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code><a href="../Acrobat_Forms_Layer/General.html#len" target="">len</a> &lt; 0</code>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>125</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromUnicode108()"></a><a name="ASTextFromUnicode()"></a><a name="ASTextFromUnicode(const ASUTF16Val*,ASUnicodeFormat)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromUnicode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromUnicode(const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucs, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new string from a <code><a href="General.html#NULL" target="">NULL</a></code>-terminated Unicode string. This string is not expected to have <code>0xFE 0xFF</code> prepended, or country/language identifiers. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ucs</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A Unicode string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">format</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The Unicode format <a href="../PDF_Library/General.html#used" target="">used</a> by <code>ucs</code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromSizedUnicode()" target="">ASTextFromSizedUnicode</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>108</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextFromUns321605()"></a><a name="ASTextFromUns32()"></a><a name="ASTextFromUns32(ASUns32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextFromUns32</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextFromUns32(<a href="General.html#ASUns32" target="">ASUns32</a> num)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new string from an <a href="General.html#ASUns32" target="">ASUns32</a> by converting it to a decimal representation without punctuation or <a href="../PDFEdit_Layer/General.html#leading" target="">leading</a> zeros. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">num</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A <a href="../PD_Layer/General.html#value" target="">value</a> of <a href="General.html#type" target="">type</a> <a href="General.html#ASUns32" target="">ASUns32</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextFromInt32()" target="">ASTextFromInt32</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1605</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetBestEncoding494()"></a><a name="ASTextGetBestEncoding()"></a><a name="ASTextGetBestEncoding(ASConstText,ASHostEncoding)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetBestEncoding</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> ASTextGetBestEncoding(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> preferredEncoding)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the best host <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> for representing the <a href="#text" target="">text</a>. The best host encoding is the one that is least likely to lose characters during the conversion from Unicode to host. If the string can be represented accurately in multiple encodings (for example, it is low-ASCII text that can be correctly represented in any host encoding), <a href="ASText.html#ASTextGetBestEncoding()" target="">ASTextGetBestEncoding()</a> returns the preferred encoding based on the <code>preferredEncoding</code> parameter.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An <a href="ASText.html" target="">ASText</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">preferredEncoding</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The preferred <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. There is no default.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="#text" target="">text</a> <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p></td>
+</tr>
+</table>
+<br>
+<span class="label"> Example </span>
+<br>
+<span class="usage"><a href="../"> How to use examples </a></span>
+<br>
+<code>// If you prefer to use the application's language <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>: </code> 
+<code>ASHostEncoding bestEncoding = ASTextGetBestEncoding(text, <a href="../AV_Layer/AVApp.html#AVAppGetLanguageEncoding()" target="">AVAppGetLanguageEncoding()</a>); </code> 
+<code>// If you prefer to use the operating system encoding: </code> 
+<code>ASHostEncoding bestEncoding = ASTextGetBestEncoding(text, (ASHostEncoding)<a href="../PD_Layer/General.html#PDGetHostEncoding()" target="">PDGetHostEncoding()</a>); </code> 
+<code>// If you want to favor Roman encodings: </code> 
+<code>ASHostEncoding hostRoman = ASScriptToHostEncoding(kASRomanScript);</code> 
+<code>ASHostEncoding bestEncoding = ASTextGetBestEncoding(text, hostRoman);</code>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetBestScript()" target="">ASTextGetBestScript</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>494</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetBestScript508()"></a><a name="ASTextGetBestScript()"></a><a name="ASTextGetBestScript(ASConstText,ASScript)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetBestScript</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="String_Encoding.html#ASScript" target="">ASScript</a> ASTextGetBestScript(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> preferredScript)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the best host script for representing the <a href="#text" target="">text</a>. The functionality is similar to <a href="ASText.html#ASTextGetBestEncoding()" target="">ASTextGetBestEncoding()</a>, with resulting host encoding converted to a script code using <a href="String_Encoding.html#ASScriptFromHostEncoding()" target="">ASScriptFromHostEncoding()</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT An <a href="ASText.html" target="">ASText</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">preferredScript</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The preferred host script. There is no default. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The best host script. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetBestEncoding()" target="">ASTextGetBestEncoding</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>508</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetCountry518()"></a><a name="ASTextGetCountry()"></a><a name="ASTextGetCountry(ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetCountry</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASCountryCode" target="">ASCountryCode</a> ASTextGetCountry(<a href="ASText.html#ASConstText" target="">ASConstText</a> text)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Retrieves the country associated with an <a href="ASText.html" target="">ASText</a> object.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The country code. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetCountry()" target="">ASTextSetCountry</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>518</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetEncoded390()"></a><a name="ASTextGetEncoded()"></a><a name="ASTextGetEncoded(ASConstText,ASHostEncoding)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetEncoded</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>const char* ASTextGetEncoded(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns <a href="#a" target="">a</a> <code><a href="General.html#NULL" target="">NULL</a></code>-terminated string in the given encoding. The memory to which this string points is owned by the ASText object and may not be valid after additional operations are performed on the object.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">encoding</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The specified host <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A pointer to <a href="#a" target="">a</a> <code><a href="General.html#NULL" target="">NULL</a></code>-terminated string corresponding to the text in <code><a href="General.html#str" target="">str</a></code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetEncodedCopy()" target="">ASTextGetEncodedCopy</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>390</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetEncodedCopy404()"></a><a name="ASTextGetEncodedCopy()"></a><a name="ASTextGetEncodedCopy(ASConstText,ASHostEncoding)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetEncodedCopy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>char* ASTextGetEncodedCopy(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns <a href="#a" target="">a</a> copy of a string in a specified <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">encoding</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The specified <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A copy of the <a href="#text" target="">text</a> in <code><a href="General.html#str" target="">str</a></code>. The client owns the resulting information and is responsible for freeing it using <a href="Memory_Allocation.html#ASfree()" target="">ASfree()</a>.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetEncoded()" target="">ASTextGetEncoded</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrNoMemory is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> memory could not be allocated for the copy. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>404</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetLanguage540()"></a><a name="ASTextGetLanguage()"></a><a name="ASTextGetLanguage(ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetLanguage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASLanguageCode" target="">ASLanguageCode</a> ASTextGetLanguage(<a href="ASText.html#ASConstText" target="">ASConstText</a> text)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Retrieves the language code associated with an <a href="ASText.html" target="">ASText</a> object. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The language code. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetLanguage()" target="">ASTextSetLanguage</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>540</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetPDTextCopy463()"></a><a name="ASTextGetPDTextCopy()"></a><a name="ASTextGetPDTextCopy(ASConstText,ASTArraySize*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetPDTextCopy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>char* ASTextGetPDTextCopy(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="General.html#ASTArraySize" target="">ASTArraySize</a>* len)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the <a href="#text" target="">text</a> in <a href="#a" target="">a</a> form suitable for storage in a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. If the text can be represented using <a href="../AV_Layer/General.html#PDFDocEncoding" target="">PDFDocEncoding</a>, it is; otherwise it is represented in big-endian UTF-16 format with <code>0xFE 0xFF</code> prepended to the front and any country/language codes embedded in an escape sequence right after <code>0xFE 0xFF</code>.</p><p>You can determine <a href="../PDFEdit_Layer/General.html#if" target="">if</a> the string is Unicode by inspecting the first two bytes. The Unicode case is <a href="../PDF_Library/General.html#used" target="">used</a> if the string has a language and country code set. The resulting string is <code>NULL</code>-terminated as appropriate. That is, one <code>NULL</code> byte is used for PDFDocEncoding, two are used for UTF-16. </p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> in bytes of the resulting string, not counting the <code><a href="General.html#NULL" target="">NULL</a></code> bytes at the end. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A string copy. The client owns the resulting information and is responsible for freeing it with <a href="Memory_Allocation.html#ASfree()" target="">ASfree()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>463</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetScriptText422()"></a><a name="ASTextGetScriptText()"></a><a name="ASTextGetScriptText(ASConstText,ASScript)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetScriptText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>const char* ASTextGetScriptText(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Converts the Unicode string in the <a href="ASText.html" target="">ASText</a> object to the appropriate script, and returns a pointer to the converted <a href="#text" target="">text</a>. The memory to which it points is owned by the ASText object and must not be altered or destroyed by the client. The memory may also become invalid after subsequent operations are applied to the ASText object.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">script</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The writing script. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A string. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetScriptTextCopy()" target="">ASTextGetScriptTextCopy</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>422</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetScriptTextCopy439()"></a><a name="ASTextGetScriptTextCopy()"></a><a name="ASTextGetScriptTextCopy(ASConstText,ASScript)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetScriptTextCopy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>char* ASTextGetScriptTextCopy(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Converts the Unicode string in the <a href="ASText.html" target="">ASText</a> object to the appropriate script and returns a pointer to the converted <a href="#text" target="">text</a>. The memory to which it points is owned by the client, which is responsible for freeing it using <a href="Memory_Allocation.html#ASfree()" target="">ASfree()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">script</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A writing script. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A string copy. The client owns the resulting information.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetEncodedCopy()" target="">ASTextGetEncodedCopy</a> <br><a href="ASText.html#ASTextGetScriptText()" target="">ASTextGetScriptText</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrNoMemory is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> memory could not be allocated for the copy. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>439</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetUnicode353()"></a><a name="ASTextGetUnicode()"></a><a name="ASTextGetUnicode(ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetUnicode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a> ASTextGetUnicode(<a href="ASText.html#ASConstText" target="">ASConstText</a> str)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns <a href="#a" target="">a</a> pointer to a string in kUTF16HostEndian format (see <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a>). The memory to which this string points is owned by the <a href="ASText.html" target="">ASText</a> object, and may not be valid after additional operations are performed on the object.</p><p>The Unicode <a href="#text" target="">text</a> returned will not have <code>0xFE 0xFF</code> prepended or any language or country codes. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>See above. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetUnicodeCopy()" target="">ASTextGetUnicodeCopy</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>353</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextGetUnicodeCopy373()"></a><a name="ASTextGetUnicodeCopy()"></a><a name="ASTextGetUnicodeCopy(ASConstText,ASUnicodeFormat)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextGetUnicodeCopy</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a> ASTextGetUnicodeCopy(<a href="ASText.html#ASConstText" target="">ASConstText</a> str, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns <a href="#a" target="">a</a> pointer to a <code><a href="General.html#NULL" target="">NULL</a></code>-terminated string in the specified Unicode format. The memory to which this string points is owned by the client, which can modify it at will and is responsible for destroying it using ASfree.</p><p>The Unicode <a href="#text" target="">text</a> returned will not have <code>0xFE 0xFF</code> prepended or any language or country codes. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">format</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The Unicode format. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A string copy. The client owns the resulting information.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetUnicode()" target="">ASTextGetUnicode</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrNoMemory is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> memory could not be allocated for the copy. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>373</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextIsEmpty1571()"></a><a name="ASTextIsEmpty()"></a><a name="ASTextIsEmpty(ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextIsEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASTextIsEmpty(<a href="ASText.html#ASConstText" target="">ASConstText</a> str)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Used to determine whether the <a href="ASText.html" target="">ASText</a> object contains no <a href="#text" target="">text</a>. For example, it determines <a href="../PDFEdit_Layer/General.html#if" target="">if</a> retrieving Unicode text would <a href="General.html#yield" target="">yield</a> a <code>0</code>-length string. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Returns <code>true</code> if the ASText object contains no text. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1571</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextMakeEmpty1612()"></a><a name="ASTextMakeEmpty()"></a><a name="ASTextMakeEmpty(ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextMakeEmpty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextMakeEmpty(<a href="ASText.html#ASText" target="">ASText</a> str)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Removes the contents of an <a href="ASText.html" target="">ASText</a> (turns it into an empty string). </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1612</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextMakeEmptyClear2458()"></a><a name="ASTextMakeEmptyClear()"></a><a name="ASTextMakeEmptyClear(ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextMakeEmptyClear</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextMakeEmptyClear(<a href="ASText.html#ASText" target="">ASText</a> str)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Removes the contents of an <code><a href="ASText.html" target="">ASText</a></code> object (converts it into an empty string). It clears the released storage (for security strings). </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00090000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2458</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextNew96()"></a><a name="ASTextNew()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextNew</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASText.html#ASText" target="">ASText</a> ASTextNew()</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="#text" target="">text</a> object containing no text. </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrNoMemory </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>96</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextNormalizeEndOfLine1582()"></a><a name="ASTextNormalizeEndOfLine()"></a><a name="ASTextNormalizeEndOfLine(ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextNormalizeEndOfLine</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextNormalizeEndOfLine(<a href="ASText.html#ASText" target="">ASText</a> text)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces all end-of-line characters within the <a href="ASText.html" target="">ASText</a> object with the correct end-of-line character for the current platform. For example, on <a href="../AV_Layer/Windows.html" target="">Windows</a>, <code>\r</code> and <code>\n</code> are replaced with <code>\r\n</code>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An object of <a href="General.html#type" target="">type</a> <a href="ASText.html" target="">ASText</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1582</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextReplace633()"></a><a name="ASTextReplace()"></a><a name="ASTextReplace(ASText,ASConstText,ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextReplace</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextReplace(<a href="ASText.html#ASText" target="">ASText</a> src, <a href="ASText.html#ASConstText" target="">ASConstText</a> toReplace, <a href="ASText.html#ASConstText" target="">ASConstText</a> replacement)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces all occurrences of <code>toReplace</code> in <code>src</code> with the text specified in <code>replacement</code>. This uses an ASText string to indicate the <code>toReplace</code> string; <a href="ASText.html#ASTextReplaceASCII()" target="">ASTextReplaceASCII()</a> uses a low ASCII Roman string to indicate the text to replace.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">src</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Source <a href="#text" target="">text</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">toReplace</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Text in source <a href="#text" target="">text</a> to replace. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">replacement</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Text <a href="../PDF_Library/General.html#used" target="">used</a> in replacement. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextReplaceASCII()" target="">ASTextReplaceASCII</a> <br><a href="ASText.html#ASTextReplaceBadChars()" target="">ASTextReplaceBadChars</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>633</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextReplaceASCII656()"></a><a name="ASTextReplaceASCII()"></a><a name="ASTextReplaceASCII(ASText,const char*,ASConstText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextReplaceASCII</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextReplaceASCII(<a href="ASText.html#ASText" target="">ASText</a> src, const char* toReplace, <a href="ASText.html#ASConstText" target="">ASConstText</a> replacement)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces all occurrences of <code>toReplace</code> in <code>src</code> with the text specified in <code>replacement</code>. <a href="ASText.html#ASTextReplace()" target="">ASTextReplace()</a> uses an ASText string to indicate the toReplace string; this uses a low-ASCII Roman string to indicate the text to replace.</p><p>This call is intended for formatting strings for the user interface. For example, it can be <a href="../PDF_Library/General.html#used" target="">used</a> for replacing a known sequence such as <code>'1'</code> with other text. Be sure to use only low ASCII characters, which are safe on all platforms. Avoid using backslash and currency symbols.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">src</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="ASText.html" target="">ASText</a> object containing the <a href="#text" target="">text</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">toReplace</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="#text" target="">text</a> to replace. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">replacement</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The replacement <a href="#text" target="">text</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextReplace()" target="">ASTextReplace</a> <br><a href="ASText.html#ASTextReplaceBadChars()" target="">ASTextReplaceBadChars</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>656</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextReplaceBadChars1631()"></a><a name="ASTextReplaceBadChars()"></a><a name="ASTextReplaceBadChars(ASText,const char*,char)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextReplaceBadChars</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextReplaceBadChars(<a href="ASText.html#ASText" target="">ASText</a> str, const char* pszBadCharList, char replaceChar)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces all occurrences of characters contained in the <a href="../PDF_Library/General.html#list" target="">list</a> <code>pszBadCharList</code> in the text with the specified replacement character.</p><p>Various exceptions may be raised.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="#text" target="">text</a> in which to replace characters. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pszBadCharList</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <a href="../PDF_Library/General.html#list" target="">list</a> of characters to replace, in sorted <a href="../AV_Layer/General.html#order" target="">order</a> with no duplicates. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">replaceChar</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The character with which to replace any character appearing in the <a href="../PDF_Library/General.html#list" target="">list</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextReplace()" target="">ASTextReplace</a> <br><a href="ASText.html#ASTextReplaceASCII()" target="">ASTextReplaceASCII</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1631</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetCountry531()"></a><a name="ASTextSetCountry()"></a><a name="ASTextSetCountry(ASText,ASCountryCode)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetCountry</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetCountry(<a href="ASText.html#ASText" target="">ASText</a> text, <a href="ASText.html#ASCountryCode" target="">ASCountryCode</a> country)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the language codes associated with a piece of <a href="#text" target="">text</a>. <a href="ASText.html" target="">ASText</a> objects can have country and language codes associated with them. These can be explicitly set or parsed from the Unicode form of <a href="../PD_Layer/PDText.html" target="">PDText</a> strings.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">country</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT Country code. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetCountry()" target="">ASTextGetCountry</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>531</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetEncoded259()"></a><a name="ASTextSetEncoded()"></a><a name="ASTextSetEncoded(ASText,const char*,ASHostEncoding)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetEncoded</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetEncoded(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces the contents of an existing <a href="ASText.html" target="">ASText</a> object with a <code><a href="General.html#NULL" target="">NULL</a></code>-terminated multi-byte string in the specified host encoding. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT An <a href="ASText.html" target="">ASText</a> object to hold the string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to the <a href="#text" target="">text</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">encoding</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#type" target="">type</a> of <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetSizedEncoded()" target="">ASTextSetSizedEncoded</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code><a href="#text" target="">text</a></code> is <code><a href="General.html#NULL" target="">NULL</a></code>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>259</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetLanguage550()"></a><a name="ASTextSetLanguage()"></a><a name="ASTextSetLanguage(ASText,ASLanguageCode)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetLanguage</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetLanguage(<a href="ASText.html#ASText" target="">ASText</a> text, <a href="ASText.html#ASLanguageCode" target="">ASLanguageCode</a> language)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the language codes associated with a piece of <a href="#text" target="">text</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT An <a href="ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">language</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The language code. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextGetLanguage()" target="">ASTextGetLanguage</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>550</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetPDText318()"></a><a name="ASTextSetPDText()"></a><a name="ASTextSetPDText(ASText,const char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetPDText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetPDText(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Alters an existing string from some PDF <a href="#text" target="">text</a> taken out of a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. This is either a big-endian UTF-16 string with the <code>0xFEFF</code> prepended to the front or a PDFDocEncoding string. In either case the string is expected to have the appropriate <code><a href="General.html#NULL" target="">NULL</a></code> termination. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <a href="#text" target="">text</a> string. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetSizedPDText()" target="">ASTextSetSizedPDText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>318</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetScriptText287()"></a><a name="ASTextSetScriptText()"></a><a name="ASTextSetScriptText(ASText,const char*,ASScript)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetScriptText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetScriptText(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Alters an existing string from a <code><a href="General.html#NULL" target="">NULL</a></code>-terminated multi-byte string of the specified script. This is a wrapper around <a href="ASText.html#ASTextFromEncoded()" target="">ASTextFromEncoded()</a>; the script is converted to a host encoding using <a href="String_Encoding.html#ASScriptToHostEncoding()" target="">ASScriptToHostEncoding()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to the <a href="#text" target="">text</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">script</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The writing script. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetSizedScriptText()" target="">ASTextSetSizedScriptText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>287</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetSizedEncoded274()"></a><a name="ASTextSetSizedEncoded()"></a><a name="ASTextSetSizedEncoded(ASText,const char*,ASTArraySize,ASHostEncoding)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetSizedEncoded</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetSizedEncoded(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASHostEncoding" target="">ASHostEncoding</a> encoding)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Alters an existing string from a multi-byte string in the specified host <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> and of the specified <a href="../PD_Layer/General.html#length" target="">length</a>. This <a href="#text" target="">text</a> does not need to be <code><a href="General.html#NULL" target="">NULL</a></code>-terminated, and no <code><a href="General.html#NULL" target="">NULL</a></code> (zero) bytes should appear in the characters passed in. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to the <a href="#text" target="">text</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#length" target="">length</a> of the <a href="#text" target="">text</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">encoding</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The host <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> <a href="General.html#type" target="">type</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetEncoded()" target="">ASTextSetEncoded</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code><a href="#text" target="">text</a></code> is <code><a href="General.html#NULL" target="">NULL</a></code>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>274</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetSizedPDText337()"></a><a name="ASTextSetSizedPDText()"></a><a name="ASTextSetSizedPDText(ASText,const char*,ASTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetSizedPDText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetSizedPDText(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> length)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces the contents of an existing <a href="ASText.html" target="">ASText</a> object with PDF <a href="#text" target="">text</a> taken out of a PDF <a href="../PD_Layer/General.html#file" target="">file</a>. This is either a big-endian UTF-16 string with the <code>0xFEFF</code> prepended to the front or a PDFDocEncoding string. In either case the <code><a href="../PD_Layer/General.html#length" target="">length</a></code> parameter indicates the number of bytes in the string. The string should not be <code><a href="General.html#NULL" target="">NULL</a></code>-terminated and must not contain any <code><a href="General.html#NULL" target="">NULL</a></code> characters. If the PDText is in UTF-16, it may have embedded language and country information; this will cause the ASText object to have its language and country codes set to the values found in the string. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> <a href="#text" target="">text</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">length</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> of the <a href="#text" target="">text</a> string. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetPDText()" target="">ASTextSetPDText</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>337</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetSizedScriptText302()"></a><a name="ASTextSetSizedScriptText()"></a><a name="ASTextSetSizedScriptText(ASText,const char*,ASTArraySize,ASScript)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetSizedScriptText</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetSizedScriptText(<a href="ASText.html#ASText" target="">ASText</a> str, const char* text, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len, <a href="String_Encoding.html#ASScript" target="">ASScript</a> script)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces the contents of an existing <a href="ASText.html" target="">ASText</a> object with the specified multi-byte string of the specified script. This is a wrapper around <a href="ASText.html#ASTextFromSizedEncoded()" target="">ASTextFromSizedEncoded()</a>; the script is converted to a host encoding using <a href="String_Encoding.html#ASScriptToHostEncoding()" target="">ASScriptToHostEncoding()</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">text</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to the <a href="#text" target="">text</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#length" target="">length</a> of the <a href="#text" target="">text</a> string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">script</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The writing script. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">genErrBadParm is raised <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code><a href="#text" target="">text</a></code> is <code><a href="General.html#NULL" target="">NULL</a></code>. </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>302</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetSizedUnicode246()"></a><a name="ASTextSetSizedUnicode()"></a><a name="ASTextSetSizedUnicode(ASText,const ASUTF16Val*,ASUnicodeFormat,ASTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetSizedUnicode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetSizedUnicode(<a href="ASText.html#ASText" target="">ASText</a> str, const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucsValue, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> len)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Replaces the contents of an existing <a href="ASText.html" target="">ASText</a> object with the specified Unicode string. This string is not expected to have <code>0xFE 0xFF</code> prepended or embedded country/language identifiers.</p><p>The string cannot contain a <code>NULL</code> character. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ucsValue</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A Unicode string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">format</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The Unicode format. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#length" target="">length</a> of the string in bytes. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetUnicode()" target="">ASTextSetUnicode</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>246</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASTextSetUnicode229()"></a><a name="ASTextSetUnicode()"></a><a name="ASTextSetUnicode(ASText,const ASUTF16Val*,ASUnicodeFormat)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASTextSetUnicode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASTextSetUnicode(<a href="ASText.html#ASText" target="">ASText</a> str, const <a href="ASText.html#ASUTF16Val" target="">ASUTF16Val</a>* ucsValue, <a href="ASText.html#ASUnicodeFormat" target="">ASUnicodeFormat</a> format)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Alters an existing string from a <code><a href="General.html#NULL" target="">NULL</a></code>-terminated Unicode string. This string is not expected to have <code>0xFE 0xFF</code> prepended or embedded country/language identifiers. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">str</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">ucsValue</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A Unicode string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">format</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The Unicode format. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASText.html#ASTextSetSizedUnicode()" target="">ASTextSetSizedUnicode</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ASEXTRA_VERSION" target="">PI_ASEXTRA_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExtraProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>229</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->

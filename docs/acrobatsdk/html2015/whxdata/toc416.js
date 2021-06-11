@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"Net.HTTP\" url=\"Acro12_MasterBook/JS_API_AcroJS/Net_HTTP.htm\"><book name=\"Net.HTTP methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/Net_HTTP_methods.htm\" src=\"toc417.js\" /></data>";

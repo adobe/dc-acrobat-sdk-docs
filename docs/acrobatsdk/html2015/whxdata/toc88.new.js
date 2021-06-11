@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"Upgrading plug-ins (Acrobat 9 to Acrobat X)","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Upgrading_plug-ins_Acrobat_9_to_Acrobat_X.htm"},{"type":"item","name":"Upgrading plug-ins (Acrobat 8 to Acrobat 9)","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Upgrading_plug-ins_Acrobat_8_to_Acrobat_9.htm"},{"type":"item","name":"Upgrading plug-ins in Windows (Acrobat 7 to Acrobat 8)","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Upgrading_plug-ins_in_Windows_Acrobat_7_to_Acrobat_8.htm"},{"type":"item","name":"Upgrading plug-in projects on Mac OS (Acrobat 7 to Acrobat 8)","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Upgrading_plug-in_projects_on_Mac_OS_Acrobat_7_to_Acrobat_8.htm"},{"type":"item","name":"Detecting supported APIs","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Detecting_supported_APIs.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

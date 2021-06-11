@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"WebDAV repositories","url":"Acro12_MasterBook/Collab_TroubleShoot/WebDAV_repositories1.htm"},{"type":"item","name":"All repository types","url":"Acro12_MasterBook/Collab_TroubleShoot/All_repository_types.htm"},{"type":"item","name":"Network problems","url":"Acro12_MasterBook/Collab_TroubleShoot/Network_problems.htm"},{"type":"item","name":"Client/server configuration and permissions","url":"Acro12_MasterBook/Collab_TroubleShoot/Client_server_configuration_and_permissions.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

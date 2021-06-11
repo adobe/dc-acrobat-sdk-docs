@@ -1,0 +1,1 @@
+gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc363.js\"  name=\"Error methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/Error_methods.htm\"><item name=\"toString\" url=\"Acro12_MasterBook/JS_API_AcroJS/Error_methods.htm#TOC_toStringbc-1\" /></data>";
