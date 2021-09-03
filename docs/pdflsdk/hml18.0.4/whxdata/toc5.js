@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc4.js\"  name=\"Contents\" url=\"PDFL_MasterBook/About_the_PDF_Library_SDK/Contents.htm\"><item name=\"SnippetRunner\" url=\"PDFL_MasterBook/About_the_PDF_Library_SDK/Contents.htm#TOC_SnippetRunnerbc-1\" /></data>";

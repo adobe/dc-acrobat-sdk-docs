@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc.js\"  name=\"About This Help\" url=\"PDFL_MasterBook/About_this_Help/About_this_Help.htm\"><item name=\"Additional information\" url=\"PDFL_MasterBook/About_this_Help/About_this_Help.htm#TOC_Additional_informationbc-1\" /></data>";

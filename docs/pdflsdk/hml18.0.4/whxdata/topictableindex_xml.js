@@ -1,1 +1,0 @@
-gXMLBuffer="<?xml version=\"1.0\" encoding=\"UTF-8\"?><cki><ck fm=\"About this Help\" to=\"Creating a new PDF document\" num=\"34\"/><ck fm=\"Creating a new page\" to=\"Displaying page views\" num=\"34\"/><ck fm=\"Working with Words\" to=\"Working with Cos streams\" num=\"35\"/><ck fm=\"Creating 3D Annotations\" to=\"Handling documents\" num=\"18\"/></cki>";

@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Indexed searching","url":"PDFL_MasterBook/Introduction_Plug-ins/About_PDF_Library_and_plug-in_applications.htm#TOC_Indexed_searchingbc-1"},{"type":"item","name":"Modifying file access","url":"PDFL_MasterBook/Introduction_Plug-ins/About_PDF_Library_and_plug-in_applications.htm#TOC_Modifying_file_accessbc-2"},{"type":"item","name":"Creating new annotation types","url":"PDFL_MasterBook/Introduction_Plug-ins/About_PDF_Library_and_plug-in_applications.htm#TOC_Creating_new_annotationbc-3"},{"type":"item","name":"Dynamically adding text to PDF documents","url":"PDFL_MasterBook/Introduction_Plug-ins/About_PDF_Library_and_plug-in_applications.htm#TOC_Dynamically_adding_textbc-4"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc25.js\"  name=\"Removing bookmark actions\" url=\"PDFL_MasterBook/Working_with_Bookmarks/Removing_bookmark_actions.htm\"><item name=\"Opening and closing bookmarks\" url=\"PDFL_MasterBook/Working_with_Bookmarks/Removing_bookmark_actions.htm#TOC_Opening_and_closingbc-1\" /></data>";
