@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Creating and running a batch sequence","url":"Acro12_MasterBook/BatchSeq_BatchSequences/Creating_and_running_a_batch_sequence.htm"},{"type":"book","name":"Batch processing objects","key":"toc544","url":"Acro12_MasterBook/BatchSeq_BatchSequences/Batch_processing_objects.htm"},{"type":"item","name":"Global variables","url":"Acro12_MasterBook/BatchSeq_BatchSequences/Global_variables.htm"},{"type":"item","name":"Beginning and ending a batch job","url":"Acro12_MasterBook/BatchSeq_BatchSequences/Beginning_and_ending_a_batch_job.htm"},{"type":"item","name":"Debugging and testing tips","url":"Acro12_MasterBook/BatchSeq_BatchSequences/Debugging_and_testing_tips.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

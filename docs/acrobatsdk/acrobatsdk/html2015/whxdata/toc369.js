@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"EventListener\" url=\"Acro12_MasterBook/JS_API_AcroJS/EventListener.htm\"><book name=\"EventListener methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/EventListener_methods.htm\" src=\"toc370.js\" /></data>";

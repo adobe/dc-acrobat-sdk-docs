@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Where can I find guidelines on developing Acrobat Reader plug-ins?","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/Where_can_I_find_guidelines_on_developing.htm"},{"type":"item","name":"What are the API differences between Acrobat and Acrobat Reader?","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/What_are_the_API_differences_between_Acrobat_and_Acrobat_Reader.htm"},{"type":"item","name":"Developing for Acrobat Reader","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/What_are_the_API_differences_between_Acrobat_and_Acrobat_Reader.htm#TOC_Developing_for_Acrobat1bc-1"},{"type":"item","name":"What is a rights-enabled PDF document?","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/What_is_a_rights-enabled_PDF_document.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

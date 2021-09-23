@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Add a subscription","url":"Acro12_MasterBook/Tracker_InboxAPI/Add_a_subscription.htm"},{"type":"item","name":"Update a subscription","url":"Acro12_MasterBook/Tracker_InboxAPI/Update_a_subscription.htm"},{"type":"item","name":"Select a subscription","url":"Acro12_MasterBook/Tracker_InboxAPI/Select_a_subscription.htm"},{"type":"item","name":"Remove a subscription","url":"Acro12_MasterBook/Tracker_InboxAPI/Remove_a_subscription.htm"},{"type":"item","name":"Convert a subscription to a PDF file","url":"Acro12_MasterBook/Tracker_InboxAPI/Convert_a_subscription_to_a_PDF_file.htm"},{"type":"item","name":"Display Tracker","url":"Acro12_MasterBook/Tracker_InboxAPI/Display_Tracker.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

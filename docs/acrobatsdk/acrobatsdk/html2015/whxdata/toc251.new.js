@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Working with comments using JavaScript","key":"toc252","url":"Acro12_MasterBook/JS_Dev_RMA/Working_with_comments_using_JavaScript.htm"},{"type":"book","name":"Online collaboration essentials","key":"toc253","url":"Acro12_MasterBook/JS_Dev_RMA/Online_collaboration_essentials.htm"},{"type":"book","name":"Managing comments","key":"toc255","url":"Acro12_MasterBook/JS_Dev_RMA/Managing_comments.htm"},{"type":"book","name":"Approving documents using stamps (Japanese workflows)","key":"toc258","url":"Acro12_MasterBook/JS_Dev_RMA/Approving_documents_using_stamps_Japanese_workflows.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

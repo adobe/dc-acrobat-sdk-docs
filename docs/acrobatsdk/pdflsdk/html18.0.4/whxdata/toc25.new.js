@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"About bookmarks","url":"PDFL_MasterBook/Working_with_Bookmarks/About_bookmarks.htm"},{"type":"book","name":"Creating bookmarks","key":"toc26","url":"PDFL_MasterBook/Working_with_Bookmarks/Creating_bookmarks.htm"},{"type":"book","name":"Removing bookmark actions","key":"toc27","url":"PDFL_MasterBook/Working_with_Bookmarks/Removing_bookmark_actions.htm"},{"type":"book","name":"Retrieving bookmarks","key":"toc28","url":"PDFL_MasterBook/Working_with_Bookmarks/Retrieving_bookmarks.htm"},{"type":"item","name":"Deleting bookmarks","url":"PDFL_MasterBook/Working_with_Bookmarks/Deleting_bookmarks.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

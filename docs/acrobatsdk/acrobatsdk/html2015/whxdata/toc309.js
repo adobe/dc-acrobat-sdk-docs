@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"Annot3D\" url=\"Acro12_MasterBook/JS_API_AcroJS/Annot3D.htm\"><book name=\"Annot3D properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/Annot3D_properties1.htm\" src=\"toc310.js\" /></data>";

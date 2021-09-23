@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc357.js\"  name=\"Doc.media properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/Doc_media_properties.htm\"><item name=\"canPlay\" url=\"Acro12_MasterBook/JS_API_AcroJS/Doc_media_properties.htm#TOC_canPlaybc-1\" /></data>";

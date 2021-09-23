@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Including Acrobat DC SDK library files","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Including_Acrobat_DC_SDK_library_files.htm"},{"type":"item","name":"Adding the PIMain source file","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Adding_the_PIMain_source_file.htm"},{"type":"item","name":"Adding application logic","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Adding_application_logic.htm"},{"type":"item","name":"Compiling and building your plug-in","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Compiling_and_building_your_plug-in.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

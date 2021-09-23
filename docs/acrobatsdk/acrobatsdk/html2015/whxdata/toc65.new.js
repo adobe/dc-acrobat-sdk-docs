@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Extending Broker APIs at run time","url":"Acro12_MasterBook/Reader_SandboxBrokerExt/Extending_Broker_APIs_at_run_time.htm"},{"type":"book","name":"Components","key":"toc66","url":"Acro12_MasterBook/Reader_SandboxBrokerExt/Components.htm"},{"type":"item","name":"Handshake between Plug-in and Plug-in Broker","url":"Acro12_MasterBook/Reader_SandboxBrokerExt/Handshake_between_Plug-in_and_Plug-in_Broker.htm"},{"type":"book","name":"Implement CrossCalls (make calls from plug-in to plug-in’s broker process)","key":"toc67","url":"Acro12_MasterBook/Reader_SandboxBrokerExt/Implement_CrossCalls_make_calls_from_plug-in_to_plug-in’s.htm"},{"type":"item","name":"Getting Started with SampleExtn","url":"Acro12_MasterBook/Reader_SandboxBrokerExt/Getting_Started_with_SampleExtn.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

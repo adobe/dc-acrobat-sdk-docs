@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Contents of the PDF Library SDK","key":"toc86","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Contents_of_the_PDF_Library_SDK.htm"},{"type":"book","name":"Developing applications with the Adobe PDF Library","key":"toc87","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Developing_applications_with_the_Adobe_PDF_Library.htm"},{"type":"item","name":"Initialization and termination","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Initialization_and_termination.htm"},{"type":"item","name":"Multithreading","url":"Acro12_MasterBook/Plugins_CreatingSimplePlug/Multithreading.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

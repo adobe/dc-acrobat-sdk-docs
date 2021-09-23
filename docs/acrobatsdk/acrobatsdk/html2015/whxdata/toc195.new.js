@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"OnJobStart","url":"Acro12_MasterBook/Distiller_AutomationIntro/OnJobStart.htm"},{"type":"item","name":"OnJobDone","url":"Acro12_MasterBook/Distiller_AutomationIntro/OnJobDone.htm"},{"type":"item","name":"OnJobFail","url":"Acro12_MasterBook/Distiller_AutomationIntro/OnJobFail.htm"},{"type":"item","name":"OnLogMessage","url":"Acro12_MasterBook/Distiller_AutomationIntro/OnLogMessage.htm"},{"type":"item","name":"OnPercentDone","url":"Acro12_MasterBook/Distiller_AutomationIntro/OnPercentDone.htm"},{"type":"item","name":"OnPageNumber","url":"Acro12_MasterBook/Distiller_AutomationIntro/OnPageNumber.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

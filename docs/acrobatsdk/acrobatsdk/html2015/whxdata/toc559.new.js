@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Adding a reference to the Acrobat type library","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Adding_a_reference_to_the_Acrobat_type_library.htm"},{"type":"item","name":"Creating a simple application","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Creating_a_simple_application.htm"},{"type":"item","name":"Working with annotations","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Working_with_annotations.htm"},{"type":"item","name":"Spell-checking a document","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Spell-checking_a_document.htm"},{"type":"item","name":"Tips for translating JavaScript to JSObject","url":"Acro12_MasterBook/IAC_DevApp_OLE_Support/Tips_for_translating_JavaScript_to_JSObject.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

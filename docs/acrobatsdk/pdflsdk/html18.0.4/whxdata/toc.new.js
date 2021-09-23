@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"About This Help","key":"toc1","url":"PDFL_MasterBook/About_this_Help/About_this_Help.htm"},{"type":"book","name":"Adobe PDF Library Overview","key":"toc2","url":"PDFL_MasterBook/Adobe_PDF_Library_Overview/Adobe_PDF_Library_Overview.htm"},{"type":"item","name":"PDF Library API References","url":"PDFL_MasterBook/PDF_Library_API_References/PDF_Library_API_References.htm"},{"type":"book","name":"Developing Plug-ins and Applications","key":"toc7","url":"PDFL_MasterBook/Introduction_Plug-ins/Introduction_Plug-ins.htm"},{"type":"book","name":"Snippet Runner Cookbook","key":"toc53","url":"PDFL_MasterBook/Introduction_Snippets/Introduction_Snippets.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

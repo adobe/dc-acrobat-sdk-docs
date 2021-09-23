@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc360.js\"  name=\"Embedded PDF properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/Embedded_PDF_properties.htm\"><item name=\"messageHandler\" url=\"Acro12_MasterBook/JS_API_AcroJS/Embedded_PDF_properties.htm#TOC_messageHandlerbc-1\" /></data>";

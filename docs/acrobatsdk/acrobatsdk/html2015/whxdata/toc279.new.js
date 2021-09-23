@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Passwords and restrictions","url":"Acro12_MasterBook/JS_Dev_Security/Methods_for_adding_security_to_PDF_documents.htm#TOC_Passwords_andbc-1"},{"type":"item","name":"Certifying documents","url":"Acro12_MasterBook/JS_Dev_Security/Methods_for_adding_security_to_PDF_documents.htm#TOC_Certifying_documentsbc-2"},{"type":"item","name":"Encrypting files using certificates","url":"Acro12_MasterBook/JS_Dev_Security/Methods_for_adding_security_to_PDF_documents.htm#TOC_Encrypting_files_usingbc-3"},{"type":"item","name":"Security policies","url":"Acro12_MasterBook/JS_Dev_Security/Methods_for_adding_security_to_PDF_documents.htm#TOC_Security_policiesbc-4"},{"type":"item","name":"Secure forms","url":"Acro12_MasterBook/JS_Dev_Security/Methods_for_adding_security_to_PDF_documents.htm#TOC_Secure_formsbc-5"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

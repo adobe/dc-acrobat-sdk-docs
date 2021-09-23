@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Versions","url":"Acro12_MasterBook/Plugins_A3D_API/Versions.htm"},{"type":"item","name":"Requirements","url":"Acro12_MasterBook/Plugins_A3D_API/Requirements.htm"},{"type":"item","name":"Data types, naming conventions, and character encoding","url":"Acro12_MasterBook/Plugins_A3D_API/Data_types_naming_conventions_and_character_encoding.htm"},{"type":"item","name":"Structured and recursive nature of PRC parsing","url":"Acro12_MasterBook/Plugins_A3D_API/Structured_and_recursive_nature_of_PRC_parsing.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

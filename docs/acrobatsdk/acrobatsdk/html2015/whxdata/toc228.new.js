@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Opening the console","url":"Acro12_MasterBook/JS_Dev_Tools/Opening_the_console.htm"},{"type":"item","name":"Executing JavaScript","url":"Acro12_MasterBook/JS_Dev_Tools/Executing_JavaScript.htm"},{"type":"item","name":"Formatting code","url":"Acro12_MasterBook/JS_Dev_Tools/Formatting_code.htm"},{"type":"item","name":"Enabling JavaScript","url":"Acro12_MasterBook/JS_Dev_Tools/Enabling_JavaScript.htm"},{"type":"item","name":"Debugging with the JavaScript Console","url":"Acro12_MasterBook/JS_Dev_Tools/Debugging_with_the_JavaScript_Console.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

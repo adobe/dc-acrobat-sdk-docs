@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc496.js\"  name=\"Color\" url=\"Acro12_MasterBook/JS_3D_API/Color1.htm\"><item name=\"Color\" url=\"Acro12_MasterBook/JS_3D_API/Color2.htm\" /><item name=\"set\" url=\"Acro12_MasterBook/JS_3D_API/set.htm\" /><item name=\"set3\" url=\"Acro12_MasterBook/JS_3D_API/set3.htm\" /></data>";

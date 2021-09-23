@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Adding passwords and setting security options","url":"Acro12_MasterBook/JS_Dev_Security/Adding_passwords_and_setting_security_options.htm"},{"type":"item","name":"Adding usage rights to a document","url":"Acro12_MasterBook/JS_Dev_Security/Adding_usage_rights_to_a_document.htm"},{"type":"item","name":"Encrypting PDF files for a list of recipients","url":"Acro12_MasterBook/JS_Dev_Security/Encrypting_PDF_files_for_a_list_of_recipients.htm"},{"type":"item","name":"Encrypting PDF files using security policies","url":"Acro12_MasterBook/JS_Dev_Security/Encrypting_PDF_files_using_security_policies.htm"},{"type":"item","name":"Adding security to document attachments","url":"Acro12_MasterBook/JS_Dev_Security/Adding_security_to_document_attachments.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

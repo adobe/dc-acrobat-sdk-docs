@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc472.js\"  name=\"Template methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/Template_methods.htm\"><item name=\"spawn\" url=\"Acro12_MasterBook/JS_API_AcroJS/Template_methods.htm#TOC_spawnbc-1\" /></data>";

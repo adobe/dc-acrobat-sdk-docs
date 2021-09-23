@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Forms plug-in OLE automation","url":"Acro12_MasterBook/IAC_API_FormsIntro/Forms_plug-in_OLE_automation.htm"},{"type":"item","name":"Exceptions","url":"Acro12_MasterBook/IAC_API_FormsIntro/Exceptions.htm"},{"type":"item","name":"AFormApp","url":"Acro12_MasterBook/IAC_API_FormsIntro/AFormApp.htm"},{"type":"book","name":"Field","key":"toc586","url":"Acro12_MasterBook/IAC_API_FormsIntro/Field1.htm"},{"type":"book","name":"Fields","key":"toc589","url":"Acro12_MasterBook/IAC_API_FormsIntro/Fields.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

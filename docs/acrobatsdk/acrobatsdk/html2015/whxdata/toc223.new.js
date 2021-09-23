@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Developing Acrobat Applications Using JavaScript","key":"toc224","url":"Acro12_MasterBook/JS_Dev_Overview/JS_Dev_Overview.htm"},{"type":"book","name":"JavaScript for Acrobat API Reference","key":"toc294","url":"Acro12_MasterBook/JS_API_AcroJSPreface/JS_API_AcroJSPreface.htm"},{"type":"book","name":"JavaScript for Acrobat 3D Annotations API Reference","key":"toc493","url":"Acro12_MasterBook/JS_3D_Intro/JS_3D_Intro.htm"},{"type":"book","name":"Acrobat Tracker","key":"toc530","url":"Acro12_MasterBook/Tracker_Introduction/Tracker_Introduction.htm"},{"type":"book","name":"Batch Sequences","key":"toc542","url":"Acro12_MasterBook/BatchSeq_BatchSequences/BatchSeq_BatchSequences.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Passing parameters to snippets","url":"Acro12_MasterBook/Snippet_WritingSnippets/Passing_parameters_to_snippets.htm"},{"type":"item","name":"Toggling behavior and asynchronous snippets","url":"Acro12_MasterBook/Snippet_WritingSnippets/Toggling_behavior_and_asynchronous_snippets.htm"},{"type":"item","name":"Handling exceptions","url":"Acro12_MasterBook/Snippet_WritingSnippets/Handling_exceptions.htm"},{"type":"item","name":"Handling documents","url":"Acro12_MasterBook/Snippet_WritingSnippets/Handling_documents.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

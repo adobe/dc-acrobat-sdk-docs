@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc461.js\"  name=\"SOAP properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/SOAP_properties.htm\"><item name=\"wireDump\" url=\"Acro12_MasterBook/JS_API_AcroJS/SOAP_properties.htm#TOC_wireDumpbc-1\" /></data>";

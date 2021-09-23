@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Syntax of pdfmark operators","url":"Acro12_MasterBook/pdfmark_Syntax/Syntax_of_pdfmark_operators.htm"},{"type":"item","name":"Usage with standard PostScript interpreters","url":"Acro12_MasterBook/pdfmark_Syntax/Usage_with_standard_PostScript_interpreters.htm"},{"type":"item","name":"Syntax for private keys","url":"Acro12_MasterBook/pdfmark_Syntax/Syntax_for_private_keys.htm"},{"type":"book","name":"Named objects","key":"toc203","url":"Acro12_MasterBook/pdfmark_Syntax/Named_objects.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

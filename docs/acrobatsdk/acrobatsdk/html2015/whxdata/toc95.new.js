@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"About menus","key":"toc96","url":"Acro12_MasterBook/Plugins_Menu/About_menus.htm"},{"type":"book","name":"Adding menu commands to menus","key":"toc97","url":"Acro12_MasterBook/Plugins_Menu/Adding_menu_commands_to_menus.htm"},{"type":"item","name":"Creating menu callback functions","url":"Acro12_MasterBook/Plugins_Menu/Creating_menu_callback_functions.htm"},{"type":"item","name":"Determining if a menu item can be executed","url":"Acro12_MasterBook/Plugins_Menu/Determining_if_a_menu_item_can_be_executed.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

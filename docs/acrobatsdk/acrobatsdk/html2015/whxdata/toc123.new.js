@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Creating HFT methods","url":"Acro12_MasterBook/Plugins_Hft/Creating_HFT_methods.htm"},{"type":"item","name":"Creating HFT method definitions","url":"Acro12_MasterBook/Plugins_Hft/Creating_HFT_method_definitions.htm"},{"type":"item","name":"Creating HFT callback functions","url":"Acro12_MasterBook/Plugins_Hft/Creating_HFT_callback_functions.htm"},{"type":"item","name":"Creating new Host Function Tables","url":"Acro12_MasterBook/Plugins_Hft/Creating_new_Host_Function_Tables.htm"},{"type":"book","name":"Examining HFT header and source files","key":"toc124","url":"Acro12_MasterBook/Plugins_Hft/Examining_HFT_header_and_source_files.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

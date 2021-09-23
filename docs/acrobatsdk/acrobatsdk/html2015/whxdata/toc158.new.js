@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Terminology","url":"Acro12_MasterBook/PDF_Create_Principles/Terminology.htm"},{"type":"item","name":"Organization of settings files","url":"Acro12_MasterBook/PDF_Create_Principles/Organization_of_settings_files.htm"},{"type":"book","name":"Namespaces","key":"toc159","url":"Acro12_MasterBook/PDF_Create_Principles/Namespaces.htm"},{"type":"book","name":"Predefined settings files","key":"toc160","url":"Acro12_MasterBook/PDF_Create_Principles/Predefined_settings_files.htm"},{"type":"book","name":"Reading and writing settings files","key":"toc162","url":"Acro12_MasterBook/PDF_Create_Principles/Reading_and_writing_settings_files.htm"},{"type":"book","name":"How Distiller uses Adobe PDF settings","key":"toc163","url":"Acro12_MasterBook/PDF_Create_Principles/How_Distiller_uses_Adobe_PDF_settings.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

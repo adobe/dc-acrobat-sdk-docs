@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc320.js\"  name=\"catalog properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/catalog_properties.htm\"><item name=\"isIdle\" url=\"Acro12_MasterBook/JS_API_AcroJS/catalog_properties.htm#TOC_isIdlebc-1\" /><item name=\"jobs\" url=\"Acro12_MasterBook/JS_API_AcroJS/catalog_properties.htm#TOC_jobsbc-2\" /></data>";

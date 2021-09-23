@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Using the image settings","key":"toc165","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_image_settings.htm"},{"type":"item","name":"Using the font settings","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_font_settings.htm"},{"type":"book","name":"Using the color conversion settings","key":"toc170","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_color_conversion_settings.htm"},{"type":"book","name":"Using the advanced Adobe PDF settings","key":"toc173","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_advanced_Adobe_PDF_settings.htm"},{"type":"book","name":"Using the standards settings","key":"toc174","url":"Acro12_MasterBook/PDF_Create_UsingSettings/Using_the_standards_settings.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

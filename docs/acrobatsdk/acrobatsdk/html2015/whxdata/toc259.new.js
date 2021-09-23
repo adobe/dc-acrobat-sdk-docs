@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Installing and customizing Hanko stamps","url":"Acro12_MasterBook/JS_Dev_RMA/Participating_in_a_Hanko_approval_workflow.htm#TOC_Installing_andbc-1"},{"type":"item","name":"Creating custom Inkan stamps","url":"Acro12_MasterBook/JS_Dev_RMA/Participating_in_a_Hanko_approval_workflow.htm#TOC_Creating_custom_Inkanbc-2"},{"type":"item","name":"Deleting custom stamps","url":"Acro12_MasterBook/JS_Dev_RMA/Participating_in_a_Hanko_approval_workflow.htm#TOC_Deleting_custom_stampsbc-3"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

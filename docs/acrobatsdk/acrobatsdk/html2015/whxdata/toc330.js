@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc329.js\"  name=\"color methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/color_methods.htm\"><item name=\"convert\" url=\"Acro12_MasterBook/JS_API_AcroJS/color_methods.htm#TOC_convertbc-1\" /><item name=\"equal\" url=\"Acro12_MasterBook/JS_API_AcroJS/color_methods.htm#TOC_equalbc-2\" /></data>";

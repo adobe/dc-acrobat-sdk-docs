@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"SignatureInfo\" url=\"Acro12_MasterBook/JS_API_AcroJS/SignatureInfo.htm\"><book name=\"SignatureInfo properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/SignatureInfo_properties.htm\" src=\"toc460.js\" /></data>";

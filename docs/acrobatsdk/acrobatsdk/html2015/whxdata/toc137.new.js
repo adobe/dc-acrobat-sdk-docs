@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Working with the Acrobat 3D API","key":"toc138","url":"Acro12_MasterBook/Plugins_A3D_API/Working_with_the_Acrobat_3D_API.htm"},{"type":"book","name":"Implementing external linking in your plug-in","key":"toc139","url":"Acro12_MasterBook/Plugins_A3D_API/Implementing_external_linking_in_your_plug-in.htm"},{"type":"book","name":"Parsing a PRC file","key":"toc140","url":"Acro12_MasterBook/Plugins_A3D_API/Parsing_a_PRC_file.htm"},{"type":"book","name":"Creating a PRC file that uses boundary representation","key":"toc142","url":"Acro12_MasterBook/Plugins_A3D_API/Creating_a_PRC_file_that_uses_boundary_representation.htm"},{"type":"item","name":"Creating a tessellation entity for representing faceted objects","url":"Acro12_MasterBook/Plugins_A3D_API/Creating_a_tessellation_entity_for_representing_faceted_objects.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

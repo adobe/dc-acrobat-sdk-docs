@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc296.js\"  name=\"Alerter methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/Alerter_methods.htm\"><item name=\"dispatch\" url=\"Acro12_MasterBook/JS_API_AcroJS/Alerter_methods.htm#TOC_dispatchbc-1\" /></data>";

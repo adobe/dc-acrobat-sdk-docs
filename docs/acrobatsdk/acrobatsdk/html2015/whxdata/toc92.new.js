@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Creating a Window","url":"Acro12_MasterBook/Plugins_Documents/Creating_a_Window.htm"},{"type":"item","name":"Defining the parameters for an external window","url":"Acro12_MasterBook/Plugins_Documents/Defining_the_parameters_for_an_external_window.htm"},{"type":"item","name":"Creating a handler for an external window","url":"Acro12_MasterBook/Plugins_Documents/Creating_a_handler_for_an_external_window.htm"},{"type":"item","name":"Displaying an open dialog box","url":"Acro12_MasterBook/Plugins_Documents/Displaying_an_open_dialog_box.htm"},{"type":"item","name":"Displaying a PDF document within a window","url":"Acro12_MasterBook/Plugins_Documents/Displaying_a_PDF_document_within_a_window.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

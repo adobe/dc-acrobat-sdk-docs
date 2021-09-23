@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"PreflightAuditTrail\" url=\"Acro12_MasterBook/JS_API_AcroJS/PreflightAuditTrail.htm\"><book name=\"PreflightAuditTrail properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/PreflightAuditTrail_properties.htm\" src=\"toc431.js\" /></data>";

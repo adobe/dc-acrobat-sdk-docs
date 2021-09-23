@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Adding or removing menus and menu items","url":"Acro12_MasterBook/Plugins_Pimech/Adding_or_removing_menus_and_menu_items.htm"},{"type":"item","name":"Modifying toolbars","url":"Acro12_MasterBook/Plugins_Pimech/Modifying_toolbars.htm"},{"type":"item","name":"Controlling the About box and splash screen","url":"Acro12_MasterBook/Plugins_Pimech/Controlling_the_About_box_and_splash_screen.htm"},{"type":"item","name":"Creating help files","url":"Acro12_MasterBook/Plugins_Pimech/Creating_help_files.htm"},{"type":"item","name":"User interface guidelines","url":"Acro12_MasterBook/Plugins_Pimech/User_interface_guidelines.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

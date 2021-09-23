@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Introduction","key":"toc60","url":"Acro12_MasterBook/Reader_GettingStarted/Introduction4.htm"},{"type":"book","name":"JavaScript APIs","key":"toc62","url":"Acro12_MasterBook/Reader_JavaScript/JavaScript_APIs.htm"},{"type":"book","name":"Interapplication Communication","key":"toc63","url":"Acro12_MasterBook/Reader_IAC/Interapplication_Communication2.htm"},{"type":"book","name":"Plug-ins","key":"toc64","url":"Acro12_MasterBook/Reader_Plugins/Plug-ins2.htm"},{"type":"book","name":"Sandbox Broker Extensibility","key":"toc65","url":"Acro12_MasterBook/Reader_SandboxBrokerExt/Sandbox_Broker_Extensibility.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

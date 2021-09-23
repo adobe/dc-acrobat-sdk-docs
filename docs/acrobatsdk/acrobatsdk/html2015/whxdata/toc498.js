@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc496.js\"  name=\"Camera\" url=\"Acro12_MasterBook/JS_3D_API/Camera.htm\"><item name=\"getScreenFromPosition\" url=\"Acro12_MasterBook/JS_3D_API/getScreenFromPosition.htm\" /><item name=\"getDirectionFromScreen\" url=\"Acro12_MasterBook/JS_3D_API/getDirectionFromScreen.htm\" /></data>";

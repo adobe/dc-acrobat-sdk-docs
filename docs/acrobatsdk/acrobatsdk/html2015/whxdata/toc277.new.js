@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Security essentials","key":"toc278","url":"Acro12_MasterBook/JS_Dev_Security/Security_essentials.htm"},{"type":"book","name":"Digitally signing PDF documents","key":"toc280","url":"Acro12_MasterBook/JS_Dev_Security/Digitally_signing_PDF_documents.htm"},{"type":"book","name":"Adding security to PDF documents","key":"toc282","url":"Acro12_MasterBook/JS_Dev_Security/Adding_security_to_PDF_documents.htm"},{"type":"book","name":"Digital IDs and certification methods","key":"toc283","url":"Acro12_MasterBook/JS_Dev_Security/Digital_IDs_and_certification_methods.htm"},{"type":"book","name":"Task based topics","key":"toc286","url":"Acro12_MasterBook/JS_Dev_Security/Task_based_topics.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

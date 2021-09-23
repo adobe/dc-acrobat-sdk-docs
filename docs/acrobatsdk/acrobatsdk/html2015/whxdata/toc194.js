@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc192.js\"  name=\"Properties\" url=\"Acro12_MasterBook/Distiller_AutomationIntro/Properties.htm\"><item name=\"bShowWindow\" url=\"Acro12_MasterBook/Distiller_AutomationIntro/bShowWindow.htm\" /><item name=\"bSpoolJobs\" url=\"Acro12_MasterBook/Distiller_AutomationIntro/bSpoolJobs.htm\" /></data>";

@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"About Cos objects","key":"toc126","url":"Acro12_MasterBook/Plugins_Cos/About_Cos_objects.htm"},{"type":"book","name":"Working with Cos strings","key":"toc128","url":"Acro12_MasterBook/Plugins_Cos/Working_with_Cos_strings.htm"},{"type":"book","name":"Working with Cos arrays","key":"toc129","url":"Acro12_MasterBook/Plugins_Cos/Working_with_Cos_arrays.htm"},{"type":"book","name":"Working with Cos dictionaries","key":"toc130","url":"Acro12_MasterBook/Plugins_Cos/Working_with_Cos_dictionaries.htm"},{"type":"book","name":"Working with Cos names","key":"toc131","url":"Acro12_MasterBook/Plugins_Cos/Working_with_Cos_names.htm"},{"type":"book","name":"Working with Cos streams","key":"toc132","url":"Acro12_MasterBook/Plugins_Cos/Working_with_Cos_streams.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Additional usage rights","url":"Acro12_MasterBook/JS_Dev_Ubiquity/Additional_usage_rights.htm"},{"type":"item","name":"LiveCycle Reader Extensions","url":"Acro12_MasterBook/JS_Dev_Ubiquity/LiveCycle_Reader_Extensions.htm"},{"type":"item","name":"Writing JavaScript for Acrobat Reader","url":"Acro12_MasterBook/JS_Dev_Ubiquity/Writing_JavaScript_for_Acrobat_Reader.htm"},{"type":"item","name":"Enabling collaboration","url":"Acro12_MasterBook/JS_Dev_Ubiquity/Enabling_collaboration.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

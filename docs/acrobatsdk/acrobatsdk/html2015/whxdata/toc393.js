@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc391.js\"  name=\"Link methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/Link_methods.htm\"><item name=\"setAction\" url=\"Acro12_MasterBook/JS_API_AcroJS/Link_methods.htm#TOC_setAction3bc-1\" /></data>";

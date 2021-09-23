@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Destroy","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Destroy.htm"},{"type":"item","name":"GetByTitle","url":"Acro12_MasterBook/IAC_API_OLE_Objects/GetByTitle.htm"},{"type":"item","name":"GetTitle","url":"Acro12_MasterBook/IAC_API_OLE_Objects/GetTitle2.htm"},{"type":"item","name":"IsValid","url":"Acro12_MasterBook/IAC_API_OLE_Objects/IsValid2.htm"},{"type":"item","name":"Perform","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Perform1.htm"},{"type":"item","name":"SetTitle","url":"Acro12_MasterBook/IAC_API_OLE_Objects/SetTitle2.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

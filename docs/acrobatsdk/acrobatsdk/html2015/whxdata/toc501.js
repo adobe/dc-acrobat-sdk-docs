@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc496.js\"  name=\"ClippingPlane\" url=\"Acro12_MasterBook/JS_3D_API/ClippingPlane.htm\"><item name=\"remove\" url=\"Acro12_MasterBook/JS_3D_API/remove.htm\" /></data>";

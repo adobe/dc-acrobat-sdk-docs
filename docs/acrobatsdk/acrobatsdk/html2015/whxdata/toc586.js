@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc585.js\"  name=\"Field\" url=\"Acro12_MasterBook/IAC_API_FormsIntro/Field1.htm\"><book name=\"Methods\" url=\"Acro12_MasterBook/IAC_API_FormsIntro/Methods1.htm\" src=\"toc587.js\" /><book name=\"Properties\" url=\"Acro12_MasterBook/IAC_API_FormsIntro/Properties1.htm\" src=\"toc588.js\" /></data>";

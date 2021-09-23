@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"util\" url=\"Acro12_MasterBook/JS_API_AcroJS/util1.htm\"><book name=\"util methods\" url=\"Acro12_MasterBook/JS_API_AcroJS/util_methods.htm\" src=\"toc482.js\" /></data>";

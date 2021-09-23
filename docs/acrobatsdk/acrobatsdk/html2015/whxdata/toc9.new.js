@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Creating PDF files from an authoring application","key":"toc10","url":"Acro12_MasterBook/Overview_PDFCreation/Creating_PDF_files_from_an_authoring_application.htm"},{"type":"book","name":"Creating PDF files using plug-ins or JavaScript","key":"toc11","url":"Acro12_MasterBook/Overview_PDFCreation/Creating_PDF_files_using_plug-ins_or_JavaScript.htm"},{"type":"item","name":"Creating PDF files without using Acrobat","url":"Acro12_MasterBook/Overview_PDFCreation/Creating_PDF_files_without_using_Acrobat.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

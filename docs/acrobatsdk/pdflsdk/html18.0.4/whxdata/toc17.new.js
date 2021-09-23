@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Including Acrobat SDK library files","url":"PDFL_MasterBook/Plug-in_and_PDF_Library/Creating_a_sample_plug-in.htm#TOC_Including_Acrobat_SDKbc-1"},{"type":"item","name":"Adding the PIMain source file","url":"PDFL_MasterBook/Plug-in_and_PDF_Library/Creating_a_sample_plug-in.htm#TOC_Adding_the_PIMain_sourcebc-2"},{"type":"item","name":"Adding application logic","url":"PDFL_MasterBook/Plug-in_and_PDF_Library/Creating_a_sample_plug-in.htm#TOC_Adding_application_logicbc-3"},{"type":"item","name":"Compiling and building your plug-in","url":"PDFL_MasterBook/Plug-in_and_PDF_Library/Creating_a_sample_plug-in.htm#TOC_Compiling_and_buildingbc-4"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

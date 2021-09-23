@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc213.js\"  name=\"Attribute objects\" url=\"Acro12_MasterBook/pdfmark_Logical/Attribute_objects.htm\"><item name=\"StAttr\" url=\"Acro12_MasterBook/pdfmark_Logical/StAttr.htm\" /></data>";

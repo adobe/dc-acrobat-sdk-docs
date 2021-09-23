@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"About plug-ins","url":"PDFL_MasterBook/Introduction_Plug-ins/About_plug-ins.htm"},{"type":"book","name":"About the Acrobat core API","key":"toc9","url":"PDFL_MasterBook/Introduction_Plug-ins/About_the_Acrobatcore_API-jya.htm"},{"type":"book","name":"About PDF Library and plug-in applications","key":"toc10","url":"PDFL_MasterBook/Introduction_Plug-ins/About_PDF_Library_and_plug-in_applications.htm"},{"type":"item","name":"Understanding your target application","url":"PDFL_MasterBook/Introduction_Plug-ins/Understanding_your_target_application.htm"},{"type":"book","name":"Registering plug-ins for use by the plug-in finder","key":"toc11","url":"PDFL_MasterBook/Introduction_Plug-ins/Registering_plug-ins_for_use_by_the_plug-in_finder.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

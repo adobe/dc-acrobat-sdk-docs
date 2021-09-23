@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Navigation in PDF documents","key":"toc13","url":"Acro12_MasterBook/Overview_Editing/Navigation_in_PDF_documents.htm"},{"type":"book","name":"PDF page manipulation","key":"toc14","url":"Acro12_MasterBook/Overview_Editing/PDF_page_manipulation.htm"},{"type":"item","name":"Watermarks","url":"Acro12_MasterBook/Overview_Editing/Watermarks.htm"},{"type":"item","name":"Spell-checking","url":"Acro12_MasterBook/Overview_Editing/Spell-checking.htm"},{"type":"item","name":"Multimedia","url":"Acro12_MasterBook/Overview_Editing/Multimedia.htm"},{"type":"item","name":"Printing PDF files","url":"Acro12_MasterBook/Overview_Editing/Printing_PDF_files.htm"},{"type":"item","name":"Embedded fonts","url":"Acro12_MasterBook/Overview_Editing/Embedded_fonts.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

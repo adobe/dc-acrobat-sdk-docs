@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"What tools are available with Acrobat for full-text search?","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/What_tools_are_available_with_Acrobat_for_full-text_search.htm"},{"type":"item","name":"What tools are available for extracting and highlighting text?","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/What_tools_are_available_for_extracting_and_highlighting_text.htm"},{"type":"item","name":"How do I communicate with the Acrobat Search plug-in?","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/How_do_I_communicate_with_the_Acrobat_Search_plug-in.htm"},{"type":"item","name":"How do I create custom DocInfo fields for searching?","url":"Acro12_MasterBook/DevFAQ_UnderstandingSDK/How_do_I_create_custom_DocInfo_fields_for_searching.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

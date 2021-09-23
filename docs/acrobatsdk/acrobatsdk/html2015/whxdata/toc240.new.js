@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Specifying output settings","url":"Acro12_MasterBook/JS_Dev_PrintProduction/Setting_advanced_print_options.htm#TOC_Specifying_outputbc-1"},{"type":"item","name":"Specifying marks and bleeds","url":"Acro12_MasterBook/JS_Dev_PrintProduction/Setting_advanced_print_options.htm#TOC_Specifying_marks_andbc-2"},{"type":"item","name":"Setting PostScript options","url":"Acro12_MasterBook/JS_Dev_PrintProduction/Setting_advanced_print_options.htm#TOC_Setting_PostScriptbc-3"},{"type":"item","name":"Setting font options","url":"Acro12_MasterBook/JS_Dev_PrintProduction/Setting_advanced_print_options.htm#TOC_Setting_font_optionsbc-4"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

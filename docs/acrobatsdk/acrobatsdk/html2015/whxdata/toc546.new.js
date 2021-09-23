@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Gather bookmarks to an array","url":"Acro12_MasterBook/BatchSeq_Examples/Count_PDF_files.htm#TOC_Gather_bookmarks_to_anbc-2"},{"type":"item","name":"List all bookmarks","url":"Acro12_MasterBook/BatchSeq_Examples/Count_PDF_files.htm#TOC_List_all_bookmarksbc-3"},{"type":"item","name":"Count bookmarks","url":"Acro12_MasterBook/BatchSeq_Examples/Count_PDF_files.htm#TOC_Count_bookmarksbc-4"},{"type":"item","name":"Gather bookmarks to a document","url":"Acro12_MasterBook/BatchSeq_Examples/Count_PDF_files.htm#TOC_Gather_bookmarks_to_abc-5"},{"type":"item","name":"Copy bookmarks from an array","url":"Acro12_MasterBook/BatchSeq_Examples/Count_PDF_files.htm#TOC_Copy_bookmarks_from_anbc-6"},{"type":"item","name":"Insert bookmarked pages","url":"Acro12_MasterBook/BatchSeq_Examples/Count_PDF_files.htm#TOC_Insert_bookmarked_pagesbc-7"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

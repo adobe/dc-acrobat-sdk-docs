@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"name","url":"Acro12_MasterBook/JS_API_AcroJS/collectionField_properties.htm#TOC_name5bc-1"},{"type":"item","name":"order","url":"Acro12_MasterBook/JS_API_AcroJS/collectionField_properties.htm#TOC_orderbc-2"},{"type":"item","name":"readOnly","url":"Acro12_MasterBook/JS_API_AcroJS/collectionField_properties.htm#TOC_readOnly1bc-3"},{"type":"item","name":"sort","url":"Acro12_MasterBook/JS_API_AcroJS/collectionField_properties.htm#TOC_sortbc-4"},{"type":"item","name":"text","url":"Acro12_MasterBook/JS_API_AcroJS/collectionField_properties.htm#TOC_textbc-5"},{"type":"item","name":"type","url":"Acro12_MasterBook/JS_API_AcroJS/collectionField_properties.htm#TOC_type3bc-6"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

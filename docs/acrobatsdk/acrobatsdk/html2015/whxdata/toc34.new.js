@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Plug-in Samples","key":"toc35","url":"Acro12_MasterBook/Samples_Plug_in/Plug-in_Samples.htm"},{"type":"book","name":"JavaScript Samples","key":"toc36","url":"Acro12_MasterBook/Samples_JavaScript/JavaScript_Samples.htm"},{"type":"book","name":"Mac OS - Interapplication Communications","key":"toc37","url":"Acro12_MasterBook/Samples_MacintoshIAC/Mac_OS_-_Interapplication_Communications.htm"},{"type":"book","name":"Windows - Interapplication Communications","key":"toc38","url":"Acro12_MasterBook/Samples_WindowsIAC/Windows_-_Interapplication_Communications.htm"},{"type":"book","name":"Navigator Samples","key":"toc39","url":"Acro12_MasterBook/Samples_Navigator/Navigator_Samples.htm"},{"type":"book","name":"Tools","key":"toc40","url":"Acro12_MasterBook/Samples_Tools/Tools.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

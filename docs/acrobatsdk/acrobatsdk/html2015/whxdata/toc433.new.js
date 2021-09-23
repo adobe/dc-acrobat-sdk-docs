@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"name","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightProfile_properties.htm#TOC_name17bc-1"},{"type":"item","name":"description","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightProfile_properties.htm#TOC_description2bc-2"},{"type":"item","name":"hasFixups","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightProfile_properties.htm#TOC_hasFixupsbc-3"},{"type":"item","name":"hasChecks","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightProfile_properties.htm#TOC_hasChecksbc-4"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

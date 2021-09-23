@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc295.js\"  name=\"colorConvertAction\" url=\"Acro12_MasterBook/JS_API_AcroJS/colorConvertAction.htm\"><book name=\"colorConvertAction properties\" url=\"Acro12_MasterBook/JS_API_AcroJS/colorConvertAction_properties.htm\" src=\"toc332.js\" /></data>";

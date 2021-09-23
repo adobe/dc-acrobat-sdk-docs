@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"Media players: control, settings, renditions, and events","key":"toc261","url":"Acro12_MasterBook/JS_Dev_DigitalMedia/Media_players_control_settings_renditions_and_events.htm"},{"type":"item","name":"Monitors","url":"Acro12_MasterBook/JS_Dev_DigitalMedia/Monitors.htm"},{"type":"book","name":"Integrating media into documents","key":"toc262","url":"Acro12_MasterBook/JS_Dev_DigitalMedia/Integrating_media_into_documents.htm"},{"type":"item","name":"Setting multimedia preferences","url":"Acro12_MasterBook/JS_Dev_DigitalMedia/Setting_multimedia_preferences.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

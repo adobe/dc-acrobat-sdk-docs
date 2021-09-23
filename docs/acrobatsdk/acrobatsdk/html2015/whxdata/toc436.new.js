@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"numErrors","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightResult_properties.htm#TOC_numErrorsbc-1"},{"type":"item","name":"numWarnings","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightResult_properties.htm#TOC_numWarningsbc-2"},{"type":"item","name":"numInfos","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightResult_properties.htm#TOC_numInfosbc-3"},{"type":"item","name":"numFixed","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightResult_properties.htm#TOC_numFixedbc-4"},{"type":"item","name":"numNotFixed","url":"Acro12_MasterBook/JS_API_AcroJS/PreflightResult_properties.htm#TOC_numNotFixedbc-5"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

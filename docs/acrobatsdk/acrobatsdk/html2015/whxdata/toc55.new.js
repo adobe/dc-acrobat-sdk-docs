@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"SnippetRunner Common Interface","key":"toc56","url":"Acro12_MasterBook/Snippet_SnippetRunnerCookbook/SnippetRunner_Common_Interface.htm"},{"type":"item","name":"Starting the SnippetRunner and the Common Interface","url":"Acro12_MasterBook/Snippet_SnippetRunnerCookbook/Starting_the_SnippetRunner_and_the_Common_Interface.htm"},{"type":"book","name":"Starting the Common Interface for the PDF Library","key":"toc57","url":"Acro12_MasterBook/Snippet_SnippetRunnerCookbook/Starting_the_Common_Interface_for_the_PDF_Library.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

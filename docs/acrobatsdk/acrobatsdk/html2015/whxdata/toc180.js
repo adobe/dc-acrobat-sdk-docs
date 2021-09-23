@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc175.js\"  name=\"Page Compression Setting\" url=\"Acro12_MasterBook/PDF_Create_CommonSettings/Page_Compression_Setting.htm\"><item name=\"CompressPages\" url=\"Acro12_MasterBook/PDF_Create_CommonSettings/CompressPages.htm\" /></data>";

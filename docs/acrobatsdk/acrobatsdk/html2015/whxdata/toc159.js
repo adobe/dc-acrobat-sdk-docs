@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc158.js\"  name=\"Namespaces\" url=\"Acro12_MasterBook/PDF_Create_Principles/Namespaces.htm\"><item name=\"Common namespace\" url=\"Acro12_MasterBook/PDF_Create_Principles/Common_namespace.htm\" /><item name=\"Other namespaces\" url=\"Acro12_MasterBook/PDF_Create_Principles/Other_namespaces.htm\" /></data>";

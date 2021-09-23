@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"altText","url":"Acro12_MasterBook/JS_API_AcroJS/Rendition_properties.htm#TOC_altTextbc-1"},{"type":"item","name":"doc","url":"Acro12_MasterBook/JS_API_AcroJS/Rendition_properties.htm#TOC_doc6bc-2"},{"type":"item","name":"fileName","url":"Acro12_MasterBook/JS_API_AcroJS/Rendition_properties.htm#TOC_fileName2bc-3"},{"type":"item","name":"type","url":"Acro12_MasterBook/JS_API_AcroJS/Rendition_properties.htm#TOC_type6bc-4"},{"type":"item","name":"uiName","url":"Acro12_MasterBook/JS_API_AcroJS/Rendition_properties.htm#TOC_uiName1bc-5"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

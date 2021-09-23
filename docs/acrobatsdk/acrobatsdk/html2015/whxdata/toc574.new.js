@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Date","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Date.htm"},{"type":"item","name":"Hour","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Hour.htm"},{"type":"item","name":"Millisecond","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Millisecond.htm"},{"type":"item","name":"Minute","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Minute.htm"},{"type":"item","name":"Month","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Month.htm"},{"type":"item","name":"Second","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Second.htm"},{"type":"item","name":"Year","url":"Acro12_MasterBook/IAC_API_OLE_Objects/Year.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

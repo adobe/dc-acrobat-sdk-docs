@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Reviewing documents with additional usage rights","url":"Acro12_MasterBook/JS_Dev_RMA/Reviewing_documents_with_additional_usage_rights.htm"},{"type":"item","name":"Emailing PDF documents","url":"Acro12_MasterBook/JS_Dev_RMA/Emailing_PDF_documents.htm"},{"type":"book","name":"Spell-checking in comments and forms","key":"toc254","url":"Acro12_MasterBook/JS_Dev_RMA/Spell-checking_in_comments_and_forms.htm"},{"type":"item","name":"Approval","url":"Acro12_MasterBook/JS_Dev_RMA/Approval.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

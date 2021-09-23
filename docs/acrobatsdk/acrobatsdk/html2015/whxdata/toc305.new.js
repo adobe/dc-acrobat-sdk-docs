@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"destroy","url":"Acro12_MasterBook/JS_API_AcroJS/Annotation_methods.htm#TOC_destroybc-1"},{"type":"item","name":"getProps","url":"Acro12_MasterBook/JS_API_AcroJS/Annotation_methods.htm#TOC_getPropsbc-2"},{"type":"item","name":"getStateInModel","url":"Acro12_MasterBook/JS_API_AcroJS/Annotation_methods.htm#TOC_getStateInModelbc-3"},{"type":"item","name":"setProps","url":"Acro12_MasterBook/JS_API_AcroJS/Annotation_methods.htm#TOC_setPropsbc-4"},{"type":"item","name":"transitionToState","url":"Acro12_MasterBook/JS_API_AcroJS/Annotation_methods.htm#TOC_transitionToStatebc-5"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

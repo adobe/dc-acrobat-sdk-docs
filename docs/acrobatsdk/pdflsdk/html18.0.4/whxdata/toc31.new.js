@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"book","name":"About searching for words","key":"toc32","url":"PDFL_MasterBook/Working_with_Words/About_searching_for_words.htm"},{"type":"item","name":"Creating a PDWordFinder object","url":"PDFL_MasterBook/Working_with_Words/Creating_a_PDWordFinder_object.htm"},{"type":"item","name":"Extracting and displaying words","url":"PDFL_MasterBook/Working_with_Words/Extracting_and_displaying_words.htm"},{"type":"item","name":"Highlighting words","url":"PDFL_MasterBook/Working_with_Words/Highlighting_words.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

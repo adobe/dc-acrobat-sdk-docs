@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"About plug-ins","url":"Acro12_MasterBook/Plugins_Introduction/About_plug-ins.htm"},{"type":"book","name":"About the Acrobat core API","key":"toc71","url":"Acro12_MasterBook/Plugins_Introduction/About_the_Acrobat_core_API.htm"},{"type":"book","name":"About PDF Library and plug-in applications","key":"toc72","url":"Acro12_MasterBook/Plugins_Introduction/About_PDF_Library_and_plug-in_applications.htm"},{"type":"item","name":"Understanding your target application","url":"Acro12_MasterBook/Plugins_Introduction/Understanding_your_target_application.htm"},{"type":"book","name":"Registering plug-ins for use by the plug-in finder","key":"toc73","url":"Acro12_MasterBook/Plugins_Introduction/Registering_plug-ins_for_use_by_the_plug-in_finder.htm"},{"type":"item","name":"New APIs","url":"Acro12_MasterBook/Plugins_Introduction/New_APIs1.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

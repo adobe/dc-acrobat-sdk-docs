@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc255.js\"  name=\"Sorting comments\" url=\"Acro12_MasterBook/JS_Dev_RMA/Sorting_comments.htm\"><item name=\"Showing and hiding comments\" url=\"Acro12_MasterBook/JS_Dev_RMA/Sorting_comments.htm#TOC_Showing_and_hidingbc-1\" /></data>";

@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc485.js\"  name=\"Acrobat XI changes\" url=\"Acro12_MasterBook/JS_API_AcroJSChanges/Acrobat_XI_changes.htm\"><item name=\"Changes to PrintParams object\" url=\"Acro12_MasterBook/JS_API_AcroJSChanges/Changes_to_PrintParams_object.htm\" /></data>";

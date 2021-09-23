@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Introduced in Acrobat 5.0","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Acrobat_5_0_changes.htm#TOC_Introduced_in_Acrobat_5_0bc-1"},{"type":"item","name":"Modified in Acrobat 5.0","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Acrobat_5_0_changes.htm#TOC_Modified_in_Acrobat_5_0bc-2"},{"type":"item","name":"Deprecated in Acrobat 5.0","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Deprecated_in_Acrobat_5_0.htm"},{"type":"item","name":"Modified in Acrobat 5.05","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Modified_in_Acrobat_5_05.htm"},{"type":"item","name":"Modified in Adobe Reader 5.1","url":"Acro12_MasterBook/JS_API_AcroJSChanges/Modified_in_Adobe_Reader_5_1.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

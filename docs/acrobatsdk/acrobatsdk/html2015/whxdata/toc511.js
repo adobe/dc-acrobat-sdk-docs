@@ -1,1 +1,0 @@
-gXMLBuffer ="<?xml version=\"1.0\" encoding=\"utf-8\" ?><data  src=\"toc496.js\"  name=\"Mesh\" url=\"Acro12_MasterBook/JS_3D_API/Mesh.htm\"><item name=\"computeBoundingBox\" url=\"Acro12_MasterBook/JS_3D_API/computeBoundingBox.htm\" /><item name=\"setColor\" url=\"Acro12_MasterBook/JS_3D_API/setColor1.htm\" /></data>";
