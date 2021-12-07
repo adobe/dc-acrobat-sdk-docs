@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Migrating From SOAP &mdash; DC Deployment Planning and Configuration</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="./_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+    <link rel="canonical" href="https://www.adobe.com/go/acrobatsigndevguidesoap-to-rest-migration.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Search" href="search.html" /> 
+  
+  <style>
+  .wy-nav-content {max-width:90%}
+  td {font-size:130%}
+  </style>
+  <script type='text/javascript'>
+         window.marketingtech = {
+               adobe: {
+                   launch: {
+                       property: "global",
+                       environment: "production"
+                   }
+               },
+           };
+        </script>
+  <script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+	<script>
+
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper">
+          <a href="https://www.adobe.io/apis/documentcloud/dcsdk.html">
+            <img src="_static/images/adobe-logo-small.jpg" class="logo"/> 
+            Adobe Developer
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Adobe Acrobat Sign Developer Guide
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Adobe Acrobat Sign Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gstarted.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gstarted.html#create-an-application">Create an Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gstarted.html#configure-oauth-for-the-application">Configure OAuth for the Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gstarted.html#get-the-access-token">Get the Access Token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html">API Usage: Developer Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#send-for-signing-create-an-agreement">Send for Signing (Create an Agreement)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#upload-a-document">Upload a document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#send-the-document">Send the document</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#check-the-status">Check the Status</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#send-reminders">Send Reminders</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#download-the-agreement">Download the Agreement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#create-a-widget">Create a Widget</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#get-the-signing-url">Get the Signing URL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#overview">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#rest-api-response">REST API Response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#steps-to-take-when-throttled">Steps to take when throttled</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#adobe-sign-v6-rest-api-enhancements">Adobe Sign v6 REST API Enhancements?????????</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#on-this-page">On this page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#id1">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#enhancements">Enhancements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#pagination-support">Pagination Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#constant-ids">Constant IDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#etag-support">ETag support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#get-put-post-consistency">GET, PUT, POST consistency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#performance-improvements">Performance improvements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#asynchronous-apis"><strong>Asynchronous API’s</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="apiusage.html#hosted-signing">Hosted Signing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apiusage.html#simple-agreement-creation">Simple Agreement Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="apiusage.html#polling-frequency">Polling Frequency</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#authorization-header">Authorization header</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#features">Features</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#agreement-sharing">Agreement sharing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#authoring-apis">Authoring APIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#document-visibility">Document visibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#draft">Draft</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#notes-management">Notes management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#reminders">Reminders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#resource-views">Resource views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#resource-visibility">Resource visibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#suppress-email">Suppress email</a></li>
+<li class="toctree-l3"><a class="reference internal" href="apiusage.html#webhooks">Webhooks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="apiusage.html#api-change-log">API Change Log</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#new-apis">New APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#updated-apis">Updated APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apiusage.html#removed-apis">Removed APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webhooks.html">Webhooks in Adobe Sign v6</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#how-do-webhooks-work">How do webhooks work?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#creating-a-webhook">Creating a webhook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#configure-a-webhook-and-subscribe-to-events">Configure a webhook and subscribe to events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#verification-of-intent-of-the-webhook-url">Verification of intent of the webhook URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#how-to-respond-to-a-webhook-notification">How to respond to a webhook notification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#hosting-your-webhook-in-the-cloud">Hosting your webhook in the cloud</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#webhook-properties">Webhook properties</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#webhook-url">Webhook URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#webhook-status">Webhook status</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#webhook-scopes">Webhook scopes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#webhook-events">Webhook events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#webhook-conditional-parameters">Webhook conditional parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#managing-webhooks-and-subscriptions-webhook-apis">Managing webhooks and subscriptions (webhook APIs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#securing-webhooks">Securing webhooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#best-practices">Best practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#on-this-page">On this page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#create-an-aws-lambda-function">Create an AWS Lambda function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#add-logic-to-register-your-adobe-sign-webhook">Add logic to register your Adobe Sign webhook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#configure-the-aws-api-gateway">Configure the AWS API Gateway</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#deploy-the-api">Deploy the API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#ready-to-use">Ready to Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#id1">On this page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#id2">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#steps-to-create-an-azure-functions-trigger-that-serves-as-an-adobe-sign-webhook">Steps to create an Azure Functions Trigger that serves as an Adobe Sign Webhook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#create-a-javascript-httptrigger-function">Create a JavaScript HttpTrigger function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#id3">Add logic to register your Adobe Sign webhook</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#id4">Ready to use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#get-the-functions-url">Get the function’s URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#id5">On this page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="webhooks.html#endpoints">Endpoints</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#post-webhooks">POST /webhooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#get-webhooks">GET /webhooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#get-webhooks-webhookid">GET /webhooks/{webhookId}</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#put-webhooks-webhookid">PUT /webhooks/{webhookId}</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#put-webhooks-webhookid-state">PUT /webhooks/{webhookId}/state</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#delete-webhooks-webhookid">DELETE /webhooks/{webhookId}</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#standard-error-codes-in-every-api-request">Standard error codes in every API request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhooks.html#standard-headers-in-every-api-request">Standard headers in every API request</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="webhookevents.html">Webhook Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#notification-payload-for-events">Notification payload for events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#payload-info">Payload info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#basic-webhook-payload-for-all-notifications">Basic webhook payload for all notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#webhooknotificationapplicableusers">WebhookNotificationApplicableUsers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#webhookurlinfo">WebhookUrlInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#agreement">Agreement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#widget">Widget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#library-document">Library Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#megasign">MegaSign</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#receiving-a-webhook-notification">Receiving a webhook notification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#reliable-delivery-of-webhook-notifications">Reliable delivery of webhook notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#webhook-uniqueness">Webhook uniqueness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#superset-events">SuperSet events</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-action-completed">AGREEMENT_ACTION_COMPLETED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#payload-attributes">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#event-specific">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#inherited-from-agreement">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#payload-template">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-action-delegated">AGREEMENT_ACTION_DELEGATED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id1">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id2">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id3">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id4">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-action-replaced-signer">AGREEMENT_ACTION_REPLACED_SIGNER</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id5">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id6">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id7">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id8">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-action-requested">AGREEMENT_ACTION_REQUESTED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id9">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id10">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id11">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id12">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-auto-cancelled-conversion-problem">AGREEMENT_AUTO_CANCELLED_CONVERSION_PROBLEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id13">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id14">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id15">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id16">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-created">AGREEMENT_CREATED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id17">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id18">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id19">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id20">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-documents-deleted">AGREEMENT_DOCUMENTS_DELETED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id21">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id22">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id23">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id24">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-email-bounced">AGREEMENT_EMAIL_BOUNCED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id25">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id26">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id27">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id28">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-email-viewed">AGREEMENT_EMAIL_VIEWED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id29">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id30">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id31">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id32">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-expired">AGREEMENT_EXPIRED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id33">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id34">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id35">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id36">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-kba-authenticated">AGREEMENT_KBA_AUTHENTICATED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id37">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id38">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id39">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id40">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-modified">AGREEMENT_MODIFIED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id41">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id42">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id43">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id44">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-offline-sync">AGREEMENT_OFFLINE_SYNC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id45">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id46">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id47">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id48">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-recalled">AGREEMENT_RECALLED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id49">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id50">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id51">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id52">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-rejected">AGREEMENT_REJECTED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id53">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id54">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id55">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id56">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-shared">AGREEMENT_SHARED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id57">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id58">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id59">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id60">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-uploaded-by-sender">AGREEMENT_UPLOADED_BY_SENDER</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id61">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id62">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id63">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id64">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-user-ack-agreement-modified">AGREEMENT_USER_ACK_AGREEMENT_MODIFIED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id65">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id66">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id67">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id68">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-vaulted">AGREEMENT_VAULTED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id69">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id70">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id71">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id72">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-web-identity-authenticated">AGREEMENT_WEB_IDENTITY_AUTHENTICATED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id73">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id74">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id75">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id76">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#agreement-workflow-completed">AGREEMENT_WORKFLOW_COMPLETED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id77">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id78">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id79">Inherited from Agreement:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id80">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#library-document-auto-cancelled-conversion-problem">LIBRARY_DOCUMENT_AUTO_CANCELLED_CONVERSION_PROBLEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id81">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id82">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#inherited-from-library-document">Inherited from Library Document:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id83">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#library-document-created">LIBRARY_DOCUMENT_CREATED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id84">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id85">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id86">Inherited from Library Document:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id87">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#library-document-modified">LIBRARY_DOCUMENT_MODIFIED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id88">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id89">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id90">Inherited from Library Document:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id91">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#megasign-created">MEGASIGN_CREATED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id92">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id93">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#inherted-from-megasign">Inherted from MegaSign:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id94">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#megasign-recalled">MEGASIGN_RECALLED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id95">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id96">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id97">Inherted from MegaSign:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id98">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#megasign-shared">MEGASIGN_SHARED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id99">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id100">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id101">Inherted from MegaSign:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id102">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#widget-auto-cancelled-conversion-problem">WIDGET_AUTO_CANCELLED_CONVERSION_PROBLEM</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id103">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id104">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#inherted-from-widget">Inherted from Widget:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id105">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#widget-created">WIDGET_CREATED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id106">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id107">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#inherited-from-widget">Inherited from Widget:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id108">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#widget-disabled">WIDGET_DISABLED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id109">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id110">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id111">Inherited from Widget:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id112">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#widget-enabled">WIDGET_ENABLED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id113">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id114">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id115">Inherited from Widget:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id116">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#widget-modified">WIDGET_MODIFIED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id117">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id118">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id119">Inherted from Widget:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id120">Payload template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="webhookevents.html#widget-shared">WIDGET_SHARED</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id121">Payload attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id122">Event-specific:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id123">Inherted from Widget:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="webhookevents.html#id124">Payload template</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="scenarios.html">Scenarios</a></li>
+<li class="toctree-l1"><a class="reference internal" href="samples.html">REST API Samples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#the-package">The package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#using-the-samples">Using the Samples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="samples.html#output-path">Output Path</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#create-a-new-widget-with-countersigners">Create a New Widget with Countersigners</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#download-an-agreements-audit-report">Download an Agreement’s Audit Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#download-the-combined-document-for-an-agreement">Download the Combined Document for an Agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#download-documents-from-an-agreement">Download Documents from an Agreement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#get-an-agreements-status">Get an Agreement’s Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#get-an-agreements-signing-url">Get an Agreement’s Signing URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#send-reminders-to-participants">Send Reminders to Participants</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#send-an-agreement-using-a-library-document">Send an Agreement Using a Library Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="samples.html#send-an-agreement-using-a-transient-document">Send an Agreement Using a Transient Document</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="events.html">Events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="events.html#system-requirements">System requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#supported-events">Supported events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="events.html#workflow-events">Workflow events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="events.html#page-load-events">Page Load events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="events.html#session-events">Session events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="events.html#user-action-events">User action events</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="events.html#using-events">Using events</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="developerguides.html">Developer Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="migrating.html">Migrating From SOAP</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/devnet-docs/acrobatetk/index.html" class="topbarlink">Enterprise Toolkit</a>
+            <a href="https://helpx.adobe.com/enterprise/get-started.html" class="topbarlink">Get Started</a>
+            <a href="https://community.adobe.com/t5/enterprise-teams/bd-p/enterprise-and-teams" class="topbarlink">Forum</a>  
+          </div>  
+          <div class="sign-in">
+            <a href="https://console.adobe.io/" class="btn btn-console">Console</a>
+            <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Adobe Acrobat Sign Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Migrating From SOAP</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="migrating-from-soap">
+<h1>Migrating From SOAP<a class="headerlink" href="#migrating-from-soap" title="Permalink to this headline">¶</a></h1>
+<p>If you are using the legacy Adobe Sign SOAP APIs, we highly recommend migrating your apps to consume the v6 REST APIs. The list below shows the SOAP endpoints with their REST equivalents. Both endpoints link directly to the full method description. * <a class="reference external" href="#general-purpose-methods">General-purpose Methods</a> * <a class="reference external" href="#document-methods">Document Methods</a> * <a class="reference external" href="#status-methods">Status Methods</a> * <a class="reference external" href="#user-methods">User Methods</a> * <a class="reference external" href="#web-form-methods">Web Form Methods</a> * <a class="reference external" href="#test-methods">Test Methods</a> * <a class="reference external" href="#deprecated-methods-from-legacy-soap-versions">Deprecated Methods</a></p>
+<p>  ## General-purpose Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getBaseUris">getBaseUris</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/baseUris/getBaseUris">/baseUris, GET</a> |</p>
+<p><strong>Note:</strong> Base URIs: API calls starting v5 of REST API must be made on a specific base URL obtained either from the api_access_point returned from the OAuth workflow or by making a call to the <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/baseUris</span></code> endpoint.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">  ## Document Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#sendDocument">sendDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/createAgreement">/agreements, POST</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">SenderInfo is represented through <code class="docutils literal notranslate"><span class="pre">x-api-user</span></code>. Files are specified through /transientDocuments.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#sendDocumentInteractive">sendDocumentInteractive</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/createAgreementView">/agreements/{agrId}/views, POST</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">From v6 onwards, the interactive views can be specified and obtained from the <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/agreements/{agrId}/views</span></code> endpoint for the interactive behavior.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#sendDocumentMegaSign">sendDocumentMegaSign</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/megaSigns/createMegaSign">/megaSigns, POST</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">MegaSign allows sending the same agreement to multiple recipients and creating a separate instance of agreement for each recipient.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#createLibraryDocument">createLibraryDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/libraryDocuments/createLibraryDocument">/libraryDocuments, POST</a> |</div>
+</div>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#createLibraryDocumentInteractive">createLibraryDocumentInteractive</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/libraryDocuments/createLibraryDocumentView">/libraryDocuments/{libraryDocumentId}, POST</a> |</p>
+<div class="line-block">
+<div class="line">From v6 onwards, the interactive views can be specified and obtained from the <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/agreements/{agrId}/views</span></code> endpoint for the interactive behavior.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#sendReminder">sendReminder</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/createReminderOnParticipant">/agreements/{agrId}/reminders, POST</a> |</div>
+</div>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#removeDocument">removeDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/deleteDocuments">/agreements/{agrId}/documents, DELETE</a> |</p>
+<div class="line-block">
+<div class="line">To delete the documents of agreements, use the <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/agreements/{agrId}/documents</span></code> endpoint; and to remove it from Manage Page(GET /agreements), use <code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/agreements/{agrId}/visibility</span></code></div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#cancelDocument">cancelDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/updateAgreementState">/agreements/{agrId}/state, PUT</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Cancel: Called by sender.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#rejectDocument">rejectDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/rejectAgreementForParticipation">/agreements/{agrId}/members/participantSets/{psId}/participants/{pId}/reject, PUT</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Reject: Called by current signer.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#replaceSigner">replaceSigner</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/updateParticipantSet">/agreements/{agreementId}/members/participantSets/{participantSetId}, PUT</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Replace: Called by sender. Both the original signer and new one can sign.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#delegateSigning">delegateSigning</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/createDelegatedParticipantSets">/agreements/{agrId}/members/participantSets/{psId}/ participants/{pId}/delegatedParticipantSet, POST</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Delegate: Called by signer. Both the delegator and delegatee can sign.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#notifyDocumentVaulted">notifyDocumentVaulted</a> | Expected in the June 2020 release |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">  ## Status Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocumentInfo">getDocumentInfo</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAgreementInfo">/agreements/{agrId}, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">In SOAP API, <code class="docutils literal notranslate"><span class="pre">getDocumentInfo</span></code>, <code class="docutils literal notranslate"><span class="pre">getDocuments</span></code>, <code class="docutils literal notranslate"><span class="pre">getAuditTrail</span></code> etc. work on <code class="docutils literal notranslate"><span class="pre">documentKeys</span></code>, which can be an ID for an agreement, widget, or library document. The REST API demarcates these as separate resources (cleaner design and strongly typed) and hence, based on the kind of resource you are working on, there is a corresponding /libraryDocuments, /widgets to these. Example: <code class="docutils literal notranslate"><span class="pre">/widgets/{widgetId},</span> <span class="pre">GET</span></code> will getDocumentInfo for <code class="docutils literal notranslate"><span class="pre">widgetId</span></code>, and similarly for documents, audit trail, etc.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocumentInfosByExternalId">getDocumentInfosByExternalId</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAgreements">/agreements, GET</a> query = externalId |</div>
+</div>
+<div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">externalId</span></code> can be used to map your internal IDs to Adobe Sign IDs.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocuments">getDocuments</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAllDocuments">/agreements/{agrId}/documents, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">REST returns a list of document IDs that can be provided to the following endpoint to get a document stream.</div>
+<div class="line">  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocumentUrls">getDocumentUrls</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getCombinedDocumentUrl">/agreements/{agrId}/combinedDocument/url, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Retrieve the URL of the <strong>combined document</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocumentUrls">getDocumentUrls</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v5#!/agreements/getDocumentUrl">/agreements/{agrId}/documents/{docId}/url, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Retrieve the URL of an <strong>individual document</strong>.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocumentImageUrls">getDocumentImageUrls</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAllDocumentsImageUrls">/agreements/{agrId}/documents/imageUrls, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Retrieve the image URLs of <strong>all visible pages</strong> of an agreement.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocumentImageUrls">getDocumentImageUrls</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getDocumentImageUrls">/agreements/{agrId}/documents/{docId}/imageUrls, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Retrieve image URLs of a specified documentID.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getSupportingDocuments">getSupportingDocuments</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAllDocuments">/agreements/{agrId}/documents, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Can also specify the content format.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getFormData">getFormData</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getFormData">/agreements/{agrId}/formData, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Returns a CSV file stream.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getAuditTrail">getAuditTrail</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAuditTrail">/agreements/{agrId}/auditTrail, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getSigningUrl">getSigningUrl</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getSigningUrl">/agreements/{agrId}/signingUrls, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">  ## User Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService19#createUser">createUser</a> | <strong>v5 REST Only</strong> <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v5#!/users/createUser">/users, POST</a> |</div>
+</div>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#verifyUser">verifyUser</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/users/getUserDetail">/users/{userId}, GET</a>|</p>
+<p>The REST equivalent can be used to see if the user exists, but does not support password verification.</p>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#searchUserDocuments">searchUserDocuments</a> | TBD |</p>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getDocumentEventsForUser">getDocumentEventsForUser</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getEvents">/agreement/{agrId}/events, GET</a> |</p>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getEmbeddedView">getEmbeddedView</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/createAgreementView">/agreements/{agrId}/views, POST</a> |</p>
+<p>Use the name = DOCUMENT to get the embedded view of an agreement.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getUserDocuments">getUserDocuments</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAgreements">/agreements, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getMyDocuments">getMyDocuments</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAgreements">/agreements, GET</a> |</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">x-api-user</span></code> for specifying the user whose agreements are to be retrieved.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getLibraryDocumentsForUser">getLibraryDocumentsForUser</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/libraryDocuments/getLibraryDocuments">/libraryDocuments, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getMyLibraryDocuments">getMyLibraryDocuments</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/libraryDocuments/getLibraryDocuments">/libraryDocuments, GET</a> |</div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">x-api-user</span></code> for specifying the user whose library documents are to be retrieved.</p>
+<p>    | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getWidgetsForUser">getWidgetsForUser</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/getWidgets">/widgets, GET</a> |</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getMyWidgets">getMyWidgets</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/getWidgets">/widgets, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Use <code class="docutils literal notranslate"><span class="pre">x-api-user</span></code> for specifying the user whose widgets are to be retrieved.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getMegaSignDocument">getMegaSignDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/megaSigns/getMegaSignChildAgreements">/megaSigns/{megaSignId}/agreements, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Get all child agreement IDs of the parent MegaSign.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getUsersInAccount">getUsersInAccount</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/users/getUsers">/users, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#createGroup">createGroup</a> | <strong>v5 REST Only</strong> <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v5#!/groups/createGroup">/groups, POST</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#deleteGroup">deleteGroup</a> | <strong>v5 REST Only</strong> <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v5#!/groups/deleteGroup">/groups/groupId, DELETE</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#renameGroup">renameGroup</a> | <strong>v5 REST Only</strong> <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v5#!/groups/modifyGroup">/groups/{groupId}, PUT</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getGroupsInAccount">getGroupsInAccount</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/groups/getGroups">/groups, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getUsersInGroup">getUsersInGroups</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/groups/getUsersInGroup">/groups/{groupId}/users, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#moveUsersToGroup">moveUsersToGroup</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/users/updateGroupsOfUser">/users/{userId}/groups, PUT</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Specify the new <code class="docutils literal notranslate"><span class="pre">groupId</span></code> in the request.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#getUserInfo">getUserInfo</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/users/getUserDetail">/users/{userId}, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">    ## Web Form Methods:</div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#createEmbeddedWidget">createEmbeddedWidget</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/createWidget">/widgets, POST</a> |</div>
+</div>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#createPersonalEmbeddedWidget">createPersonalEmbeddedWidget</a> | <strong>v5 REST Only</strong> <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v5#!/widgets/updateWidgetPersonalize">/widgets/{widgetId}/personalize, PUT</a> |</p>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#personalizeEmbeddedWidget">personalizeEmbeddedWidget</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/createWidget">/widgets, POST</a> |</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#createUrlWidget">createUrlWidget</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/createWidget">/widgets, POST</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#createPersonalUrlWidget">createPersonalUrlWidget</a> | <strong>v5 REST Only</strong> <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v5#!/widgets/updateWidgetPersonalize">/widgets/{widgetId}/personalize, PUT</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#personalizeUrlWidget">personalizeUrlWidget</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/createWidget">/widgets, POST</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#disableWidget">disableWidget</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/updateWidgetState">/widgets/{widgetId}/state, PUT</a> |</div>
+</div>
+<div class="line-block">
+<div class="line">Use status value as <code class="docutils literal notranslate"><span class="pre">INACTIVE</span></code>.</div>
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#enableWidget">enableWidget</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/updateWidgetState">/widgets/{widgetId}/state, PUT</a> |</div>
+</div>
+<p>Use status value as <code class="docutils literal notranslate"><span class="pre">ACTIVE</span></code>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 56%" />
+<col style="width: 44%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>SOAP Endpoint</strong></p></th>
+<th class="head"><p><strong>REST Endpoint</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService19#personalizeEmbeddedWidget">personalizeEmbeddedWidget</a></p></td>
+<td><p><a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/createWidget">/widgets, POST</a></p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService19#personalizeUrlWidget">personalizeUrlWidget</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/widgets/createWidget">/widgets, POST</a>|</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">  ## Test Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#testPing">testPing</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/baseUris/getBaseUris">/baseURIs, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService22#testEchoFile">testEchoFile</a> | TBD |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">  ## Deprecated Methods from legacy SOAP versions: ### Access Methods: * issueAccessToken - <a class="reference external" href="https://www.adobe.io/apis/documentcloud/sign/docs.html#!adobedocs/adobe-sign/master/gstarted/configure_oauth.md">OAuth has replaced access tokens</a>.</div>
+</div>
+<p>  ### Document Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#initiateInteractiveSendDocument">initiateInteractiveSendDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/createAgreementView">/agreements/{agrId}/views, POST</a> |</p>
+<p>  ### Status Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#getDocumentUrlByVersion">getDocumentUrlByVersion</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getCombinedDocumentUrl">/agreement/{agreementID}/combinedDocument/url, GET</a> |</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#getDocumentByVersion">getDocumentByVersion</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getCombinedDocument">/agreements/{agreementId}/combinedDocument, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#getImagesByVersion">getImagesByVersion</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAllDocumentsImageUrls">/agreements/{agrId}/documents/imageUrls, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#getLatestDocument">getLatestDocument</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAllDocuments">/agreements/{agrId}/documents, GET</a> |</div>
+</div>
+<p>  | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#getLatestDocumentUrl">getLatestDocumentUrl</a> | <a href="#id1"><span class="problematic" id="id2">`/agreements/{agrId}/documents/{docId}/url, GET &lt;&gt;`__</span></a><a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getCombinedDocumentUrl">/agreements/{agrId}/combinedDocument/url, GET</a> |</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#getLatestImages">getLatestImages</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAllDocumentsImageUrls">/agreements/{agrId}/documents/imageUrls, GET</a><a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getDocumentImageUrls">/agreements/{agrId}/documents/{docId}/imageUrls, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">### User Methods: | <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService13#getDocumentsForUser">getDocumentsForUser</a> | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/restapi/v6#!/agreements/getAgreements">/agreements, GET</a> |</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line">| <strong>SOAP Endpoint</strong> | <strong>REST Endpoint</strong> | | :— | :—- | | <a class="reference external" href="https://secure.na1.echosign.com/public/docs/EchoSignDocumentService19#createAccount">createAccount</a> | None |</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020, Adobe Inc..
+      <span class="lastupdated">
+        Last updated on Nov 24, 2021.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
