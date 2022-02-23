@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Creating Cos streams","url":"PDFL_MasterBook/Working_with_Cos_Objects/Working_with_Cos_streams.htm#TOC_Creating_Cos_streamsbc-1"},{"type":"item","name":"Creating a stream dictionary","url":"PDFL_MasterBook/Working_with_Cos_Objects/Working_with_Cos_streams.htm#TOC_Creating_a_streambc-2"},{"type":"item","name":"Inserting a Cos stream into a PDF document","url":"PDFL_MasterBook/Working_with_Cos_Objects/Working_with_Cos_streams.htm#TOC_Inserting_a_Cos_streambc-3"},{"type":"item","name":"Populating a PDF document with a content stream","url":"PDFL_MasterBook/Working_with_Cos_Objects/Working_with_Cos_streams.htm#TOC_Populating_a_PDFbc-4"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

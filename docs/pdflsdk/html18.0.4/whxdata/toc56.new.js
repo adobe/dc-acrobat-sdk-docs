@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Passing parameters to snippets","url":"PDFL_MasterBook/Writing_Snippets/Passing_parameters_to_snippets.htm"},{"type":"item","name":"Toggling behavior and asynchronous snippets","url":"PDFL_MasterBook/Writing_Snippets/Toggling_behavior_and_asynchronous_snippets.htm"},{"type":"item","name":"Handling exceptions","url":"PDFL_MasterBook/Writing_Snippets/Handling_exceptions1.htm"},{"type":"item","name":"Handling documents","url":"PDFL_MasterBook/Writing_Snippets/Handling_documents.htm"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

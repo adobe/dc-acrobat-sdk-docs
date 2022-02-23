@@ -1,0 +1,4580 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="ASFile,,,,ASFileError,ASFileErrors,ASFILE_READ,ASFILE_WRITE,ASFILE_CREATE,ASFILE_SERIAL,ASFILE_LOCAL,ASFILE_RANDOMACCESS,ASFILE_TEMPORARY,ASFILE_ENCRYPT,kASFileSlowTransfer,kASFileSlowConnect,kASFileUseMRead,kASFileDoCaching,kASFileDialUp,kASFileStillFetching,kASFileHasOutstandingMReads,kASFileHasVirtualEOF,kASFileModeDoNotYieldIfBytesNotReady,kASFileModeDisableExplicitMReadRequests,kASFileRaiseIfBytesNotReady,kASFileNoRequestIfBytesNotReady,kASFileSuspendIfBytesNotReady,MDFile,ASFileStatusFlags,ASFileMode,ASFilePos,ASFilePos64,ASFile,ASFileCompletionProc,ASFileReopen,ASFileClose,ASFileSetPos,ASFileGetPos,ASFileSetEOF,ASFileGetEOF,ASFileRead,ASFileWrite,ASFileFlush,ASFileAcquirePathName,ASFileGetFileSys,ASFileUnregisterFileSys,ASFilePushData,ASFileRegisterFileSys,ASFileGetFileSysByName,ASFileFromMDFile,ASFileGetMDFile,ASFileSetMode,ASFileIsSame,ASFileMReadRequest,ASFileClearOutstandingMReads,ASFileGetURL,ASFileGetOpenMode,ASFileHardFlush,ASFileHasOutstandingMReads,ASFileCanSetEOF,ASFileSetPos64,ASFileGetPos64,ASFileSetEOF64,ASFileGetEOF64,ASFileOpenWithVirtualEOF,ASFileAttachmentCreatePathName,ASFileAttachmentGetPDFileAttachment,ASFileAttachmentGetPDFolder" name="keywords">
+<title>AS_Layer.ASFile (PDFL)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'ASFile - PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?AS_Layer/ASFile.html&amp;AS_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">ASFile</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#defineSummary">Defines</a>&nbsp;| <a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#enumerationSummary">Enumerations</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ASFile"); titleBar_setSubNav(true,true,true,false,false,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">AS_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">ASFile</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>The ASFile interface encapsulates Acrobat's access to <a href="../PD_Layer/General.html#file" target="">file</a> services. It provides a common 
+interface for Acrobat, applications, and plug-ins to access file system services on 
+different platforms, and enables you to provide your own file storage implementations.
+</p><p>ASFile is related to the <a href="ASFileSys.html" target="">ASFileSys</a> object, the <a href="ASPlatformPath.html" target="">ASPlatformPath</a> object, and the <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> structure.</p><p>An ASFile is an opaque representation of an <a href="General.html#open" target="">open</a> file. It is similar to an <a href="ASStm.html" target="">ASStm</a>, 
+although it is a lower-level abstraction. An ASFile knows its ASPathName and ASFileSys. 
+Acrobat creates one ASFile for each open file, and layers one or more ASStm objects on each ASFile. 
+Logically, an ASFile is analogous to a file as <a href="../PDF_Library/General.html#used" target="">used</a> in the standard UNIX/POSIX low-level file 
+I/O functions open, <a href="General.html#close" target="">close</a>, <a href="General.html#read" target="">read</a>, <a href="General.html#write" target="">write</a>, and so forth (located in <code>fcntl.h</code>), and an ASStm 
+is analogous to a buffered file stream as used in standard C file I/O functions 
+<code>fopen()</code>, <code>fread()</code>, <code>fwrite()</code>, and so forth 
+(located in <code>stdio.h</code>).</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="defineSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Define Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Define</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_CREATE1477">ASFILE_CREATE</a>
+<div class="summaryTableDescription">Create the file if it does not exist. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_ENCRYPT1508">ASFILE_ENCRYPT</a>
+<div class="summaryTableDescription">File is to be encrypted when written to disk Encryption is with an instance specific key, so that the file is NOT readable if it is accidentally left when Acrobat exits (say, on a crash) </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFileError310">ASFileError</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_LOCAL1488">ASFILE_LOCAL</a>
+<div class="summaryTableDescription">A hint indicating that a local copy of the file will be needed. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_RANDOMACCESS1493">ASFILE_RANDOMACCESS</a>
+<div class="summaryTableDescription">A hint indicating that the file will be primarily accessed randomly. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_READ1467">ASFILE_READ</a>
+<div class="summaryTableDescription">Open the file for reading. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_SERIAL1483">ASFILE_SERIAL</a>
+<div class="summaryTableDescription">A hint indicating that the file will be primarily accessed sequentially. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_TEMPORARY1500">ASFILE_TEMPORARY</a>
+<div class="summaryTableDescription">A hint that file is for temporary usage. Disk backing store is deleted on close, writes are not flushed to disk on close. If possible the file will be kept in memory. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFILE_WRITE1472">ASFILE_WRITE</a>
+<div class="summaryTableDescription">Open the file for writing. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileDialUp1542">kASFileDialUp</a>
+<div class="summaryTableDescription">(Acrobat 5.0 and later) Set if media/access is a dial up connection. This flag is only fully implemented on Windows. On Mac OS, this flag is always conservatively set to true. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileDoCaching1535">kASFileDoCaching</a>
+<div class="summaryTableDescription">Set if the file is to be cached (requires kASFileUseMRead to be set as well). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileHasOutstandingMReads1552">kASFileHasOutstandingMReads</a>
+<div class="summaryTableDescription">
+true if the file has outstanding MReads. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileHasVirtualEOF1557">kASFileHasVirtualEOF</a>
+<div class="summaryTableDescription">
+true if the file is built with a Virtual EOF (Acrobat 10). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileModeDisableExplicitMReadRequests1573">kASFileModeDisableExplicitMReadRequests</a>
+<div class="summaryTableDescription">If set, the file will be read all at once regardless of multiple read requests.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileModeDoNotYieldIfBytesNotReady1566">kASFileModeDoNotYieldIfBytesNotReady</a>
+<div class="summaryTableDescription">If set, ASFileRead does not yield if bytes are not ready (which raises the fileErrBytesNotReady exception). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileNoRequestIfBytesNotReady1586">kASFileNoRequestIfBytesNotReady</a>
+<div class="summaryTableDescription">If set, no read requests are issued if bytes are not ready (that is, the bytes are not in the cache). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileRaiseIfBytesNotReady1580">kASFileRaiseIfBytesNotReady</a>
+<div class="summaryTableDescription">If set, ASFileRead will raise the fileErrBytesNotReady exception when trying to read from a file with a cache for which the requested bytes are not yet present. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileSlowConnect1525">kASFileSlowConnect</a>
+<div class="summaryTableDescription">Set if initiating each access to the file is slow. For example, access may be slow because the file is served by an HTTP server that spawns a new process for each request.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileSlowTransfer1517">kASFileSlowTransfer</a>
+<div class="summaryTableDescription">Set if the file's data transfer rate is generally slow. For example, the file is on a floppy disk or is being accessed via modem.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileStillFetching1547">kASFileStillFetching</a>
+<div class="summaryTableDescription">Set if the file is still being loaded. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileSuspendIfBytesNotReady1596">kASFileSuspendIfBytesNotReady</a>
+<div class="summaryTableDescription">If set, ASFileRead will suspend the current thread when trying to read from a file with a cache for which the requested bytes are not yet present. Note that if kASFileSuspendIfBytesNotReady is set, the kASFileRaiseIfBytesNotReady is ignored. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kASFileUseMRead1530">kASFileUseMRead</a>
+<div class="summaryTableDescription">Use multi-read commands to access the file. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#MDFile1926">MDFile</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFile">ASFile</a>
+<div class="summaryTableDescription">An opaque representation of a particular open file. Each open file has a unique ASFile. The ASFile value has meaning only to the common ASFile implementation and bears no relationship to platform-specific file objects. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFileMode">ASFileMode</a>
+<div class="summaryTableDescription">File access modes used to specify how a file can be used when it is open. Not all modes can be specified individually: ASFILE_CREATE can be used only in conjunction with ASFILE_READ or ASFILE_WRITE. In addition, it is acceptable to specify ASFILE_READ and ASFILE_WRITE together by OR-ing the two constants. ASFILE_SERIAL and ASFILE_LOCAL (present only in version 3.0 or later) are hints that help the Acrobat viewer optimize access to the file; they must be OR-ed with one or more of the other constants: 
+
+
+Value
+
+
+Description 
+
+
+
+
+ASFILE_READ
+
+
+Open the file for reading. 
+
+
+
+
+ASFILE_WRITE
+
+
+Open the file for writing. 
+
+
+
+
+ASFILE_CREATE
+
+
+Create the file if it does not exist. 
+
+
+
+
+ASFILE_SERIAL
+
+
+A hint indicating that the file will be accessed sequentially. 
+
+
+
+
+ASFILE_LOCAL
+
+
+A hint indicating that a local copy of the file will be needed. 
+
+
+
+</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFilePos">ASFilePos</a>
+<div class="summaryTableDescription">A file position value for use in callback procedures. This value cannot exceed 2 GB. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFilePos64">ASFilePos64</a>
+<div class="summaryTableDescription">The absolute position within a file. This value can exceed 2 GB. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="enumerationSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Enumeration Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Enumeration</th>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#ASFileErrors2192"><b>ASFileErrors</b></a></code>
+<div class="summaryTableDescription"></div>
+</td>
+</div>
+</tr>
+<tr class="row0">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#ASFileStatusFlags1943"><b>ASFileStatusFlags</b></a></code>
+<div class="summaryTableDescription">Values returned by ASFileSysGetStatusProc(). </div>
+</td>
+</div>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ASFileCompletionProc1883">ASFileCompletionProc</a>
+<div class="summaryTableDescription">Called when an asynchronous read or write request has completed.</div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASPathName <a class="signatureLink" href="#ASFileAcquirePathName1019()">ASFileAcquirePathName</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Gets the path name for a file and increments an internal reference count. It is the caller's responsibility to release the ASPathName when it is no longer needed by using ASFileSysReleasePath(). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileAttachmentCreatePathName12545()">ASFileAttachmentCreatePathName</a>(<a href="../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc, <a href="ASText.html#ASText" target="">ASText</a> pathText, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a>* fileSys, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a>* pathName)</div>
+<div class="summaryTableDescription">Creates an ASPathName corresponding to the specified file or folder in the collection. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileAttachmentGetPDFileAttachment12556()">ASFileAttachmentGetPDFileAttachment</a>(<a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> pathName, <a href="General.html#OPAQUE_64_BITS" target="">PDFileAttachment</a>* attachment)</div>
+<div class="summaryTableDescription">Produces a PDFileAttachment corresponding to the ASFileSys and ASPathName. It raises an exception if the ASFileSys is is not the embedded files file system, or if the ASPathName or PDFileAttachment parameters are NULL. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileAttachmentGetPDFolder12567()">ASFileAttachmentGetPDFolder</a>(<a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> pathName, <a href="General.html#OPAQUE_64_BITS" target="">PDFolder</a>* folder)</div>
+<div class="summaryTableDescription">Produces a PDFolder corresponding to the ASFileSys and ASPathName. It raises an exception if the ASFileSys is is not the embedded files file system, or if the ASPathName or PDFolder parameters are NULL. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileCanSetEOF2459()">ASFileCanSetEOF</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> file, <a href="General.html#ASInt32" target="">ASInt32</a> newFileSize)</div>
+<div class="summaryTableDescription">Checks if ASFileSetEOF() can be done for this file with a specified new file size. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileClearOutstandingMReads1824()">ASFileClearOutstandingMReads</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN)</div>
+<div class="summaryTableDescription">Clears all outstanding mreads for the given file. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASErrorCode <a class="signatureLink" href="#ASFileClose893()">ASFileClose</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Closes the specified file. After a call to ASFileClose(), the file handle is no longer valid but may be reused as the result of a subsequent call to ASFileSysOpenFile(). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileFlush1006()">ASFileFlush</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Flushes any buffered data to a file. This method may raise file system or platform-specific exceptions. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileFromMDFile1265()">ASFileFromMDFile</a>(<a href="ASFileSys.html#ASMDFile" target="">ASMDFile</a> mdFile, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="ASFile.html#ASFile" target="">ASFile</a>* pfN)</div>
+<div class="summaryTableDescription">Gets the ASFile associated with the specified ASMDFile and ASFileSys. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASTFilePos <a class="signatureLink" href="#ASFileGetEOF958()">ASFileGetEOF</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Gets the current size of a file. It calls ASFileSysGetEofProc(). This call returns an error if the file size is greater than 2 GB. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFilePos64 <a class="signatureLink" href="#ASFileGetEOF642731()">ASFileGetEOF64</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Gets the current size of a file. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFileSys <a class="signatureLink" href="#ASFileGetFileSys1030()">ASFileGetFileSys</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Gets the file system through which a file was opened. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFileSys <a class="signatureLink" href="#ASFileGetFileSysByName1247()">ASFileGetFileSysByName</a>(<a href="ASAtom.html#ASAtom" target="">ASAtom</a> name)</div>
+<div class="summaryTableDescription">Gets the file system that was registered with the specified name. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileGetMDFile1284()">ASFileGetMDFile</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="ASFileSys.html#ASMDFile" target="">ASMDFile</a>* pFileID, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a>* pFileSys)</div>
+<div class="summaryTableDescription">Given an ASFile, returns the fileSys and the ASMDFile identification in that fileSys. This call is needed for a file system in a plug-in to be able to call the inner routines in another file system. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFileMode <a class="signatureLink" href="#ASFileGetOpenMode1905()">ASFileGetOpenMode</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN)</div>
+<div class="summaryTableDescription">Gets the file access mode(s) specified for the file when it was opened. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASTFilePos <a class="signatureLink" href="#ASFileGetPos926()">ASFileGetPos</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Gets the current seek position in a file. This is the position at which the next read or write will begin. This call returns an error if the file position is greater than 2 GB. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFilePos64 <a class="signatureLink" href="#ASFileGetPos642703()">ASFileGetPos64</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Gets the current seek position in a file. This is the position at which the next read or write will begin. This call will work with files over 2 GB in length. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">char* <a class="signatureLink" href="#ASFileGetURL1852()">ASFileGetURL</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> asf)</div>
+<div class="summaryTableDescription">Returns the URL associated with file. It is the caller's responsibility to release the memory associated with the returned string using ASfree(). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASErrorCode <a class="signatureLink" href="#ASFileHardFlush2033()">ASFileHardFlush</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</div>
+<div class="summaryTableDescription">Causes a hard flush on a file, which means that the file is flushed to the physical destination. For example, if a WebDAV-based file is opened, ASFileFlush() only flushes changes to the local cached version of the file. This method would flush changes all the way to the WebDAV server. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileHasOutstandingMReads2448()">ASFileHasOutstandingMReads</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN)</div>
+<div class="summaryTableDescription">Determines whether there are any outstanding multi-byte range requests for a file. A document can have outstanding mreads if it was opened in a browser, Acrobat requested some byte ranges, and the byte ranges have not yet arrived. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileIsSame1724()">ASFileIsSame</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> pathName, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys)</div>
+<div class="summaryTableDescription">Performs a comparison between the file and path to determine if they represent the same file. This method will return false if the file was not opened through the fileSys file system.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileMReadRequest1816()">ASFileMReadRequest</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="General.html#ASInt32" target="">ASInt32</a>* blockPairs, <a href="General.html#ASTCount" target="">ASTCount</a> nBlockPairs)</div>
+<div class="summaryTableDescription">Initiates a byte range request for a given file, if the file is in the browser. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#ASFileOpenWithVirtualEOF3007()">ASFileOpenWithVirtualEOF</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> virtualEOF, <a href="ASFile.html#ASFile" target="">ASFile</a>* newFile)</div>
+<div class="summaryTableDescription">ASFileOpenWithVirtualEOF attempts to create a second ASFile instance to a file that is already open. Both the current instance fN and the new instance must be read only. The new instance shall set a virtual end of file. This virtual EOF and no effect on the first instance or on the physical file. It only effect the ASFile calls where newFile is passed in has the file. Each instance maintains it's own file position marker. The original instance of the file should be close after all other instances have been closed. This routine does not raise, but returns an error code.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFilePushData1203()">ASFilePushData</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, const char* p, <a href="General.html#ASTFilePos" target="">ASTFilePos</a> offset, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> length)</div>
+<div class="summaryTableDescription">Sends data from a file system implementation to an ASFile. The data may be for a multi-read request call, or may be unsolicited.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASTArraySize <a class="signatureLink" href="#ASFileRead979()">ASFileRead</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, char* p, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> count)</div>
+<div class="summaryTableDescription">Reads data from a file, beginning at the current seek position.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileRegisterFileSys1222()">ASFileRegisterFileSys</a>(<a href="ASExtension.html#ASExtension" target="">ASExtension</a> extension, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys)</div>
+<div class="summaryTableDescription">Allows an implementor to provide a file system for use by external clients. An external client can locate the file system using ASFileGetFileSysByName(). fileSys provides its name via the ASFileSysGetFileSysNameProc() callback. This method returns false if a file system with the same name is already registered. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASErrorCode <a class="signatureLink" href="#ASFileReopen875()">ASFileReopen</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="ASFile.html#ASFileMode" target="">ASFileMode</a> mode)</div>
+<div class="summaryTableDescription">Attempts to reopen a file using the specified read/write mode. On some platforms, this may result in the file being closed and then reopened, and some error conditions may render the file invalid. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileSetEOF945()">ASFileSetEOF</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="General.html#ASTFilePos" target="">ASTFilePos</a> newFileSize)</div>
+<div class="summaryTableDescription">Changes the size of a file. The new size may by larger or smaller than the original size. Since this method does not return any values, the status can be assessed by examining the error code in the HANDLER clause. This method may raise file system or platform-specific exceptions. This call only works when the desired file size is less than 2 GB. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileSetEOF642718()">ASFileSetEOF64</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> newFileSize)</div>
+<div class="summaryTableDescription">Changes the size of a file. The new size may by larger or smaller than the original size. This method may raise file system or platform-specific exceptions. This call will work with files over 2 GB in length. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFlagBits <a class="signatureLink" href="#ASFileSetMode1490()">ASFileSetMode</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="General.html#ASFlagBits" target="">ASFlagBits</a> modeValue, <a href="General.html#ASFlagBits" target="">ASFlagBits</a> modeMask)</div>
+<div class="summaryTableDescription">Gets or sets the mode flags for a file. Pass 0 for modeValue and modeMask to simply get the current mode flags. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileSetPos909()">ASFileSetPos</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="General.html#ASTFilePos" target="">ASTFilePos</a> pos)</div>
+<div class="summaryTableDescription">Seeks to the specified position in a file. This is the position at which the next read or write will begin. This call only works when the desired file position is less than 2 GB. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#ASFileSetPos642687()">ASFileSetPos64</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> pos)</div>
+<div class="summaryTableDescription">Seeks to the specified position in a file. This is the position at which the next read or write will begin. This call will work with files over 2 GB in length. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#ASFileUnregisterFileSys1181()">ASFileUnregisterFileSys</a>(<a href="ASExtension.html#ASExtension" target="">ASExtension</a> extension, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys)</div>
+<div class="summaryTableDescription">Allows a fileSys to be unregistered. In general, a fileSys is only unregistered by the extension that registered it.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASTArraySize <a class="signatureLink" href="#ASFileWrite996()">ASFileWrite</a>(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, const char* p, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> count)</div>
+<div class="summaryTableDescription">Writes data to a file, beginning at the current seek position.</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<div class="detailSectionHeader">Defines Detail</div>
+<a name="ASFILE_CREATE1477"></a><a name="ASFILE_CREATE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_CREATE</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_CREATE 4</div>
+</code>
+<br>
+<span class="label">Description</span><p>Create the <a href="../PD_Layer/General.html#file" target="">file</a> if it does not exist. </p><p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/printpdf/sources/printpdf.cpp.html#151"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>        <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a> (<a href="General.html#NULL" target="">NULL</a>, path, <a href="ASFile.html#ASFILE_WRITE" target="">ASFILE_WRITE</a> | <a href="ASFile.html#ASFILE_CREATE" target="">ASFILE_CREATE</a>, &amp;pFile);<br>
+<a href="../Samples/CodeSamples/MTTextExtract/Sources/TextExtractWorker.cpp.html#67"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a>(<a href="General.html#NULL" target="">NULL</a>,outPath, <a href="ASFile.html#ASFILE_WRITE" target="">ASFILE_WRITE</a> | <a href="ASFile.html#ASFILE_CREATE" target="">ASFILE_CREATE</a>, &amp;outFile);</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1477</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFILE_ENCRYPT1508"></a><a name="ASFILE_ENCRYPT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_ENCRYPT</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_ENCRYPT 128</div>
+</code>
+<br>
+<span class="label">Description</span><p>File is to be encrypted when written to disk Encryption is with an instance specific key, so that the <a href="../PD_Layer/General.html#file" target="">file</a> is NOT readable if it is accidentally <a href="General.html#left" target="">left</a> when Acrobat exits (say, on a crash) </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1508</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFILE_LOCAL1488"></a><a name="ASFILE_LOCAL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_LOCAL</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_LOCAL 16</div>
+</code>
+<br>
+<span class="label">Description</span><p>A hint indicating that a local copy of the <a href="../PD_Layer/General.html#file" target="">file</a> will be needed. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1488</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFILE_RANDOMACCESS1493"></a><a name="ASFILE_RANDOMACCESS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_RANDOMACCESS</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_RANDOMACCESS 32</div>
+</code>
+<br>
+<span class="label">Description</span><p>A hint indicating that the <a href="../PD_Layer/General.html#file" target="">file</a> will be primarily accessed randomly. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1493</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFILE_READ1467"></a><a name="ASFILE_READ"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_READ</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_READ 1</div>
+</code>
+<br>
+<span class="label">Description</span><p>Open the <a href="../PD_Layer/General.html#file" target="">file</a> for reading. </p><p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/Decryption/Sources/Decryption.cpp.html#196"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                        errCode = <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a>(<a href="General.html#NULL" target="">NULL</a>, filePath, <a href="ASFile.html#ASFILE_READ" target="">ASFILE_READ</a>, &amp;asFile);</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1467</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFILE_SERIAL1483"></a><a name="ASFILE_SERIAL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_SERIAL</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_SERIAL 8</div>
+</code>
+<br>
+<span class="label">Description</span><p>A hint indicating that the <a href="../PD_Layer/General.html#file" target="">file</a> will be primarily accessed sequentially. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1483</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFILE_TEMPORARY1500"></a><a name="ASFILE_TEMPORARY"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_TEMPORARY</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_TEMPORARY 64</div>
+</code>
+<br>
+<span class="label">Description</span><p>A hint that <a href="../PD_Layer/General.html#file" target="">file</a> is for temporary usage. Disk backing store is deleted on <a href="General.html#close" target="">close</a>, writes are not flushed to disk on close. If possible the file will be kept in memory. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1500</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFILE_WRITE1472"></a><a name="ASFILE_WRITE"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFILE_WRITE</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFILE_WRITE 2</div>
+</code>
+<br>
+<span class="label">Description</span><p>Open the <a href="../PD_Layer/General.html#file" target="">file</a> for writing. </p><p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/printpdf/sources/printpdf.cpp.html#151"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>        <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a> (<a href="General.html#NULL" target="">NULL</a>, path, <a href="ASFile.html#ASFILE_WRITE" target="">ASFILE_WRITE</a> | <a href="ASFile.html#ASFILE_CREATE" target="">ASFILE_CREATE</a>, &amp;pFile);<br>
+<a href="../Samples/CodeSamples/MTTextExtract/Sources/TextExtractWorker.cpp.html#67"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a>(<a href="General.html#NULL" target="">NULL</a>,outPath, <a href="ASFile.html#ASFILE_WRITE" target="">ASFILE_WRITE</a> | <a href="ASFile.html#ASFILE_CREATE" target="">ASFILE_CREATE</a>, &amp;outFile);</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1472</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileError310"></a><a name="ASFileError"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileError</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define ASFileError ErrBuildCode(ErrAlways, ErrSysASFile, e)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AcroErr.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>310</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileDialUp1542"></a><a name="kASFileDialUp"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileDialUp</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileDialUp 0x00000010L</div>
+</code>
+<br>
+<span class="label">Description</span><p>(Acrobat 5.0 and later) Set if media/access is a dial up connection. This flag is only fully implemented on Windows. On Mac OS, this flag is always conservatively set to <code>true</code>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1542</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileDoCaching1535"></a><a name="kASFileDoCaching"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileDoCaching</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileDoCaching 0x00000008L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Set if the <a href="../PD_Layer/General.html#file" target="">file</a> is to be cached (requires <a href="ASFile.html#kASFileUseMRead" target="">kASFileUseMRead</a> to be set as well). </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1535</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileHasOutstandingMReads1552"></a><a name="kASFileHasOutstandingMReads"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileHasOutstandingMReads</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileHasOutstandingMReads 0x00000040L</div>
+</code>
+<br>
+<span class="label">Description</span><p>
+<code>true</code> if the file has outstanding MReads. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1552</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileHasVirtualEOF1557"></a><a name="kASFileHasVirtualEOF"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileHasVirtualEOF</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileHasVirtualEOF 0x00000080L</div>
+</code>
+<br>
+<span class="label">Description</span><p>
+<code>true</code> if the file is built with a Virtual EOF (Acrobat 10). </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1557</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileModeDisableExplicitMReadRequests1573"></a><a name="kASFileModeDisableExplicitMReadRequests"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileModeDisableExplicitMReadRequests</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileModeDisableExplicitMReadRequests 0x0002</div>
+</code>
+<br>
+<span class="label">Description</span><p>If set, the <a href="../PD_Layer/General.html#file" target="">file</a> will be <a href="General.html#read" target="">read</a> all at once regardless of multiple read requests.</p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1573</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileModeDoNotYieldIfBytesNotReady1566"></a><a name="kASFileModeDoNotYieldIfBytesNotReady"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileModeDoNotYieldIfBytesNotReady</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileModeDoNotYieldIfBytesNotReady 0x0001</div>
+</code>
+<br>
+<span class="label">Description</span><p>If set, <a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> does not <a href="General.html#yield" target="">yield</a> if bytes are not ready (which raises the fileErrBytesNotReady exception). </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1566</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileNoRequestIfBytesNotReady1586"></a><a name="kASFileNoRequestIfBytesNotReady"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileNoRequestIfBytesNotReady</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileNoRequestIfBytesNotReady 0x0008</div>
+</code>
+<br>
+<span class="label">Description</span><p>If set, no <a href="General.html#read" target="">read</a> requests are issued if bytes are not ready (that is, the bytes are not in the cache). </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1586</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileRaiseIfBytesNotReady1580"></a><a name="kASFileRaiseIfBytesNotReady"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileRaiseIfBytesNotReady</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileRaiseIfBytesNotReady 0x0004</div>
+</code>
+<br>
+<span class="label">Description</span><p>If set, <a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> will raise the fileErrBytesNotReady exception when trying to <a href="General.html#read" target="">read</a> from a file with a cache for which the requested bytes are not yet present. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1580</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileSlowConnect1525"></a><a name="kASFileSlowConnect"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileSlowConnect</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileSlowConnect 0x00000002L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Set if initiating each access to the <a href="../PD_Layer/General.html#file" target="">file</a> is slow. For example, access may be slow because the file is served by an HTTP server that spawns a new process for each request.</p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1525</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileSlowTransfer1517"></a><a name="kASFileSlowTransfer"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileSlowTransfer</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileSlowTransfer 0x00000001L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Set if the file's <a href="#data" target="">data</a> transfer rate is generally slow. For example, the file is on a floppy disk or is being accessed via modem.</p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1517</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileStillFetching1547"></a><a name="kASFileStillFetching"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileStillFetching</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileStillFetching 0x00000020L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Set if the <a href="../PD_Layer/General.html#file" target="">file</a> is still being loaded. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1547</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileSuspendIfBytesNotReady1596"></a><a name="kASFileSuspendIfBytesNotReady"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileSuspendIfBytesNotReady</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileSuspendIfBytesNotReady 0x0010</div>
+</code>
+<br>
+<span class="label">Description</span><p>If set, <code><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a></code> will suspend the current thread when trying to read from a file with a cache for which the requested bytes are not yet present. Note that if <code>kASFileSuspendIfBytesNotReady</code> is set, the <code><a href="ASFile.html#kASFileRaiseIfBytesNotReady" target="">kASFileRaiseIfBytesNotReady</a></code> is ignored. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1596</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kASFileUseMRead1530"></a><a name="kASFileUseMRead"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kASFileUseMRead</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kASFileUseMRead 0x00000004L</div>
+</code>
+<br>
+<span class="label">Description</span><p>Use multi-read commands to access the <a href="../PD_Layer/General.html#file" target="">file</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1530</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="MDFile1926"></a><a name="MDFile"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">MDFile</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define MDFile ASMDFile</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1926</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="ASFile"></a><a name="ASFile1857"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFile</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef void* ASFile;</code>
+</div>
+<br><p>An opaque representation of a particular <a href="General.html#open" target="">open</a> <a href="../PD_Layer/General.html#file" target="">file</a>. Each open file has a unique ASFile. The ASFile <a href="../PD_Layer/General.html#value" target="">value</a> has meaning only to the common ASFile implementation and bears no relationship to platform-specific file objects. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="../PD_Layer/PDDoc.html#PDDocGetFile()" target="">PDDocGetFile</a> <br><a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a> <br><a href="ASFile.html#ASFileFromMDFile()" target="">ASFileFromMDFile</a> </div>
+<p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/Decryption/Sources/Decryption.cpp.html#193"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="ASFile.html#ASFile" target="">ASFile</a> asFile;<br>
+<a href="../Samples/CodeSamples/printpdf/sources/printpdf.cpp.html#141"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>        <a href="ASFile.html#ASFile" target="">ASFile</a> pFile = <a href="General.html#NULL" target="">NULL</a>;<br>
+<a href="../Samples/CodeSamples/MTTextExtract/Sources/TextExtractWorker.cpp.html#66"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="ASFile.html#ASFile" target="">ASFile</a> outFile;</div>
+<a href="../Samples/Index/examples-A.html#_a_s_exp_t_8h_1d57f621b43eb589a21bb50d474ca21db">
+<p></p>
+<div class="seeAlso">more...</div>
+</a>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1857</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileMode"></a><a name="ASFileMode70"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileMode</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns16" target="">ASUns16</a> ASFileMode;</code>
+</div>
+<br><p>File access modes <a href="../PDF_Library/General.html#used" target="">used</a> to specify how a <a href="../PD_Layer/General.html#file" target="">file</a> can be used when it is <a href="General.html#open" target="">open</a>. Not all modes can be specified individually: <a href="ASFile.html#ASFILE_CREATE" target="">ASFILE_CREATE</a> can be used only in conjunction with <a href="ASFile.html#ASFILE_READ" target="">ASFILE_READ</a> or <a href="ASFile.html#ASFILE_WRITE" target="">ASFILE_WRITE</a>. In addition, it is acceptable to specify ASFILE_READ and ASFILE_WRITE together by <code>OR</code>-ing the two constants. ASFILE_SERIAL and ASFILE_LOCAL (present only in version 3.0 or later) are hints that help the Acrobat viewer optimize access to the file; they must be <code>OR</code>-ed with one or more of the other constants: 
+</p><table ><tr>
+<th>
+<p>Value</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>ASFILE_READ</p>
+</td><td valign="top">
+<p>Open the file for reading. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>ASFILE_WRITE</p>
+</td><td valign="top">
+<p>Open the file for writing. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>ASFILE_CREATE</p>
+</td><td valign="top">
+<p>Create the file if it does not exist. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>ASFILE_SERIAL</p>
+</td><td valign="top">
+<p>A hint indicating that the file will be accessed sequentially. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>ASFILE_LOCAL</p>
+</td><td valign="top">
+<p>A hint indicating that a local copy of the file will be needed. </p>
+</td>
+</tr></table><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a> <br><a href="ASFile.html#ASFileReopen()" target="">ASFileReopen</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>70</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFilePos"></a><a name="ASFilePos76"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFilePos</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns32" target="">ASUns32</a> ASFilePos;</code>
+</div>
+<br><p>A <a href="../PD_Layer/General.html#file" target="">file</a> position <a href="../PD_Layer/General.html#value" target="">value</a> for use in callback procedures. This value cannot exceed 2 GB. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="../COS_Layer/CosObj.html#CosObjOffsetProc" target="">CosObjOffsetProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>76</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFilePos64"></a><a name="ASFilePos6486"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFilePos64</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="General.html#ASUns64" target="">ASUns64</a> ASFilePos64;</code>
+</div>
+<br><p>The absolute position within a <a href="../PD_Layer/General.html#file" target="">file</a>. This <a href="../PD_Layer/General.html#value" target="">value</a> can exceed 2 GB. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>86</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Enumeration Detail</div>
+<a name="ASFileErrors2192"></a><a name="ASFileErrors"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileErrors</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum ASFileErrors {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrNoErr"><b>fileErrNoErr</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrGeneral"><b>fileErrGeneral</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>fileErrObsolete</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrDirFull"><b>fileErrDirFull</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrDiskFull"><b>fileErrDiskFull</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrNSV"><b>fileErrNSV</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrIO"><b>fileErrIO</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrRead"><b>fileErrRead</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrWrite"><b>fileErrWrite</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrEOF"><b>fileErrEOF</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrLocked"><b>fileErrLocked</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrVLocked"><b>fileErrVLocked</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrBusy"><b>fileErrBusy</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrExists"><b>fileErrExists</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrAlreadyOpen"><b>fileErrAlreadyOpen</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrPerm"><b>fileErrPerm</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrWrPerm"><b>fileErrWrPerm</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrFNF"><b>fileErrFNF</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrOpenFailed"><b>fileErrOpenFailed</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrBytesNotReady"><b>fileErrBytesNotReady</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrUserRequestedStop"><b>fileErrUserRequestedStop</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrIOTimeout"><b>fileErrIOTimeout</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrReadBlocked"><b>fileErrReadBlocked</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrNotADir"><b>fileErrNotADir</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrTempCreate"><b>fileErrTempCreate</b></a>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileErrorsfileErrTooBig"><b>fileErrTooBig</b></a></td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>AcroErr.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2192</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrNoErr"></a>fileErrNoErr&nbsp;&nbsp;</td><td><p>No <a href="../PD_Layer/General.html#error" target="">error</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrGeneral"></a>fileErrGeneral&nbsp;&nbsp;</td><td><p>A <a href="../PD_Layer/General.html#file" target="">file</a> <a href="../PD_Layer/General.html#error" target="">error</a> has occurred. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrDirFull"></a>fileErrDirFull&nbsp;&nbsp;</td><td><p>The directory is full. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrDiskFull"></a>fileErrDiskFull&nbsp;&nbsp;</td><td><p>The document's disk or the disk <a href="../PDF_Library/General.html#used" target="">used</a> for temporary files is full. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrNSV"></a>fileErrNSV&nbsp;&nbsp;</td><td><p>The disk containing this <a href="../PD_Layer/General.html#file" target="">file</a> is not available. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrIO"></a>fileErrIO&nbsp;&nbsp;</td><td><p>A <a href="../PD_Layer/General.html#file" target="">file</a> I/O <a href="../PD_Layer/General.html#error" target="">error</a> has occurred. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrRead"></a>fileErrRead&nbsp;&nbsp;</td><td><p>A <a href="../PD_Layer/General.html#file" target="">file</a> <a href="General.html#read" target="">read</a> <a href="../PD_Layer/General.html#error" target="">error</a> has occurred. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrWrite"></a>fileErrWrite&nbsp;&nbsp;</td><td><p>A <a href="../PD_Layer/General.html#file" target="">file</a> <a href="General.html#write" target="">write</a> <a href="../PD_Layer/General.html#error" target="">error</a> has occurred. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrEOF"></a>fileErrEOF&nbsp;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#end" target="">end</a> of <a href="../PD_Layer/General.html#file" target="">file</a> was reached unexpectedly. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrLocked"></a>fileErrLocked&nbsp;&nbsp;</td><td><p>This <a href="../PD_Layer/General.html#file" target="">file</a> is locked. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrVLocked"></a>fileErrVLocked&nbsp;&nbsp;</td><td><p>This disk is locked and cannot be written to. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrBusy"></a>fileErrBusy&nbsp;&nbsp;</td><td><p>This <a href="../PD_Layer/General.html#file" target="">file</a> is busy and cannot be deleted. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrExists"></a>fileErrExists&nbsp;&nbsp;</td><td><p>Another <a href="../PD_Layer/General.html#file" target="">file</a> already exists under the same <a href="../PDF_Library/General.html#name" target="">name</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrAlreadyOpen"></a>fileErrAlreadyOpen&nbsp;&nbsp;</td><td><p>This <a href="../PD_Layer/General.html#file" target="">file</a> is already <a href="General.html#open" target="">open</a> or in use by another application. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrPerm"></a>fileErrPerm&nbsp;&nbsp;</td><td><p>You do not have access to this <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrWrPerm"></a>fileErrWrPerm&nbsp;&nbsp;</td><td><p>You do not have permission to <a href="General.html#write" target="">write</a> to this <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrFNF"></a>fileErrFNF&nbsp;&nbsp;</td><td><p>This <a href="../PD_Layer/General.html#file" target="">file</a> cannot be found. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrOpenFailed"></a>fileErrOpenFailed&nbsp;&nbsp;</td><td><p>File <a href="General.html#open" target="">open</a> failed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrBytesNotReady"></a>fileErrBytesNotReady&nbsp;&nbsp;</td><td><p>The bytes are not ready. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrUserRequestedStop"></a>fileErrUserRequestedStop&nbsp;&nbsp;</td><td><p>The user requested <a href="#a" target="">a</a> stop. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrIOTimeout"></a>fileErrIOTimeout&nbsp;&nbsp;</td><td><p>A <a href="../PD_Layer/General.html#file" target="">file</a> I/O <a href="../PD_Layer/General.html#error" target="">error</a> has occurred. The file connection timed out. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrReadBlocked"></a>fileErrReadBlocked&nbsp;&nbsp;</td><td><p>A <a href="../PD_Layer/General.html#file" target="">file</a> I/O <a href="../PD_Layer/General.html#error" target="">error</a> has occurred. The file is blocked while reading. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrNotADir"></a>fileErrNotADir&nbsp;&nbsp;</td><td><p>This operation can only be performed on a folder. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrTempCreate"></a>fileErrTempCreate&nbsp;&nbsp;</td><td><p>A uniquely named temporary <a href="../PD_Layer/General.html#file" target="">file</a> could not be created. Please restart the application and try again. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileErrorsfileErrTooBig"></a>fileErrTooBig&nbsp;&nbsp;</td><td><p>This <a href="../PD_Layer/General.html#file" target="">file</a> is too big for the current operation. </p></td>
+</tr>
+</table>
+</div>
+<a name="ASFileStatusFlags1943"></a><a name="ASFileStatusFlags"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileStatusFlags</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum ASFileStatusFlags {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileStatusFlagskASFileOkay"><b>kASFileOkay</b></a>&nbsp;=&nbsp;0x0000,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#ASFileStatusFlagskASFileIsTerminating"><b>kASFileIsTerminating</b></a>&nbsp;=&nbsp;0x0001</td>
+</tr>
+</table>}</code>
+</div>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFileSys.html#ASFileSysGetStatusProc" target="">ASFileSysGetStatusProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1943</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="ASFileStatusFlagskASFileOkay"></a>kASFileOkay&nbsp;&nbsp;</td><td><p>The <a href="ASFile.html#MDFile" target="">MDFile</a> is in <a href="#a" target="">a</a> valid state. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="ASFileStatusFlagskASFileIsTerminating"></a>kASFileIsTerminating&nbsp;&nbsp;</td><td><p>The <a href="ASFile.html#MDFile" target="">MDFile</a> is being closed (for example, because the <a href="../PD_Layer/General.html#file" target="">file</a> is being displayed in a web browser's <a href="../PD_Layer/General.html#window" target="">window</a> and the user cancelled downloading). </p></td>
+</tr>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="ASFileCompletionProc1883"></a><a name="ASFileCompletionProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileCompletionProc</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*ASFileCompletionProc)(<a href="ASFile.html" target="">ASFile</a> aFile, const char *p, <a href="General.html#ASTFilePos" target="">ASTFilePos</a> fileOffsetRequested, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> countRequested, ASTArraySize nBytesRead, <a href="Errors.html#ASErrorCode" target="">ASErrorCode</a> <a href="../PD_Layer/General.html#error" target="">error</a>, void *compProcClientData)</code>
+</div>
+<br><p>Called when an asynchronous <a href="General.html#read" target="">read</a> or <a href="General.html#write" target="">write</a> request has completed.</p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFileSys.html#ASFileSysAsyncAbortProc" target="">ASFileSysAsyncAbortProc</a> <br><a href="ASFileSys.html#ASFileSysAsyncReadProc" target="">ASFileSysAsyncReadProc</a> <br><a href="ASFileSys.html#ASFileSysAsyncWriteProc" target="">ASFileSysAsyncWriteProc</a> <br><a href="ASFileSys.html#ASFileSysYieldProc" target="">ASFileSysYieldProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1883</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="ASFileAcquirePathName1019()"></a><a name="ASFileAcquirePathName()"></a><a name="ASFileAcquirePathName(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileAcquirePathName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASFileSys.html#ASPathName" target="">ASPathName</a> ASFileAcquirePathName(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="#path" target="">path</a> <a href="../PDF_Library/General.html#name" target="">name</a> for a <a href="../PD_Layer/General.html#file" target="">file</a> and increments an internal reference <a href="#count" target="">count</a>. It is the caller's responsibility to release the <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> when it is no longer needed by using <a href="ASFileSys.html#ASFileSysReleasePath" target="">ASFileSysReleasePath()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> whose <a href="#path" target="">path</a> <a href="../PDF_Library/General.html#name" target="">name</a> is acquired. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> associated with <code>asFile</code>. You can use <a href="ASFileSys.html#ASFileSysDIPathFromPath()" target="">ASFileSysDIPathFromPath()</a> to convert this to a device-independent path name. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFileSys.html#ASFileSysReleasePath()" target="">ASFileSysReleasePath</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1019</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileAttachmentCreatePathName12545()"></a><a name="ASFileAttachmentCreatePathName()"></a><a name="ASFileAttachmentCreatePathName(PDDoc,ASText,ASFileSys*,ASPathName*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileAttachmentCreatePathName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileAttachmentCreatePathName(<a href="../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> pdDoc, <a href="ASText.html#ASText" target="">ASText</a> pathText, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a>* fileSys, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a>* pathName)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates an <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code> corresponding to the specified file or folder in the collection. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The document containing the specified <a href="../PD_Layer/General.html#file" target="">file</a> or folder. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pathText</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The text-based representation of the <a href="#path" target="">path</a>. The path consists of a <a href="../PD_Layer/General.html#file" target="">file</a> <a href="../PDF_Library/General.html#name" target="">name</a> or sequence of file <a href="../PDFEdit_Layer/General.html#names" target="">names</a>. A file name may not contain any of the characters <code>'\', '/', ':', '*', '?', '&lt;', '&gt;', '|'</code>, and may not contain <code>'.'</code> as the final character. When <code>'/'</code> appears in a path, it signifies that the preceding file name is a folder, and that the subsequent file name is a child of that folder. The root of a collection may be identified by passing <code>"/"</code>, <code><a href="General.html#NULL" target="">NULL</a></code>, or an empty string for <code>pathText</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer that will be filled by the function. This parameter provides the caller with the <code><a href="ASFileSys.html" target="">ASFileSys</a></code> to use in conjunction with the specified file or folder. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pathName</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer that will be filled by the function. This parameter provides the caller with the <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code> to use in conjunction with the specified file or folder. </p></td>
+</tr>
+</table>
+</p>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>12545</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileAttachmentGetPDFileAttachment12556()"></a><a name="ASFileAttachmentGetPDFileAttachment()"></a><a name="ASFileAttachmentGetPDFileAttachment(ASFileSys,ASPathName,PDFileAttachment*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileAttachmentGetPDFileAttachment</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileAttachmentGetPDFileAttachment(<a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> pathName, <a href="General.html#OPAQUE_64_BITS" target="">PDFileAttachment</a>* attachment)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Produces <a href="#a" target="">a</a> <code><a href="../PD_Layer/PDFileAttachment.html" target="">PDFileAttachment</a></code> corresponding to the <code><a href="ASFileSys.html" target="">ASFileSys</a></code> and <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code>. It raises an exception if the <code><a href="ASFileSys.html" target="">ASFileSys</a></code> is is not the embedded files file system, or if the <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code> or <code><a href="../PD_Layer/PDFileAttachment.html" target="">PDFileAttachment</a></code> parameters are <code><a href="General.html#NULL" target="">NULL</a></code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <code><a href="ASFileSys.html" target="">ASFileSys</a></code> for file attachments. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pathName</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code> identifying the file attachment of interest. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">attachment</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer that will be receive the <a href="../PD_Layer/General.html#file" target="">file</a> attachment. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the file attachment was found, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>12556</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileAttachmentGetPDFolder12567()"></a><a name="ASFileAttachmentGetPDFolder()"></a><a name="ASFileAttachmentGetPDFolder(ASFileSys,ASPathName,PDFolder*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileAttachmentGetPDFolder</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileAttachmentGetPDFolder(<a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> pathName, <a href="General.html#OPAQUE_64_BITS" target="">PDFolder</a>* folder)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Produces <a href="#a" target="">a</a> <code><a href="../PD_Layer/General.html#PDFolder" target="">PDFolder</a></code> corresponding to the <code><a href="ASFileSys.html" target="">ASFileSys</a></code> and <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code>. It raises an exception if the <code><a href="ASFileSys.html" target="">ASFileSys</a></code> is is not the embedded files file system, or if the <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code> or <code><a href="../PD_Layer/General.html#PDFolder" target="">PDFolder</a></code> parameters are <code><a href="General.html#NULL" target="">NULL</a></code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <code><a href="ASFileSys.html" target="">ASFileSys</a></code> for file attachments </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pathName</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <code><a href="ASFileSys.html#ASPathName" target="">ASPathName</a></code> identifying the folder of interest. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">folder</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer that will be receive the folder. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the folder was found, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>12567</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileCanSetEOF2459()"></a><a name="ASFileCanSetEOF()"></a><a name="ASFileCanSetEOF(ASFile,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileCanSetEOF</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileCanSetEOF(<a href="ASFile.html#ASFile" target="">ASFile</a> file, <a href="General.html#ASInt32" target="">ASInt32</a> newFileSize)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Checks if <a href="ASFile.html#ASFileSetEOF()" target="">ASFileSetEOF()</a> can be done for this file with a specified new file size. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">file</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> in question. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">newFileSize</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The proposed new <a href="../PD_Layer/General.html#file" target="">file</a> <a href="../PD_Layer/General.html#size" target="">size</a>. This parameter will be treated as unsigned. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileSetEOF()" target="">ASFileSetEOF</a> <br><a href="ASFile.html#ASFileGetEOF()" target="">ASFileGetEOF</a> <br><a href="ASFile.html#ASFileGetPos()" target="">ASFileGetPos</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2459</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileClearOutstandingMReads1824()"></a><a name="ASFileClearOutstandingMReads()"></a><a name="ASFileClearOutstandingMReads(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileClearOutstandingMReads</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileClearOutstandingMReads(<a href="ASFile.html#ASFile" target="">ASFile</a> fN)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Clears all outstanding <code>mreads</code> for the given file. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> to clear <code>mreads</code> for. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileHasOutstandingMReads()" target="">ASFileHasOutstandingMReads</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1824</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileClose893()"></a><a name="ASFileClose()"></a><a name="ASFileClose(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileClose</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Errors.html#ASErrorCode" target="">ASErrorCode</a> ASFileClose(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Closes the specified <a href="../PD_Layer/General.html#file" target="">file</a>. After <a href="#a" target="">a</a> call to <a href="ASFile.html#ASFileClose()" target="">ASFileClose()</a>, the file handle is no longer valid but may be reused as the result of a subsequent call to <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> to <a href="General.html#close" target="">close</a>. The file must have been opened previously using <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>0</code> if the operation was successful; some file system or platform-dependent error code is returned otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileFlush()" target="">ASFileFlush</a> <br><a href="ASFile.html#ASFileReopen()" target="">ASFileReopen</a> <br><a href="ASStm.html#ASFileStmRdOpen()" target="">ASFileStmRdOpen</a> <br><a href="ASStm.html#ASFileStmWrOpen()" target="">ASFileStmWrOpen</a> <br><a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/Decryption/Sources/Decryption.cpp.html#201"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                                <a href="ASFile.html#ASFileClose()" target="">ASFileClose</a>(asFile);<br>
+<a href="../Samples/CodeSamples/printpdf/sources/printpdf.cpp.html#200"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                <a href="ASFile.html#ASFileClose()" target="">ASFileClose</a>(pFile);<br>
+<a href="../Samples/CodeSamples/MTTextExtract/Sources/TextExtractWorker.cpp.html#120"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                        <a href="ASFile.html#ASFileClose()" target="">ASFileClose</a>(outFile);</div>
+<a href="../Samples/Index/examples-A.html#_a_s_procs_8h_1eab6a3e3541deac4915f81db1c55a490">
+<p></p>
+<div class="seeAlso">more...</div>
+</a>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>893</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileFlush1006()"></a><a name="ASFileFlush()"></a><a name="ASFileFlush(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileFlush</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileFlush(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Flushes any buffered <a href="#data" target="">data</a> to a <a href="../PD_Layer/General.html#file" target="">file</a>. This method may raise file system or platform-specific exceptions. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> whose <a href="#data" target="">data</a> is flushed. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileHardFlush()" target="">ASFileHardFlush</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1006</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileFromMDFile1265()"></a><a name="ASFileFromMDFile()"></a><a name="ASFileFromMDFile(ASMDFile,ASFileSys,ASFile*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileFromMDFile</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileFromMDFile(<a href="ASFileSys.html#ASMDFile" target="">ASMDFile</a> mdFile, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="ASFile.html#ASFile" target="">ASFile</a>* pfN)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="ASFile.html" target="">ASFile</a> associated with the specified <a href="ASFileSys.html#ASMDFile" target="">ASMDFile</a> and <a href="ASFileSys.html" target="">ASFileSys</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">mdFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASFileSys.html#ASMDFile" target="">ASMDFile</a> for which the information is desired. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASFileSys.html" target="">ASFileSys</a> through which <code>fileID</code> was opened.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pfN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method, may be <code><a href="General.html#NULL" target="">NULL</a></code>) The ASFile representing <code>fileID</code> within <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code>fileID</code> is determined to be a valid file opened through <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code>, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileGetFileSys()" target="">ASFileGetFileSys</a> <br><a href="ASFile.html#ASFileGetMDFile()" target="">ASFileGetMDFile</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020002 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1265</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetEOF958()"></a><a name="ASFileGetEOF()"></a><a name="ASFileGetEOF(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetEOF</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASTFilePos" target="">ASTFilePos</a> ASFileGetEOF(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the current <a href="../PD_Layer/General.html#size" target="">size</a> of <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#file" target="">file</a>. It calls <a href="ASFileSys.html#ASFileSysGetEofProc" target="">ASFileSysGetEofProc()</a>. This call returns an error if the file size is greater than 2 GB. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="ASFile.html" target="">ASFile</a> whose <a href="../PD_Layer/General.html#size" target="">size</a> is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../PD_Layer/General.html#size" target="">size</a> of the <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileGetEOF64()" target="">ASFileGetEOF64</a> <br><a href="ASFile.html#ASFileSetEOF()" target="">ASFileSetEOF</a> <br><a href="ASFile.html#ASFileSetPos()" target="">ASFileSetPos</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>958</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetEOF642731()"></a><a name="ASFileGetEOF64()"></a><a name="ASFileGetEOF64(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetEOF64</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> ASFileGetEOF64(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the current <a href="../PD_Layer/General.html#size" target="">size</a> of <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#file" target="">file</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASFile.html" target="">ASFile</a> whose <a href="../PD_Layer/General.html#size" target="">size</a> is obtained. This call will work with files over 2 GB in <a href="../PD_Layer/General.html#length" target="">length</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../PD_Layer/General.html#size" target="">size</a> of the <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileSetEOF64()" target="">ASFileSetEOF64</a> <br><a href="ASFile.html#ASFileSetPos()" target="">ASFileSetPos</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00070000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2731</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetFileSys1030()"></a><a name="ASFileGetFileSys()"></a><a name="ASFileGetFileSys(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetFileSys</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> ASFileGetFileSys(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="../PD_Layer/General.html#file" target="">file</a> system through which <a href="#a" target="">a</a> file was opened. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#open" target="">open</a> <a href="../PD_Layer/General.html#file" target="">file</a> whose file system is obtained.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The file's <a href="ASFileSys.html" target="">ASFileSys</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileGetFileSysByName()" target="">ASFileGetFileSysByName</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1030</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetFileSysByName1247()"></a><a name="ASFileGetFileSysByName()"></a><a name="ASFileGetFileSysByName(ASAtom)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetFileSysByName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> ASFileGetFileSysByName(<a href="ASAtom.html#ASAtom" target="">ASAtom</a> name)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="../PD_Layer/General.html#file" target="">file</a> system that was registered with the specified <a href="../PDF_Library/General.html#name" target="">name</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">name</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASAtom.html" target="">ASAtom</a> corresponding to the <a href="../PDF_Library/General.html#name" target="">name</a> of the <a href="../PD_Layer/General.html#file" target="">file</a> system to obtain. It may be one of the following:</p><p>
+
+</p><table ><tr>
+<th>
+<p>String</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>"Mac_K"</code>
+</p>
+</td><td valign="top">
+<p>Mac OS file system </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>"DOS_K"</code>
+</p>
+</td><td valign="top">
+<p>Classic Windows file system (it only supports host-encoded paths) </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>"Win_K"</code>
+</p>
+</td><td valign="top">
+<p>Unicode Windows file system </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>"Unix_K"</code>
+</p>
+</td><td valign="top">
+<p>UNIX file system </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>"CHTTP"</code>
+</p>
+</td><td valign="top">
+<p>HTTP file system </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>"CDocumentum"</code>
+</p>
+</td><td valign="top">
+<p>Documentum file system </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>"CODMA"</code>
+</p>
+</td><td valign="top">
+<p>Open Document Management file system </p>
+</td>
+</tr></table></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> system, otherwise <code><a href="General.html#NULL" target="">NULL</a></code> if no matching file system was found. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileGetFileSys()" target="">ASFileGetFileSys</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020002 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1247</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetMDFile1284()"></a><a name="ASFileGetMDFile()"></a><a name="ASFileGetMDFile(ASFile,ASMDFile*,ASFileSys*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetMDFile</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileGetMDFile(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="ASFileSys.html#ASMDFile" target="">ASMDFile</a>* pFileID, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a>* pFileSys)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Given an <a href="ASFile.html" target="">ASFile</a>, returns the <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code> and the ASMDFile identification in that <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code>. This call is needed for a file system in a plug-in to be able to call the inner routines in another file system. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASFile.html" target="">ASFile</a> for which the information is desired.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pFileID</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method, may be <code><a href="General.html#NULL" target="">NULL</a></code>) The ASMDFile identifier associated with file. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pFileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method, may be <code><a href="General.html#NULL" target="">NULL</a></code>) The file system through which this file was opened. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the file is an open file, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileFromMDFile()" target="">ASFileFromMDFile</a> <br><a href="ASFile.html#ASFileGetFileSys()" target="">ASFileGetFileSys</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020002 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1284</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetOpenMode1905()"></a><a name="ASFileGetOpenMode()"></a><a name="ASFileGetOpenMode(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetOpenMode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASFile.html#ASFileMode" target="">ASFileMode</a> ASFileGetOpenMode(<a href="ASFile.html#ASFile" target="">ASFile</a> fN)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="../PD_Layer/General.html#file" target="">file</a> access mode(s) specified for the file when it was opened. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> in question. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A <a href="../PD_Layer/General.html#value" target="">value</a> corresponding to one or more <a href="ASFile.html#ASFileMode" target="">ASFileMode</a> objects <a href="../PDF_Library/General.html#used" target="">used</a> to access or create the <a href="../PD_Layer/General.html#file" target="">file</a>, as shown in the table below. The values that can be returned <a href="#include" target="">include</a> combinations of the following, OR'd with each other:</p><p>Return value from <a href="ASFile.html#ASFileGetOpenMode()" target="">ASFileGetOpenMode()</a>:  
+</p><table ><tr>
+<th>
+<p>Return value</p>
+</th><th>
+<p>Meaning </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>0</code>
+</p>
+</td><td valign="top">
+<p>created </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>1</code>
+</p>
+</td><td valign="top">
+<p>readable </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>2</code>
+</p>
+</td><td valign="top">
+<p>readable and writable </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>8</code>
+</p>
+</td><td valign="top">
+<p>sequential access </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>16</code>
+</p>
+</td><td valign="top">
+<p>local </p>
+</td>
+</tr></table></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1905</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetPos926()"></a><a name="ASFileGetPos()"></a><a name="ASFileGetPos(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetPos</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASTFilePos" target="">ASTFilePos</a> ASFileGetPos(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the current seek position in <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#file" target="">file</a>. This is the position at which the <a href="../PDF_Library/General.html#next" target="">next</a> <a href="General.html#read" target="">read</a> or <a href="General.html#write" target="">write</a> will begin. This call returns an <a href="../PD_Layer/General.html#error" target="">error</a> if the file position is greater than 2 GB. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> in which to get the seek position.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The current seek position. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileGetPos64()" target="">ASFileGetPos64</a> <br><a href="ASFile.html#ASFileSetPos()" target="">ASFileSetPos</a> <br><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>926</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetPos642703()"></a><a name="ASFileGetPos64()"></a><a name="ASFileGetPos64(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetPos64</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> ASFileGetPos64(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the current seek position in <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#file" target="">file</a>. This is the position at which the <a href="../PDF_Library/General.html#next" target="">next</a> <a href="General.html#read" target="">read</a> or <a href="General.html#write" target="">write</a> will begin. This call will work with files over 2 GB in <a href="../PD_Layer/General.html#length" target="">length</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> in which to get the seek position.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The current seek position. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileSetPos64()" target="">ASFileSetPos64</a> <br><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00070000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2703</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileGetURL1852()"></a><a name="ASFileGetURL()"></a><a name="ASFileGetURL(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileGetURL</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>char* ASFileGetURL(<a href="ASFile.html#ASFile" target="">ASFile</a> asf)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Returns the URL associated with <a href="../PD_Layer/General.html#file" target="">file</a>. It is the caller's responsibility to release the memory associated with the returned string using <a href="Memory_Allocation.html#ASfree()" target="">ASfree()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">asf</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> in question. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A buffer containing the URL, or <code><a href="General.html#NULL" target="">NULL</a></code> if it could not be determined. On all file systems, the path will be URL-escaped. On the default file system, encoding will be platform-encoded. On Unicode and browser file systems, encoding will be UTF8.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1852</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileHardFlush2033()"></a><a name="ASFileHardFlush()"></a><a name="ASFileHardFlush(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileHardFlush</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Errors.html#ASErrorCode" target="">ASErrorCode</a> ASFileHardFlush(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Causes a hard <a href="General.html#flush" target="">flush</a> on a <a href="../PD_Layer/General.html#file" target="">file</a>, which means that the file is flushed to the physical destination. For example, if a WebDAV-based file is opened, <a href="ASFile.html#ASFileFlush()" target="">ASFileFlush()</a> only flushes changes to the local cached version of the file. This method would flush changes all the way to the WebDAV server. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> that is flushed. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>0</code> if the operation succeeded, <code>-1</code> if there was an error.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileFlush()" target="">ASFileFlush</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2033</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileHasOutstandingMReads2448()"></a><a name="ASFileHasOutstandingMReads()"></a><a name="ASFileHasOutstandingMReads(ASFile)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileHasOutstandingMReads</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileHasOutstandingMReads(<a href="ASFile.html#ASFile" target="">ASFile</a> fN)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Determines whether there are any outstanding multi-byte range requests for a <a href="../PD_Layer/General.html#file" target="">file</a>. A document can have outstanding <code>mreads</code> if it was opened in a browser, Acrobat requested some byte ranges, and the byte ranges have not yet arrived. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> in question. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the file has outstanding <code>mreads</code>, <code>false</code> otherwise.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2448</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileIsSame1724()"></a><a name="ASFileIsSame()"></a><a name="ASFileIsSame(ASFile,ASPathName,ASFileSys)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileIsSame</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileIsSame(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> pathName, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Performs <a href="#a" target="">a</a> comparison between the <a href="../PD_Layer/General.html#file" target="">file</a> and <a href="#path" target="">path</a> to determine if they represent the same file. This method will return <code>false</code> if the file was not opened through the <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code> file system.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> in question. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pathName</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASFileSys.html#ASPathName" target="">ASPathName</a> in question. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> system from which the <a href="#path" target="">path</a> was obtained.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>false</code> if the comparison fails, <code>true</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00050000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">This method is not guaranteed to work on all <a href="../PD_Layer/General.html#file" target="">file</a> systems. </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1724</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileMReadRequest1816()"></a><a name="ASFileMReadRequest()"></a><a name="ASFileMReadRequest(ASFile,ASInt32*,ASTCount)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileMReadRequest</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileMReadRequest(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="General.html#ASInt32" target="">ASInt32</a>* blockPairs, <a href="General.html#ASTCount" target="">ASTCount</a> nBlockPairs)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Initiates a byte range request for a given <a href="../PD_Layer/General.html#file" target="">file</a>, if the file is in the browser. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> for which you wish to make <a href="General.html#read" target="">read</a> requests. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">blockPairs</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The array of <code><a href="General.html#ASInt32" target="">ASInt32</a></code> pairs. The first <code><a href="General.html#ASInt32" target="">ASInt32</a></code> in the pair is the offset into the file to read, and the second <code><a href="General.html#ASInt32" target="">ASInt32</a></code> is the length of the range to request. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nBlockPairs</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The number of block pairs to request. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileHasOutstandingMReads()" target="">ASFileHasOutstandingMReads</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00050000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1816</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileOpenWithVirtualEOF3007()"></a><a name="ASFileOpenWithVirtualEOF()"></a><a name="ASFileOpenWithVirtualEOF(ASFile,ASFilePos64,ASFile*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileOpenWithVirtualEOF</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASInt32" target="">ASInt32</a> ASFileOpenWithVirtualEOF(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> virtualEOF, <a href="ASFile.html#ASFile" target="">ASFile</a>* newFile)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>ASFileOpenWithVirtualEOF attempts to create a <a href="General.html#second" target="">second</a> ASFile instance to a <a href="../PD_Layer/General.html#file" target="">file</a> that is already <a href="General.html#open" target="">open</a>. Both the current instance fN and the new instance must be read only. The new instance shall set a virtual <a href="../PD_Layer/General.html#end" target="">end</a> of file. This virtual EOF and no effect on the first instance or on the physical file. It only effect the ASFile calls where newFile is passed in has the file. Each instance maintains it's own file position marker. The original instance of the file should be <a href="General.html#close" target="">close</a> after all other instances have been closed. This routine does not raise, but returns an <a href="../PD_Layer/General.html#error" target="">error</a> code.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The <a href="ASFile.html" target="">ASFile</a> to base the new <a href="../PD_Layer/General.html#file" target="">file</a> on </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">virtualEOF</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The new EOF. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">newFile</span></code></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Error code if the newFile could not be created. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x000A0000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3007</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFilePushData1203()"></a><a name="ASFilePushData()"></a><a name="ASFilePushData(ASFile,const char*,ASTFilePos,ASTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFilePushData</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFilePushData(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, const char* p, <a href="General.html#ASTFilePos" target="">ASTFilePos</a> offset, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> length)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sends <a href="#data" target="">data</a> from a <a href="../PD_Layer/General.html#file" target="">file</a> system implementation to an <a href="ASFile.html" target="">ASFile</a>. The data may be for a multi-read request call, or may be unsolicited.</p><p>This method can only be called from within a file system implementation. It must not be called by clients of the ASFile, such as a caller that acquired the file with <a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> to which <a href="#data" target="">data</a> is sent. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">p</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="#data" target="">data</a> being pushed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">offset</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A byte <a href="General.html#offset" target="">offset</a> into the <a href="../PD_Layer/General.html#file" target="">file</a> at which the <a href="#data" target="">data</a> should be written. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">length</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The number of bytes held in the buffer. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrGeneral </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020002 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1203</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileRead979()"></a><a name="ASFileRead()"></a><a name="ASFileRead(ASFile,char*,ASTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileRead</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASTArraySize" target="">ASTArraySize</a> ASFileRead(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, char* p, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> count)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Reads <a href="#data" target="">data</a> from a <a href="../PD_Layer/General.html#file" target="">file</a>, beginning at the current seek position.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> from which <a href="#data" target="">data</a> is <a href="General.html#read" target="">read</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">p</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) A buffer into which <a href="#data" target="">data</a> is written. The buffer must be able to hold at least <code><a href="#count" target="">count</a></code> bytes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">count</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The number of bytes to <a href="General.html#read" target="">read</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The number of bytes actually <a href="General.html#read" target="">read</a> from the <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileSetPos()" target="">ASFileSetPos</a> <br><a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO <br>fileErrUserRequestedStop <br>fileErrBytesNotReady <br>fileErrIOTimeout <br>fileErrGeneral </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/Decryption/Sources/Decryption.cpp.html#200"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                                <a href="General.html#ASTArraySize" target="">ASTArraySize</a> bytesRead = <a href="ASFile.html#ASFileRead()" target="">ASFileRead</a>(asFile, readPwd, <a href="../PD_Layer/General.html#MAX_PWCHARS" target="">MAX_PWCHARS</a>);</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>979</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileRegisterFileSys1222()"></a><a name="ASFileRegisterFileSys()"></a><a name="ASFileRegisterFileSys(ASExtension,ASFileSys)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileRegisterFileSys</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileRegisterFileSys(<a href="ASExtension.html#ASExtension" target="">ASExtension</a> extension, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Allows an implementor to provide a <a href="../PD_Layer/General.html#file" target="">file</a> system for use by external clients. An external client can locate the file system using <a href="ASFile.html#ASFileGetFileSysByName()" target="">ASFileGetFileSysByName()</a>. <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code> provides its name via the <a href="ASFileSys.html#ASFileSysGetFileSysNameProc" target="">ASFileSysGetFileSysNameProc()</a> callback. This method returns <code>false</code> if a file system with the same name is already registered. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">extension</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#gExtensionID" target="">gExtensionID</a> of the plug-in registering the <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASFileSys.html" target="">ASFileSys</a> being registered. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code> is successfully registered, <code>false</code> otherwise.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileUnregisterFileSys()" target="">ASFileUnregisterFileSys</a> <br><a href="ASFile.html#ASFileGetFileSysByName()" target="">ASFileGetFileSysByName</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020002 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1222</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileReopen875()"></a><a name="ASFileReopen()"></a><a name="ASFileReopen(ASFile,ASFileMode)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileReopen</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Errors.html#ASErrorCode" target="">ASErrorCode</a> ASFileReopen(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="ASFile.html#ASFileMode" target="">ASFileMode</a> mode)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Attempts to <a href="General.html#reopen" target="">reopen</a> <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#file" target="">file</a> using the specified read/write mode. On some platforms, this may result in the file being closed and then reopened, and some <a href="../PD_Layer/General.html#error" target="">error</a> conditions may render the file invalid. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> to <a href="General.html#reopen" target="">reopen</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">mode</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An open-mode <a href="../PD_Layer/General.html#value" target="">value</a> as specified for <a href="ASFile.html#ASFileMode" target="">ASFileMode</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>0</code> if the operation was successful; some file system or platform-dependent error code is returned otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a> <br><a href="ASFile.html#ASFileClose()" target="">ASFileClose</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">The <a href="../PD_Layer/General.html#file" target="">file</a> mode and return types changed in 0x00060000. </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>875</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileSetEOF945()"></a><a name="ASFileSetEOF()"></a><a name="ASFileSetEOF(ASFile,ASTFilePos)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileSetEOF</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileSetEOF(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="General.html#ASTFilePos" target="">ASTFilePos</a> newFileSize)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Changes the <a href="../PD_Layer/General.html#size" target="">size</a> of a <a href="../PD_Layer/General.html#file" target="">file</a>. The new size may by larger or smaller than the original size. Since this method does not return any values, the status can be assessed by examining the <a href="../PD_Layer/General.html#error" target="">error</a> code in the <a href="Errors.html#HANDLER" target="">HANDLER</a> clause. This method may raise file system or platform-specific exceptions. This call only works when the desired file size is less than 2 GB. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> whose <a href="../PD_Layer/General.html#size" target="">size</a> is changed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">newFileSize</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The new <a href="../PD_Layer/General.html#size" target="">size</a> of <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileSetEOF64()" target="">ASFileSetEOF64</a> <br><a href="ASFile.html#ASFileCanSetEOF()" target="">ASFileCanSetEOF</a> <br><a href="ASFile.html#ASFileGetEOF()" target="">ASFileGetEOF</a> <br><a href="ASFile.html#ASFileGetPos()" target="">ASFileGetPos</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO <br>asGenErrMethodNotImplemented <br>asFileErrGeneral </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>945</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileSetEOF642718()"></a><a name="ASFileSetEOF64()"></a><a name="ASFileSetEOF64(ASFile,ASFilePos64)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileSetEOF64</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileSetEOF64(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> newFileSize)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Changes the <a href="../PD_Layer/General.html#size" target="">size</a> of a <a href="../PD_Layer/General.html#file" target="">file</a>. The new size may by larger or smaller than the original size. This method may raise file system or platform-specific exceptions. This call will work with files over 2 GB in <a href="../PD_Layer/General.html#length" target="">length</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> whose <a href="../PD_Layer/General.html#size" target="">size</a> is changed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">newFileSize</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The new <a href="../PD_Layer/General.html#size" target="">size</a> of the <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileGetEOF64()" target="">ASFileGetEOF64</a> <br><a href="ASFile.html#ASFileGetPos()" target="">ASFileGetPos</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00070000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2718</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileSetMode1490()"></a><a name="ASFileSetMode()"></a><a name="ASFileSetMode(ASFile,ASFlagBits,ASFlagBits)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileSetMode</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASFlagBits" target="">ASFlagBits</a> ASFileSetMode(<a href="ASFile.html#ASFile" target="">ASFile</a> fN, <a href="General.html#ASFlagBits" target="">ASFlagBits</a> modeValue, <a href="General.html#ASFlagBits" target="">ASFlagBits</a> modeMask)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets or sets the mode <a href="../PDFEdit_Layer/General.html#flags" target="">flags</a> for a <a href="../PD_Layer/General.html#file" target="">file</a>. Pass <code>0</code> for <code>modeValue</code> and <code>modeMask</code> to simply get the current mode flags. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fN</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> for which to get or set the mode.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">modeValue</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The mode flag values to get or set, which are described in <a href="ASFile.html#ASFileMode" target="">ASFileMode</a> Flags. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">modeMask</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The mask for the mode <a href="../PDFEdit_Layer/General.html#flags" target="">flags</a> to get or set. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The previous <a href="../PD_Layer/General.html#value" target="">value</a> of the mode, or <code>0</code> if the file system does not support this operation.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFileSys.html#ASFileSysOpenFile()" target="">ASFileSysOpenFile</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020002 </div>
+<p>
+<span class="label">Note</span>
+</p>
+<div class="seeAlso">This operation is primarily intended for slow <a href="../PD_Layer/General.html#file" target="">file</a> systems such as the Internet, where there can potentially be an appreciable wait between requesting and retrieving bytes. </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1490</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileSetPos909()"></a><a name="ASFileSetPos()"></a><a name="ASFileSetPos(ASFile,ASTFilePos)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileSetPos</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileSetPos(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="General.html#ASTFilePos" target="">ASTFilePos</a> pos)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Seeks to the specified position in <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#file" target="">file</a>. This is the position at which the <a href="../PDF_Library/General.html#next" target="">next</a> <a href="General.html#read" target="">read</a> or <a href="General.html#write" target="">write</a> will begin. This call only works when the desired file position is less than 2 GB. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> in which to seek. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pos</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The position to seek. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileSetPos64()" target="">ASFileSetPos64</a> <br><a href="ASFile.html#ASFileGetPos()" target="">ASFileGetPos</a> <br><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>909</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileSetPos642687()"></a><a name="ASFileSetPos64()"></a><a name="ASFileSetPos64(ASFile,ASFilePos64)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileSetPos64</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void ASFileSetPos64(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, <a href="ASFile.html#ASFilePos64" target="">ASFilePos64</a> pos)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Seeks to the specified position in <a href="#a" target="">a</a> <a href="../PD_Layer/General.html#file" target="">file</a>. This is the position at which the <a href="../PDF_Library/General.html#next" target="">next</a> <a href="General.html#read" target="">read</a> or <a href="General.html#write" target="">write</a> will begin. This call will work with files over 2 GB in <a href="../PD_Layer/General.html#length" target="">length</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> in which to seek. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pos</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The position to seek. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileGetPos64()" target="">ASFileGetPos64</a> <br><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00070000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2687</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileUnregisterFileSys1181()"></a><a name="ASFileUnregisterFileSys()"></a><a name="ASFileUnregisterFileSys(ASExtension,ASFileSys)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileUnregisterFileSys</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASBool" target="">ASBool</a> ASFileUnregisterFileSys(<a href="ASExtension.html#ASExtension" target="">ASExtension</a> extension, <a href="ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Allows <a href="#a" target="">a</a> <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code> to be unregistered. In general, a <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code> is only unregistered by the extension that registered it.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">extension</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#gExtensionID" target="">gExtensionID</a> of the plug-in un-registering <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="ASFileSys.html" target="">ASFileSys</a> to un-register. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code> successfully unregistered, <code>false</code> if there are any open files that were opened through <code><a href="../COS_Layer/General.html#fileSys" target="">fileSys</a></code>.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileRegisterFileSys()" target="">ASFileRegisterFileSys</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020002 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1181</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="ASFileWrite996()"></a><a name="ASFileWrite()"></a><a name="ASFileWrite(ASFile,const char*,ASTArraySize)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ASFileWrite</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#ASTArraySize" target="">ASTArraySize</a> ASFileWrite(<a href="ASFile.html#ASFile" target="">ASFile</a> aFile, const char* p, <a href="General.html#ASTArraySize" target="">ASTArraySize</a> count)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Writes <a href="#data" target="">data</a> to a <a href="../PD_Layer/General.html#file" target="">file</a>, beginning at the current seek position.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">aFile</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PD_Layer/General.html#file" target="">file</a> to which <a href="#data" target="">data</a> is written. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">p</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A buffer holding the <a href="#data" target="">data</a> that is to be written. The buffer must be able to hold at least <code><a href="#count" target="">count</a></code> bytes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">count</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The number of bytes to <a href="General.html#write" target="">write</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The number of bytes actually written to the <a href="../PD_Layer/General.html#file" target="">file</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="ASFile.html#ASFileRead()" target="">ASFileRead</a> <br><a href="ASFile.html#ASFileSetPos()" target="">ASFileSetPos</a> </div>
+<p>
+<span class="label">Exceptions</span>
+</p>
+<div class="seeAlso">fileErrIO <br>fileErrWrite </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="General.html#PI_ACROSUPPORT_VERSION" target="">PI_ACROSUPPORT_VERSION</a> &gt;= 0x00020000 </div>
+<p>
+<span class="label">Examples</span>
+</p>
+<div class="seeAlso">
+<a href="../Samples/CodeSamples/MTTextExtract/Sources/TextExtractWorker.cpp.html#200"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>        if(<a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a>(*pAsFile, str, strlen(str))!=strlen(str)){<br>
+<a href="../Samples/CodeSamples/MTTextExtract/Sources/TextExtractWorker.cpp.html#207"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>        if(<a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a>(*pAsFile, s, strlen(s))!=strlen(s)){<br>
+<a href="../Samples/CodeSamples/MTTextExtract/Sources/TextExtractWorker.cpp.html#228"><img alt="go to source arrow" title="Go to Source" src="../images/inherit-arrow.gif"></a>                if(<a href="ASFile.html#ASFileWrite()" target="">ASFileWrite</a>(outFile, buffer, strlen(buffer))!=strlen(buffer)){</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>ASProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>996</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. <br>Fri Feb 11 2022, 5:40 PM GMT+05:30 </center>
+</div>
+</body>
+</html>
+<!-- Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. Fri Feb 11 2022, 5:40 PM GMT+05:30 -->

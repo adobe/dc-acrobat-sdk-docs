@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"Creating a redaction annotation","url":"PDFL_MasterBook/Creating_Annotations/Working_with_redaction_annotations.htm#TOC_Creating_a_redactionbc-1"},{"type":"item","name":"Modifying an existing redaction annotation","url":"PDFL_MasterBook/Creating_Annotations/Working_with_redaction_annotations.htm#TOC_Modifying_an_existingbc-2"},{"type":"item","name":"Applying redaction annotations (removing redacted content)","url":"PDFL_MasterBook/Creating_Annotations/Working_with_redaction_annotations.htm#TOC_Applying_redactionbc-3"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();

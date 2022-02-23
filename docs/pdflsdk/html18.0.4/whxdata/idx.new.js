@@ -1,4 +1,0 @@
-(function() {
-var index =  {"type":"index","chunkinfos":[{"type":"chunkinfo","first":"3D annotations","last":"bookmarks","num":"60","node":"idata1"},{"type":"chunkinfo","first":"breakpoints","last":"handlers","num":"72","node":"idata2"},{"type":"chunkinfo","first":"handshaking","last":"memory usage","num":"19","node":"idata3"},{"type":"chunkinfo","first":"methods","last":"methods","num":"70","node":"idata4"},{"type":"chunkinfo","first":"modal dialog boxes","last":"PDPageAddCosContents method","num":"64","node":"idata5"},{"type":"chunkinfo","first":"PDPageAddNewAnnot method","last":"Xcode configuration files","num":"63","node":"idata6"}]};
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), index, { sync:true });
-})();

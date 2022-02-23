@@ -1,0 +1,994 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="PDAnnotHandler,,,,_t_PDAnnotHandler,PDAnnotHandler,PDAnnotHandlerClipboardData,PDAnnotHandlerGetAnnotInfoProc,PDAnnotHandlerDeleteAnnotInfoProc,PDAnnotHandlerGetTypeProc,PDAnnotHandlerGetAnnotInfoFlagsProc,PDAnnotHandlerCanCopyProc,PDAnnotHandlerCopyProc,PDAnnotHandlerCanPasteProc,PDAnnotHandlerPasteProc,PDAnnotHandlerDestroyDataProc,PDAnnotHandlerDestroyProc,PDAnnotHandlerGetHeelPointProc,PDAnnotHandlerGetPrintAppearanceProc,PDAnnotHandlerRec,PDRegisterAnnotHandler" name="keywords">
+<title>PD_Layer.PDAnnotHandler (PDFL)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'PDAnnotHandler - PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?PD_Layer/PDAnnotHandler.html&amp;PD_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">PDAnnotHandler</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#structureSummary">Structures</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PDAnnotHandler"); titleBar_setSubNav(false,true,false,false,true,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">PD_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">PDAnnotHandler</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>This is the abstract superclass for all annotations (see Section 8.4, <i>Annotations</i>, 
+in the <i>PDF Reference</i>). Acrobat has two built-in annotation classes: PDTextAnnot and PDLinkAnnot. 
+Plug-ins add movie, Widget (form field), and other annotation types. You can define new annotation 
+subtypes by creating new annotation handlers (see <i>Developing Plug-ins and Applications</i>). 
+There are no objects of type PDAnnot, but you can use 
+PDAnnot methods on any subclass of PDAnnot.
+</p><p>The Acrobat SDK provides three useful macros to cast among PDAnnot and its <a href="../PDF_Library/General.html#text" target="">text</a> annotation 
+and link annotation subclasses (see PDExpT.h). These are:</p><ul>
+<li>CastToPDAnnot()</li>
+<li>CastToPDTextAnnot()</li>
+<li>CastToPDLinkAnnot()</li>
+</ul><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandler">PDAnnotHandler</a>
+<div class="summaryTableDescription">A data structure containing callbacks that implement an annotation manager. The callbacks implement the annotation manager functions (for example, view, delete, or export the annotations of a document as a list, sorted by type, author, or date).</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerClipboardData">PDAnnotHandlerClipboardData</a>
+<div class="summaryTableDescription">Opaque data used by PDAnnotHandlers. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerRec">PDAnnotHandlerRec</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="structureSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Structure Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Structure</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#_t_PDAnnotHandler848">_t_PDAnnotHandler</a>
+<div class="summaryTableDescription">A data structure containing callbacks that implement an annotation manager. The callbacks implement the annotation manager functions (for example, view, delete, or export the annotations of a document as a list, sorted by type, author, or date).</div>
+</td>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerCanCopyProc697">PDAnnotHandlerCanCopyProc</a>
+<div class="summaryTableDescription">(Optional) A callback for PDAnnotHandler. It returns true if the copy operation is expected to succeed. It tests, for example, whether copying is allowed by document permissions. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerCanPasteProc745">PDAnnotHandlerCanPasteProc</a>
+<div class="summaryTableDescription">(Optional) A callback for PDAnnotHandler. It returns true if the paste operation is expected to succeed. It tests whether data from an annotation that has been copied to a clipboard can be pasted to a location on a page. Pasting can be disallowed by document permissions, or because the annotation cannot be accurately reproduced in the destination document. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerCopyProc718">PDAnnotHandlerCopyProc</a>
+<div class="summaryTableDescription">(Optional) A callback for PDAnnotHandler. It copies data from the annotation object to a new clipboard structure, and returns the clipboard structure. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerDeleteAnnotInfoProc589">PDAnnotHandlerDeleteAnnotInfoProc</a>
+<div class="summaryTableDescription">(Optional) A callback for PDAnnotHandler. It deletes information associated with an annotation. It frees all the memory associated with the annotation information. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerDestroyDataProc787">PDAnnotHandlerDestroyDataProc</a>
+<div class="summaryTableDescription">(Optional) A callback for PDAnnotHandler. It destroys data from an annotation that has been copied to a clipboard. This callback may be executed regardless of how many times (if any) the annotation was pasted. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerDestroyProc798">PDAnnotHandlerDestroyProc</a>
+<div class="summaryTableDescription">(Optional) A callback for PDAnnotHandler. It destroys the annotation handler structure when the application no longer requires it. The handler should destroy any dynamic memory stored in the userData field. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerGetAnnotInfoFlagsProc680">PDAnnotHandlerGetAnnotInfoFlagsProc</a>
+<div class="summaryTableDescription">A callback for PDAnnotHandler. It gets the annotation handler information flags, which indicate the operations allowed with annotations of this type. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerGetAnnotInfoProc574">PDAnnotHandlerGetAnnotInfoProc</a>
+<div class="summaryTableDescription">A callback for PDAnnotHandler. It gets the annotation information for an annotation. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerGetHeelPointProc812">PDAnnotHandlerGetHeelPointProc</a>
+<div class="summaryTableDescription">A callback for PDAnnotHandler. It gets the heel point (the focus or starting point) for the annotation. For a rectangular annotation, this is usually the top left corner. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerGetPrintAppearanceProc834">PDAnnotHandlerGetPrintAppearanceProc</a>
+<div class="summaryTableDescription">A callback for PDAnnotHandler. It is called by the host application to obtain a print appearance (a Form XObject). If this callback is not implemented, the default appearance (if any) is used.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerGetTypeProc603">PDAnnotHandlerGetTypeProc</a>
+<div class="summaryTableDescription">A callback for PDAnnotHandler. It gets an ASAtom indicating the annotation type for which the handler is responsible. This corresponds to the annotation's Subtype key in the PDF file.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDAnnotHandlerPasteProc769">PDAnnotHandlerPasteProc</a>
+<div class="summaryTableDescription">(Optional) A callback for PDAnnotHandler. It creates a new annotation on the specified page using clipboard data generated by PDAnnotCopy(). </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDRegisterAnnotHandler6739()">PDRegisterAnnotHandler</a>(<a href="PDAnnotHandler.html#_t_PDAnnotHandler" target="">PDAnnotHandler</a> handler)</div>
+<div class="summaryTableDescription">Registers a handler for an annotation subtype, replacing any previous handler that had been registered for that subtype. The annotation handler is not registered if its PDAnnotHandlerGetTypeProc() returns NULL.</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="PDAnnotHandler"></a><a name="PDAnnotHandler526"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandler</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="PDAnnotHandler.html#_t_PDAnnotHandler" target="">_t_PDAnnotHandler</a> PDAnnotHandler;</code>
+</div>
+<br><p>A <a href="#data" target="">data</a> structure containing callbacks that implement an annotation manager. The callbacks implement the annotation manager functions (for example, <a href="General.html#view" target="">view</a>, delete, or export the annotations of a document as a <a href="../PDF_Library/General.html#list" target="">list</a>, sorted by <a href="../AS_Layer/General.html#type" target="">type</a>, author, or <a href="../AS_Layer/General.html#date" target="">date</a>).</p><p>To fully use a PDAnnotHandler, the AVAnnotHandler associated with this annotation must have its AVAnnotHandlerGetInfoProc() and AVAnnotHandlerDeleteInfoProc() callbacks <a href="../PDF_Library/General.html#defined" target="">defined</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>526</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerClipboardData"></a><a name="PDAnnotHandlerClipboardData539"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerClipboardData</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef void* PDAnnotHandlerClipboardData;</code>
+</div>
+<br><p>Opaque <a href="#data" target="">data</a> <a href="../PDF_Library/General.html#used" target="">used</a> by PDAnnotHandlers. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>539</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerRec"></a><a name="PDAnnotHandlerRec900"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerRec</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="PDAnnotHandler.html#_t_PDAnnotHandler" target="">_t_PDAnnotHandler</a> PDAnnotHandlerRec;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>900</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<a name="structureDetail"></a>
+<div class="detailSectionHeader">Structure Detail</div>
+<a name="_t_PDAnnotHandler848"></a><a name="_t_PDAnnotHandler"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_t_PDAnnotHandler</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct _t_PDAnnotHandler {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASSize_t" target="">ASSize_t</a>&nbsp;<a href="#_t_PDAnnotHandlersize"><b>size</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>void*&nbsp;<a href="#_t_PDAnnotHandleruserData"><b>userData</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerGetTypeProc" target="">PDAnnotHandlerGetTypeProc</a>&nbsp;<b>GetType</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerGetAnnotInfoProc" target="">PDAnnotHandlerGetAnnotInfoProc</a>&nbsp;<b>GetAnnotInfo</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerDeleteAnnotInfoProc" target="">PDAnnotHandlerDeleteAnnotInfoProc</a>&nbsp;<b>DeleteAnnotInfo</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDDoc.html#PDDocWillExportAnnotProc" target="">PDDocWillExportAnnotProc</a>&nbsp;<b>WillExportAnnot</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDDoc.html#PDDocWillImportAnnotProc" target="">PDDocWillImportAnnotProc</a>&nbsp;<b>WillImportAnnot</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnot.html#PDAnnotWillPrintProc" target="">PDAnnotWillPrintProc</a>&nbsp;<b>WillPrintAnnot</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerGetAnnotInfoFlagsProc" target="">PDAnnotHandlerGetAnnotInfoFlagsProc</a>&nbsp;<b>GetAnnotInfoFlags</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerCanCopyProc" target="">PDAnnotHandlerCanCopyProc</a>&nbsp;<b>CanCopy</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerCopyProc" target="">PDAnnotHandlerCopyProc</a>&nbsp;<b>Copy</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerCanPasteProc" target="">PDAnnotHandlerCanPasteProc</a>&nbsp;<b>CanPaste</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerPasteProc" target="">PDAnnotHandlerPasteProc</a>&nbsp;<b>Paste</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerDestroyDataProc" target="">PDAnnotHandlerDestroyDataProc</a>&nbsp;<b>DestroyData</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerDestroyProc" target="">PDAnnotHandlerDestroyProc</a>&nbsp;<b>Destroy</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerGetHeelPointProc" target="">PDAnnotHandlerGetHeelPointProc</a>&nbsp;<b>GetHeelPoint</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDAnnotHandler.html#PDAnnotHandlerGetPrintAppearanceProc" target="">PDAnnotHandlerGetPrintAppearanceProc</a>&nbsp;<b>GetPrintAppearance</b>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>A <a href="#data" target="">data</a> structure containing callbacks that implement an annotation manager. The callbacks implement the annotation manager functions (for example, <a href="General.html#view" target="">view</a>, delete, or export the annotations of a document as a <a href="../PDF_Library/General.html#list" target="">list</a>, sorted by <a href="../AS_Layer/General.html#type" target="">type</a>, author, or <a href="../AS_Layer/General.html#date" target="">date</a>).</p><p>To fully use a <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>, the AVAnnotHandler associated with this annotation must have its AVAnnotHandlerGetInfoProc() and AVAnnotHandlerDeleteInfoProc() callbacks <a href="../PDF_Library/General.html#defined" target="">defined</a>.  </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>848</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="_t_PDAnnotHandlersize"></a>size&nbsp;&nbsp;</td><td><p>The size of the <a href="#data" target="">data</a> structure. It must be set to <code>sizeof(<a href="PDAnnotHandler.html#PDAnnotHandlerRec" target="">PDAnnotHandlerRec</a>)</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDAnnotHandleruserData"></a>userData&nbsp;&nbsp;</td><td><p>A pointer to <a href="#a" target="">a</a> block of user-supplied <a href="#data" target="">data</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="PDAnnotHandlerCanCopyProc697"></a><a name="PDAnnotHandlerCanCopyProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerCanCopyProc</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*PDAnnotHandlerCanCopyProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, <a href="PDPage.html" target="">PDPage</a> sourcePage, PDAnnot pdan)</code>
+</div>
+<br><p>(Optional) A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It returns <code>true</code> if the copy operation is expected to succeed. It tests, for example, whether copying is allowed by document permissions. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDAnnotHandlerCanPasteProc" target="">PDAnnotHandlerCanPasteProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerCopyProc" target="">PDAnnotHandlerCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerPasteProc" target="">PDAnnotHandlerPasteProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerDestroyDataProc" target="">PDAnnotHandlerDestroyDataProc</a> <br><a href="PDAnnot.html#PDAnnotCanCopy()" target="">PDAnnotCanCopy</a> <br>PDRegisterAnnotHandlerCanCopy </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>697</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerCanPasteProc745"></a><a name="PDAnnotHandlerCanPasteProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerCanPasteProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*PDAnnotHandlerCanPasteProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, <a href="PDPage.html" target="">PDPage</a> destPage, const <a href="../AS_Layer/Fixed_Point_Math.html#ASFixedPoint" target="">ASFixedPoint</a> *center, <a href="PDAnnotHandler.html#PDAnnotHandlerClipboardData" target="">PDAnnotHandlerClipboardData</a> <a href="#data" target="">data</a>)</code>
+</div>
+<br><p>(Optional) A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It returns <code>true</code> if the paste operation is expected to succeed. It tests whether data from an annotation that has been copied to a clipboard can be pasted to a location on a page. Pasting can be disallowed by document permissions, or because the annotation cannot be accurately reproduced in the destination document. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDAnnotHandlerCanCopyProc" target="">PDAnnotHandlerCanCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerCopyProc" target="">PDAnnotHandlerCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerPasteProc" target="">PDAnnotHandlerPasteProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerDestroyDataProc" target="">PDAnnotHandlerDestroyDataProc</a> <br><a href="PDAnnot.html#PDAnnotCanPaste()" target="">PDAnnotCanPaste</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>745</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerCopyProc718"></a><a name="PDAnnotHandlerCopyProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerCopyProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="PDAnnotHandler.html#PDAnnotHandlerClipboardData" target="">PDAnnotHandlerClipboardData</a> (*PDAnnotHandlerCopyProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, <a href="PDPage.html" target="">PDPage</a> sourcePage, PDAnnot pdan)</code>
+</div>
+<br><p>(Optional) A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It copies <a href="#data" target="">data</a> from the annotation object to a new clipboard structure, and returns the clipboard structure. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDAnnotHandlerCanCopyProc" target="">PDAnnotHandlerCanCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerCanPasteProc" target="">PDAnnotHandlerCanPasteProc</a> <br>PDAnnotHandlerCopyProc <br><a href="PDAnnotHandler.html#PDAnnotHandlerDestroyDataProc" target="">PDAnnotHandlerDestroyDataProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerPasteProc" target="">PDAnnotHandlerPasteProc</a> <br><a href="PDAnnot.html#PDAnnotCopy()" target="">PDAnnotCopy</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>718</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerDeleteAnnotInfoProc589"></a><a name="PDAnnotHandlerDeleteAnnotInfoProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerDeleteAnnotInfoProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*PDAnnotHandlerDeleteAnnotInfoProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, <a href="PDAnnot.html#PDAnnotInfo" target="">PDAnnotInfo</a> info)</code>
+</div>
+<br><p>(Optional) A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It deletes information associated with an annotation. It frees all the memory associated with the annotation information. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso">AVAnnotHandlerDeleteInfoProc <br><a href="PDAnnotHandler.html#PDAnnotHandlerGetAnnotInfoProc" target="">PDAnnotHandlerGetAnnotInfoProc</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>589</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerDestroyDataProc787"></a><a name="PDAnnotHandlerDestroyDataProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerDestroyDataProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*PDAnnotHandlerDestroyDataProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, <a href="PDAnnotHandler.html#PDAnnotHandlerClipboardData" target="">PDAnnotHandlerClipboardData</a> <a href="#data" target="">data</a>)</code>
+</div>
+<br><p>(Optional) A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It destroys <a href="#data" target="">data</a> from an annotation that has been copied to a clipboard. This callback may be executed regardless of how many times (if any) the annotation was pasted. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDAnnotHandlerCanCopyProc" target="">PDAnnotHandlerCanCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerCanPasteProc" target="">PDAnnotHandlerCanPasteProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerCopyProc" target="">PDAnnotHandlerCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerPasteProc" target="">PDAnnotHandlerPasteProc</a> <br><a href="PDAnnot.html#PDAnnotDestroyClipboardData()" target="">PDAnnotDestroyClipboardData</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>787</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerDestroyProc798"></a><a name="PDAnnotHandlerDestroyProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerDestroyProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*PDAnnotHandlerDestroyProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh)</code>
+</div>
+<br><p>(Optional) A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It destroys the annotation handler structure when the application no longer requires it. The handler should destroy any dynamic memory stored in the <code><a href="General.html#userData" target="">userData</a></code> field. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>798</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerGetAnnotInfoFlagsProc680"></a><a name="PDAnnotHandlerGetAnnotInfoFlagsProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerGetAnnotInfoFlagsProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASFlagBits" target="">ASFlagBits</a> (*PDAnnotHandlerGetAnnotInfoFlagsProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, PDAnnot pdan)</code>
+</div>
+<br><p>A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It gets the annotation handler information <a href="../PDFEdit_Layer/General.html#flags" target="">flags</a>, which indicate the operations allowed with annotations of this <a href="../AS_Layer/General.html#type" target="">type</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDAnnotHandlerGetAnnotInfoProc" target="">PDAnnotHandlerGetAnnotInfoProc</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>680</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerGetAnnotInfoProc574"></a><a name="PDAnnotHandlerGetAnnotInfoProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerGetAnnotInfoProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="PDAnnot.html#_PDAnnotInfoRec" target="">PDAnnotInfo</a> (*PDAnnotHandlerGetAnnotInfoProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, PDAnnot pdan, <a href="PDPage.html" target="">PDPage</a> pdpage)</code>
+</div>
+<br><p>A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It gets the annotation information for an annotation. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso">AVAnnotHandlerGetInfoProc <br><a href="PDAnnotHandler.html#PDAnnotHandlerDeleteAnnotInfoProc" target="">PDAnnotHandlerDeleteAnnotInfoProc</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>574</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerGetHeelPointProc812"></a><a name="PDAnnotHandlerGetHeelPointProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerGetHeelPointProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>void (*PDAnnotHandlerGetHeelPointProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, PDAnnot pdan, <a href="../AS_Layer/Fixed_Point_Math.html#ASFixedPoint" target="">ASFixedPoint</a> *point)</code>
+</div>
+<br><p>A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It gets the heel point (the focus or starting point) for the annotation. For a rectangular annotation, this is usually the <a href="../AS_Layer/General.html#top" target="">top</a> <a href="../AS_Layer/General.html#left" target="">left</a> corner. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>812</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerGetPrintAppearanceProc834"></a><a name="PDAnnotHandlerGetPrintAppearanceProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerGetPrintAppearanceProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a> (*PDAnnotHandlerGetPrintAppearanceProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, PDAnnot pdan, <a href="../AS_Layer/Fixed_Point_Math.html#ASFixedRect" target="">ASFixedRect</a> *frAnnot, <a href="PDAnnot.html#PDAnnotPrintOp" target="">PDAnnotPrintOp</a> op)</code>
+</div>
+<br><p>A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It is called by the host application to obtain a print appearance (a Form XObject). If this callback is not implemented, the default appearance (if any) is <a href="../PDF_Library/General.html#used" target="">used</a>.</p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>834</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerGetTypeProc603"></a><a name="PDAnnotHandlerGetTypeProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerGetTypeProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> (*PDAnnotHandlerGetTypeProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh)</code>
+</div>
+<br><p>A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It gets an <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> indicating the annotation <a href="../AS_Layer/General.html#type" target="">type</a> for which the handler is responsible. This corresponds to the annotation's Subtype key in the PDF <a href="General.html#file" target="">file</a>.</p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDAnnotHandlerGetAnnotInfoProc" target="">PDAnnotHandlerGetAnnotInfoProc</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>603</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDAnnotHandlerPasteProc769"></a><a name="PDAnnotHandlerPasteProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDAnnotHandlerPasteProc</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">PDAnnot</a> (*PDAnnotHandlerPasteProc)(<a href="PDAnnotHandler.html" target="">PDAnnotHandler</a> pdanh, <a href="PDPage.html" target="">PDPage</a> destPage, const <a href="../AS_Layer/Fixed_Point_Math.html#ASFixedPoint" target="">ASFixedPoint</a> *center, <a href="PDAnnotHandler.html#PDAnnotHandlerClipboardData" target="">PDAnnotHandlerClipboardData</a> <a href="#data" target="">data</a>)</code>
+</div>
+<br><p>(Optional) A callback for <a href="PDAnnotHandler.html" target="">PDAnnotHandler</a>. It creates a new annotation on the specified <a href="../PDSEdit_Layer/General.html#page" target="">page</a> using clipboard <a href="#data" target="">data</a> generated by <a href="PDAnnot.html#PDAnnotCopy()" target="">PDAnnotCopy()</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDAnnotHandler.html#PDAnnotHandlerCanCopyProc" target="">PDAnnotHandlerCanCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerCanPasteProc" target="">PDAnnotHandlerCanPasteProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerCopyProc" target="">PDAnnotHandlerCopyProc</a> <br><a href="PDAnnotHandler.html#PDAnnotHandlerDestroyDataProc" target="">PDAnnotHandlerDestroyDataProc</a> <br><a href="PDAnnot.html#PDAnnotCopy()" target="">PDAnnotCopy</a> <br><a href="PDAnnot.html#PDAnnotPaste()" target="">PDAnnotPaste</a> <br><a href="PDAnnotHandler.html#PDRegisterAnnotHandler()" target="">PDRegisterAnnotHandler</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>769</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="PDRegisterAnnotHandler6739()"></a><a name="PDRegisterAnnotHandler()"></a><a name="PDRegisterAnnotHandler(PDAnnotHandler)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDRegisterAnnotHandler</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDRegisterAnnotHandler(<a href="PDAnnotHandler.html#_t_PDAnnotHandler" target="">PDAnnotHandler</a> handler)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Registers <a href="#a" target="">a</a> handler for an annotation <a href="General.html#subtype" target="">subtype</a>, replacing any previous handler that had been registered for that subtype. The annotation handler is not registered if its <a href="PDAnnotHandler.html#PDAnnotHandlerGetTypeProc" target="">PDAnnotHandlerGetTypeProc()</a> returns <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>.</p><p>To effectively use a PDAnnotHandler, the AVAnnotHandler associated with this annotation must have its AVAnnotHandlerGetInfoProc() and AVAnnotHandlerDeleteInfoProc() callbacks <a href="../PDF_Library/General.html#defined" target="">defined</a>. </p><p>PDF Library applications can use this method to register their annotation handlers. Link and Watermark annotations have default handlers. For other annotation types, the applications should register their own handlers. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">handler</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to <a href="#a" target="">a</a> structure containing the annotation handler's callbacks. This structure must not be freed after this call, but must be retained. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="General.html#PDGetAnnotHandlerByName()" target="">PDGetAnnotHandlerByName</a> <br>AVAppGetAnnotHandlerByName </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6739</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. <br>Fri Feb 11 2022, 5:40 PM GMT+05:30 </center>
+</div>
+</body>
+</html>
+<!-- Copyright 2020 Adobe Systems Incorporated and its licensors. All rights reserved. Adobe and the Adobe logo are either registered trademarks or trademarks of Adobe Systems Incorporated in the United States and/or other countries. This product contains either BSAFE and/or TIPEM software by RSA Security, Inc. Portions utilize Microsoft Windows Media Technologies. Copyright &copy; 2006 Microsoft Corporation. All Rights Reserved. Notices, terms and conditions pertaining to other third party software are located at http://www.adobe.com/go/thirdparty/ and incorporated herein by reference. Fri Feb 11 2022, 5:40 PM GMT+05:30 -->
