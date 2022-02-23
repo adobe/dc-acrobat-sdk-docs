@@ -1,0 +1,1449 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Working with Host Function Tables &mdash; Acrobat Plugin Developer Guide</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+    <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homePlugins_Hft.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Working with Cos Objects" href="Plugins_Cos.html" />
+    <link rel="prev" title="Working with Unicode Paths" href="Plugins_Unicode.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat Plugin Developer Guide
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction to Plugin Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-plugins">About plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-the-acrobat-core-api">About the Acrobat core API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-viewer-layer">Acrobat Viewer layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#portable-document-layer">Portable Document layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-support-layer">Acrobat Support layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-layer">Cos layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#platform-specific-methods">Platform-specific methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-objects">Acrobat core API objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#file-object-interrelationships">File object interrelationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-object-interrelationships">Document object interrelationships</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-methods">Acrobat core API methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-types">Data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#scalar-types">Scalar types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#simple-types">Simple types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#complex-types">Complex types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#opaque-types">Opaque types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-types">Cos types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-pdf-library-and-plugin-applications">About PDF Library and plugin applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#manipulating-acrobat-and-adobe-reader">Manipulating Acrobat and Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#displaying-a-pdf-document-in-an-external-window">Displaying a PDF document in an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#indexed-searching">Indexed searching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modifying-file-access">Modifying file access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#creating-new-annotation-types">Creating new annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dynamically-adding-text-to-pdf-documents">Dynamically adding text to PDF documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#understanding-your-target-application">Understanding your target application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#rights-enabled-pdf-documents">Rights-enabled PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#adobe-reader-plugins">Adobe Reader plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#registering-plugins-for-use-by-the-plugin-finder">Registering plugins for use by the plugin finder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#pdf-dictionary-extensions">PDF dictionary extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#unloading">Unloading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#summarizing-a-plugin-s-life-cycle">Summarizing a plugin’s life cycle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-callback-functions">Using callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#notifications">Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#handling-events">Handling events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#mouse-clicks">Mouse clicks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adjust-cursor">Adjust cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#key-presses">Key presses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes">Using plugin prefixes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#obtaining-a-developer-pdf-name-prefix">Obtaining a developer PDF name prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#using-a-developer-prefix">Using a developer prefix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#plugin-name">Plugin name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-prefixes">Menu prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-items-prefixes">Menu items prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#tool-prefixes">Tool prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#toolbar-button-prefixes">Toolbar button prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#private-data-id-d-via-second-class-names">Private data ID’d via second-class names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#action-prefixes">Action prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#annotation-prefixes">Annotation prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#hft-prefixes">HFT prefixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#modifying-the-acrobat-or-adobe-reader-user-interface">Modifying the Acrobat or Adobe Reader user interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adding-or-removing-menus-and-menu-items">Adding or removing menus and menu items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#modifying-toolbars">Modifying toolbars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#controlling-the-about-box-and-splash-screen">Controlling the About box and splash screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#creating-help-files">Creating help files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#user-interface-guidelines">User interface guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#acquiring-and-releasing-objects">Acquiring and releasing objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#debugging-plugins">Debugging plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#page-view-layers">Page view layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#minimizing-screen-redrawing">Minimizing screen redrawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#storing-private-data-in-pdf-files">Storing private data in PDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#exporting-data-from-pdf-document-objects">Exporting data from PDF document objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_CreatingSimplePlug.html">Creating Plugin and PDF Library Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#working-with-platform-specific-techniques">Working with platform-specific techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#about-platform-dependent-data">About platform-dependent data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#portability-techniques">Portability techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows-techniques">Windows techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-windows-plugins">Developing Windows plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-plugins">Locating and loading plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#why-a-plugin-might-not-load">Why a plugin might not load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros-and-project-settings">Macros and project settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#interapplication-communication">Interapplication communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#debugging">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#handling-the-thread-local-storage-tls-limit">Handling the thread local storage (TLS) limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-modal-dialog-boxes">Using modal dialog boxes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-techniques">Mac OS techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-a-mac-os-plugin">Developing a Mac OS plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-the-samples">Using the samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#establishing-carbon-or-cocoa-compliance">Establishing Carbon or Cocoa compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#xcode-configuration-files">Xcode configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-setgworld-rather-than-setport">Using SetGWorld rather than SetPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-a-plugin">Locating and loading a plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-memory">Using memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#resource-file-considerations">Resource file considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-saferesources">Using SafeResources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#manipulating-the-resource-chain-directly">Manipulating the resource chain directly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros">Macros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-only-methods">Mac OS-only methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#inter-application-communication">Inter application communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-plugin">Creating a sample plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-acrobat-sdk-library-files">Including Acrobat SDK library files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-the-pimain-source-file">Adding the PIMain source file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-application-logic">Adding application logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#compiling-and-building-your-plugin">Compiling and building your plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-pdf-library-application">Creating a sample PDF Library application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#contents-of-the-pdf-library-sdk">Contents of the PDF Library SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-library-files">Including library files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-applications-with-the-adobe-pdf-library">Developing applications with the Adobe PDF Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os">Mac OS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#initialization-and-termination">Initialization and termination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#upgrading-existing-plugins">Upgrading existing plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#detecting-supported-apis">Detecting supported APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#migrating-pdfl-apps-to-xcode">Migrating PDFL apps to Xcode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Insertext.html">Inserting Text into PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-pdf-document">Creating a new PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-page">Creating a new page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-container">Creating a container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#acquiring-fonts">Acquiring fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-pdegraphicstate-object">Creating a PDEGraphicState object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-an-asfixedmatrix-object">Creating an ASFixedMatrix object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#inserting-text">Inserting text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#saving-the-pdf-document">Saving the PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#examining-a-pdfl-app-source-file">Examining a PDFL app source file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-handler-for-an-external-window">Creating a handler for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-an-open-dialog-box">Displaying an open dialog box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-a-pdf-in-a-window">Displaying a PDF in a window</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#determining-the-pdf-version">Determining the PDF version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version">PDF version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version-extensions">PDF version extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#setting-the-extension-level-of-a-document">Setting the extension level of a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#getting-the-extension-level-of-a-document">Getting the extension level of a document</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#bridging-core-api-layers">Bridging core API layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object">Creating a PDDoc object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object-for-an-open-pdf">Creating a PDDoc object for an open PDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#accessing-non-pdf-files">Accessing non-PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#printing-documents">Printing documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#working-with-the-pdf-x-format">Working with the PDF/X format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Menu.html">Creating Menus and Menu Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#about-menus">About menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenubar-typedefs">About AVmenubar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenu-typedefs">About AVMenu typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenuitem-typedefs">About AVMenuItem typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#adding-menu-commands-to-menus">Adding menu commands to menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-an-existing-menu">Adding a menu command to an existing menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-a-new-menu">Adding a menu command to a new menu</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#creating-menu-callback-functions">Creating menu callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#determining-if-a-menu-item-can-be-executed">Determining if a menu item can be executed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Toolbutton.html">Creating Toolbars and Buttons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#about-toolbars">About toolbars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbar-typedefs">About AVToolBar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbutton-typedefs">About AVToolButton typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-toolbars">Retrieving toolbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-buttons">Creating toolbar buttons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-help-text-for-a-button">Setting help text for a button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-label-text">Setting label text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#creating-a-sub-menu-for-a-button">Creating a sub-menu for a button</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-existing-toolbar-buttons">Retrieving existing toolbar buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#attaching-a-button-to-a-toolbar">Attaching a button to a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#exposing-a-button-in-a-web-browser">Exposing a button in a web browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#removing-a-button-from-a-toolbar">Removing a button from a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-button-callback-functions">Creating toolbar button callback functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Annotations.html">Creating Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-text-annotations">Working with text annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-text-annotations">Creating text annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#retrieving-existing-annotations">Retrieving existing annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-text-annotations">Modifying text annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-redaction-annotations">Working with redaction annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-a-redaction-annotation">Creating a redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-an-existing-redaction-annotation">Modifying an existing redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#applying-redaction-annotations-removing-redacted-content">Applying redaction annotations (removing redacted content)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Bookmark.html">Working with Bookmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#about-bookmarks">About bookmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#creating-bookmarks">Creating bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#defining-bookmark-actions">Defining bookmark actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-pdviewdestination-object">Creating a PDViewDestination object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-avpageview-object">Creating a AVPageView object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#assigning-an-action-to-a-bookmark">Assigning an action to a bookmark</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#removing-bookmark-actions">Removing bookmark actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#opening-and-closing-bookmarks">Opening and closing bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-bookmarks">Retrieving bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-the-root-bookmark">Retrieving the root bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-a-specific-bookmark">Retrieving a specific bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-all-bookmarks">Retrieving all bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#deleting-bookmarks">Deleting bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pages.html">Working with Page Views and Contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-coordinates">About page coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-views">About page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#displaying-page-views">Displaying page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#modifying-page-contents">Modifying page contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#creating-a-pdecontent-object">Creating a PDEContent object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#accessing-page-contents">Accessing page contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#determining-page-element-types">Determining page element types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#modifying-text-elements">Modifying text elements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Words.html">Working with Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#about-searching-for-words">About searching for words</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdword-typedefs">About PDWord typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdwordfinder-typedefs">About PDWordFinder typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#creating-a-pdwordfinder-object">Creating a PDWordFinder object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#extracting-and-displaying-words">Extracting and displaying words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#highlighting-words">Highlighting words</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Handlers.html">Creating Handlers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#about-handlers">About handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#action-handlers">Action handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#annotation-handlers">Annotation handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#avcommand-handlers">AVCommand handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#creating-an-avcommand-handler">Creating an AVCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#invoking-avcommands">Invoking AVCommands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#configuring-avcommands">Configuring AVCommands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-input-parameters">Setting input parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-configuration-parameters">Setting configuration parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-avcommand-parameters">Setting AVCommand parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#running-commands">Running commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#exposing-avcommands-to-the-batch-framework">Exposing AVCommands to the batch framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#adding-a-handler-to-the-global-command-list">Adding a handler to the global command list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#supporting-properties">Supporting properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-format-conversion-handlers">File format conversion handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-specification-handlers">File specification handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#selection-servers">Selection servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#tool-callbacks">Tool callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#window-handlers">Window handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-systems">File systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#progress-monitors">Progress monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#transition-handlers">Transition handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#adding-message-handling">Adding message handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Notification.html">Registering for Event Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#registering-event-notifications">Registering event notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#unregistering-event-notifications">Unregistering event notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Security.html">Working with Document Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-document-security">About document security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-security-handlers">About security handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#adding-a-security-handler">Adding a security handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handlers-data">Security handlers data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handler-callbacks">Security handler callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#acrobat-s-authorization-procedure">Acrobat’s authorization procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-a-secured-file">Opening a secured file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-secured-file">Saving a secured file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#setting-security-for-a-document">Setting security for a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-file-with-an-encryption-dictionary">Saving a file with an encryption dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-an-encrypted-file">Opening an encrypted file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Unicode.html">Working with Unicode Paths</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#about-unicode-paths">About Unicode paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#creating-unicode-file-path-application-logic">Creating Unicode file path application logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#retrieving-unicode-path-values">Retrieving Unicode path values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object">Creating an ASFileSys object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object-that-supports-unicode-paths">Creating an ASFileSys object that supports Unicode paths</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Host Function Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about-host-function-tables">About host function tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exporting-host-function-tables">Exporting host function tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-hft-methods">Creating HFT methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-hft-method-definitions">Creating HFT method definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#defining-function-prototypes">Defining function prototypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defining-an-hft-method-name">Defining an HFT method name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-hft-callback-functions">Creating HFT callback functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-new-host-function-tables">Creating new Host Function Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examining-hft-header-and-source-files">Examining HFT header and source files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examining-an-hft-header-file">Examining an HFT header file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examining-an-hft-source-file">Examining an HFT source file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#importing-an-existing-hft">Importing an existing HFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#invoking-hft-methods">Invoking HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#replacing-hft-methods">Replacing HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#migrating-non-hft-pdf-library-applications-to-hft-applications">Migrating non-HFT PDF Library applications to HFT applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Cos.html">Working with Cos Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#about-cos-objects">About Cos objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-direct-and-indirect-objects">About direct and indirect objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-cos-object-types">About Cos object types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-strings">Cos strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#hexadecimal-strings">Hexadecimal strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-arrays">Cos arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-names">Cos names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-dictionaries">Cos dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-streams">Cos streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-strings">Working with Cos strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-strings">Creating Cos strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-string-value">Retrieving the string value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-arrays">Working with Cos arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-arrays">Creating Cos arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-cos-array-values">Retrieving Cos array values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries">Working with Cos dictionaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-dictionaries">Creating Cos dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-values-from-a-cos-dictionary">Retrieving values from a Cos dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#querying-a-cos-dictionary-for-a-key">Querying a Cos dictionary for a key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-names">Working with Cos names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-names">Creating Cos names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-value-of-a-name-object">Retrieving the value of a name object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-streams">Working with Cos streams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-streams">Creating Cos streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#creating-a-stream-dictionary">Creating a stream dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#inserting-a-cos-stream-into-a-pdf-document">Inserting a Cos stream into a PDF document</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#populating-a-pdf-with-a-content-stream">Populating a PDF with a content stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_3D_samples.html">Working with 3D Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#creating-3d-annotations">Creating 3D annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#adding-3d-data-to-an-annotation">Adding 3D data to an annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-3d-annotation-dictionary-entries">Creating the 3D annotation dictionary entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#specifying-the-3d-stream">Specifying the 3D stream</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-stream-object">Creating the stream object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#adding-the-cos-stream-to-the-annotation-dictionary">Adding the Cos stream to the annotation dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-attributes-dictionary">Creating the attributes dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#specifying-javascript-code">Specifying JavaScript code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-default-view">Setting the default view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-annotation-appearance">Setting the annotation appearance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-activation-dictionary">Setting the activation dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_A3D_API.html">Parsing and Creating PRC Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#working-with-the-acrobat-3d-api">Working with the Acrobat 3D API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#versions">Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-with-different-prc-format-versions">Compatibility with different PRC format versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-between-the-acrobat-3d-library-and-the-acrobat-3d-api">Compatibility between the Acrobat 3D Library and the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#data-types-naming-conventions-and-character-encoding">Data types, naming conventions, and character encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#structured-and-recursive-nature-of-prc-parsing">Structured and recursive nature of PRC parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking-in-your-plugin">Implementing external linking in your plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking">Implementing external linking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#parsing-a-prc-file">Parsing a PRC file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#handling-errors">Handling errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#copying-the-embedded-prc-file-to-a-separate-file">Copying the embedded PRC file to a separate file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#initializing-the-acrobat-3d-api">Initializing the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-structure-prc-entities">Parsing structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-model-file-data">Parse the model file data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-product-occurrence">Parse a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-part-definition">Parse a part definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-representation-items">Parsing representation items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-representation-item-set-prc-entity-a3driset">Parse a representation item set (PRC entity A3DRiSet)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-brep-model-representation-item-prc-entity-a3dribrepmodel">Parse a Brep model representation item (PRC entity A3DRiBrepModel)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-coordinate-system-data">Parse coordinate system data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-tessellation-prc-entities">Parsing tessellation PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-tessellation-base-data">Parse tessellation base data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-3d-tessellation-data">Parse 3D tessellation data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-topology-prc-entities">Parsing topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-body-data">Parse topology body data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-context-data">Parse topology context data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-brep-model-s-data">Parse the Brep model’s data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-connex-data">Parse Connex data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-shell-entity">Parse a shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-face-s-surface-data">Parse the face’s surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#convert-surface-data-to-nurbs-for-other-than-uv-mapped-surfaces">Convert surface data to Nurbs (for other than UV-mapped surfaces)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-generic-surface-data">Parse generic surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-nurbs-surface-data">Parse Nurbs surface data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-prc-entities-that-specify-graphics">Parsing PRC entities that specify graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-attributes-that-appear-in-an-entity-base">Parsing attributes that appear in an entity base</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-root-base-entity-data">Parsing root-base entity data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-miscellaneous-attribute-entity">Parse the miscellaneous attribute entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-graphic-attributes-using-miscellaneous-cascaded-attributes">Parsing graphic attributes using miscellaneous cascaded attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#to-create-and-push-a-miscellaneous-cascaded-attributes-structure">To create and push a miscellaneous cascaded attributes structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#terminating-the-interface-with-the-acrobat-3d-api">Terminating the interface with the Acrobat 3D API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#terminate-your-interface-with-the-acrobat-3d-api">Terminate your interface with the Acrobat 3D API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-prc-file-that-uses-boundary-representation">Creating a PRC file that uses boundary representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#error-handling">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-model-file-entity-and-exporting-it-to-a-physical-file">Creating a model file entity and exporting it to a physical file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-file-that-contains-the-prc-data">Create a file that contains the PRC data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-structure-prc-entities">Creating structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-model-file-entity">Create a model file entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-product-occurrence">Create a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-part-definition">Create a part definition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-representation-item-prc-entities">Creating representation item PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-brep-model-representation-item">Create a Brep model representation item</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-topology-prc-entities">Creating topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-brep-data-entity">Create a topology Brep data entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-connex-entity">Create a topology connex entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-shell-entity">Create a topology shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-face-entity">Create a topology face entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-loop-entity">Create a topology loop entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-co-edge-entity">Create a topology co-edge entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-edge-entity">Create a topology edge entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-geometry-prc-entities">Creating geometry PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-surface-cylinder-entity">Create a surface cylinder entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-circular-curve-entity">Create a circular curve entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#defining-root-level-attributes-for-a-prc-entity">Defining root-level attributes for a PRC entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-omit-modeler-data">Define miscellaneous attributes that omit modeler data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-include-modeler-data">Define miscellaneous attributes that include modeler data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-3d-annotation-that-references-the-prc-file">Creating a 3D annotation that references the PRC file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-tessellation-entity-for-representing-faceted-objects">Creating a tessellation entity for representing faceted objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-base-data">Create the tessellation base data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-facet-data">Create the tessellation facet data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Exceptions.html">Handling Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#creating-exception-handlers">Creating exception handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#returning-a-value-from-an-exception-handler">Returning a value from an exception handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#raising-exceptions">Raising exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#exception-handling-scenarios">Exception handling scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-goto-statements">Using goto statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-nested-exception-handlers">Using nested exception handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-register-variables">Using register variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ExtendedAPI.html">Working with Acrobat Extended APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#search-extended-api">Search extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#catalog-extended-api">Catalog extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-consultant-and-accessibility-checker-extended-api">PDF Consultant and Accessibility Checker extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrobat-agents">Acrobat agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-and-revisiting">Reclassifying and revisiting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#agent-architecture">Agent architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#how-the-consultant-works">How the consultant works</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#removing-or-modifying-objects">Removing or modifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-objects">Reclassifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-process">Consultant process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#important-issues-for-consultant-development">Important issues for consultant development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#maintaining-the-traversal-stack">Maintaining the traversal stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#deciding-consultant-or-the-agent-does-the-work">Deciding consultant or the agent does the work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-agent-collisions">Avoiding agent collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-visitation-collisions">Avoiding visitation collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#importing-the-consultant-hfts-into-a-plugin">Importing the consultant HFTs into a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-and-destroying-consultants">Creating and destroying consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#registering-agents-with-consultants">Registering agents with consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#starting-the-consultant">Starting the consultant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-object-type-identification">Consultant object type identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-an-agent-class">Creating an agent class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-agent-constructors">Creating agent constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#recognizing-objects-of-interest">Recognizing objects of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#post-processing-stage">Post processing stage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-extended-api">Digital signature extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#the-pubsec-layer">The PubSec layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-components">Digital signature components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-scenarios">Digital signature scenarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#initializing-the-digital-signature-plugin">Initializing the digital signature plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#understanding-the-process">Understanding the process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#dialogs-and-signature-gathering">Dialogs and signature gathering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#saving-a-document">Saving a document</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#finishing-the-process">Finishing the process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#revalidating-signatures">Revalidating signatures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-available-callbacks">Additional available callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-plugin-support">Additional plugin support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#rollback-support">Rollback support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#forms-extended-api">Forms extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-extended-api">Weblink extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-services">Weblink services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#writing-a-custom-driver">Writing a custom driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#spelling-extended-api">Spelling extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrocolor-extended-api">AcroColor extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-conversion-operations">Color conversion operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#object-attributes">Object attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-space-attributes">Color space attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#conversion-actions">Conversion actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#action-modifiers">Action modifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#ink-aliasing">Ink aliasing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-structures">Data structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-enum-values">Data enum values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#converting-a-document-to-rgb">Converting a document to RGB</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-optimizer-api">PDF Optimizer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ReaderPlug.html">Creating an Adobe Reader plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#configuring-preprocessor-definitions">Configuring preprocessor definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#creating-the-public-and-private-key-pairs">Creating the public and private key pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#enabling-the-plugin-for-adobe-reader">Enabling the plugin for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#troubleshooting-an-adobe-reader-plugin">Troubleshooting an Adobe Reader plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#plugin-appears-to-be-ignored-by-adobe-reader">Plugin appears to be ignored by Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#adobe-reader-error-messages">Adobe Reader error messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_Plugins.html">Reader Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#reader-enablement">Reader enablement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#apis-available-for-adobe-reader">APIs available for Adobe Reader</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat Plugin Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Working with Host Function Tables</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="Plugins_Cos.html" class="btn btn-neutral float-right" title="Working with Cos Objects" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="Plugins_Unicode.html" class="btn btn-neutral float-left" title="Working with Unicode Paths" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="working-with-host-function-tables">
+<h1>Working with Host Function Tables<a class="headerlink" href="#working-with-host-function-tables" title="Permalink to this headline">¶</a></h1>
+<p>A host function table (HFT) is the mechanism through which plugins and PDF Library applications invoke methods in Adobe Reader and Acrobat, as well as other plugins. Acrobat and Adobe Reader have HFTs containing pointers to all Acrobat core API methods. In addition, a plugin may create its own HFT to export its methods to other plugins. This chapter illustrates how to export and import HFTs.</p>
+<div class="section" id="about-host-function-tables">
+<h2>About host function tables<a class="headerlink" href="#about-host-function-tables" title="Permalink to this headline">¶</a></h2>
+<p>An HFT is a table of function pointers where each HFT contains the following information:</p>
+<ul class="simple">
+<li><p>A name</p></li>
+<li><p>A version number</p></li>
+<li><p>An array of one or more entries</p></li>
+</ul>
+<p>Each entry represents a single method that a plugin can invoke, and is defined as a linked list of function pointers. Adobe Reader or Acrobat uses linked lists because some HFT entries may be marked so that they can be replaced by a plugin. Also, it is useful to keep a list of each implementation of a method that was replaced to allow methods to call the implementations they replaced.</p>
+<p>The following diagram shows the relationship between Adobe Reader or Acrobat, other plugins, and HFTs.</p>
+<img alt="_images/hft.png" src="_images/hft.png" />
+<p>Plugins must use the <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method to import each HFT they intend to use. A plugin requests an HFT by its name and version number. An HFT is imported during plugin initialization. (See <a class="reference external" href="Plugins_Pimech.html#50618406_19533">Importing HFTs and registering for notifications</a>.)</p>
+<p>When a plugin invokes a method in Adobe Reader, Acrobat, or another plugin, the function pointer at the appropriate location in the appropriate HFT is dereferenced and executed. Macros in the Acrobat SDK header files hide this functionality so that plugins contain only what appear to be normal function calls.</p>
+<p>Each HFT is serviced by an HFT server. The HFT server is responsible for handling requests to obtain or destroy its HFT. As part of its responsibility to handle requests, an HFT server can choose to support multiple versions of the HFT. These versions generally correspond to versions of Acrobat, Adobe Reader or the plugin that exposes the HFT.</p>
+<p>The ability to provide more than one version of an HFT improves backward-compatibility by allowing existing plugins to continue to work when new versions of Acrobat or Adobe Reader (or other plugins whose HFTs they use) become available. It is expected that HFT versions typically will differ only in the number, not the order, of methods they contain.</p>
+</div>
+<div class="section" id="exporting-host-function-tables">
+<h2>Exporting host function tables<a class="headerlink" href="#exporting-host-function-tables" title="Permalink to this headline">¶</a></h2>
+<p>You can use the Acrobat core API to export HFTs that result in a plugin’s methods being available to other plugins. To export an HFT, perform the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Create the HFT methods that you want to make available to other plugins.</p></li>
+<li><p>Create HFT method definitions.</p></li>
+<li><p>Create HFT callback functions.</p></li>
+<li><p>Create new HFTs.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The remaining parts of this section examine each task in detail.</p>
+</div>
+<div class="section" id="creating-hft-methods">
+<h3>Creating HFT methods<a class="headerlink" href="#creating-hft-methods" title="Permalink to this headline">¶</a></h3>
+<p>The first step in exporting HFTs is to create the methods that will be exported and made available to other plugins. For the purpose of this discussion, assume that the following three methods exist.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">BeepOnceImplementation</span><span class="p">()</span>
+ <span class="p">{</span>
+     <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+     <span class="n">AVAlertNote</span> <span class="p">(</span><span class="s2">&quot;In the BeepOnce method.&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+ <span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">BeepTwiceImplementation</span><span class="p">()</span>
+ <span class="p">{</span>
+     <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+     <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+     <span class="n">AVAlertNote</span> <span class="p">(</span><span class="s2">&quot;In the BeepTwice method.&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+ <span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">BeepNTimesImplementation</span><span class="p">(</span><span class="n">ASInt32</span> <span class="n">numtimes</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="n">ASInt32</span> <span class="n">i</span><span class="p">;</span>
+     <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numtimes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+         <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+         <span class="n">AVAlertNote</span> <span class="p">(</span><span class="s2">&quot;In the BeepNTimes method.&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-hft-method-definitions">
+<h3>Creating HFT method definitions<a class="headerlink" href="#creating-hft-method-definitions" title="Permalink to this headline">¶</a></h3>
+<p>When you invoke a method in an HFT, the methods are accessed through a function pointer. Part of the process of defining a function pointer through which HFT methods are accessed is to create an enumeration that specifies the index of each method that you want to include within an HFT. The following enumeration enables indexing into the HFT. Note that the first element is not used.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span>
+ <span class="p">{</span>
+ <span class="n">DUMMYBLANKSELECTOR</span><span class="p">,</span> <span class="o">/*</span> <span class="mi">0</span> <span class="o">*/</span>
+ <span class="n">BeepOnceSEL</span><span class="p">,</span>    <span class="o">/*</span> <span class="mi">1</span> <span class="o">*/</span>
+ <span class="n">BeepTwiceSEL</span><span class="p">,</span> <span class="o">/*</span> <span class="mi">2</span> <span class="o">*/</span>
+ <span class="n">BeepNTimesSEL</span><span class="p">,</span> <span class="o">/*</span> <span class="mi">3</span> <span class="o">*/</span>
+ <span class="n">NUMSELECTORSPlusOne</span> <span class="o">/*</span> <span class="mi">4</span> <span class="o">*/</span>
+ <span class="p">};</span>
+</pre></div>
+</div>
+<p>The indexes are called selectors, hence the <code class="docutils literal notranslate"><span class="pre">SEL</span></code> at the end of the method names. <code class="docutils literal notranslate"><span class="pre">BeepOnce</span></code> is at index 1; <code class="docutils literal notranslate"><span class="pre">BeepTwice</span></code>, at index 2; and <code class="docutils literal notranslate"><span class="pre">BeepNTimes</span></code>, at index 3. You can specify the number of indexes in the HFT by defining the following statement:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define NUMSELECTORS (NUMSELECTORSPlusOne - 1);</span>
+</pre></div>
+</div>
+<p>Also declare a global <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object that is used in various tasks:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extern</span> <span class="n">HFT</span> <span class="n">gMyHFT</span>
+</pre></div>
+</div>
+<p>For example, to define an HFT method name, you must specify an HFT object. (See <a class="reference external" href="Plugins_Hft.html#50618412_60887">Defining an HFT method name</a>.)</p>
+<div class="section" id="defining-function-prototypes">
+<h4>Defining function prototypes<a class="headerlink" href="#defining-function-prototypes" title="Permalink to this headline">¶</a></h4>
+<p>After you define an enumeration and an HFT object, you can define a function pointer for each method by using the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typdef</span> <span class="n">ACCBPROTO1</span> <span class="n">return_type</span> <span class="p">(</span><span class="n">ACCBPROTO2</span>   <span class="o">*</span><span class="n">function_nameSELPROTO</span><span class="p">)(</span><span class="n">parameters</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The following table describes this syntax.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>return_type</p></td>
+<td><p>The return type of the HFT method</p></td>
+</tr>
+<tr class="row-even"><td><p>function_name</p></td>
+<td><p>The name of the HFT method</p></td>
+</tr>
+<tr class="row-odd"><td><p>parameters</p></td>
+<td><p>The HFT method’s parameters with their types</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example, to define a function pointer to the <code class="docutils literal notranslate"><span class="pre">BeepNTimes</span></code> method, specify the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">ACCBPROTO1</span> <span class="n">void</span> <span class="p">(</span><span class="n">ACCBPROTO2</span> <span class="o">*</span><span class="n">BeepNTimesSELPROTO</span><span class="p">)(</span><span class="n">ASInt32</span> <span class="n">numtimes</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ACCBPROTO1</span></code> and <code class="docutils literal notranslate"><span class="pre">ACCBPROTO2</span></code> are macros whose definitions are platform-specific (for example, in Mac OS, <code class="docutils literal notranslate"><span class="pre">ACCBPROTO1</span></code> is defined as <code class="docutils literal notranslate"><span class="pre">pascal</span></code> ). <code class="docutils literal notranslate"><span class="pre">BeepNTimesSELPROTO</span></code> specifies a pointer to the <code class="docutils literal notranslate"><span class="pre">BeepNTimes</span></code> method. Without using these macros, you would have to use the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">void</span> <span class="p">(</span><span class="o">*</span><span class="n">func</span><span class="p">)(</span><span class="n">ASInt32</span> <span class="n">numtimes</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-an-hft-method-name">
+<h4>Defining an HFT method name<a class="headerlink" href="#defining-an-hft-method-name" title="Permalink to this headline">¶</a></h4>
+<p>You must specify a name for each method that is used to invoke the HFT method from other plugins. You can define an HFT method name by using the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define method_name (*((method_nameSELPROTO)(HFTname [method_nameSEL])))</span>
+</pre></div>
+</div>
+<p>The following table describes this syntax.</p>
+<table class="docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 71%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>method_name</p></td>
+<td><p>The name of the HFT method that is used to invoke the method from external plugins</p></td>
+</tr>
+<tr class="row-even"><td><p>HFTname</p></td>
+<td><p>The name of the HFT object</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example, to define a method name for the <code class="docutils literal notranslate"><span class="pre">BeepNTimesImplementation</span></code> method, specify the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define BeepNTimes (*((BeepNTimesSELPROTO)(gMyHFT[BeepNTimesSEL])))</span>
+</pre></div>
+</div>
+<p>This macro defines the symbol <code class="docutils literal notranslate"><span class="pre">BeepNTimes</span></code>, which is the HFT method name. <code class="docutils literal notranslate"><span class="pre">gMyHFT[BeepNTimesSEL]</span></code> is the function pointer obtained by indexing the HFT and <code class="docutils literal notranslate"><span class="pre">BeepNTimesSELPROTO</span></code> casts the pointer to the right type. The end result is that the method can be invoked by specifying the HFT method name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">BeepNTimes</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>HFT method names and the implementation method names must be different to avoid conflict between the <code class="docutils literal notranslate"><span class="pre">#define</span></code> statement and the corresponding method name.</p>
+</div>
+</div>
+<div class="section" id="creating-hft-callback-functions">
+<h3>Creating HFT callback functions<a class="headerlink" href="#creating-hft-callback-functions" title="Permalink to this headline">¶</a></h3>
+<p>You must create an HFT callback function in order to successfully export an HFT. It is recommended that you place the application logic to create an HFT callback in the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> method. This is a handshaking method that enables your plugin to export an HFT. For information about handshaking, see <a class="reference external" href="Plugins_Pimech.html#50618406_89824">Handshaking</a>.</p>
+<p>To create an HFT callback function, declare an HFT <code class="docutils literal notranslate"><span class="pre">ServerProvideHFTProc</span></code> object that represents the callback:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HFTServerProvideHFTProc</span> <span class="n">provideMyHFTCallback</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">HFTServerProvideHFTProc</span></code> is a callback for an HFT server. After you create an <code class="docutils literal notranslate"><span class="pre">HFTServerProvideHFTProc</span></code> object, you can invoke the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> macro to convert a user-defined function to an HFT callback function. For example, you can invoke <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> to convert a user-defined function named <code class="docutils literal notranslate"><span class="pre">ProvideMyHFT</span></code> to a callback function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> macro requires the following arguments:</p>
+<ul class="simple">
+<li><p>The callback type. In this situation, specify <code class="docutils literal notranslate"><span class="pre">HFTServerProvideHFTProc</span></code>.</p></li>
+<li><p>The address of the user-defined function that you want to convert to a callback function.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> macro returns a callback of the specified type that invokes the user-defined function whose address was passed as the second argument. The following lines of code show the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> macro converting the <code class="docutils literal notranslate"><span class="pre">ProvideMyHFT</span></code> user-defined function to a <code class="docutils literal notranslate"><span class="pre">PDWordProc</span></code> callback.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HFTServerProvideHFTProc</span> <span class="n">provideMyHFTCallback</span> <span class="o">=</span>
+ <span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">HFTServerProvideHFTProc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ProvideMyHFT</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The callback function is invoked when another plugin attempts to use the HFT. After you create an HFT callback function, you can invoke the <code class="docutils literal notranslate"><span class="pre">HFTServerNew</span></code> method to obtain an HFT <code class="docutils literal notranslate"><span class="pre">Server</span></code> object, which is responsible for handling requests to obtain or destroy its HFT. An <code class="docutils literal notranslate"><span class="pre">HFTServe</span></code> r object is required in order to create a new <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">HFTServerNew</span></code> method requires the following arguments:</p>
+<ul class="simple">
+<li><p>A character pointer that specifies the name of the HFT server. An HFT server name is used to import the HFT. (See <a class="reference external" href="Plugins_Hft.html#50618412_72145">Importing an existing HFT</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">HFTServerProvideHFTProc</span></code> object that specifies the HFT callback function.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">HFTServerDestroyProc</span></code> object that specifies the HFT callback function that releases memory from the HFT. This argument is optional and you can specify <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
+<li><p>A pointer to user-supplied data to pass to the HFT server. This argument is optional and you can specify <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
+</ul>
+<p>The following code example creates an HFT callback function within the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> method. After the <code class="docutils literal notranslate"><span class="pre">HFTServerProvideHFTProc</span></code> object is created, the <code class="docutils literal notranslate"><span class="pre">HFTServerNew</span></code> method is invoked which creates an <code class="docutils literal notranslate"><span class="pre">HFTServer</span></code> object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginExportHFTs</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">gMyHFT</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+<span class="n">gMyHFTServer</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+<span class="n">DURING</span>
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">HFT</span> <span class="n">callback</span> <span class="n">function</span>
+<span class="o">//</span>    <span class="n">provideMyHFTCallback</span> <span class="o">=</span> <span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">HFTServerProvideHFTProc</span><span class="p">,</span>
+  <span class="o">&amp;</span><span class="n">ProvideMyHFT</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">HFT</span> <span class="n">server</span>
+<span class="o">//</span>    <span class="n">gMyHFTServer</span> <span class="o">=</span> <span class="n">HFTServerNew</span><span class="p">(</span><span class="s2">&quot;MyHFT&quot;</span><span class="p">,</span> <span class="n">provideMyHFTCallback</span><span class="p">,</span>
+  <span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+<span class="n">HANDLER</span>
+  <span class="n">gSomethingWentWrong</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">false</span><span class="p">;</span>
+<span class="n">END_HANDLER</span>
+<span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the previous code example, the <code class="docutils literal notranslate"><span class="pre">gMyHFT</span></code>, <code class="docutils literal notranslate"><span class="pre">gMyHFTServer</span></code>, and <code class="docutils literal notranslate"><span class="pre">gSomethingWentWrong</span></code> variables are declared as global variables. To view the complete code example, including the location of where these global variables are declared, see <a class="reference external" href="Plugins_Hft.html#50618412_55636">Examining HFT header and source files</a>.</p>
+</div>
+</div>
+<div class="section" id="creating-new-host-function-tables">
+<h3>Creating new Host Function Tables<a class="headerlink" href="#creating-new-host-function-tables" title="Permalink to this headline">¶</a></h3>
+<p>You can create a new HFT by performing the following tasks within the HFT callback function that you define:</p>
+<ol class="arabic simple">
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">HFTNew</span></code> method. This method requires an <code class="docutils literal notranslate"><span class="pre">HFTServer</span></code> object and the number of entries in the new HFT as arguments. The number of entries determines how many methods that the HFT contains. Each method occupies one entry.</p></li>
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">HFTReplaceEntry</span></code> method to populate the entries in the <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object with pointers to the HFT methods. This method requires the following arguments:</p>
+<ul class="simple">
+<li><p>An HFT object that you want to populate.</p></li>
+<li><p>The entry in the <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object to replace. You can specify an index value that is specified in the enumeration that you created. For example, you can specify <code class="docutils literal notranslate"><span class="pre">BeepTwiceSEL</span></code>. (See <a class="reference external" href="Plugins_Hft.html#50618412_49266">Creating HFT method definitions</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">HFTEntry</span></code> object that represents a method that will become available through the HFT. You can, for example, reference the <code class="docutils literal notranslate"><span class="pre">BeepTwiceImplementation</span></code> method by passing the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateReplacement</span></code> method, as shown in the following example:</p></li>
+</ul>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ASCallbackCreateReplacement</span><span class="p">(</span><span class="n">BeepTwiceSEL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">BeepTwiceImplementation</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The new entry’s properties. Currently, only <code class="docutils literal notranslate"><span class="pre">HFTEntryReplaceable</span></code> is defined.</p></li>
+</ul>
+<p>You must invoke the <code class="docutils literal notranslate"><span class="pre">HFTReplaceEntry</span></code> method for each method that you expose through the HFT. For example, if you expose three methods through the HFT, then you invoke the <code class="docutils literal notranslate"><span class="pre">HFTReplaceEntry</span></code> method three times.</p>
+<p>The following code example shows the syntax of the <code class="docutils literal notranslate"><span class="pre">ProvideMyHFT</span></code> method, which is the HFT callback function defined in the previous section. Within this method, a new HFT is created. For information about HFT callback methods, see <a class="reference external" href="Plugins_Hft.html#50618412_88064">Creating HFT callback functions</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">HFT</span> <span class="n">ACCB2</span> <span class="n">ProvideMyHFT</span><span class="p">(</span><span class="n">HFTServer</span> <span class="n">server</span><span class="p">,</span> <span class="n">ASUns32</span> <span class="n">version</span><span class="p">,</span><span class="n">void</span> <span class="o">*</span><span class="n">rock</span><span class="p">)</span>
+<span class="p">{</span>
+
+<span class="o">//</span><span class="n">Ensure</span> <span class="n">version</span> <span class="ow">is</span> <span class="mi">1</span>
+<span class="o">//</span>    <span class="k">if</span> <span class="p">(</span><span class="n">version</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">NULL</span><span class="p">;</span>
+
+  <span class="n">DURING</span>
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">HFT</span>
+<span class="n">gMyHFT</span> <span class="o">=</span> <span class="n">HFTNew</span><span class="p">(</span><span class="n">gMyHFTServer</span><span class="p">,</span> <span class="n">NUMSELECTORS</span><span class="p">);</span>
+
+<span class="o">/*</span>
+<span class="o">**</span> <span class="n">Replace</span> <span class="n">the</span> <span class="n">entries</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">HFT</span>
+<span class="o">**</span> <span class="k">with</span> <span class="n">the</span> <span class="n">methods</span> <span class="n">that</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">make</span> <span class="n">available</span><span class="o">.</span>
+<span class="o">*/</span>
+<span class="n">HFTReplaceEntry</span> <span class="p">(</span><span class="n">gMyHFT</span><span class="p">,</span>
+
+<span class="n">BeepOnceSEL</span><span class="p">,</span><span class="n">ASCallbackCreateReplacement</span><span class="p">(</span><span class="n">BeepOnceSEL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">BeepOnce</span>
+
+<span class="n">Implementation</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="n">HFTReplaceEntry</span> <span class="p">(</span><span class="n">gMyHFT</span><span class="p">,</span>
+
+<span class="n">BeepTwiceSEL</span><span class="p">,</span><span class="n">ASCallbackCreateReplacement</span><span class="p">(</span><span class="n">BeepTwiceSEL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">BeepTwice</span>
+
+<span class="n">Implementation</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+      <span class="n">HFTReplaceEntry</span> <span class="p">(</span><span class="n">gMyHFT</span><span class="p">,</span>
+
+<span class="n">BeepNTimesSEL</span><span class="p">,</span><span class="n">ASCallbackCreateReplacement</span><span class="p">(</span><span class="n">BeepNTimesSEL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">BeepNTimes</span>
+
+<span class="n">Implementation</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+
+  <span class="n">HANDLER</span>
+          <span class="k">return</span> <span class="n">NULL</span><span class="p">;</span>
+
+  <span class="n">END_HANDLER</span>
+<span class="k">return</span> <span class="n">gMyHFT</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examining-hft-header-and-source-files">
+<h3>Examining HFT header and source files<a class="headerlink" href="#examining-hft-header-and-source-files" title="Permalink to this headline">¶</a></h3>
+<p>To make it clear how to create HFTs, this section shows a typical header and source file that is used to create an HFT. All concepts that are discussed up to this point are shown.</p>
+<div class="section" id="examining-an-hft-header-file">
+<h4>Examining an HFT header file<a class="headerlink" href="#examining-an-hft-header-file" title="Permalink to this headline">¶</a></h4>
+<p>The following code example shows the syntax of a header file named myhft.h that is used to define HFT constructs.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;corcalls.h&quot;</span>
+<span class="c1">#include &quot;avcalls.h&quot;</span>
+<span class="c1">#include &quot;coscalls.h&quot;</span>
+<span class="c1">#include &quot;pdcalls.h&quot;</span>
+<span class="c1">#include &quot;ascalls.h&quot;</span>
+
+<span class="n">enum</span>
+<span class="p">{</span>
+<span class="n">DUMMYBLANKSELECTOR</span><span class="p">,</span>
+<span class="n">BeepOnceSEL</span><span class="p">,</span>
+<span class="n">BeepTwiceSEL</span><span class="p">,</span>
+<span class="n">BeepNTimesSEL</span><span class="p">,</span>
+<span class="n">NUMSELECTORSPlusOne</span>
+<span class="p">};</span>
+<span class="n">extern</span> <span class="n">HFT</span> <span class="n">gMyHFT</span><span class="p">;</span>
+
+<span class="c1">#define NUMSELECTORS (NUMSELECTORSPlusOne - 1)</span>
+
+<span class="n">typedef</span> <span class="n">ACCBPROTO1</span> <span class="n">void</span> <span class="p">(</span><span class="n">ACCBPROTO2</span> <span class="o">*</span><span class="n">BeepOnceSELPROTO</span><span class="p">)(</span><span class="n">void</span><span class="p">);</span>
+
+<span class="c1">#define BeepOnce (*((BeepOnceSELPROTO)(gMyHFT[BeepOnceSEL])))</span>
+
+<span class="n">typedef</span> <span class="n">ACCBPROTO1</span> <span class="n">void</span> <span class="p">(</span><span class="n">ACCBPROTO2</span> <span class="o">*</span><span class="n">BeepTwiceSELPROTO</span><span class="p">)(</span><span class="n">void</span><span class="p">);</span>
+
+<span class="c1">#define BeepTwice (*((BeepTwiceSELPROTO)(gMyHFT[BeepTwiceSEL])))</span>
+
+<span class="n">typedef</span> <span class="n">ACCBPROTO1</span> <span class="n">void</span> <span class="p">(</span><span class="n">ACCBPROTO2</span> <span class="o">*</span><span class="n">BeepNTimesSELPROTO</span><span class="p">)(</span><span class="n">ASInt32</span> <span class="n">numtimes</span><span class="p">);</span>
+
+<span class="c1">#define BeepNTimes (*((BeepNTimesSELPROTO)(gMyHFT[BeepNTimesSEL])))</span>
+<span class="o">/*</span> <span class="n">End</span> <span class="n">of</span> <span class="n">MyHFT</span><span class="o">.</span><span class="n">h</span> <span class="o">*/</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examining-an-hft-source-file">
+<h4>Examining an HFT source file<a class="headerlink" href="#examining-an-hft-source-file" title="Permalink to this headline">¶</a></h4>
+<p>The following code example shows the syntax of a source file used to create an HFT. Notice that the methods (<code class="docutils literal notranslate"><span class="pre">BeepOnceImplementation</span></code>, <code class="docutils literal notranslate"><span class="pre">BeepTwiceImplementation</span></code>, and <code class="docutils literal notranslate"><span class="pre">BeepNTimesImplementation</span></code> ) that the HFT will make available to other plugins are defined. Also notice that the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> method is defined. For information about this method, see <a class="reference external" href="Plugins_Pimech.html#50618406_19533">Importing HFTs and registering for notifications</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1">#include &quot;corcalls.h&quot;</span>
+ <span class="c1">#include &quot;avcalls.h&quot;</span>
+ <span class="c1">#include &quot;coscalls.h&quot;</span>
+ <span class="c1">#include &quot;pdcalls.h&quot;</span>
+ <span class="c1">#include &quot;ascalls.h&quot;</span>
+ <span class="c1">#include &quot;myhft.h&quot;</span>
+
+
+ <span class="o">//</span><span class="n">Declare</span> <span class="k">global</span> <span class="n">variables</span>
+ <span class="o">//</span>   <span class="n">HFTServer</span> <span class="n">gMyHFTServer</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+ <span class="n">HFT</span> <span class="n">gMyHFT</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+
+ <span class="o">/*</span> <span class="n">The</span> <span class="n">implementation</span> <span class="k">for</span> <span class="n">the</span> <span class="n">BeepOnce</span><span class="p">()</span> <span class="n">function</span><span class="o">.</span> <span class="n">Note</span> <span class="n">it</span> <span class="n">has</span> <span class="n">a</span> <span class="n">different</span> <span class="n">name</span> <span class="n">than</span> <span class="n">the</span> <span class="c1">#define for the function in MyHFT.h */</span>
+
+ <span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">BeepOnceImplementation</span> <span class="p">()</span>
+
+ <span class="p">{</span>
+ <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+ <span class="n">AVAlertNote</span> <span class="p">(</span><span class="s2">&quot;In BeepOnceImplementation function.&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+
+<span class="o">/*</span> <span class="n">The</span> <span class="n">implementation</span> <span class="k">for</span> <span class="n">the</span> <span class="n">BeepTwice</span><span class="p">()</span> <span class="n">function</span><span class="o">.</span> <span class="n">Note</span> <span class="n">it</span> <span class="n">has</span> <span class="n">a</span> <span class="n">different</span> <span class="n">name</span> <span class="n">than</span> <span class="n">the</span> <span class="c1">#define for the function in MyHFT.h*/</span>
+ <span class="o">//</span>   <span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">BeepTwiceImplementation</span><span class="p">()</span>
+
+ <span class="p">{</span>
+ <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+ <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+ <span class="n">AVAlertNote</span> <span class="p">(</span><span class="s2">&quot;In BeepTwiceImplementation function.&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+
+ <span class="o">/*</span> <span class="n">The</span> <span class="n">implementation</span> <span class="k">for</span> <span class="n">the</span> <span class="n">BeepNTimes</span><span class="p">()</span> <span class="n">function</span><span class="o">.</span> <span class="n">Note</span> <span class="n">it</span> <span class="n">has</span> <span class="n">a</span>
+ <span class="o">**</span> <span class="n">different</span> <span class="n">name</span> <span class="n">than</span> <span class="n">the</span> <span class="c1">#define for the function in MyHFT.h</span>
+ <span class="o">*/</span>
+ <span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">BeepNTimesImplementation</span> <span class="p">(</span><span class="n">ASInt32</span> <span class="n">numtimes</span><span class="p">)</span>
+
+ <span class="p">{</span>
+   <span class="n">ASInt32</span> <span class="n">i</span><span class="p">;</span>
+   <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">numtimes</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+       <span class="n">AVSysBeep</span> <span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+       <span class="n">AVAlertNote</span> <span class="p">(</span><span class="s2">&quot;In BeepNTimesImplementation function.&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+
+    <span class="o">/*</span>
+    <span class="o">**</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">HFT</span> <span class="n">of</span> <span class="n">NUMSELECTORS</span> <span class="n">entries</span>
+    <span class="o">**</span> <span class="n">Then</span> <span class="n">put</span> <span class="n">the</span> <span class="n">methods</span> <span class="n">into</span> <span class="n">the</span> <span class="n">table</span> <span class="n">via</span> <span class="n">HFTReplaceEntry</span>
+    <span class="o">*/</span>
+ <span class="n">ACCB1</span> <span class="n">HFT</span> <span class="n">ACCB2</span> <span class="n">ProvideMyHFT</span><span class="p">(</span><span class="n">HFTServer</span> <span class="n">server</span><span class="p">,</span> <span class="n">ASUns32</span> <span class="n">version</span><span class="p">,</span><span class="n">void</span> <span class="o">*</span><span class="n">rock</span><span class="p">)</span>
+
+ <span class="p">{</span>
+ <span class="n">ACCB1</span> <span class="n">HFT</span> <span class="n">ACCB2</span> <span class="n">ProvideMyHFT</span><span class="p">(</span><span class="n">HFTServer</span> <span class="n">server</span><span class="p">,</span> <span class="n">ASUns32</span> <span class="n">version</span><span class="p">,</span><span class="n">void</span> <span class="o">*</span><span class="n">rock</span><span class="p">)</span>
+ <span class="p">{</span>
+   <span class="o">//</span><span class="n">Ensure</span> <span class="n">version</span> <span class="ow">is</span> <span class="mi">1</span>
+   <span class="k">if</span> <span class="p">(</span><span class="n">version</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+       <span class="k">return</span> <span class="n">NULL</span><span class="p">;</span>
+
+   <span class="n">DURING</span>
+
+       <span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">HFT</span>
+       <span class="n">gMyHFT</span> <span class="o">=</span> <span class="n">HFTNew</span><span class="p">(</span><span class="n">gMyHFTServer</span><span class="p">,</span> <span class="n">NUMSELECTORS</span><span class="p">);</span>
+
+       <span class="o">/*</span>
+       <span class="o">**</span> <span class="n">Replace</span> <span class="n">the</span> <span class="n">entries</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">HFT</span>
+       <span class="o">**</span> <span class="k">with</span> <span class="n">the</span> <span class="n">methods</span> <span class="n">that</span> <span class="n">you</span> <span class="n">want</span> <span class="n">to</span> <span class="n">make</span> <span class="n">available</span><span class="o">.</span>
+       <span class="o">*/</span>
+       <span class="n">HFTReplaceEntry</span> <span class="p">(</span><span class="n">gMyHFT</span><span class="p">,</span>
+
+ <span class="n">BeepOnceSEL</span><span class="p">,</span><span class="n">ASCallbackCreateReplacement</span><span class="p">(</span><span class="n">BeepOnceSEL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">BeepOnce</span>
+
+ <span class="n">Implementation</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+       <span class="n">HFTReplaceEntry</span> <span class="p">(</span><span class="n">gMyHFT</span><span class="p">,</span>
+
+ <span class="n">BeepTwiceSEL</span><span class="p">,</span><span class="n">ASCallbackCreateReplacement</span><span class="p">(</span><span class="n">BeepTwiceSEL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">BeepTwice</span>
+
+ <span class="n">Implementation</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+       <span class="n">HFTReplaceEntry</span> <span class="p">(</span><span class="n">gMyHFT</span><span class="p">,</span>
+
+ <span class="n">BeepNTimesSEL</span><span class="p">,</span><span class="n">ASCallbackCreateReplacement</span><span class="p">(</span><span class="n">BeepNTimesSEL</span><span class="p">,</span><span class="o">&amp;</span><span class="n">BeepNTimes</span>
+
+ <span class="n">Implementation</span><span class="p">),</span> <span class="mi">0</span><span class="p">);</span>
+
+   <span class="n">HANDLER</span>
+           <span class="k">return</span> <span class="n">NULL</span><span class="p">;</span>
+   <span class="n">END_HANDLER</span>
+   <span class="k">return</span> <span class="n">gMyHFT</span><span class="p">;</span>
+ <span class="p">}</span>
+
+ <span class="o">/*</span>
+ <span class="o">**</span> <span class="n">Called</span> <span class="n">by</span> <span class="n">viewer</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">up</span> <span class="k">for</span> <span class="n">exporting</span> <span class="n">an</span> <span class="n">HFT</span><span class="o">.</span> <span class="n">This</span> <span class="n">method</span>
+ <span class="o">**</span> <span class="n">creates</span> <span class="n">a</span> <span class="n">new</span> <span class="n">HFT</span> <span class="n">server</span> <span class="ow">and</span> <span class="n">provides</span> <span class="n">a</span> <span class="n">callback</span> <span class="n">that</span> <span class="n">provides</span> <span class="n">the</span> <span class="n">HFT</span><span class="o">.</span>
+ <span class="o">*/</span>
+ <span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginExportHFTs</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+
+ <span class="p">{</span>
+ <span class="n">gMyHFTServer</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+ <span class="n">DURING</span>
+
+
+ <span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">HFT</span> <span class="n">callback</span> <span class="n">function</span>
+ <span class="o">//</span>    <span class="n">HFTServerProvideHFTProc</span> <span class="n">provideMyHFTCallback</span> <span class="o">=</span>
+   <span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">HFTServerProvideHFTProc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ProvideMyHFT</span><span class="p">);</span>
+
+
+ <span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">HFT</span> <span class="n">server</span>
+ <span class="o">//</span>    <span class="n">gMyHFTServer</span> <span class="o">=</span> <span class="n">HFTServerNew</span><span class="p">(</span><span class="s2">&quot;MyHFT&quot;</span><span class="p">,</span> <span class="n">provideMyHFTCallback</span><span class="p">,</span><span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+
+ <span class="n">HANDLER</span>
+   <span class="k">return</span> <span class="n">false</span><span class="p">;</span>
+ <span class="n">END_HANDLER</span>
+ <span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="importing-an-existing-hft">
+<h2>Importing an existing HFT<a class="headerlink" href="#importing-an-existing-hft" title="Permalink to this headline">¶</a></h2>
+<p>You must import an existing HFT to invoke methods that are exposed through the HFT. To import an existing HFT, you must invoke the <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method within the <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> handshaking method. The <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method requires the following arguments:</p>
+<ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> object that specifies the HFT server that corresponds to the HFT to import</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASVersion</span></code> object that specifies the version of the HFT</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method returns an <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object. The following code example shows the <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> handshaking method that contains application logic that imports the <code class="docutils literal notranslate"><span class="pre">MyHFT</span></code> HFT.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginImportReplaceAndRegister</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">gMyHFT</span> <span class="o">=</span> <span class="n">ASExtensionMgrGetHFT</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;MyHFT&quot;</span><span class="p">),</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">gMyHFT</span> <span class="o">!=</span> <span class="n">NULL</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both the exporting and importing plugins must be located in Acrobat or Adobe Reader’s plugins directory. If the exporting plugin is not located in this directory, the importing plugin cannot successfully import an HFT.</p>
+</div>
+</div>
+<div class="section" id="invoking-hft-methods">
+<h2>Invoking HFT methods<a class="headerlink" href="#invoking-hft-methods" title="Permalink to this headline">¶</a></h2>
+<p>After you import an HFT, you can invoke a method that it has made available. For example, after you import the <code class="docutils literal notranslate"><span class="pre">MyHFT</span></code> HFT, you can invoke the following methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">BeepOnce</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BeepTwice</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BeepNTimes</span></code></p></li>
+</ul>
+<p>However, you must include the header file that defines the HFT method name in the source file in which an HFT method is invoked. Because the above methods are declared in a header file named myhft.h, you must specify the following statement to successfully invoke these methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;myhft.h&quot;</span>
+</pre></div>
+</div>
+<p>If you do not include the appropriate header file, you will receive a compile error.</p>
+</div>
+<div class="section" id="replacing-hft-methods">
+<h2>Replacing HFT methods<a class="headerlink" href="#replacing-hft-methods" title="Permalink to this headline">¶</a></h2>
+<p>You can use the Acrobat core API to replace methods that are located in existing HFTs. For example, a plugin could use this mechanism to change the appearance of all alert boxes displayed by Acrobat or Adobe Reader, or to override file opening behavior.</p>
+<p>The following table lists all the replaceable Acrobat and Adobe Reader methods.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AVAlert</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AVAppCanQuit</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AVAppChooseFolderDialog</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AVAppHandleAppleEvent</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AVAppOpenDialog</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AVAppSaveDialog</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>AVDocClose</p></td>
+<td><p>AVDocDoPrint</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AVDocDoSave</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AVDocDoSaveAs</span></code></p>
+<p>(not replaceable in Adobe Reader)</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AVDocDoSaveAsWithParams</span></code></p>
+<p>(not replaceable in Adobe Reader)</p>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AVDocOpenFromASFileWithParams</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AVDocPrintPages</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">AVDocPrintPagesWithParams</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">AVPageViewGetNextView</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PDDocSave</span></code></p>
+<p>(not replaceable in Adobe Reader)</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PDDocSaveWithParams</span></code></p>
+<p>(not replaceable in Adobe Reader)</p>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>To replace one of these methods, a plugin invokes the <code class="docutils literal notranslate"><span class="pre">HFTReplaceEntry</span></code> method. In some cases, when the replacement method is finished executing, it should invoke the previous implementation of the method, using the <code class="docutils literal notranslate"><span class="pre">CALL_REPLACED_PROC</span></code> macro, to allow previously-registered implementations of the method (including Acrobat and Adobe Reader’s built-in implementation) to execute. Previous implementations of the method are not invoked automatically; it is up to the replacement implementation to invoke them.</p>
+<p>When you replace an Acrobat HFT method, the replaced method is available from other plugins. For example, assume you replace the <code class="docutils literal notranslate"><span class="pre">AVAlert</span></code> method. When other plugins invoke the <code class="docutils literal notranslate"><span class="pre">AVAlert</span></code> method, the replacement version of <code class="docutils literal notranslate"><span class="pre">AVAlert</span></code> is invoked.</p>
+<p>When an HFT entry is replaced, the entry’s linked list is updated so that the newly-added implementation is at the head of the linked list. Previous implementations, if any, follow in order, as shown in the following diagram.</p>
+<img alt="_images/hftreplace.png" src="_images/hftreplace.png" />
+<p>To replace an HFT method, perform the following tasks:</p>
+<ul class="simple">
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateReplacement</span></code> macro to create the callback pointer.</p></li>
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">REPLACE</span></code> macro to replace the desired method and pass the following arguments:</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object in which the method is replaced.</p></li>
+<li><p>The entry in the HFT to replace. Append SEL to the method’s name. For example, to replace the <code class="docutils literal notranslate"><span class="pre">AVAppCanQuit</span></code> method, specify <code class="docutils literal notranslate"><span class="pre">AVAppCanQuitSEL</span></code>.</p></li>
+<li><p>The address of the replacement method.</p></li>
+</ul>
+</li>
+</ul>
+<p>The following example shows how to replace the <code class="docutils literal notranslate"><span class="pre">AVAppCanQuit</span></code> method with a custom method named <code class="docutils literal notranslate"><span class="pre">MyAvAppCanQuit</span></code>. The <code class="docutils literal notranslate"><span class="pre">MyAVAppCanQuit</span></code> method’s arguments and return value are identical to those of the <code class="docutils literal notranslate"><span class="pre">AVAppCanQuit</span></code> method. Replaceable methods must be replaced with methods that have the same arguments and return type.</p>
+<p>The first statement in the following code example initializes a global pointer named <code class="docutils literal notranslate"><span class="pre">gMyAVAppCanQuitPtr</span></code> to your replacement method. You can use this pointer to invoke the original method. For example, you can invoke your replacement method to exhibit custom functionality and then invoke the original method. To invoke the original method, use the <code class="docutils literal notranslate"><span class="pre">CALL_REPLACED_PROC</span></code> macro and pass the pointer to your replacement method. For more information about this macro, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span><span class="o">*</span> <span class="n">gMyAVAppCanQuitPtr</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+
+<span class="o">/*</span>
+<span class="o">**</span> <span class="n">A</span> <span class="n">function</span> <span class="n">that</span> <span class="n">informs</span> <span class="n">the</span> <span class="n">application</span> <span class="n">whether</span> <span class="n">it</span><span class="s1">&#39;s OK to quit.</span>
+<span class="o">**</span> <span class="n">When</span> <span class="n">quitting</span><span class="p">,</span> <span class="n">only</span> <span class="n">allow</span> <span class="n">exit</span> <span class="n">when</span> <span class="nb">all</span> <span class="n">docs</span> <span class="n">are</span> <span class="n">closed</span><span class="o">.</span>
+<span class="o">*/</span>
+
+<span class="o">//</span>   <span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">MyAVAppCanQuit</span> <span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">AVAppGetNumDocs</span> <span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+<span class="k">else</span>
+  <span class="k">return</span> <span class="n">false</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">void</span> <span class="n">ReplaceAVAppCanQuit</span> <span class="p">()</span>
+<span class="p">{</span>
+<span class="n">DURING</span>
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">the</span> <span class="n">callback</span>
+<span class="o">//</span>   <span class="n">gMyAVAppCanQuitPtr</span> <span class="o">=</span>
+<span class="n">ASCallbackCreateReplacement</span> <span class="p">(</span><span class="n">AVAppCanQuitSEL</span><span class="p">,</span>
+<span class="o">&amp;</span><span class="n">MyAVAppCanQuit</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Invoke</span> <span class="n">the</span> <span class="n">Replace</span> <span class="n">macro</span>
+<span class="o">//</span>   <span class="n">REPLACE</span> <span class="p">(</span><span class="n">gMyHFT</span><span class="p">,</span> <span class="n">AVAppCanQuitSEL</span><span class="p">,</span> <span class="n">gMyAVAppCanQuitPtr</span><span class="p">);</span>
+
+<span class="n">HANDLER</span>
+  <span class="n">AVAlertNote</span><span class="p">(</span><span class="s2">&quot;Trying to replace AVAppCanQuit&quot;</span><span class="p">);</span>
+<span class="n">END_HANDLER</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the previous code example, an <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object named <code class="docutils literal notranslate"><span class="pre">gMyHTF</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">REPLACE</span></code> macro. To execute this example, you must create this object. (See <a class="reference external" href="Plugins_Hft.html#50618412_31298">Exporting host function tables</a>.)</p>
+</div>
+</div>
+<div class="section" id="migrating-non-hft-pdf-library-applications-to-hft-applications">
+<h2>Migrating non-HFT PDF Library applications to HFT applications<a class="headerlink" href="#migrating-non-hft-pdf-library-applications-to-hft-applications" title="Permalink to this headline">¶</a></h2>
+<p>In previous versions of Acrobat, a PDF Library application did not support use of HFTs. However, as of Acrobat 8, PDF Library applications are able to link to the PDF Library DLL file using HFTs. As a result, the PDF Library API is more closely aligned to the Acrobat core API.</p>
+<p>You can migrate existing non-HFT PDF Library applications to HFT PDF Library applications by performing the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Change your project settings from <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> “<code class="docutils literal notranslate"><span class="pre">Library.h</span></code> ” to <code class="docutils literal notranslate"><span class="pre">PRODUCT</span></code> <code class="docutils literal notranslate"><span class="pre">=</span></code> “<code class="docutils literal notranslate"><span class="pre">HFTLibrary.h</span></code> ” (the header files include the necessary code to translate from direct calls into calls though HFTs).</p></li>
+<li><p>Add the following files to your PDF Library application: PDFLInitHFT.c and PDFLInitCommon.c.</p></li>
+<li><p>Compile and link your project with the new source files (PDFLInitHFT.c and PDFLInitCommon.c).</p></li>
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">PDFLInitHFT</span></code> method instead of the <code class="docutils literal notranslate"><span class="pre">PDFLInit</span></code> to initialize the HFT mechanism and the PDF Library. The PDFLInitHFT method is defined in PDFLInitHFT.c file and the prototype for this function is defined in PDFInit.h along with the prototype for the <code class="docutils literal notranslate"><span class="pre">PDFLInit</span></code> method. The <code class="docutils literal notranslate"><span class="pre">PDFLInitHFT</span></code> method can be called more than once and a count of the initializations will be maintained by PDF Library.</p></li>
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">PDFLTermHFT</span></code> method instead of the <code class="docutils literal notranslate"><span class="pre">PDFLTerm</span></code> method to shutdown the HFT mechanism and PDF Library. The <code class="docutils literal notranslate"><span class="pre">PDFLTermHFT</span></code> method is defined in the PDFLInitHFT.c file. The prototype for this function is defined in the PDFInit.h file along with the prototype of the <code class="docutils literal notranslate"><span class="pre">PDFLTerm</span></code> method. In case of multiple initializations, the library shuts down after the number of terminations matches the number of initializations.</p></li>
+</ol>
+<p>The following table lists PDF Library API methods that should be changed to newer methods when working with HFTs.</p>
+<table class="docutils align-default" id="section-3">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Old method</p></th>
+<th class="head"><p>New method</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ASSecs</p></td>
+<td><p>ASGetDefaultFileSysForPath</p></td>
+</tr>
+<tr class="row-odd"><td><p>ASPushExceptionFrame</p></td>
+<td><p>ACPushExceptionFrame</p></td>
+</tr>
+<tr class="row-even"><td><p>ASPopExceptionFrame</p></td>
+<td><p>ACPopExceptionFrame</p></td>
+</tr>
+<tr class="row-odd"><td><p>ASGetExceptionErrorCode</p></td>
+<td><p>ACGetExceptionErrorCode</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Other PDF Library API methods will work as is without any code change.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adobe Inc..
+      <span class="lastupdated">
+        Last updated on Feb 23, 2022.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

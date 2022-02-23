@@ -1,0 +1,343 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installing and Running SnippetRunner &mdash; Snippet Runner Cookbook</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+    <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeSnippet_SnippetRunnerCookbook.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Writing Snippets" href="Snippet_WritingSnippets.html" />
+    <link rel="prev" title="Snippet Runner Cookbook" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Snippet Runner Cookbook
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Snippet Runner Cookbook</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installing and Running SnippetRunner</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#snippetrunner-common-interface">SnippetRunner Common Interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing-the-common-interface">Installing the Common Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-snippetrunner">Starting the SnippetRunner</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-common-interface-for-pdfl">Starting the Common Interface for PDFL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-the-configuration-file">Creating the configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-as-a-standalone-java-application">Running as a standalone Java application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-as-a-java-applet">Running as a Java applet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">Known issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-common-interface">Using the Common Interface</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Snippet_WritingSnippets.html">Writing Snippets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Snippet_WritingSnippets.html#passing-parameters-to-snippets">Passing parameters to snippets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Snippet_WritingSnippets.html#toggling-behavior-and-asynchronous-snippets">Toggling behavior and asynchronous snippets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Snippet_WritingSnippets.html#handling-exceptions">Handling exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Snippet_WritingSnippets.html#handling-documents">Handling documents</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Snippet Runner Cookbook</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installing and Running SnippetRunner</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="Snippet_WritingSnippets.html" class="btn btn-neutral float-right" title="Writing Snippets" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Snippet Runner Cookbook" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <a name="38527"></a><div class="section" id="installing-and-running-snippetrunner">
+<h1>Installing and Running SnippetRunner<a class="headerlink" href="#installing-and-running-snippetrunner" title="Permalink to this headline">¶</a></h1>
+<a name="91750"></a><p>SnippetRunner consists of a set of files, organized into folders in the <code class="docutils literal notranslate"><span class="pre">Samples\SnippetRunner</span></code> directory of the Acrobat SDK or PDF Library SDK. The directory includes the following files:</p>
+<ul class="simple">
+<li><p>Source code files for the SnippetRunner server. These files are located in the <code class="docutils literal notranslate"><span class="pre">Sources\platform</span> <span class="pre">directory\</span></code>. For each platform, there is a project file you can use to compile SnippetRunner along with the SDK header files. It consists of a .vcproj file for Microsoft® Windows and an .xcodeproj file for Mac.</p></li>
+<li><p>SnippetRunner environment and utility files. These files are located in the SourcesplatformAcrobat (for the Acrobat SDK only) and <code class="docutils literal notranslate"><span class="pre">Sources\platform\Shared</span></code> directories.</p></li>
+<li><p>Individual code snippets. Each of these is intended to demonstrate one or more APIs. Each snippet exists as a single, separate file within the <code class="docutils literal notranslate"><span class="pre">Sources\snippets\Acrobat</span></code> (for the Acrobat SDK only) or <code class="docutils literal notranslate"><span class="pre">Sources\snippets\Shared</span></code> directory, and is included in the SnippetRunner project. If you build your own snippets (see <a class="reference external" href="Snippet_WritingSnippets.html#57730">Writing Snippets</a>), you can add them to the SnippetRunner project and rebuild the project.</p></li>
+<li><p>External files required by snippets. These are in the <code class="docutils literal notranslate"><span class="pre">ExampleFiles</span></code> directory and can be sample files for input or resources for user interface components.</p></li>
+</ul>
+<p>Before using the SnippetRunner, you need to build it in the appropriate manner for your platform. For the Acrobat SDK, after the SnippetRunner project is built, the SnippetRunner Server plug-in must be installed in the appropriate plug_ins directory so that it will be loaded by Acrobat when it is launched. It will be copied automatically after being built if the <code class="docutils literal notranslate"><span class="pre">AcroSDKPIDir</span></code> environment variable is defined, or it may be copied manually. For the PDF Library, the SnippetRunnerServer application will be executed when the Common Interface is launched (see <a class="reference external" href="Snippet_SnippetRunnerCookbook.html#17596">Starting the Common Interface for the PDF Library</a>).</p>
+<div class="section" id="snippetrunner-common-interface">
+<h2>SnippetRunner Common Interface<a class="headerlink" href="#snippetrunner-common-interface" title="Permalink to this headline">¶</a></h2>
+<p>The SnippetRunner Common Interface extends the usability and functionality of SnippetRunner, and it provides uniformity and availability across platforms. It works as a front end for communicating commands triggered by user interactions to the SnippetRunner serverand intepreting feedback from the server as a result of executing commands. See <a class="reference external" href="Snippet_SnippetRunnerCookbook.html#24853">Using the Common Interface</a> for information about its features and usage.</p>
+<div class="section" id="installing-the-common-interface">
+<h3>Installing the Common Interface<a class="headerlink" href="#installing-the-common-interface" title="Permalink to this headline">¶</a></h3>
+<p>For the Acrobat SDK, the Common Interface is delivered as an Adobe AIR application. See <a class="reference external" href="http://www.adobe.com/go/air">http://www.adobe.com/go/air</a> to download and install the free Adobe AIR runtime. Once the runtime has been installed, double-click the CommonInterfaceAIR.air file located in your Acrobat SDK installation.</p>
+<p>For the PDF Library SDK, you will continue using the Java-based Common Interface, so make sure you have the Java VM properly installed. If you already have a JDK installed, you do not need a separate JVM for the SnippetRunner Common Interface. If you are specifically installing one for this application, the J2SE 1.4.2 (or 1.5) JRE from Sun Microsystems is recommended.</p>
+</div>
+<div class="section" id="starting-the-snippetrunner">
+<h3>Starting the SnippetRunner<a class="headerlink" href="#starting-the-snippetrunner" title="Permalink to this headline">¶</a></h3>
+<p>The SnippetRunner back-end server must be started prior to starting the Common Interface front end to ensure the establishment of socket communication channels.</p>
+<p>When running snippets as plug-ins, you must launch Acrobat or Adobe Reader before starting the Common Interface. As long as you have copied the SnippetRunnerServer plug-in file to the plug_ins directory of Acrobat or Adobe Reader, the SnippetRunner server loads on application launch and starts listening on a port designated for socket connection requests.</p>
+<p>When running snippets using the PDF Library SDK, you can start up the Common Interface (see <a class="reference external" href="Snippet_SnippetRunnerCookbook.html#17596">Starting the Common Interface for the PDF Library</a>). This automatically starts the PDF Library SnippetRunner application prior to attempting to establish a socket communication channel, so no manual invocation is required.</p>
+<a name="17596"></a></div>
+<div class="section" id="starting-the-common-interface-for-pdfl">
+<h3>Starting the Common Interface for PDFL<a class="headerlink" href="#starting-the-common-interface-for-pdfl" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how to start the Java version of the Common Interface to be used with the PDF Library SDK.</p>
+<p>You may load the Common Interface as a standalone Java application or as a Java applet. The following sections describe the procedures for each of these cases. The Common Interface is packaged as a Java Archive (JAR) file containing Java byte code (class files) and associated resources. This file is CommonInterface.jar in the <code class="docutils literal notranslate"><span class="pre">SnippetRunner</span></code> folder. The JAR format provides for resource integrity and also allows the content of the archive to be digitally signed, which is required so that the Common Interface can be certified to run as an applet by a web browser’s JVM.</p>
+</div>
+<div class="section" id="creating-the-configuration-file">
+<h3>Creating the configuration file<a class="headerlink" href="#creating-the-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>The first time the Common Interface is invoked, a configuration file (pdflsdk.config) is automatically generated and stored in the user’s home directory.</p>
+<p>To ensure that the contents of this file are created accurately, you must launch the Common Interface from its installed location in the SnippetRunner folder so that a base directory (a platform-specific absolute path to the SnippetRunner folder) can be properly written to the file. This path is used by the Common Interface to locate reference files and snippet source code at run time. Once this configuration file is written, the Common Interface can be invoked from any folder location.</p>
+<p>If a path other than that of the SnippetRunner folder is written to the configuration file, the Common Interface will not function properly. If this occurs, delete the configuration file and restart the Common Interface from its base directory.</p>
+</div>
+</div>
+<div class="section" id="running-as-a-standalone-java-application">
+<h2>Running as a standalone Java application<a class="headerlink" href="#running-as-a-standalone-java-application" title="Permalink to this headline">¶</a></h2>
+<p>To run the client as a standalone Java application:</p>
+<ol class="arabic simple">
+<li><p>From a terminal or console window, switch to the directory where the CommonInterface.jar file resides (the SnippetRunner directory).</p></li>
+<li><p>Execute the following command: <code class="docutils literal notranslate"><span class="pre">console&gt;java</span> <span class="pre">-jar</span> <span class="pre">-cp</span> <span class="pre">.</span> <span class="pre">CommonInterface.jar</span></code></p></li>
+</ol>
+<p>On Windows and Mac OS, you can also double-click the CommonInterface.jar icon to launch the Common Interface. (This procedure assumes that the JAR file extension has not been associated with other applications after your JDK/JRE installation.) The SnippetRunner Common Interface should begin running very soon thereafter.</p>
+</div>
+<div class="section" id="running-as-a-java-applet">
+<h2>Running as a Java applet<a class="headerlink" href="#running-as-a-java-applet" title="Permalink to this headline">¶</a></h2>
+<p>To run the Common Interface client as a Java applet, you must digitally sign the JAR file before loading the client into your web browser. This requires the <code class="docutils literal notranslate"><span class="pre">keytool</span></code> and <code class="docutils literal notranslate"><span class="pre">jarsigner</span></code> command-line utilities from the J2SE Development Kit (or equivalent).</p>
+<p>To sign the CommonInterface.jar file for running as an applet:</p>
+<ol class="arabic simple">
+<li><p>Generate a public/private key pair and the self-signed certificate.</p></li>
+<li><p>Sign the JAR file with the private key.</p></li>
+<li><p>Load the signed client into your browser.</p></li>
+</ol>
+<p>To generate a public/private key pair and the self-signed certificate, execute a command similar to this from a console using the <code class="docutils literal notranslate"><span class="pre">keytool</span></code> utility:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">console</span><span class="o">&gt;</span><span class="n">keytool</span> <span class="o">-</span><span class="n">genkey</span> <span class="o">-</span><span class="n">alias</span> <span class="n">EntryAlias</span> <span class="o">-</span><span class="n">keypass</span> <span class="n">EntryPassword</span>
+</pre></div>
+</div>
+<p>EntryAlias is a name you want to assign for this key pair entry in the keystore and EntryPassword is a password required to guard against that key entry.</p>
+<p>You will be prompted for the keystore password of your choice and some information to incorporate into the self-signed certificate. The newly generated public/private key pair and the self-signed certificate will be saved in the keystore file in the default location. Refer to the JDK Security Tools documentation for details on the keystore.</p>
+<p>To sign the JAR file with the private key, issue a command similar to the following from a console using the <code class="docutils literal notranslate"><span class="pre">jarsigner</span></code> utility:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">console</span><span class="o">&gt;</span><span class="n">jarsigner</span> <span class="o">-</span><span class="n">storepass</span> <span class="n">StorePass</span> <span class="o">-</span><span class="n">keypass</span> <span class="n">KeyPass</span> <span class="n">CommonInterface</span><span class="o">.</span><span class="n">jar</span>
+
+  <span class="n">EntryAlias</span>
+</pre></div>
+</div>
+<p>Where StorePass is the keystore password assigned while creating the public/private key pair entry in the previous step. KeyPass is the key pair entry password assigned in the previous step. EntryAlias is the name assigned to the key pair entry in the previous step.</p>
+<p>This completes the applet signing process in preparation for the Common Interface to be run as an applet by the JVM plug-in of the platform browser. The signed JAR file contains a copy of the certificate from the keystore for the public key corresponding to the private key used to sign the JAR file.</p>
+<p>Now that you have signed the JAR file, load the provided HTML page CommonInterface.html (in the SnippetRunner folder) into your default browser. This page is an applet starter page that marks up the applet properties.</p>
+<p>Accept the certificate to allow the browser JVM plug-in to execute the applet byte code. The Common Interface should begin running soon thereafter, and you can interact with it within the boundary of the browser window.</p>
+</div>
+<div class="section" id="known-issues">
+<h2>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
+<p>The following issues pertain to the Java-based Common Interface.</p>
+<ul class="simple">
+<li><p>The socket communication between the SnippetRunner server and client may be lost during the operating system’s sleep mode. To re-establish communication, restart the Common Interface.</p></li>
+<li><p>If you start the Acrobat process by loading a PDF document into the web browser plug-in, the Common Interface socket communication will carry on with that process, which is most likely not expected.</p></li>
+<li><p>Currently, only Internet Explorer supports resizable content. All other browsers render the Common Interface at a fixed dimension.</p></li>
+<li><p>On Mac OS X, if you minimize the Common Interface window to the Dock and then bring it back into view, the Common Interface window might not be properly repainted. Resize the window to force the GUI to refresh.</p></li>
+<li><p>On Windows, an Acrobat dialog box triggered as a result of a command issued by the Common Interface may not come up to the top of all open windows, in which case the Common Interface may seem frozen. Open Acrobat to dismiss the dialog box.</p></li>
+</ul>
+<a name="24853"></a></div>
+<div class="section" id="using-the-common-interface">
+<h2>Using the Common Interface<a class="headerlink" href="#using-the-common-interface" title="Permalink to this headline">¶</a></h2>
+<p>With the Common Interface, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>See the collection of available code snippets sorted by categories</p></li>
+<li><p>Get snippet information</p></li>
+<li><p>Execute snippets</p></li>
+<li><p>Examine the output generated as a result of a snippet execution</p></li>
+<li><p>Browse snippet source code</p></li>
+</ul>
+<p>The Common Interface has four panes:</p>
+<ul class="simple">
+<li><p>The Snippet Collection pane (upper left)</p></li>
+<li><p>The Snippet Description pane (lower left)</p></li>
+<li><p>The Source/Reference Browser pane (upper right)</p></li>
+<li><p>The Snippet Output pane (lower right)</p></li>
+</ul>
+<p>You can resize, maximize, or minimize the main window as you would with any application. You can adjust the relative sizes of the individual panes by dragging the pane dividers.</p>
+<p>The Snippet Collection pane groups available snippets into a folder hierarchy for ease of access. These categories are defined in the snippets’ registration macros (see <a class="reference external" href="Snippet_WritingSnippets.html#57730">Writing Snippets</a>).</p>
+<p>You can navigate the hierarchy by means of mouse or keyboard.</p>
+<ul class="simple">
+<li><p>Use the Up/Down arrow keys to move up and down the list.</p></li>
+<li><p>Use the Left/Right arrow keys or click the triangles to expand or collapse a folder.</p></li>
+</ul>
+<p>Whenever you hover (AIR version) or select (Java version) a snippet name, its description appears in the Snippet Description pane.</p>
+<p>To browse the source code of a snippet, click on a snippet node and select Browse the source code from the context menu. The source code appears in a tabbed window in the Source Browser pane.</p>
+<p>To execute a snippet, click (AIR version) or right-click (Java version) on the snippet name and select Execute This Snippet.</p>
+<ul class="simple">
+<li><p>For the PDF Library SDK only, you can also right-click anywhere in the pane and select Open a New Document, which allows opening a document for use by a snippet. At the bottom of the pane is a document status area that shows the file name of the current open document. A plus sign (+) in the brackets indicates that the document has been modified.</p></li>
+</ul>
+<p>The Source/Reference Browser pane provides a tabbed interface to allow switching between the Reference view and the snippet source code views.</p>
+<ul class="simple">
+<li><p>The Source view displays the code for a selected snippet. You can switch between multiple snippets by clicking the tabs at the top of the window. Within this view, you can right-click to change the size of the text being displayed. You can close the specific source view by clicking the X in the upper-left corner (AIR version) or lower-right corner (Java version).</p></li>
+<li><p>The Reference view displays SnippetRunner Cookbook documentation. You can navigate this document by means of mouse or keyboard. In addition, you can navigate between views of this document by right-clicking to access the Back and Forward commands in the context-sensitive menu.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adobe Inc..
+      <span class="lastupdated">
+        Last updated on Feb 23, 2022.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,1316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Creating Handlers &mdash; Acrobat Plugin Developer Guide</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+    <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homePlugins_Handlers.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Registering for Event Notifications" href="Plugins_Notification.html" />
+    <link rel="prev" title="Working with Words" href="Plugins_Words.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat Plugin Developer Guide
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction to Plugin Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-plugins">About plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-the-acrobat-core-api">About the Acrobat core API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-viewer-layer">Acrobat Viewer layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#portable-document-layer">Portable Document layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-support-layer">Acrobat Support layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-layer">Cos layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#platform-specific-methods">Platform-specific methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-objects">Acrobat core API objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#file-object-interrelationships">File object interrelationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-object-interrelationships">Document object interrelationships</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-methods">Acrobat core API methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-types">Data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#scalar-types">Scalar types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#simple-types">Simple types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#complex-types">Complex types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#opaque-types">Opaque types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-types">Cos types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-pdf-library-and-plugin-applications">About PDF Library and plugin applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#manipulating-acrobat-and-adobe-reader">Manipulating Acrobat and Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#displaying-a-pdf-document-in-an-external-window">Displaying a PDF document in an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#indexed-searching">Indexed searching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modifying-file-access">Modifying file access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#creating-new-annotation-types">Creating new annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dynamically-adding-text-to-pdf-documents">Dynamically adding text to PDF documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#understanding-your-target-application">Understanding your target application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#rights-enabled-pdf-documents">Rights-enabled PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#adobe-reader-plugins">Adobe Reader plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#registering-plugins-for-use-by-the-plugin-finder">Registering plugins for use by the plugin finder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#pdf-dictionary-extensions">PDF dictionary extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#unloading">Unloading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#summarizing-a-plugin-s-life-cycle">Summarizing a plugin’s life cycle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-callback-functions">Using callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#notifications">Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#handling-events">Handling events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#mouse-clicks">Mouse clicks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adjust-cursor">Adjust cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#key-presses">Key presses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes">Using plugin prefixes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#obtaining-a-developer-pdf-name-prefix">Obtaining a developer PDF name prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#using-a-developer-prefix">Using a developer prefix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#plugin-name">Plugin name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-prefixes">Menu prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-items-prefixes">Menu items prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#tool-prefixes">Tool prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#toolbar-button-prefixes">Toolbar button prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#private-data-id-d-via-second-class-names">Private data ID’d via second-class names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#action-prefixes">Action prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#annotation-prefixes">Annotation prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#hft-prefixes">HFT prefixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#modifying-the-acrobat-or-adobe-reader-user-interface">Modifying the Acrobat or Adobe Reader user interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adding-or-removing-menus-and-menu-items">Adding or removing menus and menu items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#modifying-toolbars">Modifying toolbars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#controlling-the-about-box-and-splash-screen">Controlling the About box and splash screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#creating-help-files">Creating help files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#user-interface-guidelines">User interface guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#acquiring-and-releasing-objects">Acquiring and releasing objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#debugging-plugins">Debugging plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#page-view-layers">Page view layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#minimizing-screen-redrawing">Minimizing screen redrawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#storing-private-data-in-pdf-files">Storing private data in PDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#exporting-data-from-pdf-document-objects">Exporting data from PDF document objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_CreatingSimplePlug.html">Creating Plugin and PDF Library Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#working-with-platform-specific-techniques">Working with platform-specific techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#about-platform-dependent-data">About platform-dependent data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#portability-techniques">Portability techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows-techniques">Windows techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-windows-plugins">Developing Windows plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-plugins">Locating and loading plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#why-a-plugin-might-not-load">Why a plugin might not load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros-and-project-settings">Macros and project settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#interapplication-communication">Interapplication communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#debugging">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#handling-the-thread-local-storage-tls-limit">Handling the thread local storage (TLS) limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-modal-dialog-boxes">Using modal dialog boxes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-techniques">Mac OS techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-a-mac-os-plugin">Developing a Mac OS plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-the-samples">Using the samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#establishing-carbon-or-cocoa-compliance">Establishing Carbon or Cocoa compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#xcode-configuration-files">Xcode configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-setgworld-rather-than-setport">Using SetGWorld rather than SetPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-a-plugin">Locating and loading a plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-memory">Using memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#resource-file-considerations">Resource file considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-saferesources">Using SafeResources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#manipulating-the-resource-chain-directly">Manipulating the resource chain directly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros">Macros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-only-methods">Mac OS-only methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#inter-application-communication">Inter application communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-plugin">Creating a sample plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-acrobat-sdk-library-files">Including Acrobat SDK library files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-the-pimain-source-file">Adding the PIMain source file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-application-logic">Adding application logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#compiling-and-building-your-plugin">Compiling and building your plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-pdf-library-application">Creating a sample PDF Library application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#contents-of-the-pdf-library-sdk">Contents of the PDF Library SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-library-files">Including library files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-applications-with-the-adobe-pdf-library">Developing applications with the Adobe PDF Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os">Mac OS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#initialization-and-termination">Initialization and termination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#upgrading-existing-plugins">Upgrading existing plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#detecting-supported-apis">Detecting supported APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#migrating-pdfl-apps-to-xcode">Migrating PDFL apps to Xcode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Insertext.html">Inserting Text into PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-pdf-document">Creating a new PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-page">Creating a new page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-container">Creating a container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#acquiring-fonts">Acquiring fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-pdegraphicstate-object">Creating a PDEGraphicState object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-an-asfixedmatrix-object">Creating an ASFixedMatrix object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#inserting-text">Inserting text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#saving-the-pdf-document">Saving the PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#examining-a-pdfl-app-source-file">Examining a PDFL app source file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-handler-for-an-external-window">Creating a handler for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-an-open-dialog-box">Displaying an open dialog box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-a-pdf-in-a-window">Displaying a PDF in a window</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#determining-the-pdf-version">Determining the PDF version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version">PDF version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version-extensions">PDF version extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#setting-the-extension-level-of-a-document">Setting the extension level of a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#getting-the-extension-level-of-a-document">Getting the extension level of a document</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#bridging-core-api-layers">Bridging core API layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object">Creating a PDDoc object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object-for-an-open-pdf">Creating a PDDoc object for an open PDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#accessing-non-pdf-files">Accessing non-PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#printing-documents">Printing documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#working-with-the-pdf-x-format">Working with the PDF/X format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Menu.html">Creating Menus and Menu Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#about-menus">About menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenubar-typedefs">About AVmenubar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenu-typedefs">About AVMenu typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenuitem-typedefs">About AVMenuItem typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#adding-menu-commands-to-menus">Adding menu commands to menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-an-existing-menu">Adding a menu command to an existing menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-a-new-menu">Adding a menu command to a new menu</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#creating-menu-callback-functions">Creating menu callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#determining-if-a-menu-item-can-be-executed">Determining if a menu item can be executed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Toolbutton.html">Creating Toolbars and Buttons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#about-toolbars">About toolbars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbar-typedefs">About AVToolBar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbutton-typedefs">About AVToolButton typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-toolbars">Retrieving toolbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-buttons">Creating toolbar buttons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-help-text-for-a-button">Setting help text for a button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-label-text">Setting label text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#creating-a-sub-menu-for-a-button">Creating a sub-menu for a button</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-existing-toolbar-buttons">Retrieving existing toolbar buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#attaching-a-button-to-a-toolbar">Attaching a button to a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#exposing-a-button-in-a-web-browser">Exposing a button in a web browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#removing-a-button-from-a-toolbar">Removing a button from a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-button-callback-functions">Creating toolbar button callback functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Annotations.html">Creating Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-text-annotations">Working with text annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-text-annotations">Creating text annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#retrieving-existing-annotations">Retrieving existing annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-text-annotations">Modifying text annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-redaction-annotations">Working with redaction annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-a-redaction-annotation">Creating a redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-an-existing-redaction-annotation">Modifying an existing redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#applying-redaction-annotations-removing-redacted-content">Applying redaction annotations (removing redacted content)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Bookmark.html">Working with Bookmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#about-bookmarks">About bookmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#creating-bookmarks">Creating bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#defining-bookmark-actions">Defining bookmark actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-pdviewdestination-object">Creating a PDViewDestination object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-avpageview-object">Creating a AVPageView object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#assigning-an-action-to-a-bookmark">Assigning an action to a bookmark</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#removing-bookmark-actions">Removing bookmark actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#opening-and-closing-bookmarks">Opening and closing bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-bookmarks">Retrieving bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-the-root-bookmark">Retrieving the root bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-a-specific-bookmark">Retrieving a specific bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-all-bookmarks">Retrieving all bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#deleting-bookmarks">Deleting bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pages.html">Working with Page Views and Contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-coordinates">About page coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-views">About page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#displaying-page-views">Displaying page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#modifying-page-contents">Modifying page contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#creating-a-pdecontent-object">Creating a PDEContent object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#accessing-page-contents">Accessing page contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#determining-page-element-types">Determining page element types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#modifying-text-elements">Modifying text elements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Words.html">Working with Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#about-searching-for-words">About searching for words</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdword-typedefs">About PDWord typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdwordfinder-typedefs">About PDWordFinder typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#creating-a-pdwordfinder-object">Creating a PDWordFinder object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#extracting-and-displaying-words">Extracting and displaying words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#highlighting-words">Highlighting words</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Creating Handlers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about-handlers">About handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#action-handlers">Action handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#annotation-handlers">Annotation handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#avcommand-handlers">AVCommand handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-an-avcommand-handler">Creating an AVCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#invoking-avcommands">Invoking AVCommands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-avcommands">Configuring AVCommands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setting-input-parameters">Setting input parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-configuration-parameters">Setting configuration parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-avcommand-parameters">Setting AVCommand parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-commands">Running commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exposing-avcommands-to-the-batch-framework">Exposing AVCommands to the batch framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adding-a-handler-to-the-global-command-list">Adding a handler to the global command list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#supporting-properties">Supporting properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#file-format-conversion-handlers">File format conversion handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-specification-handlers">File specification handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#selection-servers">Selection servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tool-callbacks">Tool callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#window-handlers">Window handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#file-systems">File systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#progress-monitors">Progress monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transition-handlers">Transition handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-message-handling">Adding message handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Notification.html">Registering for Event Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#registering-event-notifications">Registering event notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#unregistering-event-notifications">Unregistering event notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Security.html">Working with Document Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-document-security">About document security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-security-handlers">About security handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#adding-a-security-handler">Adding a security handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handlers-data">Security handlers data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handler-callbacks">Security handler callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#acrobat-s-authorization-procedure">Acrobat’s authorization procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-a-secured-file">Opening a secured file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-secured-file">Saving a secured file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#setting-security-for-a-document">Setting security for a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-file-with-an-encryption-dictionary">Saving a file with an encryption dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-an-encrypted-file">Opening an encrypted file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Unicode.html">Working with Unicode Paths</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#about-unicode-paths">About Unicode paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#creating-unicode-file-path-application-logic">Creating Unicode file path application logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#retrieving-unicode-path-values">Retrieving Unicode path values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object">Creating an ASFileSys object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object-that-supports-unicode-paths">Creating an ASFileSys object that supports Unicode paths</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Hft.html">Working with Host Function Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#about-host-function-tables">About host function tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#exporting-host-function-tables">Exporting host function tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-methods">Creating HFT methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-method-definitions">Creating HFT method definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-function-prototypes">Defining function prototypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-an-hft-method-name">Defining an HFT method name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-callback-functions">Creating HFT callback functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-new-host-function-tables">Creating new Host Function Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#examining-hft-header-and-source-files">Examining HFT header and source files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-header-file">Examining an HFT header file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-source-file">Examining an HFT source file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#importing-an-existing-hft">Importing an existing HFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#invoking-hft-methods">Invoking HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#replacing-hft-methods">Replacing HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#migrating-non-hft-pdf-library-applications-to-hft-applications">Migrating non-HFT PDF Library applications to HFT applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Cos.html">Working with Cos Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#about-cos-objects">About Cos objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-direct-and-indirect-objects">About direct and indirect objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-cos-object-types">About Cos object types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-strings">Cos strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#hexadecimal-strings">Hexadecimal strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-arrays">Cos arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-names">Cos names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-dictionaries">Cos dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-streams">Cos streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-strings">Working with Cos strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-strings">Creating Cos strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-string-value">Retrieving the string value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-arrays">Working with Cos arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-arrays">Creating Cos arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-cos-array-values">Retrieving Cos array values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries">Working with Cos dictionaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-dictionaries">Creating Cos dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-values-from-a-cos-dictionary">Retrieving values from a Cos dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#querying-a-cos-dictionary-for-a-key">Querying a Cos dictionary for a key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-names">Working with Cos names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-names">Creating Cos names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-value-of-a-name-object">Retrieving the value of a name object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-streams">Working with Cos streams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-streams">Creating Cos streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#creating-a-stream-dictionary">Creating a stream dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#inserting-a-cos-stream-into-a-pdf-document">Inserting a Cos stream into a PDF document</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#populating-a-pdf-with-a-content-stream">Populating a PDF with a content stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_3D_samples.html">Working with 3D Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#creating-3d-annotations">Creating 3D annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#adding-3d-data-to-an-annotation">Adding 3D data to an annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-3d-annotation-dictionary-entries">Creating the 3D annotation dictionary entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#specifying-the-3d-stream">Specifying the 3D stream</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-stream-object">Creating the stream object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#adding-the-cos-stream-to-the-annotation-dictionary">Adding the Cos stream to the annotation dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-attributes-dictionary">Creating the attributes dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#specifying-javascript-code">Specifying JavaScript code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-default-view">Setting the default view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-annotation-appearance">Setting the annotation appearance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-activation-dictionary">Setting the activation dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_A3D_API.html">Parsing and Creating PRC Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#working-with-the-acrobat-3d-api">Working with the Acrobat 3D API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#versions">Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-with-different-prc-format-versions">Compatibility with different PRC format versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-between-the-acrobat-3d-library-and-the-acrobat-3d-api">Compatibility between the Acrobat 3D Library and the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#data-types-naming-conventions-and-character-encoding">Data types, naming conventions, and character encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#structured-and-recursive-nature-of-prc-parsing">Structured and recursive nature of PRC parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking-in-your-plugin">Implementing external linking in your plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking">Implementing external linking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#parsing-a-prc-file">Parsing a PRC file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#handling-errors">Handling errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#copying-the-embedded-prc-file-to-a-separate-file">Copying the embedded PRC file to a separate file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#initializing-the-acrobat-3d-api">Initializing the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-structure-prc-entities">Parsing structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-model-file-data">Parse the model file data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-product-occurrence">Parse a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-part-definition">Parse a part definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-representation-items">Parsing representation items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-representation-item-set-prc-entity-a3driset">Parse a representation item set (PRC entity A3DRiSet)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-brep-model-representation-item-prc-entity-a3dribrepmodel">Parse a Brep model representation item (PRC entity A3DRiBrepModel)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-coordinate-system-data">Parse coordinate system data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-tessellation-prc-entities">Parsing tessellation PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-tessellation-base-data">Parse tessellation base data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-3d-tessellation-data">Parse 3D tessellation data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-topology-prc-entities">Parsing topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-body-data">Parse topology body data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-context-data">Parse topology context data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-brep-model-s-data">Parse the Brep model’s data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-connex-data">Parse Connex data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-shell-entity">Parse a shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-face-s-surface-data">Parse the face’s surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#convert-surface-data-to-nurbs-for-other-than-uv-mapped-surfaces">Convert surface data to Nurbs (for other than UV-mapped surfaces)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-generic-surface-data">Parse generic surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-nurbs-surface-data">Parse Nurbs surface data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-prc-entities-that-specify-graphics">Parsing PRC entities that specify graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-attributes-that-appear-in-an-entity-base">Parsing attributes that appear in an entity base</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-root-base-entity-data">Parsing root-base entity data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-miscellaneous-attribute-entity">Parse the miscellaneous attribute entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-graphic-attributes-using-miscellaneous-cascaded-attributes">Parsing graphic attributes using miscellaneous cascaded attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#to-create-and-push-a-miscellaneous-cascaded-attributes-structure">To create and push a miscellaneous cascaded attributes structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#terminating-the-interface-with-the-acrobat-3d-api">Terminating the interface with the Acrobat 3D API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#terminate-your-interface-with-the-acrobat-3d-api">Terminate your interface with the Acrobat 3D API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-prc-file-that-uses-boundary-representation">Creating a PRC file that uses boundary representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#error-handling">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-model-file-entity-and-exporting-it-to-a-physical-file">Creating a model file entity and exporting it to a physical file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-file-that-contains-the-prc-data">Create a file that contains the PRC data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-structure-prc-entities">Creating structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-model-file-entity">Create a model file entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-product-occurrence">Create a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-part-definition">Create a part definition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-representation-item-prc-entities">Creating representation item PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-brep-model-representation-item">Create a Brep model representation item</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-topology-prc-entities">Creating topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-brep-data-entity">Create a topology Brep data entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-connex-entity">Create a topology connex entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-shell-entity">Create a topology shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-face-entity">Create a topology face entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-loop-entity">Create a topology loop entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-co-edge-entity">Create a topology co-edge entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-edge-entity">Create a topology edge entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-geometry-prc-entities">Creating geometry PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-surface-cylinder-entity">Create a surface cylinder entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-circular-curve-entity">Create a circular curve entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#defining-root-level-attributes-for-a-prc-entity">Defining root-level attributes for a PRC entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-omit-modeler-data">Define miscellaneous attributes that omit modeler data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-include-modeler-data">Define miscellaneous attributes that include modeler data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-3d-annotation-that-references-the-prc-file">Creating a 3D annotation that references the PRC file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-tessellation-entity-for-representing-faceted-objects">Creating a tessellation entity for representing faceted objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-base-data">Create the tessellation base data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-facet-data">Create the tessellation facet data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Exceptions.html">Handling Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#creating-exception-handlers">Creating exception handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#returning-a-value-from-an-exception-handler">Returning a value from an exception handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#raising-exceptions">Raising exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#exception-handling-scenarios">Exception handling scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-goto-statements">Using goto statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-nested-exception-handlers">Using nested exception handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-register-variables">Using register variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ExtendedAPI.html">Working with Acrobat Extended APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#search-extended-api">Search extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#catalog-extended-api">Catalog extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-consultant-and-accessibility-checker-extended-api">PDF Consultant and Accessibility Checker extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrobat-agents">Acrobat agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-and-revisiting">Reclassifying and revisiting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#agent-architecture">Agent architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#how-the-consultant-works">How the consultant works</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#removing-or-modifying-objects">Removing or modifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-objects">Reclassifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-process">Consultant process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#important-issues-for-consultant-development">Important issues for consultant development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#maintaining-the-traversal-stack">Maintaining the traversal stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#deciding-consultant-or-the-agent-does-the-work">Deciding consultant or the agent does the work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-agent-collisions">Avoiding agent collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-visitation-collisions">Avoiding visitation collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#importing-the-consultant-hfts-into-a-plugin">Importing the consultant HFTs into a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-and-destroying-consultants">Creating and destroying consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#registering-agents-with-consultants">Registering agents with consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#starting-the-consultant">Starting the consultant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-object-type-identification">Consultant object type identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-an-agent-class">Creating an agent class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-agent-constructors">Creating agent constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#recognizing-objects-of-interest">Recognizing objects of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#post-processing-stage">Post processing stage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-extended-api">Digital signature extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#the-pubsec-layer">The PubSec layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-components">Digital signature components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-scenarios">Digital signature scenarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#initializing-the-digital-signature-plugin">Initializing the digital signature plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#understanding-the-process">Understanding the process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#dialogs-and-signature-gathering">Dialogs and signature gathering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#saving-a-document">Saving a document</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#finishing-the-process">Finishing the process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#revalidating-signatures">Revalidating signatures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-available-callbacks">Additional available callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-plugin-support">Additional plugin support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#rollback-support">Rollback support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#forms-extended-api">Forms extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-extended-api">Weblink extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-services">Weblink services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#writing-a-custom-driver">Writing a custom driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#spelling-extended-api">Spelling extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrocolor-extended-api">AcroColor extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-conversion-operations">Color conversion operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#object-attributes">Object attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-space-attributes">Color space attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#conversion-actions">Conversion actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#action-modifiers">Action modifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#ink-aliasing">Ink aliasing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-structures">Data structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-enum-values">Data enum values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#converting-a-document-to-rgb">Converting a document to RGB</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-optimizer-api">PDF Optimizer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ReaderPlug.html">Creating an Adobe Reader plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#configuring-preprocessor-definitions">Configuring preprocessor definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#creating-the-public-and-private-key-pairs">Creating the public and private key pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#enabling-the-plugin-for-adobe-reader">Enabling the plugin for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#troubleshooting-an-adobe-reader-plugin">Troubleshooting an Adobe Reader plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#plugin-appears-to-be-ignored-by-adobe-reader">Plugin appears to be ignored by Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#adobe-reader-error-messages">Adobe Reader error messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_Plugins.html">Reader Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#reader-enablement">Reader enablement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#apis-available-for-adobe-reader">APIs available for Adobe Reader</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat Plugin Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Creating Handlers</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="Plugins_Notification.html" class="btn btn-neutral float-right" title="Registering for Event Notifications" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="Plugins_Words.html" class="btn btn-neutral float-left" title="Working with Words" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-handlers">
+<h1>Creating Handlers<a class="headerlink" href="#creating-handlers" title="Permalink to this headline">¶</a></h1>
+<p>Adobe Reader and Acrobat plugins and PDF Library applications can add new types of tools, annotations, actions, file systems, and so on, thereby expanding the number of supported object types. To accomplish this task, the Acrobat core API provides a collection of callback routines called handlers that support objects. Handlers perform operations, such as creating and destroy objects, handling mouse clicks, handling keyboard events, and so on.</p>
+<div class="section" id="about-handlers">
+<h2>About handlers<a class="headerlink" href="#about-handlers" title="Permalink to this headline">¶</a></h2>
+<p>To add a new handler, you must write callback functions, create the appropriate data structure containing the callbacks and other data, and pass the structure to Acrobat by invoking the appropriate method. Subsequently, Acrobat automatically invokes the correct callback when it encounters an object of the type handled by the handler.</p>
+<p>It is possible to subclass existing handlers or to create entirely new handler types. For example, a plugin can subclass the built-in text annotation handler by adding the ability to hide annotations. To accomplish this task, perform the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Obtain the built-in text annotation handler structure by invoke the <code class="docutils literal notranslate"><span class="pre">AVAppGetAnnotHandlerByName</span></code> method.</p></li>
+<li><p>Copy the structure before modifying it (not modifying the original).</p></li>
+<li><p>Replace the handler’s <code class="docutils literal notranslate"><span class="pre">Draw</span></code> callback with one that invokes the built-in <code class="docutils literal notranslate"><span class="pre">Draw</span></code> callback (obtained from the structure) if annotations are visible, or simply return without drawing anything if annotations are hidden.</p></li>
+<li><p>Register the new handler by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterAnnotHandler</span></code> method with a new type.</p></li>
+</ol>
+<p>If a handler requires more data than provided in the predefined structures that are described in this section, you can append additional data to the predefined structures. To do this, create a new structure type with the predefined structure as its first member and the additional data as subsequent members. Before passing the expanded structure to an Acrobat method, cast the structure to the predefined structure type. Upon return of the structure from Acrobat, re-cast the structure to its expanded type to access the appended data.</p>
+<p>Each handler data structure contains a size field, which specifies the structure’s size. This field provides future compatibility. Different versions of the structure have different sizes, allowing Acrobat to determine which version your plugin was written to use.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Regardless of whether your plugin adds data to the predefined structures, it must pass the size of the predefined structure (rather than the size of its expanded structure) in the size field.</p>
+</div>
+</div>
+<div class="section" id="action-handlers">
+<h2>Action handlers<a class="headerlink" href="#action-handlers" title="Permalink to this headline">¶</a></h2>
+<p>Support for action types can be added by defining and registering an action handler. For example, the Acrobat Weblink plugin uses this ability to add support for URL links.</p>
+<p>To add a new action type, you must provide a set of callbacks. Specify them in the <code class="docutils literal notranslate"><span class="pre">AVActionHandlerProcs</span></code> structure, and invoke the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterActionHandler</span></code> method to register them.</p>
+<p>By using an action handler, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Perform an action, such as setting a specific view, by invoking the <code class="docutils literal notranslate"><span class="pre">AVActionPerformProc</span></code> method.</p></li>
+<li><p>Allow the user to set the action’s properties (if the properties can be set) by invoking the <code class="docutils literal notranslate"><span class="pre">AVActionDoPropertiesProc</span></code> method.</p></li>
+<li><p>Initialize an action’s dictionary with default values by invoking the <code class="docutils literal notranslate"><span class="pre">AVActionFillActionDictProc</span></code> method.</p></li>
+<li><p>Display a string containing brief instructions for the action by invoking the <code class="docutils literal notranslate"><span class="pre">AVActionGetInstructionsProc</span></code> method.</p></li>
+<li><p>Display various text strings to be used in dialog boxes by invoking one of the following methods: <code class="docutils literal notranslate"><span class="pre">AVActionGetButtonTextProc</span></code>, <code class="docutils literal notranslate"><span class="pre">AVActionGetStringOneTextProc</span></code>, or <code class="docutils literal notranslate"><span class="pre">AVActionGetStringTwoTextProc</span></code>.</p></li>
+<li><p>Copy the action by invoking the <code class="docutils literal notranslate"><span class="pre">AVActionCopyProc</span></code> method.</p></li>
+</ul>
+</div>
+<div class="section" id="annotation-handlers">
+<h2>Annotation handlers<a class="headerlink" href="#annotation-handlers" title="Permalink to this headline">¶</a></h2>
+<p>Support for annotation types in Acrobat can be added by defining and registering an annotation handler. For example, the Acrobat movie plugin uses an annotation handler to support video annotations.</p>
+<p>To add an annotation type, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandler</span></code> structure, and register them with <code class="docutils literal notranslate"><span class="pre">AVAppRegisterAnnotHandler</span></code>.</p>
+<p>By using an annotation handler, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Draw the annotation by using the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerDrawProc</span></code> callback method.</p></li>
+<li><p>Handle mouse clicks in the annotation by using the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerDoClickProc</span></code> callback method.</p></li>
+<li><p>Control the cursor shape when the cursor is over the annotation by using the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerAdjustCursorProc</span></code> callback method.</p></li>
+<li><p>Determine whether or not a specified point is within the annotation boundary by using the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerPtInAnnotViewBBoxProc</span></code> callback method.</p></li>
+<li><p>Return the rectangle bounding that the annotation occupies by using the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerGetAnnotViewBBoxProc</span></code> callback method.</p></li>
+<li><p>Highlight (unhighlight) the annotation when it is added to (removed from) the selection by using the following callback methods: <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerNotifyAnnotAddedToSelectionProc</span></code> or <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerNotifyAnnotRemovedFromSelectionProc</span></code>.</p></li>
+<li><p>Return the annotation’s subtype by using the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerGetTypeProc</span></code> callback method.</p></li>
+<li><p>Get the annotation’s layer by using the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerGetLayerProc</span></code> callback method.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For information about working with annotations, see <a class="reference external" href="Plugins_Annotations.html#50618420_98126">Creating Annotations</a>.</p>
+</div>
+</div>
+<div class="section" id="avcommand-handlers">
+<h2>AVCommand handlers<a class="headerlink" href="#avcommand-handlers" title="Permalink to this headline">¶</a></h2>
+<p>An <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> represents an action that a user can perform on the current document or the current selection in the current document. <code class="docutils literal notranslate"><span class="pre">AVCommands</span></code> are exposed to Adobe Reader or Acrobat through <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handlers. You can add new command types by defining and registering an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handler. Commands can be executed interactively, programmatically, or through batch processing.</p>
+<div class="section" id="creating-an-avcommand-handler">
+<h3>Creating an AVCommand handler<a class="headerlink" href="#creating-an-avcommand-handler" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handlers consist of a series of callback functions contained in the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure (see AVExpt.h). To create a command handler, perform the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Initialize an instance of the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure.</p></li>
+<li><p>Register the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterCommandHandler</span></code> method.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">AVCommandHandlerRec</span> <span class="n">gAVCmdHandler</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">kCmdName</span> <span class="o">=</span> <span class="s2">&quot;MinimalCommand&quot;</span><span class="p">;</span>
+
+<span class="n">static</span> <span class="n">ACCB1</span> <span class="n">AVCommandStatus</span> <span class="n">ACCB2</span> <span class="n">DoWorkImpl</span> <span class="p">(</span><span class="n">AVCommand</span> <span class="n">cmd</span><span class="p">)</span>
+
+<span class="p">{</span>
+  <span class="n">AVAlertNote</span><span class="p">(</span><span class="s2">&quot;The DoWorkImpl method was invoked&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">kAVCommandDone</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">void</span> <span class="n">InitializeCommandHandler</span><span class="p">()</span>
+
+<span class="p">{</span>
+  <span class="n">memset</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">gAVCmdHandler</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">AVCommandHandlerRec</span><span class="p">));</span>
+  <span class="n">gAVCmdHandler</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">AVCommandHandlerRec</span><span class="p">);</span>
+  <span class="n">gAVCmdHandler</span><span class="o">.</span><span class="n">Work</span> <span class="o">=</span> <span class="n">ASCallbackCreateProto</span> <span class="p">(</span><span class="n">AVCommandWorkProc</span><span class="p">,</span>
+  <span class="o">&amp;</span><span class="n">DoWorkImpl</span><span class="p">);</span>
+  <span class="n">AVAppRegisterCommandHandler</span> <span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="n">kCmdName</span><span class="p">),</span>
+  <span class="o">&amp;</span><span class="n">gAVCmdHandler</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To view a complete example, see <a class="reference external" href="Plugins_Handlers.html#50618413_55225">Running commands</a>.</p>
+</div>
+</div>
+<div class="section" id="invoking-avcommands">
+<h3>Invoking AVCommands<a class="headerlink" href="#invoking-avcommands" title="Permalink to this headline">¶</a></h3>
+<p>To programmatically invoke <code class="docutils literal notranslate"><span class="pre">AVCommands</span></code> using <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> methods, perform the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Instantiate the command by invoking the <code class="docutils literal notranslate"><span class="pre">AVCommandNew</span></code> method, providing the registered name of the command:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ASAtom</span> <span class="n">cmdName</span><span class="p">;</span>
+ <span class="n">AVCommand</span> <span class="n">cmd</span><span class="p">;</span>
+ <span class="n">cmdName</span> <span class="o">=</span> <span class="n">ASAtomFromString</span> <span class="p">(</span><span class="s2">&quot;MinimalCommand&quot;</span><span class="p">);</span>
+ <span class="n">cmd</span> <span class="o">=</span> <span class="n">AVCommandNew</span><span class="p">(</span><span class="n">cmdName</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Configure the command by setting required and optional parameters.</p></li>
+<li><p>Run the command by invoking the <code class="docutils literal notranslate"><span class="pre">AVCommandExecute</span></code> or <code class="docutils literal notranslate"><span class="pre">AVCommandWork</span></code> method.</p></li>
+</ol>
+</div>
+<div class="section" id="configuring-avcommands">
+<h3>Configuring AVCommands<a class="headerlink" href="#configuring-avcommands" title="Permalink to this headline">¶</a></h3>
+<p>Prior to executing an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code>, you configure three categories of properties:</p>
+<ul class="simple">
+<li><p>Input parameters (required)</p></li>
+<li><p>Configuration parameters (optional - initialized to defaults)</p></li>
+<li><p>AVCommand parameters (optional - initialized to defaults)</p></li>
+</ul>
+<div class="section" id="setting-input-parameters">
+<h4>Setting input parameters<a class="headerlink" href="#setting-input-parameters" title="Permalink to this headline">¶</a></h4>
+<p>At minimum, you must configure input parameters. The command must be provided with a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document on which to operate, as shown in the following example. For information about a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object, see <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">PDDoc</span> <span class="nb">object</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PDF</span> <span class="n">document</span>
+<span class="n">AVDoc</span> <span class="n">avDoc</span> <span class="o">=</span> <span class="n">AVAppGetActiveDoc</span><span class="p">();</span>
+<span class="n">AVPageView</span> <span class="n">pageView</span> <span class="o">=</span> <span class="n">AVDocGetPageView</span><span class="p">(</span><span class="n">avDoc</span><span class="p">);</span>
+<span class="n">PDPageNumber</span> <span class="n">pageNum</span> <span class="o">=</span> <span class="n">AVPageViewGetPageNum</span><span class="p">(</span><span class="n">pageView</span><span class="p">);</span>
+<span class="n">PDDoc</span> <span class="n">pdDoc</span> <span class="o">=</span> <span class="n">AVDocGetPDDoc</span><span class="p">(</span><span class="n">avDoc</span><span class="p">);</span>
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">ASCab</span> <span class="nb">object</span> <span class="n">to</span> <span class="n">store</span> <span class="nb">input</span> <span class="n">parameters</span>
+<span class="n">ASCab</span> <span class="n">inputs</span> <span class="o">=</span> <span class="n">ASCabNew</span><span class="p">();</span>
+<span class="n">ASCabPutPointer</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">kAVCommandKeyPDDoc</span><span class="p">,</span> <span class="n">PDDoc</span><span class="p">,</span> <span class="n">pdDoc</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+
+<span class="o">//</span><span class="n">Set</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">parameters</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">kAVCommandReady</span> <span class="o">!=</span> <span class="n">AVCommandSetInputs</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">inputs</span><span class="p">))</span> <span class="p">{</span>
+
+<span class="o">//</span> <span class="n">Handle</span> <span class="n">error</span>
+<span class="o">//</span><span class="n">Destroy</span> <span class="n">the</span> <span class="n">ASCab</span> <span class="n">container</span>
+<span class="n">ASCabDestroy</span> <span class="p">(</span><span class="n">inputs</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For more information about the <code class="docutils literal notranslate"><span class="pre">AVCommandSetInputs</span></code> method, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+</div>
+<div class="section" id="setting-configuration-parameters">
+<h4>Setting configuration parameters<a class="headerlink" href="#setting-configuration-parameters" title="Permalink to this headline">¶</a></h4>
+<p>Optionally you can set configuration parameters. The default UI policy is for commands to be fully interactive. To invoke the command programmatically, create an <code class="docutils literal notranslate"><span class="pre">ASCab</span></code> object and populate it with the appropriate parameters, as shown in the following example.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Create</span> <span class="n">an</span> <span class="n">ASCab</span> <span class="nb">object</span> <span class="n">to</span> <span class="n">store</span> <span class="n">config</span> <span class="n">parameters</span>
+<span class="n">ASCab</span> <span class="n">config</span> <span class="o">=</span> <span class="n">ACabNew</span><span class="p">();</span>
+<span class="n">ASCabPutInt</span> <span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="s2">&quot;UIPolicy&quot;</span><span class="p">,</span> <span class="n">kAVCommandUISilent</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">kAVCommandReady</span> <span class="o">!=</span> <span class="n">AVCommandSetConfig</span> <span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">config</span><span class="p">))</span> <span class="p">{</span>
+
+<span class="o">//</span> <span class="n">Handle</span> <span class="n">error</span>
+<span class="n">ASCabDestroy</span> <span class="p">(</span><span class="n">config</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-avcommand-parameters">
+<h4>Setting AVCommand parameters<a class="headerlink" href="#setting-avcommand-parameters" title="Permalink to this headline">¶</a></h4>
+<p>An <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> parameter set is specific to each command. For example, the Document Summary command accepts values for these parameters: <code class="docutils literal notranslate"><span class="pre">Title</span></code>, <code class="docutils literal notranslate"><span class="pre">Subject</span></code>, <code class="docutils literal notranslate"><span class="pre">Author</span></code>, <code class="docutils literal notranslate"><span class="pre">Keywords</span></code>, <code class="docutils literal notranslate"><span class="pre">Binding</span></code>, and <code class="docutils literal notranslate"><span class="pre">LeaveAsIs</span></code>. (See the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.)</p>
+<p>You can create an <code class="docutils literal notranslate"><span class="pre">ASCab</span></code> object to store the appropriate parameters; then create empty <code class="docutils literal notranslate"><span class="pre">ASText</span></code> objects to hold the parameter values and place these values into the <code class="docutils literal notranslate"><span class="pre">ASCabs</span></code> object. The following example uses this approach to set the Document Summary <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">Subject</span></code> values.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">docTitleValue</span> <span class="o">=</span> <span class="s2">&quot;Document Title&quot;</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">docSubjectValue</span> <span class="o">=</span> <span class="s2">&quot;Document Subject&quot;</span><span class="p">;</span>
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">ASCab</span> <span class="nb">object</span> <span class="n">to</span> <span class="n">hold</span> <span class="n">command</span> <span class="n">parameters</span>
+<span class="n">ASCab</span> <span class="n">params</span> <span class="o">=</span> <span class="n">ASCabNew</span><span class="p">();</span>
+<span class="n">ASText</span> <span class="n">text</span> <span class="o">=</span> <span class="n">ASTextNew</span><span class="p">();</span>
+<span class="n">ASTextSetEncoded</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">docTitleValue</span><span class="p">,(</span><span class="n">ASHostEncoding</span><span class="p">)</span><span class="n">PDGetHostEncoding</span><span class="p">());</span>
+<span class="n">ASCabPutText</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">docTitleValue</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+
+<span class="o">//</span><span class="n">Clear</span> <span class="n">the</span> <span class="n">ASText</span> <span class="nb">object</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">ASTextNew</span><span class="p">();</span>
+<span class="n">ASTextSetEncoded</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">docSubjectValue</span><span class="p">,(</span><span class="n">ASHostEncoding</span><span class="p">)</span><span class="n">PDGetHostEncoding</span><span class="p">());</span>
+<span class="n">ASCabPutText</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">docSubjectValue</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="running-commands">
+<h3>Running commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h3>
+<p>The following code example shows an entire example of creating an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> and running it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">InitializeCommandHandler</span><span class="p">()</span>
+
+<span class="p">{</span>
+
+<span class="o">//</span><span class="n">Declare</span> <span class="n">local</span> <span class="n">variables</span>
+<span class="n">static</span> <span class="n">AVCommandHandlerRec</span> <span class="n">gAVCmdHandler</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">kCmdName</span> <span class="o">=</span> <span class="s2">&quot;MinimalCommand&quot;</span><span class="p">;</span>
+<span class="n">ASAtom</span> <span class="n">cmdName</span><span class="p">;</span>
+<span class="n">AVCommand</span> <span class="n">cmd</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">docTitleValue</span> <span class="o">=</span> <span class="s2">&quot;Document Title&quot;</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">docSubjectValue</span> <span class="o">=</span> <span class="s2">&quot;Document Subject&quot;</span><span class="p">;</span>
+
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">PDDoc</span> <span class="nb">object</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PDF</span> <span class="n">document</span>
+<span class="n">AVDoc</span> <span class="n">avDoc</span> <span class="o">=</span> <span class="n">AVAppGetActiveDoc</span><span class="p">();</span>
+<span class="n">AVPageView</span> <span class="n">pageView</span> <span class="o">=</span> <span class="n">AVDocGetPageView</span><span class="p">(</span><span class="n">avDoc</span><span class="p">);</span>
+<span class="n">PDPageNumber</span> <span class="n">pageNum</span> <span class="o">=</span> <span class="n">AVPageViewGetPageNum</span><span class="p">(</span><span class="n">pageView</span><span class="p">);</span>
+<span class="n">PDDoc</span> <span class="n">pdDoc</span> <span class="o">=</span> <span class="n">AVDocGetPDDoc</span><span class="p">(</span><span class="n">avDoc</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">AVCommandHandlerRec</span> <span class="nb">object</span>
+<span class="n">memset</span> <span class="p">(</span><span class="o">&amp;</span><span class="n">gAVCmdHandler</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">AVCommandHandlerRec</span><span class="p">));</span>
+<span class="n">gAVCmdHandler</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">AVCommandHandlerRec</span><span class="p">);</span>
+<span class="n">gAVCmdHandler</span><span class="o">.</span><span class="n">Work</span> <span class="o">=</span> <span class="n">ASCallbackCreateProto</span> <span class="p">(</span><span class="n">AVCommandWorkProc</span><span class="p">,</span> <span class="n">DoWorkImpl</span><span class="p">);</span>
+<span class="n">AVAppRegisterCommandHandler</span> <span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="n">kCmdName</span><span class="p">),</span><span class="o">&amp;</span><span class="n">gAVCmdHandler</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Invoke</span> <span class="n">the</span> <span class="n">AVCommand</span>
+<span class="n">cmdName</span> <span class="o">=</span> <span class="n">ASAtomFromString</span> <span class="p">(</span><span class="s2">&quot;MinimalCommand&quot;</span><span class="p">);</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="n">AVCommandNew</span><span class="p">(</span><span class="n">cmdName</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Set</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">parameters</span>
+<span class="n">ASCab</span> <span class="n">inputs</span> <span class="o">=</span> <span class="n">ASCabNew</span><span class="p">();</span>
+<span class="n">ASCabPutPointer</span> <span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">kAVCommandKeyPDDoc</span><span class="p">,</span> <span class="n">PDDoc</span><span class="p">,</span> <span class="n">pdDoc</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Set</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">parameters</span> <span class="ow">and</span> <span class="n">destroy</span> <span class="n">the</span> <span class="n">container</span> <span class="n">ASCab</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">kAVCommandReady</span> <span class="o">!=</span> <span class="n">AVCommandSetInputs</span> <span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">inputs</span><span class="p">))</span> <span class="p">{</span>
+   <span class="o">//</span> <span class="n">Handle</span> <span class="n">error</span>
+<span class="p">}</span>
+
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">ASCab</span> <span class="nb">object</span> <span class="n">to</span> <span class="n">hold</span> <span class="n">command</span> <span class="n">parameters</span>
+<span class="n">ASCab</span> <span class="n">params</span> <span class="o">=</span> <span class="n">ASCabNew</span><span class="p">();</span>
+<span class="n">ASText</span> <span class="n">text</span> <span class="o">=</span> <span class="n">ASTextNew</span><span class="p">();</span>
+<span class="n">ASTextSetEncoded</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">docTitleValue</span><span class="p">,(</span><span class="n">ASHostEncoding</span><span class="p">)</span><span class="n">PDGetHostEncoding</span><span class="p">());</span>
+<span class="n">ASCabPutText</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">docTitleValue</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Clear</span> <span class="n">the</span> <span class="n">ASText</span> <span class="nb">object</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">ASTextNew</span><span class="p">();</span>
+<span class="n">ASTextSetEncoded</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">docSubjectValue</span><span class="p">,(</span><span class="n">ASHostEncoding</span><span class="p">)</span><span class="n">PDGetHostEncoding</span><span class="p">());</span>
+<span class="n">ASCabPutText</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">docSubjectValue</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Invoke</span> <span class="n">the</span> <span class="n">command</span>
+<span class="n">AVCommandExecute</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+<span class="p">}</span>
+
+
+<span class="n">static</span> <span class="n">ACCB1</span> <span class="n">AVCommandStatus</span> <span class="n">ACCB2</span> <span class="n">DoWorkImpl</span> <span class="p">(</span><span class="n">AVCommand</span> <span class="n">cmd</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="n">AVAlertNote</span><span class="p">(</span><span class="s2">&quot;The DoWorkImpl method was invoked&quot;</span><span class="p">);</span>
+<span class="k">return</span> <span class="n">kAVCommandDone</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exposing-avcommands-to-the-batch-framework">
+<h3>Exposing AVCommands to the batch framework<a class="headerlink" href="#exposing-avcommands-to-the-batch-framework" title="Permalink to this headline">¶</a></h3>
+<p>Acrobat or Adobe Reader builds the list of commands that users see in the <code class="docutils literal notranslate"><span class="pre">Batch</span> <span class="pre">Sequences</span></code> and <code class="docutils literal notranslate"><span class="pre">Batch</span> <span class="pre">Edit</span> <span class="pre">Sequence</span></code> dialog boxes from an internal list of <code class="docutils literal notranslate"><span class="pre">AVCommands</span></code> referred to as the global command list.</p>
+<div class="section" id="adding-a-handler-to-the-global-command-list">
+<h4>Adding a handler to the global command list<a class="headerlink" href="#adding-a-handler-to-the-global-command-list" title="Permalink to this headline">¶</a></h4>
+<p>To expose a command to the batch framework, the <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handler must first add an instance of the command to this global list by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterGlobalCommand</span></code> method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVCommand</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">AVCommandNew</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="n">kCmdName</span><span class="p">));</span>
+ <span class="n">AVAppRegisterGlobalCommand</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Although this step can be performed at any time once the command handler is registered, handlers commonly register commands from within the <code class="docutils literal notranslate"><span class="pre">AVCommandRegisterCommandsProc</span></code> callback (of the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure).</p>
+</div>
+<div class="section" id="supporting-properties">
+<h4>Supporting properties<a class="headerlink" href="#supporting-properties" title="Permalink to this headline">¶</a></h4>
+<p>When building a list of batchable commands, Adobe Reader or Acrobat iterates through its internal command list, querying each command for the <code class="docutils literal notranslate"><span class="pre">CanBatch</span></code> and <code class="docutils literal notranslate"><span class="pre">GroupTitle</span></code> properties. To be exposed through the batch framework user interface, a command must support these properties (that is, return <code class="docutils literal notranslate"><span class="pre">true</span></code> and a valid <code class="docutils literal notranslate"><span class="pre">ASText</span></code> object, respectively). The <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handler must implement the <code class="docutils literal notranslate"><span class="pre">GetProps</span></code> callback of the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure.</p>
+<p>If an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> supports these properties, Adobe Reader or Acrobat queries a number of additional properties as the user interacts with the batch framework. Of these additional properties, only two are required: <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">Generic</span> <span class="pre">Title</span></code>. A command must provide the title strings that will be displayed in the Batch Sequences and Batch Edit Sequence dialog boxes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">kCmdTitle</span> <span class="o">=</span> <span class="s2">&quot;Command Title&quot;</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">kGroupTitle</span> <span class="o">=</span> <span class="s2">&quot;Group Title&quot;</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">kCmdGenericTitle</span> <span class="o">=</span> <span class="s2">&quot;Generic Title&quot;</span><span class="p">;</span>
+
+<span class="n">ASBool</span> <span class="n">doItAll</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">ASCabNumEntries</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">doItAll</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">doItAll</span> <span class="o">||</span> <span class="n">ASCabKnown</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyGroupTitle</span><span class="p">))</span>
+<span class="p">{</span>
+
+<span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">text</span> <span class="nb">object</span> <span class="ow">and</span> <span class="n">insert</span> <span class="n">it</span> <span class="n">into</span> <span class="n">the</span> <span class="n">ASCab</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">ASTextNew</span><span class="p">();</span>
+<span class="n">ASTextSetEncoded</span> <span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">kGroupTitle</span><span class="p">,</span> <span class="p">(</span>
+<span class="n">ASHostEncoding</span><span class="p">)</span><span class="n">PDGetHostEncoding</span><span class="p">());</span>
+<span class="n">ASCabPutText</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyGroupTitle</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">doItAll</span> <span class="o">||</span> <span class="n">ASCabKnown</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyCanBatch</span><span class="p">))</span>
+<span class="n">ASCabPutBool</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyCanBatch</span><span class="p">,</span> <span class="n">true</span> <span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">doItAll</span> <span class="o">||</span> <span class="n">ASCabKnown</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyGenericTitle</span><span class="p">))</span>
+<span class="p">{</span>
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">text</span> <span class="nb">object</span> <span class="ow">and</span> <span class="n">insert</span> <span class="n">it</span> <span class="n">into</span> <span class="n">the</span> <span class="n">ASCab</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">ASTextNew</span><span class="p">();</span>
+<span class="n">ASTextSetEncoded</span> <span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">kCmdGenericTitle</span><span class="p">,</span>
+<span class="p">(</span><span class="n">ASHostEncoding</span><span class="p">)</span><span class="n">PDGetHostEncoding</span><span class="p">());</span>
+<span class="n">ASCabPutText</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyGenericTitle</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">doItAll</span> <span class="o">||</span> <span class="n">ASCabKnown</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyTitle</span><span class="p">))</span>
+<span class="p">{</span>
+
+<span class="o">//</span> <span class="n">Create</span> <span class="n">another</span> <span class="n">text</span> <span class="nb">object</span> <span class="ow">and</span> <span class="n">insert</span> <span class="n">it</span> <span class="n">into</span> <span class="n">the</span> <span class="n">ASCab</span>
+<span class="n">text</span> <span class="o">=</span> <span class="n">ASTextNew</span><span class="p">();</span>
+<span class="n">ASTextSetEncoded</span> <span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">kCmdTitle</span><span class="p">,</span>
+<span class="p">(</span><span class="n">ASHostEncoding</span><span class="p">)</span><span class="n">PDGetHostEncoding</span><span class="p">());</span>
+<span class="n">ASCabPutText</span> <span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">kAVCommandKeyTitle</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">params</span></code> object was declared in <a class="reference external" href="Plugins_Handlers.html#50618413_70559">Running an AVCommand</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="file-format-conversion-handlers">
+<h2>File format conversion handlers<a class="headerlink" href="#file-format-conversion-handlers" title="Permalink to this headline">¶</a></h2>
+<p>A plugin can add file conversion handlers to Acrobat (but not Adobe Reader) for performing the following file conversion operations:</p>
+<ul class="simple">
+<li><p>To import a PDF document from another file format.</p></li>
+<li><p>To export a PDF document to another file format.</p></li>
+</ul>
+<p>To add a new file conversion handler, you provide a set of callback functions, specify them in the <code class="docutils literal notranslate"><span class="pre">AVConversionToPDFHandler</span></code> or <code class="docutils literal notranslate"><span class="pre">AVConversionFromPDFHandler</span></code> structures, and invoke the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterToPDFHandler</span></code> or <code class="docutils literal notranslate"><span class="pre">AVAppRegisterFromPDFHandler</span></code> methods to register them.</p>
+<p>Specify the file types that the plugin can convert and whether it can perform synchronous conversion (required for the handler to be accessible from the batch framework). Upon registration, the conversion handlers are automatically added to the respective Open and Save As dialog boxes.</p>
+<p>By using a file format conversion handler, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Provide default settings for the conversion by using the <code class="docutils literal notranslate"><span class="pre">AVConversionDefaultSettingsProc</span></code> callback method.</p></li>
+<li><p>Provide conversion parameter information by using the <code class="docutils literal notranslate"><span class="pre">AVConversionParamDescProc</span></code> callback method.</p></li>
+<li><p>Display a settings dialog box by using the <code class="docutils literal notranslate"><span class="pre">AVConversionSettingsDialogProc</span></code> callback method.</p></li>
+<li><p>Convert a non-PDF file to or from a PDF file by invoking either the <code class="docutils literal notranslate"><span class="pre">AVConversionConvertToPDFProc</span></code> or <code class="docutils literal notranslate"><span class="pre">AVConversionConvertFromPDFProc</span></code> callback methods.</p></li>
+</ul>
+</div>
+<div class="section" id="file-specification-handlers">
+<h2>File specification handlers<a class="headerlink" href="#file-specification-handlers" title="Permalink to this headline">¶</a></h2>
+<p>A file specification handler converts between a <code class="docutils literal notranslate"><span class="pre">PDFileSpec</span></code> object and an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object. Each file specification handler works with a single file system, which the handler specifies.</p>
+<p>To create a new file specification handler, a plugin or application must provide callbacks that:</p>
+<ul class="simple">
+<li><p>Convert an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> to a <code class="docutils literal notranslate"><span class="pre">PDFileSpec</span></code>. It is called by <code class="docutils literal notranslate"><span class="pre">PDFileSpecNewFromASPath</span></code>.</p></li>
+<li><p>Convert a <code class="docutils literal notranslate"><span class="pre">PDFileSpec</span></code> to an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="selection-servers">
+<h2>Selection servers<a class="headerlink" href="#selection-servers" title="Permalink to this headline">¶</a></h2>
+<p>A selection server enables the selection of specific data types such as annotations, text, or graphics. You can also create selection servers to enable the selection of data types not already supported. To add a new selection server, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionServer</span></code> data structure, and register them using an <code class="docutils literal notranslate"><span class="pre">AVDocRegisterSelectionServer</span></code> object.</p>
+<p>By using a selection server, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Return the selection type serviced by the handler by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionGetTypeProc</span></code> callback method.</p></li>
+<li><p>Highlight or unhighlight a selection by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionHighlightSelectionProc</span></code> callback method.</p></li>
+<li><p>Handle key presses by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionKeyDownProc</span></code> callback method.</p></li>
+<li><p>Delete the selection by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionDeleteProc</span></code> method.</p></li>
+<li><p>Cut the selection to the clipboard by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionCutProc</span></code> callback method.</p></li>
+<li><p>Copy the selection to the clipboard by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionCopyProc</span></code> callback method.</p></li>
+<li><p>Paste the selection from the clipboard by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionPasteProc</span></code> callback method.</p></li>
+<li><p>Enumerate the items in the current selection by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionEnumSelectionProc</span></code> callback method.</p></li>
+<li><p>Scroll the view so that the current selection is available by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionShowSelectionProc</span></code> callback method.</p></li>
+<li><p>Determine whether or not the Properties menu item is enabled by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionCanPropertiesProc</span></code> callback method.</p></li>
+<li><p>If the selection type has a properties dialog box, display the dialog box by using the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionPropertiesProc</span></code> callback method.</p></li>
+</ul>
+<p>For a complete list of the callbacks in a selection server, see the description of <code class="docutils literal notranslate"><span class="pre">AVDocSelectionServer</span></code> in the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The SelectionServer sample plugin that is located in the Acrobat SDK shows an example of a selection server.</p>
+</div>
+</div>
+<div class="section" id="tool-callbacks">
+<h2>Tool callbacks<a class="headerlink" href="#tool-callbacks" title="Permalink to this headline">¶</a></h2>
+<p>To add a new tool, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVTool</span></code> data structure, and register them using <code class="docutils literal notranslate"><span class="pre">AVAppRegisterTool</span></code>. By using tool callbacks, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Activate the tool when the tool is selected by using the <code class="docutils literal notranslate"><span class="pre">ActivateProcType</span></code> callback method.</p></li>
+<li><p>Deactivate the tool when another tool is selected by using the <code class="docutils literal notranslate"><span class="pre">DeactivateProcType</span></code> callback method.</p></li>
+<li><p>Handle mouse clicks by using the <code class="docutils literal notranslate"><span class="pre">DoClickProcType</span></code> callback method.</p></li>
+<li><p>Handle key presses by using the <code class="docutils literal notranslate"><span class="pre">DoKeyDownProcType</span></code> callback method.</p></li>
+<li><p>Control the cursor shape by using the <code class="docutils literal notranslate"><span class="pre">AdjustCursorProcType</span></code> callback method.</p></li>
+<li><p>Return the tool’s name by using the <code class="docutils literal notranslate"><span class="pre">GetTypeProcType</span></code> callback method.</p></li>
+<li><p>Indicate whether the tool stays active after it is used by using the <code class="docutils literal notranslate"><span class="pre">IsPersistentProcType</span></code> callback method.</p></li>
+<li><p>Determine whether the tool is enabled by using the <code class="docutils literal notranslate"><span class="pre">AVComputeEnabledProc</span></code> callback method. For example, if a tool is meant to be used within documents, but there are no documents open, it does not make sense to activate the tool.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a complete list of callbacks, see the description of <code class="docutils literal notranslate"><span class="pre">AVTool</span></code> in the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+</div>
+<div class="section" id="window-handlers">
+<h2>Window handlers<a class="headerlink" href="#window-handlers" title="Permalink to this headline">¶</a></h2>
+<p>When a plugin creates a window, it can register the window, so that it behaves like other windows in Acrobat; for example, when Adobe Reader or Acrobat is minimized or hidden. For each window that a plugin provides, a window handler must be provided. Window handlers are used only in the Mac OS version of Adobe Reader or Acrobat. Windows versions of Acrobat instead use the platform’s native window handling mechanisms. (See <a class="reference external" href="Plugins_Documents.html#50618416_74021">Opening a PDF document in an external window</a>.)</p>
+<p>To define a window handler, you must provide a set of callbacks, specify them in an <code class="docutils literal notranslate"><span class="pre">AVWindowHandler</span></code> structure, and pass the structure to <code class="docutils literal notranslate"><span class="pre">AVWindowNew</span></code> or <code class="docutils literal notranslate"><span class="pre">AVWindowNewFromPlatformThing</span></code>. The window handler’s callbacks are automatically called by Acrobat. Default behavior is used for any missing callbacks.</p>
+<p>By using a window handler, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Handle mouse clicks in the window by using the <code class="docutils literal notranslate"><span class="pre">AVWindowMouseDownProc</span></code> callback method.</p></li>
+<li><p>Handle keystrokes in the window by using the <code class="docutils literal notranslate"><span class="pre">AVWindowKeyDownProc</span></code> callback method.</p></li>
+<li><p>Draw the window’s contents by using the <code class="docutils literal notranslate"><span class="pre">AVWindowDrawProc</span></code> callback method.</p></li>
+<li><p>Permit or prevent closing of the window by using the <code class="docutils literal notranslate"><span class="pre">AVWindowWillCloseProc</span></code> callback method.</p></li>
+<li><p>Clean up after the window has been closed by using the <code class="docutils literal notranslate"><span class="pre">AVWindowDidCloseProc</span></code> callback method.</p></li>
+<li><p>Do anything that must be done when the window is activated or deactivated by using the following callback methods: <code class="docutils literal notranslate"><span class="pre">AVWindowDidActivateProc</span></code> or <code class="docutils literal notranslate"><span class="pre">AVWindowWillDeactivateProc</span></code>.</p></li>
+<li><p>Permit or constrain window size changes by using the <code class="docutils literal notranslate"><span class="pre">AVWindowWillBeResizedProc</span></code> callback method.</p></li>
+<li><p>Determine whether the Cut, Copy, Paste, Clear, SelectAll, and Undo menu items are enabled by using the <code class="docutils literal notranslate"><span class="pre">AVWindowCanPerformEditOpProc</span></code> callback method.</p></li>
+<li><p>Perform Cut, Copy, Paste, Clear, SelectAll, and Undo operations by using the <code class="docutils literal notranslate"><span class="pre">AVWindowPerformEditOpProc</span></code> callback method.</p></li>
+<li><p>Control the shape of the cursor when it is within the window by using the <code class="docutils literal notranslate"><span class="pre">AVWindowAdjustCursorProc</span></code> callback method.</p></li>
+</ul>
+<p>For a complete list of callbacks in a window handler, see the description of <code class="docutils literal notranslate"><span class="pre">AVWindowHandler</span></code> in the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="file-systems">
+<h2>File systems<a class="headerlink" href="#file-systems" title="Permalink to this headline">¶</a></h2>
+<p>Plugins can add new file systems to Acrobat or Adobe Reader, to access files on a device that cannot be accessed as a local hard disk, such as a socket or a modem line.</p>
+<p>To add a new file system, you must provide a set of callbacks and specify them in the <code class="docutils literal notranslate"><span class="pre">ASFileSysRec</span></code> structure. This structure is passed as a parameter to calls that require a file system. A file system handler does not require explicit registration.</p>
+<p>By using a file system handler, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Open a file by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysOpenProc</span></code> callback method.</p></li>
+<li><p>Close a file by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysCloseProc</span></code> callback method.</p></li>
+<li><p>Flush a file’s buffered data to disk by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysFlushProc</span></code> callback method.</p></li>
+<li><p>Get or set the current position in a file by using one of the following callback methods: <code class="docutils literal notranslate"><span class="pre">ASFileSysSetPosProc</span></code> or <code class="docutils literal notranslate"><span class="pre">ASFileSysGetPosProc</span></code>.</p></li>
+<li><p>Get or set a file’s logical size by using one of the following callback methods: <code class="docutils literal notranslate"><span class="pre">ASFileSysGetEofProc</span></code> or <code class="docutils literal notranslate"><span class="pre">ASFileSysSetEofProc</span></code>.</p></li>
+<li><p>Read data from a file by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysReadProc</span></code> callback method.</p></li>
+<li><p>Write data to a file by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysWriteProc</span></code> callback method.</p></li>
+<li><p>Delete a file by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysRemoveProc</span></code> callback method.</p></li>
+<li><p>Rename a file by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysRenameProc</span></code> callback method.</p></li>
+<li><p>Get a file’s name by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysGetNameProc</span></code> callback method.</p></li>
+<li><p>Get a file system’s name by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysGetFileSysNameProc</span></code> callback method.</p></li>
+<li><p>Determine whether two files are the same by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysIsSameFileProc</span></code> callback method.</p></li>
+<li><p>Get a path to a temporary file by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysGetTempPathNameProc</span></code> callback method.</p></li>
+<li><p>Copy a path (not the underlying file) by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysCopyPathNameProc</span></code> callback method.</p></li>
+<li><p>Convert between device-independent and device-dependent path by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysDiPathFromPathProc</span></code> callback method.</p></li>
+<li><p>Dispose of a path (not the underlying file) by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysDisposePathNameProc</span></code> callback method.</p></li>
+<li><p>Flush data on a volume by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysFlushVolumeProc</span></code> callback method.</p></li>
+<li><p>Handle asynchronous I/O operations by using the following callback methods: <code class="docutils literal notranslate"><span class="pre">ASFileSysAsyncReadProc</span></code> or <code class="docutils literal notranslate"><span class="pre">ASFileSysAsyncWriteProc</span></code>.</p></li>
+<li><p>Handle multiple read requests by using the <code class="docutils literal notranslate"><span class="pre">ASFileSysMReadRequestProc</span></code> callback method.</p></li>
+</ul>
+<p>For details about each of the callbacks in a file system, see the description of <code class="docutils literal notranslate"><span class="pre">ASFileSysRec</span></code> in the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="progress-monitors">
+<h2>Progress monitors<a class="headerlink" href="#progress-monitors" title="Permalink to this headline">¶</a></h2>
+<p>Progress monitors provide feedback to a user on the progress of a time-consuming operation. Some potentially time-consuming methods in the Acrobat core API require a progress monitor as a parameter. Acrobat has a default progress monitor, which generally is sufficient for plugins to use. The built-in progress monitor can be obtained by using the <code class="docutils literal notranslate"><span class="pre">AVAppGetDocProgressMonitor</span></code> method.</p>
+<p>Plugins can use the default progress monitor or implement their own by providing a set of callbacks, specifying them in the <code class="docutils literal notranslate"><span class="pre">ASProgressMonitorRec</span></code> data structure, and passing a pointer to the structure to the methods that require a progress monitor (there is no explicit registration method).</p>
+<p>Using a progress monitor, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Initialize the progress monitor and display it with a current value of zero by invoking the <code class="docutils literal notranslate"><span class="pre">PMBeginOperationProc</span></code> method.</p></li>
+<li><p>Draw a full progress monitor, then remove the progress monitor from the display by invoking the <code class="docutils literal notranslate"><span class="pre">PMEndOperationProc</span></code> method.</p></li>
+<li><p>Set the value that corresponds to a full progress monitor display by invoking the <code class="docutils literal notranslate"><span class="pre">PMSetDurationProc</span></code> method.</p></li>
+<li><p>Set the current value of the progress monitor and update the display by invoking the <code class="docutils literal notranslate"><span class="pre">PMSetCurrValueProc</span></code> method.</p></li>
+<li><p>Get the progress monitor’s maximum value by invoking the <code class="docutils literal notranslate"><span class="pre">PMGetDurationProc</span></code> method.</p></li>
+<li><p>Get the progress monitor’s current value by invoking the <code class="docutils literal notranslate"><span class="pre">PMGetCurrValueProc</span></code> method.</p></li>
+</ul>
+<p>For details, see the description of <code class="docutils literal notranslate"><span class="pre">ASProgressMonitorRec</span></code> in the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="transition-handlers">
+<h2>Transition handlers<a class="headerlink" href="#transition-handlers" title="Permalink to this headline">¶</a></h2>
+<p>Transitions allow effects such as dissolves or wipe-downs when displaying a new page. New transition types can be added by defining and registering a transition handler.</p>
+<p>To add a new transition, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVTransHandler</span></code> data structure, and register them by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterTransHandler</span></code> method.</p>
+<p>Using a transition handler, you can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Get the transition type by invoking the <code class="docutils literal notranslate"><span class="pre">AVTransHandlerGetTypeProc</span></code> method.</p></li>
+<li><p>Perform the transition (change to the next page with this transition style) by invoking the <code class="docutils literal notranslate"><span class="pre">AVTransHandlerExecuteProc</span></code> method.</p></li>
+<li><p>Fill in the transition dictionary in the PDF file by using either the <code class="docutils literal notranslate"><span class="pre">AVTransHandlerInitTransDictProc</span></code> or <code class="docutils literal notranslate"><span class="pre">AVTransHandlerCompleteTransDictProc</span></code> methods.</p></li>
+<li><p>Provide information for the user interface that sets the attributes of the transition by invoking the <code class="docutils literal notranslate"><span class="pre">AVTransHandlerGetUINameProc</span></code> method.</p></li>
+</ul>
+</div>
+<div class="section" id="adding-message-handling">
+<h2>Adding message handling<a class="headerlink" href="#adding-message-handling" title="Permalink to this headline">¶</a></h2>
+<p>Plugins can add their own DDE messages and Apple events to those supported by Acrobat and Adobe Reader. On Windows, plugins can register to receive DDE messages directly. On Mac OS, plugins must hook into Acrobat or Adobe Reader’s Apple event handling loop to handle Apple events. To do this, replace the API’s AVAppHandleAppleEvent method. For information about replacing methods, see <a class="reference external" href="Plugins_Hft.html#50618412_19489">Replacing HFT methods</a>.</p>
+<p>If a plugin receives an Apple event it does not want to handle, it should invoke the implementation of the method it replaced, allowing other plugins or Acrobat or Adobe Reader the opportunity to handle the Apple event.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plugins should use the DDEML library to handle DDE messages. Problems may arise if they do not.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adobe Inc..
+      <span class="lastupdated">
+        Last updated on Feb 23, 2022.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

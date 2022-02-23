@@ -1,0 +1,1268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Understanding Plugins &mdash; Acrobat Plugin Developer Guide</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+    <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homePlugins_Pimech.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creating Plugin and PDF Library Applications" href="Plugins_CreatingSimplePlug.html" />
+    <link rel="prev" title="Introduction to Plugin Development" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat Plugin Developer Guide
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction to Plugin Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-plugins">About plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-the-acrobat-core-api">About the Acrobat core API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-viewer-layer">Acrobat Viewer layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#portable-document-layer">Portable Document layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-support-layer">Acrobat Support layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-layer">Cos layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#platform-specific-methods">Platform-specific methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-objects">Acrobat core API objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#file-object-interrelationships">File object interrelationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-object-interrelationships">Document object interrelationships</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-methods">Acrobat core API methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-types">Data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#scalar-types">Scalar types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#simple-types">Simple types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#complex-types">Complex types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#opaque-types">Opaque types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-types">Cos types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-pdf-library-and-plugin-applications">About PDF Library and plugin applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#manipulating-acrobat-and-adobe-reader">Manipulating Acrobat and Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#displaying-a-pdf-document-in-an-external-window">Displaying a PDF document in an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#indexed-searching">Indexed searching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modifying-file-access">Modifying file access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#creating-new-annotation-types">Creating new annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dynamically-adding-text-to-pdf-documents">Dynamically adding text to PDF documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#understanding-your-target-application">Understanding your target application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#rights-enabled-pdf-documents">Rights-enabled PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#adobe-reader-plugins">Adobe Reader plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#registering-plugins-for-use-by-the-plugin-finder">Registering plugins for use by the plugin finder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#pdf-dictionary-extensions">PDF dictionary extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#handshaking">Handshaking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exporting-hfts">Exporting HFTs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#unloading">Unloading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summarizing-a-plugin-s-life-cycle">Summarizing a plugin’s life cycle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-callback-functions">Using callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#notifications">Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handling-events">Handling events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mouse-clicks">Mouse clicks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adjust-cursor">Adjust cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-presses">Key presses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-plugin-prefixes">Using plugin prefixes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#obtaining-a-developer-pdf-name-prefix">Obtaining a developer PDF name prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-a-developer-prefix">Using a developer prefix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#plugin-name">Plugin name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#menu-prefixes">Menu prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#menu-items-prefixes">Menu items prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tool-prefixes">Tool prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#toolbar-button-prefixes">Toolbar button prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#private-data-id-d-via-second-class-names">Private data ID’d via second-class names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#action-prefixes">Action prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#annotation-prefixes">Annotation prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hft-prefixes">HFT prefixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#modifying-the-acrobat-or-adobe-reader-user-interface">Modifying the Acrobat or Adobe Reader user interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-or-removing-menus-and-menu-items">Adding or removing menus and menu items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#modifying-toolbars">Modifying toolbars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#controlling-the-about-box-and-splash-screen">Controlling the About box and splash screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-help-files">Creating help files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-interface-guidelines">User interface guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#acquiring-and-releasing-objects">Acquiring and releasing objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-plugins">Debugging plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#page-view-layers">Page view layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimizing-screen-redrawing">Minimizing screen redrawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#storing-private-data-in-pdf-files">Storing private data in PDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#exporting-data-from-pdf-document-objects">Exporting data from PDF document objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_CreatingSimplePlug.html">Creating Plugin and PDF Library Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#working-with-platform-specific-techniques">Working with platform-specific techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#about-platform-dependent-data">About platform-dependent data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#portability-techniques">Portability techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows-techniques">Windows techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-windows-plugins">Developing Windows plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-plugins">Locating and loading plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#why-a-plugin-might-not-load">Why a plugin might not load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros-and-project-settings">Macros and project settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#interapplication-communication">Interapplication communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#debugging">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#handling-the-thread-local-storage-tls-limit">Handling the thread local storage (TLS) limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-modal-dialog-boxes">Using modal dialog boxes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-techniques">Mac OS techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-a-mac-os-plugin">Developing a Mac OS plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-the-samples">Using the samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#establishing-carbon-or-cocoa-compliance">Establishing Carbon or Cocoa compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#xcode-configuration-files">Xcode configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-setgworld-rather-than-setport">Using SetGWorld rather than SetPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-a-plugin">Locating and loading a plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-memory">Using memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#resource-file-considerations">Resource file considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-saferesources">Using SafeResources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#manipulating-the-resource-chain-directly">Manipulating the resource chain directly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros">Macros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-only-methods">Mac OS-only methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#inter-application-communication">Inter application communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-plugin">Creating a sample plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-acrobat-sdk-library-files">Including Acrobat SDK library files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-the-pimain-source-file">Adding the PIMain source file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-application-logic">Adding application logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#compiling-and-building-your-plugin">Compiling and building your plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-pdf-library-application">Creating a sample PDF Library application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#contents-of-the-pdf-library-sdk">Contents of the PDF Library SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-library-files">Including library files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-applications-with-the-adobe-pdf-library">Developing applications with the Adobe PDF Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os">Mac OS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#initialization-and-termination">Initialization and termination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#upgrading-existing-plugins">Upgrading existing plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#detecting-supported-apis">Detecting supported APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#migrating-pdfl-apps-to-xcode">Migrating PDFL apps to Xcode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Insertext.html">Inserting Text into PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-pdf-document">Creating a new PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-page">Creating a new page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-container">Creating a container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#acquiring-fonts">Acquiring fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-pdegraphicstate-object">Creating a PDEGraphicState object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-an-asfixedmatrix-object">Creating an ASFixedMatrix object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#inserting-text">Inserting text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#saving-the-pdf-document">Saving the PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#examining-a-pdfl-app-source-file">Examining a PDFL app source file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-handler-for-an-external-window">Creating a handler for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-an-open-dialog-box">Displaying an open dialog box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-a-pdf-in-a-window">Displaying a PDF in a window</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#determining-the-pdf-version">Determining the PDF version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version">PDF version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version-extensions">PDF version extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#setting-the-extension-level-of-a-document">Setting the extension level of a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#getting-the-extension-level-of-a-document">Getting the extension level of a document</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#bridging-core-api-layers">Bridging core API layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object">Creating a PDDoc object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object-for-an-open-pdf">Creating a PDDoc object for an open PDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#accessing-non-pdf-files">Accessing non-PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#printing-documents">Printing documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#working-with-the-pdf-x-format">Working with the PDF/X format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Menu.html">Creating Menus and Menu Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#about-menus">About menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenubar-typedefs">About AVmenubar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenu-typedefs">About AVMenu typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenuitem-typedefs">About AVMenuItem typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#adding-menu-commands-to-menus">Adding menu commands to menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-an-existing-menu">Adding a menu command to an existing menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-a-new-menu">Adding a menu command to a new menu</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#creating-menu-callback-functions">Creating menu callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#determining-if-a-menu-item-can-be-executed">Determining if a menu item can be executed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Toolbutton.html">Creating Toolbars and Buttons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#about-toolbars">About toolbars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbar-typedefs">About AVToolBar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbutton-typedefs">About AVToolButton typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-toolbars">Retrieving toolbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-buttons">Creating toolbar buttons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-help-text-for-a-button">Setting help text for a button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-label-text">Setting label text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#creating-a-sub-menu-for-a-button">Creating a sub-menu for a button</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-existing-toolbar-buttons">Retrieving existing toolbar buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#attaching-a-button-to-a-toolbar">Attaching a button to a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#exposing-a-button-in-a-web-browser">Exposing a button in a web browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#removing-a-button-from-a-toolbar">Removing a button from a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-button-callback-functions">Creating toolbar button callback functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Annotations.html">Creating Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-text-annotations">Working with text annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-text-annotations">Creating text annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#retrieving-existing-annotations">Retrieving existing annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-text-annotations">Modifying text annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-redaction-annotations">Working with redaction annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-a-redaction-annotation">Creating a redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-an-existing-redaction-annotation">Modifying an existing redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#applying-redaction-annotations-removing-redacted-content">Applying redaction annotations (removing redacted content)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Bookmark.html">Working with Bookmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#about-bookmarks">About bookmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#creating-bookmarks">Creating bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#defining-bookmark-actions">Defining bookmark actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-pdviewdestination-object">Creating a PDViewDestination object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-avpageview-object">Creating a AVPageView object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#assigning-an-action-to-a-bookmark">Assigning an action to a bookmark</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#removing-bookmark-actions">Removing bookmark actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#opening-and-closing-bookmarks">Opening and closing bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-bookmarks">Retrieving bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-the-root-bookmark">Retrieving the root bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-a-specific-bookmark">Retrieving a specific bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-all-bookmarks">Retrieving all bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#deleting-bookmarks">Deleting bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pages.html">Working with Page Views and Contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-coordinates">About page coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-views">About page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#displaying-page-views">Displaying page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#modifying-page-contents">Modifying page contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#creating-a-pdecontent-object">Creating a PDEContent object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#accessing-page-contents">Accessing page contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#determining-page-element-types">Determining page element types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#modifying-text-elements">Modifying text elements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Words.html">Working with Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#about-searching-for-words">About searching for words</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdword-typedefs">About PDWord typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdwordfinder-typedefs">About PDWordFinder typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#creating-a-pdwordfinder-object">Creating a PDWordFinder object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#extracting-and-displaying-words">Extracting and displaying words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#highlighting-words">Highlighting words</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Handlers.html">Creating Handlers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#about-handlers">About handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#action-handlers">Action handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#annotation-handlers">Annotation handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#avcommand-handlers">AVCommand handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#creating-an-avcommand-handler">Creating an AVCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#invoking-avcommands">Invoking AVCommands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#configuring-avcommands">Configuring AVCommands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-input-parameters">Setting input parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-configuration-parameters">Setting configuration parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-avcommand-parameters">Setting AVCommand parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#running-commands">Running commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#exposing-avcommands-to-the-batch-framework">Exposing AVCommands to the batch framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#adding-a-handler-to-the-global-command-list">Adding a handler to the global command list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#supporting-properties">Supporting properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-format-conversion-handlers">File format conversion handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-specification-handlers">File specification handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#selection-servers">Selection servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#tool-callbacks">Tool callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#window-handlers">Window handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-systems">File systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#progress-monitors">Progress monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#transition-handlers">Transition handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#adding-message-handling">Adding message handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Notification.html">Registering for Event Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#registering-event-notifications">Registering event notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#unregistering-event-notifications">Unregistering event notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Security.html">Working with Document Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-document-security">About document security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-security-handlers">About security handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#adding-a-security-handler">Adding a security handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handlers-data">Security handlers data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handler-callbacks">Security handler callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#acrobat-s-authorization-procedure">Acrobat’s authorization procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-a-secured-file">Opening a secured file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-secured-file">Saving a secured file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#setting-security-for-a-document">Setting security for a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-file-with-an-encryption-dictionary">Saving a file with an encryption dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-an-encrypted-file">Opening an encrypted file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Unicode.html">Working with Unicode Paths</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#about-unicode-paths">About Unicode paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#creating-unicode-file-path-application-logic">Creating Unicode file path application logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#retrieving-unicode-path-values">Retrieving Unicode path values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object">Creating an ASFileSys object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object-that-supports-unicode-paths">Creating an ASFileSys object that supports Unicode paths</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Hft.html">Working with Host Function Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#about-host-function-tables">About host function tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#exporting-host-function-tables">Exporting host function tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-methods">Creating HFT methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-method-definitions">Creating HFT method definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-function-prototypes">Defining function prototypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-an-hft-method-name">Defining an HFT method name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-callback-functions">Creating HFT callback functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-new-host-function-tables">Creating new Host Function Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#examining-hft-header-and-source-files">Examining HFT header and source files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-header-file">Examining an HFT header file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-source-file">Examining an HFT source file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#importing-an-existing-hft">Importing an existing HFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#invoking-hft-methods">Invoking HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#replacing-hft-methods">Replacing HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#migrating-non-hft-pdf-library-applications-to-hft-applications">Migrating non-HFT PDF Library applications to HFT applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Cos.html">Working with Cos Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#about-cos-objects">About Cos objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-direct-and-indirect-objects">About direct and indirect objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-cos-object-types">About Cos object types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-strings">Cos strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#hexadecimal-strings">Hexadecimal strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-arrays">Cos arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-names">Cos names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-dictionaries">Cos dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-streams">Cos streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-strings">Working with Cos strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-strings">Creating Cos strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-string-value">Retrieving the string value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-arrays">Working with Cos arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-arrays">Creating Cos arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-cos-array-values">Retrieving Cos array values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries">Working with Cos dictionaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-dictionaries">Creating Cos dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-values-from-a-cos-dictionary">Retrieving values from a Cos dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#querying-a-cos-dictionary-for-a-key">Querying a Cos dictionary for a key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-names">Working with Cos names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-names">Creating Cos names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-value-of-a-name-object">Retrieving the value of a name object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-streams">Working with Cos streams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-streams">Creating Cos streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#creating-a-stream-dictionary">Creating a stream dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#inserting-a-cos-stream-into-a-pdf-document">Inserting a Cos stream into a PDF document</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#populating-a-pdf-with-a-content-stream">Populating a PDF with a content stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_3D_samples.html">Working with 3D Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#creating-3d-annotations">Creating 3D annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#adding-3d-data-to-an-annotation">Adding 3D data to an annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-3d-annotation-dictionary-entries">Creating the 3D annotation dictionary entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#specifying-the-3d-stream">Specifying the 3D stream</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-stream-object">Creating the stream object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#adding-the-cos-stream-to-the-annotation-dictionary">Adding the Cos stream to the annotation dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-attributes-dictionary">Creating the attributes dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#specifying-javascript-code">Specifying JavaScript code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-default-view">Setting the default view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-annotation-appearance">Setting the annotation appearance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-activation-dictionary">Setting the activation dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_A3D_API.html">Parsing and Creating PRC Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#working-with-the-acrobat-3d-api">Working with the Acrobat 3D API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#versions">Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-with-different-prc-format-versions">Compatibility with different PRC format versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-between-the-acrobat-3d-library-and-the-acrobat-3d-api">Compatibility between the Acrobat 3D Library and the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#data-types-naming-conventions-and-character-encoding">Data types, naming conventions, and character encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#structured-and-recursive-nature-of-prc-parsing">Structured and recursive nature of PRC parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking-in-your-plugin">Implementing external linking in your plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking">Implementing external linking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#parsing-a-prc-file">Parsing a PRC file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#handling-errors">Handling errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#copying-the-embedded-prc-file-to-a-separate-file">Copying the embedded PRC file to a separate file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#initializing-the-acrobat-3d-api">Initializing the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-structure-prc-entities">Parsing structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-model-file-data">Parse the model file data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-product-occurrence">Parse a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-part-definition">Parse a part definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-representation-items">Parsing representation items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-representation-item-set-prc-entity-a3driset">Parse a representation item set (PRC entity A3DRiSet)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-brep-model-representation-item-prc-entity-a3dribrepmodel">Parse a Brep model representation item (PRC entity A3DRiBrepModel)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-coordinate-system-data">Parse coordinate system data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-tessellation-prc-entities">Parsing tessellation PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-tessellation-base-data">Parse tessellation base data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-3d-tessellation-data">Parse 3D tessellation data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-topology-prc-entities">Parsing topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-body-data">Parse topology body data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-context-data">Parse topology context data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-brep-model-s-data">Parse the Brep model’s data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-connex-data">Parse Connex data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-shell-entity">Parse a shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-face-s-surface-data">Parse the face’s surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#convert-surface-data-to-nurbs-for-other-than-uv-mapped-surfaces">Convert surface data to Nurbs (for other than UV-mapped surfaces)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-generic-surface-data">Parse generic surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-nurbs-surface-data">Parse Nurbs surface data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-prc-entities-that-specify-graphics">Parsing PRC entities that specify graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-attributes-that-appear-in-an-entity-base">Parsing attributes that appear in an entity base</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-root-base-entity-data">Parsing root-base entity data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-miscellaneous-attribute-entity">Parse the miscellaneous attribute entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-graphic-attributes-using-miscellaneous-cascaded-attributes">Parsing graphic attributes using miscellaneous cascaded attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#to-create-and-push-a-miscellaneous-cascaded-attributes-structure">To create and push a miscellaneous cascaded attributes structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#terminating-the-interface-with-the-acrobat-3d-api">Terminating the interface with the Acrobat 3D API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#terminate-your-interface-with-the-acrobat-3d-api">Terminate your interface with the Acrobat 3D API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-prc-file-that-uses-boundary-representation">Creating a PRC file that uses boundary representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#error-handling">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-model-file-entity-and-exporting-it-to-a-physical-file">Creating a model file entity and exporting it to a physical file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-file-that-contains-the-prc-data">Create a file that contains the PRC data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-structure-prc-entities">Creating structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-model-file-entity">Create a model file entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-product-occurrence">Create a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-part-definition">Create a part definition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-representation-item-prc-entities">Creating representation item PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-brep-model-representation-item">Create a Brep model representation item</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-topology-prc-entities">Creating topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-brep-data-entity">Create a topology Brep data entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-connex-entity">Create a topology connex entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-shell-entity">Create a topology shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-face-entity">Create a topology face entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-loop-entity">Create a topology loop entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-co-edge-entity">Create a topology co-edge entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-edge-entity">Create a topology edge entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-geometry-prc-entities">Creating geometry PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-surface-cylinder-entity">Create a surface cylinder entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-circular-curve-entity">Create a circular curve entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#defining-root-level-attributes-for-a-prc-entity">Defining root-level attributes for a PRC entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-omit-modeler-data">Define miscellaneous attributes that omit modeler data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-include-modeler-data">Define miscellaneous attributes that include modeler data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-3d-annotation-that-references-the-prc-file">Creating a 3D annotation that references the PRC file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-tessellation-entity-for-representing-faceted-objects">Creating a tessellation entity for representing faceted objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-base-data">Create the tessellation base data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-facet-data">Create the tessellation facet data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Exceptions.html">Handling Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#creating-exception-handlers">Creating exception handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#returning-a-value-from-an-exception-handler">Returning a value from an exception handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#raising-exceptions">Raising exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#exception-handling-scenarios">Exception handling scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-goto-statements">Using goto statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-nested-exception-handlers">Using nested exception handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-register-variables">Using register variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ExtendedAPI.html">Working with Acrobat Extended APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#search-extended-api">Search extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#catalog-extended-api">Catalog extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-consultant-and-accessibility-checker-extended-api">PDF Consultant and Accessibility Checker extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrobat-agents">Acrobat agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-and-revisiting">Reclassifying and revisiting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#agent-architecture">Agent architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#how-the-consultant-works">How the consultant works</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#removing-or-modifying-objects">Removing or modifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-objects">Reclassifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-process">Consultant process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#important-issues-for-consultant-development">Important issues for consultant development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#maintaining-the-traversal-stack">Maintaining the traversal stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#deciding-consultant-or-the-agent-does-the-work">Deciding consultant or the agent does the work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-agent-collisions">Avoiding agent collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-visitation-collisions">Avoiding visitation collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#importing-the-consultant-hfts-into-a-plugin">Importing the consultant HFTs into a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-and-destroying-consultants">Creating and destroying consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#registering-agents-with-consultants">Registering agents with consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#starting-the-consultant">Starting the consultant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-object-type-identification">Consultant object type identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-an-agent-class">Creating an agent class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-agent-constructors">Creating agent constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#recognizing-objects-of-interest">Recognizing objects of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#post-processing-stage">Post processing stage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-extended-api">Digital signature extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#the-pubsec-layer">The PubSec layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-components">Digital signature components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-scenarios">Digital signature scenarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#initializing-the-digital-signature-plugin">Initializing the digital signature plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#understanding-the-process">Understanding the process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#dialogs-and-signature-gathering">Dialogs and signature gathering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#saving-a-document">Saving a document</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#finishing-the-process">Finishing the process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#revalidating-signatures">Revalidating signatures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-available-callbacks">Additional available callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-plugin-support">Additional plugin support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#rollback-support">Rollback support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#forms-extended-api">Forms extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-extended-api">Weblink extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-services">Weblink services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#writing-a-custom-driver">Writing a custom driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#spelling-extended-api">Spelling extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrocolor-extended-api">AcroColor extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-conversion-operations">Color conversion operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#object-attributes">Object attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-space-attributes">Color space attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#conversion-actions">Conversion actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#action-modifiers">Action modifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#ink-aliasing">Ink aliasing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-structures">Data structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-enum-values">Data enum values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#converting-a-document-to-rgb">Converting a document to RGB</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-optimizer-api">PDF Optimizer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ReaderPlug.html">Creating an Adobe Reader plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#configuring-preprocessor-definitions">Configuring preprocessor definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#creating-the-public-and-private-key-pairs">Creating the public and private key pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#enabling-the-plugin-for-adobe-reader">Enabling the plugin for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#troubleshooting-an-adobe-reader-plugin">Troubleshooting an Adobe Reader plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#plugin-appears-to-be-ignored-by-adobe-reader">Plugin appears to be ignored by Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#adobe-reader-error-messages">Adobe Reader error messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_Plugins.html">Reader Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#reader-enablement">Reader enablement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#apis-available-for-adobe-reader">APIs available for Adobe Reader</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat Plugin Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Understanding Plugins</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="Plugins_CreatingSimplePlug.html" class="btn btn-neutral float-right" title="Creating Plugin and PDF Library Applications" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Introduction to Plugin Development" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="understanding-plugins">
+<h1>Understanding Plugins<a class="headerlink" href="#understanding-plugins" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="plugin-loading-and-initialization">
+<h2>Plugin loading and initialization<a class="headerlink" href="#plugin-loading-and-initialization" title="Permalink to this headline">¶</a></h2>
+<p>When Acrobat or Adobe Reader is started, it searches the plugins directory (co-located with the Acrobat executable) to locate and load plugins. In addition, Acrobat or Adobe Reader searches folders that may be located within this folder. This search goes one level deep.</p>
+<p>Acrobat and Adobe Reader display a progress message in the bottom line of the splash screen at start-up. As each plugin is loaded, the progress message shows the plugin name. No plugins are loaded if the Shift key is held down while Acrobat or Adobe Reader start. Also, if Acrobat or Adobe Reader are running in certified mode, no third-party plugins are loaded.</p>
+<p>When creating methods for your plugin, keep the following rule in mind:</p>
+<p>Implement <code class="docutils literal notranslate"><span class="pre">PluginUnload</span></code> procedure: This procedure frees allocated memory. This routine is invoked if any of the initialization routines returns <code class="docutils literal notranslate"><span class="pre">false</span></code>. Under normal conditions, this procedure is not invoked until the user closes Acrobat or Adobe Reader.</p>
+<div class="section" id="handshaking">
+<h3>Handshaking<a class="headerlink" href="#handshaking" title="Permalink to this headline">¶</a></h3>
+<p>Acrobat and Adobe Reader perform a handshake with each plugin as it is opened and loaded. During handshaking, the plugin specifies its name, several initialization procedures, and an optional unload procedure.</p>
+<p>A plugin must implement the following handshaking function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PIHandshake</span><span class="p">(</span><span class="n">ASUns32</span> <span class="n">handshakeVersion</span><span class="p">,</span> <span class="n">void</span><span class="p">,</span> <span class="o">*</span><span class="n">hsData</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>During handshaking, the plugin receives the <code class="docutils literal notranslate"><span class="pre">hsData</span></code> data structure (defined in the PIVersn.h file). Acrobat and Adobe Reader convert all function pointers that are passed in this data structure into callbacks using the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> method. For information about this method, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+<p>The DUCallbacks.h header file declares all callback methods that must be located in your plugin. The following shows the function signatures of these callback methods:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginExportHFTs</span><span class="p">(</span><span class="n">void</span><span class="p">);</span>
+<span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginImportReplaceAndRegister</span><span class="p">(</span><span class="n">void</span><span class="p">);</span>
+<span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginInit</span><span class="p">(</span><span class="n">void</span><span class="p">);</span>
+<span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginUnload</span><span class="p">(</span><span class="n">void</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>All callbacks return <code class="docutils literal notranslate"><span class="pre">true</span></code> if your plugin’s procedure completes successfully or if the callbacks are optional and are not implemented. If your plugin’s procedure fails, it returns <code class="docutils literal notranslate"><span class="pre">false</span></code>. If either Acrobat, Adobe Reader, or a plug-in aborts handshaking, Acrobat or Adobe Reader displays an alert dialog box showing a brief explanation before loading other plugins. At minimum, a plugin must implement the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> callback.</p>
+<p>To ensure your plugin does not hinder Acrobat startup, you must limit code executed in your handshake functions to the minimum.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The handshaking function is located in the PIMain.c file. This source code located in this file is functional and must not be modified.</p>
+</div>
+<p>The following example shows how a plugin’s <code class="docutils literal notranslate"><span class="pre">PIHandshake</span></code> method specifies the plugin callbacks provided during handshake and initialization. The tasks performed by each function is described in the next sections. For general information about creating callback functions, see <a class="reference external" href="Plugins_Pimech.html#50618406_20671">Using callback functions</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PIHandshake</span><span class="p">(</span><span class="n">Uns32</span> <span class="n">handshakeVersion</span><span class="p">,</span> <span class="n">void</span> <span class="o">*</span><span class="n">handshakeData</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">handshakeVersion</span> <span class="o">==</span> <span class="n">HANDSHAKE_V0200</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">PIHandshakeData_V0200</span> <span class="o">*</span><span class="n">hsData</span> <span class="o">=</span> <span class="p">(</span><span class="n">PIHandshakeData_V0200</span> <span class="o">*</span><span class="p">)</span><span class="n">handshakeData</span><span class="p">;</span>
+      <span class="n">hsData</span><span class="o">-&gt;</span><span class="n">extensionName</span> <span class="o">=</span> <span class="n">GetExtensionName</span><span class="p">();</span>
+      <span class="n">hsData</span><span class="o">-&gt;</span><span class="n">exportHFTsCallback</span> <span class="o">=</span>
+          <span class="p">(</span><span class="n">void</span><span class="o">*</span><span class="p">)</span><span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">PIExportHFTsProcType</span><span class="p">,</span>
+              <span class="o">&amp;</span><span class="n">PluginExportHFTs</span><span class="p">);</span>
+      <span class="n">hsData</span><span class="o">-&gt;</span><span class="n">importReplaceAndRegisterCallback</span> <span class="o">=</span>
+          <span class="p">(</span><span class="n">void</span><span class="o">*</span><span class="p">)</span><span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">PIImportReplaceAndRegisterProcType</span><span class="p">,</span>
+              <span class="o">&amp;</span><span class="n">PluginImportReplaceAndRegister</span><span class="p">);</span>
+      <span class="n">hsData</span><span class="o">-&gt;</span><span class="n">initCallback</span> <span class="o">=</span>
+          <span class="p">(</span><span class="n">void</span><span class="o">*</span><span class="p">)</span><span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">PIInitProcType</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">PluginLoad</span><span class="p">);</span>
+      <span class="n">hsData</span><span class="o">-&gt;</span><span class="n">unloadCallback</span> <span class="o">=</span>
+          <span class="p">(</span><span class="n">void</span><span class="o">*</span><span class="p">)</span><span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">PIUnloadProcType</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">PluginUnload</span><span class="p">);</span>
+      <span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="exporting-hfts">
+<h3>Exporting HFTs<a class="headerlink" href="#exporting-hfts" title="Permalink to this headline">¶</a></h3>
+<p>A Host Function Table (HFT) is the mechanism through which plugins invoke methods in Adobe Reader or Acrobat, as well as in other plugins. After Acrobat finishes handshaking with all the plugins, it invokes each plug-in’s <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> callback procedure.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> procedure, a plugin may export any HFTs it intends to make available to other plugins. This callback should only export an HFT, not invoke other Acrobat core API methods. (See <a class="reference external" href="Plugins_Hft.html#50618412_37928">Working with Host Function Tables</a>.)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The only time a plugin can export an HFT is during execution of its <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> procedure.</p>
+</div>
+</div>
+<div class="section" id="importing-hfts-and-registering-for-notifications">
+<h3>Importing HFTs and registering for notifications<a class="headerlink" href="#importing-hfts-and-registering-for-notifications" title="Permalink to this headline">¶</a></h3>
+<p>After Acrobat or Adobe Reader completes invoking each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> callback method, it invokes each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> callback method. In this method, plugins perform three tasks:</p>
+<ol class="arabic simple">
+<li><p>Import any special HFTs they use (the standard Acrobat HFTs are automatically imported). Plugins also may import HFTs any time after this while the plugin is running.</p></li>
+<li><p>Register for notifications by using the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterNotification</span></code> method. Plugins also may register and unregister for notifications while the plugin is running. A plugin may receive a notification any time after it has registered for it, even if the plugin’s initialization callback has not yet been called. This can occur if another plugin initializes first and performs an operation, such as creating a PDF document, which causes a notification to be sent. Plugins must be prepared to correctly handle notifications as soon as they register for them.</p></li>
+<li><p>Replace any of the Acrobat API’s replaceable HFT methods. (See <a class="reference external" href="Plugins_Hft.html#50618412_19489">Replacing HFT methods</a>.)</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The only time a plugin may import an HFT or replace a standard API method is within its <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> callback procedure. Plugins may register for notifications at this time or any time afterward.</p>
+</div>
+</div>
+<div class="section" id="initialization">
+<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<p>After Acrobat or Adobe Reader completes calling each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> callback method, it invokes each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> procedure. Plugins can use their initialization procedures to hook into Acrobat’s user interface by adding menu items, toolbar buttons, windows, and so on. It is also acceptable to modify Acrobat’s user interface later when the plugin is running.</p>
+<p>When creating the initialization portion of a plugin, keep the following rules in mind:</p>
+<p><strong>Avoid creating dialog boxes:</strong> Do not create a dialog box in your plugin’s initialization or do anything else that may interfere with the successful startup of Acrobat or Adobe Reader. The application may be started by using an interapplication communication (IAC) event, in which case a user would not be present to respond to your dialog box.</p>
+<p><strong>Avoid invoking methods that cause Acrobat to load non-critical components:</strong> Here are actions your plugin should avoid, listed in order of importance:</p>
+<ul class="simple">
+<li><p>Avoid invoking JavaScript, which loads the EScript plugin and starts the JavaScript engine.</p></li>
+<li><p>Avoid invoking functions referenced from HFTs exported by Adobe plugins. Adobe plugins are not fully initialized until they are invoked or otherwise triggered.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Non-Adobe plugins are fully initialized during Acrobat startup. Invoking functions declared in HFTs exported by non-Adobe plugins will not significantly delay Acrobat startup, unless those plugins violate the principles listed here.</p>
+</div>
+<ul class="simple">
+<li><p>Avoid invoking system methods that load more system libraries, such as accessing the disk.</p></li>
+</ul>
+<p><strong>Do create your menu items</strong>: Creating your menu items during initialization ensures that your menu items will be available in any PDF document opened using Acrobat or Adobe Reader.</p>
+<p>If your plugin must carry out a task after all plugins are initialized, it should register for the <code class="docutils literal notranslate"><span class="pre">AVAppDidInitialize</span></code> notification. This notification is invoked when Acrobat finishes initializing and is about to enter its event loop.</p>
+</div>
+<div class="section" id="unloading">
+<h3>Unloading<a class="headerlink" href="#unloading" title="Permalink to this headline">¶</a></h3>
+<p>A plugin’s <code class="docutils literal notranslate"><span class="pre">PluginUnload</span></code> procedure should free any memory the plugin allocated and remove any user interface changes it made. Acrobat invokes this procedure when it terminates or when any of the other handshaking callbacks return <code class="docutils literal notranslate"><span class="pre">false</span></code>. This function should perform the following tasks:</p>
+<ul class="simple">
+<li><p>Remove and release all menu items and other user interface elements, HFTs, and HFTServers.</p></li>
+<li><p>Release any memory or any other allocated resources.</p></li>
+</ul>
+<p>Currently, plugins unload only when Acrobat exits.</p>
+</div>
+<div class="section" id="summarizing-a-plugin-s-life-cycle">
+<h3>Summarizing a plugin’s life cycle<a class="headerlink" href="#summarizing-a-plugin-s-life-cycle" title="Permalink to this headline">¶</a></h3>
+<p>The following steps describe the life cycle of a plugin:</p>
+<ol class="arabic simple">
+<li><p>At startup, Adobe Reader or Acrobat searches its plugin directory for plugin files.</p></li>
+<li><p>For each plugin file, Adobe Reader or Acrobat attempts to load the file. If the plugin is successfully loaded, Adobe Reader or Acrobat invokes routines in PIMain.c that complete the handshaking process.</p></li>
+<li><p>Adobe Reader or Acrobat invokes callback functions in this order:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PluginInit</span></code></p></li>
+</ul>
+</li>
+</ol>
+<p>This sequence establishes the linkages between the plugin and Acrobat or Adobe Reader, and between the plugin and any other plugins. After all plugins are loaded, Acrobat or Adobe Reader continues its own loading and starts the user interface. It adds plugin tools to the toolbar, and plugin menu items to the menu bar. Then it starts the user session.</p>
+</div>
+</div>
+<div class="section" id="using-callback-functions">
+<h2>Using callback functions<a class="headerlink" href="#using-callback-functions" title="Permalink to this headline">¶</a></h2>
+<p>Acrobat or Adobe Reader invokes callback functions that you define to perform a specific task. For example, when a user clicks a button located on a toolbar, a callback method is invoked. (See <a class="reference external" href="Plugins_Toolbutton.html#50618403_31936">Creating toolbar button callback functions</a>.)</p>
+<p>To create a callback function, you can invoke the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code>, <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateReplacement</span></code>, and <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateNotification</span></code> methods to convert functions into callback functions and to perform type checking. This enables the compiler to determine whether the correct prototypes are used for a specific callback function. For information about these methods, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+<p>Type checking only occurs if the <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> macro is set to 1 at the time your plug-in is compiled. Be sure to set it appropriately in your development environment and remove it when you build the shipping version of your plugin.</p>
+<p>The following code example shows the syntax to create a callback function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVExecuteProc</span> <span class="n">ExecProcPtr</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+ <span class="n">ExecProcPtr</span><span class="o">=</span> <span class="n">ASCallbackCreateProto</span><span class="p">(</span><span class="n">AVExecuteProc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">ShowMessage</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> macro returns a callback of the specified type that invokes the user-defined function whose address is passed as the second argument. In this example, the <code class="docutils literal notranslate"><span class="pre">ShowMessage</span></code> function is converted to a callback function (the <code class="docutils literal notranslate"><span class="pre">ShowMessage</span></code> function is a user-defined function that is invoked when a specific action occurs).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> macro returns a pointer to a function that can be invoked by a plugin or by Acrobat or Adobe Reader. Use the <code class="docutils literal notranslate"><span class="pre">ASCallbackDestroy</span></code> method to dispose of a callback that is no longer required.</p>
+<p>All callbacks must be declared with Pascal calling conventions. To make your code portable between platforms, declare all your callback functions using the <code class="docutils literal notranslate"><span class="pre">ACCB1</span></code> and <code class="docutils literal notranslate"><span class="pre">ACCB2</span></code> macros:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">ACCB1</span> <span class="n">const</span> <span class="n">char</span><span class="o">*</span> <span class="n">ACCB2</span> <span class="n">ShowMessage</span><span class="p">(</span><span class="n">Thing</span><span class="o">*</span> <span class="n">foo</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="notifications">
+<h2>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h2>
+<p>The Acrobat core API provides a notification mechanism so that plugins can synchronize their actions with Acrobat or Adobe Reader. Notifications enable a plugin to indicate that it has an interest in a specified event, such as an annotation being modified, and to provide a procedure that Acrobat invokes each time that event occurs. (See <a class="reference external" href="Plugins_Notification.html#50618408_14583">Registering for Event Notifications</a>.)</p>
+</div>
+<div class="section" id="handling-events">
+<h2>Handling events<a class="headerlink" href="#handling-events" title="Permalink to this headline">¶</a></h2>
+<p>You can use the Acrobat core API to handle various types of events.</p>
+<div class="section" id="mouse-clicks">
+<h3>Mouse clicks<a class="headerlink" href="#mouse-clicks" title="Permalink to this headline">¶</a></h3>
+<p>Mouse clicks are passed to any procedure registered using the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterForPageViewClicks</span></code> method. If all of those procedures return <code class="docutils literal notranslate"><span class="pre">false</span></code>, the click is passed to the active tool. If that returns <code class="docutils literal notranslate"><span class="pre">false</span></code>, the click is passed to any annotation at the current location.</p>
+<p>You can query the state of the mouse buttons in a manner appropriate for drag operations by invoking the <code class="docutils literal notranslate"><span class="pre">AVSysTrackMouse</span></code> method. (See the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.)</p>
+</div>
+<div class="section" id="adjust-cursor">
+<h3>Adjust cursor<a class="headerlink" href="#adjust-cursor" title="Permalink to this headline">¶</a></h3>
+<p>Adjust cursor events are passed to any procedures registered using the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterForPageViewAdjustCursor</span></code> method. If all of those procedures return <code class="docutils literal notranslate"><span class="pre">false</span></code>, the event is passed to the active tool. If that returns <code class="docutils literal notranslate"><span class="pre">false</span></code>, the event is passed to any annotation at the current location.</p>
+</div>
+<div class="section" id="key-presses">
+<h3>Key presses<a class="headerlink" href="#key-presses" title="Permalink to this headline">¶</a></h3>
+<p>Key presses are first passed to the currently active selection server. If the selection server’s <code class="docutils literal notranslate"><span class="pre">AVDocSelectionKeyDownProc</span></code> callback returns <code class="docutils literal notranslate"><span class="pre">false</span></code>, Acrobat or Adobe Reader handles special keys (Esc, Page Up, Page Down) or uses the key to select a tool from the toolbar.</p>
+</div>
+</div>
+<div class="section" id="using-plugin-prefixes">
+<h2>Using plugin prefixes<a class="headerlink" href="#using-plugin-prefixes" title="Permalink to this headline">¶</a></h2>
+<p>It is important to correctly name all items located in your plugin, such as HFTs, menus, toolbars, and so on, to ensure they function properly. Failure to do so may cause your plugin to produce unpredictable results when your plugin collides with a plugin of another developer who used the same names.</p>
+<p>Prevent spaces from being used in tokens you intend to use as names in a PDF file. This can happen, for example, if you allow a user to type a name into the PDF file and your plugin does not check the input before writing it to the file.</p>
+<div class="section" id="obtaining-a-developer-pdf-name-prefix">
+<h3>Obtaining a developer PDF name prefix<a class="headerlink" href="#obtaining-a-developer-pdf-name-prefix" title="Permalink to this headline">¶</a></h3>
+<p>In support of ISO 32000, Adobe maintains a list of the prefixes of second class names for PDF. It is freely open to all developers and organizations following the specifications given in Annex E of ISO 32000. For example, Adobe uses ADBE or Acro. This chapter uses ADBE in the examples. Your plugins will use your unique PDF name. Register your name at <a class="reference external" href="https://github.com/adobe/pdf-names-list">https://github.com/adobe/pdf-names-list</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Registering a PDF name ensures that you name is unique. It is up to you to ensure that names are unique among all plugins you or your company write (for example, you must ensure that two of your plugins do not both use ADBE_save as a menu item name).</p>
+</div>
+</div>
+<div class="section" id="using-a-developer-prefix">
+<h3>Using a developer prefix<a class="headerlink" href="#using-a-developer-prefix" title="Permalink to this headline">¶</a></h3>
+<p>Every plugin must use the prefix to name its various elements as well as private data it writes into PDF documents. The following sections describe and provide an example of each element that must use a prefix.</p>
+<div class="section" id="plugin-name">
+<h4>Plugin name<a class="headerlink" href="#plugin-name" title="Permalink to this headline">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">ExtensionName</span></code>, used in plugin handshaking, must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_PluginName</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hsData</span><span class="o">-&gt;</span><span class="n">extensionName</span> <span class="o">=</span> <span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;ADBE_SuperCrop&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="menu-prefixes">
+<h4>Menu prefixes<a class="headerlink" href="#menu-prefixes" title="Permalink to this headline">¶</a></h4>
+<p>Menu names must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:MenuName</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SuperCropMenu</span> <span class="o">=</span> <span class="n">AVMenuNew</span><span class="p">(</span><span class="n">SuperCrop</span><span class="p">,</span> <span class="s2">&quot;ADBE:SuperCropMenu&quot;</span><span class="p">,</span> <span class="n">gExtensionID</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For information about invoking the <code class="docutils literal notranslate"><span class="pre">AVMenuNew</span></code> method, see <a class="reference external" href="Plugins_Menu.html#50618409_63428">Adding menu commands to menus</a>.</p>
+</div>
+<div class="section" id="menu-items-prefixes">
+<h4>Menu items prefixes<a class="headerlink" href="#menu-items-prefixes" title="Permalink to this headline">¶</a></h4>
+<p>Menu item names must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:MenuItem</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SelSuperCropTool</span> <span class="o">=</span> <span class="n">AVMenuItemNew</span><span class="p">(</span><span class="n">SuperCrop</span><span class="p">,</span> <span class="s2">&quot;ADBE:SuperCropMItem&quot;</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span>
+ <span class="n">false</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="n">AV_OPTION</span><span class="p">,</span> <span class="n">SuperCropIcon</span><span class="p">,</span> <span class="n">gExtensionID</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tool-prefixes">
+<h4>Tool prefixes<a class="headerlink" href="#tool-prefixes" title="Permalink to this headline">¶</a></h4>
+<p>Tools names must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:Tool</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">ACCB1</span> <span class="n">ASAtom</span> <span class="n">ACCB2</span> <span class="n">SuperCropToolGetType</span><span class="p">(</span><span class="n">AVTool</span> <span class="n">tool</span><span class="p">)</span>
+ <span class="p">{</span>
+     <span class="k">return</span> <span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;ADBE:SuperCropTool&quot;</span><span class="p">);</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="toolbar-button-prefixes">
+<h4>Toolbar button prefixes<a class="headerlink" href="#toolbar-button-prefixes" title="Permalink to this headline">¶</a></h4>
+<p>Toolbar buttons must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:ToolbarButton</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myButton</span> <span class="o">=</span> <span class="n">AVToolButtonNew</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;ADBE:HelloWorld&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">void</span> <span class="o">*</span><span class="p">)</span>
+ <span class="n">myBM</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For information about creating a toolbar button, see <a class="reference external" href="Plugins_Toolbutton.html#50618403_92880">Creating toolbar buttons</a>.</p>
+</div>
+<div class="section" id="private-data-id-d-via-second-class-names">
+<h4>Private data ID’d via second-class names<a class="headerlink" href="#private-data-id-d-via-second-class-names" title="Permalink to this headline">¶</a></h4>
+<p>If you add private data to keys defined in a Cos dictionary and you want the document to be readable to others outside your company, you must identify the data using second-class names. Such key names use the syntax Prefix_PrivateDataName, where Prefix identifies the company or other entity that introduces the key, and PrivateDataName identifies the data.</p>
+<p>When adding keys that are directly referenced from private keys, it is not necessary to use the developer prefix. In the following example, the keys named <code class="docutils literal notranslate"><span class="pre">First</span></code> and <code class="docutils literal notranslate"><span class="pre">Second</span></code> cannot be referenced from any object in the PDF file except the private key that uses an appropriate prefix. Therefore, there is no need to use a prefix for the latter two keys.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">ACME_aName</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">First</span> <span class="mi">2</span> <span class="o">/</span><span class="n">Second</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Third</span> <span class="p">[</span> <span class="mi">2</span> <span class="mi">3</span> <span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For information about Cos dictionaries, such as the one shown in the previous example, see <a class="reference external" href="Plugins_Cos.html#50618418_96656">Working with Cos dictionaries</a>.</p>
+</div>
+</div>
+<div class="section" id="action-prefixes">
+<h4>Action prefixes<a class="headerlink" href="#action-prefixes" title="Permalink to this headline">¶</a></h4>
+<p>Actions must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_ActionName</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVAppRegisterActionHandler</span><span class="p">(</span><span class="o">&amp;</span><span class="n">BkmkHandler</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="s2">&quot;ADBE_HWAction&quot;</span><span class="p">,</span> <span class="s2">&quot;HWAct&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="annotation-prefixes">
+<h4>Annotation prefixes<a class="headerlink" href="#annotation-prefixes" title="Permalink to this headline">¶</a></h4>
+<p>Annotation prefixes must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_AnnotType</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;ADBE_MarkUpAnnot&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="hft-prefixes">
+<h4>HFT prefixes<a class="headerlink" href="#hft-prefixes" title="Permalink to this headline">¶</a></h4>
+<p>When your plugin exposes any HFTs of its own, it must use an HFT name that conforms to the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_HFTName</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gDebuggWinHFTServer</span> <span class="o">=</span>
+ <span class="n">HFTServerNew</span><span class="p">(</span><span class="s2">&quot;ADBE_DebugWin&quot;</span><span class="p">,</span><span class="n">provideDebugWinHFTCallback</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For information about HFTs, see <a class="reference external" href="Plugins_Hft.html#50618412_37928">Working with Host Function Tables</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="modifying-the-acrobat-or-adobe-reader-user-interface">
+<h2>Modifying the Acrobat or Adobe Reader user interface<a class="headerlink" href="#modifying-the-acrobat-or-adobe-reader-user-interface" title="Permalink to this headline">¶</a></h2>
+<p>This section describes typical operations that a plugin can perform to modify the Acrobat or Adobe Reader user interface. To modify the user interface, you must invoke methods that belong to the Acrobat Viewer Layer. As a result, you cannot modify the Acrobat or Adobe Reader user interface by using the PDF Library API. (See <a class="reference external" href="Plugins_Introduction.html#50618410_82715">Acrobat Viewer layer</a>.)</p>
+<div class="section" id="adding-or-removing-menus-and-menu-items">
+<h3>Adding or removing menus and menu items<a class="headerlink" href="#adding-or-removing-menus-and-menu-items" title="Permalink to this headline">¶</a></h3>
+<p>You can use the Acrobat core API to add new menus and add commands to existing menus. You can also remove a menu or a menu command.</p>
+<p>Menu commands can have shortcuts (keyboard accelerators). Acrobat and Adobe Reader do not ensure that plugins add unique shortcuts, but it is possible to programmatic-ally check which shortcuts are already in use before adding them.</p>
+<p>You are encouraged to have your plugin add its menu commands to the Tools menu. When the plugin starts, Acrobat or Adobe Reader automatically adds this menu, as well as the About Plugins and Plugin Help menus. After Acrobat or Adobe Reader loads all plugins, it checks these three menus and removes any that are empty. (See <a class="reference external" href="Plugins_Menu.html#50618409_98126">Creating Menus and Menu Commands</a>.)</p>
+</div>
+<div class="section" id="modifying-toolbars">
+<h3>Modifying toolbars<a class="headerlink" href="#modifying-toolbars" title="Permalink to this headline">¶</a></h3>
+<p>You can add new buttons to the toolbar, although the size and resolution of the user’s monitor can limit the number of tool buttons that are displayed. You can also remove buttons from an existing toolbar. (See <a class="reference external" href="Plugins_Toolbutton.html#50618403_37598">Creating Toolbars and Buttons</a>.)</p>
+</div>
+<div class="section" id="controlling-the-about-box-and-splash-screen">
+<h3>Controlling the About box and splash screen<a class="headerlink" href="#controlling-the-about-box-and-splash-screen" title="Permalink to this headline">¶</a></h3>
+<p>You can set values in the preferences file by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppSetPreference</span></code> method to prevent the Acrobat or Adobe Reader About box or splash screen from appearing before displaying the first document. These changes take effect the next time Acrobat or Adobe Reader is started.</p>
+<p>About Adobe Plugins is a standard menu command in the Help menu. This menu command contains a submenu. You are encouraged to have your plugin add a menu command to the submenu to bring up its own About box.</p>
+</div>
+<div class="section" id="creating-help-files">
+<h3>Creating help files<a class="headerlink" href="#creating-help-files" title="Permalink to this headline">¶</a></h3>
+<p>The Help directory that accompanies Acrobat or Adobe Reader provides a standard location for your plug-in help files. You can place a help file either in the Help directory or in a subdirectory of the Help directory. If, for example, your plugin is localized for Japanese, you may want to place its Japanese help file in a Help_JPN subdirectory. To help open locale-specific help files, the Acrobat core API provides the <code class="docutils literal notranslate"><span class="pre">AVAppOpenHelpFile</span></code> method. (See the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.)</p>
+</div>
+<div class="section" id="user-interface-guidelines">
+<h3>User interface guidelines<a class="headerlink" href="#user-interface-guidelines" title="Permalink to this headline">¶</a></h3>
+<p>Follow these guidelines when modifying the Acrobat or Adobe Reader user interface:</p>
+<ul class="simple">
+<li><p>During time-consuming operations, provide feedback to the user by using features such as progress monitors, cancel button, hourglass cursor, or status dialog boxes.</p></li>
+<li><p>If you are adding an authoring tool to a toolbar, make it ignore all annotation types except your own. This way a link or thread will not interfere with the use of your tool. Navigation and selection tools should not ignore annotations. In Acrobat, for example, the Hand, Zoom, and selection tools all follow links. If the user holds down the Shift key, these tools will ignore annotations. All other tools, however, will ignore annotations that are not of the type authored by the tool.</p></li>
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">AVToolBarIsRoomFor</span></code> method to determine if there is room on the toolbar to accommodate a new button. If there is not sufficient room, then do not attach the button to the toolbar. Because space is limited, add a menu command for each button you add to a toolbar. This provides a way for users to access a plugin’s functionality, and also enables users to access functionality by using a shortcut key (if the menu command contains one).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="acquiring-and-releasing-objects">
+<h2>Acquiring and releasing objects<a class="headerlink" href="#acquiring-and-releasing-objects" title="Permalink to this headline">¶</a></h2>
+<p>Ensure that calls to <code class="docutils literal notranslate"><span class="pre">Acquire</span></code> and <code class="docutils literal notranslate"><span class="pre">Release</span></code> methods match. Objects obtained by <code class="docutils literal notranslate"><span class="pre">Acquire</span></code> methods must ultimately be released. If they are not released, Acrobat or Adobe Reader raises exceptions when a non-zero reference count is discovered. An exception can occur when Acrobat or Adobe Reader quits or when a document is closed.</p>
+<p>When allocating memory to objects, follow these guidelines:</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ASmalloc</span></code> and <code class="docutils literal notranslate"><span class="pre">ASfree</span></code> instead of <code class="docutils literal notranslate"><span class="pre">malloc</span></code> and <code class="docutils literal notranslate"><span class="pre">free</span></code>, or you risk memory leaks.</p></li>
+<li><p>Ensure that <code class="docutils literal notranslate"><span class="pre">ASmalloc</span></code> and <code class="docutils literal notranslate"><span class="pre">ASfree</span></code> pairs match or you will create memory leaks.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ASmalloc</span></code> to allocate memory for methods that state that Acrobat or Adobe Reader free the memory for you.</p></li>
+<li><p>It is best to have your C++ classes derive from a base class which overrides <code class="docutils literal notranslate"><span class="pre">new</span></code>, such as the class <code class="docutils literal notranslate"><span class="pre">CSafeAlloc</span></code>, found in SafeAlloc.h.</p></li>
+</ul>
+<p>If you use an <code class="docutils literal notranslate"><span class="pre">Acquire</span></code> method to obtain an object, you must subsequently use a <code class="docutils literal notranslate"><span class="pre">Release</span></code> method to correctly update the reference counter, as shown in the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDDoc</span> <span class="n">doc</span><span class="p">;</span>
+<span class="n">PDPage</span> <span class="n">page</span><span class="p">;</span>
+
+<span class="o">//</span><span class="n">Acquire</span> <span class="n">a</span> <span class="n">page</span> <span class="kn">from</span> <span class="nn">a</span> <span class="n">PDF</span> <span class="n">document</span>
+<span class="n">doc</span> <span class="o">=</span> <span class="n">PDDocOpenFromASFile</span><span class="p">(</span><span class="s2">&quot;myPDF.pdf&quot;</span><span class="p">,</span> <span class="n">null</span><span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+<span class="n">page</span> <span class="o">=</span> <span class="n">PDDocAcquirePage</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="mi">42</span><span class="p">);</span>
+
+<span class="o">//</span><span class="n">Perform</span> <span class="n">a</span> <span class="n">task</span> <span class="n">using</span> <span class="n">the</span> <span class="n">page</span>
+<span class="o">//</span><span class="n">Release</span> <span class="n">the</span> <span class="n">page</span>
+<span class="n">PDPageRelease</span> <span class="p">(</span><span class="n">page</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object is acquired by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocAcquirePage</span></code> method and is released by invoking the <code class="docutils literal notranslate"><span class="pre">PDPageRelease</span></code> method. For information about working with pages, see <a class="reference external" href="Plugins_Pages.html#50618407_48762">Working with Page Views and Contents</a>.</p>
+</div>
+<div class="section" id="debugging-plugins">
+<h2>Debugging plugins<a class="headerlink" href="#debugging-plugins" title="Permalink to this headline">¶</a></h2>
+<p>When debugging your plugin, consider the following points:</p>
+<ul class="simple">
+<li><p>Include the <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">DEBUG</span> <span class="pre">1</span></code> statement to ensure that parameter type checking is performed by macros such as <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> and to enable the debug exception-handling macros.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">AVSysBeep</span></code> method provides a simple way to add an audible indication that a certain point has been reached in a plugin’s code. Likewise, the <code class="docutils literal notranslate"><span class="pre">AVAlertNote</span></code> method displays a message box that indicates whether a certain point of code is reached.</p></li>
+<li><p>Creating a log file is very helpful when tracing large sections of code or checking values of a number of variables. Use C library calls such as <code class="docutils literal notranslate"><span class="pre">printf</span></code> or platform-specific code to create a log file containing whatever information is useful for the particular situation.</p></li>
+</ul>
+</div>
+<div class="section" id="page-view-layers">
+<h2>Page view layers<a class="headerlink" href="#page-view-layers" title="Permalink to this headline">¶</a></h2>
+<p>Acrobat and Adobe Reader drawing and mouse click processing rely on the concept of page view layers, which are numbers of type <code class="docutils literal notranslate"><span class="pre">ASFixed</span></code> that are associated with the document itself and each annotation type.</p>
+<p>The following table shows the predefined layers used by Acrobat and Adobe Reader.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 71%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Layer</p></th>
+<th class="head"><p>Item</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Page contents</p></td>
+</tr>
+<tr class="row-odd"><td><p>LINK_LAYER (1)</p></td>
+<td><p>Links</p></td>
+</tr>
+<tr class="row-even"><td><p>NOTE_LAYER (3)</p></td>
+<td><p>Annotations, open and closed. Open annotations are drawn above closed annotations.</p></td>
+</tr>
+</tbody>
+</table>
+<p>These layers are used in the following situations:</p>
+<p><strong>Drawing</strong>: The layers are drawn from lowest to highest. As indicated in the table, the page contents are drawn first, followed by links, closed annotations, and finally open annotations. As a result, open annotations are drawn over any closed annotations that they overlap.</p>
+<p><strong>Mouse click processing</strong>: Occurs from highest layer to lowest layer. When a mouse click occurs, it is first passed to any open text note at the mouse click’s location, then any closed text note, then any link, and finally to the page view itself. However, mouse clicks are passed to a lower layer only if a higher layer declines to handle the mouse click by returning <code class="docutils literal notranslate"><span class="pre">false</span></code> from its <code class="docutils literal notranslate"><span class="pre">DoClick</span></code> callback. (See <a class="reference external" href="Plugins_Handlers.html#50618413_51937">Tool callbacks</a>.)</p>
+<p>Annotation handlers provided by plugins can reside in any layer. For example, a plugin could choose for its annotations to be between the page contents and links, such as in layer 0.5 (because layers are numbers of type <code class="docutils literal notranslate"><span class="pre">ASFixed</span></code> ).</p>
+<p>An annotation handler’s <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerGetLayerProc</span></code> callback is called during screen updates and mouse clicks to return its layer. Using a callback rather than a constant value allows an annotation’s layer to change. For example, Acrobat’s built-in text annotation changes its layer, allowing open text annotations to receive mouse clicks before closed annotations, if both are at the mouse click location (on the other hand, Acrobat’s built-in link annotation does not change its layer).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Acrobat and Adobe Reader do not invoke <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerGetLayerProc</span></code> callbacks for changes in value, so be sure to invalidate the page rectangle of an annotation when its layer changes.</p>
+</div>
+<p>For information about page views, see <a class="reference external" href="Plugins_Pages.html#50618407_48762">Working with Page Views and Contents</a>.</p>
+</div>
+<div class="section" id="minimizing-screen-redrawing">
+<h2>Minimizing screen redrawing<a class="headerlink" href="#minimizing-screen-redrawing" title="Permalink to this headline">¶</a></h2>
+<p>Minimize screen redrawing by using the <code class="docutils literal notranslate"><span class="pre">AVPageViewBeginOperation</span></code> and <code class="docutils literal notranslate"><span class="pre">AVPageViewEndOperation</span></code> methods to bracket any sequence of view changes you may perform. For example, the sequence of changing to another page, scrolling, and zooming would normally redraw the screen three times. But, by invoking the <code class="docutils literal notranslate"><span class="pre">AVPageViewBeginOperation</span></code> method before the sequence and the <code class="docutils literal notranslate"><span class="pre">AVPageViewEndOperation</span></code> method after it, only one redraw occurs.</p>
+</div>
+<div class="section" id="storing-private-data-in-pdf-files">
+<h2>Storing private data in PDF files<a class="headerlink" href="#storing-private-data-in-pdf-files" title="Permalink to this headline">¶</a></h2>
+<p>Plugins can store private data in PDF files, although private data must be stored in such a way that the file can still be drawn by Acrobat. Adobe maintains a registry of private PDF dictionary key names to reduce the possibility of a plugin’s key names conflicting with names belonging to other plugins. For information about dictionaries, see <a class="reference external" href="Plugins_Cos.html#50618418_96656">Working with Cos dictionaries</a>.</p>
+<p>Private dictionary keys exist in the following categories:</p>
+<ul class="simple">
+<li><p>Specific keys that are proposed by third parties but are generally useful. Adobe maintains a registry of these names.</p></li>
+<li><p>Keys registered by third parties as well as keys whose prefix is registered that are applicable only to a limited set of users. Adobe maintains a registry of these names and prefixes.</p></li>
+<li><p>Keys that begin with a special prefix reserved by Adobe for private extensions. These keys are intended for use in files that are never seen by other third parties, since these keys may conflict with keys defined by others.</p></li>
+</ul>
+</div>
+<div class="section" id="exporting-data-from-pdf-document-objects">
+<h2>Exporting data from PDF document objects<a class="headerlink" href="#exporting-data-from-pdf-document-objects" title="Permalink to this headline">¶</a></h2>
+<p>Using the Acrobat core API, you can export data from PDF document objects to XML files. Object data contain property-value pairs. For example, consider a PDF document object that contains the following XML elements:</p>
+<table class="docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Node</p></th>
+<th class="head"><p>Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>nodeTag</p></td>
+<td><p>xyz_Node</p></td>
+</tr>
+<tr class="row-odd"><td><p>nodeNameTag</p></td>
+<td><p>xyz_NodeName</p></td>
+</tr>
+<tr class="row-even"><td><p>propTag</p></td>
+<td><p>xyz_Property</p></td>
+</tr>
+<tr class="row-odd"><td><p>propNameTag</p></td>
+<td><p>xyz_PropertyName</p></td>
+</tr>
+<tr class="row-even"><td><p>propValTag</p></td>
+<td><p>xyz_Value</p></td>
+</tr>
+</tbody>
+</table>
+<p>After you export the data from this object into an XML file, the data would appear as shown in the following diagram.</p>
+<img alt="_images/ExtractXML.png" src="_images/ExtractXML.png" />
+<p>To retrieve data from a PDF document object, invoke the <code class="docutils literal notranslate"><span class="pre">PDDocExportUserProperties</span></code> method and pass the following arguments:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents a PDF document that contains the object from which data is extracted. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDSElement</span></code> instance that represents PDF structural elements.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object that represents XML content converted from information from labels.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> value that specifies whether to save object data of the specified element (<code class="docutils literal notranslate"><span class="pre">false</span></code> ) or the whole subtree (<code class="docutils literal notranslate"><span class="pre">true</span></code> ).</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> value that specifies whether to include hidden content of the element.</p></li>
+<li><p>An instance of the <code class="docutils literal notranslate"><span class="pre">PDUserPropertiesXMLLabels</span></code> data structure that specifies information for converting object data to XML. For information about this data structure, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adobe Inc..
+      <span class="lastupdated">
+        Last updated on Feb 23, 2022.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

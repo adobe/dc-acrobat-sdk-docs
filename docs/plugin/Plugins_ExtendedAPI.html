@@ -1,0 +1,1697 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Working with Acrobat Extended APIs &mdash; Acrobat Plugin Developer Guide</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+    <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homePlugins_ExtendedAPI.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Creating an Adobe Reader plugin" href="Plugins_ReaderPlug.html" />
+    <link rel="prev" title="Handling Exceptions" href="Plugins_Exceptions.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat Plugin Developer Guide
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction to Plugin Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-plugins">About plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-the-acrobat-core-api">About the Acrobat core API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-viewer-layer">Acrobat Viewer layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#portable-document-layer">Portable Document layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-support-layer">Acrobat Support layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-layer">Cos layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#platform-specific-methods">Platform-specific methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-objects">Acrobat core API objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#file-object-interrelationships">File object interrelationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-object-interrelationships">Document object interrelationships</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-methods">Acrobat core API methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-types">Data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#scalar-types">Scalar types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#simple-types">Simple types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#complex-types">Complex types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#opaque-types">Opaque types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-types">Cos types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-pdf-library-and-plugin-applications">About PDF Library and plugin applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#manipulating-acrobat-and-adobe-reader">Manipulating Acrobat and Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#displaying-a-pdf-document-in-an-external-window">Displaying a PDF document in an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#indexed-searching">Indexed searching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modifying-file-access">Modifying file access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#creating-new-annotation-types">Creating new annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dynamically-adding-text-to-pdf-documents">Dynamically adding text to PDF documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#understanding-your-target-application">Understanding your target application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#rights-enabled-pdf-documents">Rights-enabled PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#adobe-reader-plugins">Adobe Reader plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#registering-plugins-for-use-by-the-plugin-finder">Registering plugins for use by the plugin finder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#pdf-dictionary-extensions">PDF dictionary extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#unloading">Unloading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#summarizing-a-plugin-s-life-cycle">Summarizing a plugin’s life cycle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-callback-functions">Using callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#notifications">Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#handling-events">Handling events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#mouse-clicks">Mouse clicks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adjust-cursor">Adjust cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#key-presses">Key presses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes">Using plugin prefixes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#obtaining-a-developer-pdf-name-prefix">Obtaining a developer PDF name prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#using-a-developer-prefix">Using a developer prefix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#plugin-name">Plugin name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-prefixes">Menu prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-items-prefixes">Menu items prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#tool-prefixes">Tool prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#toolbar-button-prefixes">Toolbar button prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#private-data-id-d-via-second-class-names">Private data ID’d via second-class names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#action-prefixes">Action prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#annotation-prefixes">Annotation prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#hft-prefixes">HFT prefixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#modifying-the-acrobat-or-adobe-reader-user-interface">Modifying the Acrobat or Adobe Reader user interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adding-or-removing-menus-and-menu-items">Adding or removing menus and menu items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#modifying-toolbars">Modifying toolbars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#controlling-the-about-box-and-splash-screen">Controlling the About box and splash screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#creating-help-files">Creating help files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#user-interface-guidelines">User interface guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#acquiring-and-releasing-objects">Acquiring and releasing objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#debugging-plugins">Debugging plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#page-view-layers">Page view layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#minimizing-screen-redrawing">Minimizing screen redrawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#storing-private-data-in-pdf-files">Storing private data in PDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#exporting-data-from-pdf-document-objects">Exporting data from PDF document objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_CreatingSimplePlug.html">Creating Plugin and PDF Library Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#working-with-platform-specific-techniques">Working with platform-specific techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#about-platform-dependent-data">About platform-dependent data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#portability-techniques">Portability techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows-techniques">Windows techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-windows-plugins">Developing Windows plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-plugins">Locating and loading plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#why-a-plugin-might-not-load">Why a plugin might not load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros-and-project-settings">Macros and project settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#interapplication-communication">Interapplication communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#debugging">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#handling-the-thread-local-storage-tls-limit">Handling the thread local storage (TLS) limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-modal-dialog-boxes">Using modal dialog boxes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-techniques">Mac OS techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-a-mac-os-plugin">Developing a Mac OS plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-the-samples">Using the samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#establishing-carbon-or-cocoa-compliance">Establishing Carbon or Cocoa compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#xcode-configuration-files">Xcode configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-setgworld-rather-than-setport">Using SetGWorld rather than SetPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-a-plugin">Locating and loading a plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-memory">Using memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#resource-file-considerations">Resource file considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-saferesources">Using SafeResources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#manipulating-the-resource-chain-directly">Manipulating the resource chain directly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros">Macros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-only-methods">Mac OS-only methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#inter-application-communication">Inter application communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-plugin">Creating a sample plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-acrobat-sdk-library-files">Including Acrobat SDK library files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-the-pimain-source-file">Adding the PIMain source file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-application-logic">Adding application logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#compiling-and-building-your-plugin">Compiling and building your plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-pdf-library-application">Creating a sample PDF Library application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#contents-of-the-pdf-library-sdk">Contents of the PDF Library SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-library-files">Including library files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-applications-with-the-adobe-pdf-library">Developing applications with the Adobe PDF Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os">Mac OS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#initialization-and-termination">Initialization and termination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#upgrading-existing-plugins">Upgrading existing plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#detecting-supported-apis">Detecting supported APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#migrating-pdfl-apps-to-xcode">Migrating PDFL apps to Xcode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Insertext.html">Inserting Text into PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-pdf-document">Creating a new PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-page">Creating a new page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-container">Creating a container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#acquiring-fonts">Acquiring fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-pdegraphicstate-object">Creating a PDEGraphicState object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-an-asfixedmatrix-object">Creating an ASFixedMatrix object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#inserting-text">Inserting text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#saving-the-pdf-document">Saving the PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#examining-a-pdfl-app-source-file">Examining a PDFL app source file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-handler-for-an-external-window">Creating a handler for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-an-open-dialog-box">Displaying an open dialog box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-a-pdf-in-a-window">Displaying a PDF in a window</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#determining-the-pdf-version">Determining the PDF version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version">PDF version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version-extensions">PDF version extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#setting-the-extension-level-of-a-document">Setting the extension level of a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#getting-the-extension-level-of-a-document">Getting the extension level of a document</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#bridging-core-api-layers">Bridging core API layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object">Creating a PDDoc object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object-for-an-open-pdf">Creating a PDDoc object for an open PDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#accessing-non-pdf-files">Accessing non-PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#printing-documents">Printing documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#working-with-the-pdf-x-format">Working with the PDF/X format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Menu.html">Creating Menus and Menu Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#about-menus">About menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenubar-typedefs">About AVmenubar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenu-typedefs">About AVMenu typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenuitem-typedefs">About AVMenuItem typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#adding-menu-commands-to-menus">Adding menu commands to menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-an-existing-menu">Adding a menu command to an existing menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-a-new-menu">Adding a menu command to a new menu</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#creating-menu-callback-functions">Creating menu callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#determining-if-a-menu-item-can-be-executed">Determining if a menu item can be executed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Toolbutton.html">Creating Toolbars and Buttons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#about-toolbars">About toolbars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbar-typedefs">About AVToolBar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbutton-typedefs">About AVToolButton typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-toolbars">Retrieving toolbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-buttons">Creating toolbar buttons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-help-text-for-a-button">Setting help text for a button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-label-text">Setting label text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#creating-a-sub-menu-for-a-button">Creating a sub-menu for a button</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-existing-toolbar-buttons">Retrieving existing toolbar buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#attaching-a-button-to-a-toolbar">Attaching a button to a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#exposing-a-button-in-a-web-browser">Exposing a button in a web browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#removing-a-button-from-a-toolbar">Removing a button from a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-button-callback-functions">Creating toolbar button callback functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Annotations.html">Creating Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-text-annotations">Working with text annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-text-annotations">Creating text annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#retrieving-existing-annotations">Retrieving existing annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-text-annotations">Modifying text annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-redaction-annotations">Working with redaction annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-a-redaction-annotation">Creating a redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-an-existing-redaction-annotation">Modifying an existing redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#applying-redaction-annotations-removing-redacted-content">Applying redaction annotations (removing redacted content)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Bookmark.html">Working with Bookmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#about-bookmarks">About bookmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#creating-bookmarks">Creating bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#defining-bookmark-actions">Defining bookmark actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-pdviewdestination-object">Creating a PDViewDestination object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-avpageview-object">Creating a AVPageView object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#assigning-an-action-to-a-bookmark">Assigning an action to a bookmark</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#removing-bookmark-actions">Removing bookmark actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#opening-and-closing-bookmarks">Opening and closing bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-bookmarks">Retrieving bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-the-root-bookmark">Retrieving the root bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-a-specific-bookmark">Retrieving a specific bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-all-bookmarks">Retrieving all bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#deleting-bookmarks">Deleting bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pages.html">Working with Page Views and Contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-coordinates">About page coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-views">About page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#displaying-page-views">Displaying page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#modifying-page-contents">Modifying page contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#creating-a-pdecontent-object">Creating a PDEContent object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#accessing-page-contents">Accessing page contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#determining-page-element-types">Determining page element types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#modifying-text-elements">Modifying text elements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Words.html">Working with Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#about-searching-for-words">About searching for words</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdword-typedefs">About PDWord typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdwordfinder-typedefs">About PDWordFinder typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#creating-a-pdwordfinder-object">Creating a PDWordFinder object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#extracting-and-displaying-words">Extracting and displaying words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#highlighting-words">Highlighting words</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Handlers.html">Creating Handlers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#about-handlers">About handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#action-handlers">Action handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#annotation-handlers">Annotation handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#avcommand-handlers">AVCommand handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#creating-an-avcommand-handler">Creating an AVCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#invoking-avcommands">Invoking AVCommands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#configuring-avcommands">Configuring AVCommands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-input-parameters">Setting input parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-configuration-parameters">Setting configuration parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-avcommand-parameters">Setting AVCommand parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#running-commands">Running commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#exposing-avcommands-to-the-batch-framework">Exposing AVCommands to the batch framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#adding-a-handler-to-the-global-command-list">Adding a handler to the global command list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#supporting-properties">Supporting properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-format-conversion-handlers">File format conversion handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-specification-handlers">File specification handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#selection-servers">Selection servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#tool-callbacks">Tool callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#window-handlers">Window handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-systems">File systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#progress-monitors">Progress monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#transition-handlers">Transition handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#adding-message-handling">Adding message handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Notification.html">Registering for Event Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#registering-event-notifications">Registering event notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#unregistering-event-notifications">Unregistering event notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Security.html">Working with Document Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-document-security">About document security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-security-handlers">About security handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#adding-a-security-handler">Adding a security handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handlers-data">Security handlers data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handler-callbacks">Security handler callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#acrobat-s-authorization-procedure">Acrobat’s authorization procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-a-secured-file">Opening a secured file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-secured-file">Saving a secured file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#setting-security-for-a-document">Setting security for a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-file-with-an-encryption-dictionary">Saving a file with an encryption dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-an-encrypted-file">Opening an encrypted file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Unicode.html">Working with Unicode Paths</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#about-unicode-paths">About Unicode paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#creating-unicode-file-path-application-logic">Creating Unicode file path application logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#retrieving-unicode-path-values">Retrieving Unicode path values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object">Creating an ASFileSys object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object-that-supports-unicode-paths">Creating an ASFileSys object that supports Unicode paths</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Hft.html">Working with Host Function Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#about-host-function-tables">About host function tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#exporting-host-function-tables">Exporting host function tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-methods">Creating HFT methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-method-definitions">Creating HFT method definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-function-prototypes">Defining function prototypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-an-hft-method-name">Defining an HFT method name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-callback-functions">Creating HFT callback functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-new-host-function-tables">Creating new Host Function Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#examining-hft-header-and-source-files">Examining HFT header and source files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-header-file">Examining an HFT header file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-source-file">Examining an HFT source file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#importing-an-existing-hft">Importing an existing HFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#invoking-hft-methods">Invoking HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#replacing-hft-methods">Replacing HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#migrating-non-hft-pdf-library-applications-to-hft-applications">Migrating non-HFT PDF Library applications to HFT applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Cos.html">Working with Cos Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#about-cos-objects">About Cos objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-direct-and-indirect-objects">About direct and indirect objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-cos-object-types">About Cos object types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-strings">Cos strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#hexadecimal-strings">Hexadecimal strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-arrays">Cos arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-names">Cos names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-dictionaries">Cos dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-streams">Cos streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-strings">Working with Cos strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-strings">Creating Cos strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-string-value">Retrieving the string value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-arrays">Working with Cos arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-arrays">Creating Cos arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-cos-array-values">Retrieving Cos array values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries">Working with Cos dictionaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-dictionaries">Creating Cos dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-values-from-a-cos-dictionary">Retrieving values from a Cos dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#querying-a-cos-dictionary-for-a-key">Querying a Cos dictionary for a key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-names">Working with Cos names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-names">Creating Cos names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-value-of-a-name-object">Retrieving the value of a name object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-streams">Working with Cos streams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-streams">Creating Cos streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#creating-a-stream-dictionary">Creating a stream dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#inserting-a-cos-stream-into-a-pdf-document">Inserting a Cos stream into a PDF document</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#populating-a-pdf-with-a-content-stream">Populating a PDF with a content stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_3D_samples.html">Working with 3D Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#creating-3d-annotations">Creating 3D annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_3D_samples.html#adding-3d-data-to-an-annotation">Adding 3D data to an annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-3d-annotation-dictionary-entries">Creating the 3D annotation dictionary entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#specifying-the-3d-stream">Specifying the 3D stream</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-stream-object">Creating the stream object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#adding-the-cos-stream-to-the-annotation-dictionary">Adding the Cos stream to the annotation dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#creating-the-attributes-dictionary">Creating the attributes dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_3D_samples.html#specifying-javascript-code">Specifying JavaScript code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-default-view">Setting the default view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-annotation-appearance">Setting the annotation appearance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_3D_samples.html#setting-the-activation-dictionary">Setting the activation dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_A3D_API.html">Parsing and Creating PRC Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#working-with-the-acrobat-3d-api">Working with the Acrobat 3D API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#versions">Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-with-different-prc-format-versions">Compatibility with different PRC format versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-between-the-acrobat-3d-library-and-the-acrobat-3d-api">Compatibility between the Acrobat 3D Library and the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#data-types-naming-conventions-and-character-encoding">Data types, naming conventions, and character encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#structured-and-recursive-nature-of-prc-parsing">Structured and recursive nature of PRC parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking-in-your-plugin">Implementing external linking in your plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking">Implementing external linking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#parsing-a-prc-file">Parsing a PRC file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#handling-errors">Handling errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#copying-the-embedded-prc-file-to-a-separate-file">Copying the embedded PRC file to a separate file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#initializing-the-acrobat-3d-api">Initializing the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-structure-prc-entities">Parsing structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-model-file-data">Parse the model file data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-product-occurrence">Parse a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-part-definition">Parse a part definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-representation-items">Parsing representation items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-representation-item-set-prc-entity-a3driset">Parse a representation item set (PRC entity A3DRiSet)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-brep-model-representation-item-prc-entity-a3dribrepmodel">Parse a Brep model representation item (PRC entity A3DRiBrepModel)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-coordinate-system-data">Parse coordinate system data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-tessellation-prc-entities">Parsing tessellation PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-tessellation-base-data">Parse tessellation base data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-3d-tessellation-data">Parse 3D tessellation data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-topology-prc-entities">Parsing topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-body-data">Parse topology body data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-context-data">Parse topology context data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-brep-model-s-data">Parse the Brep model’s data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-connex-data">Parse Connex data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-shell-entity">Parse a shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-face-s-surface-data">Parse the face’s surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#convert-surface-data-to-nurbs-for-other-than-uv-mapped-surfaces">Convert surface data to Nurbs (for other than UV-mapped surfaces)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-generic-surface-data">Parse generic surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-nurbs-surface-data">Parse Nurbs surface data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-prc-entities-that-specify-graphics">Parsing PRC entities that specify graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-attributes-that-appear-in-an-entity-base">Parsing attributes that appear in an entity base</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-root-base-entity-data">Parsing root-base entity data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-miscellaneous-attribute-entity">Parse the miscellaneous attribute entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-graphic-attributes-using-miscellaneous-cascaded-attributes">Parsing graphic attributes using miscellaneous cascaded attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#to-create-and-push-a-miscellaneous-cascaded-attributes-structure">To create and push a miscellaneous cascaded attributes structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#terminating-the-interface-with-the-acrobat-3d-api">Terminating the interface with the Acrobat 3D API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#terminate-your-interface-with-the-acrobat-3d-api">Terminate your interface with the Acrobat 3D API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-prc-file-that-uses-boundary-representation">Creating a PRC file that uses boundary representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#error-handling">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-model-file-entity-and-exporting-it-to-a-physical-file">Creating a model file entity and exporting it to a physical file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-file-that-contains-the-prc-data">Create a file that contains the PRC data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-structure-prc-entities">Creating structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-model-file-entity">Create a model file entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-product-occurrence">Create a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-part-definition">Create a part definition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-representation-item-prc-entities">Creating representation item PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-brep-model-representation-item">Create a Brep model representation item</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-topology-prc-entities">Creating topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-brep-data-entity">Create a topology Brep data entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-connex-entity">Create a topology connex entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-shell-entity">Create a topology shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-face-entity">Create a topology face entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-loop-entity">Create a topology loop entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-co-edge-entity">Create a topology co-edge entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-edge-entity">Create a topology edge entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-geometry-prc-entities">Creating geometry PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-surface-cylinder-entity">Create a surface cylinder entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-circular-curve-entity">Create a circular curve entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#defining-root-level-attributes-for-a-prc-entity">Defining root-level attributes for a PRC entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-omit-modeler-data">Define miscellaneous attributes that omit modeler data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-include-modeler-data">Define miscellaneous attributes that include modeler data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-3d-annotation-that-references-the-prc-file">Creating a 3D annotation that references the PRC file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-tessellation-entity-for-representing-faceted-objects">Creating a tessellation entity for representing faceted objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-base-data">Create the tessellation base data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-facet-data">Create the tessellation facet data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Exceptions.html">Handling Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#creating-exception-handlers">Creating exception handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#returning-a-value-from-an-exception-handler">Returning a value from an exception handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#raising-exceptions">Raising exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#exception-handling-scenarios">Exception handling scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-goto-statements">Using goto statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-nested-exception-handlers">Using nested exception handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-register-variables">Using register variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Acrobat Extended APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#search-extended-api">Search extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#catalog-extended-api">Catalog extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pdf-consultant-and-accessibility-checker-extended-api">PDF Consultant and Accessibility Checker extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#acrobat-agents">Acrobat agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reclassifying-and-revisiting">Reclassifying and revisiting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#agent-architecture">Agent architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#how-the-consultant-works">How the consultant works</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#removing-or-modifying-objects">Removing or modifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reclassifying-objects">Reclassifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#consultant-process">Consultant process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#important-issues-for-consultant-development">Important issues for consultant development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#maintaining-the-traversal-stack">Maintaining the traversal stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deciding-consultant-or-the-agent-does-the-work">Deciding consultant or the agent does the work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoiding-agent-collisions">Avoiding agent collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#avoiding-visitation-collisions">Avoiding visitation collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#importing-the-consultant-hfts-into-a-plugin">Importing the consultant HFTs into a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-and-destroying-consultants">Creating and destroying consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#registering-agents-with-consultants">Registering agents with consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starting-the-consultant">Starting the consultant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#consultant-object-type-identification">Consultant object type identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-an-agent-class">Creating an agent class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-agent-constructors">Creating agent constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#recognizing-objects-of-interest">Recognizing objects of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#post-processing-stage">Post processing stage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#digital-signature-extended-api">Digital signature extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-pubsec-layer">The PubSec layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digital-signature-components">Digital signature components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#digital-signature-scenarios">Digital signature scenarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initializing-the-digital-signature-plugin">Initializing the digital signature plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#understanding-the-process">Understanding the process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dialogs-and-signature-gathering">Dialogs and signature gathering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#saving-a-document">Saving a document</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#finishing-the-process">Finishing the process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#revalidating-signatures">Revalidating signatures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-available-callbacks">Additional available callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-plugin-support">Additional plugin support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rollback-support">Rollback support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#forms-extended-api">Forms extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#weblink-extended-api">Weblink extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#weblink-services">Weblink services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-a-custom-driver">Writing a custom driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#spelling-extended-api">Spelling extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acrocolor-extended-api">AcroColor extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#color-conversion-operations">Color conversion operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#object-attributes">Object attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#color-space-attributes">Color space attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#conversion-actions">Conversion actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#action-modifiers">Action modifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ink-aliasing">Ink aliasing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-structures">Data structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-enum-values">Data enum values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#converting-a-document-to-rgb">Converting a document to RGB</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pdf-optimizer-api">PDF Optimizer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ReaderPlug.html">Creating an Adobe Reader plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#configuring-preprocessor-definitions">Configuring preprocessor definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#creating-the-public-and-private-key-pairs">Creating the public and private key pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#enabling-the-plugin-for-adobe-reader">Enabling the plugin for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#troubleshooting-an-adobe-reader-plugin">Troubleshooting an Adobe Reader plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#plugin-appears-to-be-ignored-by-adobe-reader">Plugin appears to be ignored by Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#adobe-reader-error-messages">Adobe Reader error messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_Plugins.html">Reader Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#reader-enablement">Reader enablement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#apis-available-for-adobe-reader">APIs available for Adobe Reader</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat Plugin Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Working with Acrobat Extended APIs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="Plugins_ReaderPlug.html" class="btn btn-neutral float-right" title="Creating an Adobe Reader plugin" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="Plugins_Exceptions.html" class="btn btn-neutral float-left" title="Handling Exceptions" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="working-with-acrobat-extended-apis">
+<h1>Working with Acrobat Extended APIs<a class="headerlink" href="#working-with-acrobat-extended-apis" title="Permalink to this headline">¶</a></h1>
+<p>Some of Acrobat’s default plugins expose their APIs for use by third parties. These are Acrobat’s extended APIs. These APIs are specified in the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+<div class="section" id="search-extended-api">
+<h2>Search extended API<a class="headerlink" href="#search-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>The Adobe Acrobat Search plugin allows users to perform text searches in PDF documents. It adds menus, menu items, a toolbar button, and a Search panel to the Acrobat viewer.</p>
+<p>The Search plugin exports a host function table (HFT) that contains methods that can be used by other plugins. The HFT’s name is Search, and its version number is 0. To use the Search plugin’s HFT, a plugin must include the header file SrchClls.h. The plugin must also import the HFT using the <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method and assign the HFT returned by this call to a plugin-defined global variable named <code class="docutils literal notranslate"><span class="pre">gSearchHFT</span></code>. (See <a class="reference external" href="Plugins_Hft.html#50618412_37928">Working with Host Function Tables</a>.)</p>
+<p>Acrobat 6.0 and later has two versions of the Search plugin:</p>
+<ul class="simple">
+<li><p>The Search plugin uses a search engine licensed from Lextek International. Lextek can be contacted at <a class="reference external" href="http://www.lextek.com.">http:   //www.lextek.com</a>.</p></li>
+<li><p>The Search5 plugin uses a search engine licensed from Verity, Inc. Verity can be contacted at <a class="reference external" href="www.verity.com">http:   //www.verity.com</a>.</p></li>
+</ul>
+<p>You can perform the following tasks with either version of the Search plugin:</p>
+<ul class="simple">
+<li><p>Create or delete indexes</p></li>
+<li><p>Determine what indexes are available</p></li>
+<li><p>Send queries to an existing index</p></li>
+</ul>
+<p>You cannot use either version of the Search plugin to directly obtain the results of a search, for manipulation or for display in an application other than Adobe Acrobat. For information about the methods included in the Search extended API, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="catalog-extended-api">
+<h2>Catalog extended API<a class="headerlink" href="#catalog-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>Acrobat Catalog is a plugin that allows you to create a full-text index of a set of PDF documents. A full-text index is a searchable database of all the text in the documents. After building an index, you can use the Search command to search the entire library quickly. Searches of full-text indexes created using Catalog are faster and more convenient than using the Find command.</p>
+<p>The Catalog plugin has an HFT consisting of several methods that plugin developers can import and use. In addition, Catalog supports DDE, and broadcasts several Windows messages. For information about the methods included in the Catalog extended API, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="pdf-consultant-and-accessibility-checker-extended-api">
+<h2>PDF Consultant and Accessibility Checker extended API<a class="headerlink" href="#pdf-consultant-and-accessibility-checker-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>Acrobat comes with a plugin called the PDF Consultant and Accessibility Checker. This plugin walks through PDF documents, visiting each object and determining its type and other statistics. It can make certain modifications or repairs to the PDF document. The objects that the consultant visits can range from simple, primitive types such as Cos strings to higher-level objects such as images. Users invoke the consultant to operate on a particular PDF document, choose which tests or repairs to run, then view the results and select repair options.</p>
+<p>The consultant visits the objects in a PDF document according to instructional flags you pass to it. After the consultant visits an object, the object may be different. The consultant reclassifies modified objects before moving on to the next object.</p>
+<p>As the consultant traverses a PDF document, gathering objects of interest, it can perform the following tasks:</p>
+<ul class="simple">
+<li><p>Walk a given hierarchy</p></li>
+<li><p>Keep track of cycles</p></li>
+<li><p>Ensure that objects are only visited once, if desired</p></li>
+<li><p>Recognize object types</p></li>
+<li><p>Keep a traversal stack list</p></li>
+</ul>
+<div class="section" id="acrobat-agents">
+<h3>Acrobat agents<a class="headerlink" href="#acrobat-agents" title="Permalink to this headline">¶</a></h3>
+<p>The consultant accomplishes its task by using agents, which are pieces of code you design to gather the statistics and recommend to the consultant the necessary repairs of the document. Separate agents handle each area of analysis and repair. The agents inform the consultant of the particular types of objects in which they are interested by registering with the consultant. When the consultant has one or more agents registered, it hands each object of the requested type(s) in the current document to each of the agents that requested that type. The consultant gives objects to each agent in turn, depending on the order in which they registered.</p>
+<p>The consultant must intelligently determine the type of each object it comes across (both direct and indirect), so it can pass appropriate objects to the agents, or replace or remove ones that it has been instructed to handle itself. The consultant communicates directly with agents, keeping lists of which agents are interested in which objects, and obtaining instructions from the agent as to an object’s visitation status.</p>
+<p>Agents can perform their own repairs and modifications to the PDF document, and can return a corrected object to serve as a replacement for the object the consultant originally passed to it. Agents can also modify the Cos graph themselves (including adding or removing Cos objects or modifying the contents such as keys or array elements).</p>
+<p>The consultant keeps a list of each object (starting with the object which began the traversal) that it visits on its way to any given object. Agents must be careful not to make any modifications that would affect any of the objects in the list, which is referred to as the traversal stack. For this reason, agents can specify a post-processing callback that the consultant invokes once it has finished traversing the entire document.</p>
+</div>
+<div class="section" id="reclassifying-and-revisiting">
+<h3>Reclassifying and revisiting<a class="headerlink" href="#reclassifying-and-revisiting" title="Permalink to this headline">¶</a></h3>
+<p>If an agent or the consultant modifies an object, the consultant reclassifies that object, possibly changing its type.</p>
+<p>Agents also pass visitation flags to the consultant that determine how object types should be visited. Limiting the traversal is important, as PDF documents are graphs, arbitrarily complex, and often there are many ways to visit a single object. If the consultant reclassifies an object, it may also change the way that object is revisited. You must keep this in mind as you develop your agents.</p>
+</div>
+<div class="section" id="agent-architecture">
+<h3>Agent architecture<a class="headerlink" href="#agent-architecture" title="Permalink to this headline">¶</a></h3>
+<p>Your agent code will primarily consist of a structure, as defined in the ConsExpt.h header file. Acrobat provides a C++ wrapper class to facilitate writing agents; you can derive an agent class from this base class.</p>
+</div>
+<div class="section" id="how-the-consultant-works">
+<h3>How the consultant works<a class="headerlink" href="#how-the-consultant-works" title="Permalink to this headline">¶</a></h3>
+<p>The consultant completes a full, non-recursive traversal of the Cos graph that comprises a PDF document, keeping track of cycles as it goes. Note that there is no guarantee that objects will be visited in any particular order, only that the consultant will visit all objects (except isolated objects such as the <code class="docutils literal notranslate"><span class="pre">DocInfo</span></code> object or previously orphaned objects) at least once, provided no agents modify the graph such that graph paths are removed or redirected.</p>
+<div class="section" id="removing-or-modifying-objects">
+<h4>Removing or modifying objects<a class="headerlink" href="#removing-or-modifying-objects" title="Permalink to this headline">¶</a></h4>
+<p>If an agent removes, replaces, or modifies an object, the consultant passes the modified objects (if they are encountered) to other agents. For example, <code class="docutils literal notranslate"><span class="pre">DictA</span></code> refers to <code class="docutils literal notranslate"><span class="pre">DictB</span></code>.The first agent replaces all references to <code class="docutils literal notranslate"><span class="pre">DictB</span></code> with references to <code class="docutils literal notranslate"><span class="pre">DictC</span></code>, so when later agents receive <code class="docutils literal notranslate"><span class="pre">DicA</span></code> from the consultant, they will see the references to <code class="docutils literal notranslate"><span class="pre">DictC</span></code>.</p>
+</div>
+<div class="section" id="reclassifying-objects">
+<h4>Reclassifying objects<a class="headerlink" href="#reclassifying-objects" title="Permalink to this headline">¶</a></h4>
+<p>In general, the consultant reclassifies an object after an agent is finished performing operations on it. It is possible that, in the process of modifying the object, the agent may actually change the type of the object. This could mean that agents originally interested in the object may not be interested in it. So the consultant must reclassify an object after each agent has finished with it. Because the default behavior in the revisit upon reclassification mode is to revisit objects when they are reclassified, new objects added in this mode will actually be visited again if they are reclassified as the traversal continues.</p>
+<p>Determining the higher-level type (the <code class="docutils literal notranslate"><span class="pre">PDFObjType</span></code>, as the consultant code calls it) of a given Cos object is not always easy. The consultant not only looks at the construction of objects (what keys are present in the object) but also at how the object was reached (through what particular object type and via what keys). Objects that are interpreted differently depending on how they are traversed can be properly identified.</p>
+</div>
+<div class="section" id="consultant-process">
+<h4>Consultant process<a class="headerlink" href="#consultant-process" title="Permalink to this headline">¶</a></h4>
+<p>The following steps describe the consultant process:</p>
+<ol class="arabic simple">
+<li><p>You create a consultant.</p></li>
+<li><p>You create an agent.</p></li>
+<li><p>Register your agent with the consultant, with information as to which object types are of interest.</p></li>
+<li><p>The user invokes the consultant to work on a particular PDF document.</p></li>
+<li><p>The consultant creates a traversal stack to keep track of where it is in walking through the PDF document.</p></li>
+<li><p>The consultant begins traversing the PDF document. If agents have instructed the consultant to modify or remove the object, it does so, returning the appropriate replacement.</p></li>
+<li><p>The consultant pushes the object onto the traversal stack and sends a message to the agent that the object was found.</p></li>
+<li><p>The agent sends messages to the consultant about what to do to objects: replace them, remove them, revisit them later or not.</p></li>
+<li><p>When the entire PDF document has been traversed, the consultant calls the agent back to perform any post-processing repairs it may want to do.</p></li>
+<li><p>The consultant unregisters all agents.</p></li>
+<li><p>You release the agent object.</p></li>
+<li><p>You release the consultant object.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="important-issues-for-consultant-development">
+<h3>Important issues for consultant development<a class="headerlink" href="#important-issues-for-consultant-development" title="Permalink to this headline">¶</a></h3>
+<p>First, you must decide if you actually do want to use a consultant. A consultant walks through an entire PDF document. If you only need to modify a small number of objects, and you know how to locate those objects, it makes more sense to write the object-finding code yourself.</p>
+<p>If you decide to use the consultant, here are some planning considerations:</p>
+<ul class="simple">
+<li><p>Avoid implementing an agent that modifies objects on the traversal stack while the consultant is still walking through the document, otherwise infinite loops and other problems can occur (see <a class="reference external" href="Plugins_ExtendedAPI.html#50618414_93514">Maintaining the traversal stack</a>).</p></li>
+<li><p>Decide whether the consultant or the agent does the work (see <a class="reference external" href="Plugins_ExtendedAPI.html#50618414_78898">Deciding consultant or the agent does the work</a>).</p></li>
+<li><p>Determine order in which agents interact with the consultant. This order is important because agents can modify objects that other agents want to view (see <a class="reference external" href="Plugins_ExtendedAPI.html#50618414_53252">Avoiding agent collisions</a>).</p></li>
+<li><p>Decide whether to allow the consultant to revisit objects that have multiple classifications and what conditions must exist to allow such repeat visits (see <a class="reference external" href="Plugins_ExtendedAPI.html#50618414_42237">Avoiding visitation collisions</a>).</p></li>
+</ul>
+<p>You should make your decisions about all of these issues before you write your code. Some of these issues lead to errors that are difficult to debug, so it is best to understand them all while creating your plugin.</p>
+<div class="section" id="maintaining-the-traversal-stack">
+<h4>Maintaining the traversal stack<a class="headerlink" href="#maintaining-the-traversal-stack" title="Permalink to this headline">¶</a></h4>
+<p>The consultant keeps track of the objects it has visited in the PDF document in the traversal stack. If an agent modifies an object such that it affected the traversal stack, the entire process is derailed. The consultant may no longer know if it had visited an object, which could cause infinite loops, multiple, unnecessary visitations, or objects that remain unvisited.</p>
+<p>It is extremely important that the integrity of the traversal stack remain undamaged. You must design your agent carefully so as to avoid this problem. You can use the postprocessing step of your agent to handle many repair tasks, thereby avoiding dealing with objects still on the traversal stack.</p>
+</div>
+<div class="section" id="deciding-consultant-or-the-agent-does-the-work">
+<h4>Deciding consultant or the agent does the work<a class="headerlink" href="#deciding-consultant-or-the-agent-does-the-work" title="Permalink to this headline">¶</a></h4>
+<p>If the consultant performs object modifications, it does so as it goes through its traversal. Modifications that affect an object’s type or properties alter the traversal stack and corrupt the traversal process. For these kinds of modifications, set up an agent to perform the tasks in the postprocessing step.</p>
+<p>For example, suppose an agent wants to remove annotations while there are form widgets present in the document. There are a few ways the agent can remove the annotations while the consultant is working, but they all have problems:</p>
+<ul class="simple">
+<li><p>Invoking the agent for all annotations and removing them at the Cos level does not clean up the forms tree if there are Widget Annots in the document.</p></li>
+<li><p>Invoking the agent for all annotations and using the <code class="docutils literal notranslate"><span class="pre">PDPageAnnotRemove</span></code> method modifies the page object, which may still be in the traversal stack.</p></li>
+</ul>
+<p>The best solution in this case is to enumerate all of the <code class="docutils literal notranslate"><span class="pre">Annot</span></code> objects by having the consultant look for <code class="docutils literal notranslate"><span class="pre">Annot</span></code> objects and keep a list of them, then let the agent invoke <code class="docutils literal notranslate"><span class="pre">PDPageAnnotRemove</span></code> on them in the post-processing step.</p>
+</div>
+<div class="section" id="avoiding-agent-collisions">
+<h4>Avoiding agent collisions<a class="headerlink" href="#avoiding-agent-collisions" title="Permalink to this headline">¶</a></h4>
+<p>When running multiple agents on a document, the order in which you register your agents is the order in which the consultant will hand them objects. If your earlier agents modify objects, they may change the objects in such a way that they are missing important information or are of a different type than they were originally. For example, one agent may consider it correct to remove a given field of an object, while another would complain that the field was not present and would want to add it. If the first agent modified the object type, subsequent agents would no longer think they were interested in it, and their processing would not take place. You must group your agents so that you do not run multiple agents with conflicting goals at the same time.</p>
+<p>A rarer problem could occur with self-referential objects. For example, if <code class="docutils literal notranslate"><span class="pre">DictA</span></code> contains a reference to itself and the first agent replaces <code class="docutils literal notranslate"><span class="pre">DictA</span></code> with <code class="docutils literal notranslate"><span class="pre">DictB</span></code> (which would still contain a reference to <code class="docutils literal notranslate"><span class="pre">DictA</span></code> ), another agent cannot work with <code class="docutils literal notranslate"><span class="pre">DictB</span></code> until the internal reference is changed. But if you are running the agents concurrently, there will be a collision. This would be a case best handled by the consultant.</p>
+</div>
+<div class="section" id="avoiding-visitation-collisions">
+<h4>Avoiding visitation collisions<a class="headerlink" href="#avoiding-visitation-collisions" title="Permalink to this headline">¶</a></h4>
+<p>Objects that have multiple classifications can be reached from multiple paths. In such cases you may allow the consultant to revisit such objects if, and only if, they were reclassified on a new path. However, you must take care not to allow revisitation under other circumstances, or the consultant could miss objects, which would defeat the reason for using a mode that considers object classification.</p>
+</div>
+</div>
+<div class="section" id="importing-the-consultant-hfts-into-a-plugin">
+<h3>Importing the consultant HFTs into a plugin<a class="headerlink" href="#importing-the-consultant-hfts-into-a-plugin" title="Permalink to this headline">¶</a></h3>
+<p>The consultant exports its functions using an HFT. The variable name your plugin uses for the HFT must be of type HFT and named <code class="docutils literal notranslate"><span class="pre">gConsultantHFT</span></code>. The consultant’s HFT allows you to create consultants. The consultant exports an HFT that deals with the general operation of the consultant, including the creation and deletion of consultant objects and agent registration. You must load the consultant plugin before the HFTs plugins can import it. Importing the consultant’s HFT is the same as importing any other plugin’s HFT. (See <a class="reference external" href="Plugins_Hft.html#50618412_72145">Importing an existing HFT</a>.)</p>
+<p>To access the HFT, you must include the ConsHFT.h file into your project. In a plugin, the <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> method should contain the code that imports the HFT.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HFT</span> <span class="n">gConsultantHFT</span><span class="o">=</span> <span class="p">(</span><span class="n">HFT</span><span class="p">)</span><span class="n">NULL</span><span class="p">;</span>
+<span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PluginImportReplaceAndRegister</span><span class="p">(</span><span class="n">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">ASBool</span> <span class="n">bRetVal</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Import</span> <span class="n">the</span> <span class="n">Consultant</span><span class="s1">&#39;s main HFT</span>
+ <span class="n">gConsultantHFT</span> <span class="o">=</span> <span class="n">Init_PDFConsultantHFT</span><span class="p">;</span>    <span class="o">//</span> <span class="n">Macro</span> <span class="ow">in</span> <span class="n">ConsHFT</span><span class="o">.</span><span class="n">h</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">gConsultantHFT</span> <span class="o">!=</span> <span class="p">(</span><span class="n">HFT</span><span class="p">)</span><span class="n">NULL</span><span class="p">)</span>
+      <span class="n">bRetVal</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+  <span class="k">else</span>
+
+<span class="o">//</span> <span class="n">Put</span> <span class="ow">in</span> <span class="n">error</span> <span class="n">message</span> <span class="n">about</span> <span class="n">the</span> <span class="n">absence</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Consultant</span> <span class="n">HFT</span>
+ <span class="k">return</span> <span class="n">bRetVal</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>The consultant defines the following methods for HFT usage:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantCreate</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantDestroy</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantTraverseFrom</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantRegisterAgent</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantSetStart</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantNextObj</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantGetPercentDone</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantGetNumDirectVisited</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantGetNumIndirectVisited</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantSuspend</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantResume</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackGetCount</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackIndexGetObj</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackIndexGetTypeCount</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackIndexGetTypeAt</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackIndexIsDict</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackIndexIsArray</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackIndexGetDictKey</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsStackIndexGetArrayIndex</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PDFObjTypeGetSuperclass</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConsultantGetNumUniqueIndirectsVisited</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="creating-and-destroying-consultants">
+<h3>Creating and destroying consultants<a class="headerlink" href="#creating-and-destroying-consultants" title="Permalink to this headline">¶</a></h3>
+<p>The consultant’s HFT allows you to create a consultant for your own use. Once you have finished writing your agent class, you are ready to register it with the consultant and begin processing documents. You should keep your agent separate from the consultant object—that is, do not make the consultant object a member of your agent class. Use a plugin as the owner for both the consultant and your agent object.</p>
+<p>Because there is some memory overhead in creating a consultant, you should only create a <code class="docutils literal notranslate"><span class="pre">Consultant</span></code> object when it is required, not before. If your target application is a plugin, the most logical place to perform all operations is in the menu item execute procedure. Whether or not it makes sense to destroy the <code class="docutils literal notranslate"><span class="pre">Consultant</span></code> object after each execution of the menu item depends on your project.</p>
+<p>The consultant HFT provides the functions <code class="docutils literal notranslate"><span class="pre">ConsultantCreate</span></code> and <code class="docutils literal notranslate"><span class="pre">ConsultantDestroy</span></code>, for creating and destroying <code class="docutils literal notranslate"><span class="pre">Consultant</span></code> objects. It also provides the Consultant data type, an opaque type for passing handles to <code class="docutils literal notranslate"><span class="pre">Consultant</span></code> objects. The <code class="docutils literal notranslate"><span class="pre">ConsultantCreate</span></code> method returns variables of that type and requires them as parameters to all other HFT functions having the <code class="docutils literal notranslate"><span class="pre">Consultant</span></code> prefix.</p>
+<p>After each run the consultant unregisters all the agents that were registered with it; however the memory for the <code class="docutils literal notranslate"><span class="pre">Consultant</span></code> object itself remains, and the object must be explicitly destroyed to free the memory. Depending on the duties you assign your consultant, you may want to destroy it after each execution of the menu item that launches it, or you may wish to keep it running.</p>
+</div>
+<div class="section" id="registering-agents-with-consultants">
+<h3>Registering agents with consultants<a class="headerlink" href="#registering-agents-with-consultants" title="Permalink to this headline">¶</a></h3>
+<p>In order to modify or analyze documents, you must register your agent with the consultant by invoking the <code class="docutils literal notranslate"><span class="pre">ConsultantRegisterAgent</span></code> method.</p>
+<p>Once the agent is registered with the consultant, it remains registered until a call to <code class="docutils literal notranslate"><span class="pre">ConsultantTraverseFrom</span></code> is made. You must re-register agents before each successive call to <code class="docutils literal notranslate"><span class="pre">ConsultantTraverseFrom</span></code>.</p>
+<p>When you register an agent, you supply a rule (one of the <code class="docutils literal notranslate"><span class="pre">RegAgentFlag</span></code> values) for revisitation of objects as the consultant runs through the document from the starting object. The following code example registers an agent with a consultant.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">//</span> <span class="n">Declare</span> <span class="n">volatile</span> <span class="n">consultant</span> <span class="n">because</span> <span class="n">it</span> <span class="ow">is</span> <span class="n">inside</span> <span class="n">a</span> <span class="n">DURING</span> <span class="n">bloc</span>
+ <span class="o">//</span>   <span class="n">Consultant</span> <span class="n">volatile</span> <span class="n">hConsultant</span> <span class="o">=</span> <span class="p">(</span><span class="n">Consultant</span><span class="p">)</span><span class="n">NULL</span><span class="p">;</span>
+
+ <span class="n">DURING</span>
+   <span class="n">AVDoc</span> <span class="n">hAVDoc</span> <span class="o">=</span> <span class="n">AVAppGetActiveDoc</span><span class="p">();</span>
+   <span class="n">miAssert</span><span class="p">(</span><span class="n">hAVDoc</span> <span class="o">!=</span> <span class="p">(</span> <span class="n">AVDoc</span> <span class="p">)</span><span class="n">NULL</span> <span class="p">);</span>
+   <span class="k">if</span><span class="p">(</span> <span class="n">hAVDoc</span> <span class="o">!=</span> <span class="p">(</span> <span class="n">AVDoc</span> <span class="p">)</span><span class="n">NULL</span> <span class="p">)</span>
+       <span class="p">{</span>
+
+ <span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">Consultant</span> <span class="nb">object</span>
+ <span class="o">//</span>        <span class="n">hConsultant</span> <span class="o">=</span> <span class="n">ConsultantCreate</span><span class="p">(</span>
+       <span class="n">DumpAllObjectsAgentPercentDone</span> <span class="p">);</span>
+       <span class="n">miAssert</span><span class="p">(</span> <span class="n">hConsultant</span> <span class="o">!=</span> <span class="p">(</span> <span class="n">Consultant</span> <span class="p">)</span><span class="n">NULL</span> <span class="p">);</span>
+
+       <span class="k">if</span><span class="p">(</span> <span class="n">hConsultant</span> <span class="o">!=</span> <span class="p">(</span> <span class="n">Consultant</span> <span class="p">)</span><span class="n">NULL</span> <span class="p">)</span>
+       <span class="p">{</span>
+
+ <span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">current</span> <span class="n">document</span> <span class="n">root</span>
+ <span class="o">//</span>            <span class="n">PDDoc</span> <span class="n">hPDDoc</span> <span class="o">=</span> <span class="n">AVDocGetPDDoc</span><span class="p">(</span><span class="n">hAVDoc</span><span class="p">);</span>
+
+
+ <span class="o">//</span> <span class="n">Create</span> <span class="n">an</span> <span class="n">agent</span> <span class="ow">and</span> <span class="n">register</span> <span class="n">it</span>
+ <span class="o">//</span>            <span class="n">gDumpAllObjectsAgent</span> <span class="o">=</span> <span class="n">new</span> <span class="n">DumpAllObjectsAgent</span><span class="p">(</span><span class="n">hPDDoc</span><span class="p">);</span>
+
+           <span class="k">if</span><span class="p">((</span><span class="n">gDumpAllObjectsAgent</span> <span class="o">==</span> <span class="p">(</span><span class="n">DumpAllObjectsAgent</span><span class="o">*</span><span class="p">)</span><span class="n">NULL</span><span class="p">)</span>
+           <span class="o">||</span> <span class="p">(</span><span class="n">gDumpAllObjectsAgent</span><span class="o">-&gt;</span><span class="n">IsValid</span><span class="p">()</span> <span class="o">==</span> <span class="n">false</span><span class="p">))</span>
+           <span class="p">{</span>
+           <span class="n">ASRaise</span><span class="p">(</span><span class="n">GenError</span><span class="p">(</span><span class="n">genErrNoMemory</span><span class="p">)</span> <span class="p">);</span>
+           <span class="p">}</span>
+           <span class="k">else</span>
+           <span class="p">{</span>
+           <span class="n">ConsultantRegisterAgent</span><span class="p">(</span><span class="n">hConsultant</span><span class="p">,</span><span class="o">*</span><span class="n">gDumpAllObjectsAgent</span><span class="p">,</span>
+           <span class="n">REG_REVISITRECLASS_ALL</span> <span class="p">);</span>
+
+
+ <span class="o">//</span> <span class="n">Start</span> <span class="n">the</span> <span class="n">consultant</span>
+ <span class="o">//</span>            <span class="n">ConsultantTraverseFrom</span><span class="p">(</span><span class="n">hConsultant</span><span class="p">,</span>
+           <span class="n">CosDocGetRoot</span><span class="p">(</span><span class="n">PDDocGetCosDoc</span><span class="p">(</span><span class="n">hPDDoc</span><span class="p">)),</span><span class="n">PT_CATALOG</span><span class="p">);</span>
+           <span class="p">}</span>
+       <span class="p">}</span>
+ <span class="p">}</span>
+ <span class="n">HANDLER</span>
+<span class="o">...</span> <span class="n">Destroy</span> <span class="n">Consultant</span><span class="o">...</span><span class="n">Free</span> <span class="n">Memory</span><span class="o">...</span>
+ <span class="n">END_HANDLER</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="starting-the-consultant">
+<h3>Starting the consultant<a class="headerlink" href="#starting-the-consultant" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ConsultantTraverseFrom</span></code> method instructs the consultant to begin traversing a document, starting at a specific Cos object. The Cos object should be the catalog of a currently open document. The <code class="docutils literal notranslate"><span class="pre">ConsultantTraverseFrom</span></code> method has no return value and instead raises an exception if an error occurs. The following code example demonstrates how to use the traversal stack manipulation functions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span><span class="o">*</span> <span class="n">GetTraversalString</span><span class="p">(</span><span class="n">ConsStack</span> <span class="n">stack</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">traversalString</span><span class="p">,</span>
+<span class="n">ASUns32</span> <span class="n">strLen</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">ASUns32</span> <span class="n">Index</span><span class="p">,</span> <span class="n">NumItems</span><span class="p">,</span> <span class="n">CurStrLen</span><span class="p">;</span>
+<span class="n">char</span> <span class="n">StringUns32</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span> <span class="n">traversalString</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;0&#39;</span><span class="p">;</span>
+<span class="n">CurStrLen</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">traversalString</span><span class="p">);</span>
+
+
+<span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">current</span> <span class="n">traversal</span>
+<span class="o">//</span>   <span class="n">NumItems</span> <span class="o">=</span> <span class="n">ConsStackGetCount</span><span class="p">(</span><span class="n">stack</span><span class="p">);</span>
+
+<span class="k">for</span><span class="p">(</span><span class="n">Index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">(</span><span class="n">Index</span> <span class="o">&lt;</span> <span class="n">NumItems</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">CurStrLen</span> <span class="o">&lt;</span> <span class="n">strLen</span><span class="p">);</span> <span class="n">Index</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span><span class="p">((</span><span class="n">CurStrLen</span> <span class="o">+=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">TRAVERSAL_SEP</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">strLen</span><span class="p">)</span>
+      <span class="n">strcat</span><span class="p">(</span><span class="n">traversalString</span><span class="p">,</span> <span class="n">TRAVERSAL_SEP</span><span class="p">);</span>
+
+
+<span class="o">//</span> <span class="n">Add</span> <span class="n">the</span> <span class="n">parent</span> <span class="n">key</span><span class="p">,</span> <span class="k">if</span> <span class="n">this</span> <span class="n">stack</span> <span class="n">entry</span> <span class="n">has</span> <span class="n">one</span> <span class="o">*/</span>
+<span class="o">//</span>    <span class="k">if</span><span class="p">(</span><span class="n">ConsStackIndexIsDict</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">Index</span><span class="p">))</span>
+      <span class="p">{</span>
+      <span class="n">char</span><span class="o">*</span> <span class="n">strParentKey</span> <span class="o">=</span>   <span class="n">ASAtomGetString</span><span class="p">(</span><span class="n">ConsStackIndexGetDictKey</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span>
+      <span class="n">Index</span><span class="p">));</span>
+      <span class="k">if</span><span class="p">((</span><span class="n">CurStrLen</span> <span class="o">+=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">strParentKey</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">strLen</span><span class="p">)</span>
+          <span class="n">strcat</span><span class="p">(</span><span class="n">traversalString</span><span class="p">,</span> <span class="n">strParentKey</span><span class="p">);</span>
+      <span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Add</span> <span class="n">the</span> <span class="n">parent</span> <span class="n">index</span><span class="p">,</span> <span class="k">if</span> <span class="n">this</span> <span class="n">stack</span> <span class="n">entry</span> <span class="n">has</span> <span class="n">one</span>
+<span class="o">//</span>   <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">ConsStackIndexIsArray</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">Index</span><span class="p">))</span>
+<span class="p">{</span>
+  <span class="n">sprintf</span><span class="p">(</span><span class="n">StringUns32</span><span class="p">,</span> <span class="s2">&quot;</span><span class="si">%u</span><span class="s2">&quot;</span><span class="p">,</span>
+  <span class="n">ConsStackIndexGetArrayIndex</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">Index</span><span class="p">));</span>
+  <span class="k">if</span><span class="p">((</span><span class="n">CurStrLen</span> <span class="o">+=</span> <span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">StringUns32</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span> <span class="o">&lt;</span> <span class="n">strLen</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">strcat</span><span class="p">(</span><span class="n">traversalString</span><span class="p">,</span> <span class="s2">&quot;[&quot;</span><span class="p">);</span>
+      <span class="n">strcat</span><span class="p">(</span><span class="n">traversalString</span><span class="p">,</span> <span class="n">StringUns32</span><span class="p">);</span>
+      <span class="n">strcat</span><span class="p">(</span><span class="n">traversalString</span><span class="p">,</span> <span class="s2">&quot;]&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">return</span> <span class="n">traversalString</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="consultant-object-type-identification">
+<h3>Consultant object type identification<a class="headerlink" href="#consultant-object-type-identification" title="Permalink to this headline">¶</a></h3>
+<p>One of the main features the PDF Consultant and Accessibility Checker framework gives you is the use of its identification engine. This engine can look at Cos objects in a PDF file and, based on properties of the objects and of the object’s parents, assign PDF object type identifiers to them.</p>
+<p>Each Cos object has a simple Cos type and attributes, in the scheme of the document as a whole each object serves a particular purpose. The PDF object type assigned to each object represents that object’s role in the PDF document.</p>
+<p>Some PDF object types represent higher-level, conceptually-familiar objects like <code class="docutils literal notranslate"><span class="pre">PT_PAGE</span></code> (which indicates that the object is a page in the document), while others (like <code class="docutils literal notranslate"><span class="pre">PT_AADICTIONARY</span></code> ) are a bit more obscure, particularly to those who are not familiar with the PDF document format. PDF object types are represented using the enumerated type <code class="docutils literal notranslate"><span class="pre">PDFObjType</span></code>, which is defined in ConsObTp.h. A good way to see all of the various PDF object types that the consultant can identify is to look at the constants defined in that file.</p>
+<p>Some object types (in particular many simpler objects such as strings and numbers) are not assigned a particular type. The consultant can identify those objects that are of most use to you. If the consultant cannot identify a specific object, it assigns the identity of <code class="docutils literal notranslate"><span class="pre">PT_UNKNOWN</span></code> to the object. Just because the consultant assigns this value to an object does not mean the object is foreign or invalid (although it can potentially mean that), it may simply mean that the object type is not particularly significant in the realm of the PDF document format, and thus the consultant does not know about it.</p>
+<p>To allow for greater agent flexibility, the consultant understands PDF object type subclasses and superclasses. Certain PDF object types are members of more generic classes of PDF object type. Agents can often make use of this information, so the consultant assigns object types that are actually arrays of types.</p>
+<p>The consultant assigns to an object the most specific classification as well as the more generic classes of which the object is a member. Agent structures include a field called <code class="docutils literal notranslate"><span class="pre">WantSubclasses</span></code> that indicates whether or not the agent wants to be called for all the interesting objects’ subclasses as well as their directly interesting types.</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">PT_ANNOTATION</span></code> object type has a number of more specific subclasses such as <code class="docutils literal notranslate"><span class="pre">PT_LINKANNOTATION</span></code>, <code class="docutils literal notranslate"><span class="pre">PT_LINEANNOTATION</span></code>, and so on. If an agent requests only objects of type <code class="docutils literal notranslate"><span class="pre">PT_ANNOTATION</span></code>, and its <code class="docutils literal notranslate"><span class="pre">WantSubclasses</span></code> member is <code class="docutils literal notranslate"><span class="pre">false</span></code>, it may not be called back for very many objects. If the <code class="docutils literal notranslate"><span class="pre">WantSubclasses</span></code> member is <code class="docutils literal notranslate"><span class="pre">true</span></code>, then the consultant will invoke the agent back for objects of all specific types of annotations as well as those classified only as <code class="docutils literal notranslate"><span class="pre">PT_ANNOTATION</span></code>. This also means that when an agent retrieves the type of an object, it must specify which type it wants. The types in the array that is the classification of the object always go from the most specific (at index 0) to the least specific (the last index in the array).</p>
+</div>
+<div class="section" id="creating-an-agent-class">
+<h3>Creating an agent class<a class="headerlink" href="#creating-an-agent-class" title="Permalink to this headline">¶</a></h3>
+<p>A minimal <code class="docutils literal notranslate"><span class="pre">Agent</span></code> class needs only to define the functions defined as virtual in the <code class="docutils literal notranslate"><span class="pre">ConsultantAgentObject</span></code> class declared in ConsExpt.h. The following example shows this definition.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;ConsExpt.h&quot;</span>
+<span class="k">class</span> <span class="nc">DumpAllObjectsAgent</span> <span class="p">:</span> <span class="n">public</span> <span class="n">ConsultantAgentObj</span>
+<span class="p">{</span>
+<span class="n">protected</span><span class="p">:</span>
+
+<span class="o">//</span> <span class="n">Data</span> <span class="n">members</span>
+<span class="o">//</span>   <span class="n">FILE</span><span class="o">*</span> <span class="n">m_DumpFile</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">static</span> <span class="n">PDFObjType</span> <span class="n">s_hAgentObjects</span><span class="p">[</span> <span class="p">];</span>
+<span class="n">const</span> <span class="n">static</span> <span class="n">ASUns32</span> <span class="n">s_iNumAgentObjects</span><span class="p">;</span>
+<span class="n">public</span><span class="p">:</span>
+
+
+<span class="o">//</span> <span class="n">Constructor</span> <span class="o">/</span> <span class="n">destructor</span>
+<span class="o">//</span>   <span class="n">DumpAllObjectsAgent</span><span class="p">(</span><span class="n">PDDoc</span> <span class="n">hPDDoc</span><span class="p">);</span>
+<span class="n">virtual</span> <span class="o">~</span><span class="n">DumpAllObjectsAgent</span><span class="p">(</span><span class="n">void</span><span class="p">);</span>
+
+
+<span class="o">//</span> <span class="n">Required</span> <span class="n">methods</span>
+<span class="o">//</span>   <span class="n">virtual</span> <span class="n">void</span> <span class="n">ConsAgentPostProcess</span><span class="p">(</span><span class="n">void</span><span class="p">);</span>
+<span class="n">virtual</span> <span class="n">ASInt32</span> <span class="n">ObjFound</span><span class="p">(</span><span class="n">CosObj</span> <span class="n">Obj</span><span class="p">,</span> <span class="n">const</span> <span class="n">PDFObjType</span><span class="o">*</span>
+<span class="n">pObjTypeHierarchy</span><span class="p">,</span>
+<span class="n">const</span> <span class="n">ASUns32</span> <span class="n">SizeObjHierarchy</span><span class="p">,</span>
+<span class="n">TraversalStack</span> <span class="n">Stack</span><span class="p">,</span><span class="n">CosObj</span><span class="o">*</span> <span class="n">pObjToReturn</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-agent-constructors">
+<h3>Creating agent constructors<a class="headerlink" href="#creating-agent-constructors" title="Permalink to this headline">¶</a></h3>
+<p>In order to write an <code class="docutils literal notranslate"><span class="pre">Agent</span></code> class derived from the <code class="docutils literal notranslate"><span class="pre">ConsultantAgentObj</span></code> base class, you must invoke the base constructor in the derived classes construction list. The base constructor requires a constant array of so-called objects of interest (of type <code class="docutils literal notranslate"><span class="pre">PDFObjType</span></code> ) as well as the length of the array (as <code class="docutils literal notranslate"><span class="pre">ASUns32</span></code> ) to be passed as parameters. It is up to you as to where and how the array of types is stored; however, the storage must persist, as the base class saves only a pointer to the data. This has important implications for authoring agents; the derived class cannot initialize the data in its own constructor since the base constructor is called first.</p>
+<p>The following example shows an example constructor. In the Agent example the array types and array length are static data members of the <code class="docutils literal notranslate"><span class="pre">Agent</span></code> class. In larger-scale systems it is better to create a host object for the agent that is responsible for determining the proper objects to include in the array and for passing them on to the <code class="docutils literal notranslate"><span class="pre">Agent</span></code> constructor. The list of object types is passed on to the consultant when <code class="docutils literal notranslate"><span class="pre">ConsultantRegisterAgent</span></code> is invoked.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Define</span> <span class="n">static</span> <span class="n">const</span> <span class="n">data</span> <span class="n">to</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">to</span> <span class="n">parent</span> <span class="k">class</span> <span class="nc">constructor</span>
+<span class="o">//</span>   <span class="n">const</span> <span class="n">ASUns32</span> <span class="n">DumpAllObjectsAgent</span><span class="p">::</span><span class="n">s_iNumAgentObjects</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">PDFObjType</span>
+<span class="n">DumpAllObjectsAgent</span><span class="p">::</span><span class="n">s_hAgentObjects</span><span class="p">[</span><span class="n">DumpAllObjectsAgent</span><span class="p">::</span>
+
+<span class="n">s_iNumAgentObjects</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">DT_ALL</span><span class="p">};</span>
+
+<span class="o">//</span> <span class="n">Derived</span> <span class="n">Agent</span> <span class="k">class</span> <span class="nc">constructor</span>
+<span class="n">DumpAllObjectsAgent</span><span class="p">::</span><span class="n">DumpAllObjectsAgent</span><span class="p">(</span> <span class="n">PDDoc</span> <span class="n">hPDDoc</span> <span class="p">)</span> <span class="p">:</span>
+<span class="n">ConsultantAgentObj</span><span class="p">(</span> <span class="o">&amp;</span><span class="n">s_hAgentObjects</span><span class="p">[</span> <span class="mi">0</span> <span class="p">],</span> <span class="n">s_iNumAgentObjects</span> <span class="p">)</span>
+<span class="p">{</span>
+<span class="n">Open</span> <span class="n">Temporary</span> <span class="n">File</span> <span class="ow">and</span> <span class="n">Initialize</span> <span class="n">Data</span> <span class="n">Members</span><span class="o">...</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="recognizing-objects-of-interest">
+<h3>Recognizing objects of interest<a class="headerlink" href="#recognizing-objects-of-interest" title="Permalink to this headline">¶</a></h3>
+<p>Agents register a list of objects with the consultant in which they are interested. When the consultant classifies an object as any of the types the agent registered with, the consultant calls the <code class="docutils literal notranslate"><span class="pre">ObjFound</span></code> callback function, a virtual function in the <code class="docutils literal notranslate"><span class="pre">ConsultantAgentObj</span></code> base class.</p>
+<ul class="simple">
+<li><p>The parameters the consultant passes to this function allow the function to set up a return value with information about the current object, its parents, and the state of the consultant traversal stack.</p></li>
+<li><p>The return value from the callback is an <code class="docutils literal notranslate"><span class="pre">OR</span></code> of bit flags that instruct the consultant on handling the current object.</p></li>
+</ul>
+<p>In the <a class="reference external" href="Plugins_ExtendedAPI.html#50618414_14456">Creating agent constructors</a> example, an <code class="docutils literal notranslate"><span class="pre">Agent</span></code> constructor simply gathers information about each object encountered and outputs it to a file. It does not need to have the consultant make any modifications to the document. Therefore, in the definition of the <code class="docutils literal notranslate"><span class="pre">ObjFound</span></code> callback function, the return value is always <code class="docutils literal notranslate"><span class="pre">OD_NOCHANGE</span></code> and the object returned in <code class="docutils literal notranslate"><span class="pre">pObjToReturn</span></code> is simply the same object that was found. In many cases it makes the most sense for an agent to make all document modifications itself, without the consultant’s replace and remove facilities. In these cases you must take special care not to modify objects that are currently on the consultant’s traversal stack.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DumpAllObjects</span></code> plugin demonstrates that <code class="docutils literal notranslate"><span class="pre">PDFConsultant</span></code> agents can access any Cos object from any point in the document. The plugin writes information about certain Cos objects to an output file, called AllObjects.txt.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ObjFound</span></code> callback function of the <code class="docutils literal notranslate"><span class="pre">DumpAllObjects</span></code> agent writes to a file the Cos object traversal path that it took to reach a specific Cos object. The function calls <code class="docutils literal notranslate"><span class="pre">GetTraversalString</span></code>, which describes, with respect to other objects, where a given object lives in the document. For example, the following shows the format of a traversal path of a text annotation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">18</span> <span class="mi">0</span> <span class="n">obj</span> <span class="n">PT_TEXTANNOTATION</span> <span class="o">|</span> <span class="n">PT_ANNOTATION</span> <span class="o">|</span> <span class="o">-&gt;</span><span class="n">AcroForm</span><span class="o">-&gt;</span><span class="n">Fields</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span>
+ <span class="n">P</span><span class="o">-&gt;</span><span class="n">Annots</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>The consultant looks at all Cos objects. To simplify the output, the <code class="docutils literal notranslate"><span class="pre">DumpAllObjects</span></code> agent only involves the most common Cos objects: <code class="docutils literal notranslate"><span class="pre">CosString</span></code>, <code class="docutils literal notranslate"><span class="pre">CosDict</span></code>, <code class="docutils literal notranslate"><span class="pre">CosArray</span></code>, and <code class="docutils literal notranslate"><span class="pre">CosStream</span></code>.</p>
+</div>
+<div class="section" id="post-processing-stage">
+<h3>Post processing stage<a class="headerlink" href="#post-processing-stage" title="Permalink to this headline">¶</a></h3>
+<p>The second and final required function definition in any <code class="docutils literal notranslate"><span class="pre">ConsultantAgentObj</span></code> derived class is the <code class="docutils literal notranslate"><span class="pre">PostProcess</span></code> callback. This function is called when the consultant has finished its traversal and is preparing to unregister agents to prepare for the next possible run. This callback takes no parameters and returns no values (see ConsAgentPostProcessCallback). There are also no restrictions on what types of operations the Agent can perform on the document in this function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PostProcess</span></code> callback function is the place to perform any operations that may otherwise damage the consultant’s traversal by modifying objects up the consultant’s current traversal stack.</p>
+</div>
+</div>
+<div class="section" id="digital-signature-extended-api">
+<h2>Digital signature extended API<a class="headerlink" href="#digital-signature-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>Digital signatures allow a person to attest to something about a document by signing their name to it. An Acrobat signature in a document is bound to that document in such a way that altering the signed document or moving the signature to a different document invalidates the signature.</p>
+<p>A single document may be signed more than once, and changes may occur between signings. Acrobat’s digital signatures link each signature with a particular state of the document. All changes append the PDF changes to the fully-preserved base PDF document. The ability to do serial signatures of protected documents is unique to Acrobat, and draws heavily on the PDF file design for an appended save.</p>
+<p>Adobe Acrobat implements digital signatures using plugins that can handle both generic functions common to all digital signatures, and also specific kinds of signatures (signing methods), such as public-private key (PPK), handwriting, retinal scans, fingerprints, and so on.</p>
+<p>The following diagram shows the security plugin relationships.</p>
+<img alt="_images/digsig.png" src="_images/digsig.png" />
+<p>For information about the APIs that make up the Digital signature extended API, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+<div class="section" id="the-pubsec-layer">
+<h3>The PubSec layer<a class="headerlink" href="#the-pubsec-layer" title="Permalink to this headline">¶</a></h3>
+<p>The PubSec layer, introduced in Acrobat 6.0, is an interface for Acrobat public-key security handlers. PubSec forms a high-level interface to the digital signature facility; the PubSec code uses DigSig for digital signature operations, but provides many additional benefits. Developers are encouraged to use the PubSec HFT rather then DigSig HFT.</p>
+<p>PubSec methods enable you to perform the following tasks:</p>
+<ul class="simple">
+<li><p>Count and close encrypted documents.</p></li>
+<li><p>Validate a specific signature field.</p></li>
+<li><p>Access and create digests for data buffers.</p></li>
+<li><p>Import and export certificate data, and manage the certificates in the Acrobat Address Book (AAB).</p></li>
+<li><p>Manage signature appearances (DSAP files).</p></li>
+<li><p>Register and unregister handlers. Handlers can register as PubSec handlers to provide the following cryptographic services:</p>
+<ul>
+<li><p>Do private-key signing and signature validation</p></li>
+<li><p>Act as a cryptographic source for decrypting using private keys</p></li>
+<li><p>Act as a directory source for certificate-based identity authentication</p></li>
+</ul>
+</li>
+</ul>
+<p>Handlers can call back into the PubSec HFT for various services. Most calls to PubSec pass an opaque state object called a <code class="docutils literal notranslate"><span class="pre">PSEngine</span></code>. You specify a default engine upon registering the handler, and the default engine can make use of the security UI dialog boxes provided by PubSec and DigSig.</p>
+<p>To register a handler with PubSec, perform the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Implement the callbacks you need to provide customized functionality. Many of the callbacks for PubSec can be specified as NULL, in which case PubSec provides default behavior. It is recommended that you use the default behavior when possible.</p></li>
+<li><p>Fill in the handler structure with pointers to your callback implementations (PubSecHandler).</p></li>
+<li><p>Register the handler with PubSec by invoking the <code class="docutils literal notranslate"><span class="pre">PSRegisterHandler</span></code> method.</p></li>
+</ol>
+</div>
+<div class="section" id="digital-signature-components">
+<h3>Digital signature components<a class="headerlink" href="#digital-signature-components" title="Permalink to this headline">¶</a></h3>
+<p>Digital signatures contain two parts:</p>
+<ul class="simple">
+<li><p>The signature field dictionary which is the PDF dictionary structure that stores information about the signature.</p></li>
+<li><p>The signature annotation with its associated appearance (including the background and layout of name, time, and so on). A blind digital signature does not have an associated appearance.</p></li>
+</ul>
+<p>Acrobat’s digital signature plugin creates these two parts when the user chooses to sign a document. Your plugins do not have to handle deleting the signature, as the DigSig plugin does that transparently.</p>
+</div>
+<div class="section" id="digital-signature-scenarios">
+<h3>Digital signature scenarios<a class="headerlink" href="#digital-signature-scenarios" title="Permalink to this headline">¶</a></h3>
+<p>Acrobat supports three digital signature scenarios. Acrobat’s Digital Signature plugin handles the first case, and allows other plugins to further handle the second and the third cases.[The following steps look as if they are part of a procedure, but I don’t think they are. If they’re simply three scenarios, they should be bulleted items, 5Heads, or perhaps reworked as inline headings with text. The other situation where we use a numbered list is if order is important, but I don’t think that is the situation here either. The Adobe editorial style guide says “A numbered list should be sequential. If the items in the list are not sequential, don’t number them.]</p>
+<ul class="simple">
+<li><p>If the user creates a signature field and does not specify a default signing method, DigSig handles that case with no communication to your plugins:</p>
+<ul>
+<li><p>DigSig creates the signature field dictionary.</p></li>
+<li><p>DigSig creates the signature annotation dictionary.</p></li>
+<li><p>DigSig creates the (blank) signature appearance dictionary.</p></li>
+</ul>
+</li>
+<li><p>The Forms plugin also creates Signature fields. If the user creates a signature field and specifies a default method, Forms calls DigSig to fill in default values:</p>
+<ul>
+<li><p>DigSig creates the signature field dictionary, the signature annotation dictionary, and the (blank) signature appearance dictionary.</p></li>
+<li><p>DigSig calls the DSDefaultValueProc callback that your plugin provides. This callback must create the default signature value dictionary and create the /DV key in the signature field dictionary to point to it.</p></li>
+</ul>
+</li>
+<li><p>If the user asks to sign a specific signature field using the plugin, DigSig invokes callbacks into your plugin during a four-step sequence. Your plugin must register these callbacks during the plugin initialization phase. The four callbacks required for this scenario are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">dsNewSigData</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dsCommitSign</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dsFinshSign</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dsFreeSigData</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="initializing-the-digital-signature-plugin">
+<h3>Initializing the digital signature plugin<a class="headerlink" href="#initializing-the-digital-signature-plugin" title="Permalink to this headline">¶</a></h3>
+<p>When Acrobat is started, all plugins go through a three-step initialization process that allows plugins to establish communication among themselves without being dependent on the order of loading. Plugins that interact with Acrobat’s digital signature plugin (DigSig) use the following initialization sequence:</p>
+<ol class="arabic simple">
+<li><p>The DigSig plugin exports its HFT under the name DigSigHFT.</p></li>
+<li><p>To work with DigSig, your plugin must import the DigSig HFT.</p></li>
+<li><p>To work with DigSig, your plugin must create a <code class="docutils literal notranslate"><span class="pre">DigSigHandlerRec</span></code> structure, assign the relevant methods, and then invoke the <code class="docutils literal notranslate"><span class="pre">DigSigRegisterFilter</span></code> method to register the structure.</p></li>
+</ol>
+<p>When the user opens a document, the digital signature plugin notifies your plugin of the new document by invoking the <code class="docutils literal notranslate"><span class="pre">DSDocOpenProc</span></code> method. You can allocate some storage or choose to automatically validate any of their respective signatures in the document.</p>
+<p>Auto-validation may produce significant delays if it must read all of a large document from a CD-ROM or over a network, or if it must access a signature registry or authority over a network. Therefore, Adobe software only accesses signatures at user request.</p>
+<p>When the user closes a document, the digital signature plugin invokes <code class="docutils literal notranslate"><span class="pre">DSDocCloseProc</span></code>.</p>
+</div>
+<div class="section" id="understanding-the-process">
+<h3>Understanding the process<a class="headerlink" href="#understanding-the-process" title="Permalink to this headline">¶</a></h3>
+<p>The steps in this section are suggestions that describe the interactions of a digital signature plugin (the SignDoc sample plugin provided with this SDK is a more complete example).</p>
+<div class="section" id="dialogs-and-signature-gathering">
+<h4>Dialogs and signature gathering<a class="headerlink" href="#dialogs-and-signature-gathering" title="Permalink to this headline">¶</a></h4>
+<p>The digital signature plugin invokes your <code class="docutils literal notranslate"><span class="pre">dsNewSigDataProc</span></code> callback method, a callback that begins the signature gathering process:</p>
+<ul class="simple">
+<li><p>Your plugin interacts with the user, and allows the user to cancel if they want to do so.</p></li>
+<li><p>Your plugin acquires the signature itself in a method-specific way. All information is saved in memory, without altering the document itself.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">dsNewSigData</span></code> does not cancel, DigSig prepares the document for saving. First, it calls <code class="docutils literal notranslate"><span class="pre">dsUnValidateSig</span></code> on every signature in the document to put any overprinting or underprinting in canonical form. It then counts how many pages and fields have changed since any prior signature and records this.</p></li>
+<li><p>For a first signature, the digital signature plugin displays the Save As dialog box, allowing the user to select file name, optimization, and encryption. The user may cancel. Other than fatal errors, such as out-of-disk-space, this is the last chance to stop the process.</p></li>
+</ul>
+</div>
+<div class="section" id="saving-a-document">
+<h4>Saving a document<a class="headerlink" href="#saving-a-document" title="Permalink to this headline">¶</a></h4>
+<p>The following steps describe how the digital signature plugin saves a document:</p>
+<ol class="arabic simple">
+<li><p>The digital signature plugin invokes your <code class="docutils literal notranslate"><span class="pre">DSCommitSignProc</span></code> callback method to update the document with the actual signature. Your <code class="docutils literal notranslate"><span class="pre">DSCommitSignProc</span></code> callback must perform the following tasks:</p>
+<ul class="simple">
+<li><p>Create the signature dictionary, possibly using information in the signature field /DV dictionary, perhaps using the <code class="docutils literal notranslate"><span class="pre">/ByteRange</span></code> and <code class="docutils literal notranslate"><span class="pre">/Contents</span></code> keys.</p></li>
+<li><p>Point /V in the signature field dictionary to this. Then create the /AP /N value in the signature annotation dictionary, using a method-specific visible representation of the signature, including a symbol signifying “unvalidated signature.”</p></li>
+<li><p>Optionally allocate dynamic storage for a marked array, an array of marked COS objects that it cares about.</p></li>
+<li><p>Return a marked array that includes at least the /ByteRange and /Contents value objects.</p></li>
+</ul>
+</li>
+<li><p>The digital signature plugin inserts the /Changes array from step 1.</p></li>
+<li><p>The digital signature plugin saves the PDF document to a file. For each Cos object in the marked array, DigSig records the object’s byte offset and length in the file as written. The saved file may have objects encrypted by the Acrobat standard encryption handler, if the user so chooses.</p></li>
+<li><p>The first time a document is signed, the digital signature plugin may rename the file and may invoke the Optimizer, Linearizer, and Garbage Collector. Upon return from the save, all Cos objects are invalid, including those in the marked array.</p></li>
+</ol>
+<p>All PD-level objects except the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> are invalid. Signing methods must not depend on saving any such state between <code class="docutils literal notranslate"><span class="pre">dsCommitSign</span></code> and <code class="docutils literal notranslate"><span class="pre">dsFinishSign</span></code>. In particular, the byte offsets and lengths in the marked array are valid upon entry to <code class="docutils literal notranslate"><span class="pre">doSign</span></code>, but the Cos objects are not. The order of entries is unchanged, however, these Cos objects will be rewritten as CosNull before invoking <em>dsFinishSign</em>.</p>
+</div>
+<div class="section" id="finishing-the-process">
+<h4>Finishing the process<a class="headerlink" href="#finishing-the-process" title="Permalink to this headline">¶</a></h4>
+<p>The following describes how the digital signature plugin finishes the process of a signing a document:</p>
+<ol class="arabic simple">
+<li><p>Invokes <code class="docutils literal notranslate"><span class="pre">dsFinishSign</span></code>, passing back in the marked array. Your <code class="docutils literal notranslate"><span class="pre">DSFinishSignProc</span></code> callback method must perform the following tasks:</p>
+<ul class="simple">
+<li><p>Calculate the <code class="docutils literal notranslate"><span class="pre">/ByteRange</span></code> that it desires, using the byte offsets and lengths in the marked array.</p></li>
+<li><p>Overwrite the marked <code class="docutils literal notranslate"><span class="pre">/ByteRange</span></code> value in the saved file, using the <code class="docutils literal notranslate"><span class="pre">DigSigOverwriteIntArray</span></code> or <code class="docutils literal notranslate"><span class="pre">DigSigOverwriteBytes</span></code> callback.</p></li>
+<li><p>Overwrite any other marked Cos objects it wants to.</p></li>
+<li><p>Calculate any document digest that it desires, using the <code class="docutils literal notranslate"><span class="pre">DigSigFileGetEOF,</span> <span class="pre">DigSigFileSetPos</span></code>, and <code class="docutils literal notranslate"><span class="pre">DigSigFileRead</span></code> callbacks; or it may use the <code class="docutils literal notranslate"><span class="pre">DigSigMD5ByteRange</span></code> callback.</p></li>
+<li><p>Obscure or encrypt this digest in a method-specific way.</p></li>
+<li><p>Overwrite the marked <code class="docutils literal notranslate"><span class="pre">/Contents</span></code> value in the saved file, using <code class="docutils literal notranslate"><span class="pre">DigSigOverwriteHexstring</span></code> or <code class="docutils literal notranslate"><span class="pre">DigSigOverwriteBytes</span></code>.</p></li>
+<li><p>Optionally delete dynamic storage for the marked array returned by the plugin.</p></li>
+</ul>
+</li>
+<li><p>Invokes <code class="docutils literal notranslate"><span class="pre">dsFreeSigData</span></code>, which may free up any remaining storage.</p></li>
+</ol>
+</div>
+<div class="section" id="revalidating-signatures">
+<h4>Revalidating signatures<a class="headerlink" href="#revalidating-signatures" title="Permalink to this headline">¶</a></h4>
+<p>If the user reopens the file, the signatures must be validated. If the user asks to validate one or more signature fields, the digital signature plugin sequences through them one at a time. Your <code class="docutils literal notranslate"><span class="pre">DSValidateSignProc</span></code> callback method must perform the following tasks:</p>
+<ul class="simple">
+<li><p>Recalculate any document digest that it desires, using the <code class="docutils literal notranslate"><span class="pre">DigSigFileGetEOF</span></code>, <code class="docutils literal notranslate"><span class="pre">DigSigFileSetPos</span></code>, and <code class="docutils literal notranslate"><span class="pre">DigSigFileRead</span></code> callbacks; or it may use the <code class="docutils literal notranslate"><span class="pre">DigSigMD5ByteRange</span></code> callback.</p></li>
+<li><p>Compare this result to the stored one, and do any other method-specific checks it desires.</p></li>
+<li><p>Optionally do a validation against some stored (network) registry.</p></li>
+<li><p>Update the <code class="docutils literal notranslate"><span class="pre">/AP</span></code> <code class="docutils literal notranslate"><span class="pre">/N</span></code> value in the signature annotation dictionary to show doublechecked/pass/fail symbol.</p></li>
+<li><p>Return doublechecked/pass/fail.</p></li>
+</ul>
+<p>The user may open more than one document at a time, and may switch between open documents.</p>
+</div>
+<div class="section" id="additional-available-callbacks">
+<h4>Additional available callbacks<a class="headerlink" href="#additional-available-callbacks" title="Permalink to this headline">¶</a></h4>
+<p>The user may ask to show a signature panel containing summary information for each signature in an open document. If multiple documents are open, there may be multiple panels, or a single panel may be repainted as the user switches between documents. DigSig manages updating the panel(s), but may call the respective method plugin for each signature to get information to display on the panel. For each signature, the signature panel has two levels of detail:[Same comment as on page 15 about the following not being a sequential list.]</p>
+<ol class="arabic simple">
+<li><p>CLOSED displays a doublechecked/pass/fail/unknown/blank icon and a line of text for each signature field in the document. The default text is the name of the person signing and the date and time of signing, displayed in a language-independent way.</p></li>
+<li><p>The digital signature plugin calls <code class="docutils literal notranslate"><span class="pre">dsGetValidState</span></code> to choose which icon to show.</p></li>
+<li><p>OPEN displays an icon and line of text for each signature, then indented lines of further text, currently consisting of the name of the signer, date and time of signing, location of signing, reason for signing, and signing method.</p></li>
+<li><p>The digital signature calls <code class="docutils literal notranslate"><span class="pre">dsGetValidState</span></code> to choose which icon to show.</p></li>
+<li><p>Your plugin may update the signature panel for a document asynchronously (it may be doing validation as a background or idle-loop task). To do this, use the <code class="docutils literal notranslate"><span class="pre">DigSigUpdatePanel</span></code> callback.</p></li>
+</ol>
+</div>
+<div class="section" id="additional-plugin-support">
+<h4>Additional plugin support<a class="headerlink" href="#additional-plugin-support" title="Permalink to this headline">¶</a></h4>
+<p>Whenever a signature is created or verified, the plugin may optionally alter the appearance of the signature in the document, for the purpose of displaying or printing. For example, it could change an overprinted question mark on an unverified signature to an underprinted logo for a verified signature. To help with this, DigSig provides an HFT callback <code class="docutils literal notranslate"><span class="pre">DigSigGetStdXObj</span></code> that returns an XObject for a blank appearance, a question mark, or a cross. These are suitable as targets of the Do operator in a signature’s appearance stream.</p>
+<p>To avoid saving a signature to a file with an appearance of valid (rather than unvalidated), just before each file save, DigSig loops through all the signature fields and calls the specific method’s <code class="docutils literal notranslate"><span class="pre">dsUnValidateSig</span></code> entry. This routine restores the signature’s appearance to the unvalidated state.</p>
+<p>The AcroForms Widget Annot handler calls into DigSig using four entries. These calls all reflect user actions taken in the document view, not the Signatures panel view.</p>
+<p>When the user selects an annotation by tabbing to it or by clicking it with the mouse, and that annotation is for a signature field, AcroForms calls DigSigDraw. If the annotation is selected, then <code class="docutils literal notranslate"><span class="pre">bIsSelected</span></code> is true. When the user tabs to a signature annotation and activates it by hitting the spacebar or enter key, this is equivalent to a left mouse click.</p>
+<p>AcroForms calls <code class="docutils literal notranslate"><span class="pre">DigSigKeyDown</span></code>. The parameters parallel those of <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerDoKeyDownProc</span></code>. When the user left-clicks inside a signature annotation, AcroForms calls <code class="docutils literal notranslate"><span class="pre">DigSigClick</span></code>. The parameters parallel those of <code class="docutils literal notranslate"><span class="pre">DoClickProcType</span></code>.</p>
+<p>When the user right-clicks inside a signature annotation, AcroForms calls DigSigRightClick.</p>
+</div>
+<div class="section" id="rollback-support">
+<h4>Rollback support<a class="headerlink" href="#rollback-support" title="Permalink to this headline">¶</a></h4>
+<p>There is a constraint on the values in the /ByteRange array. This constraint allows DigSig to implement rollbacks prior to signatures.</p>
+<p>The largest offset + length value in the /ByteRange array for a given signature must be equal to the length of the PDF file containing that signature; that is, it must equal offset + 1 of the “F” in the %%EOF at the end of the file.</p>
+<p>In addition, the following constraints also apply:</p>
+<ul class="simple">
+<li><p>All offsets must be in the range 0..2147483647.</p></li>
+<li><p>All lengths must be in the range 1..2147483647.</p></li>
+<li><p>Offset[n+1] must be strictly greater than offset[n] + length[n].</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="forms-extended-api">
+<h2>Forms extended API<a class="headerlink" href="#forms-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>The Acrobat Forms plugin exports its own Host Function Table (HFT), whose methods can be used by other plugins. To use the Acrobat Forms plugin’s HFT, a plugin must:</p>
+<ul class="simple">
+<li><p>Include the FormsHFT.h header file (which includes AF_ExpT.h and AF_Sel.h).</p></li>
+<li><p>Import the HFT using the <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method. A convenient way to perform this task is to use the <code class="docutils literal notranslate"><span class="pre">Init_AcroFormHFT</span></code> macro defined in FORMSHFT.H.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define Init_AcroFormHFT</span>
+ <span class="n">ASExtensionMgrGetHFT</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="n">AcroFormHFT_NAME</span><span class="p">),</span>
+ <span class="n">AcroFormHFT_LATEST_VERSION</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Assign the HFT returned by this call to a plugin-defined global variable named <code class="docutils literal notranslate"><span class="pre">gAcroFormHFT</span></code>.</p></li>
+</ul>
+<p>Data may be imported and exported into Acrobat Forms in forms data format (FDF). FDF is used to submit form data to a server, as well as to receive the response and incorporate it into a form. FDF is based on PDF and uses the same syntax and set of basic object types as PDF. It also has the same file structure, except that the cross-reference table is optional. See the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. for more information about the structure of a PDF document.</p>
+<p>For information about the APIs included in the Forms extended API, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="weblink-extended-api">
+<h2>Weblink extended API<a class="headerlink" href="#weblink-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>A link in a PDF document that references a URL is referred to as a Weblink.</p>
+<p>The Acrobat Weblink plugin exports its own Host Function Table (HFT), whose methods can be used by other plugins. The HFT’s name is defined in the WLHFTNAME macro, and its version number is <code class="docutils literal notranslate"><span class="pre">WEB_LINK_HFT_LATEST_VERSION</span></code>.</p>
+<p>To use the Weblink plugin’s HFT, a plugin must include the header file WeblinkHFT.h. The plugin must also import the HFT using <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> and assign the HFT returned by this call to a plugin-defined global variable named <code class="docutils literal notranslate"><span class="pre">gWLHFT</span></code>. The easiest way to do this is to use the <code class="docutils literal notranslate"><span class="pre">Init_gWLHFT</span></code> macro defined in the header files.</p>
+<p>For information about the APIs included in the Weblink extended API, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+<div class="section" id="weblink-services">
+<h3>Weblink services<a class="headerlink" href="#weblink-services" title="Permalink to this headline">¶</a></h3>
+<p>The Weblink plugin provides the following services:</p>
+<ul class="simple">
+<li><p>Maintenance of links (editing and storage of URLs associated with links, and so on)</p></li>
+<li><p>Manipulation of links (appropriate cursor changes and dynamic display of URL destinations)</p></li>
+<li><p>Selection of the external web browser</p></li>
+<li><p>Manipulation of the Adobe standard web driver</p></li>
+<li><p>Basic progress status services (progress monitor, wait cursor, and so on)</p></li>
+</ul>
+<p>The Weblink plugin includes a standard driver, known as the Adobe Standard Web Driver. It allows support for transport mechanisms or web browsers to be added at a later time.</p>
+<p>The Standard Web Driver uses DDE messages and Apple events to communicate with a web browser. It supports a protocol that consists of a suite of verbs—some going to and some coming from—the web browser. These verb definitions are provided so that web browsers can implement this protocol to be compatible with the Adobe standard web driver. Each verb is specified in terms of the platform-specific implementation: DDE for Windows and Apple events for Mac OS. The standard driver’s use of each verb is also described. Browsers that wish to use their own protocol may do so by writing a custom driver.</p>
+<p>The Weblink plugin communications software in the Weblink driver is independent of the Acrobat mechanism for handling links (the PDF implementation of URLs). This separation improves portability by isolating the highly platform-specific interapplication communication messages. Even on a given platform, there is no standard among web browsers for handling interapplication communication, and the actual transport mechanism may vary over time. By separating out the transport code, the Weblink plugin remains portable across platforms, across different vendors’ implementations of web browsers, and across different versions of web browsers from the same vendor.</p>
+</div>
+<div class="section" id="writing-a-custom-driver">
+<h3>Writing a custom driver<a class="headerlink" href="#writing-a-custom-driver" title="Permalink to this headline">¶</a></h3>
+<p>A driver is an Acrobat core plugin, written like any other plugin. A driver must register itself with the Weblink plugin during the import, replace, and register phases of the plugin initialization process by invoking <code class="docutils literal notranslate"><span class="pre">RegisterWebDriver</span></code>. You pass this method a <code class="docutils literal notranslate"><span class="pre">WebDriverVector</span></code> structure containing a version number and six pointers to functions that your driver provides to handle web-browser-specific tasks.</p>
+<p>A driver is responsible for performing the following tasks:</p>
+<ul class="simple">
+<li><p>Connecting with external services (either directly or through an external application)</p></li>
+<li><p>Communicating with external services</p></li>
+<li><p>Associating a base URL with a given document</p></li>
+<li><p>Identifying external browsers that are compatible with the driver</p></li>
+</ul>
+<p>In a typical session, the following actions can occur:[Same question as page 15. Is the following numbered list sequential?]</p>
+<ol class="arabic simple">
+<li><p>The user starts Acrobat.</p>
+<ul class="simple">
+<li><p>The Weblink plugin publishes a Host Function Table (HFT) during the <code class="docutils literal notranslate"><span class="pre">exportHFTsCallback</span></code> phase of initialization.</p></li>
+<li><p>During the <code class="docutils literal notranslate"><span class="pre">importReplaceAndRegisterCallback</span></code> phase, all drivers in turn invoke <code class="docutils literal notranslate"><span class="pre">RegisterWebDriver</span></code> in the Weblink plugin’s HFT to register themselves as available.</p></li>
+<li><p>During the <code class="docutils literal notranslate"><span class="pre">initCallback</span></code> phase, the Weblink plugin, if possible, selects an appropriate driver and notifies it that it is the active driver.</p></li>
+</ul>
+</li>
+<li><p>The user opens a PDF document with Weblinks and clicks a Weblink.</p>
+<ul class="simple">
+<li><p>The Weblink plugin extracts the URL from the link and passes it to the driver.</p></li>
+<li><p>The driver packages the URL into an interapplication communication (IAC) message and sends it to an external web browser (launching the browser application, if necessary).</p></li>
+<li><p>The external web browser brings itself to the foreground unless the URL’s MIME type is application/pdf.</p></li>
+</ul>
+</li>
+<li><p>The web browser retrieves the document and packages an IAC message.</p>
+<ul class="simple">
+<li><p>The driver accepts the IAC message from the browser and opens the PDF document by using the <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromFile</span></code> method. The driver should associate the URL with the document.</p></li>
+<li><p>To resolve relative links, Weblink prepends either a base URL with the document, or if there is no base URL, the appropriate portion of the URL of the document the link is in.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="spelling-extended-api">
+<h2>Spelling extended API<a class="headerlink" href="#spelling-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>Acrobat provides a Spelling plugin, which exports a Host Function Table (HFT) implementing a spell-check API for use by plugin developers.</p>
+<p>To use the spelling HFT, a plugin must include the header file SpellerHFT.h, which includes Speller_Sel.h.</p>
+<p>The following is a typical sequence of calls made by a plugin using the Spelling HFT. During its <code class="docutils literal notranslate"><span class="pre">importReplaceAndRegister</span></code> callback, the plugin should:</p>
+<ul class="simple">
+<li><p>Import the HFT, using <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code>, and assign the HFT returned by this call to a plugin-defined global variable named <code class="docutils literal notranslate"><span class="pre">gSpellerHFT</span></code>. The easiest way to do this is to use the Init_SpellerHFT macro defined in SpellerHFT.h.</p></li>
+<li><p>Allocate and initialize one <code class="docutils literal notranslate"><span class="pre">SpellCheckParam</span></code> block for each spelling domain the client will add.</p></li>
+<li><p>Add zero or more domains using the <code class="docutils literal notranslate"><span class="pre">SpellAddDomain</span></code> call.</p></li>
+</ul>
+<p>During execution, a plugin performs the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Respond to the following callbacks for each domain:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SCEnableProc</span></code> is called by Spelling to ask if this domain has anything that needs to be checked</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCGetTextProc</span></code> is called to get a text buffer to be checked.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SCCompletionProc</span></code> is called after the user has modified the text buffer.</p></li>
+</ul>
+</li>
+<li><p>The client may call other Spelling HFT services during execution even if it did not add a domain.</p></li>
+</ol>
+<p>During its <code class="docutils literal notranslate"><span class="pre">unloadCallback</span></code>, a plugin should perform the following tasks:</p>
+<ol class="arabic simple">
+<li><p>Remove all spelling domains added during initialization using the <code class="docutils literal notranslate"><span class="pre">SpellRemoveDomain</span></code> method.</p></li>
+<li><p>Free all memory associated with <code class="docutils literal notranslate"><span class="pre">SpellCheckParam</span></code> block(s) (<code class="docutils literal notranslate"><span class="pre">scInBuffer</span></code>, <code class="docutils literal notranslate"><span class="pre">scOutBuffer</span></code>, and <code class="docutils literal notranslate"><span class="pre">scClientData</span></code> ).</p></li>
+<li><p>Free the <code class="docutils literal notranslate"><span class="pre">SpellCheckParam</span></code> block(s).</p></li>
+</ol>
+<p>Several of the Spelling API methods (<code class="docutils literal notranslate"><span class="pre">SpellCheck</span></code>, <code class="docutils literal notranslate"><span class="pre">SpellCheckText</span></code>, and <code class="docutils literal notranslate"><span class="pre">SpellCheckWord</span></code> ) take input strings as parameters, and several methods return strings as output parameters.</p>
+<p>Input strings are either big-endian Unicode strings with the bytes 0xFE 0xFF prepended, or strings with <code class="docutils literal notranslate"><span class="pre">PDFDocEncoding</span></code>. In either case a string is expected to have the appropriate null-termination. If a string is UCS-2 it may have embedded language and country information.</p>
+<p>Output text is in big-endian UCS-2 format with the bytes 0xFE 0xFF prepended. This string can be converted to a host encoded string by using the <code class="docutils literal notranslate"><span class="pre">ASTextFromPDText</span></code> and <code class="docutils literal notranslate"><span class="pre">ASTextGetEncodedCopy</span></code> methods.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span> <span class="o">**</span><span class="n">altArray</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+ <span class="n">ASInt32</span> <span class="n">altCount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+ <span class="n">ASBool</span> <span class="n">status</span> <span class="o">=</span> <span class="n">SpellCheckWord</span><span class="p">(</span><span class="n">acd</span><span class="p">,</span> <span class="n">cWord</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">altArray</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">altCount</span><span class="p">);</span>
+ <span class="k">if</span> <span class="p">(</span><span class="n">altCount</span><span class="p">)</span> <span class="p">{</span>
+     <span class="n">ASText</span> <span class="n">ast</span> <span class="o">=</span> <span class="n">ASTextFromPDText</span><span class="p">(</span><span class="n">altArray</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+     <span class="n">char</span><span class="o">*</span> <span class="n">altWord</span> <span class="o">=</span> <span class="n">ASTextGetEncodedCopy</span><span class="p">(</span><span class="n">ast</span><span class="p">,</span> <span class="p">(</span><span class="n">ASHostEncoding</span><span class="p">)</span>
+     <span class="n">PDGetHostEncoding</span><span class="p">()</span> <span class="p">);</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="acrocolor-extended-api">
+<h2>AcroColor extended API<a class="headerlink" href="#acrocolor-extended-api" title="Permalink to this headline">¶</a></h2>
+<p>AcroColor is an HFT that allows you to access the Adobe Color Engine (ACE), which provides color profile management for Acrobat and for other Adobe applications. Plugins can import the AcroColor HFT to use the color management methods.</p>
+<p>The AcroColor extended API is the only extended API that is not installed as a plugin. It is part of the Acrobat core, but is considered an extended API. The AcroColor APIs, unlike the other extended APIs, can be used by the PDF Library.</p>
+<p>The AcroColor HFT encapsulates color management into a set of convenient objects and functions. The objects represent basic color-management entities:</p>
+<ul class="simple">
+<li><p>The color management engine, or ACE, which is used by the underlying software to control a color management session.</p></li>
+<li><p>Device-specific ICC color profiles, which provide specific mapping between standard color specifications and specific values for particular output devices that produce those colors. Additional support objects include profile lists.</p></li>
+<li><p>Color spaces for the different kinds of color production (such as grayscale, RGB, and CMYK). Additional support objects include calibrated color spaces for standard color specifications.</p></li>
+<li><p>Transformations between profiles or color spaces.</p></li>
+<li><p>Color settings, as listed in the Acrobat Preferences. Color settings files contain, for instance, references to color profiles, and apply across Adobe products. Additional support objects include a string object and preset lists of settings.</p></li>
+</ul>
+<p>You can create an ICC color profile from available data (<code class="docutils literal notranslate"><span class="pre">ACMakeBufferProfile</span></code> ), or use profiles that are installed on the system (<code class="docutils literal notranslate"><span class="pre">ACGetWorkingSpaceProfile</span></code> ), or stored in color settings files (<code class="docutils literal notranslate"><span class="pre">ACGetSettingsProfile</span></code> ).</p>
+<p>You can extract information directly from profiles, such as a string to use in the UI (<code class="docutils literal notranslate"><span class="pre">ACProfileDescription</span></code> ). However, the most important thing you do with color profiles is use them to make transformations (<code class="docutils literal notranslate"><span class="pre">ACMakeColorTransform</span></code> ). You can then apply it (<code class="docutils literal notranslate"><span class="pre">ACApplyTransform)</span></code> to transform a set of image data from one profile to another, so that it appears with the same colors on a different display device.</p>
+<p>AcroColor objects are reference-counted. Each object type has an unreference method (such as <code class="docutils literal notranslate"><span class="pre">ACUnReferenceProfile</span></code> ). Whenever you create one of these objects, you are responsible for using the corresponding unreference method to release it when you are finished with it.</p>
+<p>The following diagram shows objects and their relationships.</p>
+<img alt="_images/AcroColor.png" src="_images/AcroColor.png" />
+<div class="section" id="color-conversion-operations">
+<h3>Color conversion operations<a class="headerlink" href="#color-conversion-operations" title="Permalink to this headline">¶</a></h3>
+<p>The Color Conversion API has been extended in Acrobat 8.0 to include new APIs that enable you to add color conversion operations to your plugin or PDF Library applications. By using this extended API, you can convert a page based on a list of conversion actions. Each conversion action contains a set of matching fields (object attribute or type, color space, rendering intent), what the action should do if an object matches the matching fields, and conversion parameters (rendering intent, black point compensation, and target color space).</p>
+<p>The list of conversion actions is evaluated in order. For example, a list could contain the following actions:</p>
+<ul class="simple">
+<li><p>Convert JPEG images to CMYK.</p></li>
+<li><p>Convert all images to CMYK.</p></li>
+<li><p>Convert line art using saturation intent.</p></li>
+</ul>
+<div class="section" id="object-attributes">
+<h4>Object attributes<a class="headerlink" href="#object-attributes" title="Permalink to this headline">¶</a></h4>
+<p>An object located within a PDF document can contain the following attributes:</p>
+<ul class="simple">
+<li><p>Image (for example, JPEG/JPEG2K, lossless)</p></li>
+<li><p>Line art (for example, fill or stroke)</p></li>
+<li><p>Text</p></li>
+<li><p>Smooth shade</p></li>
+<li><p>Transparency</p></li>
+<li><p>Overprinting</p></li>
+</ul>
+</div>
+<div class="section" id="color-space-attributes">
+<h4>Color space attributes<a class="headerlink" href="#color-space-attributes" title="Permalink to this headline">¶</a></h4>
+<p>The following list describes color space attributes:</p>
+<ul class="simple">
+<li><p>Color space (RGB, CMYK, grayscale, Lab)</p></li>
+<li><p>Calibrated</p></li>
+<li><p>Device (for example, not calibrated)</p></li>
+<li><p>Special (Separation/DeviceN)</p></li>
+<li><p>Indexed</p></li>
+<li><p>NChannel</p></li>
+<li><p>Alternate color space</p></li>
+<li><p>Base of indexed color space</p></li>
+</ul>
+</div>
+<div class="section" id="conversion-actions">
+<h4>Conversion actions<a class="headerlink" href="#conversion-actions" title="Permalink to this headline">¶</a></h4>
+<p>The following is a list of conversion actions:</p>
+<ul class="simple">
+<li><p>Convert to a color space</p></li>
+<li><p>Preserve the object as it is</p></li>
+<li><p>Alias a separation to a different one</p></li>
+<li><p>Decalibrate the object, if possible (for example, replace calibrated spaces with device). This does not work with Lab color spaces.</p></li>
+<li><p>Downconvert from NChannel to DeviceN</p></li>
+</ul>
+</div>
+<div class="section" id="action-modifiers">
+<h4>Action modifiers<a class="headerlink" href="#action-modifiers" title="Permalink to this headline">¶</a></h4>
+<p>The following action modifiers apply if the action converts the object:</p>
+<ul class="simple">
+<li><p>Render Intent:</p>
+<ul>
+<li><p>Override the color conversion with one of the ICC intents</p></li>
+<li><p>Use document intent</p></li>
+</ul>
+</li>
+<li><p>Preserve black</p></li>
+<li><p>Black point compensation: on or off</p></li>
+<li><p>Embed or do not embed the target profile if the object was converted</p></li>
+</ul>
+</div>
+<div class="section" id="ink-aliasing">
+<h4>Ink aliasing<a class="headerlink" href="#ink-aliasing" title="Permalink to this headline">¶</a></h4>
+<p>Along with the list of actions, there is a list of inks, such as specific colorants, which can control whether a particular ink is converted to process or aliased to another colorant.</p>
+</div>
+<div class="section" id="data-structures">
+<h4>Data structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h4>
+<p>The AcroColor extended API contains methods, such as <code class="docutils literal notranslate"><span class="pre">PDDocColorConvertPage</span></code>, that accept data structure instances as arguments. These data structures consist of a list of action records and a list of inks. Each action record specifies attributes, color spaces, and rendering intent, along with an action. That is, what to do with the particular object if a match is located. The ink list defines ink aliasing or conversion to process for particular named colorants.</p>
+<p>The following list specifies the data structures that you use to work with the AcroColor extended API:</p>
+<p><strong>PDColorConvertAction</strong>: Defines a color conversion action for a combination of attributes, color space, and rendering intent.</p>
+<p><strong>PDColorConvertParams</strong>: Represents a list of actions that will be performed.</p>
+<p>For information about these data structures and their data members, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="data-enum-values">
+<h4>Data enum values<a class="headerlink" href="#data-enum-values" title="Permalink to this headline">¶</a></h4>
+<p>Some data structure members require enum values as values. For example, the <code class="docutils literal notranslate"><span class="pre">mAction</span></code> member, that belongs to the <code class="docutils literal notranslate"><span class="pre">PDColorConvertAction</span></code> data structure, requires a <code class="docutils literal notranslate"><span class="pre">PDColorConvertActionType</span></code> value. The following list specifies the data enum values that you use to work with the AcroColor extended API:</p>
+<p><strong>PDColorConvertObjectAttributeFlags</strong>: Specifies object attributes.</p>
+<p><strong>PDColorConvertSpaceTypeFlags</strong>: Specifies color space attributes.</p>
+<p><strong>PDColorConvertActionType</strong>: Specifies action types that occur when an object is matched.</p>
+<p>For information about these enum values, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+<div class="section" id="converting-a-document-to-rgb">
+<h4>Converting a document to RGB<a class="headerlink" href="#converting-a-document-to-rgb" title="Permalink to this headline">¶</a></h4>
+<p>You can use the AcroColor extended API to convert a document to RGB by performing the following steps:</p>
+<ol class="arabic simple">
+<li><p>Create an instance of the <code class="docutils literal notranslate"><span class="pre">PDColorConvertParams</span></code> data structure.</p></li>
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">AC_Profile</span></code> object. This object is used to assign a value to the <code class="docutils literal notranslate"><span class="pre">mConvertProfile</span></code> data member that belongs to the <code class="docutils literal notranslate"><span class="pre">PDColorConvertAction</span></code> data structure. When you are done with this object, invoke the <code class="docutils literal notranslate"><span class="pre">ACUnReferenceProfile</span></code> method to release it from memory.</p></li>
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">ACProfileFromCode</span></code> method and pass the following arguments:</p>
+<ul class="simple">
+<li><p>The address of the <code class="docutils literal notranslate"><span class="pre">AC_Profile</span></code> object.</p></li>
+<li><p>The value <code class="docutils literal notranslate"><span class="pre">AC_Profile_AppleRGB</span></code> (this is an <code class="docutils literal notranslate"><span class="pre">AC_ProfileCode</span></code> value)</p></li>
+</ul>
+</li>
+</ol>
+<ol class="arabic simple" start="4">
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDColorConvertActionType</span></code> variable and assign it the value <code class="docutils literal notranslate"><span class="pre">kColorConvConvert</span></code>. This variable is used to assign a value to the <code class="docutils literal notranslate"><span class="pre">mAction</span></code> data member that belongs to the <code class="docutils literal notranslate"><span class="pre">PDColorConvertAction</span></code> data structure.</p></li>
+<li><p>Create an instance of the <code class="docutils literal notranslate"><span class="pre">PDColorConvertAction</span></code> data structure and assign the following values to its data members:</p></li>
+</ol>
+<p><strong>mMatchAttributesAny</strong>: Assign <code class="docutils literal notranslate"><span class="pre">-1</span></code></p>
+<p><strong>mMatchSpaceTypeAny</strong>: Assign <code class="docutils literal notranslate"><span class="pre">-1</span></code></p>
+<p><strong>mMatchIntent</strong>: Assign <code class="docutils literal notranslate"><span class="pre">AC_UseProfileIntent</span></code> (an <code class="docutils literal notranslate"><span class="pre">AC_RenderIntent</span></code> value)</p>
+<p><strong>mConvertProfile</strong>: Assign the <code class="docutils literal notranslate"><span class="pre">AC_Profile</span></code> object</p>
+<p><strong>mEmbed</strong>: Assign <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<p><strong>mPreserveBlack</strong>: Assign <code class="docutils literal notranslate"><span class="pre">false</span></code></p>
+<p><strong>mUseBlackPointCompensation</strong>: Assign <code class="docutils literal notranslate"><span class="pre">true</span></code></p>
+<p><strong>mAction</strong>: Assign the <code class="docutils literal notranslate"><span class="pre">PDColorConvertActionType</span></code> variable</p>
+<ol class="arabic simple" start="6">
+<li><p>Assign the following values to the PDColorConvertParams data members:</p></li>
+</ol>
+<p><strong>mActions</strong>: Assign the instance of the <code class="docutils literal notranslate"><span class="pre">PDColorConvertAction</span></code> data structure to this data member</p>
+<p><strong>mNumActions</strong>: Assign <code class="docutils literal notranslate"><span class="pre">1</span></code></p>
+<p><strong>mInks</strong>: Assign <code class="docutils literal notranslate"><span class="pre">NULL</span></code></p>
+<p><strong>mNumInks</strong>: Assign <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+<ol class="arabic simple" start="7">
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">PDDocColorConvertPage</span></code> method and pass the following arguments:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the document in which to convert a page. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p></li>
+<li><p>The instance of the <code class="docutils literal notranslate"><span class="pre">PDColorConvertParams</span></code> data structure that describes how color conversions are performed.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> value that specifies the page number to convert. This value is a 0-based index.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASProgressMonitor</span></code> object that represents the progress monitor callback. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if you do not want to provide a progress monitor callback.</p></li>
+<li><p>The data element to pass to the progress monitor callback. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if you do not want to provide a progress monitor callback.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDColorConvertReportProc</span></code> object that represents the reporting callback. You can pass <code class="docutils literal notranslate"><span class="pre">0</span></code> to indicate that there is no reporting callback.</p></li>
+<li><p>The data element to pass to the reporting callback. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if you do not want to provide a reporting callback.</p></li>
+<li><p>The address of an <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> variable. If a conversion is made to the specified page, <code class="docutils literal notranslate"><span class="pre">true</span></code> is assigned.</p></li>
+</ul>
+</li>
+</ol>
+<p>The following code example converts a page in a PDF document to Apple RGB.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="o">//</span><span class="n">Define</span> <span class="n">the</span> <span class="n">color</span> <span class="n">parameters</span>
+<span class="n">PDColorConvertParams</span> <span class="n">myColorParams</span><span class="p">;</span>
+
+   <span class="o">//</span><span class="n">Define</span> <span class="n">the</span> <span class="n">color</span> <span class="n">actions</span>
+<span class="n">PDColorConvertAction</span> <span class="n">myAction</span><span class="p">;</span>
+
+   <span class="o">//</span><span class="n">Declare</span> <span class="n">an</span> <span class="n">AC_Profile</span> <span class="nb">object</span>
+<span class="n">AC_Profile</span> <span class="n">prof</span><span class="p">;</span>
+
+   <span class="o">//</span><span class="n">Define</span> <span class="n">AppleRGB</span> <span class="k">as</span> <span class="n">the</span> <span class="n">profile</span> <span class="n">to</span> <span class="n">use</span>
+<span class="n">ACProfileFromCode</span><span class="p">(</span><span class="o">&amp;</span><span class="n">prof</span><span class="p">,</span> <span class="n">AC_Profile_AppleRGB</span><span class="p">);</span>
+
+   <span class="o">//</span><span class="n">Declare</span> <span class="n">a</span> <span class="n">PDColorConvertActionType</span> <span class="n">variable</span>
+<span class="n">PDColorConvertActionType</span> <span class="n">actionType</span> <span class="o">=</span>  <span class="n">kColorConvConvert</span><span class="p">;</span>
+
+   <span class="o">//</span><span class="n">Populate</span> <span class="n">the</span> <span class="n">PDColorConvertAction</span> <span class="n">data</span> <span class="n">members</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mMatchAttributesAny</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mMatchSpaceTypeAny</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mMatchIntent</span><span class="o">=</span> <span class="n">AC_UseProfileIntent</span><span class="p">;</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mConvertProfile</span><span class="o">=</span><span class="n">prof</span> <span class="p">;</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mEmbed</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mPreserveBlack</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mUseBlackPointCompensation</span><span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">myAction</span><span class="o">-&gt;</span><span class="n">mAction</span> <span class="o">=</span> <span class="n">actionType</span><span class="p">;</span>
+
+   <span class="o">//</span><span class="n">Populate</span> <span class="n">the</span> <span class="n">PDColorConvertParams</span> <span class="n">pointer</span>
+<span class="n">myColorParams</span><span class="o">-&gt;</span><span class="n">mActions</span><span class="o">=</span><span class="n">myAction</span><span class="p">;</span>
+<span class="n">myColorParams</span><span class="o">-&gt;</span><span class="n">mNumActions</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="n">myColorParams</span><span class="o">-&gt;</span><span class="n">mInks</span><span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+<span class="n">myColorParams</span><span class="o">-&gt;</span><span class="n">mNumInks</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+   <span class="o">//</span><span class="n">Convert</span> <span class="n">the</span> <span class="n">second</span> <span class="n">page</span> <span class="n">to</span> <span class="n">Apple</span> <span class="n">RGB</span>
+<span class="n">PDDocColorConvertPage</span> <span class="p">(</span><span class="n">theDoc</span><span class="p">,</span> <span class="n">myColorParams</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">NULL</span><span class="p">,</span><span class="n">false</span><span class="p">);</span>
+
+   <span class="o">//</span><span class="n">Deallocate</span> <span class="n">the</span> <span class="n">AC_Profile</span> <span class="nb">object</span>
+<span class="n">ACUnReferenceProfile</span><span class="p">(</span><span class="n">prof</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For information about the APIs included in the AcroColor extended API, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="pdf-optimizer-api">
+<h2>PDF Optimizer API<a class="headerlink" href="#pdf-optimizer-api" title="Permalink to this headline">¶</a></h2>
+<p>PDF Optimizer API is part of the AV layer and is exported using the AcroView HFT. You use this API to work with the PDF Optimizer tool, which optimizes an active PDF document and then saves it using the <code class="docutils literal notranslate"><span class="pre">PDDocSaveWithParams</span></code> method to a specified location. The PDF Optimizer API is available with Acrobat Pro and Acrobat Pro Extended, but not with Acrobat Standard or with Adobe Reader.</p>
+<p>Using this API, you can reduce the size of bulky PDF files and run Distiller optimizations on PDF files without having to print them. Avoiding the print route enables you to retain bookmarks, tags, links, and so on. You can also make PDF files compatible with specific versions of Acrobat.</p>
+<p>You can invoke the <code class="docutils literal notranslate"><span class="pre">AVDocSaveOptimized</span></code> method to run the PDF Optimizer tool on a specified PDF document. An optimized document is created using the settings specified in the <code class="docutils literal notranslate"><span class="pre">PDFOptParams</span></code> structure. The optimized document is saved to disk at the location specified in the parameter’s structure. If the operation is successful, the active document is closed and the optimized document is opened for viewing. If the operation fails, the active document remains open.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object passed to the proc should not be dirty. PDF Optimizer is unavailable in external windows like those of a web browser, so the <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object should not be from a document open in an external window. The document should not be of a version greater than the default PDF version of the Acrobat application.</p>
+<p>When you invoke the <code class="docutils literal notranslate"><span class="pre">AVDocSaveOptimized</span></code> method, pass the following arguments:</p>
+<ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object that represents the PDF document to optimize.</p></li>
+<li><p>An instance of a <code class="docutils literal notranslate"><span class="pre">PDFOptParams</span></code> data structure. (See the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.)</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adobe Inc..
+      <span class="lastupdated">
+        Last updated on Feb 23, 2022.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

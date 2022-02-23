@@ -1,0 +1,1364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Working with 3D Annotations &mdash; Acrobat Plugin Developer Guide</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+
+  
+  
+    <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homePlugins_3D_samples.html"/>
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Parsing and Creating PRC Files" href="Plugins_A3D_API.html" />
+    <link rel="prev" title="Working with Cos Objects" href="Plugins_Cos.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat Plugin Developer Guide
+          
+
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Introduction to Plugin Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-plugins">About plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-the-acrobat-core-api">About the Acrobat core API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-viewer-layer">Acrobat Viewer layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#portable-document-layer">Portable Document layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#acrobat-support-layer">Acrobat Support layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-layer">Cos layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#platform-specific-methods">Platform-specific methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-objects">Acrobat core API objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#file-object-interrelationships">File object interrelationships</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#document-object-interrelationships">Document object interrelationships</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#acrobat-core-api-methods">Acrobat core API methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#data-types">Data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#scalar-types">Scalar types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#simple-types">Simple types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#complex-types">Complex types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#opaque-types">Opaque types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#cos-types">Cos types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#about-pdf-library-and-plugin-applications">About PDF Library and plugin applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#manipulating-acrobat-and-adobe-reader">Manipulating Acrobat and Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#displaying-a-pdf-document-in-an-external-window">Displaying a PDF document in an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#indexed-searching">Indexed searching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modifying-file-access">Modifying file access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#creating-new-annotation-types">Creating new annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dynamically-adding-text-to-pdf-documents">Dynamically adding text to PDF documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#understanding-your-target-application">Understanding your target application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#rights-enabled-pdf-documents">Rights-enabled PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#adobe-reader-plugins">Adobe Reader plugins</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#registering-plugins-for-use-by-the-plugin-finder">Registering plugins for use by the plugin finder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#pdf-dictionary-extensions">PDF dictionary extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#initialization">Initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#unloading">Unloading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#summarizing-a-plugin-s-life-cycle">Summarizing a plugin’s life cycle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-callback-functions">Using callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#notifications">Notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#handling-events">Handling events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#mouse-clicks">Mouse clicks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adjust-cursor">Adjust cursor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#key-presses">Key presses</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes">Using plugin prefixes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#obtaining-a-developer-pdf-name-prefix">Obtaining a developer PDF name prefix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#using-a-developer-prefix">Using a developer prefix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#plugin-name">Plugin name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-prefixes">Menu prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#menu-items-prefixes">Menu items prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#tool-prefixes">Tool prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#toolbar-button-prefixes">Toolbar button prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#private-data-id-d-via-second-class-names">Private data ID’d via second-class names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#action-prefixes">Action prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#annotation-prefixes">Annotation prefixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Pimech.html#hft-prefixes">HFT prefixes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#modifying-the-acrobat-or-adobe-reader-user-interface">Modifying the Acrobat or Adobe Reader user interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#adding-or-removing-menus-and-menu-items">Adding or removing menus and menu items</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#modifying-toolbars">Modifying toolbars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#controlling-the-about-box-and-splash-screen">Controlling the About box and splash screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#creating-help-files">Creating help files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#user-interface-guidelines">User interface guidelines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#acquiring-and-releasing-objects">Acquiring and releasing objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#debugging-plugins">Debugging plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#page-view-layers">Page view layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#minimizing-screen-redrawing">Minimizing screen redrawing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#storing-private-data-in-pdf-files">Storing private data in PDF files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#exporting-data-from-pdf-document-objects">Exporting data from PDF document objects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_CreatingSimplePlug.html">Creating Plugin and PDF Library Applications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#working-with-platform-specific-techniques">Working with platform-specific techniques</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#about-platform-dependent-data">About platform-dependent data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#portability-techniques">Portability techniques</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows-techniques">Windows techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-windows-plugins">Developing Windows plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-plugins">Locating and loading plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#why-a-plugin-might-not-load">Why a plugin might not load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros-and-project-settings">Macros and project settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#interapplication-communication">Interapplication communication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#debugging">Debugging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#handling-the-thread-local-storage-tls-limit">Handling the thread local storage (TLS) limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-modal-dialog-boxes">Using modal dialog boxes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-techniques">Mac OS techniques</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-a-mac-os-plugin">Developing a Mac OS plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-the-samples">Using the samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#establishing-carbon-or-cocoa-compliance">Establishing Carbon or Cocoa compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#xcode-configuration-files">Xcode configuration files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-setgworld-rather-than-setport">Using SetGWorld rather than SetPort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#locating-and-loading-a-plugin">Locating and loading a plugin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-memory">Using memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#resource-file-considerations">Resource file considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#using-saferesources">Using SafeResources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#manipulating-the-resource-chain-directly">Manipulating the resource chain directly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#macros">Macros</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os-only-methods">Mac OS-only methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#inter-application-communication">Inter application communication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-plugin">Creating a sample plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-acrobat-sdk-library-files">Including Acrobat SDK library files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-the-pimain-source-file">Adding the PIMain source file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#adding-application-logic">Adding application logic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#compiling-and-building-your-plugin">Compiling and building your plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#creating-a-sample-pdf-library-application">Creating a sample PDF Library application</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#contents-of-the-pdf-library-sdk">Contents of the PDF Library SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#including-library-files">Including library files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#sample-code">Sample code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#developing-applications-with-the-adobe-pdf-library">Developing applications with the Adobe PDF Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#mac-os">Mac OS</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#initialization-and-termination">Initialization and termination</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#multithreading">Multithreading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#upgrading-existing-plugins">Upgrading existing plugins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#detecting-supported-apis">Detecting supported APIs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_CreatingSimplePlug.html#migrating-pdfl-apps-to-xcode">Migrating PDFL apps to Xcode</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Insertext.html">Inserting Text into PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-pdf-document">Creating a new PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-new-page">Creating a new page</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-container">Creating a container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#acquiring-fonts">Acquiring fonts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-a-pdegraphicstate-object">Creating a PDEGraphicState object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#creating-an-asfixedmatrix-object">Creating an ASFixedMatrix object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#inserting-text">Inserting text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#saving-the-pdf-document">Saving the PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Insertext.html#examining-a-pdfl-app-source-file">Examining a PDFL app source file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-handler-for-an-external-window">Creating a handler for an external window</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-an-open-dialog-box">Displaying an open dialog box</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#displaying-a-pdf-in-a-window">Displaying a PDF in a window</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#determining-the-pdf-version">Determining the PDF version</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version">PDF version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#pdf-version-extensions">PDF version extensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#setting-the-extension-level-of-a-document">Setting the extension level of a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#getting-the-extension-level-of-a-document">Getting the extension level of a document</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#bridging-core-api-layers">Bridging core API layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object">Creating a PDDoc object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object-for-an-open-pdf">Creating a PDDoc object for an open PDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#accessing-non-pdf-files">Accessing non-PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#printing-documents">Printing documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#working-with-the-pdf-x-format">Working with the PDF/X format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Menu.html">Creating Menus and Menu Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#about-menus">About menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenubar-typedefs">About AVmenubar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenu-typedefs">About AVMenu typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#about-avmenuitem-typedefs">About AVMenuItem typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#adding-menu-commands-to-menus">Adding menu commands to menus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-an-existing-menu">Adding a menu command to an existing menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Menu.html#adding-a-menu-command-to-a-new-menu">Adding a menu command to a new menu</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#creating-menu-callback-functions">Creating menu callback functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Menu.html#determining-if-a-menu-item-can-be-executed">Determining if a menu item can be executed</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Toolbutton.html">Creating Toolbars and Buttons</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#about-toolbars">About toolbars</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbar-typedefs">About AVToolBar typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#about-avtoolbutton-typedefs">About AVToolButton typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-toolbars">Retrieving toolbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-buttons">Creating toolbar buttons</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-help-text-for-a-button">Setting help text for a button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#setting-label-text">Setting label text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Toolbutton.html#creating-a-sub-menu-for-a-button">Creating a sub-menu for a button</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#retrieving-existing-toolbar-buttons">Retrieving existing toolbar buttons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#attaching-a-button-to-a-toolbar">Attaching a button to a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#exposing-a-button-in-a-web-browser">Exposing a button in a web browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#removing-a-button-from-a-toolbar">Removing a button from a toolbar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-button-callback-functions">Creating toolbar button callback functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Annotations.html">Creating Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-text-annotations">Working with text annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-text-annotations">Creating text annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#retrieving-existing-annotations">Retrieving existing annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-text-annotations">Modifying text annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Annotations.html#working-with-redaction-annotations">Working with redaction annotations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#creating-a-redaction-annotation">Creating a redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#modifying-an-existing-redaction-annotation">Modifying an existing redaction annotation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Annotations.html#applying-redaction-annotations-removing-redacted-content">Applying redaction annotations (removing redacted content)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Bookmark.html">Working with Bookmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#about-bookmarks">About bookmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#creating-bookmarks">Creating bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#defining-bookmark-actions">Defining bookmark actions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-pdviewdestination-object">Creating a PDViewDestination object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#creating-a-avpageview-object">Creating a AVPageView object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Bookmark.html#assigning-an-action-to-a-bookmark">Assigning an action to a bookmark</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#removing-bookmark-actions">Removing bookmark actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#opening-and-closing-bookmarks">Opening and closing bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-bookmarks">Retrieving bookmarks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-the-root-bookmark">Retrieving the root bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-a-specific-bookmark">Retrieving a specific bookmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Bookmark.html#retrieving-all-bookmarks">Retrieving all bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Bookmark.html#deleting-bookmarks">Deleting bookmarks</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Pages.html">Working with Page Views and Contents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-coordinates">About page coordinates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#about-page-views">About page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#displaying-page-views">Displaying page views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pages.html#modifying-page-contents">Modifying page contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#creating-a-pdecontent-object">Creating a PDEContent object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#accessing-page-contents">Accessing page contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#determining-page-element-types">Determining page element types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Pages.html#modifying-text-elements">Modifying text elements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Words.html">Working with Words</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#about-searching-for-words">About searching for words</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdword-typedefs">About PDWord typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Words.html#about-pdwordfinder-typedefs">About PDWordFinder typedefs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#creating-a-pdwordfinder-object">Creating a PDWordFinder object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#extracting-and-displaying-words">Extracting and displaying words</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Words.html#highlighting-words">Highlighting words</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Handlers.html">Creating Handlers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#about-handlers">About handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#action-handlers">Action handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#annotation-handlers">Annotation handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#avcommand-handlers">AVCommand handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#creating-an-avcommand-handler">Creating an AVCommand handler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#invoking-avcommands">Invoking AVCommands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#configuring-avcommands">Configuring AVCommands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-input-parameters">Setting input parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-configuration-parameters">Setting configuration parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#setting-avcommand-parameters">Setting AVCommand parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#running-commands">Running commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Handlers.html#exposing-avcommands-to-the-batch-framework">Exposing AVCommands to the batch framework</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#adding-a-handler-to-the-global-command-list">Adding a handler to the global command list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Handlers.html#supporting-properties">Supporting properties</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-format-conversion-handlers">File format conversion handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-specification-handlers">File specification handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#selection-servers">Selection servers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#tool-callbacks">Tool callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#window-handlers">Window handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#file-systems">File systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#progress-monitors">Progress monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#transition-handlers">Transition handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Handlers.html#adding-message-handling">Adding message handling</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Notification.html">Registering for Event Notifications</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#registering-event-notifications">Registering event notifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Notification.html#unregistering-event-notifications">Unregistering event notifications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Security.html">Working with Document Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-document-security">About document security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#about-security-handlers">About security handlers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#adding-a-security-handler">Adding a security handler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handlers-data">Security handlers data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#security-handler-callbacks">Security handler callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Security.html#acrobat-s-authorization-procedure">Acrobat’s authorization procedure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-a-secured-file">Opening a secured file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-secured-file">Saving a secured file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Security.html#setting-security-for-a-document">Setting security for a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#saving-a-file-with-an-encryption-dictionary">Saving a file with an encryption dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Security.html#opening-an-encrypted-file">Opening an encrypted file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Unicode.html">Working with Unicode Paths</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#about-unicode-paths">About Unicode paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#creating-unicode-file-path-application-logic">Creating Unicode file path application logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Unicode.html#retrieving-unicode-path-values">Retrieving Unicode path values</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object">Creating an ASFileSys object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object-that-supports-unicode-paths">Creating an ASFileSys object that supports Unicode paths</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Hft.html">Working with Host Function Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#about-host-function-tables">About host function tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#exporting-host-function-tables">Exporting host function tables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-methods">Creating HFT methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-method-definitions">Creating HFT method definitions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-function-prototypes">Defining function prototypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#defining-an-hft-method-name">Defining an HFT method name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-hft-callback-functions">Creating HFT callback functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#creating-new-host-function-tables">Creating new Host Function Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Hft.html#examining-hft-header-and-source-files">Examining HFT header and source files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-header-file">Examining an HFT header file</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Hft.html#examining-an-hft-source-file">Examining an HFT source file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#importing-an-existing-hft">Importing an existing HFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#invoking-hft-methods">Invoking HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#replacing-hft-methods">Replacing HFT methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Hft.html#migrating-non-hft-pdf-library-applications-to-hft-applications">Migrating non-HFT PDF Library applications to HFT applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Cos.html">Working with Cos Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#about-cos-objects">About Cos objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-direct-and-indirect-objects">About direct and indirect objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#about-cos-object-types">About Cos object types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-strings">Cos strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#hexadecimal-strings">Hexadecimal strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-arrays">Cos arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-names">Cos names</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-dictionaries">Cos dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#cos-streams">Cos streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-strings">Working with Cos strings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-strings">Creating Cos strings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-string-value">Retrieving the string value</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-arrays">Working with Cos arrays</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-arrays">Creating Cos arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-cos-array-values">Retrieving Cos array values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries">Working with Cos dictionaries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-dictionaries">Creating Cos dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-values-from-a-cos-dictionary">Retrieving values from a Cos dictionary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#querying-a-cos-dictionary-for-a-key">Querying a Cos dictionary for a key</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-names">Working with Cos names</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-names">Creating Cos names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#retrieving-the-value-of-a-name-object">Retrieving the value of a name object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Cos.html#working-with-cos-streams">Working with Cos streams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#creating-cos-streams">Creating Cos streams</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#creating-a-stream-dictionary">Creating a stream dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_Cos.html#inserting-a-cos-stream-into-a-pdf-document">Inserting a Cos stream into a PDF document</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Cos.html#populating-a-pdf-with-a-content-stream">Populating a PDF with a content stream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Working with 3D Annotations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-3d-annotations">Creating 3D annotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-3d-data-to-an-annotation">Adding 3D data to an annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-the-3d-annotation-dictionary-entries">Creating the 3D annotation dictionary entries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifying-the-3d-stream">Specifying the 3D stream</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-the-stream-object">Creating the stream object</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-the-cos-stream-to-the-annotation-dictionary">Adding the Cos stream to the annotation dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-the-attributes-dictionary">Creating the attributes dictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-javascript-code">Specifying JavaScript code</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-the-default-view">Setting the default view</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-the-annotation-appearance">Setting the annotation appearance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-the-activation-dictionary">Setting the activation dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_A3D_API.html">Parsing and Creating PRC Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#working-with-the-acrobat-3d-api">Working with the Acrobat 3D API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#versions">Versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-with-different-prc-format-versions">Compatibility with different PRC format versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#compatibility-between-the-acrobat-3d-library-and-the-acrobat-3d-api">Compatibility between the Acrobat 3D Library and the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#requirements">Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#data-types-naming-conventions-and-character-encoding">Data types, naming conventions, and character encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#structured-and-recursive-nature-of-prc-parsing">Structured and recursive nature of PRC parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking-in-your-plugin">Implementing external linking in your plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#implementing-external-linking">Implementing external linking</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#parsing-a-prc-file">Parsing a PRC file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#handling-errors">Handling errors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#copying-the-embedded-prc-file-to-a-separate-file">Copying the embedded PRC file to a separate file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#initializing-the-acrobat-3d-api">Initializing the Acrobat 3D API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-structure-prc-entities">Parsing structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-model-file-data">Parse the model file data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-product-occurrence">Parse a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-part-definition">Parse a part definition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-representation-items">Parsing representation items</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-representation-item-set-prc-entity-a3driset">Parse a representation item set (PRC entity A3DRiSet)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-brep-model-representation-item-prc-entity-a3dribrepmodel">Parse a Brep model representation item (PRC entity A3DRiBrepModel)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-coordinate-system-data">Parse coordinate system data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-tessellation-prc-entities">Parsing tessellation PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-tessellation-base-data">Parse tessellation base data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-3d-tessellation-data">Parse 3D tessellation data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-topology-prc-entities">Parsing topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-body-data">Parse topology body data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-topology-context-data">Parse topology context data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-brep-model-s-data">Parse the Brep model’s data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-connex-data">Parse Connex data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-a-shell-entity">Parse a shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-face-s-surface-data">Parse the face’s surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#convert-surface-data-to-nurbs-for-other-than-uv-mapped-surfaces">Convert surface data to Nurbs (for other than UV-mapped surfaces)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-generic-surface-data">Parse generic surface data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-nurbs-surface-data">Parse Nurbs surface data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-prc-entities-that-specify-graphics">Parsing PRC entities that specify graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#parsing-attributes-that-appear-in-an-entity-base">Parsing attributes that appear in an entity base</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-root-base-entity-data">Parsing root-base entity data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parse-the-miscellaneous-attribute-entity">Parse the miscellaneous attribute entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#parsing-graphic-attributes-using-miscellaneous-cascaded-attributes">Parsing graphic attributes using miscellaneous cascaded attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#to-create-and-push-a-miscellaneous-cascaded-attributes-structure">To create and push a miscellaneous cascaded attributes structure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#terminating-the-interface-with-the-acrobat-3d-api">Terminating the interface with the Acrobat 3D API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#terminate-your-interface-with-the-acrobat-3d-api">Terminate your interface with the Acrobat 3D API</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-prc-file-that-uses-boundary-representation">Creating a PRC file that uses boundary representation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#error-handling">Error handling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-model-file-entity-and-exporting-it-to-a-physical-file">Creating a model file entity and exporting it to a physical file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-file-that-contains-the-prc-data">Create a file that contains the PRC data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-structure-prc-entities">Creating structure PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-model-file-entity">Create a model file entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-product-occurrence">Create a product occurrence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-part-definition">Create a part definition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-representation-item-prc-entities">Creating representation item PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-brep-model-representation-item">Create a Brep model representation item</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-topology-prc-entities">Creating topology PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-brep-data-entity">Create a topology Brep data entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-connex-entity">Create a topology connex entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-shell-entity">Create a topology shell entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-face-entity">Create a topology face entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-loop-entity">Create a topology loop entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-co-edge-entity">Create a topology co-edge entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-topology-edge-entity">Create a topology edge entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-geometry-prc-entities">Creating geometry PRC entities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-surface-cylinder-entity">Create a surface cylinder entity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#create-a-circular-curve-entity">Create a circular curve entity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#defining-root-level-attributes-for-a-prc-entity">Defining root-level attributes for a PRC entity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-omit-modeler-data">Define miscellaneous attributes that omit modeler data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_A3D_API.html#define-miscellaneous-attributes-that-include-modeler-data">Define miscellaneous attributes that include modeler data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-3d-annotation-that-references-the-prc-file">Creating a 3D annotation that references the PRC file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_A3D_API.html#creating-a-tessellation-entity-for-representing-faceted-objects">Creating a tessellation entity for representing faceted objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-base-data">Create the tessellation base data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_A3D_API.html#create-the-tessellation-facet-data">Create the tessellation facet data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_Exceptions.html">Handling Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#creating-exception-handlers">Creating exception handlers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#returning-a-value-from-an-exception-handler">Returning a value from an exception handler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#raising-exceptions">Raising exceptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Exceptions.html#exception-handling-scenarios">Exception handling scenarios</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-goto-statements">Using goto statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-nested-exception-handlers">Using nested exception handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_Exceptions.html#using-register-variables">Using register variables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ExtendedAPI.html">Working with Acrobat Extended APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#search-extended-api">Search extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#catalog-extended-api">Catalog extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-consultant-and-accessibility-checker-extended-api">PDF Consultant and Accessibility Checker extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrobat-agents">Acrobat agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-and-revisiting">Reclassifying and revisiting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#agent-architecture">Agent architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#how-the-consultant-works">How the consultant works</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#removing-or-modifying-objects">Removing or modifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#reclassifying-objects">Reclassifying objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-process">Consultant process</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#important-issues-for-consultant-development">Important issues for consultant development</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#maintaining-the-traversal-stack">Maintaining the traversal stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#deciding-consultant-or-the-agent-does-the-work">Deciding consultant or the agent does the work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-agent-collisions">Avoiding agent collisions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#avoiding-visitation-collisions">Avoiding visitation collisions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#importing-the-consultant-hfts-into-a-plugin">Importing the consultant HFTs into a plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-and-destroying-consultants">Creating and destroying consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#registering-agents-with-consultants">Registering agents with consultants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#starting-the-consultant">Starting the consultant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#consultant-object-type-identification">Consultant object type identification</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-an-agent-class">Creating an agent class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#creating-agent-constructors">Creating agent constructors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#recognizing-objects-of-interest">Recognizing objects of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#post-processing-stage">Post processing stage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-extended-api">Digital signature extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#the-pubsec-layer">The PubSec layer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-components">Digital signature components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#digital-signature-scenarios">Digital signature scenarios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#initializing-the-digital-signature-plugin">Initializing the digital signature plugin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#understanding-the-process">Understanding the process</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#dialogs-and-signature-gathering">Dialogs and signature gathering</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#saving-a-document">Saving a document</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#finishing-the-process">Finishing the process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#revalidating-signatures">Revalidating signatures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-available-callbacks">Additional available callbacks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#additional-plugin-support">Additional plugin support</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#rollback-support">Rollback support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#forms-extended-api">Forms extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-extended-api">Weblink extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#weblink-services">Weblink services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#writing-a-custom-driver">Writing a custom driver</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#spelling-extended-api">Spelling extended API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#acrocolor-extended-api">AcroColor extended API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-conversion-operations">Color conversion operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#object-attributes">Object attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#color-space-attributes">Color space attributes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#conversion-actions">Conversion actions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#action-modifiers">Action modifiers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#ink-aliasing">Ink aliasing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-structures">Data structures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#data-enum-values">Data enum values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="Plugins_ExtendedAPI.html#converting-a-document-to-rgb">Converting a document to RGB</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ExtendedAPI.html#pdf-optimizer-api">PDF Optimizer API</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Plugins_ReaderPlug.html">Creating an Adobe Reader plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#configuring-preprocessor-definitions">Configuring preprocessor definitions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#creating-the-public-and-private-key-pairs">Creating the public and private key pairs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#enabling-the-plugin-for-adobe-reader">Enabling the plugin for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_ReaderPlug.html#troubleshooting-an-adobe-reader-plugin">Troubleshooting an Adobe Reader plugin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#plugin-appears-to-be-ignored-by-adobe-reader">Plugin appears to be ignored by Adobe Reader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Plugins_ReaderPlug.html#adobe-reader-error-messages">Adobe Reader error messages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_Plugins.html">Reader Plugins</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#reader-enablement">Reader enablement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Reader_Plugins.html#apis-available-for-adobe-reader">APIs available for Adobe Reader</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat Plugin Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Working with 3D Annotations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="Plugins_A3D_API.html" class="btn btn-neutral float-right" title="Parsing and Creating PRC Files" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="Plugins_Cos.html" class="btn btn-neutral float-left" title="Working with Cos Objects" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="working-with-3d-annotations">
+<h1>Working with 3D Annotations<a class="headerlink" href="#working-with-3d-annotations" title="Permalink to this headline">¶</a></h1>
+<p>Three-dimensional annotations can be viewed in a PDF document by means of <em>3D annotations</em>. This chapter explains how to create 3D annotations and modify existing ones by using Cos objects. Before you read this chapter, it is strongly recommended that you become familiar with Cos objects. (See <a class="reference external" href="Plugins_Cos.html#50618418_86959">Working with Cos Objects</a>.)</p>
+<p>The underlying 3D object data in a 3D annotation must conform to the Adobe PRC Format Specification the Universal 3D (U3D) format developed by the 3D Industry Forum ( <a class="reference external" href="http://www.3dif.org">http://www.3dif.org</a> ). Acrobat supports a subset of U3D, as described in the document <em>U3D Elements</em>, which can be found at the <a class="reference external" href="http://www.adobe.com/go/acrobat_developer">Acrobat Developer Center</a>.</p>
+<div class="section" id="creating-3d-annotations">
+<h2>Creating 3D annotations<a class="headerlink" href="#creating-3d-annotations" title="Permalink to this headline">¶</a></h2>
+<p>Before you can add three-dimensional data to an annotation, you must create it. Annotations are represented by an annotation dictionary. A <em>dictionary</em> is a data structure with one or more entries, which are <em>key-value pairs:</em></p>
+<ul class="simple">
+<li><p>The key is a <em>name object</em>.</p></li>
+<li><p>The value is some type of PDF object. The <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. describes all the PDF object types. If the value is a dictionary, that dictionary has its own key-value pairs. Therefore, dictionaries can be nested within other dictionaries (as you will see with the 3D structures). For details, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p></li>
+</ul>
+<p>General annotation dictionary entries are described in Table 8.15 in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. Those specific to 3D annotations are described in Table 9.33.</p>
+<p>The following code example creates a 3D annotation with corners (1, 9.5) and (7,4) using the <code class="docutils literal notranslate"><span class="pre">PDPageAddNewAnnot</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ASFixedRect</span> <span class="n">annotRect</span><span class="p">;</span>
+ <span class="n">annotRect</span><span class="o">.</span><span class="n">left</span>   <span class="o">=</span> <span class="n">Int16ToFixed</span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="mi">72</span><span class="p">);</span>
+ <span class="n">annotRect</span><span class="o">.</span><span class="n">top</span>    <span class="o">=</span> <span class="n">Int16ToFixed</span><span class="p">(</span><span class="mf">9.5</span><span class="o">*</span><span class="mi">72</span><span class="p">);</span>
+ <span class="n">annotRect</span><span class="o">.</span><span class="n">right</span>  <span class="o">=</span> <span class="n">Int16ToFixed</span><span class="p">(</span><span class="mf">7.0</span><span class="o">*</span><span class="mi">72</span><span class="p">);</span>
+ <span class="n">annotRect</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">Int16ToFixed</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="mi">72</span><span class="p">);</span>
+
+ <span class="n">PDAnnot</span> <span class="n">newAnnot</span> <span class="o">=</span> <span class="n">PDPageAddNewAnnot</span><span class="p">(</span><span class="n">pdPage</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;3D&quot;</span><span class="p">),</span>
+ <span class="o">&amp;</span><span class="n">annotRect</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This method contains the following parameters:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> on which to place the annotation.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> indicating where to add the annotation in the page’s annotation array. The value -2 is normally used and means the annotation is added to the end of the page’s annotation array. For information about this value, see the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a>.</p></li>
+<li><p>The type of the annotation, which in this case is <code class="docutils literal notranslate"><span class="pre">3D</span></code>. This sets the value of the annotation dictionary’s <code class="docutils literal notranslate"><span class="pre">Subtype</span></code> entry. It is important to note that in PDF this is a <em>name object</em>, not a string. In the API, the <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> type is frequently used to represent names; the <code class="docutils literal notranslate"><span class="pre">ASAtomFromString</span></code> method converts a string to a name.</p></li>
+<li><p>The rectangle in which the annotation appears on the page. This sets the value of the annotation dictionary’s <code class="docutils literal notranslate"><span class="pre">Rect</span></code> entry.</p></li>
+</ul>
+<p>After the annotation has been created, you must complete the other entries in the annotation dictionary. The <code class="docutils literal notranslate"><span class="pre">F</span></code> (flags) entry is set here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDAnnotSetFlags</span><span class="p">(</span><span class="n">newAnnot</span><span class="p">,</span> <span class="n">pdAnnotPrint</span> <span class="o">|</span> <span class="n">pdAnnotReadOnly</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The annotation’s initial appearance (the <code class="docutils literal notranslate"><span class="pre">AP</span></code> entry) can be set. (See <a class="reference external" href="Plugins_3D_samples.html#50618421_59797">Setting the annotation appearance</a>.)</p>
+<p>Other entries are set using the <code class="docutils literal notranslate"><span class="pre">EmbedDataIn3Dannot</span></code> function (See <a class="reference external" href="Plugins_3D_samples.html#50618421_21047">Adding 3D data to an annotation</a>.)</p>
+<p>If you add PRC data to a 3D annotation, you must also ensure that the document’s <code class="docutils literal notranslate"><span class="pre">Catalog</span></code> dictionary contains an Adobe <code class="docutils literal notranslate"><span class="pre">Extension</span></code> dictionary that specifies the PDF base version (<code class="docutils literal notranslate"><span class="pre">1.7</span></code> ) and extension level (<code class="docutils literal notranslate"><span class="pre">1</span></code> or greater) that added PRC data to 3D annotations. (See <a class="reference external" href="Plugins_Documents.html#50618416_53916">PDF version extensions</a>.)</p>
+</div>
+<div class="section" id="adding-3d-data-to-an-annotation">
+<h2>Adding 3D data to an annotation<a class="headerlink" href="#adding-3d-data-to-an-annotation" title="Permalink to this headline">¶</a></h2>
+<p>The Acrobat and PDF Library API does not contain methods for working specifically with 3D annotations. To add entries to a 3D annotation dictionary, you must use Cos-level API methods. These methods enable you to create PDF objects of any type (see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ) and to set their values.</p>
+<p>The Cos API uses two primary object types:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> represents an entire PDF document.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CosObj</span></code> represents all other PDF objects: simple types like numbers and string values as well as complex types such as dictionaries, arrays, and streams.</p></li>
+</ul>
+<p>The API provides methods for creating and working with different object types. The creation methods are of the form <code class="docutils literal notranslate"><span class="pre">CosNew</span></code> Object, where Object is the object being created: for example, <code class="docutils literal notranslate"><span class="pre">CosNewDict</span></code>, which creates a dictionary object, <code class="docutils literal notranslate"><span class="pre">CosNewBoolean</span></code>, and <code class="docutils literal notranslate"><span class="pre">CosNewStream</span></code>.</p>
+<p>The first two parameters for the <code class="docutils literal notranslate"><span class="pre">CosNew</span></code> Object methods (with the exception of <code class="docutils literal notranslate"><span class="pre">CosNewNull</span></code>, which takes no parameters) are these:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object that represents the current document.</p></li>
+<li><p>A Boolean parameter that specifies whether the new object should be indirect. Indirect objects (see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ) are given object numbers and can be referred to from more than one place in a PDF file. Direct objects are specified only where they are used and cannot be referred to from anywhere else.</p></li>
+</ul>
+<p>The remaining parameters vary depending on the object type:</p>
+<ul class="simple">
+<li><p>For simple types, the third parameter specifies its value. For arrays and dictionaries, the third parameter specifies the number of elements.</p></li>
+<li><p>For streams, there are several additional parameters. See the <a class="reference external" href="./API_References/Acrobat_API_Reference/index.html">Acrobat and PDF Library API Reference</a> for details on each method.</p></li>
+</ul>
+<p>The return value of these methods is the newly created object. In the API, this object is always a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code>. That is, even though you call <code class="docutils literal notranslate"><span class="pre">CosNewDict</span></code> to create a dictionary object, and you use methods like <code class="docutils literal notranslate"><span class="pre">CosDictPut</span></code> to work with dictionary objects, there is not a formal object type called <code class="docutils literal notranslate"><span class="pre">CosDict</span></code>.</p>
+<p>If necessary, you can determine the type of a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> by calling the <code class="docutils literal notranslate"><span class="pre">CosObjGetType</span></code> method, which returns a constant (<code class="docutils literal notranslate"><span class="pre">CosNull</span></code>, <code class="docutils literal notranslate"><span class="pre">CosInteger</span></code>, <code class="docutils literal notranslate"><span class="pre">CosFixed</span></code>, <code class="docutils literal notranslate"><span class="pre">CosReal</span></code>, <code class="docutils literal notranslate"><span class="pre">CosBoolean</span></code>, <code class="docutils literal notranslate"><span class="pre">CosName</span></code>, <code class="docutils literal notranslate"><span class="pre">CosString</span></code>, <code class="docutils literal notranslate"><span class="pre">CosDict</span></code>, <code class="docutils literal notranslate"><span class="pre">CosArray</span></code>, or <code class="docutils literal notranslate"><span class="pre">CosStream</span></code> ).</p>
+<p>Most of the code described here involves setting the entries of dictionaries (<code class="docutils literal notranslate"><span class="pre">CosObjs</span></code> of type <code class="docutils literal notranslate"><span class="pre">CosDict</span></code> ). Dictionaries contain a number of key-value pairs, where the key is a <em>name object</em> and the value is any type of <code class="docutils literal notranslate"><span class="pre">CosObj</span></code>.</p>
+<p>There are several common methods that can be used, which differ only in how the keys are specified. The <code class="docutils literal notranslate"><span class="pre">CosDictPutKeyString</span></code> method (available in Acrobat 7.0 or later) allows the key to be specified as a string and is the recommended method, as in the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">theDict</span><span class="p">,</span>   <span class="o">//</span> <span class="n">The</span> <span class="n">dictionary</span>
+     <span class="s2">&quot;TheKey&quot;</span><span class="p">,</span>                   <span class="o">//</span> <span class="n">The</span> <span class="n">key</span><span class="p">:</span> <span class="n">a</span> <span class="n">string</span>
+     <span class="n">theCosValue</span><span class="p">);</span>               <span class="o">//</span> <span class="n">The</span> <span class="n">value</span><span class="p">:</span> <span class="n">a</span> <span class="n">CosObj</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">CosDictPut</span></code> requires the key to be specified as an <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code>. <code class="docutils literal notranslate"><span class="pre">CosDictPutKey</span></code> requires the key to be a name object (a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> of type <code class="docutils literal notranslate"><span class="pre">CosName</span></code> ).</p>
+<div class="section" id="creating-the-3d-annotation-dictionary-entries">
+<h3>Creating the 3D annotation dictionary entries<a class="headerlink" href="#creating-the-3d-annotation-dictionary-entries" title="Permalink to this headline">¶</a></h3>
+<p>To work with annotations at the Cos level, you must get the Cos object corresponding to the <code class="docutils literal notranslate"><span class="pre">PDAnnot</span></code> object. To perform this task, invoke the <code class="docutils literal notranslate"><span class="pre">PDAnnotGetCotObj</span></code> method and pass the <code class="docutils literal notranslate"><span class="pre">PDAnnot</span></code> object, as shown in the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">cosAnnot</span> <span class="o">=</span> <span class="n">PDAnnotGetCosObj</span><span class="p">(</span><span class="n">theAnnot</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next, get the <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object corresponding to the document by invoking the <code class="docutils literal notranslate"><span class="pre">CosObjGetDoc</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object, as shown in the following example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDoc</span> <span class="n">cosDoc</span> <span class="o">=</span> <span class="n">CosObjGetDoc</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Two additional dictionary entries (which are not specific to 3D annotations)—the <code class="docutils literal notranslate"><span class="pre">P</span></code> (page) and <code class="docutils literal notranslate"><span class="pre">Contents</span></code> entries—can be set as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">,</span> <span class="s2">&quot;P&quot;</span><span class="p">,</span> <span class="n">PDPageGetCosObj</span><span class="p">(</span><span class="n">pdPage</span><span class="p">));</span>
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">,</span> <span class="s2">&quot;Contents&quot;</span><span class="p">,</span>
+ <span class="n">CosNewString</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s2">&quot;3D Model&quot;</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="s2">&quot;3D Model&quot;</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>The following sections show how to set the dictionary entries that are specific to 3D annotations: (See Table 9.33 in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.)</p>
+<p><em>3DD</em> : A 3D stream specifying the 3D content (See <a class="reference external" href="Plugins_3D_samples.html#50618421_14693">Specifying the 3D stream</a>.)</p>
+<p><em>3DV</em> : The initial view of the 3D content (See <a class="reference external" href="Plugins_3D_samples.html#50618421_69581">Setting the default view</a>.)</p>
+<p><em>3DA</em> : The activation dictionary (See <a class="reference external" href="Plugins_3D_samples.html#50618421_16449">Setting the activation dictionary</a>.)</p>
+</div>
+<div class="section" id="specifying-the-3d-stream">
+<h3>Specifying the 3D stream<a class="headerlink" href="#specifying-the-3d-stream" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">3DD</span></code> entry of the annotation dictionary specifies a <em>stream</em> containing the PRC or U3D data. Streams are PDF objects that can be thought of as having two parts, the stream data and an associated dictionary:</p>
+<ul class="simple">
+<li><p>Stream data is the PRC or U3D data that represents the 3D content.</p></li>
+<li><p>The associated dictionary (sometimes called the <em>attributes dictionary</em> ) contains entries that specify information about the stream. Some entries are common to all stream dictionaries (see Table 3.4 in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ). They include:</p>
+<ul>
+<li><p><em>Length</em> (required): The length of the stream data</p></li>
+<li><p><em>Filter</em> (optional): A compression filter that is applied to the data to reduce its size (there are also filters that do not compress data)</p></li>
+</ul>
+</li>
+</ul>
+<p>Other entries are unique to 3D streams (see Table 9.35 in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ). They include:</p>
+<ul class="simple">
+<li><p><em>Type</em> (optional): Must be <code class="docutils literal notranslate"><span class="pre">3D</span></code> if present.</p></li>
+<li><p><em>Subtype</em> (required): For PRC data, set this value to <code class="docutils literal notranslate"><span class="pre">PRC</span></code> ; for U3D data, set this value to <code class="docutils literal notranslate"><span class="pre">U3D</span></code>.</p></li>
+<li><p><em>OnInstantiate</em> (optional): A JavaScript script to be executed when the 3D stream is read. (See <a class="reference external" href="Plugins_3D_samples.html#50618421_12859">Specifying JavaScript code</a>.)</p></li>
+</ul>
+<div class="section" id="creating-the-stream-object">
+<h4>Creating the stream object<a class="headerlink" href="#creating-the-stream-object" title="Permalink to this headline">¶</a></h4>
+<p>You must create a Cos stream that is based on the file containing the PRC or U3D data (this file was created with 3D authoring software) in order to create a 3D annotation. A data stream can be a buffer in memory, a file, or an arbitrary user-written procedure. A stream is represented by an <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object, which must be converted into a Cos stream.</p>
+<p>To create a Cos stream that is based on the file that contains the PRC or U3D data, perform the following steps:</p>
+<ol class="arabic simple">
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object that represents the file that contains the PRC or U3D data by invoking the <code class="docutils literal notranslate"><span class="pre">ASPathFromPlatformPath</span></code> method and passing a character pointer that specifies the location of the file that contains the PRC or U3D data. If you are working on the Mac OS platform, invoke the <code class="docutils literal notranslate"><span class="pre">GetMacPath</span></code> method and pass a character pointer that specifies the file location.</p></li>
+<li><p>Declare an <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object.</p></li>
+<li><p>Populate the <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object with the PRC or U3D data by invoking the <code class="docutils literal notranslate"><span class="pre">ASFileSysOpenFile</span></code> method and passing the following arguments:</p>
+<ul class="simple">
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which the PDF file is located. Invoke the <code class="docutils literal notranslate"><span class="pre">ASGetDefaultFileSys</span></code> method to get the default file system.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object that represents the path in which the file that contains the PRC or U3D data is located (pass the <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object created in step 1).</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileMode</span></code> object that represents the mode in which to open the file. For example, specify <code class="docutils literal notranslate"><span class="pre">ASFILE_READ</span></code> to open the file in read mode.</p></li>
+<li><p>The address of an <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object. The <code class="docutils literal notranslate"><span class="pre">ASFileSysOpenFile</span></code> method populates this argument using the file that was opened (file information is obtained from the <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object).</p></li>
+</ul>
+</li>
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">ASFileStmRdOpen</span></code> method and passing the following arguments:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object with the file that contains the PRC or U3D data.</p></li>
+<li><p>Length of data buffer, in bytes. If you specify <code class="docutils literal notranslate"><span class="pre">0</span></code>, then the default buffer size (currently 4kB) is used.</p></li>
+</ul>
+</li>
+<li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">CosNewStream</span></code> method to create a Cos stream containing the data that is located within the <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object. This Cos stream will become the value of the 3DD entry of the 3D annotation. Pass the following arguments to this method:</p>
+<ul class="simple">
+<li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object that specifies the PDF document in which the Cos stream is inserted.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the Cos stream is an indirect object. Because all streams are indirect objects, this argument must be set to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object that contains the stream data (pass the <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object created in step 4).</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">CosStreamStartAndCode</span></code> object that specifies the byte offset from which data reading starts. You can pass <code class="docutils literal notranslate"><span class="pre">0</span></code> to ensure that data reading starts at the beginning of the stream.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the data is encoded using filters specified in the stream dictionary before it is written to the Cos stream.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the stream dictionary. You can invoke the <code class="docutils literal notranslate"><span class="pre">CosNewNull</span></code> method.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the parameters that are used by the encoding filter if the source data is encoded before it is written to the file. If encoding parameters are not required, this value is ignored. For information about encoding filters, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">CosByteMax</span></code> object that specifies the amount of data read from the source. If this value is <code class="docutils literal notranslate"><span class="pre">-1</span></code>, data is read from the source until it reaches the end of the stream.</p></li>
+</ul>
+</li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">CosNewStream</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the Cos stream. The following code example creates a Cos stream.</p>
+<blockquote>
+<div><p>//Create an ASPathName that specifies the location of the.U3D file</p>
+<p>//u3dFileName is a character pointer that specifies the path to this file</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ASPathName</span> <span class="n">u3DPathName</span> <span class="o">=</span>  <span class="n">ASPathFromPlatformPath</span><span class="p">((</span><span class="n">void</span><span class="o">*</span><span class="p">)</span> <span class="n">u3dFileName</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">ASFile</span> <span class="nb">object</span> <span class="ow">and</span> <span class="n">populate</span> <span class="n">it</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ASFile</span> <span class="n">asFile</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+  <span class="n">ASInt32</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ASFileSysOpenFile</span><span class="p">(</span><span class="n">ASGetDefaultFileSys</span><span class="p">(),</span> <span class="n">u3DPathName</span><span class="p">,</span>     <span class="n">ASFILE_READ</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">asFile</span><span class="p">);</span>
+  <span class="n">ASFileSysReleasePath</span> <span class="p">(</span><span class="n">ASGetDefaultFileSys</span><span class="p">(),</span> <span class="n">u3DPathName</span><span class="p">);</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">asFile</span> <span class="o">==</span> <span class="n">NULL</span><span class="p">)</span>
+      <span class="n">AVAlertNote</span><span class="p">(</span><span class="s2">&quot;Error opening 3D data file.&quot;</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Read</span> <span class="n">data</span> <span class="n">stream</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">file</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ASStm</span> <span class="n">fileStm</span> <span class="o">=</span> <span class="n">ASFileStmRdOpen</span><span class="p">(</span><span class="n">asFile</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">fileStm</span> <span class="o">==</span> <span class="n">NULL</span><span class="p">)</span>
+      <span class="n">AVAlertNote</span><span class="p">(</span><span class="s2">&quot;Empty 3D data stream.&quot;</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Cos</span> <span class="n">stream</span> <span class="ow">and</span> <span class="nb">set</span> <span class="n">it</span> <span class="n">under</span> <span class="mi">3</span><span class="n">DD</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">annot</span> <span class="n">dictionary</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">stm3D</span> <span class="o">=</span> <span class="n">CosNewStream</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">fileStm</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">CosNewNull</span><span class="p">(),</span>
+ <span class="n">CosNewNull</span><span class="p">(),</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-the-cos-stream-to-the-annotation-dictionary">
+<h4>Adding the Cos stream to the annotation dictionary<a class="headerlink" href="#adding-the-cos-stream-to-the-annotation-dictionary" title="Permalink to this headline">¶</a></h4>
+<p>After you create a a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the Cos stream, invoke the <code class="docutils literal notranslate"><span class="pre">CosDictPutKeyString</span></code> method to add the Cos stream as the value of the <code class="docutils literal notranslate"><span class="pre">3DD</span></code> entry of the annotation dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">,</span>   <span class="o">//</span> <span class="n">The</span> <span class="n">annotation</span> <span class="n">dictionary</span>
+      <span class="s2">&quot;3DD&quot;</span><span class="p">,</span>                       <span class="o">//</span> <span class="n">The</span> <span class="n">key</span>
+      <span class="n">stm3D</span><span class="p">);</span>                      <span class="o">//</span> <span class="n">The</span> <span class="n">CosObj</span> <span class="nb">object</span> <span class="n">used</span> <span class="k">as</span> <span class="n">the</span>
+<span class="n">value</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-the-attributes-dictionary">
+<h4>Creating the attributes dictionary<a class="headerlink" href="#creating-the-attributes-dictionary" title="Permalink to this headline">¶</a></h4>
+<p>Complete the entries in the 3D stream dictionary. The <code class="docutils literal notranslate"><span class="pre">CosStreamDict</span></code> method obtains the Cos dictionary associated with the stream:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">attrObj</span> <span class="o">=</span> <span class="n">CosStreamDict</span><span class="p">(</span><span class="n">stm3D</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next, entries can be added to the dictionary. The <code class="docutils literal notranslate"><span class="pre">Type</span></code> and <code class="docutils literal notranslate"><span class="pre">Subtype</span></code> entries both take name objects as values. Therefore, strings specified in the code must be explicitly converted to names:</p>
+<blockquote>
+<div><p>//Set the stream’s dictionary</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">attrObj</span><span class="p">,</span> <span class="s2">&quot;Subtype&quot;</span><span class="p">,</span> <span class="n">CosNewName</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+ <span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;U3D&quot;</span><span class="p">)));</span>
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">attrObj</span><span class="p">,</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="n">CosNewNameFromString</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+ <span class="s2">&quot;3D&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="specifying-javascript-code">
+<h4>Specifying JavaScript code<a class="headerlink" href="#specifying-javascript-code" title="Permalink to this headline">¶</a></h4>
+<p>You can create JavaScript that manipulates the 3D annotation. JavaScript is optional and if you do not specify it, then the 3D annotation is still inserted into the PDF document; however, it remains a static graphic. For information about creating JavaScript that manipulates 3D annotations, see the <em>JavaScript for Acrobat 3D Annotations API Reference</em>.</p>
+<p>The following code example creates an <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object and populates it with the JavaScript file. The <code class="docutils literal notranslate"><span class="pre">JsFileName</span></code> variable is a character pointer that specifies the location of the JavaScript file.</p>
+<blockquote>
+<div><p>//Create a char pointer that specifies the location of the JavaScript file</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">char</span><span class="o">*</span><span class="n">JsFileName</span> <span class="o">=</span> <span class="s2">&quot;C:3DJavaScript.js&quot;</span>
+
+
+<span class="o">//</span><span class="n">Declare</span> <span class="n">an</span> <span class="n">ASFile</span> <span class="nb">object</span> <span class="n">that</span> <span class="n">will</span> <span class="n">reference</span> <span class="n">the</span> <span class="n">JavaScript</span> <span class="n">file</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ASFile</span> <span class="n">jsFile</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+
+
+<span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">ASPathName</span> <span class="nb">object</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">JavaScript</span> <span class="n">file</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ASPathName</span> <span class="n">JsPathName</span> <span class="o">=</span>  <span class="n">ASPathFromPlatformPath</span><span class="p">((</span><span class="n">void</span><span class="o">*</span><span class="p">)</span> <span class="n">JsFileName</span><span class="p">);</span>
+
+
+<span class="o">//</span><span class="n">Populate</span> <span class="n">the</span> <span class="n">ASFile</span> <span class="nb">object</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span><span class="n">JsPathName</span><span class="p">)</span>
+     <span class="n">ASInt32</span> <span class="n">err1</span> <span class="o">=</span> <span class="n">ASFileSysOpenFile</span><span class="p">(</span><span class="n">ASGetDefaultFileSys</span><span class="p">(),</span> <span class="n">JsPathName</span><span class="p">,</span>
+     <span class="n">ASFILE_READ</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">jsFile</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next, the data from the file is read into a stream:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ASStm</span> <span class="n">JsFileStm</span> <span class="o">=</span> <span class="n">ASFileStmRdOpen</span><span class="p">(</span><span class="n">jsFile</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the following code, an entry is added to the stream dictionary in the process of creating the stream, rather than afterwards as in the previous code. First, the <code class="docutils literal notranslate"><span class="pre">CosNewDict</span></code> method is used to create a new dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">dictJsStm</span> <span class="o">=</span> <span class="n">CosNewDict</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This method requires three parameters:</p>
+<ul class="simple">
+<li><p>The document in which the dictionary is used.</p></li>
+<li><p>A Boolean value that specifies whether the dictionary should be an indirect object. All stream dictionaries must be direct; hence the value of this parameter is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
+<li><p>A hint for the number of entries in the dictionary (however, dictionaries grow dynamically as needed).</p></li>
+</ul>
+<p>Next, the value of the <code class="docutils literal notranslate"><span class="pre">Filter</span></code> entry is set to <code class="docutils literal notranslate"><span class="pre">FlateDecode</span></code> using the <code class="docutils literal notranslate"><span class="pre">CosDictPutKeyString</span></code> method. This means that the stream will be compressed using Flate (ZIP) compression.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">dictJsStm</span><span class="p">,</span> <span class="s2">&quot;Filter&quot;</span><span class="p">,</span>
+     <span class="n">CosNewNameFromString</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s2">&quot;FlateDecode&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Next, the Cos stream is created, using the stream data and attributes dictionary already created:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stm3Djscode</span> <span class="o">=</span> <span class="n">CosNewStream</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span>
+     <span class="n">JsFileStm</span><span class="p">,</span>    <span class="o">//</span><span class="n">The</span> <span class="n">stream</span>
+     <span class="mi">0</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span>
+     <span class="n">dictJsStm</span><span class="p">,</span>   <span class="o">//</span> <span class="n">The</span> <span class="n">stream</span> <span class="n">dictionary</span>
+     <span class="n">CosNewNull</span><span class="p">(),</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Set it as the value of the <code class="docutils literal notranslate"><span class="pre">OnInstantiate</span></code> entry of the 3D stream dictionary. The following code example specifies a JavaScript script as the value of the <code class="docutils literal notranslate"><span class="pre">OnInstantiate</span></code> entry of the 3D stream dictionary.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">attrObj</span><span class="p">,</span> <span class="s2">&quot;OnInstantiate&quot;</span><span class="p">,</span> <span class="n">stm3Djscode</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then some cleanup is done:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ASFileSysReleasePath</span> <span class="p">(</span><span class="n">ASGetDefaultFileSys</span><span class="p">(),</span> <span class="n">JsPathName</span><span class="p">);</span>
+ <span class="n">ASStmClose</span><span class="p">(</span><span class="n">JsFileStm</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="setting-the-default-view">
+<h3>Setting the default view<a class="headerlink" href="#setting-the-default-view" title="Permalink to this headline">¶</a></h3>
+<p>A 3D <em>view</em> specifies parameters such as position, orientation, and projection style, which are applied to the <em>virtual camera</em> associated with the 3D annotation (see section 9.5.3 in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ). The <em>default view</em> is the view that is chosen when the annotation is activated.</p>
+<p>3D data typically contains a default initial view. This view is used by default if not otherwise specified. In addition, views can be specified by the entries in a view dictionary.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">VA</span></code> entry in the 3D stream dictionary is an array of view dictionaries. One of the views can be chosen as the default by means of the <code class="docutils literal notranslate"><span class="pre">3DV</span></code> entry in the 3D annotation dictionary or the <code class="docutils literal notranslate"><span class="pre">DV</span></code> entry in a 3D stream dictionary.</p>
+<p>The following code creates a view dictionary and specifies its entries. The code assumes the Cos objects <code class="docutils literal notranslate"><span class="pre">cosAnnot</span></code> for the annotation and <code class="docutils literal notranslate"><span class="pre">cosDoc</span></code> for the document have already been obtained. First, a view dictionary is created by invoking the <code class="docutils literal notranslate"><span class="pre">CosNewDict</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">cosView</span> <span class="o">=</span> <span class="n">CosNewDict</span> <span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="mi">8</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next, the code sets the following entries: (See Table 9.39 in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. for more detailed information.)</p>
+<p><em>Type</em> (optional): If present, must be the name <code class="docutils literal notranslate"><span class="pre">3DView</span></code>.</p>
+<p><em>XN</em> (required): The name of the view, a string that can be displayed in the user interface.</p>
+<p><em>IN</em> (optional): The internal name of the view, a string that can be used to refer to the view from other objects, such as in JavaScript code.</p>
+<p><em>C2W</em> (optional): A transformation matrix specifying the camera position. To use this, it is also necessary to set the value of the <code class="docutils literal notranslate"><span class="pre">MS</span></code> entry to <code class="docutils literal notranslate"><span class="pre">M</span></code>.</p>
+<p><em>CO</em> (optional): A number indicating the distance to the center of orbit for this view.</p>
+<p>The following code creates an array of type <code class="docutils literal notranslate"><span class="pre">double</span></code> and specifies values for views:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span><span class="o">*</span> <span class="n">externalViewName</span> <span class="o">=</span> <span class="s2">&quot;Default View&quot;</span><span class="p">;</span>
+ <span class="n">char</span><span class="o">*</span> <span class="n">internalViewName</span> <span class="o">=</span> <span class="s2">&quot;Sample3dView&quot;</span><span class="p">;</span>
+
+ <span class="n">double</span> <span class="n">gMatrixVals</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span> <span class="o">=</span>
+     <span class="p">{</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0000000000000000612303</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>
+     <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0000000000000000612303</span><span class="p">,</span> <span class="mf">82.9517</span><span class="p">,</span> <span class="o">-</span><span class="mf">883.324</span><span class="p">,</span> <span class="mf">115.166</span><span class="p">};</span>
+ <span class="nb">float</span> <span class="n">gCOvalue</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="mf">725.305</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now the values of the dictionary entries are set:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosView</span><span class="p">,</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span>
+     <span class="n">CosNewNameFromString</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span><span class="s2">&quot;3DView&quot;</span><span class="p">));</span>
+
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosView</span><span class="p">,</span> <span class="s2">&quot;XN&quot;</span><span class="p">,</span> <span class="n">CosNewString</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+     <span class="n">externalViewName</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">externalViewName</span><span class="p">)));</span>
+
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosView</span><span class="p">,</span> <span class="s2">&quot;IN&quot;</span><span class="p">,</span> <span class="n">CosNewString</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+     <span class="n">internalViewName</span><span class="p">,</span> <span class="n">strlen</span><span class="p">(</span><span class="n">internalViewName</span><span class="p">)));</span>
+
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosView</span><span class="p">,</span> <span class="s2">&quot;MS&quot;</span><span class="p">,</span>
+     <span class="n">CosNewNameFromString</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">));</span>
+
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosView</span><span class="p">,</span> <span class="s2">&quot;CO&quot;</span><span class="p">,</span> <span class="n">CosNewFixed</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+     <span class="n">FloatToASFixed</span><span class="p">(</span><span class="n">gCOvalue</span><span class="p">)));</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">C2W</span></code> matrix is populated with the appropriate values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">matrixArray</span> <span class="o">=</span> <span class="n">CosNewArray</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="mi">12</span><span class="p">);</span>
+     <span class="k">for</span><span class="p">(</span><span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">12</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+         <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">matrixArray</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span>
+             <span class="n">CosNewFloat</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">)</span> <span class="n">gMatrixVals</span><span class="p">[</span><span class="n">i</span><span class="p">]));</span>
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosView</span><span class="p">,</span> <span class="s2">&quot;C2W&quot;</span><span class="p">,</span> <span class="n">matrixArray</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Last, the dictionary is set as the value of the <code class="docutils literal notranslate"><span class="pre">3DV</span></code> key in the annotation dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">,</span> <span class="s2">&quot;3DV&quot;</span><span class="p">,</span> <span class="n">cosView</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-annotation-appearance">
+<h3>Setting the annotation appearance<a class="headerlink" href="#setting-the-annotation-appearance" title="Permalink to this headline">¶</a></h3>
+<p>You may optionally provide a <em>poster</em> as the initial appearance of the annotation. The poster may be an image or other graphic content that is in a file or in memory. It must be converted to a PDF <em>form XObject</em> to be used as the annotation appearance (see section 4.9 of the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AP</span></code> entry of the annotation dictionary specifies an <em>appearance dictionary.</em> This dictionary contains one or more <em>appearance streams</em> (see section 8.4.4 of the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ) that are PDF content streams (form XObjects) rendered inside the annotation rectangle.</p>
+<p>For 3D annotations, the appearance stream is used in the following situations:</p>
+<ul class="simple">
+<li><p>To provide an annotation appearance for PDF viewers that do not support 3D.</p></li>
+<li><p>To provide an initial appearance for the annotation prior to activation. The settings in the activation dictionary determine whether this appearance is ever displayed.</p></li>
+</ul>
+<p>There are several ways to get the poster. The function described below, <code class="docutils literal notranslate"><span class="pre">GetFormXObjectFromFile</span></code>, illustrates one method. The appearance is generated from a separate PDF file containing an image or other content. You call this function as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">formXObject</span> <span class="o">=</span> <span class="n">GetFormXObjectFromFile</span>
+     <span class="p">(</span><span class="n">gsPosterFilePath</span><span class="p">,</span> <span class="o">//</span><span class="n">The</span> <span class="n">external</span> <span class="n">file</span>
+     <span class="n">pdDoc</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The function returns a Cos object, <code class="docutils literal notranslate"><span class="pre">formXObject</span></code>, which is the form XObject to be used as the appearance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">cosAnnot</span> <span class="o">=</span> <span class="n">PDAnnotGetCosObj</span><span class="p">(</span><span class="n">newAnnot</span><span class="p">);</span>
+ <span class="n">CosDoc</span> <span class="n">cosDoc</span> <span class="o">=</span> <span class="n">CosObjGetDoc</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then you create the appearance dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">apprDict</span> <span class="o">=</span> <span class="n">CosNewDict</span><span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>and set its <code class="docutils literal notranslate"><span class="pre">N</span></code> (normal) entry to the appearance stream obtained above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">apprDict</span><span class="p">,</span> <span class="s2">&quot;N&quot;</span><span class="p">,</span> <span class="n">formXObject</span><span class="p">);</span>
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">,</span> <span class="s2">&quot;AP&quot;</span><span class="p">,</span> <span class="n">apprDict</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The following is the <code class="docutils literal notranslate"><span class="pre">GetFormXObjectFromFile</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">GetFormXObjectFromFile</span>
+     <span class="p">(</span><span class="n">char</span><span class="o">*</span> <span class="n">pdfImageFilePath</span><span class="p">,</span> <span class="o">//</span><span class="n">Path</span> <span class="n">of</span> <span class="n">image</span> <span class="n">PDF</span> <span class="n">file</span>
+     <span class="n">PDDoc</span> <span class="n">TargetPdDoc</span><span class="p">)</span>          <span class="o">//</span> <span class="n">The</span> <span class="n">current</span> <span class="n">document</span>
+ <span class="p">{</span>
+ <span class="n">PDDoc</span> <span class="n">posterPDFDoc</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>                  <span class="o">//</span><span class="n">Initialization</span> <span class="n">code</span>
+ <span class="n">PDPage</span> <span class="n">pdPageImage</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+ <span class="n">ASPathName</span> <span class="n">asPathName</span><span class="p">;</span>
+ <span class="n">CosObj</span> <span class="n">contentFormXObject</span> <span class="o">=</span> <span class="n">CosNewNull</span><span class="p">();</span>
+ <span class="n">CosObj</span> <span class="n">formXObject</span> <span class="o">=</span> <span class="n">CosNewNull</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>First, the PDF file containing the image is opened:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(strlen(pdfImageFilePath) &gt; 0 ) {
+     char sPathFlag[16] = &quot;Cstring&quot;;
+ #ifdef MAC_PLATFORM
+ if (!strchr(pdfImageFilePath,(int)&#39;:&#39;))
+     strcpy (sPathFlag, &quot;POSIXPath&quot;);
+ #endif
+
+ asPathName = ASFileSysCreatePathName (ASGetDefaultFileSys(),
+     ASAtomFromString(sPathFlag), pdfImageFilePath, 0);
+</pre></div>
+</div>
+<p>The content to be used is expected to be on the first page of the PDF file. The <code class="docutils literal notranslate"><span class="pre">PDDocAcquirePage</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object for the first page.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pdPageImage</span> <span class="o">=</span> <span class="n">PDDocAcquirePage</span><span class="p">(</span><span class="n">posterPDFDoc</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The code then uses PDE-layer (PDFEdit) methods that work with the content streams on the PDF page. (See the <em>Overview</em> guide for more information on how these methods work.)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PDPageAcquirePDEContent</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object representing the page’s contents. The first parameter is the <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> and the second identifies the caller: for PDF Library, it is zero; for plugins, it should be the <code class="docutils literal notranslate"><span class="pre">gExtensionID</span></code> extension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDEContent</span> <span class="n">pdeContent</span> <span class="o">=</span> <span class="n">PDPageAcquirePDEContent</span> <span class="p">(</span><span class="n">pdPageImage</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">PDEContentGetAttrs</span></code> method gets information about the content in a <code class="docutils literal notranslate"><span class="pre">PDEContentAttrs</span></code> structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDEContentAttrs</span> <span class="n">pdeContentAttrs</span><span class="p">;</span>
+ <span class="n">PDEContentGetAttrs</span>
+     <span class="p">(</span><span class="n">pdeContent</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">pdeContentAttrs</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">pdeContentAttrs</span><span class="p">));</span>
+
+ <span class="n">CosObj</span> <span class="n">contentResources</span> <span class="o">=</span> <span class="n">CosNewNull</span><span class="p">();</span>
+ <span class="n">CosDoc</span> <span class="n">pdDocCos</span> <span class="o">=</span> <span class="n">PDDocGetCosDoc</span><span class="p">(</span><span class="n">posterPDFDoc</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">PDEContentToCosObj</span></code> method converts the <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> to a form XObject Cos object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDEContentToCosObj</span> <span class="p">(</span><span class="n">pdeContent</span><span class="p">,</span>
+     <span class="n">kPDEContentToForm</span><span class="p">,</span>             <span class="o">//</span> <span class="n">To</span> <span class="n">Form</span> <span class="n">XObject</span>
+     <span class="o">&amp;</span><span class="n">pdeContentAttrs</span><span class="p">,</span>              <span class="o">//</span> <span class="n">PDEContentAttrsP</span>
+     <span class="n">sizeof</span><span class="p">(</span><span class="n">pdeContentAttrs</span><span class="p">),</span>       <span class="o">//</span> <span class="n">attrsSize</span><span class="p">,</span>
+     <span class="n">pdDocCos</span><span class="p">,</span>                      <span class="o">//</span> <span class="n">The</span> <span class="n">CosDoc</span>
+     <span class="n">NULL</span><span class="p">,</span>                          <span class="o">//</span> <span class="n">PDEFilterArrayP</span>
+     <span class="o">&amp;</span><span class="n">contentFormXObject</span><span class="p">,</span>           <span class="o">//</span> <span class="n">Resulting</span> <span class="n">form</span> <span class="n">Cos</span> <span class="nb">object</span>
+     <span class="o">&amp;</span><span class="n">contentResources</span><span class="p">);</span>            <span class="o">//</span> <span class="n">Resulting</span> <span class="n">resource</span> <span class="n">Cos</span> <span class="nb">object</span>
+</pre></div>
+</div>
+<p>The following are parameters to this method:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object.</p></li>
+<li><p>A flag indicating what type of Cos object should be created; in this case, a form XObject.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PDEContentAttrs</span></code> structure containing information about the <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code>.</p></li>
+<li><p>The size of the <code class="docutils literal notranslate"><span class="pre">PDEContentAttrs</span></code> structure.</p></li>
+<li><p>The Cos document.</p></li>
+<li><p>A pointer indicating which filters to use to encode the contents (in this case, null).</p></li>
+<li><p>The resulting Cos object (in this case, the form XObject which is the variable <code class="docutils literal notranslate"><span class="pre">contentFormXObject</span></code> ).</p></li>
+<li><p>The resulting Cos object representing the resources needed by the Cos object. These resources can include fonts and other items (see section 3.7.2 of the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. ).</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (!CosObjEqual(contentFormXObject, CosNewNull()) &amp;&amp;
+    !CosObjEqual(contentResources, CosNewNull())) {
+</pre></div>
+</div>
+<p>The returned resources must be put into the form XObject’s <code class="docutils literal notranslate"><span class="pre">Resources</span></code> dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">contentFormXObject</span><span class="p">,</span> <span class="s2">&quot;Resources&quot;</span><span class="p">,</span>
+         <span class="n">contentResources</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">BBox</span></code> entry of the form XObject is required and is set to the value of the page’s media box:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">ASFixedRect</span> <span class="n">boundingBox</span><span class="p">;</span>
+  <span class="n">PDPageGetMediaBox</span><span class="p">(</span><span class="n">pdPageImage</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">boundingBox</span><span class="p">);</span>
+  <span class="n">CosObj</span> <span class="n">BBoxArray</span> <span class="o">=</span> <span class="n">CosNewArray</span><span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+  <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">BBoxArray</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">CosNewInteger</span><span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+
+<span class="n">ASFixedRoundToInt16</span><span class="p">(</span><span class="n">boundingBox</span><span class="o">.</span><span class="n">left</span><span class="p">)));</span>
+  <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">BBoxArray</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">CosNewInteger</span><span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+
+<span class="n">ASFixedRoundToInt16</span><span class="p">(</span><span class="n">boundingBox</span><span class="o">.</span><span class="n">bottom</span><span class="p">)));</span>
+  <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">BBoxArray</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">CosNewInteger</span><span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+
+<span class="n">ASFixedRoundToInt16</span><span class="p">(</span><span class="n">boundingBox</span><span class="o">.</span><span class="n">right</span><span class="p">)));</span>
+  <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">BBoxArray</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">CosNewInteger</span><span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span>
+
+<span class="n">ASFixedRoundToInt16</span><span class="p">(</span><span class="n">boundingBox</span><span class="o">.</span><span class="n">top</span><span class="p">)));</span>
+  <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">contentFormXObject</span><span class="p">,</span> <span class="s2">&quot;BBox&quot;</span><span class="p">,</span> <span class="n">BBoxArray</span><span class="p">);</span>
+  <span class="o">//</span> <span class="n">Set</span> <span class="n">matrix</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">form</span> <span class="nb">object</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Matrix</span></code> entry of the form XObject is set to the values obtained from the page by means of the <code class="docutils literal notranslate"><span class="pre">PDPageGetDefaultMatrix</span></code> method:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ASFixedMatrix</span> <span class="n">defaultMatrix</span><span class="p">;</span>
+ <span class="n">PDPageGetDefaultMatrix</span><span class="p">(</span><span class="n">pdPageImage</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">defaultMatrix</span><span class="p">);</span>
+ <span class="n">CosObj</span> <span class="n">MatrixArray</span> <span class="o">=</span> <span class="n">CosNewArray</span><span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+ <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">MatrixArray</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">CosNewFixed</span><span class="p">(</span>
+     <span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">defaultMatrix</span><span class="o">.</span><span class="n">a</span><span class="p">));</span>
+ <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">MatrixArray</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">CosNewFixed</span>
+     <span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">defaultMatrix</span><span class="o">.</span><span class="n">b</span><span class="p">));</span>
+ <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">MatrixArray</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">CosNewFixed</span>
+     <span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">defaultMatrix</span><span class="o">.</span><span class="n">c</span><span class="p">));</span>
+ <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">MatrixArray</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span> <span class="n">CosNewFixed</span>
+     <span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">defaultMatrix</span><span class="o">.</span><span class="n">d</span><span class="p">));</span>
+ <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">MatrixArray</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span> <span class="n">CosNewFixed</span>
+     <span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">defaultMatrix</span><span class="o">.</span><span class="n">h</span><span class="p">));</span>
+ <span class="n">CosArrayPut</span><span class="p">(</span><span class="n">MatrixArray</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span> <span class="n">CosNewFixed</span>
+     <span class="p">(</span><span class="n">pdDocCos</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">defaultMatrix</span><span class="o">.</span><span class="n">v</span><span class="p">));</span>
+ <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">contentFormXObject</span><span class="p">,</span> <span class="s2">&quot;Matrix&quot;</span><span class="p">,</span> <span class="n">MatrixArray</span><span class="p">);</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, the <code class="docutils literal notranslate"><span class="pre">CosObjCopy</span></code> method is used to copy the Cos object <code class="docutils literal notranslate"><span class="pre">contentFormXObject</span></code> into the current PDF document. The following are parameters are available:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> to copy.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> for the document in which to copy it.</p></li>
+<li><p>A Boolean value: tru <code class="docutils literal notranslate"><span class="pre">e</span></code> means that all indirectly referenced objects from the source should be copied to the destination.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">formXObject</span> <span class="o">=</span> <span class="n">CosObjCopy</span> <span class="p">(</span><span class="n">contentFormXObject</span><span class="p">,</span>
+     <span class="n">PDDocGetCosDoc</span><span class="p">(</span><span class="n">TargetPdDoc</span><span class="p">),</span> <span class="n">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>And finally, there is some cleanup code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ASFileSysReleasePath</span> <span class="p">(</span><span class="n">ASGetDefaultFileSys</span><span class="p">(),</span> <span class="n">asPathName</span><span class="p">);</span>
+ <span class="n">PDPageRelease</span><span class="p">(</span><span class="n">pdPageImage</span><span class="p">);</span>
+ <span class="k">return</span> <span class="n">formXObject</span><span class="p">;</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setting-the-activation-dictionary">
+<h3>Setting the activation dictionary<a class="headerlink" href="#setting-the-activation-dictionary" title="Permalink to this headline">¶</a></h3>
+<p>The optional <code class="docutils literal notranslate"><span class="pre">3DA</span></code> entry of the 3D annotation specifies an <em>activation dictionary</em> whose entries indicate when the annotation should be activated and deactivated and the state of the 3D content at these times.</p>
+<p>When an annotation is inactive, it displays its normal appearance. (See <a class="reference external" href="Plugins_3D_samples.html#50618421_59797">Setting the annotation appearance</a>.) When it is activated, one of its views (specified by the <code class="docutils literal notranslate"><span class="pre">3DV</span></code> entry) is displayed.</p>
+<p>First the dictionary is created and set as the <code class="docutils literal notranslate"><span class="pre">3DA</span></code> entry of the 3D annotation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosObj</span> <span class="n">activationDict</span> <span class="o">=</span> <span class="n">CosNewDict</span><span class="p">(</span><span class="n">CosObjGetDoc</span><span class="p">(</span><span class="n">cosAnnot</span><span class="p">),</span> <span class="n">false</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+ <span class="n">CosDictPutKeyString</span> <span class="p">(</span><span class="n">cosAnnot</span><span class="p">,</span> <span class="s2">&quot;3DA&quot;</span><span class="p">,</span> <span class="n">activationDict</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It is not necessary to set any entries whose default values are acceptable. Here the non-default entries are set.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DIS</span></code> entry of the activation dictionary specifies the state of the 3D content when it is deactivated. In this case, it is set to <code class="docutils literal notranslate"><span class="pre">I</span></code>, meaning that it should be instantiated. (The default is <code class="docutils literal notranslate"><span class="pre">U</span></code> for uninstantiated.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CosDictPutKeyString</span> <span class="p">(</span><span class="n">activationDict</span><span class="p">,</span> <span class="s2">&quot;DIS&quot;</span><span class="p">,</span>
+     <span class="n">CosNewNameFromString</span> <span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s2">&quot;I&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The code provides a variable to determine the value of the <code class="docutils literal notranslate"><span class="pre">A</span></code> entry. The default value is <code class="docutils literal notranslate"><span class="pre">XA</span></code>, meaning that the annotation needs to be explicitly activated. <code class="docutils literal notranslate"><span class="pre">PO</span></code> means that the annotation should be activated as soon as the page containing the annotation is opened:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Optional</span> <span class="n">activation</span> <span class="n">choice</span>
+ <span class="k">if</span><span class="p">(</span><span class="n">gbShowDefaultViewWhenOpenPage</span> <span class="o">==</span> <span class="n">true</span><span class="p">)</span>
+     <span class="n">CosDictPutKeyString</span><span class="p">(</span><span class="n">activationDict</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">,</span>
+         <span class="n">CosNewNameFromString</span> <span class="p">(</span><span class="n">cosDoc</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="s2">&quot;PO&quot;</span><span class="p">));</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Adobe Inc..
+      <span class="lastupdated">
+        Last updated on Feb 23, 2022.
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
