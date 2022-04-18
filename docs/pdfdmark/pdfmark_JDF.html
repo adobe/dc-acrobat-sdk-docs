@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homepdfmark_JDF.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Distilling Optional Content" href="pdfmark_OC_Interface.html" />
+    <link rel="prev" title="Examples" href="pdfmark_Examples.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> PDFMark Reference
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">PDFMark Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#whats-in-this-guide">What’s in this guide?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#who-should-read-this-guide">Who should read this guide?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Syntax.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#syntax-of-pdfmark-operators">Syntax of pdfmark operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#usage-with-standard-postscript-interpreters">Usage with standard PostScript interpreters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#syntax-for-private-keys">Syntax for private keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#named-objects">Named objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#built-in-named-objects">Built-in named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#user-defined-named-objects">User-defined named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#adding-content-to-named-objects">Adding content to named objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#arrays">Arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#dictionaries">Dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#streams">Streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Basic.html">Basic Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#annotations-ann">Annotations (ANN)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#text-annotations-notes">Text annotations (notes)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#links">Links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#other-annotations">Other annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#articles-article">Articles (ARTICLE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#bookmarks-out">Bookmarks (OUT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-info-dictionary-docinfo">Document Info dictionary (DOCINFO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-open-options-docview">Document open options (DOCVIEW)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#embedded-file-content-embed">Embedded file content (EMBED)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#distiller-command-line-options-to-enable-file-embedding">Distiller command line options to enable file embedding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#graphics-encapsulation-bp-ep-sp">Graphics encapsulation (BP, EP, SP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#marked-content-mp-dp-bmc-bdc-emc">Marked content (MP, DP, BMC, BDC, EMC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-points">Marked-content points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-sequences">Marked-content sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#metadata-metadata">Metadata (Metadata)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#named-images-ni">Named images (NI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-crops-page-pages">Page crops (PAGE, PAGES)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-label-and-plate-color-pagelabel">Page label and plate color (PAGELABEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#transparency-settransparency">Transparency (SetTransparency)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject-and-soft-mask">Transparency group XObject and soft mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject">Transparency group XObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-dictionaries">Soft mask dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-images">Soft mask images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Actions.html">Actions and Destinations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#actions">Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#goto-actions">GoTo actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#gotor-actions">GoToR actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#launch-actions">Launch actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#article-actions">Article actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#destinations">Destinations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#view-destinations">View destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#defining-named-destinations">Defining named destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#referencing-named-destinations">Referencing named destinations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Logical.html">Logical Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#elements-and-parents">Elements and parents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#structure-operators">Structure operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#structure-tree-root">Structure Tree Root</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#strolemap">StRoleMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stclassmap">StClassMap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#elements">Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpne">StPNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbookmarkroot">StBookmarkRoot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpush">StPush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpop">StPop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpopall">StPopAll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stupdate">StUpdate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#element-content">Element content</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbmc">StBMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbdc">StBDC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#emc">EMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stobj">StOBJ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#attribute-objects">Attribute objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stattr">StAttr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#storage-and-retrieval-of-the-implicit-parent-stack">Storage and retrieval of the implicit parent stack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#ststore">StStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stretrieve">StRetrieve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#eps-considerations">EPS considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#tagged-pdf">Tagged PDF</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#building-an-output-intents-array">Building an Output Intents array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#named-object-examples">Named object examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#forms-examples">Forms examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#structure-examples">Structure examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">JDF Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xpath-examples">XPath Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_OC_Interface.html">Distilling Optional Content</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#initialization-and-termination-code">Initialization and termination code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#procedure-definitions">Procedure definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#addasevent">AddASEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#beginoc">BeginOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#endoc">EndOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#getocgpdfmarktag">GetOCGPdfmarkTag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#ocendpage">OCEndPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocginitstate">SetOCGInitState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgintent">SetOCGIntent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgusage">SetOCGUsage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#simpleoc">SimpleOC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">PDFMark Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>JDF Features</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="pdfmark_OC_Interface.html" class="btn btn-neutral float-right" title="Distilling Optional Content" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="pdfmark_Examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="jdf-features">
+<h1>JDF Features<a class="headerlink" href="#jdf-features" title="Permalink to this headline">¶</a></h1>
+<p>The use of pdfmark in PostScript can include representations of Job Definition Format (JDF) features. JDF is an extensible XML-based job ticketing format designed for use by the printing industry. Information about JDF can be obtained from <a class="reference external" href="http://www.cip4.org">http://www.cip4.org</a> .</p>
+<p>In particular, pdfmark for JDF allows the PostScript file/stream to specify elements and attributes to be added to a JDF document being used for a job. Applications that support JDF pdfmark include Acrobat Distiller 6.0 and 7.0.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Distiller 8.0 and later does not support JDF. Any JDF-related pdfmark commands in the PostScript stream are ignored.</p>
+</div>
+<div class="section" id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">Attribute</span>
+<span class="n">string</span>
+        <span class="o">/</span><span class="n">Value</span>
+<span class="n">string</span>
+        <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">CreateAttribute</span>
+        <span class="o">/</span><span class="n">JDF</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Attribute</span></code> and <code class="docutils literal notranslate"><span class="pre">Value</span></code> keys are described in the following table.</p>
+<p><strong>Keys supported by JDF pdfmark</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Key</p></td>
+<td><p>Type</p></td>
+<td><p>Semantics</p></td>
+</tr>
+<tr class="row-even"><td><p>Attribute</p></td>
+<td><p>string</p></td>
+<td><p>An XPath expression that identifies the location of the attribute absolutely from the root of the JDF. If any portion of the hierarchy of elements containing the attribute is not present in the JDF, they are created. XPath is a language for addressing parts of an XML document, as defined in <em>XML Path Language (XPath) Version 1.0</em> available from <a class="reference external" href="http://www.w3.org/TR/xpath">http://www.w3.org/TR/xpath</a> .</p>
+<p>JDF pdfmark supports the following subset of XPath expressions:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Expression</span> <span class="p">:</span><span class="o">:=</span> <span class="n">JDFRoot</span><span class="s1">&#39;/&#39;</span><span class="n">Attribute</span> <span class="o">|</span>
+
+ <span class="n">JDFRoot</span><span class="s1">&#39;/&#39;</span><span class="n">Children</span><span class="s1">&#39;/&#39;</span><span class="n">Attribute</span>
+ <span class="n">JDFRoot</span> <span class="p">:</span><span class="o">:=</span> <span class="s1">&#39;//JDF&#39;</span>
+ <span class="n">Children</span> <span class="p">:</span><span class="o">:=</span> <span class="n">Element</span> <span class="o">|</span> <span class="n">Element</span><span class="s1">&#39;/&#39;</span><span class="n">Children</span>
+ <span class="n">Element</span> <span class="p">:</span><span class="o">:=</span> <span class="n">element</span> <span class="o">|</span>
+
+ <span class="n">element</span><span class="s1">&#39;[&#39;</span><span class="n">FilterExpression</span><span class="s1">&#39;]&#39;</span>
+ <span class="n">FilterExpression</span> <span class="p">:</span><span class="o">:=</span>
+ <span class="n">Filter</span> <span class="o">|</span> <span class="n">Filter</span> <span class="s1">&#39;and&#39;</span> <span class="n">FilterExpression</span> <span class="o">|</span> <span class="n">Filter</span>
+
+ <span class="s1">&#39;or&#39;</span> <span class="n">FilterExpression</span>
+ <span class="n">Filter</span> <span class="p">:</span><span class="o">:=</span> <span class="n">Attribute</span><span class="s1">&#39;=&#39;</span><span class="n">Value</span>
+ <span class="n">Attribute</span> <span class="p">:</span><span class="o">:=</span> <span class="s1">&#39;@&#39;</span><span class="n">attribute</span>
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Values</p></td>
+<td><p>string</p></td>
+<td><dl class="simple">
+<dt>The value to be assigned to the attribute, using the XPath expression:</dt><dd><p>Value ::= ‘ ” ‘value’ ” ‘</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="xpath-examples">
+<h2>XPath Examples<a class="headerlink" href="#xpath-examples" title="Permalink to this headline">¶</a></h2>
+<p>The following table presents examples of XPath expressions.</p>
+<p><strong>XPath expressions</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Expression</p></th>
+<th class="head"><p>Interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="mailto://JDF/&#37;&#52;&#48;JobID">//JDF/<span>&#64;</span>JobID</a></p></td>
+<td><p>Selects the <code class="docutils literal notranslate"><span class="pre">JobID</span></code> attribute in root JDF node.</p></td>
+</tr>
+<tr class="row-odd"><td><p>//JDF/JDFResourceLinkPool
+<a class="reference external" href="mailto:/ComponentLink/&#37;&#52;&#48;rRef">/ComponentLink/<span>&#64;</span>rRef</a></p></td>
+<td><p>Selects the <code class="docutils literal notranslate"><span class="pre">rRef</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">ComponentLink</span></code> found in the <code class="docutils literal notranslate"><span class="pre">ResourcePool</span></code> in the root JDF node.</p></td>
+</tr>
+<tr class="row-even"><td><p>//JDF/JDF[&#64;Type=”Trapping”]/&#64;Status</p></td>
+<td><p>Selects the <code class="docutils literal notranslate"><span class="pre">Status</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">Trapping</span></code> node that is a child of the root JDF node.</p></td>
+</tr>
+<tr class="row-odd"><td><p>//JDF/JDFResourceLinkPool
+/ComponentLink[&#64;Usage=”Output” and &#64;ProcessUsage=”Good”]/&#64;rRef</p></td>
+<td><p>First identifies the <code class="docutils literal notranslate"><span class="pre">ResourceLinkPool</span></code> of the root JDF node. It then selects the <code class="docutils literal notranslate"><span class="pre">rRef</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">ComponentLink</span></code> with both a <code class="docutils literal notranslate"><span class="pre">Usage</span></code> attribute value “Output” and a <code class="docutils literal notranslate"><span class="pre">ProcessUsage</span></code> attribute with value “Good”.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In actual use, all XPath expressions should end with <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> attribute because they must define the location of an attribute.</p>
+</div>
+<p>The JDF pdfmark commands shown in the following example cause supporting applications to modify the current JDF document, as illustrated in the following diagram.</p>
+<ol class="arabic simple">
+<li><p>Using JDF pdfmark to set Trapping element and subelement attributes</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">Attribute</span> <span class="p">(</span><span class="o">//</span><span class="n">JDF</span><span class="o">/</span><span class="n">JDF</span><span class="p">[</span><span class="nd">@Type</span><span class="o">=</span><span class="s2">&quot;Trapping&quot;</span><span class="p">]</span><span class="o">/</span><span class="nd">@Type</span><span class="p">)</span>
+       <span class="o">/</span><span class="n">Value</span> <span class="p">(</span><span class="n">Trapping</span><span class="p">)</span>
+       <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">CreateAttribute</span> <span class="o">/</span><span class="n">JDF</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Attribute</span>
+       <span class="p">(</span><span class="o">//</span><span class="n">JDF</span><span class="o">/</span><span class="n">JDF</span><span class="p">[</span><span class="nd">@Type</span><span class="o">=</span><span class="s2">&quot;Trapping&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">ResourceLinkPool</span><span class="o">/</span><span class="n">TrappingDetailsLink</span><span class="o">/</span><span class="nd">@rRef</span><span class="p">)</span>
+       <span class="o">/</span><span class="n">Value</span> <span class="p">(</span><span class="n">TD1</span><span class="p">)</span>
+       <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">CreateAttribute</span> <span class="o">/</span><span class="n">JDF</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Attribute</span>
+       <span class="p">(</span><span class="o">//</span><span class="n">JDF</span><span class="o">/</span><span class="n">JDF</span><span class="p">[</span><span class="nd">@Type</span><span class="o">=</span><span class="s2">&quot;Trapping&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">ResourceLinkPool</span><span class="o">/</span><span class="n">TrappingDetailsLink</span>
+       <span class="p">[</span><span class="nd">@rRef</span><span class="o">=</span><span class="s2">&quot;TD1&quot;</span><span class="p">]</span><span class="o">/</span><span class="nd">@Usage</span><span class="p">)</span>
+       <span class="o">/</span><span class="n">Value</span> <span class="p">(</span><span class="n">Input</span><span class="p">)</span>
+       <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">CreateAttribute</span> <span class="o">/</span><span class="n">JDF</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The following shows the JDF structure created through JDF pdfmark in the preceding example.</p>
+<img alt="_images/jdfstructure.png" src="_images/jdfstructure.png" />
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Apr 14, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

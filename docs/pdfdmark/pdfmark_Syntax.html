@@ -1,0 +1,898 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homepdfmark_Syntax.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Basic Features" href="pdfmark_Basic.html" />
+    <link rel="prev" title="PDFMark Reference" href="index.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> PDFMark Reference
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">PDFMark Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#whats-in-this-guide">What’s in this guide?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#who-should-read-this-guide">Who should read this guide?</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#syntax-of-pdfmark-operators">Syntax of pdfmark operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-with-standard-postscript-interpreters">Usage with standard PostScript interpreters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#syntax-for-private-keys">Syntax for private keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#named-objects">Named objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#built-in-named-objects">Built-in named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#user-defined-named-objects">User-defined named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-content-to-named-objects">Adding content to named objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#arrays">Arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dictionaries">Dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#streams">Streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Basic.html">Basic Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#annotations-ann">Annotations (ANN)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#text-annotations-notes">Text annotations (notes)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#links">Links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#other-annotations">Other annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#articles-article">Articles (ARTICLE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#bookmarks-out">Bookmarks (OUT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-info-dictionary-docinfo">Document Info dictionary (DOCINFO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-open-options-docview">Document open options (DOCVIEW)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#embedded-file-content-embed">Embedded file content (EMBED)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#distiller-command-line-options-to-enable-file-embedding">Distiller command line options to enable file embedding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#graphics-encapsulation-bp-ep-sp">Graphics encapsulation (BP, EP, SP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#marked-content-mp-dp-bmc-bdc-emc">Marked content (MP, DP, BMC, BDC, EMC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-points">Marked-content points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-sequences">Marked-content sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#metadata-metadata">Metadata (Metadata)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#named-images-ni">Named images (NI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-crops-page-pages">Page crops (PAGE, PAGES)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-label-and-plate-color-pagelabel">Page label and plate color (PAGELABEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#transparency-settransparency">Transparency (SetTransparency)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject-and-soft-mask">Transparency group XObject and soft mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject">Transparency group XObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-dictionaries">Soft mask dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-images">Soft mask images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Actions.html">Actions and Destinations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#actions">Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#goto-actions">GoTo actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#gotor-actions">GoToR actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#launch-actions">Launch actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#article-actions">Article actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#destinations">Destinations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#view-destinations">View destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#defining-named-destinations">Defining named destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#referencing-named-destinations">Referencing named destinations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Logical.html">Logical Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#elements-and-parents">Elements and parents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#structure-operators">Structure operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#structure-tree-root">Structure Tree Root</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#strolemap">StRoleMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stclassmap">StClassMap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#elements">Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpne">StPNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbookmarkroot">StBookmarkRoot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpush">StPush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpop">StPop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpopall">StPopAll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stupdate">StUpdate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#element-content">Element content</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbmc">StBMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbdc">StBDC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#emc">EMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stobj">StOBJ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#attribute-objects">Attribute objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stattr">StAttr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#storage-and-retrieval-of-the-implicit-parent-stack">Storage and retrieval of the implicit parent stack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#ststore">StStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stretrieve">StRetrieve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#eps-considerations">EPS considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#tagged-pdf">Tagged PDF</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#building-an-output-intents-array">Building an Output Intents array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#named-object-examples">Named object examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#forms-examples">Forms examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#structure-examples">Structure examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_JDF.html">JDF Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_JDF.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_JDF.html#xpath-examples">XPath Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_OC_Interface.html">Distilling Optional Content</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#initialization-and-termination-code">Initialization and termination code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#procedure-definitions">Procedure definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#addasevent">AddASEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#beginoc">BeginOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#endoc">EndOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#getocgpdfmarktag">GetOCGPdfmarkTag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#ocendpage">OCEndPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocginitstate">SetOCGInitState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgintent">SetOCGIntent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgusage">SetOCGUsage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#simpleoc">SimpleOC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">PDFMark Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="pdfmark_Basic.html" class="btn btn-neutral float-right" title="Basic Features" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="PDFMark Reference" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>pdfmark Reference</p>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This chapter describes the pdfmark operator, its syntax, and its use by Distiller and other PostScript interpreters. It also describes how built-in and user-defined PDF objects are referred to and defined.</p>
+<p>The pdfmark operator is a PostScript-language extension that describes features that are present in PDF, but not in standard PostScript. The pdfmark operator has been available beginning with Distiller 3.0, and, as an extensible operator, has evolved with each release of the PDF specification. This document describes pdfmark as it applies to the Acrobat 9.0 and later suite of products.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While the pdfmark operator provides for greater extensibility, it is not intended to define every feature that is present in PDF but not in standard PostScript.</p>
+</div>
+<p>Those using pdfmark typically do so in one of the following ways:</p>
+<ul class="simple">
+<li><p>By manual creation or modification of PostScript code</p></li>
+<li><p>By filtering or post-processing existing PostScript code</p></li>
+<li><p>By an application that directly generates pdfmark constructs as part of its PostScript code generation</p></li>
+</ul>
+<div class="section" id="syntax-of-pdfmark-operators">
+<h2>Syntax of pdfmark operators<a class="headerlink" href="#syntax-of-pdfmark-operators" title="Permalink to this headline">¶</a></h2>
+<p>The pdfmark operator requires the following syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="nb">any</span>
+<span class="mi">1</span>
+ <span class="o">...</span> <span class="nb">any</span>
+<span class="n">n</span>
+ <span class="n">feature</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The syntax has the following characteristics:</p>
+<ul class="simple">
+<li><p>It begins with a mark object (either <code class="docutils literal notranslate"><span class="pre">mark</span></code> or <code class="docutils literal notranslate"><span class="pre">[</span></code> ).</p></li>
+<li><p>It is followed by zero or more PostScript objects called the arguments of the pdfmark operator.</p></li>
+<li><p>It concludes with a name object that indicates the particular feature that the pdfmark operator is to apply.</p></li>
+</ul>
+<p>Any instance of the pdfmark operator, the mark, its arguments, and the feature name in a PostScript program is referred to as a pdfmark in this document.</p>
+<p>Frequently, the arguments for a given feature are sequences of key-value pairs. Many of the pdfmark keys correspond directly to PDF dictionary keys. However, some keys may be new, entirely different, or abbreviated forms of keys as found in PDF dictionaries. For example, the PDF <code class="docutils literal notranslate"><span class="pre">Subtype</span></code> key may become the pdfmark key <code class="docutils literal notranslate"><span class="pre">S</span></code> , the <code class="docutils literal notranslate"><span class="pre">Dest</span></code> key may become <code class="docutils literal notranslate"><span class="pre">D</span></code> , and the <code class="docutils literal notranslate"><span class="pre">File</span></code> key may become <code class="docutils literal notranslate"><span class="pre">F</span></code> , and so forth. See the <em>PDF Reference</em> for more information on PDF keys.</p>
+<p>The pdfmark operator does not change the operand nor the dictionary stacks, but may alter the execution, graphics state, or clipping stacks, depending on the particular pdfmark feature.</p>
+</div>
+<div class="section" id="usage-with-standard-postscript-interpreters">
+<h2>Usage with standard PostScript interpreters<a class="headerlink" href="#usage-with-standard-postscript-interpreters" title="Permalink to this headline">¶</a></h2>
+<p>Support for the pdfmark operator is implemented in Distiller, but is not available in many other PostScript products. Therefore, if a PostScript program containing pdfmark constructs is to be used by other such products, they must be able to respond appropriately when they encounter the pdfmark operator.</p>
+<p>One reasonable response is to ignore pdfmark constructs. This can be accomplished by defining a pdfmark procedure that discards the pdfmark code for interpreters in which the pdfmark operator does not exist. One way to do this is to place the following code in the prolog of a PostScript program.</p>
+<ol class="arabic simple">
+<li><p>Ignoring pdfmark constructs</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> %%BeginProlog
+  /pdfmark where
+% Is pdfmark already available?
+
+      { pop }
+% Yes: do nothing (use that definition)
+
+      {
+% No: define pdfmark as follows:
+
+      /globaldict where
+% globaldict is preferred because
+
+          { pop globaldict }
+% globaldict is always visible; else,
+
+          { userdict }
+% use userdict otherwise.
+
+      ifelse
+      /pdfmark /cleartomark load put
+      }
+% Define pdfmark to remove all objects
+
+  ifelse
+% up to and including the mark object.
+
+  %%EndProlog
+</pre></div>
+</div>
+<p>This code example works on PostScript Level 1 and higher interpreters. To simplify the presentation of the following examples, PostScript Level 2 or higher is assumed.</p>
+<p>Here is a similar example.</p>
+<ol class="arabic simple">
+<li><p>Ignoring pdfmark if not defined in the PostScript interpreter</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>%%BeginProlog
+/pdfmark where
+  { pop globaldict /?pdfmark /exec load put }
+% pdfmark is built-in: exec code.
+
+  {
+  globaldict
+      begin
+      /?pdfmark /pop load def
+% pdfmark is absent: ignore code.
+
+      /pdfmark /cleartomark load def
+      end
+  }
+ifelse
+%%EndProlog
+</pre></div>
+</div>
+<p>Most pdfmark features are atomic. That is, the pdfmark construct stands alone and, if removed, does not affect surrounding PostScript code. A few pdfmark features, on the other hand, are modal. A modal feature is one that, once completed, leaves the interpreter in a different state. Most modal features are paired: one feature shifts to a new state and a corresponding feature shifts back to the previous state. For example, consider:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="nb">any</span>
+<span class="mi">1</span>
+ <span class="o">...</span> <span class="nb">any</span>
+<span class="n">n</span>
+ <span class="o">/</span><span class="n">BeginFeature</span> <span class="n">pdfmark</span>
+
+<span class="n">additional</span> <span class="n">PostScript</span> <span class="n">code</span>
+
+ <span class="p">[</span> <span class="nb">any</span>
+<span class="mi">1</span>
+ <span class="o">...</span> <span class="nb">any</span>
+<span class="n">m</span>
+ <span class="o">/</span><span class="n">EndFeature</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>If you want to make the additional PostScript code conditional on the availability of the pdfmark operator, then the above definition of pdfmark needs to be improved.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> %%BeginProlog
+  /pdfmark where
+      { pop globaldict /?pdfmark /exec load put }
+% pdfmark is built-in: exec code.
+
+      {
+      globaldict
+          begin
+          /?pdfmark /pop load def
+% pdfmark is absent: ignore code.
+
+          /pdfmark /cleartomark load def
+          end
+      }
+  ifelse
+  %%EndProlog
+</pre></div>
+</div>
+<p>With this, the handling of modal code can be performed as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[
+any
+
+1
+
+ ... any
+
+n
+ /BeginFeature pdfmark
+  {
+additional PostScript code
+ } ?pdfmark
+ [
+any
+
+1
+
+ ... any
+
+m
+ /EndFeature pdfmark
+</pre></div>
+</div>
+<p>While the above solution is sufficient in most circumstances, you might want to define a pdfmark procedure to handle individual features. The following example demonstrates a simple framework for handling individual pdfmark features:</p>
+<ol class="arabic simple">
+<li><p>Handling individual pdfmark features</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> %%BeginProlog
+  currentglobal currentpacking
+% Because the pdfmark definition below uses
+
+  true setglobal true setpacking
+% composite objects, we need to make sure
+
+
+% the procedure is defined in global VM mode.
+
+  /pdfmark where
+      { pop globaldict /?pdfmark /exec load put}
+      {
+      globaldict
+          begin
+          /?pdfmark /pop load def
+          /pdfmark
+              {
+                  { counttomark pop }
+% Check to see that a mark is on the stack.
+
+              stopped
+                  { /pdfmark errordict /unmatchedmark get exec stop }
+              if
+% Raise an error if no mark is found.
+
+              dup type /nametype ne
+% The topmost argument must be the feature.
+
+                  { /pdfmark errordict /typecheck get exec stop }
+              if
+% The feature must be a name object.
+
+                  {
+                  dup /FEATURE
+1
+ eq
+                      { (Interpreting FEATURE 1n) print cleartomark exit }
+                  if
+% Replace the above code with actual code
+
+                  dup /
+FEATURE
+
+2
+ eq
+                      { (Interpreting FEATURE 2n) print cleartomark exit }
+                  if
+% Replace the above code with actual code
+
+                  (Feature not supported: ) print == cleartomark exit
+
+% Replace the above code with actual code
+
+                  }
+              loop
+              } bind def
+          end
+      }
+  ifelse
+  setpacking setglobal
+% Restore to original modes.
+
+  %%EndProlog
+</pre></div>
+</div>
+<p>In the preceding code, the name objects <code class="docutils literal notranslate"><span class="pre">FEATURE</span></code> <em>n</em> would be replaced with actual pdfmark feature names and the code that follows the <code class="docutils literal notranslate"><span class="pre">dup</span> <span class="pre">/FEATURE</span></code> <em>n</em> <code class="docutils literal notranslate"><span class="pre">eq</span></code> would be replaced with code that consumes all of the arguments and the mark object.</p>
+<p>In the examples that follow in this document, the <code class="docutils literal notranslate"><span class="pre">?pdfmark</span></code> definition is assumed to be as shown above. To work correctly with non-Distiller PostScript interpreters, any production implementation of these or additional definitions must take into account factors such as PostScript level, VM allocation modes, packing modes, and others.</p>
+</div>
+<div class="section" id="syntax-for-private-keys">
+<h2>Syntax for private keys<a class="headerlink" href="#syntax-for-private-keys" title="Permalink to this headline">¶</a></h2>
+<p>Some features can accept arbitrary key–value pairs, providing a way of placing private data into PDF files. All keys must be name objects. Unless otherwise stated, values must be Boolean, number, string, name, array, or dictionary objects. Array elements must be Boolean, number, string, or name objects.</p>
+<p>When specifying arbitrary key–value pairs, key names must contain a specific prefix to ensure that they do not collide with key names used by other developers. Contact Adobe to obtain a prefix to be used by your company or organization.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The private key names in this document use the Adobe prefix <code class="docutils literal notranslate"><span class="pre">ADBE</span></code> .</p>
+</div>
+</div>
+<div class="section" id="named-objects">
+<h2>Named objects<a class="headerlink" href="#named-objects" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how built-in and user-defined PDF objects are referred to and defined.</p>
+<div class="section" id="built-in-named-objects">
+<h3>Built-in named objects<a class="headerlink" href="#built-in-named-objects" title="Permalink to this headline">¶</a></h3>
+<p>A PDF file contains built-in objects such as the Catalog and Page dictionaries. To refer to one of these dictionaries in a pdfmark construct, a syntax called a named object is used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">objname</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>The objname is one of:</p>
+<ul class="simple">
+<li><p><em>Catalog</em> — The PDF file’s Catalog dictionary</p></li>
+<li><p><em>DocInfo</em> — The PDF file’s Info dictionary</p></li>
+<li><p><em>Page</em> <em>N</em> — The dictionary for page N (where N is a positive integer)</p></li>
+<li><p><em>ThisPage</em> — The dictionary for the current page being processed in the PostScript stream</p></li>
+<li><p><em>PrevPage</em> — The dictionary for the page before the current page</p></li>
+<li><p><em>NextPage</em> — The dictionary for the page after the current page</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The objname used here is not a standard PostScript name object. It does not start with a slash “<code class="docutils literal notranslate"><span class="pre">/</span></code> ” but instead is surrounded with braces “<code class="docutils literal notranslate"><span class="pre">{}</span></code> “. It otherwise follows the syntax of PostScript name objects. The objname serves as a reference name to identify particular PDF objects and has no relationship to any identifier created in the resultant PDF file.</p>
+</div>
+</div>
+<div class="section" id="user-defined-named-objects">
+<h3>User-defined named objects<a class="headerlink" href="#user-defined-named-objects" title="Permalink to this headline">¶</a></h3>
+<p>In addition to built-in named objects, user-defined named objects can be created. The syntax to specify a user-defined named object is the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span>
+<span class="n">objname</span>
+<span class="p">}</span> <span class="o">/</span><span class="nb">type</span>
+<span class="n">objtype</span>
+<span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The name <code class="docutils literal notranslate"><span class="pre">/_objdef</span></code> indicates that a named object is to be defined and is followed by the {objname}. The object type, objtype, specifies the PDF type of the named object that is to be created and must be one of the following name objects:</p>
+<ul class="simple">
+<li><p><em>/array</em> — Creates an array.</p></li>
+<li><p><em>/dict</em> — Creates a dictionary.</p></li>
+<li><p><em>/stream</em> — Creates a stream.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The feature <code class="docutils literal notranslate"><span class="pre">/OBJ</span></code> is used only to declare a particular objname and its associated type. Other pdfmark features are required to associate this objname with actual content and to have some existing PDF object refer to it.</p>
+</div>
+<p>Here is an example in which the named object “galaxy” is declared to be a dictionary type:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">galaxy</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>A few pdfmark features allow for the definition of a named object as part of the argument list. In these cases, the modified syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span>
+<span class="n">objname</span>
+<span class="p">}</span>
+<span class="nb">any</span>
+
+<span class="mi">1</span>
+
+ <span class="o">...</span> <span class="nb">any</span>
+
+<span class="n">n</span>
+
+ <span class="n">feature</span>
+ <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>In this case, the objname is not only created, but also refers to the PDF object created as a result of the pdfmark feature. The <code class="docutils literal notranslate"><span class="pre">type</span></code> entry is not used because the feature implicitly provides this information. The following features support this syntax:</p>
+<ul class="simple">
+<li><p><em>ANN</em> — Annotation</p></li>
+<li><p><em>BP</em> — Encapsulated graphic</p></li>
+<li><p><em>DEST</em> — Named destination</p></li>
+<li><p><em>NI</em> — Encapsulated image</p></li>
+<li><p><em>StPNE</em> — Structure element</p></li>
+</ul>
+<p>Named objects created in any of the preceding ways can be used in the definition of other named objects. That is, an {objname} can be used as an argument in a pdfmark construct as the value of a key–value pair or as an element in an array. In these cases, Distiller places an indirect reference to the object with which {objname} is associated in the PDF file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A pdfmark construct can make an object reference to {objname} before defining the object {objname}. That is, the {objname} can be in the argument list of a pdfmark construct before it is defined. If {objname} is never defined, it is left as an unresolved reference in the cross-reference table. Hence, any consumer of such a PDF file must be able to handle unresolved references.</p>
+</div>
+</div>
+<div class="section" id="namespaces">
+<h3>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline">¶</a></h3>
+<p>When using named objects in PostScript programs, it is possible that the same name might be used more than once. To avoid conflicts in name object definitions, Distiller provides a means for specifying the scope in which named objects have well-defined meaning.</p>
+<p>In addition to the standard five PostScript stacks, Distiller maintains a stack of namespaces. The namespace stack is similar to the PostScript dictionary stack, except that only the top-most namespace name objects are visible. The namespace stack is also similar to the graphics state stack, except that no <code class="docutils literal notranslate"><span class="pre">currentgstate</span></code> analog is provided. For more information on PostScript stacks, see the <em>PostScript Language Reference</em> .</p>
+<p>A namespace contains:</p>
+<ul class="simple">
+<li><p>Names for user-defined named objects (see <a class="reference external" href="pdfmark_Syntax.html#50454537_72745">User-defined named objects</a>)</p></li>
+<li><p>Names for stored implicit parent stacks (see <a class="reference external" href="pdfmark_Logical.html#50454553_60367">StStore</a>)</p></li>
+<li><p>Names for images (see <a class="reference external" href="pdfmark_Basic.html#50454556_14682">Named images (NI)</a>)</p></li>
+</ul>
+<p>The appropriate use of namespaces can help ensure that there are no named-object conflicts when you use pdfmark constructs from various sources to create a PostScript file. A common example is the handling of Encapsulated PostScript files (see <a class="reference external" href="pdfmark_Logical.html#50454553_89401">EPS considerations</a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The built-in named objects are managed separately from the namespace stack and are always visible.</p>
+</div>
+<p>The following pdfmark features are available for manipulating namespaces:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NamespacePush</span></code> causes a new, empty namespace to be pushed onto the namespace stack and causes all other namespaces to be hidden. The syntax for pushing a namespace is as follows:</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">NamespacePush</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NamespacePop</span></code> pops the topmost namespace from the stack. Once a namespace has been popped, it cannot be accessed again. The next lower namespace on the stack becomes the current namespace.</p></li>
+</ul>
+<p>The syntax for popping a namespace is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">NamespacePop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>A warning is issued by Distiller if <code class="docutils literal notranslate"><span class="pre">NamespacePop</span></code> is encountered when the namespace stack is empty.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="p">[</span> <span class="ne">Warning</span><span class="p">:</span> <span class="o">/</span><span class="n">NamespacePop</span> <span class="n">pdfmark</span> <span class="n">ignored</span><span class="p">:</span> <span class="n">No</span> <span class="n">matching</span> <span class="n">NamespacePush</span> <span class="p">]</span><span class="o">%%</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are no pdfmark features to save or restore namespaces.</p>
+</div>
+</div>
+<div class="section" id="adding-content-to-named-objects">
+<h3>Adding content to named objects<a class="headerlink" href="#adding-content-to-named-objects" title="Permalink to this headline">¶</a></h3>
+<p>Once a named object has been declared, content can be added to the PDF object that it refers to. There are several pdfmark features to accomplish this for each of the types of named objects:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="pdfmark_Syntax.html#50454537_34588">Arrays</a></p></li>
+<li><p><a class="reference external" href="pdfmark_Syntax.html#50454537_41622">Dictionaries</a></p></li>
+<li><p><a class="reference external" href="pdfmark_Syntax.html#50454537_54618">Streams</a></p></li>
+</ul>
+<div class="section" id="arrays">
+<h4>Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">¶</a></h4>
+<p>There are several methods for adding content to arrays that are named objects. The most basic of these is the <code class="docutils literal notranslate"><span class="pre">PUT</span></code> feature, using this syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span>   <span class="p">{</span>
+<span class="n">arrayname</span>
+<span class="p">}</span>
+<span class="n">index</span> <span class="n">value</span>
+ <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">PUT</span></code> feature inserts the value argument at the location index. Indices start at 0, and the array grows automatically to hold the largest index specified. Unspecified entries are created as NULL objects. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">MoonInfo</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">array</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="p">{</span><span class="n">MoonInfo</span><span class="p">}</span> <span class="mi">0</span> <span class="p">(</span><span class="n">Earth</span> <span class="n">to</span> <span class="n">Moon</span><span class="p">)</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="p">{</span><span class="n">MoonInfo</span><span class="p">}</span> <span class="mi">1</span> <span class="mi">238855</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="p">{</span><span class="n">MoonInfo</span><span class="p">}</span> <span class="mi">2</span> <span class="o">/</span><span class="n">miles</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The above code creates an array object and populates it with objects of various types. At this point, the named object cannot be reached because there are no entries in the PDF file’s cross-reference table or file trailer that lead to it.</p>
+<p>Adding array objects as above can become tedious. When adding objects to contiguous array index positions, the pdfmark feature <code class="docutils literal notranslate"><span class="pre">PUTINTERVAL</span></code> can simplify this task. The syntax for this feature is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="p">{</span>
+<span class="n">arrayname</span>
+<span class="p">}</span>
+<span class="n">index</span>
+ <span class="p">[</span>
+<span class="n">value</span>
+
+<span class="mi">1</span>
+ <span class="o">...</span> <span class="n">value</span>
+<span class="n">n</span>
+<span class="p">]</span> <span class="o">/</span><span class="n">PUTINTERVAL</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The operation of this feature is the same as in PostScript: value <em>1</em> is placed in arrayname <em>index</em> , value <em>2</em> is placed in arrayname <em>index+1</em> , and so forth. The array is resized if necessary to hold the objects added. The previous example can be simplified to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">MoonInfo</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">array</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="p">{</span><span class="n">MoonInfo</span><span class="p">}</span> <span class="mi">0</span> <span class="p">[(</span><span class="n">Earth</span> <span class="n">to</span> <span class="n">Moon</span><span class="p">)</span> <span class="mi">238855</span> <span class="o">/</span><span class="n">miles</span><span class="p">]</span> <span class="o">/</span><span class="n">PUTINTERVAL</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>One additional convenience for adding objects to an array is available: the <code class="docutils literal notranslate"><span class="pre">APPEND</span></code> feature. This feature adds one additional entry immediately after the end of the array. Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="p">{</span>
+<span class="n">arrayname</span>
+<span class="p">}</span>
+<span class="n">value</span>
+<span class="o">/</span><span class="n">APPEND</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dictionaries">
+<h4>Dictionaries<a class="headerlink" href="#dictionaries" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">PUT</span></code> feature can also be used to add dictionary content. The named object can be either a built-in name, such as <code class="docutils literal notranslate"><span class="pre">{Catalog}</span></code> or <code class="docutils literal notranslate"><span class="pre">{Page37}</span></code> , or a user-defined object name.</p>
+<p>For dictionary named objects, the syntax of the <code class="docutils literal notranslate"><span class="pre">PUT</span></code> feature is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>   <span class="p">{</span>
+<span class="n">dictname</span>
+<span class="p">}</span> <span class="o">&lt;&lt;</span>
+<span class="n">key</span>
+
+<span class="mi">1</span>
+
+<span class="n">value</span>
+
+<span class="mi">1</span>
+ <span class="o">...</span>
+<span class="n">key</span>
+
+<span class="n">n</span>
+
+<span class="n">value</span>
+
+<span class="n">n</span>
+ <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>For dictionary named objects, <code class="docutils literal notranslate"><span class="pre">PUT</span></code> adds the key–value pairs provided as arguments. Continuing the previous example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">TheMoon</span> <span class="p">{</span><span class="n">MoonInfo</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>This adds a key–value pair to the PDF Catalog dictionary. The inserted key is <code class="docutils literal notranslate"><span class="pre">/TheMoon</span></code> and the value is an indirect object. To illustrate this, the resultant PDF file might have the following content:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>trailer
+ &lt;&lt; … /Root 9 0 R … &gt;&gt;
+ …
+ 9 0 obj &lt;&lt; … /Type /Catalog … /TheMoon 3 0 R … &gt;&gt;
+ endobj
+ 3 0 obj [(Earth to Moon)238855/miles]
+ endobj
+</pre></div>
+</div>
+<p>The named object <code class="docutils literal notranslate"><span class="pre">MoonInfo</span></code> does not appear in the resultant PDF file, but the object it referred to, <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">0</span> <span class="pre">obj</span></code> in this case, does.</p>
+</div>
+<div class="section" id="streams">
+<h4>Streams<a class="headerlink" href="#streams" title="Permalink to this headline">¶</a></h4>
+<p>For stream named objects, the syntax can take several forms:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>   <span class="p">{</span>
+<span class="n">streamname</span>
+<span class="p">}</span>
+<span class="n">string</span>
+ <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+   <span class="p">[</span>   <span class="p">{</span>
+<span class="n">streamname</span>
+<span class="p">}</span>
+<span class="n">file</span>
+ <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span>   <span class="p">{</span>
+<span class="n">streamname</span>
+<span class="p">}</span> <span class="o">&lt;&lt;</span>
+<span class="n">key</span>
+
+<span class="mi">1</span>
+
+<span class="n">value</span>
+
+<span class="mi">1</span>
+ <span class="o">...</span>
+<span class="n">key</span>
+
+<span class="n">n</span>
+
+<span class="n">value</span>
+
+<span class="n">n</span>
+ <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>A stream object consists of a sequence of bytes, its character data, and an associated dictionary. When the stream named object is created, the character data is empty. The source of stream data can come from an explicit string or can be read from a PostScript file object (a file or filter), in which case reading proceeds until the end of file is reached.</p>
+<p>In addition to the character data, a stream has an associated PDF dictionary. Some dictionary entries such as <code class="docutils literal notranslate"><span class="pre">Length</span></code> are created automatically. Key–value pairs that do not conflict with the keys common to PDF stream dictionaries can be added to this dictionary. The resultant PDF object associated with the stream named object is always compressed using a lossless method that can be specified in Distiller’s Adobe PDF Settings dialog box.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CLOSE</span></code> feature closes a stream object created by pdfmark and has the syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>   <span class="p">{</span>
+<span class="n">streamname</span>
+<span class="p">}</span> <span class="o">/</span><span class="n">CLOSE</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The named stream object is closed and written to the PDF file. The {streamname} is still valid and may be referenced by other objects, but it can no longer be written to. When Distiller completes writing a PDF file, any open streams are closed and written automatically.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>   <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">MoonNotes</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">stream</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">MoonNotes</span><span class="p">}</span> <span class="p">(</span><span class="n">Hipparchus</span> <span class="n">around</span> <span class="mi">129</span> <span class="n">BC</span> <span class="n">calculated</span> <span class="n">the</span> <span class="n">distance</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Moon</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">MoonNotes</span><span class="p">}</span> <span class="p">(</span><span class="n">The</span> <span class="n">Moon</span> <span class="n">was</span> <span class="n">first</span> <span class="n">touched</span> <span class="n">by</span> <span class="n">Armstrong</span> <span class="n">on</span> <span class="n">July</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">1969.</span><span class="n">n</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">MoonNotes</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Author</span> <span class="p">(</span><span class="n">Steve</span> <span class="n">Amerige</span><span class="p">)</span> <span class="o">/</span><span class="n">Company</span> <span class="p">(</span><span class="n">Adobe</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">MoonNotes</span> <span class="p">{</span><span class="n">MoonNotes</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">MoonNotes</span><span class="p">}</span> <span class="o">/</span><span class="n">CLOSE</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Apr 14, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
