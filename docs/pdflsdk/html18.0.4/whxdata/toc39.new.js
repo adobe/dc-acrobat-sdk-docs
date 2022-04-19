@@ -1,0 +1,4 @@
+(function() {
+var toc =  [{"type":"item","name":"About host function tables","url":"PDFL_MasterBook/Host_Function_Tables/About_host_function_tables.htm"},{"type":"book","name":"Exporting host function tables","key":"toc40","url":"PDFL_MasterBook/Host_Function_Tables/Exporting_host_function_tables.htm"},{"type":"item","name":"Importing an existing HFT","url":"PDFL_MasterBook/Host_Function_Tables/Importing_an_existing_HFT.htm"},{"type":"item","name":"Invoking HFT methods","url":"PDFL_MasterBook/Host_Function_Tables/Invoking_HFT_methods.htm"},{"type":"item","name":"Replacing HFT methods","url":"PDFL_MasterBook/Host_Function_Tables/Replacing_HFT_methods.htm"},{"type":"item","name":"Migrating non-HFT PDF Library applications to HFT applications","url":"PDFL_MasterBook/Host_Function_Tables/Migrating_non-HFT_PDF_Library_applications_to_HFT_applications.htm"}];
+window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
+})();

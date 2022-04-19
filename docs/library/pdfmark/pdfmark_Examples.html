@@ -1,0 +1,1193 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homepdfmark_Examples.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="JDF Features" href="pdfmark_JDF.html" />
+    <link rel="prev" title="Logical Structure" href="pdfmark_Logical.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> PDFMark Reference
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">PDFMark Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#whats-in-this-guide">What’s in this guide?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#who-should-read-this-guide">Who should read this guide?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Syntax.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#syntax-of-pdfmark-operators">Syntax of pdfmark operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#usage-with-standard-postscript-interpreters">Usage with standard PostScript interpreters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#syntax-for-private-keys">Syntax for private keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#named-objects">Named objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#built-in-named-objects">Built-in named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#user-defined-named-objects">User-defined named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#adding-content-to-named-objects">Adding content to named objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#arrays">Arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#dictionaries">Dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#streams">Streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Basic.html">Basic Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#annotations-ann">Annotations (ANN)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#text-annotations-notes">Text annotations (notes)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#links">Links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#other-annotations">Other annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#articles-article">Articles (ARTICLE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#bookmarks-out">Bookmarks (OUT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-info-dictionary-docinfo">Document Info dictionary (DOCINFO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-open-options-docview">Document open options (DOCVIEW)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#embedded-file-content-embed">Embedded file content (EMBED)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#distiller-command-line-options-to-enable-file-embedding">Distiller command line options to enable file embedding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#graphics-encapsulation-bp-ep-sp">Graphics encapsulation (BP, EP, SP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#marked-content-mp-dp-bmc-bdc-emc">Marked content (MP, DP, BMC, BDC, EMC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-points">Marked-content points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-sequences">Marked-content sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#metadata-metadata">Metadata (Metadata)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#named-images-ni">Named images (NI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-crops-page-pages">Page crops (PAGE, PAGES)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-label-and-plate-color-pagelabel">Page label and plate color (PAGELABEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#transparency-settransparency">Transparency (SetTransparency)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject-and-soft-mask">Transparency group XObject and soft mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject">Transparency group XObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-dictionaries">Soft mask dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-images">Soft mask images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Actions.html">Actions and Destinations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#actions">Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#goto-actions">GoTo actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#gotor-actions">GoToR actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#launch-actions">Launch actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#article-actions">Article actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#destinations">Destinations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#view-destinations">View destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#defining-named-destinations">Defining named destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#referencing-named-destinations">Referencing named destinations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Logical.html">Logical Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#elements-and-parents">Elements and parents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#structure-operators">Structure operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#structure-tree-root">Structure Tree Root</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#strolemap">StRoleMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stclassmap">StClassMap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#elements">Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpne">StPNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbookmarkroot">StBookmarkRoot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpush">StPush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpop">StPop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stpopall">StPopAll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stupdate">StUpdate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#element-content">Element content</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbmc">StBMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stbdc">StBDC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#emc">EMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stobj">StOBJ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#attribute-objects">Attribute objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stattr">StAttr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#storage-and-retrieval-of-the-implicit-parent-stack">Storage and retrieval of the implicit parent stack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#ststore">StStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Logical.html#stretrieve">StRetrieve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#eps-considerations">EPS considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Logical.html#tagged-pdf">Tagged PDF</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#building-an-output-intents-array">Building an Output Intents array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#named-object-examples">Named object examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#forms-examples">Forms examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#structure-examples">Structure examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_JDF.html">JDF Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_JDF.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_JDF.html#xpath-examples">XPath Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_OC_Interface.html">Distilling Optional Content</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#initialization-and-termination-code">Initialization and termination code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#procedure-definitions">Procedure definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#addasevent">AddASEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#beginoc">BeginOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#endoc">EndOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#getocgpdfmarktag">GetOCGPdfmarkTag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#ocendpage">OCEndPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocginitstate">SetOCGInitState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgintent">SetOCGIntent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgusage">SetOCGUsage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#simpleoc">SimpleOC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">PDFMark Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Examples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="pdfmark_JDF.html" class="btn btn-neutral float-right" title="JDF Features" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="pdfmark_Logical.html" class="btn btn-neutral float-left" title="Logical Structure" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>This section provides several examples illustrating various uses of the pdfmark operator.</p>
+<div class="section" id="building-an-output-intents-array">
+<h2>Building an Output Intents array<a class="headerlink" href="#building-an-output-intents-array" title="Permalink to this headline">¶</a></h2>
+<p>The following Windows and Mac OS examples demonstrate how to build an Output Intents array, which is useful in color processing. The hard-coded file and directory path should be applicable to most users.</p>
+<ol class="arabic simple">
+<li><p>Output Intents array in Windows</p></li>
+</ol>
+<p>Define the profile object. The file is set up using a Windows path. You can also use a Mac OS or embed the profile data in the PostScript.*</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="p">[</span> <span class="o">/</span><span class="n">NamespacePush</span> <span class="n">pdfmark</span>
+    <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">Profile</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">stream</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+    <span class="p">[</span> <span class="p">{</span><span class="n">Profile</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">N</span> <span class="mi">4</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+    <span class="p">[</span> <span class="p">{</span><span class="n">Profile</span><span class="p">}</span>
+    <span class="p">(</span><span class="n">c</span><span class="p">:</span><span class="o">/</span><span class="n">Program</span> <span class="n">Files</span><span class="o">/</span><span class="n">Common</span>
+    <span class="n">Files</span><span class="o">/</span><span class="n">Adobe</span><span class="o">/</span><span class="n">Color</span><span class="o">/</span><span class="n">Profiles</span><span class="o">/</span><span class="n">Recommended</span><span class="o">/</span><span class="n">EuroscaleCoated</span><span class="o">.</span><span class="n">icc</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="n">file</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Build</span> <span class="n">the</span> <span class="n">OutputIntent</span> <span class="n">objects</span>
+    <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">OIDict</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+    <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">OIArray</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">array</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+    <span class="p">[</span> <span class="p">{</span><span class="n">OIDict</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">OutputIntent</span> <span class="o">/</span><span class="n">OutputCondition</span> <span class="p">(</span><span class="n">Test</span><span class="p">)</span> <span class="o">/</span><span class="n">S</span>
+    <span class="o">/</span><span class="n">GTS_PDFX</span> <span class="o">/</span><span class="n">OutputConditionIdentifier</span> <span class="p">(</span><span class="n">Custom</span><span class="p">)</span> <span class="o">/</span><span class="n">DestOutputProfile</span>
+    <span class="p">{</span><span class="n">Profile</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+    <span class="p">[</span> <span class="p">{</span><span class="n">OIArray</span><span class="p">}</span> <span class="mi">0</span> <span class="p">{</span><span class="n">OIDict</span><span class="p">}</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+    <span class="o">%</span> <span class="n">Store</span> <span class="n">the</span> <span class="n">OutputIntents</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">catalog</span><span class="o">.</span>
+
+ <span class="p">[</span> <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span><span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">OutputIntents</span> <span class="p">{</span><span class="n">OIArray</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+  <span class="p">[</span> <span class="o">/</span><span class="n">NamespacePop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Output Intents array in Mac OS</p></li>
+</ol>
+<p>Define the profile object. The file is set up using a Mac OS path. You can also use a Windows or embed the profile data in the PostScript.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">NamespacePush</span> <span class="n">pdfmark</span>
+  <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">Profile</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">stream</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+  <span class="p">[</span> <span class="p">{</span><span class="n">Profile</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">N</span> <span class="mi">4</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+  <span class="p">[</span> <span class="p">{</span><span class="n">Profile</span><span class="p">}</span>
+  <span class="p">(</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Application</span> <span class="n">Support</span><span class="o">/</span><span class="n">Adobe</span><span class="o">/</span><span class="n">Color</span><span class="o">/</span><span class="n">Profiles</span><span class="o">/</span><span class="n">JapanStandard</span><span class="o">.</span><span class="n">icc</span><span class="p">)</span>
+  <span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="n">file</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+  <span class="o">%</span> <span class="n">Build</span> <span class="n">the</span> <span class="n">OutputIntent</span> <span class="n">objects</span>
+
+  <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">OIDict</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+  <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">OIArray</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">array</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+  <span class="p">[</span> <span class="p">{</span><span class="n">OIDict</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">OutputIntent</span> <span class="o">/</span><span class="n">OutputCondition</span> <span class="p">(</span><span class="n">Test</span><span class="p">)</span> <span class="o">/</span><span class="n">S</span>
+  <span class="o">/</span><span class="n">GTS_PDFX</span> <span class="o">/</span><span class="n">OutputConditionIdentifier</span> <span class="p">(</span><span class="n">Custom</span><span class="p">)</span> <span class="o">/</span><span class="n">DestOutputProfile</span>
+  <span class="p">{</span><span class="n">Profile</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+  <span class="p">[</span> <span class="p">{</span><span class="n">OIArray</span><span class="p">}</span> <span class="mi">0</span> <span class="p">{</span><span class="n">OIDict</span><span class="p">}</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+  <span class="o">%</span> <span class="n">Store</span> <span class="n">the</span> <span class="n">OutputIntents</span> <span class="n">array</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">catalog</span><span class="o">.</span>
+  <span class="p">[</span> <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span><span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">OutputIntents</span> <span class="p">{</span><span class="n">OIArray</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">NamespacePop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="named-object-examples">
+<h2>Named object examples<a class="headerlink" href="#named-object-examples" title="Permalink to this headline">¶</a></h2>
+<p>The following examples demonstrate how to work with named objects.</p>
+<p><strong>Creating user-defined named objects</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>    <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">myarrayname</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span><span class="o">/</span> <span class="n">array</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">mydictname</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">mystreamname</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">stream</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Adding values to named objects</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>% Insert 132 at location 0
+
+[   {myarrayname} 0 132 /PUT pdfmark
+[   {myarrayname} 100 /APPEND pdfmark
+[   {myarrayname} /name2 /APPEND pdfmark
+[   {myarrayname} 2 [200 300] /PUTINTERVAL pdfmark
+
+% At the end of the above examples, the array {myarrayname}
+% has the value [132 100 200 300 /name2]
+% Insert key–value pair into dictionary
+
+[   {mydictname} &lt;&lt; /TheKey 366 &gt;&gt; /PUT pdfmark
+
+% Insert string into stream object
+
+[   {mystreamname} (any string) /PUT pdfmark
+
+% Use predefined named objects
+% Insert key–value pair into Catalog
+
+[   {Catalog} &lt;&lt; /Answer 42 &gt;&gt; /PUT pdfmark
+
+% Insert key–value pair into Page 37&#39;s dictionary
+
+[   {Page37} &lt;&lt; /SpecialKey (special string) &gt;&gt; /PUT pdfmark
+
+% Insert key–value pair into the current page&#39;s dictionary
+
+[   {ThisPage} &lt;&lt; /NewKey (new string) &gt;&gt; /PUT pdfmark
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Creating an annotation as a named object and adding content to it</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Create</span> <span class="n">text</span> <span class="n">annotation</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">MikesAnnot</span><span class="p">}</span> <span class="o">/</span><span class="n">Contents</span> <span class="p">(</span><span class="n">a</span> <span class="n">simple</span> <span class="n">text</span> <span class="n">annot</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Rect</span> <span class="p">[</span><span class="mi">100</span> <span class="mi">100</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">]</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Text</span> <span class="o">/</span><span class="n">ANN</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Add</span> <span class="n">another</span> <span class="n">key</span> <span class="n">to</span> <span class="n">this</span> <span class="n">text</span> <span class="n">annotation</span>
+
+<span class="p">[</span>   <span class="p">{</span><span class="n">MikesAnnot</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">AnotherKey</span> <span class="p">(</span><span class="n">another</span> <span class="n">string</span> <span class="n">value</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Using a named object as a value</p></li>
+</ol>
+<p>This example creates a text annotation on the current page with extra keys in the annotation dictionary. These keys, <code class="docutils literal notranslate"><span class="pre">MyPrivateAnnotArrayData</span></code> and <code class="docutils literal notranslate"><span class="pre">MyPrivateAnnotDictData</span></code> , have values that are indirect references to the array and dictionary objects created by the previous pdfmark entries.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>    <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">myarray</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">array</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">mydict</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">MyPrivateAnnotArrayData</span> <span class="p">{</span><span class="n">myarray</span><span class="p">}</span>
+    <span class="o">/</span><span class="n">MyPrivateAnnotDictData</span> <span class="p">{</span><span class="n">mydict</span><span class="p">}</span>
+    <span class="o">/</span><span class="n">SubType</span> <span class="o">/</span><span class="n">Text</span>
+    <span class="o">/</span><span class="n">Rect</span> <span class="p">[</span><span class="mi">500</span> <span class="mi">500</span> <span class="mi">550</span> <span class="mi">550</span><span class="p">]</span>
+    <span class="o">/</span><span class="n">Contents</span> <span class="p">(</span><span class="n">Here</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">text</span> <span class="n">annotation</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">ANN</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Putting a file’s contents into a text annotation</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">F</span> <span class="p">(</span><span class="n">file</span><span class="s1">&#39;s platform dependent path name) (r) file def</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">mystream</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">stream</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">mystream</span><span class="p">}</span> <span class="n">F</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">MyPrivateAnnotmyStreamData</span> <span class="p">{</span><span class="n">mystream</span><span class="p">}</span>
+    <span class="o">/</span><span class="n">SubType</span> <span class="o">/</span><span class="n">Text</span>
+    <span class="o">/</span><span class="n">Rect</span> <span class="p">[</span><span class="mi">500</span> <span class="mi">500</span> <span class="mi">550</span> <span class="mi">550</span><span class="p">]</span>
+    <span class="o">/</span><span class="n">Contents</span> <span class="p">(</span><span class="n">Here</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">text</span> <span class="n">annotation</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">ANN</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Using OBJ to add an open action to a PDF File</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Go</span> <span class="n">to</span> <span class="n">the</span> <span class="n">fifth</span> <span class="n">page</span> <span class="n">of</span> <span class="n">a</span> <span class="n">document</span> <span class="n">upon</span> <span class="n">opening</span> <span class="n">it</span><span class="o">.</span>
+<span class="o">%</span> <span class="n">First</span> <span class="ow">and</span> <span class="n">third</span> <span class="n">lines</span> <span class="n">can</span> <span class="n">be</span> <span class="n">reused</span><span class="o">.</span>
+<span class="o">%</span> <span class="n">Second</span> <span class="n">line</span> <span class="n">specifies</span> <span class="n">the</span> <span class="n">GoTo</span> <span class="n">action</span><span class="p">,</span> <span class="n">which</span> <span class="n">can</span> <span class="n">be</span> <span class="n">customized</span> <span class="n">easily</span><span class="o">.</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">MyAction</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="p">{</span><span class="n">MyAction</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">S</span> <span class="o">/</span><span class="n">GoTo</span> <span class="o">/</span><span class="n">D</span> <span class="p">[</span> <span class="p">{</span><span class="n">Page5</span><span class="p">}</span> <span class="o">/</span><span class="n">FitH</span> <span class="mi">770</span> <span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">OpenAction</span> <span class="p">{</span><span class="n">MyAction</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>#. Using OBJ to create a base URI</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">dictionary</span> <span class="nb">object</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">myURIdict</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="o">%</span> <span class="n">Add</span> <span class="n">a</span> <span class="s2">&quot;Base&quot;</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span> <span class="n">pair</span> <span class="n">to</span> <span class="n">the</span> <span class="n">dictionary</span> <span class="n">we</span> <span class="n">just</span> <span class="n">created</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">myURIdict</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Base</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">adobe</span><span class="o">.</span><span class="n">com</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+<span class="o">%</span> <span class="n">Add</span> <span class="n">our</span> <span class="n">dictionary</span> <span class="n">to</span> <span class="n">the</span> <span class="n">PDF</span> <span class="n">file</span><span class="s1">&#39;s Catalog dictionary</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">URI</span> <span class="p">{</span><span class="n">myURIdict</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Using OBJ and PUT pdfmarks to create an alternate image</p></li>
+</ol>
+<p>This example shows how to create alternate images. In this case, an image is created that has one Alternate. The Alternate is stored as a JPEG file on a web server, and is the default image used when printing.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Give</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">image</span> <span class="n">a</span> <span class="n">name</span><span class="p">,</span> <span class="n">so</span> <span class="n">we</span> <span class="n">can</span> <span class="n">add</span> <span class="n">an</span> <span class="n">Alternates</span> <span class="n">array</span> <span class="n">to</span> <span class="n">it</span> <span class="n">later</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">myImage</span><span class="p">}</span> <span class="o">/</span><span class="n">NI</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Create</span> <span class="n">the</span> <span class="n">base</span> <span class="n">image</span> <span class="p">(</span><span class="n">just</span> <span class="n">a</span> <span class="mi">2</span><span class="n">x1</span> <span class="n">pixel</span> <span class="n">grayscale</span> <span class="n">image</span> <span class="k">for</span> <span class="n">this</span> <span class="n">sample</span><span class="p">)</span>
+
+<span class="o">&lt;&lt;</span>
+<span class="o">/</span><span class="n">Width</span> <span class="mi">2</span>
+<span class="o">/</span><span class="n">Height</span> <span class="mi">1</span>
+<span class="o">/</span><span class="n">ImageMatrix</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">/</span><span class="n">ImageType</span> <span class="mi">1</span>
+<span class="o">/</span><span class="n">Decode</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<span class="o">/</span><span class="n">BitsPerComponent</span> <span class="mi">8</span>
+<span class="o">/</span><span class="n">DataSource</span> <span class="p">(</span><span class="mi">1</span><span class="n">Z</span><span class="p">)</span>
+<span class="o">&gt;&gt;</span> <span class="n">image</span>
+
+<span class="o">%</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">stream</span> <span class="k">for</span> <span class="n">the</span> <span class="n">Alternate</span> <span class="n">Image</span>
+
+<span class="p">[</span><span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">myPrintingImageStream</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">stream</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Add</span> <span class="n">the</span> <span class="n">necessary</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span> <span class="n">pairs</span> <span class="n">to</span> <span class="n">the</span> <span class="n">stream</span> <span class="n">dictionary</span> <span class="n">to</span> <span class="n">make</span> <span class="n">it</span> <span class="n">a</span>
+<span class="o">%</span> <span class="n">valid</span> <span class="n">image</span> <span class="n">XObject</span><span class="o">.</span>
+<span class="o">%</span> <span class="n">This</span> <span class="n">particular</span> <span class="n">image</span> <span class="n">XObject</span> <span class="n">uses</span> <span class="n">the</span> <span class="n">external</span> <span class="n">streams</span> <span class="n">capability</span> <span class="n">of</span> <span class="n">PDF</span>
+<span class="o">%</span> <span class="n">to</span> <span class="n">point</span> <span class="n">to</span> <span class="n">an</span> <span class="n">image</span> <span class="n">stored</span> <span class="n">on</span> <span class="n">an</span> <span class="n">IIP</span> <span class="n">server</span><span class="p">,</span> <span class="n">retrieving</span> <span class="n">it</span> <span class="k">as</span> <span class="n">a</span> <span class="n">JPEG</span> <span class="n">file</span><span class="o">.</span>
+<span class="o">%</span> <span class="n">Since</span> <span class="nb">all</span> <span class="n">stream</span> <span class="n">data</span> <span class="ow">is</span> <span class="n">stored</span> <span class="n">on</span> <span class="n">a</span> <span class="n">web</span> <span class="n">server</span><span class="p">,</span> <span class="n">we</span> <span class="n">don</span><span class="s1">&#39;t explicitly add</span>
+<span class="o">%</span> <span class="n">data</span> <span class="n">to</span> <span class="n">the</span> <span class="n">stream</span><span class="o">.</span> <span class="n">As</span> <span class="n">a</span> <span class="n">result</span><span class="p">,</span> <span class="n">the</span> <span class="n">stream</span> <span class="n">ends</span> <span class="n">up</span> <span class="k">with</span> <span class="n">a</span> <span class="n">length</span> <span class="n">of</span> <span class="n">zero</span><span class="p">,</span>
+<span class="o">%</span> <span class="n">which</span> <span class="ow">is</span> <span class="n">OK</span> <span class="k">for</span> <span class="n">external</span> <span class="n">streams</span><span class="o">.</span>
+
+<span class="p">[</span>   <span class="p">{</span><span class="n">myPrintingImageStream</span><span class="p">}</span>
+        <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">XObject</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Image</span> <span class="o">/</span><span class="n">Width</span> <span class="mi">150</span> <span class="o">/</span><span class="n">Height</span> <span class="mi">150</span>
+        <span class="o">/</span><span class="n">FFilter</span> <span class="o">/</span><span class="n">DCTDecode</span> <span class="o">/</span><span class="n">ColorSpace</span> <span class="o">/</span><span class="n">DeviceRGB</span> <span class="o">/</span><span class="n">BitsPerComponent</span> <span class="mi">8</span>
+        <span class="o">/</span><span class="n">F</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">FS</span> <span class="o">/</span><span class="n">URL</span> <span class="o">/</span><span class="n">F</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">mycompany</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">myfile</span><span class="o">.</span><span class="n">jpg</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
+        <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Add</span> <span class="n">an</span> <span class="n">Alternates</span> <span class="n">array</span> <span class="n">to</span> <span class="n">the</span> <span class="n">base</span> <span class="n">image</span>
+
+    <span class="p">[</span>   <span class="p">{</span><span class="n">myImage</span><span class="p">}</span>
+        <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">Alternates</span>
+            <span class="p">[</span> <span class="o">&lt;&lt;/</span><span class="n">Image</span> <span class="p">{</span><span class="n">myPrintingImageStream</span><span class="p">}</span> <span class="o">/</span><span class="n">DefaultForPrinting</span> <span class="n">true</span> <span class="o">&gt;&gt;</span> <span class="p">]</span>
+        <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>There are two possibilities for alternate images:</p>
+<ul class="simple">
+<li><p>Alternate image data is outside the PDF file</p></li>
+<li><p>Alternate image data is inside the PDF file</p></li>
+</ul>
+<p>The above example shows only how to construct the first type. Note also that if the Alternate uses a different color space than the base image, it is possible that the PDF file may not contain the appropriate <code class="docutils literal notranslate"><span class="pre">ProcSet</span></code> references in the Resources dictionary to print the page to PostScript. For example, if the base image is grayscale and the Alternate is <code class="docutils literal notranslate"><span class="pre">DeviceRGB</span></code> , it is likely that the page’s Resources contains only the <code class="docutils literal notranslate"><span class="pre">ImageB</span></code> ProcSet (for grayscale images) and not the <code class="docutils literal notranslate"><span class="pre">ImageC</span></code> ProcSet (for color images).</p>
+</div>
+<div class="section" id="forms-examples">
+<h2>Forms examples<a class="headerlink" href="#forms-examples" title="Permalink to this headline">¶</a></h2>
+<p>The examples in this section show how to use the Forms pdfmark suite.</p>
+<ol class="arabic simple">
+<li><p>Define the AcroForm dictionary at the document Catalog</p></li>
+</ol>
+<p>The AcroForm dictionary includes these required entries (see the <em>PDF Reference</em> for more information):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Fields</span></code> (the array from where all widgets in the form can be found)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DA</span></code> (Default Appearance)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DR</span></code> (Default Resources)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NeedAppearances</span></code> , set to true to indicate that when the document is opened, all widgets are traversed to generate their display and to add them to the <code class="docutils literal notranslate"><span class="pre">Fields</span></code> array.</p></li>
+</ul>
+<p>It also includes definitions of common objects that are used by the widgets such as fonts, encoding arrays, and Form <em>XObjects</em> for button faces.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>    <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">pdfDocEncoding</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">pdfDocEncoding</span><span class="p">}</span>
+        <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Encoding</span>
+        <span class="o">/</span><span class="n">Differences</span>
+            <span class="p">[</span>
+            <span class="mi">24</span>  <span class="o">/</span><span class="n">breve</span> <span class="o">/</span><span class="n">caron</span> <span class="o">/</span><span class="n">circumflex</span> <span class="o">/</span><span class="n">dotaccent</span> <span class="o">/</span><span class="n">hungarumlaut</span> <span class="o">/</span><span class="n">ogonek</span> <span class="o">/</span><span class="n">ring</span>
+                <span class="o">/</span><span class="n">tilde</span>
+            <span class="mi">39</span> <span class="o">/</span><span class="n">quotesingle</span>
+            <span class="mi">96</span> <span class="o">/</span><span class="n">grave</span>
+            <span class="mi">128</span> <span class="o">/</span><span class="n">bullet</span> <span class="o">/</span><span class="n">dagger</span> <span class="o">/</span><span class="n">daggerdbl</span> <span class="o">/</span><span class="n">ellipsis</span> <span class="o">/</span><span class="n">emdash</span> <span class="o">/</span><span class="n">endash</span> <span class="o">/</span><span class="n">florin</span>
+                <span class="o">/</span><span class="n">fraction</span> <span class="o">/</span><span class="n">guilsinglleft</span> <span class="o">/</span><span class="n">guilsinglright</span> <span class="o">/</span><span class="n">minus</span> <span class="o">/</span><span class="n">perthousand</span>
+                <span class="o">/</span><span class="n">quotedblbase</span> <span class="o">/</span><span class="n">quotedblleft</span> <span class="o">/</span><span class="n">quotedblright</span> <span class="o">/</span><span class="n">quoteleft</span> <span class="o">/</span><span class="n">quoteright</span>
+                <span class="o">/</span><span class="n">quotesinglbase</span> <span class="o">/</span><span class="n">trademark</span> <span class="o">/</span><span class="n">fi</span> <span class="o">/</span><span class="n">fl</span> <span class="o">/</span><span class="n">Lslash</span> <span class="o">/</span><span class="n">OE</span> <span class="o">/</span><span class="n">Scaron</span> <span class="o">/</span><span class="n">Ydieresis</span>
+                <span class="o">/</span><span class="n">Zcaron</span> <span class="o">/</span><span class="n">dotlessi</span> <span class="o">/</span><span class="n">lslash</span> <span class="o">/</span><span class="n">oe</span> <span class="o">/</span><span class="n">scaron</span> <span class="o">/</span><span class="n">zcaron</span>
+            <span class="mi">164</span> <span class="o">/</span><span class="n">currency</span>
+            <span class="mi">166</span> <span class="o">/</span><span class="n">brokenbar</span>
+            <span class="mi">168</span> <span class="o">/</span><span class="n">dieresis</span> <span class="o">/</span><span class="n">copyright</span> <span class="o">/</span><span class="n">ordfeminine</span>
+            <span class="mi">172</span> <span class="o">/</span><span class="n">logicalnot</span> <span class="o">/.</span><span class="n">notdef</span> <span class="o">/</span><span class="n">registered</span> <span class="o">/</span><span class="n">macron</span> <span class="o">/</span><span class="n">degree</span> <span class="o">/</span><span class="n">plusminus</span>
+                <span class="o">/</span><span class="n">twosuperior</span> <span class="o">/</span><span class="n">threesuperior</span> <span class="o">/</span><span class="n">acute</span> <span class="o">/</span><span class="n">mu</span>
+            <span class="mi">183</span> <span class="o">/</span><span class="n">periodcentered</span> <span class="o">/</span><span class="n">cedilla</span> <span class="o">/</span><span class="n">onesuperior</span> <span class="o">/</span><span class="n">ordmasculine</span>
+            <span class="mi">188</span> <span class="o">/</span><span class="n">onequarter</span> <span class="o">/</span><span class="n">onehalf</span> <span class="o">/</span><span class="n">threequarters</span>
+            <span class="mi">192</span> <span class="o">/</span><span class="n">Agrave</span> <span class="o">/</span><span class="n">Aacute</span> <span class="o">/</span><span class="n">Acircumflex</span> <span class="o">/</span><span class="n">Atilde</span> <span class="o">/</span><span class="n">Adieresis</span> <span class="o">/</span><span class="n">Aring</span> <span class="o">/</span><span class="n">AE</span>
+                <span class="o">/</span><span class="n">Ccedilla</span> <span class="o">/</span><span class="n">Egrave</span> <span class="o">/</span><span class="n">Eacute</span> <span class="o">/</span><span class="n">Ecircumflex</span> <span class="o">/</span><span class="n">Edieresis</span> <span class="o">/</span><span class="n">Igrave</span> <span class="o">/</span><span class="n">Iacute</span>
+                <span class="o">/</span><span class="n">Icircumflex</span> <span class="o">/</span><span class="n">Idieresis</span> <span class="o">/</span><span class="n">Eth</span> <span class="o">/</span><span class="n">Ntilde</span> <span class="o">/</span><span class="n">Ograve</span> <span class="o">/</span><span class="n">Oacute</span> <span class="o">/</span><span class="n">Ocircumflex</span>
+                <span class="o">/</span><span class="n">Otilde</span> <span class="o">/</span><span class="n">Odieresis</span> <span class="o">/</span><span class="n">multiply</span> <span class="o">/</span><span class="n">Oslash</span> <span class="o">/</span><span class="n">Ugrave</span> <span class="o">/</span><span class="n">Uacute</span> <span class="o">/</span><span class="n">Ucircumflex</span>
+                <span class="o">/</span><span class="n">Udieresis</span> <span class="o">/</span><span class="n">Yacute</span> <span class="o">/</span><span class="n">Thorn</span> <span class="o">/</span><span class="n">germandbls</span> <span class="o">/</span><span class="n">agrave</span> <span class="o">/</span><span class="n">aacute</span> <span class="o">/</span><span class="n">acircumflex</span>
+                <span class="o">/</span><span class="n">atilde</span> <span class="o">/</span><span class="n">adieresis</span> <span class="o">/</span><span class="n">aring</span> <span class="o">/</span><span class="n">ae</span> <span class="o">/</span><span class="n">ccedilla</span> <span class="o">/</span><span class="n">egrave</span> <span class="o">/</span><span class="n">eacute</span>
+                <span class="o">/</span><span class="n">ecircumflex</span> <span class="o">/</span><span class="n">edieresis</span> <span class="o">/</span><span class="n">igrave</span> <span class="o">/</span><span class="n">iacute</span> <span class="o">/</span><span class="n">icircumflex</span> <span class="o">/</span><span class="n">idieresis</span>
+                <span class="o">/</span><span class="n">eth</span> <span class="o">/</span><span class="n">ntilde</span> <span class="o">/</span><span class="n">ograve</span> <span class="o">/</span><span class="n">oacute</span> <span class="o">/</span><span class="n">ocircumflex</span> <span class="o">/</span><span class="n">otilde</span> <span class="o">/</span><span class="n">odieresis</span>
+                <span class="o">/</span><span class="n">divide</span> <span class="o">/</span><span class="n">oslash</span> <span class="o">/</span><span class="n">ugrave</span> <span class="o">/</span><span class="n">uacute</span> <span class="o">/</span><span class="n">ucircumflex</span> <span class="o">/</span><span class="n">udieresis</span> <span class="o">/</span><span class="n">yacute</span>
+                <span class="o">/</span><span class="n">thorn</span> <span class="o">/</span><span class="n">ydieresis</span>
+            <span class="p">]</span>
+        <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">ZaDb</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">ZaDb</span><span class="p">}</span>
+        <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Font</span>
+        <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Type1</span>
+        <span class="o">/</span><span class="n">Name</span> <span class="o">/</span><span class="n">ZaDb</span>
+        <span class="o">/</span><span class="n">BaseFont</span> <span class="o">/</span><span class="n">ZapfDingbats</span>
+        <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">Helv</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">Helv</span><span class="p">}</span>
+        <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Font</span>
+        <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Type1</span>
+        <span class="o">/</span><span class="n">Name</span> <span class="o">/</span><span class="n">Helv</span>
+        <span class="o">/</span><span class="n">BaseFont</span> <span class="o">/</span><span class="n">Helvetica</span>
+        <span class="o">/</span><span class="n">Encoding</span> <span class="p">{</span><span class="n">pdfDocEncoding</span><span class="p">}</span>
+        <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">aform</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Define</span> <span class="n">Fields</span> <span class="n">array</span> <span class="n">of</span> <span class="n">Acroform</span> <span class="n">dictionary</span><span class="o">.</span> <span class="n">It</span> <span class="n">will</span> <span class="n">contain</span> <span class="n">entries</span> <span class="k">for</span>
+<span class="o">%</span> <span class="n">each</span> <span class="n">of</span> <span class="n">the</span> <span class="n">widgets</span> <span class="n">defined</span> <span class="n">below</span><span class="o">.</span>
+<span class="o">%</span> <span class="n">NOTE</span><span class="p">:</span> <span class="n">It</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">necessary</span> <span class="n">to</span> <span class="n">explicitly</span> <span class="n">assign</span> <span class="n">the</span> <span class="n">widget</span> <span class="n">annotations</span>
+<span class="o">%</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Fields</span> <span class="n">array</span><span class="p">;</span> <span class="n">Acrobat</span> <span class="n">does</span> <span class="n">it</span> <span class="n">automatically</span> <span class="n">when</span> <span class="n">the</span> <span class="n">file</span> <span class="ow">is</span> <span class="n">opened</span><span class="o">.</span>
+
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">afields</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="n">array</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+
+
+<span class="p">[</span>   <span class="p">{</span><span class="n">aform</span><span class="p">}</span>
+        <span class="o">&lt;&lt;</span>
+        <span class="o">/</span><span class="n">Fields</span> <span class="p">{</span><span class="n">afields</span><span class="p">}</span>
+        <span class="o">/</span><span class="n">DR</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Font</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">ZaDb</span> <span class="p">{</span><span class="n">ZaDb</span><span class="p">}</span> <span class="o">/</span><span class="n">Helv</span> <span class="p">{</span><span class="n">Helv</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span>
+        <span class="o">/</span><span class="n">DA</span> <span class="p">(</span><span class="o">/</span><span class="n">Helv</span> <span class="mi">0</span> <span class="n">Tf</span> <span class="mi">0</span> <span class="n">g</span><span class="p">)</span>
+        <span class="o">/</span><span class="n">NeedAppearances</span> <span class="n">true</span>
+        <span class="o">&gt;&gt;</span>
+    <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Put</span> <span class="n">Acroform</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">catalog</span> <span class="n">dictionary</span>
+
+<span class="p">[</span>   <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">AcroForm</span> <span class="p">{</span><span class="n">aform</span><span class="p">}</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Define the Widget annotations, which are also field dictionaries for this form</p></li>
+</ol>
+<p>This is the collection of all individual widget annotations. It is possible to have multiple instances of these sections, such as for defining a single widget on each instance.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>[    /Subtype /Widget
+    /Rect [216 647 361 684]
+    /F 4
+    /T (SL Text)
+    /FT /Tx
+    /DA (/Helv 14 Tf 0 0 1 rg)
+    /V (5)
+    /AA &lt;&lt;
+        /K &lt;&lt; /S /JavaScript /JS (AFNumber_Keystroke(2, 0, 0, 0, &quot;$&quot;, true);)&gt;&gt;
+        /F &lt;&lt; /S /JavaScript /JS (AFNumber_Format(2, 0, 0, 0, &quot;$&quot;, true); &gt;&gt;
+        &gt;&gt;
+    /ANN pdfmark
+    [ /Subtype /Widget
+    /Rect [216 503 361 612]
+    /F 4
+    /T (Ping Result)
+    /FT /Tx
+    /DA (/Helv 0 Tf 0 0 1 rg)
+    /Ff 4096
+    /ANN pdfmark
+
+
+
+[ /Subtype /Widget
+    /Rect [216 432 252 468]
+    /F 4
+    /T (Check Box)
+    /FT /Btn
+    /DA (/ZaDb 0 Tf 0 g)
+    /AS /Off
+    /MK &lt;&lt; /CA (4)&gt;&gt;
+    /AP &lt;&lt; /N &lt;&lt; /Oui /null &gt;&gt; &gt;&gt;
+    /ANN pdfmark
+
+
+[ /Subtype /Widget
+    /Rect [216 360 252 396]
+    /F 4
+    /T (Radio)
+    /FT /Btn
+    /DA (/ZaDb 0 Tf 0 g)
+    /Ff 49152
+    /AS /Off
+    /MK &lt;&lt; /CA (8)&gt;&gt;
+    /AP &lt;&lt; /N &lt;&lt; /V1 /null &gt;&gt; &gt;&gt;
+    /ANN pdfmark
+
+
+[ /Subtype /Widget
+    /Rect [ 261 360 297 396 ]
+    /F 4
+    /T (Radio)
+    /FT /Btn
+    /DA (/ZaDb 0 Tf 0 g)
+    /Ff 49152
+    /AS /Off
+    /MK &lt;&lt; /CA (8)&gt;&gt;
+    /AP &lt;&lt; /N &lt;&lt; /V2 /null &gt;&gt; &gt;&gt;
+    /ANN pdfmark
+
+
+[ /Subtype /Widget
+    /Rect [ 306 360 342 396 ]
+    /F 4
+    /T (Radio)
+    /FT /Btn
+    /DA (/ZaDb 0 Tf 0 g)
+    /Ff 49152
+    /AS /Off
+    /MK &lt;&lt; /CA (8)&gt;&gt;
+    /AP &lt;&lt; /N &lt;&lt; /V3 /null &gt;&gt; &gt;&gt;
+    /ANN pdfmark
+
+
+[ /Subtype /Widget
+    /Rect [ 351 360 387 396 ]
+    /F 4
+    /T (Radio)
+    /FT /Btn
+    /DA (/ZaDb 0 Tf 0 g)
+    /Ff 49152
+    /AS /Off
+    /MK &lt;&lt; /CA (8)&gt;&gt;
+    /AP &lt;&lt; /N &lt;&lt; /V4 /null &gt;&gt; &gt;&gt;
+    /ANN pdfmark
+
+
+[ /Subtype /Widget
+    /Rect [216 287 361 324]
+    /F 4
+    /T (Pop Down)
+    /FT /Ch
+    /Ff 131072
+    /Opt [ [(1)(First)] [(2)(Second)] [(3)(Third)] [(4)(Fourth)] [(5)(Fifth)]]
+    /DV (5)
+    /V (5)
+    /DA (/TiIt 18 Tf 0 0 1 rg)
+    /ANN pdfmark
+
+
+[ /Subtype /Widget
+    /Rect [216 215 361 252]
+    /F 4
+    /T (Combo)
+    /FT /Ch
+    /Ff 917504
+    /Opt [ (Black)(Blue)(Green)(Pink)(Red)(White)]
+    /DA (/TiRo 18 Tf 0 g )
+    /V (Black)
+    /DV (Black)
+    /ANN pdfmark
+
+
+[ /Subtype /Widget
+    /Rect [216 107 253 180]
+    /F 4
+    /T (ListBox)
+    /FT /Ch
+    /DA (/Helv 10 Tf 1 0 0 rg)
+    /Opt [(1)(2)(3)(4)(5)]
+    /DV (3)
+    /V (3)
+    /ANN pdfmark
+
+
+% Example of how the /MK dictionary is used.
+% Notice that the text will be shown upside-down (180 degree rotation).
+
+[ /Subtype /Widget
+    /Rect [ 430 110 570 150 ]
+    /F 4
+    /T (Clear)
+    /FT /Btn
+    /H /P
+    /DA (/HeBo 18 Tf 0 0 1 rg)
+    /Ff 65536
+    /MK &lt;&lt;
+        /BC [ 1 0 0 ]
+        /BG [ 0.75 0.45 0.75 ]
+        /CA (Clear)
+        /AC (Done!)
+        /R 180
+    &gt;&gt;
+    /BS &lt;&lt;
+        /W 3
+        /S /I
+        &gt;&gt;
+    /A &lt;&lt; /S /ResetForm &gt;&gt;
+    /ANN pdfmark
+</pre></div>
+</div>
+</div>
+<div class="section" id="structure-examples">
+<h2>Structure examples<a class="headerlink" href="#structure-examples" title="Permalink to this headline">¶</a></h2>
+<p>This section provides examples of various uses of the structure pdfmark suite. The first example shows an entire structure tree, consisting of one section containing two paragraphs. It illustrates both how to create the tree structure and how the structure is related to the page content of the PDF file. The second example shows the parts of the output PDF file that result from the PostScript language code. Other examples follow.</p>
+<ol class="arabic simple">
+<li><p>A simple structure</p></li>
+</ol>
+<p>This example has one section with two paragraphs, all on one page.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="o">%</span> <span class="n">On</span> <span class="n">the</span> <span class="n">first</span> <span class="n">page</span><span class="p">:</span>
+   <span class="o">%</span> <span class="n">Start</span> <span class="n">a</span> <span class="n">section</span> <span class="k">with</span> <span class="n">the</span> <span class="n">unnamed</span> <span class="n">Structure</span> <span class="n">Tree</span> <span class="k">as</span> <span class="n">parent</span><span class="o">.</span>
+   <span class="o">%</span> <span class="n">Push</span> <span class="n">the</span> <span class="n">Section</span> <span class="n">element</span> <span class="n">onto</span> <span class="n">the</span> <span class="n">implicit</span> <span class="n">parent</span> <span class="n">stack</span> <span class="k">as</span>
+   <span class="o">%</span> <span class="n">current</span> <span class="n">implicit</span> <span class="n">parent</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Section</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="n">Start</span> <span class="n">a</span> <span class="n">paragraph</span> <span class="k">with</span> <span class="n">the</span> <span class="n">Section</span> <span class="k">as</span> <span class="n">implicit</span> <span class="n">parent</span><span class="o">.</span>
+   <span class="o">%</span> <span class="n">Push</span> <span class="n">the</span> <span class="n">Paragraph</span> <span class="n">element</span> <span class="n">on</span> <span class="n">top</span> <span class="n">of</span> <span class="n">the</span> <span class="n">implicit</span> <span class="n">parent</span>
+   <span class="o">%</span> <span class="n">stack</span> <span class="k">as</span> <span class="n">the</span> <span class="n">current</span> <span class="n">implicit</span> <span class="n">parent</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="n">Begin</span> <span class="n">the</span> <span class="n">marked</span> <span class="n">content</span> <span class="n">holding</span> <span class="n">the</span> <span class="n">text</span> <span class="n">of</span> <span class="n">the</span>
+   <span class="o">%</span> <span class="n">first</span> <span class="n">paragraph</span><span class="o">.</span> <span class="n">It</span> <span class="ow">is</span> <span class="n">implicitly</span> <span class="n">added</span> <span class="n">to</span> <span class="n">the</span> <span class="n">Paragraph</span>
+   <span class="o">%</span> <span class="n">element</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="p">[</span><span class="n">PostScript</span> <span class="n">code</span> <span class="k">for</span> <span class="n">the</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">first</span> <span class="n">paragraph</span>
+   <span class="o">%</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span><span class="p">]</span>
+
+   <span class="o">%</span> <span class="n">End</span> <span class="n">the</span> <span class="n">marked</span> <span class="n">content</span> <span class="n">holding</span> <span class="n">the</span> <span class="n">text</span> <span class="n">of</span> <span class="n">the</span> <span class="n">first</span>
+   <span class="o">%</span> <span class="n">paragraph</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="n">Pop</span> <span class="n">the</span> <span class="n">Paragraph</span> <span class="n">element</span> <span class="n">off</span> <span class="n">the</span> <span class="n">implicit</span> <span class="n">parent</span> <span class="n">stack</span><span class="o">.</span>
+   <span class="o">%</span> <span class="n">This</span> <span class="n">exposes</span> <span class="n">the</span> <span class="n">Section</span> <span class="n">element</span> <span class="k">as</span> <span class="n">implicit</span> <span class="n">parent</span> <span class="n">again</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="n">And</span> <span class="n">now</span> <span class="k">for</span> <span class="n">the</span> <span class="n">second</span> <span class="n">paragraph</span><span class="p">:</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="n">PostScript</span> <span class="n">code</span> <span class="k">for</span> <span class="n">the</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">second</span> <span class="n">paragraph</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">We</span><span class="s1">&#39;re being tidy by popping both the second Paragraph</span>
+<span class="o">|</span>  <span class="o">%</span> <span class="n">element</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">Section</span> <span class="n">element</span> <span class="n">off</span> <span class="n">the</span> <span class="n">stack</span><span class="o">.</span> <span class="n">We</span> <span class="n">could</span> <span class="n">have</span>
+<span class="o">|</span> <span class="o">%</span> <span class="n">left</span> <span class="n">everything</span> <span class="n">hanging</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">document</span><span class="p">,</span> <span class="ow">or</span> <span class="n">used</span>
+
+<span class="o">%</span> <span class="p">[</span> <span class="o">/</span><span class="n">StPopAll</span> <span class="n">pdfmark</span> <span class="n">instead</span><span class="o">.</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>PDF output resulting from code in previous example</p></li>
+</ol>
+<p>This example is for illustration purposes only. The PDF code actually produced by Distiller would not include comments and would differ in other ways.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">In</span> <span class="n">the</span> <span class="n">Catalog</span> <span class="n">dictionary</span><span class="p">,</span> <span class="n">under</span> <span class="n">the</span> <span class="n">key</span> <span class="n">StructTreeRoot</span><span class="p">,</span>
+<span class="o">%</span> <span class="n">the</span> <span class="n">following</span> <span class="n">dictionary</span> <span class="ow">is</span> <span class="n">entered</span> <span class="k">as</span> <span class="nb">object</span> <span class="mi">3</span> <span class="mi">0</span><span class="p">:</span>
+<span class="mi">3</span> <span class="mi">0</span> <span class="n">obj</span>
+<span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">StructTreeRoot</span>
+<span class="o">%</span> <span class="n">The</span> <span class="n">Section</span> <span class="n">element</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">only</span> <span class="n">child</span><span class="o">.</span>
+<span class="o">/</span><span class="n">K</span> <span class="p">[</span><span class="mi">4</span> <span class="mi">0</span> <span class="n">R</span><span class="p">]</span>
+<span class="o">/</span><span class="n">ParentTree</span> <span class="mi">100</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">&gt;&gt;</span> <span class="n">endobj</span>
+
+<span class="o">%</span> <span class="n">The</span> <span class="n">number</span> <span class="n">tree</span> <span class="n">that</span> <span class="n">locates</span> <span class="n">structure</span> <span class="n">parents</span> <span class="n">of</span> <span class="n">marked</span> <span class="n">content</span><span class="o">.</span>
+<span class="mi">100</span> <span class="mi">0</span> <span class="n">obj</span>
+<span class="o">&lt;&lt;/</span><span class="n">Nums</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">101</span> <span class="mi">0</span> <span class="n">R</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span>
+<span class="n">endobj</span>
+
+<span class="o">%</span> <span class="n">Structure</span> <span class="n">parents</span> <span class="k">for</span> <span class="n">page</span> <span class="mf">1.</span>
+<span class="mi">101</span> <span class="mi">0</span> <span class="n">obj</span>
+<span class="p">[</span><span class="mi">5</span> <span class="mi">0</span> <span class="n">R</span> <span class="mi">6</span> <span class="mi">0</span> <span class="n">R</span><span class="p">]</span>
+<span class="n">endobj</span>
+<span class="o">%</span> <span class="n">End</span> <span class="n">of</span> <span class="n">parent</span> <span class="n">tree</span> <span class="n">objects</span><span class="o">.</span>
+<span class="o">%</span> <span class="n">As</span> <span class="nb">object</span> <span class="mi">4</span> <span class="mi">0</span><span class="p">,</span> <span class="n">the</span> <span class="n">following</span> <span class="n">dictionary</span> <span class="n">represents</span> <span class="n">the</span>
+<span class="o">%</span> <span class="n">Section</span> <span class="n">element</span><span class="p">:</span>
+<span class="mi">4</span> <span class="mi">0</span> <span class="n">obj</span>
+<span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">StructElement</span>
+<span class="o">/</span><span class="n">S</span> <span class="o">/</span><span class="n">Section</span>
+<span class="o">%</span> <span class="n">Parent</span> <span class="n">link</span> <span class="n">refers</span> <span class="n">back</span> <span class="n">to</span> <span class="n">the</span> <span class="n">dictionary</span> <span class="n">representing</span> <span class="n">the</span>
+<span class="o">%</span> <span class="n">Structure</span> <span class="n">Tree</span> <span class="n">Root</span><span class="o">.</span>
+<span class="o">/</span><span class="n">P</span> <span class="mi">3</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">%</span> <span class="n">The</span> <span class="n">Section</span> <span class="n">element</span> <span class="n">has</span> <span class="n">two</span> <span class="n">Paragraph</span> <span class="n">elements</span> <span class="k">as</span> <span class="n">children</span><span class="o">.</span>
+<span class="o">/</span><span class="n">K</span> <span class="p">[</span><span class="mi">5</span> <span class="mi">0</span> <span class="n">R</span> <span class="mi">6</span> <span class="mi">0</span> <span class="n">R</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="n">endobj</span>
+
+<span class="o">%</span> <span class="n">Object</span> <span class="mi">5</span> <span class="mi">0</span><span class="p">,</span> <span class="n">the</span> <span class="n">first</span> <span class="n">Paragraph</span> <span class="n">element</span>
+<span class="mi">5</span> <span class="mi">0</span> <span class="n">obj</span>
+<span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">StructElement</span>
+<span class="o">/</span><span class="n">S</span> <span class="o">/</span><span class="n">P</span>
+<span class="o">/</span><span class="n">P</span> <span class="mi">4</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">%</span> <span class="n">Page</span> <span class="ow">in</span> <span class="n">whose</span> <span class="n">content</span> <span class="n">stream</span> <span class="n">integer</span> <span class="n">Marked</span> <span class="n">Content</span> <span class="n">ID</span><span class="s1">&#39;s denote Kids</span>
+<span class="o">/</span><span class="n">Pg</span> <span class="mi">10</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">/</span><span class="n">K</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="n">endobj</span>
+
+<span class="o">%</span> <span class="n">Object</span> <span class="mi">6</span> <span class="mi">0</span><span class="p">,</span> <span class="n">the</span> <span class="n">second</span> <span class="n">Paragraph</span> <span class="n">element</span>
+<span class="mi">6</span> <span class="mi">0</span> <span class="n">obj</span>
+<span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">StructElement</span>
+<span class="o">/</span><span class="n">S</span> <span class="o">/</span><span class="n">P</span>
+<span class="o">/</span><span class="n">P</span> <span class="mi">4</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">%</span> <span class="n">Page</span> <span class="ow">in</span> <span class="n">whose</span> <span class="n">content</span> <span class="n">stream</span> <span class="n">integer</span> <span class="n">Marked</span> <span class="n">Content</span> <span class="n">ID</span><span class="s1">&#39;s denote Kids</span>
+<span class="o">/</span><span class="n">Pg</span> <span class="mi">10</span> <span class="mi">0</span> <span class="n">R</span>
+<span class="o">/</span><span class="n">K</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="o">&gt;&gt;</span> <span class="n">endobj</span>
+
+<span class="o">%</span> <span class="n">Object</span> <span class="mi">10</span> <span class="mi">0</span><span class="p">,</span> <span class="n">the</span> <span class="n">Page</span> <span class="nb">object</span> <span class="k">for</span> <span class="n">the</span> <span class="n">page</span> <span class="n">on</span> <span class="n">which</span> <span class="n">both</span>
+<span class="o">%</span> <span class="n">paragraphs</span> <span class="n">are</span> <span class="n">marked</span><span class="o">.</span> <span class="n">Only</span> <span class="n">the</span> <span class="n">relevant</span> <span class="n">entries</span> <span class="ow">in</span> <span class="n">the</span>
+<span class="o">%</span> <span class="n">dictionary</span> <span class="n">are</span> <span class="n">shown</span><span class="o">.</span>
+<span class="o">%</span> <span class="n">The</span> <span class="n">Resources</span> <span class="n">dictionary</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Contents</span> <span class="n">stream</span> <span class="n">of</span> <span class="n">the</span> <span class="n">page</span><span class="o">.</span>
+<span class="o">&lt;&lt;/</span><span class="n">StructParents</span> <span class="mi">0</span>
+<span class="o">&gt;&gt;</span>
+<span class="o">%</span> <span class="n">Inside</span> <span class="n">the</span> <span class="n">Contents</span> <span class="n">stream</span> <span class="n">of</span> <span class="n">the</span> <span class="n">page</span><span class="o">.</span>
+<span class="o">/</span><span class="n">P</span> <span class="o">&lt;&lt;/</span><span class="n">MCID</span> <span class="mi">0</span><span class="o">&gt;&gt;</span> <span class="n">BDC</span>
+<span class="o">%</span> <span class="p">[</span><span class="n">Paragraph</span> <span class="mi">1</span> <span class="n">content</span> <span class="n">marking</span> <span class="n">goes</span> <span class="n">here</span><span class="o">.</span><span class="p">]</span>
+<span class="n">EMC</span>
+<span class="o">/</span><span class="n">P</span> <span class="o">&lt;&lt;/</span><span class="n">MCID</span> <span class="mi">1</span><span class="o">&gt;&gt;</span> <span class="n">BDC</span>
+<span class="o">%</span> <span class="p">[</span><span class="n">Paragraph</span> <span class="mi">2</span> <span class="n">content</span> <span class="n">marking</span> <span class="n">goes</span> <span class="n">here</span><span class="p">]</span>
+<span class="n">EMC</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>A bookmark for a structural element</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span>
+<span class="n">other</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">key</span><span class="o">-</span><span class="n">value</span> <span class="n">pairs</span>
+
+        <span class="o">/</span><span class="n">Bookmark</span>
+            <span class="o">&lt;&lt;</span>
+            <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">an</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">my</span> <span class="n">structure</span><span class="p">)</span>
+            <span class="o">/</span><span class="n">Open</span> <span class="n">true</span>
+            <span class="o">&gt;&gt;</span>
+        <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Interrupted structure</p></li>
+</ol>
+<p>This example shows a paragraph that is graphically interrupted by a table. The originating application has chosen to write out the PostScript in graphical order, but logically the paragraph is one element and the table is another. To further complicate the situation, the document contains a special element that is a list of tables.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Start</span> <span class="n">a</span> <span class="n">ListOfTables</span> <span class="n">element</span> <span class="n">directly</span> <span class="n">under</span> <span class="n">the</span> <span class="n">Structure</span>
+<span class="o">%</span> <span class="n">Tree</span> <span class="n">Root</span><span class="o">.</span>  <span class="n">Give</span> <span class="n">it</span> <span class="n">an</span> <span class="nb">object</span> <span class="n">name</span> <span class="k">for</span> <span class="n">later</span> <span class="n">reference</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">LOT</span><span class="p">}</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">ListOfTables</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Pop</span> <span class="n">it</span> <span class="n">off</span> <span class="n">the</span> <span class="n">stack</span> <span class="n">so</span> <span class="n">that</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">element</span> <span class="n">becomes</span> <span class="n">a</span>
+<span class="o">%</span> <span class="n">child</span> <span class="n">of</span> <span class="n">the</span> <span class="n">Structure</span> <span class="n">Tree</span> <span class="n">Root</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Start</span> <span class="n">the</span> <span class="n">page</span> <span class="k">with</span> <span class="n">the</span> <span class="n">section</span> <span class="n">on</span> <span class="n">it</span><span class="o">.</span>
+
+<span class="o">%</span> <span class="n">Start</span> <span class="n">the</span> <span class="n">section</span><span class="p">,</span> <span class="n">also</span> <span class="n">making</span> <span class="n">it</span> <span class="n">the</span> <span class="n">default</span> <span class="n">parent</span> <span class="n">element</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Section</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+<span class="o">%</span> <span class="n">Start</span> <span class="n">the</span> <span class="n">paragraph</span><span class="o">.</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Here</span> <span class="n">comes</span> <span class="n">the</span> <span class="n">portion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">paragraph</span> <span class="n">before</span> <span class="n">the</span> <span class="n">table</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="p">[</span><span class="n">Code</span> <span class="n">to</span> <span class="n">write</span> <span class="n">the</span> <span class="n">first</span> <span class="n">portion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">paragraph</span> <span class="n">goes</span> <span class="n">here</span><span class="p">]</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Now</span> <span class="n">we</span><span class="s1">&#39;re interrupted by a table that doesn&#39;</span><span class="n">t</span> <span class="n">belong</span> <span class="n">to</span> <span class="n">the</span>
+<span class="o">%</span> <span class="n">paragraph</span><span class="o">.</span>  <span class="n">Save</span> <span class="n">the</span> <span class="n">context</span> <span class="k">as</span> <span class="n">a</span> <span class="n">conservative</span> <span class="n">move</span> <span class="n">because</span>
+<span class="o">%</span> <span class="n">we</span> <span class="n">don</span><span class="s1">&#39;t want to worry about what the table code does to the</span>
+<span class="o">%</span> <span class="n">implicit</span> <span class="n">parent</span> <span class="n">stack</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StoreName</span> <span class="o">/</span><span class="n">S1</span> <span class="o">/</span><span class="n">StStore</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">The</span> <span class="n">table</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">element</span><span class="p">,</span> <span class="ow">and</span> <span class="n">it</span> <span class="n">contains</span> <span class="n">cells</span> <span class="k">as</span> <span class="n">child</span> <span class="n">elements</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">E</span> <span class="p">{</span><span class="n">LOT</span><span class="p">}</span> <span class="o">/</span><span class="n">StPush</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Table</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Code</span> <span class="n">to</span> <span class="n">draw</span> <span class="n">the</span> <span class="n">table</span> <span class="ow">and</span> <span class="n">establish</span> <span class="n">its</span> <span class="n">logical</span> <span class="n">substructure</span> <span class="n">here</span>
+
+<span class="o">%</span> <span class="n">Pop</span> <span class="n">the</span> <span class="n">table</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">List</span> <span class="n">of</span> <span class="n">Tables</span> <span class="n">off</span> <span class="n">the</span> <span class="n">implicit</span> <span class="n">parent</span> <span class="n">stack</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Resume</span> <span class="n">the</span> <span class="n">paragraph</span><span class="o">.</span>  <span class="n">It</span> <span class="n">turns</span> <span class="n">out</span> <span class="n">that</span> <span class="n">the</span> <span class="n">table</span> <span class="n">code</span> <span class="n">was</span>
+<span class="o">%</span> <span class="n">tidy</span><span class="p">,</span> <span class="n">but</span> <span class="n">it</span><span class="s1">&#39;s probably a good thing that we didn&#39;</span><span class="n">t</span> <span class="n">count</span> <span class="n">on</span>
+<span class="o">%</span> <span class="n">it</span><span class="o">.</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">implicit</span> <span class="n">parent</span> <span class="n">stack</span> <span class="n">back</span> <span class="n">into</span> <span class="n">a</span> <span class="n">known</span> <span class="n">state</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StoreName</span> <span class="o">/</span><span class="n">S1</span> <span class="o">/</span><span class="n">StRetrieve</span> <span class="n">pdfmark</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="p">[</span><span class="n">Code</span> <span class="n">to</span> <span class="n">write</span> <span class="n">the</span> <span class="n">second</span> <span class="n">portion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">paragraph</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Pop</span> <span class="n">the</span> <span class="n">Paragraph</span> <span class="ow">and</span> <span class="n">Section</span> <span class="n">elements</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">Structure</span>
+<span class="o">%</span> <span class="n">Tree</span> <span class="n">Root</span> <span class="n">off</span> <span class="n">the</span> <span class="n">stack</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Independence of logical and physical structure</p></li>
+</ol>
+<p>This example shows that the logical structure and the physical nesting of marked content can have different tree structures. In this example there are two Structure Trees. One is the usual hierarchical structure of the document; the other is a list of funny words that occur within the document. The words occur as nested marked content within the marked content forming the contents of a paragraph, but the words become the content of elements in a separate branch of the structure tree from the Paragraph elements.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">Set</span> <span class="n">up</span> <span class="n">a</span> <span class="n">List</span> <span class="n">element</span> <span class="n">to</span> <span class="n">hold</span> <span class="n">the</span> <span class="n">Funny</span> <span class="n">Word</span> <span class="n">List</span><span class="o">.</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">FWL</span><span class="p">}</span>    <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">List</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Funny</span> <span class="n">Words</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">p</span>
+
+<span class="p">[</span><span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Section</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">p</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">p</span>
+
+<span class="o">%</span> <span class="n">Begin</span> <span class="n">PostScript</span> <span class="n">code</span> <span class="k">for</span> <span class="n">the</span> <span class="n">par</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">p</span>
+<span class="p">(</span><span class="n">John</span> <span class="n">was</span> <span class="n">thrilled</span> <span class="n">to</span> <span class="n">find</span> <span class="n">some</span>
+<span class="o">%</span> <span class="n">Here</span><span class="s1">&#39;s an occurrence of a funny word comi</span>
+<span class="o">%</span> <span class="n">Start</span> <span class="n">an</span> <span class="n">element</span> <span class="k">for</span> <span class="n">the</span> <span class="n">funny</span> <span class="n">word</span> <span class="n">l</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">E</span> <span class="p">{</span><span class="n">FWL</span><span class="p">}</span> <span class="o">/</span><span class="n">StPush</span> <span class="n">p</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Word</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">p</span>
+<span class="o">%</span> <span class="n">Fill</span> <span class="n">that</span> <span class="n">element</span> <span class="k">with</span> <span class="n">the</span> <span class="n">funny</span> <span class="n">word</span> <span class="kn">from</span> <span class="nn">the</span>
+<span class="o">%</span> <span class="n">page</span> <span class="n">content</span><span class="o">.</span> <span class="n">This</span> <span class="n">content</span> <span class="ow">is</span> <span class="n">still</span> <span class="ow">in</span> <span class="n">the</span>
+<span class="o">%</span> <span class="n">marked</span> <span class="n">content</span> <span class="n">within</span> <span class="n">the</span> <span class="n">paragraph</span> <span class="n">el</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+<span class="p">(</span><span class="n">puccoon</span><span class="p">)</span> <span class="n">show</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Pop</span> <span class="n">the</span> <span class="n">Word</span> <span class="n">element</span> <span class="n">off</span> <span class="n">the</span> <span class="n">implicit</span> <span class="n">parent</span> <span class="n">stack</span><span class="o">.</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Resume</span> <span class="n">paragraph</span> <span class="n">content</span> <span class="n">that</span><span class="s1">&#39;s not in the funny word</span>
+<span class="o">%</span> <span class="p">(,</span> <span class="ow">not</span> <span class="n">knowing</span> <span class="n">that</span> <span class="n">it</span> <span class="n">could</span> <span class="n">also</span> <span class="n">be</span> <span class="n">called</span> <span class="p">)</span>
+<span class="o">%</span> <span class="o">...</span> <span class="n">another</span> <span class="n">funny</span> <span class="n">word</span> <span class="o">...</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">E</span> <span class="p">{</span><span class="n">FWL</span><span class="p">}</span> <span class="o">/</span><span class="n">StPush</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Word</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+<span class="p">(</span><span class="n">gromwell</span><span class="p">)</span> <span class="n">show</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+<span class="p">(</span><span class="o">.</span><span class="p">)</span> <span class="n">show</span>
+
+<span class="o">%</span> <span class="n">Close</span> <span class="n">off</span> <span class="n">the</span> <span class="n">marked</span> <span class="n">content</span> <span class="k">for</span> <span class="n">the</span> <span class="n">paragraph</span><span class="o">...</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="o">...</span><span class="ow">and</span> <span class="n">tidy</span> <span class="n">up</span> <span class="n">the</span> <span class="n">stack</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+<span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Page break within logical structure</p></li>
+</ol>
+<p>This example shows how to handle a logical structure spanning more than one page. It shows a logical paragraph spanning a page break.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">Page</span><span class="p">:</span> <span class="mi">1</span> <span class="mi">1</span>
+   <span class="o">%</span> <span class="n">Begin</span> <span class="n">a</span> <span class="n">Paragraph</span> <span class="n">element</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="o">...</span> <span class="n">write</span> <span class="n">the</span> <span class="n">portion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">paragraph</span> <span class="n">that</span><span class="s1">&#39;s on Page 1 ...</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+   <span class="n">showpage</span>
+
+   <span class="o">%%</span><span class="n">Page</span><span class="p">:</span> <span class="mi">2</span> <span class="mi">2</span>
+
+   <span class="o">%</span> <span class="n">The</span> <span class="n">Paragraph</span> <span class="n">element</span> <span class="ow">is</span> <span class="n">still</span> <span class="n">on</span> <span class="n">the</span> <span class="n">top</span> <span class="n">of</span> <span class="n">the</span> <span class="n">stack</span><span class="p">,</span> <span class="n">so</span>
+   <span class="o">%</span> <span class="n">we</span> <span class="n">can</span> <span class="n">just</span> <span class="n">add</span> <span class="n">some</span> <span class="n">more</span> <span class="n">content</span> <span class="n">to</span> <span class="n">it</span> <span class="n">implicitly</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="o">...</span> <span class="n">write</span> <span class="n">the</span> <span class="n">portion</span> <span class="n">of</span> <span class="n">the</span> <span class="n">paragraph</span> <span class="n">that</span><span class="s1">&#39;s on Page 2 ...</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Logical structure out-of-order in physical structure</p></li>
+</ol>
+<p>This example shows how to build a logical structure whose elements appear in a different physical order in the document from their logical order. The example is based on a magazine in which an opinion piece starting on the last inside page is continued on an earlier page in the printing order.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">Page</span> <span class="mi">5</span> <span class="mi">5</span>
+   <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Section</span> <span class="o">/</span><span class="n">ID</span> <span class="p">(</span><span class="n">ID</span> <span class="n">string</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="n">Within</span> <span class="n">the</span> <span class="n">Section</span> <span class="n">element</span><span class="p">,</span> <span class="n">this</span> <span class="n">Paragraph</span> <span class="n">element</span> <span class="ow">is</span> <span class="n">actually</span>
+   <span class="o">%</span> <span class="n">a</span> <span class="n">later</span> <span class="n">paragraph</span> <span class="n">than</span> <span class="n">the</span> <span class="n">Paragraph</span> <span class="n">element</span> <span class="n">that</span> <span class="n">appears</span>
+   <span class="o">%</span> <span class="n">on</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">page</span><span class="o">.</span>
+   <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+               <span class="o">%</span> <span class="n">No</span> <span class="o">/</span><span class="n">At</span> <span class="n">key</span><span class="p">,</span> <span class="n">so</span> <span class="n">defaults</span> <span class="n">to</span> <span class="n">being</span> <span class="n">inserted</span>
+               <span class="o">%</span> <span class="k">as</span> <span class="n">last</span> <span class="n">child</span> <span class="n">of</span> <span class="n">its</span> <span class="n">parent</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+   <span class="o">%</span> <span class="o">...</span> <span class="n">draw</span> <span class="n">the</span> <span class="n">paragraph</span><span class="o">...</span>
+   <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="o">...</span> <span class="n">the</span> <span class="n">rest</span> <span class="n">of</span> <span class="n">the</span> <span class="n">page</span> <span class="o">...</span>
+   <span class="n">showpage</span>
+
+   <span class="o">%</span> <span class="n">Pop</span> <span class="n">the</span> <span class="n">Paragraph</span> <span class="n">element</span> <span class="n">off</span> <span class="n">the</span> <span class="n">stack</span>
+   <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+   <span class="o">%%</span><span class="n">Page</span> <span class="mi">6</span> <span class="mi">6</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">At</span> <span class="mi">0</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+   <span class="o">%</span> <span class="n">Insert</span> <span class="k">as</span> <span class="n">first</span> <span class="n">child</span> <span class="n">of</span> <span class="n">parent</span><span class="o">.</span>
+
+   <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+   <span class="o">%</span> <span class="o">...</span> <span class="n">draw</span> <span class="n">the</span> <span class="n">paragraph</span><span class="o">...</span>
+   <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+   <span class="o">%</span> <span class="n">Pop</span> <span class="n">the</span> <span class="n">Paragraph</span> <span class="ow">and</span> <span class="n">Section</span> <span class="n">elements</span> <span class="n">off</span> <span class="n">the</span> <span class="n">stack</span>
+   <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+   <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Apr 14, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

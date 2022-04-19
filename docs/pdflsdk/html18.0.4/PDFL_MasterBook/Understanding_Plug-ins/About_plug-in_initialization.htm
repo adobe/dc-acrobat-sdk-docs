@@ -1,0 +1,157 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>About plug-in initialization</title>
+
+ 
+
+ <link rel="stylesheet" href="Understanding_Plug-ins.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.2.1";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Understanding_Plug-ins/Understanding_Plug-ins.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Understanding_Plug-ins/Notifications.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Understanding Plug-ins" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="XREF_58810_About_plug_in"></a>About plug-in initialization</p>
+  <p dir="ltr" class="FM_Body">This section describes the operation sequence that <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;performs to initialize a plug-in.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Plug_in_loading_and"></a>Plug-in loading and initialization</p>
+  <p dir="ltr" class="FM_Body">When <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;is started, it searches the plug_ins directory (co-located with the Acrobat executable) to locate and load plug-ins. In addition, <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;searches folders that may be located within this folder. This search goes one level deep.</p>
+  <p dir="ltr" class="FM_Body"><span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;and <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;display a progress message in the bottom line of the splash screen at start-up. As each plug-in is loaded, the progress message shows the plug-in name. No plug-ins are loaded if the Shift key is held down while <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;start. Also, if <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;are running in certified mode, no third-party plug-ins are loaded.</p>
+  <p dir="ltr" class="FM_Body">When creating methods for your plug-in, keep the following rule in mind:</p>
+  <p dir="ltr" class="FM_Indent1"><span class="FM_Bold">Implement a </span><span class="FM_CourierBold">PluginUnload</span><span class="FM_Bold"> procedure</span>: This procedure frees allocated memory. This routine is invoked if any of the initialization routines returns <span class="FM_Courier">false</span>. Under normal conditions, this procedure is not invoked until the user closes <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Handshaking"></a><a name="IX_handshaking"></a><a name="XREF_89824_Handshaking_and"></a>Handshaking </p>
+  <p dir="ltr" class="FM_Body"><a name="IX_initialization_plug_in"></a><a name="IX_plug_in_initialization"></a><span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;and <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;perform a handshake with each plug-in as it is opened and loaded. During handshaking, the plug-in specifies its name, several initialization procedures, and an optional unload procedure.</p>
+  <p dir="ltr" class="FM_Body">A plug-in must implement the following handshaking function:</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ACCB1 ASBool ACCB2 PIHandshake(ASUns32 handshakeVersion, void, *hsData)</p>
+  <p dir="ltr" class="FM_Body">During handshaking, the plug-in receives the <span class="FM_Courier">hsData</span>&#160;data structure (defined in the PIVersn.h file). <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;and <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;convert all function pointers that are passed in this data structure into callbacks using the <span class="FM_Courier">ASCallbackCreateProto</span>&#160;method. For information about this method, see the <span class="FM_HyperText"><a href="../../API_References/PDFL_API_Reference/index.html">PDF Library API Reference</a></span>.</p>
+  <p dir="ltr" class="FM_Body">The DUCallbacks.h header file declares all callback methods that must be located in your plug-in. The following shows the function signatures of these callback methods:</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ACCB1 ASBool ACCB2 PluginExportHFTs(void);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ACCB1 ASBool ACCB2 PluginImportReplaceAndRegister(void);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ACCB1 ASBool ACCB2 PluginInit(void);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>ACCB1 ASBool ACCB2 PluginUnload(void);</p>
+  <p dir="ltr" class="FM_Body">All callbacks return <span class="FM_Courier">true</span>&#160;if your plug-in’s procedure completes successfully or if the callbacks are optional and are not implemented. If your plug-in’s procedure fails, it returns <span class="FM_Courier">false</span>. If either <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>, <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>, or a plug-in aborts handshaking, <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;displays an alert dialog box showing a brief explanation before loading other plug-ins. At minimum, a plug-in must implement the <span class="FM_Courier">PluginInit</span> callback.</p>
+  <p dir="ltr" class="FM_Body">To ensure your plug-in does not hinder <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;startup, you must limit code executed in your handshake functions to the minimum. </p>
+  <p dir="ltr" class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>The handshaking function is located in the PIMain.c file. This source code located in this file is functional and must not be modified.</p>
+  <p dir="ltr" class="FM_Body">The following example shows how a plug-in’s <span class="FM_Courier">PIHandshake</span>&#160;method specifies the plug-in callbacks provided during handshake and initialization. The tasks performed by each function is described in the next sections.</p>
+  <p dir="ltr" class="FM_CodeReference">ACCB1 ASBool ACCB2 PIHandshake(Uns32 handshakeVersion, void *handshakeData)</p>
+  <p dir="ltr" class="FM_CodeReference">{</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>if(handshakeVersion == HANDSHAKE_V0200) </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>PIHandshakeData_V0200 *hsData = (PIHandshakeData_V0200 *)handshakeData;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hsData-&gt;extensionName = GetExtensionName();</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hsData-&gt;exportHFTsCallback =</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>(void*)ASCallbackCreateProto(PIExportHFTsProcType,</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&amp;PluginExportHFTs);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hsData-&gt;importReplaceAndRegisterCallback =</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>(void*)ASCallbackCreateProto(PIImportReplaceAndRegisterProcType, </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>&amp;PluginImportReplaceAndRegister);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hsData-&gt;initCallback = </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>(void*)ASCallbackCreateProto(PIInitProcType, &amp;PluginLoad);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hsData-&gt;unloadCallback = </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>(void*)ASCallbackCreateProto(PIUnloadProcType, &amp;PluginUnload);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return true;</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>} </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return false;</p>
+  <p dir="ltr" class="FM_CodeReference">}</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Exporting_HFTs"></a><a name="IX_exporting_HFTs_1"></a><a name="IX_exporting"></a><a name="IX_exporting_HFTs"></a>Exporting HFTs</p>
+  <p dir="ltr" class="FM_Body"><a name="IX_exporting_1"></a>A Host Function Table (HFT) is the mechanism through which plug-ins invoke methods in <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;or <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>, as well as in other plug-ins. After <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;finishes handshaking with all the plug-ins, it invokes each plug-in’s <span class="FM_Courier">PluginExportHFTs</span> callback procedure.</p>
+  <p dir="ltr" class="FM_Body">In the <span class="FM_Courier">PluginExportHFTs</span>&#160;procedure, a plug-in may export any HFTs it intends to make available to other plug-ins. This callback should only export an HFT, not invoke other <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;core API methods. (See <a href="../Host_Function_Tables/Host_Function_Tables.htm#XREF_37928_Working_with_Host"><span class="FM_HyperText">Working with Host Function Tables</span></a>.)</p>
+  <p dir="ltr" class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>The only time a plug-in can export an HFT is during execution of its <span class="FM_Courier">PluginExportHFTs</span>&#160;procedure. </p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Importing_HFTs_and"></a><a name="IX_importing"></a><a name="IX_importing_HFTs"></a><a name="XREF_19533_8_3_3_Pre"></a>Importing HFTs and registering for notifications</p>
+  <p dir="ltr" class="FM_Body">After <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;completes invoking each plug-in’s <span class="FM_Courier">PluginExportHFTs</span>&#160;callback method, it invokes each plug-in’s <span class="FM_Courier">PluginImportReplaceAndRegister</span>&#160;callback method. In this method, plug-ins perform three tasks:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Import any special HFTs they use (the standard <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;HFTs are automatically imported). Plug-ins also may import HFTs any time after this while the plug-in is running.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Register for notifications by using the <span class="FM_Courier">AVAppRegisterNotification</span>&#160;method. Plug-ins also may register and unregister for notifications while the plug-in is running. A plug-in may receive a notification any time after it has registered for it, even if the plug-in's initialization callback has not yet been called. This can occur if another plug-in initializes first and performs an operation, such as creating a PDF document, which causes a notification to be sent. Plug-ins must be prepared to correctly handle notifications as soon as they register for them.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Replace any of the <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;API’s replaceable HFT methods. (See <a href="../Host_Function_Tables/Replacing_HFT_methods.htm#XREF_19489_Replacing_HFT"><span class="FM_HyperText">Replacing HFT methods</span></a>.)</p>
+  <p dir="ltr" class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>The only time a plug-in may import an HFT or replace a standard API method is within its <span class="FM_Courier">PluginExportHFTs</span>&#160;callback procedure. Plug-ins may register for notifications at this time or any time afterward.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Initialization"></a><a name="IX_loading_plug_ins_1"></a><a name="IX_loading_plug_ins"></a><a name="IX_PluginInit_procedure"></a><a name="IX_initialization"></a><a name="XREF_80943_Initialization"></a>Initialization</p>
+  <p dir="ltr" class="FM_Body">After <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;completes calling each plug-in’s <span class="FM_Courier">PluginImportReplaceAndRegister</span>&#160;callback method, it invokes each plug-in’s <span class="FM_Courier">PluginInit</span>&#160;procedure. Plug-ins can use their initialization procedures to hook into <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>’s user interface by adding menu items, toolbar buttons, windows, and so on. It is also acceptable to modify <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>’s user interface later when the plug-in is running.</p>
+  <p dir="ltr" class="FM_Body">When creating the initialization portion of a plug-in, keep the following rules in mind:</p>
+  <p dir="ltr" class="FM_Indent1"><span class="FM_Bold">Avoid creating dialog boxes:</span>&#160;Do not create a dialog box in your plug-in’s initialization or do anything else that may interfere with the successful startup of <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>. The application may be started by using an interapplication communication (IAC) event, in which case a user would not be present to respond to your dialog box.</p>
+  <p dir="ltr" class="FM_Indent1"><span class="FM_Bold">Avoid invoking methods that cause <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span> to load non-critical components:</span>&#160;Here are actions your plug-in should avoid, listed in order of importance: </p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Avoid invoking JavaScript, which loads the EScript plugin and starts the JavaScript engine. </p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Avoid invoking functions referenced from HFTs exported by Adobe plug-ins. Adobe plug-ins are not fully initialized until they are invoked or otherwise triggered. </p>
+  <p dir="ltr" class="FM_Indent2">Non-Adobe plug-ins are fully initialized during Acrobat startup. Invoking functions declared in HFTs exported by non-Adobe plug-ins will not significantly delay Acrobat startup, unless those plug-ins violate the principles listed here. </p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Avoid invoking system methods that load more system libraries, such as accessing the disk.</p>
+  <p dir="ltr" class="FM_Indent1"><span class="FM_Bold">Do create your menu items</span>: Creating your menu items during initialization ensures that your menu items will be available in any PDF document opened using <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>. </p>
+  <p dir="ltr" class="FM_Body">If your plug-in must carry out a task after all plug-ins are initialized, it should register for the <span class="FM_Courier">AVAppDidInitialize</span>&#160;notification. This notification is invoked when <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;finishes initializing and is about to enter its event loop.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Unloading"></a><a name="IX_PluginUnload_procedure"></a><a name="IX_unloading_plug_ins"></a><a name="IX_unloading"></a>Unloading</p>
+  <p dir="ltr" class="FM_Body">A plug-in’s <span class="FM_Courier">PluginUnload</span>&#160;procedure should free any memory the plug-in allocated and remove any user interface changes it made. <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;invokes this procedure when it terminates or when any of the other handshaking callbacks return <span class="FM_Courier">false</span>. This function should perform the following tasks:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Remove and release all menu items and other user interface elements, HFTs, and HFTServers.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Release any memory or any other allocated resources.</p>
+  <p dir="ltr" class="FM_Body">Currently, plug-ins unload only when <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;exits. </p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Summarizing_a_plug_in_s"></a><a name="IX_lifecycle_of_a_plug_in"></a>Summarizing a plug-in’s life cycle</p>
+  <p dir="ltr" class="FM_Body">The following steps describe the life cycle of a plug-in:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>At startup, <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;or <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span> searches its plug-in directory for plug-in files.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>For each plug-in file, <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;or <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;attempts to load the file. If the plug-in is successfully loaded, <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;or <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span> invokes routines in PIMain.c that complete the handshaking process.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>3.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span><span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;or <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span> invokes callback functions in this order:</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span><span class="FM_Courier">PluginExportHFTs</span>&#160;</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span><span class="FM_Courier">PluginImportReplaceAndRegister</span>&#160;</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span><span class="FM_Courier">PluginInit</span>&#160;</p>
+  <p dir="ltr" class="FM_Body">This sequence establishes the linkages between the plug-in and <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>, and between the plug-in and any other plug-ins. After all plug-ins are loaded, <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>&#160;continues its own loading and starts the user interface. It adds plug-in tools to the toolbar, and plug-in menu items to the menu bar. Then it starts the user session.</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

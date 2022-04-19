@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Using plug-in prefixes</title>
+
+ 
+
+ <link rel="stylesheet" href="Understanding_Plug-ins.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.2.2";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Understanding_Plug-ins/Notifications.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Understanding_Plug-ins/Acquiring_and_releasing_objects.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Understanding Plug-ins" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="XREF_30769_Plug_in_Prefixes"></a>Using plug-in prefixes</p>
+  <p dir="ltr" class="FM_Body">It is important to correctly name all items located in your plug-in, such as HFTs, menus, toolbars, and so on, to ensure they function properly. Failure to do so may cause your plug-in to produce unpredictable results when your plug-in collides with a plug-in of another developer who used the same names.</p>
+  <p dir="ltr" class="FM_Body">Prevent spaces from being used in tokens you intend to use as names in a PDF file. This can happen, for example, if you allow a user to type a name into the PDF file and your plug-in does not check the input before writing it to the file.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Obtaining_a_developer"></a>Obtaining a developer prefix</p>
+  <p dir="ltr" class="FM_Body">Adobe maintains a registry of four-character prefixes. Contact Acrobat Developer Support to obtain a four-character prefix to be used in all plug-ins you or your company develop. Examples of prefixes are ADBE or Acro, both of which are used by Adobe. This chapter uses ADBE in the examples. You would replace it in your plug-in with the prefix assigned to you. </p>
+  <p dir="ltr" class="FM_Body">Register <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;plug-in prefixes at the <span class="FM_HyperText"><a href="http://www.adobe.com/go/acrobat_developer">Acrobat Developer Center</a></span>. </p>
+  <p dir="ltr" class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>Registering a prefix with Acrobat Developer Support ensures that no other developer is assigned the same prefix. It is up to you to ensure that names are unique among all plug-ins you or your company write (for example, you must ensure that two of your plug-ins do not both use ADBE_save as a menu item name).</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Using_a_developer_prefix"></a>Using a developer prefix</p>
+  <p dir="ltr" class="FM_Body">Every plug-in must use the prefix to name its various elements as well as private data it writes into PDF documents. The following sections describe and provide an example of each element that must use a prefix.</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Plug_in_name"></a>Plug-in name</p>
+  <p dir="ltr" class="FM_Body"><span class="FM_Courier">ExtensionName</span>, used in plug-in handshaking, must use the following syntax: <span class="FM_Courier">Prefix_PluginName</span>. </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>hsData-&gt;extensionName = ASAtomFromString(&quot;ADBE_SuperCrop&quot;);</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Menu_prefixes"></a>Menu prefixes</p>
+  <p dir="ltr" class="FM_Body">Menu names must use the following syntax: <span class="FM_Courier">Prefix:MenuName</span>. </p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>SuperCropMenu = AVMenuNew(SuperCrop, &quot;ADBE:SuperCropMenu&quot;, gExtensionID);</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Menu_items_prefixes"></a>Menu items prefixes</p>
+  <p dir="ltr" class="FM_Body">Menu item names must use the following syntax: <span class="FM_Courier">Prefix:MenuItem</span>.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>SelSuperCropTool = AVMenuItemNew(SuperCrop, &quot;ADBE:SuperCropMItem&quot;, NULL,</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>false, '9', AV_OPTION, SuperCropIcon, gExtensionID);</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Tool_prefixes"></a>Tool prefixes </p>
+  <p dir="ltr" class="FM_Body">Tools names must use the following syntax: <span class="FM_Courier">Prefix:Tool</span>.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>static ACCB1 ASAtom ACCB2 SuperCropToolGetType(AVTool tool)</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>{</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return ASAtomFromString(&quot;ADBE:SuperCropTool&quot;);</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>}</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Toolbar_button_prefixes"></a>Toolbar button prefixes</p>
+  <p dir="ltr" class="FM_Body">Toolbar buttons must use the following syntax: <span class="FM_Courier">Prefix:ToolbarButton</span>.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myButton = AVToolButtonNew(ASAtomFromString(&quot;ADBE:HelloWorld&quot;), (void *)</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>myBM, false, false);</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Private_data_identified"></a>Private data identified using second-class names</p>
+  <p dir="ltr" class="FM_Body">If you add private data to keys defined in a Cos dictionary and you want the document to be readable to others outside your company, you must identify the data using second-class names. Such key names use the syntax <span class="FM_CourierItalic">Prefix_PrivateDataName</span>, where <span class="FM_CourierItalic">Prefix</span>&#160;identifies the company or other entity that introduces the key, and <span class="FM_CourierItalic">PrivateDataName</span> identifies the data.</p>
+  <p dir="ltr" class="FM_Body">When adding keys that are directly referenced from private keys, it is not necessary to use the developer prefix. In the following example, the keys named <span class="FM_Courier">First</span>&#160;and <span class="FM_Courier">Second</span>&#160;cannot be referenced from any object in the PDF file except the private key that uses an appropriate prefix. Therefore, there is no need to use a prefix for the latter two keys.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>/ACME_aName &lt;&lt; /First 2 /Second &lt;&lt; /Third [ 2 3 ] &gt;&gt;&#160;&gt;&gt;</p>
+  <p dir="ltr" class="FM_Body">For information on second-class names, see the <span data-name="Ref_DocPDF" data-val="PDF Reference" data-showval="TRUE" data-format="Ref_DocPDF"><span class="FM_Italic">PDF Reference</span></span><span class="FM_Italic"></span>. This reference is available within the portfolio called <span class="FM_HyperText"><a href="http://www.adobe.com/devnet/pdf.html">PDF Reference and Related Documentation</a></span>, which is located at the <span class="FM_HyperText"><a href="http://www.adobe.com/go/pdf_developer">Adobe PDF Technology Center</a></span>.</p>
+  <p dir="ltr" class="FM_Note"><span class="FM_Z_NoteCaution">Note:<span style="padding-left: 4pt;" class="FMAutoNumber_1"></span></span>For information about Cos dictionaries, such as the one shown in the previous example, see <a href="../Working_with_Cos_Objects/Working_with_Cos_dictionaries.htm#XREF_96656_Working_with_Cos"><span class="FM_HyperText">Working with Cos dictionaries</span></a>. </p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Action_prefixes"></a>Action prefixes</p>
+  <p dir="ltr" class="FM_Body">Actions must use the following syntax: <span class="FM_Courier">Prefix_ActionName</span>.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>AVAppRegisterActionHandler(&amp;BkmkHandler, NULL, &quot;ADBE_HWAction&quot;, &quot;HWAct&quot;);</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Annotation_prefixes"></a>Annotation prefixes</p>
+  <p dir="ltr" class="FM_Body">Annotation prefixes must use the following syntax: <span class="FM_Courier">Prefix_AnnotType</span>.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>return(ASAtomFromString(“ADBE_MarkUpAnnot”);</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_HFT_prefixes"></a>HFT prefixes</p>
+  <p dir="ltr" class="FM_Body">When your plug-in exposes any HFTs of its own, it must use an HFT name that conforms to the following syntax: <span class="FM_Courier">Prefix_HFTName</span>.</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>gDebuggWinHFTServer =</p>
+  <p dir="ltr" class="FM_CodeReference"><span style="font-family:'Times New Roman'; font-size:7.0pt">&nbsp;&nbsp;&nbsp;</span>HFTServerNew(&quot;ADBE_DebugWin&quot;,provideDebugWinHFTCallback, NULL, NULL);</p>
+  <p dir="ltr" class="FM_Body">For information about HFTs, see <a href="../Host_Function_Tables/Host_Function_Tables.htm#XREF_37928_Working_with_Host"><span class="FM_HyperText">Working with Host Function Tables</span></a>.</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

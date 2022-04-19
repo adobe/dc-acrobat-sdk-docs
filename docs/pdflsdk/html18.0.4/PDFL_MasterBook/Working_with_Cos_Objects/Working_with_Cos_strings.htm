@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>Working with Cos strings</title>
+
+ 
+
+ <link rel="stylesheet" href="Working_with_Cos_Objects.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.14.2";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Working_with_Cos_Objects/About_Cos_objects.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Working_with_Cos_Objects/Working_with_Cos_arrays.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Working with Cos Objects" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="XREF_86660_Working_with_Cos"></a>Working with Cos strings</p>
+  <p dir="ltr" class="FM_Body">This section discusses ways in which you can work with Cos strings. (See <a href="About_Cos_objects.htm#XREF_36150_Cos_strings"><span class="FM_HyperText">Cos strings</span></a>.)</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Creating_Cos_strings"></a>Creating Cos strings</p>
+  <p dir="ltr" class="FM_Body">You can use the <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;core API to create a <span class="FM_Courier">CosObj</span>object that is based on a Cos string. </p>
+  <p dir="ltr" class="FM_6HeadStep"><span class="FM_Z_Arrow">ä<span style="padding-left: 8pt;" class="FMAutoNumber_1"></span></span>To create a Cos string:</p>
+  <p dir="ltr" class="FM_StepReset"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>1.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosDoc</span>&#160;object that represents a PDF file by invoking the <span class="FM_Courier">PDDocGetCosDoc</span>&#160;method and passing a <span class="FM_Courier">PDDoc</span> object.</p>
+  <p dir="ltr" class="FM_Step"><span style="padding-left: 66pt;" class="FMAutoNumber_1"></span>2.<span style="padding-left: 2pt;" class="FMAutoNumber_2"></span>Create a <span class="FM_Courier">CosObj</span>&#160;object that is based on a Cos string by invoking the <span class="FM_Courier">CosNewString</span>&#160;method and passing the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">CosDoc</span> object.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>An <span class="FM_Courier">ASBool</span>&#160;object that specifies whether the <span class="FM_Courier">CosObj</span>&#160;object is an indirect or direct object. If <span class="FM_Courier">true</span>, the string is an indirect object. If <span class="FM_Courier">false</span>, the string is a direct object. (See <a href="About_Cos_objects.htm#XREF_86862_About_direct_and"><span class="FM_HyperText">About direct and indirect objects</span></a>.)</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A character pointer that specifies the string. Cos strings can contain NULL characters.</p>
+  <p dir="ltr" class="FM_Bullet2"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The length of the character pointer. </p>
+  <p dir="ltr" class="FM_Body">The following code example creates a <span class="FM_Courier">CosObj</span>&#160;that is based on a Cos string. A <span class="FM_Courier">PDDoc</span>&#160;object named <span class="FM_Courier">myPDDoc</span>&#160;is passed to the <span class="FM_Courier">PDDocGetCosDoc</span>&#160;method. (See <a href="../Documents_and_Files/Creating_a_PDDoc_object.htm#XREF_97094_Creating_a_PDDoc"><span class="FM_HyperText">Creating a PDDoc object</span></a>.)</p>
+  <p dir="ltr" class="FM_5Head_Example"><a name="IX_cos_strings"></a><span class="FM_Z_Example">Example:&nbsp;</span>Creating a Cos string</p>
+  <p dir="ltr" class="FM_CodeComment">//Create a new Cos string</p>
+  <p dir="ltr" class="FM_CodeReference">char* mystr = &quot;New String&quot;;</p>
+  <p dir="ltr" class="FM_CodeReference">CosDoc cd = PDDocGetCosDoc(myPDDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">CosObj strObj = CosNewString(cd, false, mystr, strlen(mystr));</p>
+  <p dir="ltr" class="FM_4Head"><a name="TOC_Retrieving_the_string"></a>Retrieving the string value</p>
+  <p dir="ltr" class="FM_Body">You can retrieve the string value from a <span class="FM_Courier">CosObj</span>&#160;that is based on a Cos string. To retrieve the string value, invoke the <span class="FM_Courier">CosStringValue</span> method and pass the following arguments:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>A <span class="FM_Courier">CosObj</span>&#160;that is based on a Cos string. </p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>The address of an <span class="FM_Courier">ASTCount</span> object that is used to store the string length.</p>
+  <p dir="ltr" class="FM_Body">An exception is thrown if the <span class="FM_Courier">CosObj</span>&#160;object that is passed to the <span class="FM_Courier">CosStringValue</span>&#160;method is not based on a Cos string. The following code example expands the previous code example by retrieving the string value by invoking the <span class="FM_Courier">PDDocGetCosDoc</span> method.</p>
+  <p dir="ltr" class="FM_5Head_Example"><span class="FM_Z_Example">Example:&nbsp;</span>Retrieving the string value from a CosDoc object</p>
+  <p dir="ltr" class="FM_CodeComment">//Create a new Cos string</p>
+  <p dir="ltr" class="FM_CodeReference">char* mystr = &quot;New String&quot;;</p>
+  <p dir="ltr" class="FM_CodeReference">CosDoc cd = PDDocGetCosDoc (myPDDoc);</p>
+  <p dir="ltr" class="FM_CodeReference">CosObj strObj = CosNewString(cd,false,mystr,strlen(mystr));</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Retrieve the string value</p>
+  <p dir="ltr" class="FM_CodeReference">char* strValue;</p>
+  <p dir="ltr" class="FM_CodeReference">ASTCount length;</p>
+  <p dir="ltr" class="FM_CodeReference">strValue = CosStringValue(strObj, &amp;length);</p>
+  <p dir="ltr" class="FM_CodeReference">&nbsp;</p>
+  <p dir="ltr" class="FM_CodeComment">//Display the string value</p>
+  <p dir="ltr" class="FM_CodeReference">AVAlertNote(strValue);</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+ <title>File systems</title>
+
+ 
+
+ <link rel="stylesheet" href="Creating_Handlers.css" />
+ <link rel="stylesheet" href="../../HTMLStyling.css" />
+
+
+ <script type="text/javascript" language="JavaScript">
+//<![CDATA[
+function reDo() {
+  if (innerWidth != origWidth || innerHeight != origHeight)
+     location.reload();
+}
+if ((parseInt(navigator.appVersion) == 4) && (navigator.appName == "Netscape")) {
+	origWidth = innerWidth;
+	origHeight = innerHeight;
+	onresize = reDo;
+}
+onerror = null; 
+//]]>
+</script>
+<style type="text/css">
+<!--
+div.WebHelpPopupMenu { position:absolute;
+left:0px;
+top:0px;
+z-index:4;
+visibility:hidden; }
+p.WebHelpNavBar { text-align:right; }
+-->
+</style>
+ <meta name="generator" content="Adobe FrameMaker 2017" />
+<script type="text/javascript" src="../../template/scripts/rh.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/common.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/topic.min.js"></script>
+<script type="text/javascript" src="../../template/scripts/constants.js"></script>
+<script type="text/javascript" src="../../template/scripts/utils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhutils.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhlang.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhver.js"></script>
+<script type="text/javascript" src="../../template/scripts/settings.js"></script>
+<script type="text/javascript" src="../../template/scripts/XmlJsReader.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadparentdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadscreen.js"></script>
+<script type="text/javascript" src="../../template/scripts/loadprojdata.js"></script>
+<script type="text/javascript" src="../../template/scripts/mhtopic.js"></script>
+ <link rel="stylesheet" type="text/css" href="../../template/styles/topic.min.css">
+<script type="text/javascript" >
+gRootRelPath = "../..";
+gCommonRootRelPath = "../..";
+gTopicId = "3.10.0_5";
+</script>
+ <meta name="brsprev" value="PDFL_MasterBook/Creating_Handlers/File_specification_handlers.htm">
+ <meta name="brsnext" value="PDFL_MasterBook/Creating_Handlers/Progress_monitors.htm">
+ <meta name="topic-breadcrumbs" content="Developing Plug-ins and Applications > Creating Handlers" />
+</head>
+
+<body dir="ltr">
+<script type="text/javascript" src="../../ehlpdhtm.js"></script>
+
+   
+	<!-- Body place holder starts here-->
+    <div dir="ltr">
+  <p dir="ltr" class="FM_3Head"><a name="XREF_18825_File_systems"></a>File systems</p>
+  <p dir="ltr" class="FM_Body">Plug-ins can add new file systems to <span data-name="AcrobatProd" data-val="Acrobat" data-showval="TRUE" data-format="AcrobatProd">Acrobat</span>&#160;or <span data-name="AdobeReaderProd" data-val="Adobe&nbsp;Reader" data-showval="TRUE" data-format="AdobeReaderProd">Adobe&nbsp;Reader</span>, to access files on a device that cannot be accessed as a local hard disk, such as a socket or a modem line.</p>
+  <p dir="ltr" class="FM_Body">To add a new file system, you must provide a set of callbacks and specify them in the <span class="FM_Courier">ASFileSysRec</span>&#160;structure. This structure is passed as a parameter to calls that require a file system. A file system handler does not require explicit registration.</p>
+  <p dir="ltr" class="FM_Body">By using a file system handler, you can perform the following tasks:</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Open a file by using the <span class="FM_Courier">ASFileSysOpenProc</span>&#160;callback method. </p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Close a file by using the <span class="FM_Courier">ASFileSysCloseProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Flush a file’s buffered data to disk by using the <span class="FM_Courier">ASFileSysFlushProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Get or set the current position in a file by using one of the following callback methods: <span class="FM_Courier">ASFileSysSetPosProc</span>&#160;or <span class="FM_Courier">ASFileSysGetPosProc</span>.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Get or set a file’s logical size by using one of the following callback methods: <span class="FM_Courier">ASFileSysGetEofProc</span>&#160;or <span class="FM_Courier">ASFileSysSetEofProc</span>.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Read data from a file by using the <span class="FM_Courier">ASFileSysReadProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Write data to a file by using the <span class="FM_Courier">ASFileSysWriteProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Delete a file by using the <span class="FM_Courier">ASFileSysRemoveProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Rename a file by using the <span class="FM_Courier">ASFileSysRenameProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Get a file’s name by using the <span class="FM_Courier">ASFileSysGetNameProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Get a file system’s name by using the <span class="FM_Courier">ASFileSysGetFileSysNameProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Determine whether two files are the same by using the <span class="FM_Courier">ASFileSysIsSameFileProc</span>&#160;callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Get a path to a temporary file by using the <span class="FM_Courier">ASFileSysGetTempPathNameProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Copy a path (not the underlying file) by using the <span class="FM_Courier">ASFileSysCopyPathNameProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Convert between device-independent and device-dependent path by using the <span class="FM_Courier">ASFileSysDiPathFromPathProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Dispose of a path (not the underlying file) by using the <span class="FM_Courier">ASFileSysDisposePathNameProc</span>&#160;callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Flush data on a volume by using the <span class="FM_Courier">ASFileSysFlushVolumeProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Handle asynchronous I/O operations by using the following callback methods: <span class="FM_Courier">ASFileSysAsyncReadProc</span>&#160;or <span class="FM_Courier">ASFileSysAsyncWriteProc</span>.</p>
+  <p dir="ltr" class="FM_Bullet1"><span class="FM_Z_Bullet">•<span style="padding-left: 12pt;" class="FMAutoNumber_1"></span></span>Handle multiple read requests by using the <span class="FM_Courier">ASFileSysMReadRequestProc</span> callback method.</p>
+  <p dir="ltr" class="FM_Body">For details about each of the callbacks in a file system, see the description of <span class="FM_Courier">ASFileSysRec</span>&#160;in the <span class="FM_HyperText"><a href="../../API_References/PDFL_API_Reference/index.html">PDF Library API Reference</a></span>.</p>
+  </div>
+<!-- Body place holder ends here-->
+
+    <!-- Footer place holder starts here-->
+    <div style="padding:0.4em 0;text-align:center;width:100%;position:relative;">
+    	<hr/>
+		<p style="font-size:0.7em;margin:0; font-family:adobe-clean, sans-serif"><a target="_blank" href="http://help.adobe.com/en_US/legalnotices/index.html">Legal Notices</a> | <a target="_blank" href="http://www.adobe.com/privacy.html">Online Privacy Policy</a></p>
+	</div>
+	<!-- Footer place holder ends here-->
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../../print.css" type="text/css" media="print">
+<title>Threads.h</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../../cdoc.js"></script><script type="text/javascript" language="javascript" src="../../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Threads.h';
+				var baseRef = '../../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../../all-classes.html'); loadPackageListFrame('../../../../package-list.html')" href="../../../../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../../../../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../../../../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../../../../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../../../../index.html?Samples/CodeSamples/MTInMemFS/Sources/Threads.h.html&amp;Samples/CodeSamples/sample-file-list.html&amp;Samples/CodeSamples/samples-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../../../../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Threads.h</td><td align="right" id="subNav" class="titleTableSubNav"></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Threads.h"); titleBar_setSubNav(false,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="1"></a> #ifdef&nbsp;WIN32 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="2"></a>  #include&nbsp;"windows.h"  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="3"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="4"></a>  typedef  &nbsp;HANDLE&nbsp; ThreadHandle; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="5"></a>  #define&nbsp;ThreadFuncReturnType&nbsp;unsigned&nbsp;__stdcall 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="6"></a>  typedef  &nbsp;  void *&nbsp; ThreadFuncArgType; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="7"></a>  #define&nbsp;ThreadFunc(&nbsp;funcName,&nbsp;argName&nbsp;)&nbsp;unsigned&nbsp;__stdcall&nbsp;funcName(&nbsp;void*&nbsp;argName&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="8"></a>  #define&nbsp;createThread(&nbsp;func,&nbsp;args,&nbsp;ptid&nbsp;)&nbsp;(((*ptid)&nbsp;=&nbsp;(HANDLE)_beginthreadex(&nbsp;NULL,&nbsp;0,&nbsp;func,&nbsp;args,&nbsp;0,&nbsp;NULL&nbsp;))&nbsp;!=&nbsp;0) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="9"></a>  #define&nbsp;destroyThread(&nbsp;threadHandle&nbsp;)&nbsp;CloseHandle(&nbsp;threadHandle&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="10"></a>  #define&nbsp;waitThread(&nbsp;threadHandle&nbsp;)&nbsp;(WaitForSingleObject(threadHandle,&nbsp;INFINITE)&nbsp;==&nbsp;WAIT_OBJECT_0) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="11"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="12"></a>  typedef  &nbsp;CRITICAL_SECTION&nbsp; CSMutex; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="13"></a>  #define&nbsp;EnterCS(&nbsp;CSMutex&nbsp;)&nbsp;EnterCriticalSection(&nbsp;&amp;CSMutex&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="14"></a>  #define&nbsp;LeaveCS(&nbsp;CSMutex&nbsp;)&nbsp;LeaveCriticalSection(&nbsp;&amp;CSMutex&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="15"></a>  #define&nbsp;InitCS(&nbsp;CSMutex&nbsp;)&nbsp;InitializeCriticalSection(&nbsp;&amp;CSMutex&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="16"></a>  #define&nbsp;DestroyCS(&nbsp;CSMutex&nbsp;)&nbsp;DeleteCriticalSection(&nbsp;&amp;CSMutex&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="17"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="18"></a>  #else 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="19"></a>  #include&nbsp;&lt;pthread.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="20"></a>  #include&nbsp;&lt;unistd.h&gt;  
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="21"></a>  
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="22"></a>  typedef  &nbsp;pthread_t&nbsp; ThreadHandle; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="23"></a>  typedef  &nbsp;  void  &nbsp;*&nbsp; ThreadFuncReturnType; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="24"></a>  typedef  &nbsp;  void  &nbsp;*&nbsp; ThreadFuncArgType; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="25"></a>  #define&nbsp;ThreadFunc(&nbsp;funcName,&nbsp;argName&nbsp;)&nbsp;void&nbsp;*funcName(&nbsp;void&nbsp;*argName&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="26"></a>  #define&nbsp;createThread(&nbsp;func,&nbsp;args,&nbsp;ptid&nbsp;)&nbsp;(pthread_create(&nbsp;ptid,&nbsp;NULL,&nbsp;func,&nbsp;args&nbsp;)&nbsp;==&nbsp;0) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="27"></a>  #define&nbsp;destroyThread(&nbsp;threadHandle&nbsp;)&nbsp;pthread_detach(&nbsp;threadHandle&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="28"></a>  #define&nbsp;waitThread(&nbsp;threadHandle&nbsp;)&nbsp;(pthread_join(&nbsp;threadHandle,&nbsp;NULL&nbsp;)&nbsp;==&nbsp;0) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="29"></a>  #define&nbsp;Sleep(&nbsp;n&nbsp;)&nbsp;sleep(&nbsp;n==0?1:n&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="30"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="31"></a>  typedef  &nbsp;pthread_mutex_t&nbsp;*CSMutex; 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="32"></a>  #define&nbsp;InitCS(&nbsp;CSMutex&nbsp;)&nbsp;do&nbsp;{&nbsp;\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="33"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;CSMutex&nbsp;=&nbsp;(pthread_mutex_t&nbsp;*)malloc(&nbsp;sizeof(pthread_mutex_t)&nbsp;);&nbsp;\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="34"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pthread_mutex_init(&nbsp;CSMutex,&nbsp;NULL&nbsp;);&nbsp;\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="35"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}&nbsp;while&nbsp;(0) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="36"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="37"></a>  #define&nbsp;EnterCS(&nbsp;CSMutex&nbsp;)&nbsp;pthread_mutex_lock(&nbsp;CSMutex&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="38"></a>  #define&nbsp;LeaveCS(&nbsp;CSMutex&nbsp;)&nbsp;pthread_mutex_unlock(&nbsp;CSMutex&nbsp;) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="39"></a>  #define&nbsp;DestroyCS(&nbsp;CSMutex&nbsp;)&nbsp;do&nbsp;{&nbsp;\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="40"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;pthread_mutex_destroy(&nbsp;CSMutex&nbsp;);&nbsp;\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="41"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;free(&nbsp;CSMutex&nbsp;);&nbsp;\ 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="42"></a>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;}&nbsp;while&nbsp;(0) 
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="43"></a>   
+
+<br xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<a xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="44"></a>  #endif 
+    </div>
+</body>
+</html>
