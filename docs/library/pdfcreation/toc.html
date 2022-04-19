@@ -1,0 +1,615 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_hometoc.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Adobe PDF Creation Settings" href="index.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> Adobe PDF Creation Settings
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Adobe PDF Creation Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#organization-of-settings-files">Organization of settings files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#common-namespace">Common namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#othernamespaces">Othernamespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#predefined-settings-files">Predefined settings files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#where-presets-are-installed">Where presets are installed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#system-preset-information">System preset information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="index.html#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#mac-os">Mac OS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#reading-and-writing-settings-files">Reading and writing settings files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#compatibility-strategies">Compatibility strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#how-applications-handle-incorrect-settings-files">How applications handle incorrect settings files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-distiller-uses-adobe-pdf-settings">How Distiller uses Adobe PDF settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#distiller-initialization">Distiller initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#how-distiller-processes-postscript-files">How Distiller processes PostScript files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modifying-settings-during-the-job">Modifying settings during the job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#using-distiller-to-combine-postscript-files">Using Distiller to combine PostScript files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_UsingSettings.html">Using PDF Creation Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-image-settings">Using the image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#image-compression-settings">Image compression settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#flate">Flate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#jpeg">JPEG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#jpeg2000">JPEG2000</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#automatic-compression">Automatic compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#non-automatic-compression">Non-automatic compression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#color-and-grayscale-images">Color and grayscale images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#monochrome-black-and-white-images">Monochrome (black and white) images</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#downsampling-and-subsampling-images">Downsampling and subsampling images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#downsampling-settings">Downsampling settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#controlling-the-range-of-bit-depths-for-which-downsampling-occurs">Controlling the range of bit depths for which downsampling occurs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#setting-compression-of-text-line-art-and-objects">Setting compression of text, line art, and objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#distiller-only-image-settings">Distiller-only image settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#controlling-bit-depth">Controlling bit depth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#specifying-a-minimum-resolution-of-sampled-images">Specifying a minimum resolution of sampled images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#controlling-downsampling-and-encoding-for-each-sampled-image">Controlling downsampling and encoding for each sampled image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#disabling-of-image-cropping">Disabling of image cropping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-font-settings">Using the font settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-color-conversion-settings">Using the color conversion settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#distiller-color-conversion-settings">Distiller color conversion settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#creative-suite-color-conversion-settings">Creative Suite color conversion settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#converting-colors">Converting colors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#including-profiles">Including profiles</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#color-settings-interchange">Color settings interchange</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#when-common-settings-are-used">When common settings are used</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#saving-common-settings-equivalents">Saving common settings equivalents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-advanced-adobe-pdf-settings">Using the advanced Adobe PDF settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#relationship-between-setpagedevice-keys-and-job-ticket-keys">Relationship between setpagedevice keys and job ticket keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#relationship-between-postscript-comments-and-job-ticket-keys">Relationship between PostScript comments and job ticket keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-standards-settings">Using the standards settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-compliance-checking-settings">Using the compliance checking settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-pdf-x-output-intent-settings">Using the PDF/X output intent settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_UsingSettings.html#distiller-examples">Distiller examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PDF_Create_UsingSettings.html#setting-the-output-intent-dictionary-to-euroscale-uncoated-v2">Setting the output intent dictionary to Euroscale Uncoated v2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_CommonSettings.html">Common PDF Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#settings-descriptions">Settings descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#general-settings">General settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autorotatepages">AutoRotatePages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#binding">Binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#compatibilitylevel">CompatibilityLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#compressobjects">CompressObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#coredistversion">CoreDistVersion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#dothumbnails">DoThumbnails</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#endpage">EndPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#exportlayers">ExportLayers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#hwresolution">HWResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#imagememory">ImageMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#namespace">Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#optimize">Optimize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#othernamespaces">OtherNamespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pagesize">PageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#startpage">StartPage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#image-settings">Image settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#color-image-settings">Color image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#antialiascolorimages">AntiAliasColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autofiltercolorimages">AutoFilterColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#coloracsimagedict">ColorACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageautofilterstrategy">ColorImageAutoFilterStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedepth">ColorImageDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedict">ColorImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedownsamplethreshold">ColorImageDownsampleThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedownsampletype">ColorImageDownsampleType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagefilter">ColorImageFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagemindownsampledepth">ColorImageMinDownsampleDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageminresolution">ColorImageMinResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageminresolutionpolicy">ColorImageMinResolutionPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageresolution">ColorImageResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#convertimagestoindexed">ConvertImagesToIndexed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cropcolorimages">CropColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#downsamplecolorimages">DownsampleColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#encodecolorimages">EncodeColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000coloracsimagedict">JPEG2000ColorACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000colorimagedict">JPEG2000ColorImageDict</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayscale-image-settings">Grayscale image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#antialiasgrayimages">AntiAliasGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autofiltergrayimages">AutoFilterGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cropgrayimages">CropGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#downsamplegrayimages">DownsampleGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#encodegrayimages">EncodeGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayacsimagedict">GrayACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageautofilterstrategy">GrayImageAutoFilterStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedepth">GrayImageDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedict">GrayImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedownsamplethreshold">GrayImageDownsampleThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedownsampletype">GrayImageDownsampleType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagefilter">GrayImageFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagemindownsampledepth">GrayImageMinDownsampleDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageminresolution">GrayImageMinResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageminresolutionpolicy">GrayImageMinResolutionPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageresolution">GrayImageResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000grayacsimagedict">JPEG2000GrayACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000grayimagedict">JPEG2000GrayImageDict</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#monochrome-image-settings">Monochrome image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#antialiasmonoimages">AntiAliasMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cropmonoimages">CropMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#downsamplemonoimages">DownsampleMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#encodemonoimages">EncodeMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedepth">MonoImageDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedict">MonoImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedownsamplethreshold">MonoImageDownsampleThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedownsampletype">MonoImageDownsampleType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagefilter">MonoImageFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimageminresolution">MonoImageMinResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimageminresolutionpolicy">MonoImageMinResolutionPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimageresolution">MonoImageResolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#page-compression-setting">Page Compression Setting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#compresspages">CompressPages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#font-settings">Font settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#alwaysembed">AlwaysEmbed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cannotembedfontpolicy">CannotEmbedFontPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#embedallfonts">EmbedAllFonts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#embedopentype">EmbedOpenType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#maxsubsetpct">MaxSubsetPct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#neverembed">NeverEmbed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#subsetfonts">SubsetFonts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#color-conversion-settings">Color conversion settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#calcmykprofile">CalCMYKProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#calgrayprofile">CalGrayProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#calrgbprofile">CalRGBProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorconversionstrategy">ColorConversionStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorsettingsfile">ColorSettingsFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#defaultrenderingintent">DefaultRenderingIntent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#parseiccprofilesincomments">ParseICCProfilesInComments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preservedicmykvalues">PreserveDICMYKValues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preservehalftoneinfo">PreserveHalftoneInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#srgbprofile">sRGBProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#transferfunctioninfo">TransferFunctionInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#ucrandbginfo">UCRandBGInfo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#advanced-adobe-pdf-settings">Advanced Adobe PDF settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#allowpsxobjects">AllowPSXObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#allowtransparency">AllowTransparency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#ascii85encodepages">ASCII85EncodePages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autopositionepsfiles">AutoPositionEPSFiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#createjdffile">CreateJDFFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#createjobticket">CreateJobTicket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#detectblends">DetectBlends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#detectcurves">DetectCurves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#dscreportinglevel">DSCReportingLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#embedjoboptions">EmbedJobOptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#emitdscwarnings">EmitDSCWarnings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#lockdistillerparams">LockDistillerParams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#opm">OPM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#parsedsccomments">ParseDSCComments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#parsedsccommentsfordocinfo">ParseDSCCommentsForDocInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#passthroughjpegimages">PassThroughJPEGImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preservecopypage">PreserveCopyPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveepsinfo">PreserveEPSInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveflatness">PreserveFlatness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveopicomments">PreserveOPIComments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveoverprintsettings">PreserveOverprintSettings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#useprologue">UsePrologue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#standards-settings">Standards settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#checkcompliance">CheckCompliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfx1acheck">PDFX1aCheck</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfx3check">PDFX3Check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxbleedboxtotrimboxoffset">PDFXBleedBoxToTrimBoxOffset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxcompliantpdfonly">PDFXCompliantPDFOnly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxnotrimboxerror">PDFXNoTrimBoxError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxoutputcondition">PDFXOutputCondition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxoutputconditionidentifier">PDFXOutputConditionIdentifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxoutputintentprofile">PDFXOutputIntentProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxregistryname">PDFXRegistryName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxsetbleedboxtomediabox">PDFXSetBleedBoxToMediaBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxtrapped">PDFXTrapped</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxtrimboxtomediaboxoffset">PDFXTrimBoxtoMediaBoxOffset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_NewNamespaces.html">Other Namespaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_NewNamespaces.html#creativesuite-namespace-settings">CreativeSuite namespace settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addbleedmarks">AddBleedMarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addcolorbars">AddColorBars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addcropmarks">AddCropMarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addpageinfo">AddPageInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addregmarks">AddRegMarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#bleedoffset">BleedOffset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#convertcolors">ConvertColors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#destinationprofilename">DestinationProfileName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#destinationprofileselector">DestinationProfileSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#downsample16bitimages">Downsample16BitImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#flattenerpreset">FlattenerPreset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#generatestructure">GenerateStructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includebookmarks">IncludeBookmarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includehyperlinks">IncludeHyperlinks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeinteractive">IncludeInteractive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includelayers">IncludeLayers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeprofiles">IncludeProfiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#marksoffset">MarksOffset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#marksweight">MarksWeight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#multimediahandling">MultimediaHandling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#pagemarksfile">PageMarksFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#pagemarksfilename">PageMarksFileName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#pdfxoutputintentprofileselector">PDFXOutputIntentProfileSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#preserveediting">PreserveEditing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#untaggedcmykhandling">UntaggedCMYKHandling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#untaggedrgbhandling">UntaggedRGBHandling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#usedocumentbleed">UseDocumentBleed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_NewNamespaces.html#indesign-namespace-settings">InDesign namespace settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#asreaderspreads">AsReaderSpreads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#cropimagestoframes">CropImagesToFrames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#errorcontrol">ErrorControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#flattenerignorespreadoverrides">FlattenerIgnoreSpreadOverrides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeguidesgrids">IncludeGuidesGrids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includenonprinting">IncludeNonPrinting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeslug">IncludeSlug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#omitplacedbitmaps">OmitPlacedBitmaps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#omitplacedeps">OmitPlacedEPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#omitplacedpdf">OmitPlacedPDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#simulateoverprint">SimulateOverprint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_JDF.html">Conversions Related to JDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#creation-of-the-basic-jdf-file">Creation of the basic JDF file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#representation-of-postscript-keys-as-jdf-entries">Representation of PostScript keys as JDF entries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#conversion-of-the-linear-representation-of-setpagedevice-keys">Conversion of the linear representation of setpagedevice keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#mapping-of-dsc-comments-into-jdf-elements-and-attributes">Mapping of DSC comments into JDF elements and attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#composite-jobs">Composite jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#pre-separated-jobs-with-interleaved-separations">Pre-separated jobs with interleaved separations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#pre-separated-single-colorant-jobs">Pre-separated single-colorant jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#mapping-of-parameters-into-jdf-elements-and-attributes">Mapping of parameters into JDF elements and attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#general">General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#image-compression">Image compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#page-compression">Page compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#fonts">Fonts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#color-conversion">Color conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#advanced">Advanced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#pdf-x">PDF/X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#conversion-of-parameters-not-available-through-the-user-interface">Conversion of parameters not available through the user interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Adobe PDF Creation Settings</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Contents</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="index.html" class="btn btn-neutral float-right" title="Adobe PDF Creation Settings" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Adobe PDF Creation Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#organization-of-settings-files">Organization of settings files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#predefined-settings-files">Predefined settings files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#reading-and-writing-settings-files">Reading and writing settings files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-distiller-uses-adobe-pdf-settings">How Distiller uses Adobe PDF settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_UsingSettings.html">Using PDF Creation Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-image-settings">Using the image settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-font-settings">Using the font settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-color-conversion-settings">Using the color conversion settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-advanced-adobe-pdf-settings">Using the advanced Adobe PDF settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_UsingSettings.html#using-the-standards-settings">Using the standards settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_CommonSettings.html">Common PDF Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#settings-descriptions">Settings descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#general-settings">General settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#image-settings">Image settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#color-image-settings">Color image settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayscale-image-settings">Grayscale image settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#monochrome-image-settings">Monochrome image settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#page-compression-setting">Page Compression Setting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#font-settings">Font settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#color-conversion-settings">Color conversion settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#advanced-adobe-pdf-settings">Advanced Adobe PDF settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#standards-settings">Standards settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_NewNamespaces.html">Other Namespaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_NewNamespaces.html#creativesuite-namespace-settings">CreativeSuite namespace settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_NewNamespaces.html#indesign-namespace-settings">InDesign namespace settings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_JDF.html">Conversions Related to JDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#creation-of-the-basic-jdf-file">Creation of the basic JDF file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#representation-of-postscript-keys-as-jdf-entries">Representation of PostScript keys as JDF entries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#mapping-of-dsc-comments-into-jdf-elements-and-attributes">Mapping of DSC comments into JDF elements and attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#mapping-of-parameters-into-jdf-elements-and-attributes">Mapping of parameters into JDF elements and attributes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Apr 19, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

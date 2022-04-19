@@ -1,0 +1,1815 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homePDF_Create_UsingSettings.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Common PDF Settings" href="PDF_Create_CommonSettings.html" />
+    <link rel="prev" title="Adobe PDF Creation Settings" href="index.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Adobe PDF Creation Settings
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Adobe PDF Creation Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#terminology">Terminology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#organization-of-settings-files">Organization of settings files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#common-namespace">Common namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#othernamespaces">Othernamespaces</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#predefined-settings-files">Predefined settings files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#where-presets-are-installed">Where presets are installed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#system-preset-information">System preset information</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="index.html#windows">Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#mac-os">Mac OS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#reading-and-writing-settings-files">Reading and writing settings files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#compatibility-strategies">Compatibility strategies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#how-applications-handle-incorrect-settings-files">How applications handle incorrect settings files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#how-distiller-uses-adobe-pdf-settings">How Distiller uses Adobe PDF settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#distiller-initialization">Distiller initialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#how-distiller-processes-postscript-files">How Distiller processes PostScript files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#modifying-settings-during-the-job">Modifying settings during the job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#using-distiller-to-combine-postscript-files">Using Distiller to combine PostScript files</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using PDF Creation Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-image-settings">Using the image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#image-compression-settings">Image compression settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#flate">Flate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jpeg">JPEG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jpeg2000">JPEG2000</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-compression">Automatic compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#non-automatic-compression">Non-automatic compression</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#color-and-grayscale-images">Color and grayscale images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#monochrome-black-and-white-images">Monochrome (black and white) images</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#downsampling-and-subsampling-images">Downsampling and subsampling images</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#downsampling-settings">Downsampling settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-the-range-of-bit-depths-for-which-downsampling-occurs">Controlling the range of bit depths for which downsampling occurs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-compression-of-text-line-art-and-objects">Setting compression of text, line art, and objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distiller-only-image-settings">Distiller-only image settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-bit-depth">Controlling bit depth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#specifying-a-minimum-resolution-of-sampled-images">Specifying a minimum resolution of sampled images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#controlling-downsampling-and-encoding-for-each-sampled-image">Controlling downsampling and encoding for each sampled image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#disabling-of-image-cropping">Disabling of image cropping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-font-settings">Using the font settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-color-conversion-settings">Using the color conversion settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#distiller-color-conversion-settings">Distiller color conversion settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creative-suite-color-conversion-settings">Creative Suite color conversion settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#converting-colors">Converting colors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#including-profiles">Including profiles</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#color-settings-interchange">Color settings interchange</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#when-common-settings-are-used">When common settings are used</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#saving-common-settings-equivalents">Saving common settings equivalents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-advanced-adobe-pdf-settings">Using the advanced Adobe PDF settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#relationship-between-setpagedevice-keys-and-job-ticket-keys">Relationship between setpagedevice keys and job ticket keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relationship-between-postscript-comments-and-job-ticket-keys">Relationship between PostScript comments and job ticket keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-standards-settings">Using the standards settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-compliance-checking-settings">Using the compliance checking settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-pdf-x-output-intent-settings">Using the PDF/X output intent settings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distiller-examples">Distiller examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#setting-the-output-intent-dictionary-to-euroscale-uncoated-v2">Setting the output intent dictionary to Euroscale Uncoated v2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_CommonSettings.html">Common PDF Settings</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#settings-descriptions">Settings descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#general-settings">General settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autorotatepages">AutoRotatePages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#binding">Binding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#compatibilitylevel">CompatibilityLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#compressobjects">CompressObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#coredistversion">CoreDistVersion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#description">Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#dothumbnails">DoThumbnails</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#endpage">EndPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#exportlayers">ExportLayers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#hwresolution">HWResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#imagememory">ImageMemory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#namespace">Namespace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#optimize">Optimize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#othernamespaces">OtherNamespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pagesize">PageSize</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#startpage">StartPage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#image-settings">Image settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#color-image-settings">Color image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#antialiascolorimages">AntiAliasColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autofiltercolorimages">AutoFilterColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#coloracsimagedict">ColorACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageautofilterstrategy">ColorImageAutoFilterStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedepth">ColorImageDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedict">ColorImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedownsamplethreshold">ColorImageDownsampleThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagedownsampletype">ColorImageDownsampleType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagefilter">ColorImageFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimagemindownsampledepth">ColorImageMinDownsampleDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageminresolution">ColorImageMinResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageminresolutionpolicy">ColorImageMinResolutionPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorimageresolution">ColorImageResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#convertimagestoindexed">ConvertImagesToIndexed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cropcolorimages">CropColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#downsamplecolorimages">DownsampleColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#encodecolorimages">EncodeColorImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000coloracsimagedict">JPEG2000ColorACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000colorimagedict">JPEG2000ColorImageDict</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayscale-image-settings">Grayscale image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#antialiasgrayimages">AntiAliasGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autofiltergrayimages">AutoFilterGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cropgrayimages">CropGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#downsamplegrayimages">DownsampleGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#encodegrayimages">EncodeGrayImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayacsimagedict">GrayACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageautofilterstrategy">GrayImageAutoFilterStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedepth">GrayImageDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedict">GrayImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedownsamplethreshold">GrayImageDownsampleThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagedownsampletype">GrayImageDownsampleType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagefilter">GrayImageFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimagemindownsampledepth">GrayImageMinDownsampleDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageminresolution">GrayImageMinResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageminresolutionpolicy">GrayImageMinResolutionPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#grayimageresolution">GrayImageResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000grayacsimagedict">JPEG2000GrayACSImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#jpeg2000grayimagedict">JPEG2000GrayImageDict</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#monochrome-image-settings">Monochrome image settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#antialiasmonoimages">AntiAliasMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cropmonoimages">CropMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#downsamplemonoimages">DownsampleMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#encodemonoimages">EncodeMonoImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedepth">MonoImageDepth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedict">MonoImageDict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedownsamplethreshold">MonoImageDownsampleThreshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagedownsampletype">MonoImageDownsampleType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimagefilter">MonoImageFilter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimageminresolution">MonoImageMinResolution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimageminresolutionpolicy">MonoImageMinResolutionPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#monoimageresolution">MonoImageResolution</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#page-compression-setting">Page Compression Setting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#compresspages">CompressPages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#font-settings">Font settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#alwaysembed">AlwaysEmbed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#cannotembedfontpolicy">CannotEmbedFontPolicy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#embedallfonts">EmbedAllFonts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#embedopentype">EmbedOpenType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#maxsubsetpct">MaxSubsetPct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#neverembed">NeverEmbed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#subsetfonts">SubsetFonts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#color-conversion-settings">Color conversion settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#calcmykprofile">CalCMYKProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#calgrayprofile">CalGrayProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#calrgbprofile">CalRGBProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorconversionstrategy">ColorConversionStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#colorsettingsfile">ColorSettingsFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#defaultrenderingintent">DefaultRenderingIntent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#parseiccprofilesincomments">ParseICCProfilesInComments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preservedicmykvalues">PreserveDICMYKValues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preservehalftoneinfo">PreserveHalftoneInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#srgbprofile">sRGBProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#transferfunctioninfo">TransferFunctionInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#ucrandbginfo">UCRandBGInfo</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#advanced-adobe-pdf-settings">Advanced Adobe PDF settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#allowpsxobjects">AllowPSXObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#allowtransparency">AllowTransparency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#ascii85encodepages">ASCII85EncodePages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#autopositionepsfiles">AutoPositionEPSFiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#createjdffile">CreateJDFFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#createjobticket">CreateJobTicket</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#detectblends">DetectBlends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#detectcurves">DetectCurves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#dscreportinglevel">DSCReportingLevel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#embedjoboptions">EmbedJobOptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#emitdscwarnings">EmitDSCWarnings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#lockdistillerparams">LockDistillerParams</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#opm">OPM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#parsedsccomments">ParseDSCComments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#parsedsccommentsfordocinfo">ParseDSCCommentsForDocInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#passthroughjpegimages">PassThroughJPEGImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preservecopypage">PreserveCopyPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveepsinfo">PreserveEPSInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveflatness">PreserveFlatness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveopicomments">PreserveOPIComments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#preserveoverprintsettings">PreserveOverprintSettings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#useprologue">UsePrologue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_CommonSettings.html#standards-settings">Standards settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#checkcompliance">CheckCompliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfx1acheck">PDFX1aCheck</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfx3check">PDFX3Check</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxbleedboxtotrimboxoffset">PDFXBleedBoxToTrimBoxOffset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxcompliantpdfonly">PDFXCompliantPDFOnly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxnotrimboxerror">PDFXNoTrimBoxError</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxoutputcondition">PDFXOutputCondition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxoutputconditionidentifier">PDFXOutputConditionIdentifier</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxoutputintentprofile">PDFXOutputIntentProfile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxregistryname">PDFXRegistryName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxsetbleedboxtomediabox">PDFXSetBleedBoxToMediaBox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxtrapped">PDFXTrapped</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_CommonSettings.html#pdfxtrimboxtomediaboxoffset">PDFXTrimBoxtoMediaBoxOffset</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_NewNamespaces.html">Other Namespaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_NewNamespaces.html#creativesuite-namespace-settings">CreativeSuite namespace settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addbleedmarks">AddBleedMarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addcolorbars">AddColorBars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addcropmarks">AddCropMarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addpageinfo">AddPageInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#addregmarks">AddRegMarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#bleedoffset">BleedOffset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#convertcolors">ConvertColors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#destinationprofilename">DestinationProfileName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#destinationprofileselector">DestinationProfileSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#downsample16bitimages">Downsample16BitImages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#flattenerpreset">FlattenerPreset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#generatestructure">GenerateStructure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includebookmarks">IncludeBookmarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includehyperlinks">IncludeHyperlinks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeinteractive">IncludeInteractive</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includelayers">IncludeLayers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeprofiles">IncludeProfiles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#marksoffset">MarksOffset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#marksweight">MarksWeight</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#multimediahandling">MultimediaHandling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#pagemarksfile">PageMarksFile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#pagemarksfilename">PageMarksFileName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#pdfxoutputintentprofileselector">PDFXOutputIntentProfileSelector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#preserveediting">PreserveEditing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#untaggedcmykhandling">UntaggedCMYKHandling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#untaggedrgbhandling">UntaggedRGBHandling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#usedocumentbleed">UseDocumentBleed</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_NewNamespaces.html#indesign-namespace-settings">InDesign namespace settings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#asreaderspreads">AsReaderSpreads</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#cropimagestoframes">CropImagesToFrames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#errorcontrol">ErrorControl</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#flattenerignorespreadoverrides">FlattenerIgnoreSpreadOverrides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeguidesgrids">IncludeGuidesGrids</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includenonprinting">IncludeNonPrinting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#includeslug">IncludeSlug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#omitplacedbitmaps">OmitPlacedBitmaps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#omitplacedeps">OmitPlacedEPS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#omitplacedpdf">OmitPlacedPDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_NewNamespaces.html#simulateoverprint">SimulateOverprint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PDF_Create_JDF.html">Conversions Related to JDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#creation-of-the-basic-jdf-file">Creation of the basic JDF file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#representation-of-postscript-keys-as-jdf-entries">Representation of PostScript keys as JDF entries</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#conversion-of-the-linear-representation-of-setpagedevice-keys">Conversion of the linear representation of setpagedevice keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#mapping-of-dsc-comments-into-jdf-elements-and-attributes">Mapping of DSC comments into JDF elements and attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#composite-jobs">Composite jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#pre-separated-jobs-with-interleaved-separations">Pre-separated jobs with interleaved separations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#pre-separated-single-colorant-jobs">Pre-separated single-colorant jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="PDF_Create_JDF.html#mapping-of-parameters-into-jdf-elements-and-attributes">Mapping of parameters into JDF elements and attributes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#general">General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#image-compression">Image compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#page-compression">Page compression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#fonts">Fonts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#color-conversion">Color conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#advanced">Advanced</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#pdf-x">PDF/X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="PDF_Create_JDF.html#conversion-of-parameters-not-available-through-the-user-interface">Conversion of parameters not available through the user interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Adobe PDF Creation Settings</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Using PDF Creation Settings</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="PDF_Create_CommonSettings.html" class="btn btn-neutral float-right" title="Common PDF Settings" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Adobe PDF Creation Settings" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="using-pdf-creation-settings">
+<h1>Using PDF Creation Settings<a class="headerlink" href="#using-pdf-creation-settings" title="Permalink to this headline">¶</a></h1>
+<p>This chapter provides information on using PDF creation settings that supplements the information in the settings reference chapters, <a class="reference external" href="PDF_Create_CommonSettings.html#80362">Common PDF Settings</a> and <a class="reference external" href="PDF_Create_NewNamespaces.html#69127">Other Namespaces</a>.</p>
+<a name="29125"></a><div class="section" id="using-the-image-settings">
+<h2>Using the image settings<a class="headerlink" href="#using-the-image-settings" title="Permalink to this headline">¶</a></h2>
+<p>PDF settings files provide several options for the processing of images:</p>
+<ul class="simple">
+<li><p>Images (as well as text and line art) can be <em>compressed</em> , thereby significantly reducing the size of a PDF file with little or no loss of detail and precision, depending on the settings chosen.</p></li>
+<li><p>Images can be resampled (downsampled or subsampled), which also allows reduction in image size.</p></li>
+<li><p>Distiller provides some options relating to bit depth (number of bits per sample) and cropping of images.</p></li>
+</ul>
+<p>The image settings can be specified for these types of images:</p>
+<ul class="simple">
+<li><p><strong>Color images</strong> : Images that have more than one color component</p></li>
+<li><p><strong>Grayscale images</strong> : Images that have only one color component and more than one bit per sample</p></li>
+<li><p><strong>Monochrome images</strong> : Images that have only one color component and only one bit per sample</p></li>
+</ul>
+<p>The names of the settings indicate which type of image they apply to (for example, <code class="docutils literal notranslate"><span class="pre">ColorImageFilter</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageFilter</span></code> , and <code class="docutils literal notranslate"><span class="pre">MonoImageFilter</span></code> ).</p>
+<p>The image settings are described in detail in <a class="reference external" href="PDF_Create_CommonSettings.html#37637">Image settings</a>.</p>
+<a name="90149"></a><div class="section" id="image-compression-settings">
+<h3>Image compression settings<a class="headerlink" href="#image-compression-settings" title="Permalink to this headline">¶</a></h3>
+<p>The compression settings fall into several categories. This section describes the overall logic of image compression. There are several options for compression, including JPEG, JPEG2000, CCITTFax, RunLength, Flate, as well as automatic compression. See the following sections for details on each compression type.</p>
+<p>The following Boolean settings determine whether compression takes place on the specified image type. If the value is <code class="docutils literal notranslate"><span class="pre">false</span></code> , no compression takes place, and the other compression settings for that image type are ignored:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#29745">EncodeColorImages</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#16389">EncodeGrayImages</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#49057">EncodeMonoImages</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this document, the term <em>encode</em> is used to refer to compression. Strictly speaking, encoding in PDF does not always involve compression.</p>
+</div>
+<p>These settings are Boolean values that determine whether <em>automatic compression</em> , in which the producer application chooses compression settings based on the image contents, is applied:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#24040">AutoFilterColorImages</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#89851">AutoFilterGrayImages</a></p></li>
+</ul>
+<p>See <a class="reference external" href="PDF_Create_UsingSettings.html#99144">Automatic compression</a> for details. (Automatic compression is not used for monochrome images.)</p>
+<p>When automatic compression is chosen, these settings provide further information:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#62153">ColorImageAutoFilterStrategy</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#99033">GrayImageAutoFilterStrategy</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#30939">ColorACSImageDict</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#38481">GrayACSImageDict</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#90844">JPEG2000ColorACSImageDict</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#90478">JPEG2000GrayACSImageDict</a></p></li>
+</ul>
+<p>When automatic compression is not chosen, these settings determine the type of compression (JPEG, Flate, etc.) to be used for the specified image type:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#24916">ColorImageFilter</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#87077">GrayImageFilter</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#77003">MonoImageFilter</a></p></li>
+</ul>
+<p>These settings provide further information during non-automatic compression:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#13008">ColorImageDict</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#79547">GrayImageDict</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#80211">JPEG2000ColorImageDict</a></p></li>
+<li><p><a class="reference external" href="PDF_Create_CommonSettings.html#99239">JPEG2000GrayImageDict</a></p></li>
+</ul>
+<p>Images can be compressed using any one of several compression filters. See Section 3.13 of the <em>PostScript Language Reference</em> and Section 3.3 of the <em>PDF Reference</em> for information on the compression filters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because the values of settings can be modified in a PostScript file (see <a class="reference external" href="PDF_Create_Principles.html#68813">Modifying settings during the job</a>), it is possible when using Distiller to explicitly apply different image settings to specific images. This capability does not apply to Creative Suite applications.</p>
+</div>
+<p>The following sections summarize the types of compression and how Adobe PDF settings can be used to control them.</p>
+<a name="86654"></a><div class="section" id="flate">
+<h4>Flate<a class="headerlink" href="#flate" title="Permalink to this headline">¶</a></h4>
+<p>Flate (also called Zip) is a compression method that works well on images with large areas of single colors or repeating patterns, such as screen shots and simple images created with paint programs, and for black-and-white images that contain repeating patterns. The Flate method is <em>lossless</em> , which means it does not remove data to reduce file size and so does not affect an image’s quality.</p>
+<p>Adobe’s implementation of the Flate filter is derived from the zlib package of Jean-Loup Gailly and Mark Adler.</p>
+<a name="13229"></a></div>
+<div class="section" id="jpeg">
+<h4>JPEG<a class="headerlink" href="#jpeg" title="Permalink to this headline">¶</a></h4>
+<p>The JPEG compression method is suitable for grayscale or color images, such as continuous-tone photographs that contain more detail than can be reproduced on screen or in print. JPEG is a <em>lossy</em> compression method that can achieve much smaller file sizes than Flate compression, which is lossless. JPEG attempts to reduce file size with the minimum loss of information.</p>
+<p>JPEG encoding and decoding is done by means of the direct cosine transformation (DCT) algorithm. This algorithm can take several optional parameters. In PostScript files, these parameters are contained in the <code class="docutils literal notranslate"><span class="pre">DCTEncode</span></code> parameter dictionary that is used by the <code class="docutils literal notranslate"><span class="pre">DCTEncode</span></code> filter. See “DCTEncode Filter” in Section 3.13.3 of the <em>PostScript Language Reference</em> for detailed information.</p>
+<p>Four PDF settings are dictionaries that specify parameters to control JPEG compression. They are <code class="docutils literal notranslate"><span class="pre">ColorACSImageDict</span></code> and <code class="docutils literal notranslate"><span class="pre">GrayACSImageDict</span></code> (for automatic compression) and <code class="docutils literal notranslate"><span class="pre">ColorImageDict</span></code> and <code class="docutils literal notranslate"><span class="pre">GrayImageDict</span></code> (for non-automatic compression). These dictionaries are based on the <code class="docutils literal notranslate"><span class="pre">DCTEncode</span></code> parameter dictionary.</p>
+<p>The default value for each of these dictionaries is</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;/</span><span class="n">Qfactor</span> <span class="mf">0.76</span> <span class="o">/</span><span class="n">Hsamples</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">]</span> <span class="o">/</span><span class="n">Vsamples</span> <span class="p">[</span><span class="mi">2</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">2</span><span class="p">]</span><span class="o">&gt;&gt;</span>
+</pre></div>
+</div>
+<p>The following should be noted about these dictionaries:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">QFactor</span></code> entry is the only one that can be set directly. It provides a measure of the trade-off between image compression and image quality. Lower values of <code class="docutils literal notranslate"><span class="pre">QFactor</span></code> mean higher quality and therefore less compression.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HSamples</span></code> and <code class="docutils literal notranslate"><span class="pre">VSamples</span></code> can be set in the PDF settings file. However, Distiller and other applications ignore these values and provide their own values based on <code class="docutils literal notranslate"><span class="pre">QFactor</span></code> . If <code class="docutils literal notranslate"><span class="pre">QFactor</span></code> &gt;= 0.5, both the <code class="docutils literal notranslate"><span class="pre">HSamples</span></code> and <code class="docutils literal notranslate"><span class="pre">VSamples</span></code> arrays are set to [2 1 1 2]. If <code class="docutils literal notranslate"><span class="pre">QFactor</span></code> &lt; 0.5, then both the <code class="docutils literal notranslate"><span class="pre">HSamples</span></code> and <code class="docutils literal notranslate"><span class="pre">VSamples</span></code> arrays are set to [1 1 1 1]. If you save the settings to a file, the computed values for <code class="docutils literal notranslate"><span class="pre">HSamples</span></code> and <code class="docutils literal notranslate"><span class="pre">VSamples</span></code> are saved in the file, regardless of the original values present in the file.</p></li>
+<li><p>The other entries that can appear in a <code class="docutils literal notranslate"><span class="pre">DCTEncode</span></code> parameter dictionary are not settable through these image dictionaries. They include <code class="docutils literal notranslate"><span class="pre">Columns</span></code> , <code class="docutils literal notranslate"><span class="pre">Rows</span></code> , <code class="docutils literal notranslate"><span class="pre">Colors</span></code> , <code class="docutils literal notranslate"><span class="pre">QuantTables</span></code> , <code class="docutils literal notranslate"><span class="pre">HuffTables</span></code> , <code class="docutils literal notranslate"><span class="pre">ColorTransform</span></code> , and <code class="docutils literal notranslate"><span class="pre">CloseTarget</span></code> . These parameters are set internally in Distiller (or other application) depending on the properties of each image. <code class="docutils literal notranslate"><span class="pre">ColorTransform</span></code> is set to the “best” value for each image. It is set to 0 if the color space is Lab or Gray or (CMYK AND QFactor &gt;= 0.5). Otherwise, <code class="docutils literal notranslate"><span class="pre">ColorTransform</span></code> is set to 1.</p></li>
+</ul>
+<p>In the user interface of Distiller and the Creative Suite applications, you can use the <code class="docutils literal notranslate"><span class="pre">Quality</span></code> field to achieve one of five levels of image quality. The following table shows the values of <code class="docutils literal notranslate"><span class="pre">HSamples</span></code> , <code class="docutils literal notranslate"><span class="pre">VSamples</span></code> , and <code class="docutils literal notranslate"><span class="pre">QFactor</span></code> that correspond to Minimum, Low, Medium, High, and Maximum image quality.</p>
+<p>Image compression quality</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Quality</p></th>
+<th class="head"><p>HSamples</p></th>
+<th class="head"><p>VSamples</p></th>
+<th class="head"><p>QFactor</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Minimum</p></td>
+<td><p>[2 1 1 2]</p></td>
+<td><p>[2 1 1 2]</p></td>
+<td><p>2.40</p></td>
+</tr>
+<tr class="row-odd"><td><p>Low</p></td>
+<td><p>[2 1 1 2]</p></td>
+<td><p>[2 1 1 2]</p></td>
+<td><p>1.30</p></td>
+</tr>
+<tr class="row-even"><td><p>Medium</p></td>
+<td><p>[2 1 1 2]</p></td>
+<td><p>[2 1 1 2]</p></td>
+<td><p>0.76</p></td>
+</tr>
+<tr class="row-odd"><td><p>High</p></td>
+<td><p>[1 1 1 1]</p></td>
+<td><p>[1 1 1 1]</p></td>
+<td><p>0.40</p></td>
+</tr>
+<tr class="row-even"><td><p>Maximum</p></td>
+<td><p>[1 1 1 1]</p></td>
+<td><p>[1 1 1 1]</p></td>
+<td><p>0.15</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When Distiller processes PostScript files to produce PDF, it normally decompresses all JPEG images and then recompresses them according to the settings in effect. The exception is when the <code class="docutils literal notranslate"><span class="pre">PassThroughJPEGImages</span></code> setting is <code class="docutils literal notranslate"><span class="pre">true</span></code> . Illustrator and InDesign do not use this setting but normally behave as if it were <code class="docutils literal notranslate"><span class="pre">true</span></code> with regard to placed PDF files containing compressed images. That is, they do not uncompress and recompress them unless color conversion or downsampling takes place. See the reference entry for <code class="docutils literal notranslate"><span class="pre">PassThroughJPEGImages</span></code> for more information.</p>
+</div>
+<a name="60774"></a></div>
+<div class="section" id="jpeg2000">
+<h4>JPEG2000<a class="headerlink" href="#jpeg2000" title="Permalink to this headline">¶</a></h4>
+<p>JPEG2000 is a new international standard for the compression and packaging of image data. It defines a wavelet-based method for image compression that gives somewhat better size reduction than other methods such as JPEG or CCITT. It is suitable both for images that have a single color component and for those with multiple color components. JPEG2000 is especially well suited for color images with smooth variation in color values.</p>
+<p>There is no filter name defined for JPEG2000 compression in the PostScript language definition). PDF files use the <code class="docutils literal notranslate"><span class="pre">JPXDecode</span></code> filter to decompress JPEG2000 images. See the <em>PDF Reference</em> for information about JPEG2000 compression in PDF files. See also <a class="reference external" href="http://www.jpeg.org/JPEG2000.htm">http://www.jpeg.org/JPEG2000.htm</a> .</p>
+<p>The JPEG2000 compression filter provides the ability to encode different versions of an image with varying resolution. For example, a thumbnail version of the image may be encoded in the data, followed by a sequence of other versions of the image, each with approximately four times as many samples (twice the width, twice the height) as the previous one. The last version is the highest resolution image, corresponding to the value of the <code class="docutils literal notranslate"><span class="pre">Quality</span></code> key (see the following table). A PDF viewer may not need to decode the highest resolution version but only the resolution that best matches the current viewing or printing needs. Therefore, fewer bytes need to be processed, a particular benefit when viewing files over the Web. JPEG2000 data also has a built-in tiling structure, such that if the full image is not visible, only those tiles being displayed need to be decoded (to an appropriate resolution).</p>
+<p>There are four PDF settings that specify dictionaries for customizing color or grayscale image compression for the JPEG2000 filter:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">JPEG2000ColorImageDict</span></code> and <code class="docutils literal notranslate"><span class="pre">JPEG2000GrayImageDict</span></code> are used with regular (non-automatic) compression.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JPEG2000ColorACSImageDict</span></code> and <code class="docutils literal notranslate"><span class="pre">JPEG2000GrayACSImageDict</span></code> are used with automatic compression.</p></li>
+</ul>
+<p>These dictionaries have three entries you can set, as shown in the following table. Since all entries are optional, an empty dictionary is acceptable.</p>
+<p>Entries in JPEG2000 image dictionaries</p>
+<table class="docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>TileWidth</p></td>
+<td><p>integer</p></td>
+<td><p><em>(Optional)</em> The width of JPEG2000 image tiles in samples. Valid values are 128 - 2048; values outside this range generate a range error.</p>
+<p>Default value: 256.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>TileHeight</p></td>
+<td><p>integer</p></td>
+<td><p><em>(Optional)</em> The height of JPEG2000 image tiles in samples. Valid values are 128 - 2048; values outside this range generate a range error.</p>
+<p>Default value: 256.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>Quality</p></td>
+<td><p>integer</p></td>
+<td><p><em>(Optional)</em> The required image quality for the highest resolution image in the image progression. Valid values are 1 - 100, where 1 is the lowest quality (highest compression), 99 means visually lossless compression, and 100 means numerically lossless compression.</p>
+<p>Default value: 15 (Medium).</p>
+<p>In the Compression panel of the Distiller UI, the mapping that occurs for the predefined options is as follows:</p>
+<ul class="simple">
+<li><p>Minimum = 5</p></li>
+<li><p>Low = 10</p></li>
+<li><p>Medium = 15</p></li>
+<li><p>High = 20</p></li>
+<li><p>Maximum = 30</p></li>
+<li><p>Lossless = 100</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The user interface provides a Tile Size option if <code class="docutils literal notranslate"><span class="pre">CompatibilityLevel</span></code> is set to 1.5 or higher and the Compression setting is JPEG2000 or Automatic (JPEG2000). The amount specified sets both the <code class="docutils literal notranslate"><span class="pre">TileWidth</span></code> and <code class="docutils literal notranslate"><span class="pre">TileHeight</span></code> parameters to the same value. If a settings file has been modified so that the values are different, Distiller accepts both values, but Creative Suite applications use the value of <code class="docutils literal notranslate"><span class="pre">TileWidth</span></code> for both.</p>
+<a name="99144"></a></div>
+</div>
+<div class="section" id="automatic-compression">
+<h3>Automatic compression<a class="headerlink" href="#automatic-compression" title="Permalink to this headline">¶</a></h3>
+<p>Automatic compression for color or grayscale bitmap images means that the application producing the PDF determines the compression filters to be applied to individual images. Setting <code class="docutils literal notranslate"><span class="pre">AutoFilterColorImages</span></code> and/or <code class="docutils literal notranslate"><span class="pre">AutoFilterGrayImages</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> causes automatic compression to take place for color and grayscale images, respectively.</p>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">ColorImageAutoFilterStrategy</span></code> and <code class="docutils literal notranslate"><span class="pre">GrayImageAutoFilterStrategy</span></code> settings to choose between two automatic compression strategies. The value of these settings can be either <code class="docutils literal notranslate"><span class="pre">JPEG</span></code> (the default) or <code class="docutils literal notranslate"><span class="pre">JPEG2000</span></code> (which applies only to PDF 1.5 and later files). If you choose <code class="docutils literal notranslate"><span class="pre">JPEG</span></code> :</p>
+<ul class="simple">
+<li><p>JPEG compression (the <code class="docutils literal notranslate"><span class="pre">DCTEncode</span></code> filter) is used for 8-bit images that have smooth color changes (low-frequency images). The parameters specified in the <code class="docutils literal notranslate"><span class="pre">ColorACSImageDict</span></code> or <code class="docutils literal notranslate"><span class="pre">GrayACSImageDict</span></code> dictionary are used to provide further control. JPEG typically provides greater compression than Flate, but is <em>lossy</em> (can lose information).</p></li>
+<li><p>Flate compression is used for all other images. Flate is a lossless compression method, so it is more suitable for images with sharp color changes (high-frequency images). Flate does not take any additional parameters.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Flate compression is also used when the image uses a <code class="docutils literal notranslate"><span class="pre">DeviceN</span></code> color space, is small ( &lt; 1024 bytes), extremely wide ( &gt; 40000 pixels) or is ChromaKeyed.</p>
+</div>
+<p>If you choose <code class="docutils literal notranslate"><span class="pre">JPEG2000</span></code> :</p>
+<ul class="simple">
+<li><p>Lossy JPEG2000 compression is used for low-frequency images. The compression parameters specified in the <code class="docutils literal notranslate"><span class="pre">JPEG2000ColorACSImageDict</span></code> or <code class="docutils literal notranslate"><span class="pre">JPEG2000GrayACSImageDict</span></code> dictionary provide further control of the compression. See <a class="reference external" href="PDF_Create_UsingSettings.html#60774">JPEG2000</a> for information about these dictionaries.</p></li>
+<li><p>Lossless JPEG2000 compression is used for high-frequency images. The compression <code class="docutils literal notranslate"><span class="pre">JPEG2000ColorACSImageDict</span></code> or <code class="docutils literal notranslate"><span class="pre">JPEG2000GrayACSImageDict</span></code> dictionaries are used as well, with the modification that the <code class="docutils literal notranslate"><span class="pre">Quality</span></code> parameter is forced to 100 (to achieve lossless compression).</p></li>
+</ul>
+</div>
+<div class="section" id="non-automatic-compression">
+<h3>Non-automatic compression<a class="headerlink" href="#non-automatic-compression" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the compression options that are available when automatic compression is not chosen. (Automatic compression does not apply to monochrome images.)</p>
+<div class="section" id="color-and-grayscale-images">
+<h4>Color and grayscale images<a class="headerlink" href="#color-and-grayscale-images" title="Permalink to this headline">¶</a></h4>
+<p>Grayscale images have one color component and more than one 1 bit per component. Color images have more than one color component and 1 or more bits per component:</p>
+<ul class="simple">
+<li><p>For grayscale images that have 2 or 4 bits per component or color images with 1, 2, or 4 bits per component, only Flate compression is permitted</p></li>
+<li><p>For grayscale or color images with 8 bits per component, JPEG, JPEG2000, and Flate are permitted</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For grayscale or color images with more than 8 bits per component, the least significant bits of each image sample are removed, yielding 8 bits per sample.</p>
+</div>
+<p>When image compression is selected (with <code class="docutils literal notranslate"><span class="pre">EncodeColorImages</span></code> , <code class="docutils literal notranslate"><span class="pre">EncodeGrayImages</span></code> , or <code class="docutils literal notranslate"><span class="pre">EncodeMonoImages</span></code> ), the <code class="docutils literal notranslate"><span class="pre">ColorImageFilter</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageFilter</span></code> , or <code class="docutils literal notranslate"><span class="pre">MonoImageFilter</span></code> settings specify which compression filter should be used. If no filter name is specified (is absent), lossless Flate is used in all cases. Invalid filter names generate an error.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following filters are <em>never</em> selected, even if they are specified in the Adobe PDF settings file: <code class="docutils literal notranslate"><span class="pre">LZWEncode</span></code> , <code class="docutils literal notranslate"><span class="pre">ASCII85Encode</span></code> , and <code class="docutils literal notranslate"><span class="pre">ASCIIHexEncode</span></code> .</p>
+</div>
+<p>Under the following conditions, <code class="docutils literal notranslate"><span class="pre">FlateEncode</span></code> is used even if another filter is specified:</p>
+<ul class="simple">
+<li><p>The selected filter is <code class="docutils literal notranslate"><span class="pre">CCITTFaxEncode</span></code> and the image is wide (more than 40,000 columns).</p></li>
+<li><p>The selected filter is <code class="docutils literal notranslate"><span class="pre">JPXEncode</span></code> and the image is indexed or ChromaKeyed or <code class="docutils literal notranslate"><span class="pre">CompatibilityLevel</span></code> is less than 1.5.</p></li>
+<li><p>The selected filter is <code class="docutils literal notranslate"><span class="pre">DCTEncode</span></code> and the image is wide (more than 40,000 columns), indexed, deviceN or ChromaKeyed.</p></li>
+<li><p>The selected filter is not supported for the number of colors or sample depth of the particular image being compressed.</p></li>
+</ul>
+<a name="90740"></a></div>
+<div class="section" id="monochrome-black-and-white-images">
+<h4>Monochrome (black and white) images<a class="headerlink" href="#monochrome-black-and-white-images" title="Permalink to this headline">¶</a></h4>
+<p>Monochrome images are defined as images with only one color component and one bit per sample. For monochrome image compression, the available filters are <code class="docutils literal notranslate"><span class="pre">CCITTFaxEncode</span></code> , <code class="docutils literal notranslate"><span class="pre">RunLengthEncode</span></code> , and <code class="docutils literal notranslate"><span class="pre">FlateEncode</span></code> .</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CCITTFaxEncode</span></code> parameter dictionary specifies options for CCITT compression. See “CCITTFaxEncode Filter” in Section 3.13.3 of the <em>PostScript Language Reference</em> for details. The <code class="docutils literal notranslate"><span class="pre">MonoImageDict</span></code> setting is a dictionary that contains the same keys as the <code class="docutils literal notranslate"><span class="pre">CCITTFaxEncode</span></code> parameter dictionary; any of the keys can be customized.</p>
+<p><code class="docutils literal notranslate"><span class="pre">CCITTFaxEncode</span></code> (CCITT Group 4) compression typically yields the best compression of monochrome images. It is specified by a value of -1 for the <code class="docutils literal notranslate"><span class="pre">K</span></code> key in the <code class="docutils literal notranslate"><span class="pre">CCITTFaxEncode</span></code> parameter dictionary, for two-dimensional encoding. A value of 0 for this key corresponds to CCITT Group 3 (one-dimensional encoding).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>With the exceptions of the <code class="docutils literal notranslate"><span class="pre">AntiAliasMonoImages</span></code> and <code class="docutils literal notranslate"><span class="pre">MonoImageDepth</span></code> parameters, the monochrome image compression parameters also can be applied to stencil masks created by the <code class="docutils literal notranslate"><span class="pre">imagemask</span></code> operator. Parameter behavior is the same in both cases. For details on <code class="docutils literal notranslate"><span class="pre">imagemask</span></code> , see the <em>PostScript Language Reference</em> .</p>
+</div>
+<a name="68478"></a></div>
+</div>
+<div class="section" id="downsampling-and-subsampling-images">
+<h3>Downsampling and subsampling images<a class="headerlink" href="#downsampling-and-subsampling-images" title="Permalink to this headline">¶</a></h3>
+<p>Downsampling and subsampling are processes that reduce the number of pixels per inch in an image. To do so, pixels in a sample area are combined to make one larger pixel.</p>
+<p>The following subsampling and downsampling methods are available:</p>
+<p><strong>Subsampling</strong> : A pixel in the center of the sample area replaces the entire area at the specified resolution. Subsampling is significantly faster than downsampling but results in images that are less smooth and continuous.</p>
+<p><strong>Average downsampling</strong> : The pixels in a sample area are averaged, and the average pixel color replaces the entire area at the specified resolution.</p>
+<p><strong>Bicubic downsampling</strong> : A weighted average is used to determine pixel color and usually yields better results than the simple averaging method of downsampling. This is the slowest but most precise method, resulting in the smoothest tonal gradations.</p>
+<p>You should downsample or subsample bitmap images when they are sampled at a higher resolution than the output device supports. The excess data increases the time it takes the device to process the image without improving image quality. For example, by reducing an image from a typical printer resolution of 300 pixels per inch to a typical monitor resolution of 72 pixels per inch, the amount of data needed to represent an image is decreased by a factor of 16, and the image can be drawn on the screen much more quickly.</p>
+<div class="section" id="downsampling-settings">
+<h4>Downsampling settings<a class="headerlink" href="#downsampling-settings" title="Permalink to this headline">¶</a></h4>
+<p>These settings are Boolean values that specify whether images of the specified type should be downsampled: <code class="docutils literal notranslate"><span class="pre">DownsampleColorImages</span></code> , <code class="docutils literal notranslate"><span class="pre">DownsampleGrayImages</span></code> , and <code class="docutils literal notranslate"><span class="pre">DownsampleMonoImages</span></code> .</p>
+<p>These settings specify the resolution to which images should be downsampled: <code class="docutils literal notranslate"><span class="pre">ColorImageResolution</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageResolution</span></code> , or <code class="docutils literal notranslate"><span class="pre">MonoImageResolution</span></code> .</p>
+<p>These settings specify the type of sampling (average or bicubic downsampling, subsampling, or none) <code class="docutils literal notranslate"><span class="pre">ColorImageDownsampleType</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageDownsampleType</span></code> , or <code class="docutils literal notranslate"><span class="pre">MonoImageDownsampleType</span></code> .</p>
+<p>In order for downsampling to actually occur, the ratio of the input image resolution to the desired output resolution (specified by the above parameters) must exceed the <em>downsampling threshold.</em> These settings are used to set the downsampling threshold resolution: <code class="docutils literal notranslate"><span class="pre">ColorImageDownsampleThreshold</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageDownsampleThreshold</span></code> , and <code class="docutils literal notranslate"><span class="pre">MonoImageDownsampleThreshold</span></code> .</p>
+<p>For example, if <code class="docutils literal notranslate"><span class="pre">ColorImageResolution</span></code> is 72 and <code class="docutils literal notranslate"><span class="pre">ColorImageDownsampleThreshold</span></code> is set to 1.5, an image is not downsampled unless its input resolution is greater than 108 pixels per inch:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">trunc</span><span class="p">((</span><span class="mi">72</span> <span class="o">*</span> <span class="mf">1.5</span><span class="p">)</span> <span class="o">+</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span> <span class="o">=</span> <span class="mi">108</span> <span class="n">pixels</span> <span class="n">per</span> <span class="n">inch</span>
+</pre></div>
+</div>
+<p>Threshold values must be between 1.0 through 10.0, inclusive, with a default value of 1.5. (If you set the threshold out of range, it reverts to 1.5.)</p>
+<a name="70454"></a></div>
+<div class="section" id="controlling-the-range-of-bit-depths-for-which-downsampling-occurs">
+<h4>Controlling the range of bit depths for which downsampling occurs<a class="headerlink" href="#controlling-the-range-of-bit-depths-for-which-downsampling-occurs" title="Permalink to this headline">¶</a></h4>
+<p>You can also control the range of bit depths for which downsampling occurs. For example, in a workflow where there is a mixture of 1-bit and 8-bit data, you can downsample the 8-bit data while not touching the 1-bit data. This is done with the following settings:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ColorImageMinDownsampleDepth</span></code> can be 1, 2, 4, or 8</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GrayImageMinDownsampleDepth</span></code> can be 2, 4, or 8</p></li>
+</ul>
+<p>For example, a value of 4 for <code class="docutils literal notranslate"><span class="pre">ColorImageMinDownsampleDepth</span></code> means that only 4- and 8 bits-per-sample color images are downsampled (assuming <code class="docutils literal notranslate"><span class="pre">DownsampleColorImages</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> ). Similarly, a value of 8 for <code class="docutils literal notranslate"><span class="pre">GrayImageMinDownsampleDepth</span></code> means that only 8 bits-per-sample gray images are downsampled (assuming <code class="docutils literal notranslate"><span class="pre">DownsampleGrayImages</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> ).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>12 bits-per-sample images (valid in PostScript) are treated exactly as 8 bits-per-sample images because they are converted to 8 bits per sample before downsampling takes place.</p>
+</div>
+</div>
+</div>
+<div class="section" id="setting-compression-of-text-line-art-and-objects">
+<h3>Setting compression of text, line art, and objects<a class="headerlink" href="#setting-compression-of-text-line-art-and-objects" title="Permalink to this headline">¶</a></h3>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">CompressPages</span></code> setting to set the compression of text and line art. For PDF 1.5 and above, you can use the <code class="docutils literal notranslate"><span class="pre">CompressObjects</span></code> setting to control object-level compression, which is the consolidation of small objects that cannot be individually compressed into <em>streams</em> that can then be efficiently compressed.</p>
+<a name="99863"></a></div>
+<div class="section" id="distiller-only-image-settings">
+<h3>Distiller-only image settings<a class="headerlink" href="#distiller-only-image-settings" title="Permalink to this headline">¶</a></h3>
+<p>The following options apply only to Distiller and are not supported by Creative Suite applications.</p>
+<a name="95410"></a><div class="section" id="controlling-bit-depth">
+<h4>Controlling bit depth<a class="headerlink" href="#controlling-bit-depth" title="Permalink to this headline">¶</a></h4>
+<p><em>Bit depth</em> is the number of bits used to represent each color component of each sample of an image. (For example, red, green, and blue are the color components in an RGB image). Distiller supports the control of bit depth by means of the <code class="docutils literal notranslate"><span class="pre">ColorImageDepth</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageDepth</span></code> , and <code class="docutils literal notranslate"><span class="pre">MonoImageDepth</span></code> settings.</p>
+<p>The bit depth of an image can be decreased (for example, from 8 bits per sample to 4 bits per sample) to save space, regardless of whether the image is downsampled.</p>
+<p>If an image is downsampled, the bit depth can be increased to provide <em>anti-aliasing</em> . Anti-aliasing increases the number of bits per sample to preserve some of the information that is otherwise lost by downsampling. Anti-aliasing occurs only in the following conditions:</p>
+<ul class="simple">
+<li><p>The image depth setting specifies a bit depth greater than that of the incoming image.</p></li>
+<li><p>The value of the appropriate setting <code class="docutils literal notranslate"><span class="pre">AntiAliasColorImages</span></code> , <code class="docutils literal notranslate"><span class="pre">AntiAliasGrayImages</span></code> , or <code class="docutils literal notranslate"><span class="pre">AntiAliasMonoImages</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> . (They need not be <code class="docutils literal notranslate"><span class="pre">true</span></code> to decrease the bit depth.)</p></li>
+<li><p>Sampling is enabled and the downsample thresholds are met; therefore, sampling actually occurs.</p></li>
+</ul>
+<p>In these cases, Distiller first increases the bit depth, then downsamples the image.</p>
+<p>For example, suppose a 300 pixel-per-inch monochrome image is downsampled to 150 pixels per inch. If <code class="docutils literal notranslate"><span class="pre">MonoImageDepth</span></code> is 4 and <code class="docutils literal notranslate"><span class="pre">AntiAliasMonoImages</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> , the bit depth of the image is increased prior to downsampling so that it becomes a 4-bit grayscale image. Each of the samples in the downsampled image is produced from four samples in the input image; because each of the input samples can be either on or off, there are 16 possible values for each sample in the downsampled image.</p>
+<p>Note that after the bit depth settings have been applied, an input grayscale or monochrome image may be changed to the other type.</p>
+<ul class="simple">
+<li><p>A grayscale image specified to have a <code class="docutils literal notranslate"><span class="pre">GrayImageDepth</span></code> of 1 is treated as a monochrome image.</p></li>
+<li><p>A monochrome image that has a <code class="docutils literal notranslate"><span class="pre">MonoImageDepth</span></code> of 2, 4, or 8 becomes a grayscale image.</p></li>
+</ul>
+<p>Distiller determines whether to apply compression settings <em>after</em> downsampling has taken place. If the bit depth has changed, the resulting image type determines which encoding setting is examined. For example, if a monochrome image was changed to have a bit depth of 2 or more, the <code class="docutils literal notranslate"><span class="pre">EncodeGrayImages</span></code> setting would be checked. If encoding is enabled, the image is compressed using the filter type and filter parameter dictionary specified by the settings for the resulting image type.</p>
+<p>The PostScript example below shows a code fragment specifying that monochrome images be downsampled to 72 pixels per inch, converted to 2 bits per sample, and encoded using Flate compression. Because the downsampled images are grayscale, the filter is specified using the grayscale rather than the monochrome image settings. Also, assuming that the input image is a 300-pixels-per-inch image, it is downsampled to 75 pixels per inch, the closest possible value to the 72 pixels per inch requested.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;</span>    <span class="o">/</span><span class="n">DownsampleMonoImages</span> <span class="n">true</span>
+      <span class="o">/</span><span class="n">MonoImageResolution</span> <span class="mi">72</span>
+      <span class="o">/</span><span class="n">MonoImageDepth</span> <span class="mi">2</span>
+      <span class="o">/</span><span class="n">EncodeGrayImages</span> <span class="n">true</span>
+      <span class="o">/</span><span class="n">AntiAliasMonoImages</span> <span class="n">true</span>
+      <span class="o">/</span><span class="n">GrayImageFilter</span> <span class="o">/</span><span class="n">FlateEncode</span>
+<span class="o">&gt;&gt;</span> <span class="n">setdistillerparams</span>
+</pre></div>
+</div>
+<a name="75361"></a></div>
+<div class="section" id="specifying-a-minimum-resolution-of-sampled-images">
+<h4>Specifying a minimum resolution of sampled images<a class="headerlink" href="#specifying-a-minimum-resolution-of-sampled-images" title="Permalink to this headline">¶</a></h4>
+<p>In addition to the downsampling settings, starting with version 7.0, Distiller provides settings to check whether images meet a minimum resolution.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ColorImageMinResolution</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageMinResolution</span></code> , and <code class="docutils literal notranslate"><span class="pre">MonoImageMinResolution</span></code> are settings that specify an integer between 9 to 64000 representing the minimum resolution for an image.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ColorImageMinResolutionPolicy</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageMinResolutionPolicy</span></code> , and <code class="docutils literal notranslate"><span class="pre">MonoImageMinResolutionPolicy</span></code> are settings that specify what happens when images are found that do not meet the minimum resolution. They are names that can take one of the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OK</span></code> : the minimum resolution settings are ignored.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Warning</span></code> : Any image with a resolution smaller than the specified minimum generates a warning when the PDF file is created.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Error</span></code> : Any image with a resolution smaller than the specified minimum generates an error, and the job fails with a limit check error.</p></li>
+</ul>
+<p>The default values for these settings in the predefined Adobe PDF settings files are chosen to be the same as the values for the default downsampling resolution. With these default values, Distiller’s default behavior does not change; that is, Distiller does not enforce any lower limit on image resolution.</p>
+<p>These settings can be used to ensure that a PDF file does not have any images with lower resolution than the defined limit. This feature is primarily for prepress people who want to detect that no low resolution images make it into a PDF file. An example is a sampled image in an advertisement where the image must be of a certain quality.</p>
+<p>If you get a warning or error about a low resolution image and the settings are correct according to your requirements, you need to go to the source of the image and regenerate it with a higher resolution. Distiller cannot actively alter these images because it doesn’t support up-sampling.</p>
+<p>In the following example, Distiller issues a warning every time a sampled gray image with resolution smaller than 100 ppi is placed in the PDF file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">GrayImageMinResolution</span> <span class="mi">100</span>
+<span class="o">/</span><span class="n">GrayImageMinResolutionPolicy</span> <span class="o">/</span><span class="ne">Warning</span>
+</pre></div>
+</div>
+<p>The warning messages will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="p">[</span> <span class="ne">Warning</span><span class="p">:</span> <span class="n">Gray</span> <span class="n">image</span> <span class="n">resolution</span> <span class="p">(</span><span class="mi">92</span> <span class="n">ppi</span><span class="p">)</span> <span class="ow">is</span>
+
+  <span class="n">lower</span> <span class="n">than</span> <span class="o">/</span><span class="n">GrayImageMinResolution</span> <span class="p">(</span><span class="mi">100</span> <span class="n">ppi</span><span class="p">)</span> <span class="p">]</span><span class="o">%%</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">GrayImageMinResolutionPolicy</span></code> is set to <code class="docutils literal notranslate"><span class="pre">Error</span></code> , then an error message is emitted and the job fails with a <code class="docutils literal notranslate"><span class="pre">limitcheck</span></code> error. If <code class="docutils literal notranslate"><span class="pre">GrayImageMinResolutionPolicy</span></code> is set to <code class="docutils literal notranslate"><span class="pre">OK</span></code> , then distillation continues normally.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>While there are no dependencies or interaction between the downsampling settings and the minimum resolution settings, normally you would not set the resolution policy to <code class="docutils literal notranslate"><span class="pre">Warning</span></code> or <code class="docutils literal notranslate"><span class="pre">Error</span></code> and at the same time set the minimum resolution to a value that is higher than the downsampling threshold. If you do this, the result is that <em>all</em> images are flagged as having too low a resolution. If the resolution policy is <code class="docutils literal notranslate"><span class="pre">Error</span></code> , then only PDF files with no images would be distilled.</p>
+</div>
+<a name="36967"></a></div>
+<div class="section" id="controlling-downsampling-and-encoding-for-each-sampled-image">
+<h4>Controlling downsampling and encoding for each sampled image<a class="headerlink" href="#controlling-downsampling-and-encoding-for-each-sampled-image" title="Permalink to this headline">¶</a></h4>
+<p>You can separately control the downsampling and encoding of each sampled image in a PostScript file. To do this, you must make adjustments to the Distiller parameters in the file just before, and appropriate to, each image.</p>
+<a name="16777"></a></div>
+<div class="section" id="disabling-of-image-cropping">
+<h4>Disabling of image cropping<a class="headerlink" href="#disabling-of-image-cropping" title="Permalink to this headline">¶</a></h4>
+<p>Distiller determines whether more than 10 percent of an image sample falls outside the existing clip path. If so, Distiller normally discards (crops) the image samples that fall outside the clip area, resulting in smaller images and PDF files.</p>
+<p>For workflows in which the full-size (non-cropped) images must be extracted for special-purpose image manipulation, it is possible to disable cropping, using the settings <code class="docutils literal notranslate"><span class="pre">CropColorImages</span></code> , <code class="docutils literal notranslate"><span class="pre">CropGrayImages</span></code> , and <code class="docutils literal notranslate"><span class="pre">CropMonoImages</span></code> for color, grayscale, and monochrome images, respectively. These settings are Boolean values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">false</span></code> : indicates that Distiller should not clip image samples regardless of the current clip area.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">true</span></code> : (the default) indicates that Distiller should crop only if the 10 percent criteria is met.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>InDesign uses a separate setting, <code class="docutils literal notranslate"><span class="pre">CropImagesToFrames</span></code> , to control cropping.</p>
+</div>
+<a name="38175"></a></div>
+</div>
+</div>
+<div class="section" id="using-the-font-settings">
+<h2>Using the font settings<a class="headerlink" href="#using-the-font-settings" title="Permalink to this headline">¶</a></h2>
+<p>Fonts can be included ( <em>embedded</em> ) in a PDF file to ensure that the file can be rendered correctly, regardless of whether the fonts are installed on the machine used to view the file. For example, the exact font may be needed to achieve certain effects such as high-end printing or to ensure portability in situations where the viewer cannot create a substitute font.</p>
+<p>Distiller supports the <code class="docutils literal notranslate"><span class="pre">EmbedAllFonts</span></code> setting, which specifies whether fonts should be embedded. Other Creative Suite applications always embed fonts when possible.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Embedding is subject to license; specific fonts can indicate that embedding is not permitted.</p>
+</div>
+<p>See <a class="reference external" href="PDF_Create_CommonSettings.html#38175">Font settings</a> for a description of each of the font settings.</p>
+<p>Embedded fonts make a PDF file larger. To produce files as small as possible, fonts can be <em>subsetted</em> . When you subset a font, only the information required to draw glyphs (specific renderings) for the characters used in the document is embedded. Subsetting is expressed as a percentage of the font glyphs for a font format. The <code class="docutils literal notranslate"><span class="pre">SubsetFonts</span></code> and <code class="docutils literal notranslate"><span class="pre">MaxSubsetPct</span></code> settings are used to control partial embedding of fonts.</p>
+<p>Distiller supports additional settings to control which fonts are embedded. The rest of this section describes how Distiller chooses whether to embed fonts.</p>
+<p>Distiller maintains lists of fonts that will be embedded or not embedded. <code class="docutils literal notranslate"><span class="pre">AlwaysEmbed</span></code> specifies fonts that should always be embedded, and <code class="docutils literal notranslate"><span class="pre">NeverEmbed</span></code> specifies fonts that should never be embedded. These two settings are arrays that contain a list of font names. Optionally, the first element in the arrays may be a Boolean value (<code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> ).</p>
+<ul class="simple">
+<li><p>If the first element is not a Boolean value, the array of font names represents the entire list of fonts to be embedded or not embedded.</p></li>
+<li><p>If the first element is the Boolean <code class="docutils literal notranslate"><span class="pre">true</span></code> , the font names in the array are <em>added to</em> Distiller’s internal list of fonts to be embedded (<code class="docutils literal notranslate"><span class="pre">AlwaysEmbed</span></code> ) or not embedded (<code class="docutils literal notranslate"><span class="pre">NeverEmbed</span></code> ).</p></li>
+<li><p>If the first element is the Boolean <code class="docutils literal notranslate"><span class="pre">false</span></code> , the font names in the array are <em>removed from</em> Distiller’s internal list of fonts to be embedded (<code class="docutils literal notranslate"><span class="pre">AlwaysEmbed</span></code> ) or not embedded (<code class="docutils literal notranslate"><span class="pre">NeverEmbed</span></code> ).</p></li>
+</ul>
+<p>If a font appears in both the <code class="docutils literal notranslate"><span class="pre">NeverEmbed</span></code> and <code class="docutils literal notranslate"><span class="pre">AlwaysEmbed</span></code> lists, it is never embedded.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EmbedAllFonts</span></code> setting is a Boolean value that, when <code class="docutils literal notranslate"><span class="pre">true</span></code> , specifies that all fonts be embedded except those in the <code class="docutils literal notranslate"><span class="pre">NeverEmbed</span></code> array.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A font may not be embedded if its license doesn’t permit embedding, even though its name is in the <code class="docutils literal notranslate"><span class="pre">AlwaysEmbed</span></code> list or <code class="docutils literal notranslate"><span class="pre">EmbedAllFonts</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> . Furthermore, a symbolic font is always embedded (if license permits) even if its name is in the <code class="docutils literal notranslate"><span class="pre">NeverEmbed</span></code> list.</p>
+</div>
+<p>In this PostScript example, Minion Regular is always embedded, and ITC Stone Serif Italic and ITC Stone Sans are never embedded.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">AlwaysEmbed</span> <span class="p">[</span> <span class="o">/</span><span class="n">Minion</span><span class="o">-</span><span class="n">Regular</span> <span class="p">]</span>
+
+          <span class="o">/</span><span class="n">NeverEmbed</span> <span class="p">[</span> <span class="o">/</span><span class="n">StoneSans</span> <span class="o">/</span><span class="n">StoneSerif</span><span class="o">-</span><span class="n">Italic</span> <span class="p">]</span>
+
+  <span class="o">&gt;&gt;</span> <span class="n">setdistillerparams</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The font name given to definefont does not have to match the name in the FontInfo dictionary. For instance, in this example the full name of the font defined as ‘StoneSans’ is ‘ITC Stone Sans.’</p>
+</div>
+<p>The following table identifies the types of fonts that you can (or cannot) embed or subset through Distiller settings.</p>
+<p>Distiller control over embedding and subsetting fonts</p>
+<table class="docutils align-default" id="section-2">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 28%" />
+<col style="width: 18%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Font</p></th>
+<th class="head"><p>NeverEmbed?</p></th>
+<th class="head"><p>AlwaysEmbed?</p></th>
+<th class="head"><p>Subset?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type 1</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+<tr class="row-odd"><td><p>Type 3</p></td>
+<td><p>No - Always embedded</p></td>
+<td></td>
+<td><p>No - Always subsetted</p></td>
+</tr>
+<tr class="row-even"><td><p>True Type (Type 42)</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>No - Always subsetted</p></td>
+</tr>
+<tr class="row-odd"><td><p>CIDFontType0</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>No - Always subsetted</p></td>
+</tr>
+<tr class="row-even"><td><p>CIDFontType1</p></td>
+<td><p>No - Always embedded</p></td>
+<td></td>
+<td><p>No - Always subsetted</p></td>
+</tr>
+<tr class="row-odd"><td><p>CIDFontType2</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>No - Always subsetted</p></td>
+</tr>
+<tr class="row-even"><td><p>OpenType</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+<td><p>Yes</p></td>
+</tr>
+</tbody>
+</table>
+<p>For additional information on Type 1, Type 3, Type 42, and CID-keyed fonts, see Chapter 5, “Fonts,” in the <em>PostScript Language Reference</em> and Chapter 5 in the <em>PDF Reference</em> . You also can find additional documentation on fonts at the <a class="reference external" href="http://www.adobe.com/go/acrobat_developer">Acrobat Developer Center</a> .</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Distiller 5 and above also support OpenType fonts; Distiller 4 does not. OpenType fonts are based on the compact font format (CFF). For more information, see the <em>Compact Font Format Specification</em> at the <a class="reference external" href="http://www.adobe.com/go/acrobat_developer">Acrobat Developer Center</a> .</p>
+</div>
+<a name="86731"></a></div>
+<div class="section" id="using-the-color-conversion-settings">
+<h2>Using the color conversion settings<a class="headerlink" href="#using-the-color-conversion-settings" title="Permalink to this headline">¶</a></h2>
+<p>This section describes how the color conversion settings are used and explains the correspondence between different groups of settings.</p>
+<p>Acrobat Distiller uses a number of settings to control color conversion. As with all Distiller parameters, these settings are defined in the <code class="docutils literal notranslate"><span class="pre">Common</span></code> namespace (see <a class="reference external" href="PDF_Create_CommonSettings.html#80362">Common PDF Settings</a>” for details).</p>
+<p>Creative Suite applications have a sophisticated user interface for determining color conversions when producing PDF files. The options provided in the UI correspond to settings in the <code class="docutils literal notranslate"><span class="pre">CreativeSuite</span></code> namespace of the settings files (see <a class="reference external" href="PDF_Create_NewNamespaces.html#69127">Other Namespaces</a>” for details). These options provide a superset of the functionality provided by the Distiller settings in the <code class="docutils literal notranslate"><span class="pre">Common</span></code> namespace. To maximize interoperability, Creative Suite applications store approximations to their color settings in the Common settings when saving settings files.</p>
+<div class="section" id="distiller-color-conversion-settings">
+<h3>Distiller color conversion settings<a class="headerlink" href="#distiller-color-conversion-settings" title="Permalink to this headline">¶</a></h3>
+<p>Distiller uses a number of settings related to color. The following settings are only used by Distiller: <code class="docutils literal notranslate"><span class="pre">DefaultRenderingIntent</span></code> , <code class="docutils literal notranslate"><span class="pre">ParseICCProfilesInComments</span></code> , <code class="docutils literal notranslate"><span class="pre">PreserveDICMYKValues</span></code> , <code class="docutils literal notranslate"><span class="pre">PreserveHalftoneInfo</span></code> , <code class="docutils literal notranslate"><span class="pre">TransferFunctionInfo</span></code> , and <code class="docutils literal notranslate"><span class="pre">UCRandBGInfo</span></code> . They control such features as whether Distiller preserves (that is, passes into the PDF file) halftoning, overprinting, and transfer function information. See <a class="reference external" href="PDF_Create_CommonSettings.html#80362">Common PDF Settings</a> for information on these settings.</p>
+<p>Other color conversion settings are shared to a limited degree with Creative Suite applications. They are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ColorSettingsFile</span></code> : A file containing color settings. When a color settings file is specified, all other color conversion settings are ignored and not selectable in the UI. The Creative Suite applications recognize the existence of this setting as an indication that the user has modified color settings outside the suite.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CalCMYKProfile</span></code> , <code class="docutils literal notranslate"><span class="pre">CalGrayProfile</span></code> , <code class="docutils literal notranslate"><span class="pre">CalRGBProfile</span></code> : Settings that specify the names of ICC profiles to be used for tagging or converting CMYK, gray, or RGB color data, respectively.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sRGBProfile</span></code> : The name of an ICC profile to use for converting color spaces to CalRGB (PDF 1.2) or sRGB (PDF 1.3 and above).</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Creative Suite applications do not support saving files as PDF 1.2.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> : Specifies a strategy for determining output color family and color space and the inclusion of ICC profiles. (See “ICCBased Color Spaces” in Section 4.5.4 of the <em>PDF Reference</em> for details on profiles.) The <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> setting has the following possible values.</p>
+<table class="docutils align-default" id="section-3">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>UI equivalent</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LeaveColorUnchanged</p></td>
+<td><p>Leave Color Unchanged</p></td>
+</tr>
+<tr class="row-odd"><td><p>UseDeviceIndependentColor</p></td>
+<td><div class="line-block">
+<div class="line">Tag Everything for Color Management</div>
+<div class="line">(no conversion)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>UseDeviceIndependentColor-ForImages</p></td>
+<td><div class="line-block">
+<div class="line">Tag Only Images for Color Management</div>
+<div class="line">(no conversion)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>sRGB</p></td>
+<td><p>Convert All Colors to sRGB</p></td>
+</tr>
+<tr class="row-even"><td><p>CMYK</p></td>
+<td><p>Convert All Colors to CMYK</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Distiller leaves <code class="docutils literal notranslate"><span class="pre">Separation</span></code> and <code class="docutils literal notranslate"><span class="pre">DeviceN</span></code> color spaces unchanged in PDF output. Creative Suite applications convert the alternate color spaces; for example, when converting to CMYK, the alternate color space is changed to CMYK if necessary and the tint transform is adjusted accordingly.</p>
+</div>
+<p>The following table shows how Distiller converts the PostScript input to the equivalent color space for each <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> value. The notes below the table provide further information.</p>
+<p>PS color space (in) vs. PDF color space (out)</p>
+<table class="docutils align-default" id="section-4">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>PS Input</p></th>
+<th class="head"><div class="line-block">
+<div class="line">LeaveColor</div>
+<div class="line">Unchanged</div>
+</div>
+</th>
+<th class="head"><div class="line-block">
+<div class="line">UseDevice</div>
+<div class="line">Independent</div>
+<div class="line">Color</div>
+</div>
+</th>
+<th class="head"><div class="line-block">
+<div class="line">UseDevice</div>
+<div class="line">Independent</div>
+<div class="line">ColorForImages</div>
+</div>
+</th>
+<th class="head"><p>sRGB</p></th>
+<th class="head"><p>CMYK</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Gray text and graphics</p></td>
+<td><p>DeviceGray</p></td>
+<td><p>ICCBased</p></td>
+<td><p>DeviceGray</p></td>
+<td><p>DeviceGray</p></td>
+<td><p>DeviceGray</p></td>
+</tr>
+<tr class="row-odd"><td><p>Gray image</p></td>
+<td><p>DeviceGray</p></td>
+<td><p>ICCBased</p></td>
+<td><p>ICCBased</p></td>
+<td><p>DeviceGray</p></td>
+<td><p>DeviceGray</p></td>
+</tr>
+<tr class="row-even"><td><p>RGB text and graphics</p></td>
+<td><p>DeviceRGB</p></td>
+<td><p>ICCBased</p></td>
+<td><p>DeviceRGB</p></td>
+<td><p>sRGB</p></td>
+<td><p>DeviceCMYK</p></td>
+</tr>
+<tr class="row-odd"><td><p>RGB image</p></td>
+<td><p>DeviceRGB</p></td>
+<td><p>ICCBased</p></td>
+<td><p>ICCBased</p></td>
+<td><p>sRGB</p></td>
+<td><p>DeviceCMYK</p></td>
+</tr>
+<tr class="row-even"><td><p>CMYK text and graphics</p></td>
+<td><p>DeviceCMYK</p></td>
+<td><p>ICCBased</p></td>
+<td><p>DeviceCMYK</p></td>
+<td><p>sRGB</p></td>
+<td><p>DeviceCMYK</p></td>
+</tr>
+<tr class="row-odd"><td><p>CMYK image</p></td>
+<td><p>DeviceCMYK</p></td>
+<td><p>ICCBased</p></td>
+<td><p>ICCBased</p></td>
+<td><p>sRGB</p></td>
+<td><p>DeviceCMYK</p></td>
+</tr>
+<tr class="row-even"><td><p>CIE text and graphics</p></td>
+<td><p>ICCBased</p></td>
+<td><p>ICCBased</p></td>
+<td><p>ICCBased</p></td>
+<td><p>sRGB</p></td>
+<td><p>DeviceGray/ DeviceCMYK (1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>CIE image</p></td>
+<td><p>ICCBased</p></td>
+<td><p>ICCBased</p></td>
+<td><p>ICCBased</p></td>
+<td><p>sRGB</p></td>
+<td><p>DeviceGray/ DeviceCMYK (1)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>CIEBasedA becomes DeviceGray; others become DeviceCMYK.</p></li>
+</ol>
+</div>
+<p>Notes on the PS color space (in) vs. PDF color space (out) table:</p>
+<ul class="simple">
+<li><p>ICCBased color spaces were introduced in PDF 1.3. When creating PDF 1.2 files using device-independent colors, the color spaces CalGray (for gray), CalRGB (for RGB), or Lab (for CMYK) are used in place of ICCBased.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sRGB</span></code> is an industry standard color space, but PDF does not have a color space by this name. Instead, it can be represented precisely in PDF as an ICCBased color space or approximated by a CalRGB color space. During conversion, Distiller chooses either CalRGB or ICCBased as appropriate. (For PDF 1.2, it must choose CalRGB.)</p></li>
+</ul>
+<a name="74214"></a></div>
+<div class="section" id="creative-suite-color-conversion-settings">
+<h3>Creative Suite color conversion settings<a class="headerlink" href="#creative-suite-color-conversion-settings" title="Permalink to this headline">¶</a></h3>
+<p>Creative Suite applications use several color conversion settings. The settings, which are in the <code class="docutils literal notranslate"><span class="pre">CreativeSuite</span></code> namespace, determine whether colors should be converted and which profiles should be included for which objects. They appear in the Output panel of the PDF export dialog box in the user interface. This section explains how the settings are used.</p>
+<div class="section" id="converting-colors">
+<h4>Converting colors<a class="headerlink" href="#converting-colors" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> setting determines whether colors should be converted. A value of <code class="docutils literal notranslate"><span class="pre">NoConversion</span></code> corresponds to “No Color Conversion” in the UI. Values of <code class="docutils literal notranslate"><span class="pre">ConvertToCMYK</span></code> and <code class="docutils literal notranslate"><span class="pre">ConvertToRGB</span></code> can correspond to either of the following UI settings, as follows:</p>
+<ul class="simple">
+<li><p><strong>Convert to Destination</strong>: All colors are converted to destination profile space unless profiles are same as destination profile. (Native and untagged placed objects are treated as if tagged with the corresponding document profile.)</p></li>
+<li><p><strong>Convert to Destination (Preserve Numbers)</strong>: (This option is not used by Photoshop.) Colors are converted to the destination profile if the color space family (for example, CMYK) does not match the destination color space family. Colors are not converted if there is no embedded profile or if the object is native (that is, created in the application itself as opposed to placed graphics such as images or PDF).</p></li>
+</ul>
+</div>
+<div class="section" id="including-profiles">
+<h4>Including profiles<a class="headerlink" href="#including-profiles" title="Permalink to this headline">¶</a></h4>
+<p>This section describes the settings that control whether and which color profiles should be included.</p>
+<p><code class="docutils literal notranslate"><span class="pre">IncludeProfiles</span></code> is a Boolean value. If it is <code class="docutils literal notranslate"><span class="pre">false</span></code> , no profiles are included in the generated PDF. The UI setting is “Don’t Include Profiles”. If <code class="docutils literal notranslate"><span class="pre">IncludeProfiles</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> and colors are being converted to a destination, the UI specifies “Include Destination Profiles.”</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">IncludeProfiles</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> and colors are not being converted, the options are:</p>
+<ul class="simple">
+<li><p><strong>Include All Profiles</strong> : Includes profiles for all content.</p></li>
+<li><p><strong>Include Tagged Source Profiles</strong> : Leaves device-dependent colors unchanged and preserves device-independent colors as the nearest possible equivalent in PDF.</p></li>
+<li><p><strong>Include All RGB and Tagged Source CMYK Profiles</strong> : Includes profiles for tagged RGB and tagged CMYK objects, as well as the Document RGB profile for untagged RGB objects.</p></li>
+</ul>
+<p>These correspond to additional settings, explained below.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the Photoshop UI, only “Include Destination Profile” is available when converting colors.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">UntaggedRGBHandling</span></code> and <code class="docutils literal notranslate"><span class="pre">UntaggedCMYKHandling</span></code> determine what should happen to untagged RGB or CMYK objects during conversion. They can either be left untagged (<code class="docutils literal notranslate"><span class="pre">LeaveUntagged</span></code> ) or tagged with the document profile (<code class="docutils literal notranslate"><span class="pre">UseDocumentProfile</span></code> ).</p>
+<p>The choice of profiles is controlled by <code class="docutils literal notranslate"><span class="pre">DestinationProfileSelector</span></code> , which can take these values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NA</span></code> means that no color conversion takes place (<code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> is <code class="docutils literal notranslate"><span class="pre">NoConversion</span></code> ).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WorkingCMYK</span></code> , <code class="docutils literal notranslate"><span class="pre">WorkingRGB</span></code> , <code class="docutils literal notranslate"><span class="pre">DocumentCMYK</span></code> , and <code class="docutils literal notranslate"><span class="pre">DocumentRGB</span></code> specify the profile to be used for color conversion. When using <code class="docutils literal notranslate"><span class="pre">WorkingCMYK</span></code> or <code class="docutils literal notranslate"><span class="pre">DocumentCMYK</span></code> , Creative Suite applications also write the profile name to <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> .</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UseName</span></code> means that the ICC profile specified by <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> should be used for color conversion.</p></li>
+</ul>
+<a name="35911"></a></div>
+</div>
+<div class="section" id="color-settings-interchange">
+<h3>Color settings interchange<a class="headerlink" href="#color-settings-interchange" title="Permalink to this headline">¶</a></h3>
+<p>This section describes how Creative Suite applications decide whether to use the <code class="docutils literal notranslate"><span class="pre">CreativeSuite</span></code> namespace settings or the <code class="docutils literal notranslate"><span class="pre">Common</span></code> settings and what values they store when saving settings files.</p>
+<div class="section" id="when-common-settings-are-used">
+<h4>When common settings are used<a class="headerlink" href="#when-common-settings-are-used" title="Permalink to this headline">¶</a></h4>
+<p>Creative Suite applications use the Common settings when the CreativeSuite settings are not present in the settings file or when there is an inconsistency between the two types of settings. This section describes when the Common settings are used.</p>
+<p>The following settings indicate that the settings file was not created by a Creative Suite application:</p>
+<ul class="simple">
+<li><p>A value for <code class="docutils literal notranslate"><span class="pre">ColorSettingsFile</span></code> other than the empty string or <code class="docutils literal notranslate"><span class="pre">(None)</span></code> . In this case, the other Common settings are used.</p></li>
+<li><p>A value of <code class="docutils literal notranslate"><span class="pre">UseDeviceIndependentColorForImages</span></code> for <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> . In this case, Creative Suite applications override this value and use <code class="docutils literal notranslate"><span class="pre">LeaveColorsUnchanged</span></code> .</p></li>
+</ul>
+<p>In other cases, the Common settings and CreativeSuite settings are present but inconsistent, indicating that the settings file must have been modified subsequent to being written by a Creative Suite application. In these cases, <code class="docutils literal notranslate"><span class="pre">ColorSettingsFile</span></code> is empty or unspecified and the following values are present:</p>
+<ul class="simple">
+<li><p>The value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">UseDeviceIndependentColorForImages</span></code> . In this case, Creative Suite applications override this value and use <code class="docutils literal notranslate"><span class="pre">LeaveColorsUnchanged</span></code> .</p></li>
+<li><p>The value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">CMYK</span></code> and the value of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> (Creative Suite) is <code class="docutils literal notranslate"><span class="pre">ConvertToRGB</span></code> or <code class="docutils literal notranslate"><span class="pre">NoConversion</span></code> .</p></li>
+<li><p>The value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">sRGB</span></code> and the value of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> is <code class="docutils literal notranslate"><span class="pre">ConvertToCMYK</span></code> or <code class="docutils literal notranslate"><span class="pre">NoConversion</span></code> .</p></li>
+<li><p>The value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">LeaveColorsUnchanged</span></code> and the value of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> is <code class="docutils literal notranslate"><span class="pre">ConvertToCMYK</span></code> or <code class="docutils literal notranslate"><span class="pre">ConvertToRGB</span></code> .</p></li>
+<li><p>The value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">LeaveColorsUnchanged</span></code> , the value of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> is <code class="docutils literal notranslate"><span class="pre">NoConversion</span></code> , <code class="docutils literal notranslate"><span class="pre">IncludeProfiles</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> , and <code class="docutils literal notranslate"><span class="pre">UntaggedCMYKHandling</span></code> is <code class="docutils literal notranslate"><span class="pre">UseDocumentProfile</span></code> .</p></li>
+<li><p>The value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">UseDeviceIndependentColor</span></code> and the value of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> is <code class="docutils literal notranslate"><span class="pre">ConvertToCMYK</span></code> or <code class="docutils literal notranslate"><span class="pre">ConvertToRGB</span></code> .</p></li>
+<li><p>The value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">UseDeviceIndependentColor</span></code> , the value of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> is <code class="docutils literal notranslate"><span class="pre">NoConversion</span></code> , and <code class="docutils literal notranslate"><span class="pre">IncludeProfiles</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> .</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CalCMYKProfile</span></code> has a non-empty value, <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> has a non-empty value that does not match <code class="docutils literal notranslate"><span class="pre">CalCMYKProfile</span></code> , and the value of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> is <code class="docutils literal notranslate"><span class="pre">ConvertToCMYK</span></code> .</p></li>
+</ul>
+<p>In all other cases, the CreativeSuite settings are used.</p>
+<p>When the Common settings are used, the following table shows how the Common setting <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> determines the values of the Creative Suite UI elements. (See the table <a class="reference external" href="PDF_Create_UsingSettings.html#68602">Conversion from CreativeSuite settings to Common settings</a> for additional information.) Note that in all cases, if color management is off, the Profile Inclusion Policy defaults to “Don’t Include Profiles.”</p>
+<p>Creative Suite equivalents for ColorConversionStrategy</p>
+<table class="docutils align-default" id="section-5">
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ColorConversionStrategy</p></th>
+<th class="head"><p>UI elements</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>LeaveColorsUnchanged</p></td>
+<td><p>Color Conversion = No Conversion</p>
+<p>Profile Inclusion Policy = Include Tagged Source Profiles</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>UseDeviceIndependentColor</p></td>
+<td><p>Color Conversion = No Conversion</p>
+<p>Profile Inclusion Policy = Include All Profiles</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>UseDeviceIndependentColorForImages</p></td>
+<td><p>Color Conversion = No Conversion</p>
+<p>Profile Inclusion Policy = Include Tagged Source Profiles</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>sRGB</p></td>
+<td><p>Color Conversion = Convert to Destination</p>
+<p>Profile Inclusion Policy = Include All Profiles</p>
+<p>Destination Profile = sRGBProfile</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>CMYK</p></td>
+<td><p>Color Conversion = Convert to Destination (Preserve Numbers)</p>
+<p>Profile Inclusion Policy = Don’t Include Profiles</p>
+<p>Destination Profile = CalCMYKProfile</p>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When specifying PDF/X-1a compliance (that is, the value of <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> is either [<code class="docutils literal notranslate"><span class="pre">PDFX1a:2001</span></code> ] or [<code class="docutils literal notranslate"><span class="pre">PDFX1a:2003</span></code> ]), Creative Suite applications always use <code class="docutils literal notranslate"><span class="pre">CMYK</span></code> as the value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> . See <a class="reference external" href="PDF_Create_UsingSettings.html#86848">Using the standards settings</a> for more information.</p>
+</div>
+</div>
+<div class="section" id="saving-common-settings-equivalents">
+<h4>Saving common settings equivalents<a class="headerlink" href="#saving-common-settings-equivalents" title="Permalink to this headline">¶</a></h4>
+<p>When saving settings files, the Creative Suite applications write the best possible approximations of their color settings to the Common settings. <code class="docutils literal notranslate"><span class="pre">ColorSettingsFile</span></code> is always set to <code class="docutils literal notranslate"><span class="pre">()</span></code> . This section describes how the other settings are determined.</p>
+<p>The following table shows the relationship between the Creative Suite UI, the Creative Suite settings and the Common settings. The first four columns show the possible values of <code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> , <code class="docutils literal notranslate"><span class="pre">IncludeProfiles</span></code> , <code class="docutils literal notranslate"><span class="pre">UntaggedCMYKHandling</span></code> , and <code class="docutils literal notranslate"><span class="pre">UntaggedRGBHandling</span></code> . The last column shows the Common settings that correspond to them. The first column also shows what UI names correspond to the groups of settings.</p>
+<p>Conversion from CreativeSuite settings to Common settings</p>
+<table class="docutils align-default" id="section-6">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 8%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><div class="line-block">
+<div class="line">ConvertColors</div>
+<div class="line">/UI Name</div>
+</div>
+</th>
+<th class="head"><div class="line-block">
+<div class="line">Include</div>
+<div class="line">Profiles</div>
+</div>
+</th>
+<th class="head"><div class="line-block">
+<div class="line">UntaggedCMYK</div>
+<div class="line">Handling</div>
+</div>
+</th>
+<th class="head"><div class="line-block">
+<div class="line">UntaggedRGB</div>
+<div class="line">Handling</div>
+</div>
+</th>
+<th class="head"><p>Common settings</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><blockquote>
+<div><p>NoConversion</p>
+</div></blockquote>
+<p>Don’t Include Profiles</p>
+</td>
+<td><p>false</p></td>
+<td><p>LeaveUntagged</p></td>
+<td><p>LeaveUntagged</p></td>
+<td><p>ColorConversionStrategy</p>
+<p>= LeaveColorsUnchanged</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Include Tagged Source Profiles</p></td>
+<td></td>
+<td><p>true</p></td>
+<td><p>LeaveUntagged</p></td>
+<td><p>LeaveUntagged</p></td>
+</tr>
+<tr class="row-even"><td><p>Include All RGB &amp; Tagged Source CMYK Profiles</p></td>
+<td></td>
+<td><p>true</p></td>
+<td><p>LeaveUntagged</p></td>
+<td><p>UseDocumentProfile</p></td>
+</tr>
+<tr class="row-odd"><td><p>Include All Profiles</p></td>
+<td><p>true</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><p>ColorConversionStrategy</p>
+<p>= UseDeviceIndependent</p>
+<p>Color
+CalCMYKProfile = Document CMYK
+CalRGBProfile = Document RGB</p>
+</td>
+</tr>
+<tr class="row-even"><td><blockquote>
+<div><p>ConvertToCMYK</p>
+</div></blockquote>
+<p>Convert To Destination</p>
+</td>
+<td><p>false</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><blockquote>
+<div><p>ColorConversionStrategy = CMYK</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">CalCMYKProfile</span> <span class="pre">=</span></code> destination CMYK profile name</p>
+<p><code class="docutils literal notranslate"><span class="pre">CalRGBProfile</span> <span class="pre">=</span></code> document RGB profile name</p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>true</p></td>
+<td></td>
+<td></td>
+<td><p>UseDocumentProfile</p></td>
+</tr>
+<tr class="row-even"><td><p>Convert To Destination</p>
+<p>(Preserve Numbers)</p>
+</td>
+<td></td>
+<td></td>
+<td><p>false</p></td>
+<td><p>LeaveUntagged</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td></td>
+<td><p>true</p></td>
+<td><p>LeaveUntagged</p></td>
+</tr>
+<tr class="row-even"><td><blockquote>
+<div><p>ConvertToRGB</p>
+</div></blockquote>
+<p>Convert To Destination</p>
+</td>
+<td><p>false</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><blockquote>
+<div><p>ColorConversionStrategy = RGB</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">CalCMYKProfile</span> <span class="pre">=</span></code> document CMYK profile name</p>
+<p><code class="docutils literal notranslate"><span class="pre">CalRGBProfile</span> <span class="pre">=</span></code> document RGB profile name</p>
+</td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>true</p></td>
+<td></td>
+<td><p>UseDocumentProfile</p></td>
+<td><p>UseDocumentProfile</p></td>
+</tr>
+<tr class="row-even"><td><blockquote>
+<div><p>ConvertToRGB</p>
+</div></blockquote>
+<p>Convert To Destination</p>
+<p>(Preserve Numbers)</p>
+</td>
+<td></td>
+<td><p>false</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><p>LeaveUntagged</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td></td>
+<td><p>true</p></td>
+<td><p>UseDocumentProfile</p></td>
+<td><p>LeaveUntagged</p></td>
+</tr>
+</tbody>
+</table>
+<a name="86103"></a></div>
+</div>
+</div>
+<div class="section" id="using-the-advanced-adobe-pdf-settings">
+<h2>Using the advanced Adobe PDF settings<a class="headerlink" href="#using-the-advanced-adobe-pdf-settings" title="Permalink to this headline">¶</a></h2>
+<p>You can customize advanced Adobe PDF settings. When the <code class="docutils literal notranslate"><span class="pre">CreateJobTicket</span></code> setting is <code class="docutils literal notranslate"><span class="pre">true</span></code> , Distiller produces <em>internal job tickets</em> (that is, job tickets within the PDF file). Job ticket keys are created in response to <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> keys and DSC comments.</p>
+<p>The relationship between <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> keys and job ticket keys, and the relationship between DSC comments and job ticket keys is described in the following sections. For details on the format and contents of job tickets, see <em>Portable Job Ticket Format, Version 1.1</em> .</p>
+<div class="section" id="relationship-between-setpagedevice-keys-and-job-ticket-keys">
+<h3>Relationship between setpagedevice keys and job ticket keys<a class="headerlink" href="#relationship-between-setpagedevice-keys-and-job-ticket-keys" title="Permalink to this headline">¶</a></h3>
+<p>The following table lists the <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> keys that Distiller supports and describes where in an internal job ticket Distiller stores the corresponding key values.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> keys that are distilled into the JobTicketContents dictionary rather than into the PageRange dictionary must appear in the first page of the PostScript job; otherwise, they are ignored. In the <code class="docutils literal notranslate"><span class="pre">PS</span> <span class="pre">page</span></code> column of the following table, “First” identifies <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> keys that must appear on the first page.</p>
+</div>
+<p>Relationship between setpagedevice keys and job ticket keys</p>
+<table class="docutils align-default" id="section-7">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 9%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>setpagedevice key</p></th>
+<th class="head"><p>PS page</p></th>
+<th class="head"><p>job ticket key</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><blockquote>
+<div><p>Bind</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Bind</span></code> is unrelated to the <code class="docutils literal notranslate"><span class="pre">Binding</span></code> setting.</p></li>
+</ul>
+</td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Finishing</p></td>
+</tr>
+<tr class="row-odd"><td><p>CutMedia</p></td>
+<td><p>First</p></td>
+<td><div class="line-block">
+<div class="line">If the value of the <code class="docutils literal notranslate"><span class="pre">CutMedia</span> <span class="pre">setpagedevice</span></code> key is less than 4, Distiller represents the <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> value in <code class="docutils literal notranslate"><span class="pre">JobTicketContents::MediaUsage::CutMedia</span></code> .</div>
+<div class="line">Otherwise, it represents the value in <em>JobTicketContents::PrintLayout::Signature::
+Sheets::MediaUsage::CutMedia</em> .</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>DeviceRenderingInfo/</p>
+<p>ValuesPerColorComponent</p>
+</td>
+<td><p>Any</p></td>
+<td><p>PageRange::Rendering::ValuesPerColor</p>
+<p>Component</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Duplex</p></td>
+<td><p>First</p></td>
+<td><blockquote>
+<div><p>JobTicketContents::PrintLayout</p>
+</div></blockquote>
+<p>See Appendix B.4 in the <em>Portable Job Ticket Format, Version 1.1</em> , for a description of the general appearance of a job ticket that can produce duplex printing.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>Fold</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Finishing</p></td>
+</tr>
+<tr class="row-odd"><td><p>HWResolution</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::Rendering::Resolution</p></td>
+</tr>
+<tr class="row-even"><td><p>Jog</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Finishing</p></td>
+</tr>
+<tr class="row-odd"><td><p>Laminate</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Finishing</p></td>
+</tr>
+<tr class="row-even"><td><p>ManualFeed</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::MediaSource::ManualFeed</p></td>
+</tr>
+<tr class="row-odd"><td><p>MediaClass</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::MediaSource::MediaClass</p></td>
+</tr>
+<tr class="row-even"><td><p>MediaColor</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::MediaSource::MediaColor</p></td>
+</tr>
+<tr class="row-odd"><td><p>MediaPosition</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::MediaSource::Position</p></td>
+</tr>
+<tr class="row-even"><td><p>MediaType</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Media::Category</p></td>
+</tr>
+<tr class="row-odd"><td><p>MediaWeight</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Media::Weight</p></td>
+</tr>
+<tr class="row-even"><td><p>MirrorPrint</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::MediaUsage::MirrorPrint</p></td>
+</tr>
+<tr class="row-odd"><td><p>NegativePrint</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::MediaUsage::NegativePrint</p></td>
+</tr>
+<tr class="row-even"><td><p>PageSize</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::MediaBox</p></td>
+</tr>
+<tr class="row-odd"><td><p>PostRenderingEnhance</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::Rendering::PostRenderingEnhance</p></td>
+</tr>
+<tr class="row-even"><td><p>PreRenderingEnhance</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::Rendering::PreRenderingEnhance</p></td>
+</tr>
+<tr class="row-odd"><td><p>ProcessColorModel</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::ColorModel::ProcessColorModel</p></td>
+</tr>
+<tr class="row-even"><td><p>SeparationColorNames</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::ColorModel::ColorantParams</p></td>
+</tr>
+<tr class="row-odd"><td><p>SeparationOrder</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::ColorModel::ColorantOrder</p></td>
+</tr>
+<tr class="row-even"><td><p>Separations</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::ColorModel::Separations</p></td>
+</tr>
+<tr class="row-odd"><td><p>Staple</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Finishing</p></td>
+</tr>
+<tr class="row-even"><td><p>Trapping</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::Trapping::Trapping</p></td>
+</tr>
+<tr class="row-odd"><td><p>TrappingDetails</p></td>
+<td><p>Any</p></td>
+<td><p>PageRange::Trapping::TrappingDetails</p></td>
+</tr>
+<tr class="row-even"><td><p>Trim</p></td>
+<td><p>First</p></td>
+<td><p>JobTicketContents::Finishing</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tumble</p></td>
+<td><p>First</p></td>
+<td><blockquote>
+<div><p>JobTicketContents::PrintLayout</p>
+</div></blockquote>
+<p>Such a job ticket is identical to that described for the <code class="docutils literal notranslate"><span class="pre">Duplex</span> <span class="pre">setpagedevice</span></code> key, except the <code class="docutils literal notranslate"><span class="pre">CTM</span></code> for the <code class="docutils literal notranslate"><span class="pre">Back</span></code> surface is rotated 180 degrees.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="relationship-between-postscript-comments-and-job-ticket-keys">
+<h3>Relationship between PostScript comments and job ticket keys<a class="headerlink" href="#relationship-between-postscript-comments-and-job-ticket-keys" title="Permalink to this headline">¶</a></h3>
+<p>When the <code class="docutils literal notranslate"><span class="pre">ParseDSCComments</span></code> setting is <code class="docutils literal notranslate"><span class="pre">true</span></code> , Distiller interprets certain PostScript comments to produce true job ticket <code class="docutils literal notranslate"><span class="pre">PlaneOrder</span></code> objects. Such PostScript comments include <code class="docutils literal notranslate"><span class="pre">%%Page:</span></code> (which is more specifically a DSC comment), <code class="docutils literal notranslate"><span class="pre">%%QRKPageBegin:</span></code> , and <code class="docutils literal notranslate"><span class="pre">%%PlateColor:</span></code> . Distiller also supports the <code class="docutils literal notranslate"><span class="pre">%%PlateColor:</span></code> <em>PostScript comment</em>; however, use of that comment is discouraged.</p>
+<a name="86848"></a></div>
+</div>
+<div class="section" id="using-the-standards-settings">
+<h2>Using the standards settings<a class="headerlink" href="#using-the-standards-settings" title="Permalink to this headline">¶</a></h2>
+<p>The Standards settings provide control over PDF/A- and PDF/X-compliant output:</p>
+<ul class="simple">
+<li><p>PDF/A is a proposed ISO standard for the long-term preservation (archival) of electronic documents.</p></li>
+<li><p>PDF/X is a focused subset of PDF designed specifically for reliable prepress data interchange. It is an International Standards Organization (ISO) standard ( <a class="reference external" href="http://www.iso.org">www.iso.org</a> ).</p></li>
+</ul>
+<p>See <a class="reference external" href="PDF_Create_CommonSettings.html#77813">Standards settings</a> for details on the settings that are relevant to standards compliance.</p>
+<a name="83753"></a><div class="section" id="using-the-compliance-checking-settings">
+<h3>Using the compliance checking settings<a class="headerlink" href="#using-the-compliance-checking-settings" title="Permalink to this headline">¶</a></h3>
+<p>In Acrobat 6, the <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> and <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> settings were introduced to check for compliance with PDF/X-1a (2001) and PDF/X-3 (2002), respectively.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> setting was introduced in Distiller 7 and is supported by Creative Suite applications. It specifies the standard against which the document’s compliance is checked. It is an array of strings, each of which is the name of a standard.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently only one string may appear in the array.</p>
+</div>
+<p>In Distiller 7 and the Creative Suite, <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> , if present, takes precedence over <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> and <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> :</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/CheckCompliance</span> <span class="pre">[</span> <span class="pre">/PDFX1a:2001</span> <span class="pre">]</span></code> has the same meaning as <code class="docutils literal notranslate"><span class="pre">/PDFX1aCheck</span> <span class="pre">true</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/CheckCompliance</span> <span class="pre">[</span> <span class="pre">/PDFX3:2002</span> <span class="pre">]</span></code> has the same meaning as <code class="docutils literal notranslate"><span class="pre">/PDFX3Check</span> <span class="pre">true</span></code></p></li>
+<li><p>Other values of <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> have no corresponding Distiller 6 values.</p></li>
+</ul>
+<p>If a settings file contains <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> and not <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> or <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> , the appropriate values of <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> and <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> are written out when the file is saved to provide backward compatibility with Distiller 6 for testing of PDF/X-1a:2001 and PDF/X-3:2002 standards compliance. That is,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">CheckCompliance</span> <span class="p">[</span> <span class="o">/</span><span class="n">PDFX1a</span><span class="p">:</span><span class="mi">2001</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>without <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> and <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> is written out and also generates:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">PDFX1aCheck</span> <span class="n">true</span>
+<span class="o">/</span><span class="n">PDFX3Check</span> <span class="n">false</span>
+</pre></div>
+</div>
+<p>Similarly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">CheckCompliance</span> <span class="p">[</span> <span class="o">/</span><span class="n">PDFX3</span><span class="p">:</span><span class="mi">2002</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p>without <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> and <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> is written out and also generates:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">PDFX1aCheck</span> <span class="n">false</span>
+<span class="o">/</span><span class="n">PDFX3Check</span> <span class="n">true</span>
+</pre></div>
+</div>
+<p>Any other values for <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> also generates:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">PDFX1aCheck</span> <span class="n">false</span>
+<span class="o">/</span><span class="n">PDFX3Check</span> <span class="n">false</span>
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> and/or <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> are present, they are preserved when the file is saved.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> is not present in a file:</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">PDFX1aCheck</span></code> is present and <code class="docutils literal notranslate"><span class="pre">true</span></code> , <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> takes the value <code class="docutils literal notranslate"><span class="pre">[/PDFX1a:2001]</span></code> .</p></li>
+<li><p>Otherwise, if <code class="docutils literal notranslate"><span class="pre">PDFX3Check</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> , <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> takes the value <code class="docutils literal notranslate"><span class="pre">[/PDFX3:2002]</span></code> .</p></li>
+<li><p>Otherwise, <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> takes the value <code class="docutils literal notranslate"><span class="pre">[/None]</span></code> .</p></li>
+</ul>
+<a name="99125"></a></div>
+<div class="section" id="using-the-pdf-x-output-intent-settings">
+<h3>Using the PDF/X output intent settings<a class="headerlink" href="#using-the-pdf-x-output-intent-settings" title="Permalink to this headline">¶</a></h3>
+<p>In a PDF/X compliant file, the document catalog must contain an <code class="docutils literal notranslate"><span class="pre">OutputIntents</span></code> entry that specifies a <em>PDF/X output intent dictionary</em> . Several settings are used to specify the entries in this dictionary. The rest of this section explains how they work.</p>
+<p>Distiller uses the following settings to create the output intent dictionary: <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> , <code class="docutils literal notranslate"><span class="pre">PDFXOutputCondition</span></code> , <code class="docutils literal notranslate"><span class="pre">PDFXOutputConditionIdentifier</span></code> , and <code class="docutils literal notranslate"><span class="pre">PDFXRegistryName</span></code> . For compatibility, these settings are also used by Creative Suite applications , along with the Creative Suite-specific <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfileSelector</span></code> setting.</p>
+<p>For Distiller only, these settings are ignored in the case where the output intent dictionary is specified explicitly in the PostScript file (by means of <code class="docutils literal notranslate"><span class="pre">pdfmark</span></code> operators). The rest of this discussion assumes the PostScript file does not specify this information.</p>
+<p>The PDF/X output intent dictionary is described in Section 10.10.4 of the <em>PDF Reference</em> . It specifies the following entries (note that these are PDF names):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">OutputConditionIdentifier</span></code> : A string identifying the intended printing condition of the document. Typically, it is the reference name of a standard production condition in an industry-standard registry such as the ICC Characterization Data Registry (see <code class="docutils literal notranslate"><span class="pre">RegistryName</span></code> below). It can be specified by the <code class="docutils literal notranslate"><span class="pre">PDFXOutputConditionIdentifier</span></code> setting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DestOutputProfile</span></code> : A PDF/X <em>output intent profile</em> , which is a stream representing an ICC profile that defines the transformation from the PDF document’s source colors to the output device colorants. It is not required if <code class="docutils literal notranslate"><span class="pre">OutputConditionIdentifier</span></code> specifies a standard production condition. However, Creative Suite applications always store the profile.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OutputCondition</span></code> : An optional human-readable comment describing the printing condition. It can be specified by the <code class="docutils literal notranslate"><span class="pre">PDFXOutputCondition</span></code> setting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RegistryName</span></code> : A string identifying the registry that defines the condition defined by <code class="docutils literal notranslate"><span class="pre">OutputConditionIdentifier</span></code> . It can be specified by the <code class="docutils literal notranslate"><span class="pre">PDFXRegistryName</span></code> setting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Info</span></code> : A string containing additional information. Distiller and Creative Suite aplications use this entry to store the profile name.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> setting is used to identify a profile name. It may have one of the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(None)</span></code> or the empty string <code class="docutils literal notranslate"><span class="pre">()</span></code> are supported by Distiller only. This value means that the PostScript document must specify the output intent destination profile for PDF/X validation to succeed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(Use</span> <span class="pre">Output</span> <span class="pre">Condition</span> <span class="pre">Identifier)</span></code> is also supported by Distiller only and overridden by Creative Suite applications (as described in the rest of this section). In this case, Distiller uses the value defined by <code class="docutils literal notranslate"><span class="pre">PDFXOutputConditionIdentifier</span></code> and a profile is not included in the PDF file.</p></li>
+<li><p>The name of the output intent destination profile. This profile is embedded as the value of the <code class="docutils literal notranslate"><span class="pre">DestOutputProfile</span></code> entry.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For Distiller only, if the profile corresponding to the name is not present on the system, Distiller stores the profile name in <code class="docutils literal notranslate"><span class="pre">OutputConditionIdentifier</span></code> .</p>
+</div>
+<p>Creative Suite applications use the <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfileSelector</span></code> (in the <code class="docutils literal notranslate"><span class="pre">CreativeSuite</span></code> namespace) to identify the profile, which can be a name specified by <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> or a reference to the Working CMYK, Working RGB, Document CMYK, or DocumentRGB profile.</p>
+<p>As mentioned above, Creative Suite applications do not support the value of <code class="docutils literal notranslate"><span class="pre">(Use</span> <span class="pre">Output</span> <span class="pre">Condition</span> <span class="pre">Identifier)</span></code> for <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> . When they encounter it in a settings file, they override it as follows:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfileSelector</span></code> and <code class="docutils literal notranslate"><span class="pre">DestinationProfileSelector</span></code> are set to <code class="docutils literal notranslate"><span class="pre">UseName</span></code> .</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">PDFXOutputConditionIdentifier</span></code> specifies a known condition (that is, one that maps to a specific set of characterization data at <a class="reference external" href="http://www.color.org">www.color.org</a> (the ICC web site), then <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> and <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> are set to the name of the profile associated with the condition. The following table shows a list of profiles and their corresponding characterization data:</p></li>
+</ul>
+<table class="docutils align-default" id="section-8">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ICC Profile</p></th>
+<th class="head"><p>Characterization data</p>
+<p>(output condition identifier)</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>U.S. Web Coated (SWOP) v2</p></td>
+<td><p>CGATS TR 001</p></td>
+</tr>
+<tr class="row-odd"><td><p>Euroscale Coated v2</p></td>
+<td><p>FOGRA1</p></td>
+</tr>
+<tr class="row-even"><td><p>Euroscale Uncoated v2</p></td>
+<td><p>FOGRA4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Europe ISO Coated FOGRA27</p></td>
+<td><p>FOGRA27</p></td>
+</tr>
+<tr class="row-even"><td><p>Japan Color 2001 Coated</p></td>
+<td><p>JC200103</p></td>
+</tr>
+<tr class="row-odd"><td><p>Japan Color 2001 Uncoated</p></td>
+<td><p>JC200104</p></td>
+</tr>
+<tr class="row-even"><td><p>Japan Color 2002 Newspaper</p></td>
+<td><p>JCN2002</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">PDFXOutputConditionIdentifier</span></code> specifies an unknown condition and <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> is a “PRTR” profile and maps to an unknown condition, then <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> is set to the value of <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> .</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">PDFXOutputConditionIdentifier</span></code> specifies an unknown condition and <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> is not a “PRTR” profile or maps to a known condition, then</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">CMYK</span></code> , <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> and <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> are set to <code class="docutils literal notranslate"><span class="pre">(U.S.</span> <span class="pre">Web</span> <span class="pre">Uncoated</span> <span class="pre">V2)</span></code> .</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is <code class="docutils literal notranslate"><span class="pre">sRGB</span></code> , <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> and <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> are set to <code class="docutils literal notranslate"><span class="pre">(ROMM</span> <span class="pre">RGB)</span></code> .</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For Creative Suite applications, when color management is on and PDF/X compliance has been specified, the effective profiles specified by <code class="docutils literal notranslate"><span class="pre">DestinationProfileName</span></code> , <code class="docutils literal notranslate"><span class="pre">CalCMYKProfile</span></code> and <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> must be the same.</p>
+</div>
+<p>In addition, when specifying PDF/X-1a compliance (that is, the value of <code class="docutils literal notranslate"><span class="pre">CheckCompliance</span></code> is either <code class="docutils literal notranslate"><span class="pre">[PDFX1a:2001]</span></code> or <code class="docutils literal notranslate"><span class="pre">[PDFX1a:2003]</span></code> ), if the value of <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is not <code class="docutils literal notranslate"><span class="pre">CMYK</span></code> , the Creative Suite applications use the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> = <code class="docutils literal notranslate"><span class="pre">CMYK</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConvertColors</span></code> = <code class="docutils literal notranslate"><span class="pre">ConvertToCMYK</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UntaggedCMYKHandling</span></code> = <code class="docutils literal notranslate"><span class="pre">LeaveUntagged</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UntaggedRGBHandling</span></code> = <code class="docutils literal notranslate"><span class="pre">UseDocumentProfile</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IncludeProfiles</span></code> = <code class="docutils literal notranslate"><span class="pre">false</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="distiller-examples">
+<h3>Distiller examples<a class="headerlink" href="#distiller-examples" title="Permalink to this headline">¶</a></h3>
+<p>The following examples show how Distiller sets the values in the output intent dictionary.</p>
+<div class="section" id="setting-the-output-intent-dictionary-to-euroscale-uncoated-v2">
+<h4>Setting the output intent dictionary to Euroscale Uncoated v2<a class="headerlink" href="#setting-the-output-intent-dictionary-to-euroscale-uncoated-v2" title="Permalink to this headline">¶</a></h4>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> is set to <code class="docutils literal notranslate"><span class="pre">(Euroscale</span> <span class="pre">Uncoated</span> <span class="pre">v2)</span></code> , whose corresponding output condition identifier (<code class="docutils literal notranslate"><span class="pre">FOGRA4</span></code> ) is known by Distiller.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span> <span class="mi">0</span> <span class="n">obj</span>
+  <span class="o">&lt;&lt;</span>
+          <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">OutputIntent</span>
+          <span class="o">/</span><span class="n">S</span> <span class="o">/</span><span class="n">GTS_PDFX</span>
+          <span class="o">/</span><span class="n">OutputConditionIdentifier</span> <span class="p">(</span><span class="n">FOGRA4</span><span class="p">)</span>
+          <span class="o">/</span><span class="n">RegistryName</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">org</span><span class="p">)</span>
+          <span class="o">/</span><span class="n">Info</span> <span class="p">(</span><span class="n">Euroscale</span> <span class="n">Uncoated</span> <span class="n">v2</span><span class="p">)</span>
+          <span class="o">/</span><span class="n">DestOutputProfile</span> <span class="mi">11</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">&gt;&gt;</span>
+ <span class="n">endobj</span>
+ <span class="mi">11</span> <span class="mi">0</span> <span class="n">obj</span>
+  <span class="o">&lt;&lt;</span>
+          <span class="o">/</span><span class="n">N</span> <span class="mi">4</span>
+          <span class="o">/</span><span class="n">Length</span> <span class="mi">388226</span>
+          <span class="o">/</span><span class="n">Filter</span> <span class="o">/</span><span class="n">FlateDecode</span>
+  <span class="o">&gt;&gt;</span>
+  <span class="n">stream</span>
+ <span class="o">...</span> <span class="n">ICCProfile</span> <span class="n">data</span> <span class="o">...</span>
+ <span class="n">endstream</span>
+ <span class="n">endobj</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Setting the output intent dictionary to U.S. Web Uncoated v2</p></li>
+</ol>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">PDFXOutputIntentProfile</span></code> is set to <code class="docutils literal notranslate"><span class="pre">(U.S.</span> <span class="pre">Web</span> <span class="pre">Uncoated</span> <span class="pre">v2)</span></code> and Distiller does not know the corresponding output condition identifier. In this case, the value of the output condition identifier is set to the profile name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">12</span> <span class="mi">0</span> <span class="n">obj</span>
+  <span class="o">&lt;&lt;</span>
+          <span class="o">/</span><span class="n">Type</span> <span class="o">/</span><span class="n">OutputIntent</span>
+          <span class="o">/</span><span class="n">S</span> <span class="o">/</span><span class="n">GTS_PDFX</span>
+          <span class="o">/</span><span class="n">OutputConditionIdentifier</span> <span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">S</span><span class="o">.</span> <span class="n">Web</span> <span class="n">Uncoated</span> <span class="n">v2</span><span class="p">)</span>
+          <span class="o">/</span><span class="n">Info</span> <span class="p">(</span><span class="n">U</span><span class="o">.</span><span class="n">S</span><span class="o">.</span> <span class="n">Web</span> <span class="n">Uncoated</span> <span class="n">v2</span><span class="p">)</span>
+          <span class="o">/</span><span class="n">DestOutputProfile</span> <span class="mi">11</span> <span class="mi">0</span> <span class="n">R</span>
+  <span class="o">&gt;&gt;</span>
+ <span class="n">endobj</span>
+ <span class="mi">11</span> <span class="mi">0</span> <span class="n">obj</span>
+  <span class="o">&lt;&lt;</span>
+          <span class="o">/</span><span class="n">N</span> <span class="mi">4</span>
+          <span class="o">/</span><span class="n">Length</span> <span class="mi">386435</span>
+          <span class="o">/</span><span class="n">Filter</span> <span class="o">/</span><span class="n">FlateDecode</span>
+  <span class="o">&gt;&gt;</span>
+  <span class="n">stream</span>
+ <span class="o">...</span> <span class="n">ICCProfile</span> <span class="n">data</span> <span class="o">...</span>
+ <span class="n">endstream</span>
+ <span class="n">endobj</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Apr 19, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
