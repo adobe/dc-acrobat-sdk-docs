@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+      <link rel="shortcut icon" href="../_static/favicon.ico" />  
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeJS_Dev_Templates.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Search and Index Essentials" href="JS_Dev_SearchIndexEssentials.html" />
+    <link rel="prev" title="Modifying the User Interface" href="JS_Dev_ModifyUserInterface.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat and PDFL SDK: JS Developer Guide
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">JavaScript Development for Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-for-acrobat-api-reference">JavaScript for Acrobat API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#object-summary">Object summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#app">app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#doc">Doc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dbg">dbg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#console">console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#global">global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#util">util</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dialog">dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#security">security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#soap">SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#search">search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#event">event</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-applications">JavaScript applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Tools.html">Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-javascript-debugger-console">Using the JavaScript Debugger console</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#opening-the-console">Opening the console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#formatting-code">Formatting code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugging-with-the-javascript-console">Debugging with the JavaScript Console</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-a-javascript-editor">Using a JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#specifying-the-default-javascript-editor">Specifying the default JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-an-external-editor">Using an external editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#additional-editor-capabilities">Additional editor capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#specifying-additional-capabilities-to-your-editor">Specifying additional capabilities to your editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#saving-and-closing-a-file-with-a-syntax-error">Saving and closing a file with a syntax error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-debugger-with-acrobat-reader">Using the Debugger with Acrobat Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#enabling-the-javascript-debugger">Enabling the JavaScript Debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#javascript-debugger">JavaScript Debugger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#main-groups-of-controls">Main groups of controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-view-windows">Debugger View windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-buttons">Debugger buttons</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#resume-execution">Resume execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#interrupt">Interrupt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#quit">Quit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-over">Step over</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-into">Step into</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-out">Step out</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-scripts-window">Debugger Scripts window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#accessing-scripts-in-the-scripts-window">Accessing scripts in the Scripts window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-inside-pdf-files">Scripts inside PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-outside-pdf-files">Scripts outside PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#call-stack-list">Call Stack list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window">Inspect details window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window-controls">Inspect details window controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspecting-variables">Inspecting variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#watches">Watches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-the-start-of-execution">Debugging from the start of execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-an-arbitrary-point-in-the-script">Debugging from an arbitrary point in the script</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#final-notes">Final notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Contexts.html">JavaScript Contexts in Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#the-concept-of-a-javascript-event">The concept of a JavaScript event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#about-contexts">About contexts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#folder-level">Folder level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#document-level">Document level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#page-level">Page level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#field-level">Field level</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#privileged-versus-non-privileged-context">Privileged versus non-privileged context</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-non-privileged-context">Executing privileged methods in a non-privileged context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-through-the-menu">Executing privileged methods through the menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-certified-document">Executing privileged methods in a certified document</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_PDFCreation.html">Creating and Modifying PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-and-modifying-pdf-files">Creating and modifying PDF files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-a-document-with-content">Creating a document with content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-pdf-documents">Combining PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-files">Combining files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-several-pdf-files">Combining several PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-files-of-different-formats">Combining files of different formats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#extracting-files">Extracting files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-file-attachments">Creating file attachments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#saving-form-data-to-and-reading-form-data-from-an-attachment">Saving form data to and reading form data from an attachment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#accessing-an-xml-attachment-using-e4x">Accessing an XML attachment using E4X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#cropping-and-rotating-pages">Cropping and rotating pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#cropping-pages">Cropping pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#rotating-pages">Rotating pages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#extracting-moving-deleting-replacing-and-copying-pages">Extracting, moving, deleting, replacing, and copying pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#adding-watermarks-and-backgrounds">Adding watermarks and backgrounds</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PDFCreation.html#converting-pdf-documents-to-xml-format">Converting PDF documents to XML format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_PrintProduction.html">Print Production</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-print-options">Setting print options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-pdf-documents">Printing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#silent-printing">Silent printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-comments-and-forms">Printing comments and forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#booklet-printing">Booklet printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-advanced-print-options">Setting advanced print options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-output-settings">Specifying output settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-marks-and-bleeds">Specifying marks and bleeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-postscript-options">Setting PostScript options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-font-options">Setting font options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_AcrobatForms.html">Using JavaScript in Forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#forms-essentials">Forms essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#about-pdf-forms">About PDF forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#elements-of-acrobat-forms">Elements of Acrobat forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#guidelines-for-creating-a-new-form">Guidelines for creating a new form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-acrobat-form-fields">Creating Acrobat form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-acrobat-form-field-properties">Setting Acrobat form field properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#field-properties">Field properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#button-fields">Button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#check-box-fields">Check box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#combo-box-fields">Combo box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#list-box-fields">List box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#radio-button-fields">Radio button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#signature-fields">Signature fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-fields">Text fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#validation-scripts">Validation scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#calculation-script">Calculation script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#task-based-topics">Task-based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-form-fields">Highlighting required form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-fields">Highlighting required fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-the-hierarchy-of-form-fields">Setting the hierarchy of form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-forms">Creating forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#positioning-form-fields">Positioning form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#duplicating-form-fields">Duplicating form fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#inserting-navigation-buttons-on-each-page">Inserting navigation buttons on each page</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-multiple-form-fields">Creating multiple form fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-the-tabbing-order">Defining the tabbing order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-form-field-calculation-order">Defining form field calculation order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-submit-button">Creating a submit button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-reset-form-button">Creating a reset form button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-cgi-export-values">Defining CGI export values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#importing-and-exporting-form-data">Importing and exporting form data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#emailing-completed-forms">Emailing completed forms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#use-date-objects">Use date objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-date-to-a-string">Converting from a date to a string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-string-to-a-date">Converting from a string to a date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#date-arithmetic">Date arithmetic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-global-variables-in-javascript">Defining global variables in JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#enable-the-global-object-security-policy">Enable the global object security policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-and-getting-a-global-variable">Setting and getting a global variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#deleting-global-variables">Deleting global variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-global-variables-persistent">Making global variables persistent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#querying-an-acrobat-form-field-value-in-another-open-form">Querying an Acrobat form field value in another open form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-object-security-policy">Global object security policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#intercepting-keystrokes-in-an-acrobat-form">Intercepting keystrokes in an Acrobat form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#constructing-custom-colors">Constructing custom colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#prompting-the-user-for-a-response">Prompting the user for a response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#fetching-an-url-from-javascript">Fetching an URL from JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-special-rollover-effects">Creating special rollover effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-submit">Global submit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-forms-accessible">Making forms accessible</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-to-speech">Text-to-speech</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#tagging-annotations">Tagging annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#document-metadata">Document metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#short-description">Short description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-tab-order">Setting tab order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#reading-order">Reading order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#using-javascript-to-secure-forms">Using JavaScript to secure forms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_RMA.html">Review, Markup, and Approval</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#working-with-comments-using-javascript">Working with comments using JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#annotation-types">Annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#getting-annotation-data">Getting annotation data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-comment-properties">Setting comment properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials">Online collaboration essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials-topics">Online collaboration essentials topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#reviewing-documents-with-additional-usage-rights">Reviewing documents with additional usage rights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#emailing-pdf-documents">Emailing PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#javascript-based-collaboration-driver">JavaScript-based collaboration driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#setting-spelling-preferences">Setting spelling preferences</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#adding-words-to-a-dictionary">Adding words to a dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#managing-comments">Managing comments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#selecting-moving-and-deleting-comments">Selecting, moving, and deleting comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#using-the-comments-list">Using the comments list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-status-of-comments">Changing the status of comments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-appearance-of-comments">Changing the appearance of comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#sorting-comments">Sorting comments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#showing-and-hiding-comments">Showing and hiding comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#exporting-and-importing-comments">Exporting and importing comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#aggregating-comments-for-use-in-excel">Aggregating comments for use in Excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#comparing-comments-in-two-pdf-documents">Comparing comments in two PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#extracting-comments-in-a-batch-process">Extracting comments in a batch process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#approving-documents-using-stamps-japanese-workflows">Approving documents using stamps (Japanese workflows)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-up-a-hanko-approval-workflow">Setting up a Hanko approval workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#participating-in-a-hanko-approval-workflow">Participating in a Hanko approval workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#installing-and-customizing-hanko-stamps">Installing and customizing Hanko stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#creating-custom-inkan-stamps">Creating custom Inkan stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#deleting-custom-stamps">Deleting custom stamps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_DigitalMedia.html">Working with Digital Media in PDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#media-players-control-settings-renditions-and-events">Media players: control, settings, renditions, and events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#accessing-a-list-of-active-players">Accessing a list of active players</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#specifying-playback-settings">Specifying playback settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#monitors">Monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#integrating-media-into-documents">Integrating media into documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-through-a-rendition-action">Controlling multimedia through a rendition action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-with-a-run-a-javascript-action">Controlling multimedia with a Run a JavaScript action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#adding-and-editing-renditions">Adding and editing renditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html">Modifying the User Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-toolbar-buttons-and-menu-items">Adding toolbar buttons and menu items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#thumbnails">Thumbnails</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-page-thumbnails">Creating page thumbnails</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-page-actions-with-page-thumbnails">Adding page actions with page thumbnails</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#bookmarks">Bookmarks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-bookmarks">Creating bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#managing-bookmarks">Managing bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-a-bookmark-hierarchy">Creating a bookmark hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#links">Links</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-and-removing-web-links-from-text">Adding and removing web links from text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-and-removing-links">Adding and removing links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-the-appearance-of-a-link">Defining the appearance of a link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#opening-links">Opening links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#opening-file-attachments">Opening file attachments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#using-destinations">Using destinations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#using-actions-for-special-effects">Using actions for special effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#highlighting-form-fields-and-navigational-components">Highlighting form fields and navigational components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-the-initial-view-in-full-screen-view">Defining the initial view in full screen view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-an-initial-view">Defining an initial view</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#working-with-pdf-layers">Working with PDF layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#navigating-with-layers">Navigating with layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#editing-the-properties-of-pdf-layers">Editing the properties of PDF layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#reordering-layers">Reordering layers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Acrobat Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-role-of-templates-in-pdf-form-architecture">The role of templates in PDF form architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-form-field-generation">Dynamic form field generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-page-generation">Dynamic page generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#template-syntax-and-usage">Template syntax and usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html">Search and Index Essentials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-for-text-in-pdf-documents">Searching for text in PDF documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#search-methods">Search methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#finding-words-in-an-pdf-document">Finding words in an PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-advanced-search-options">Using advanced search options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-across-multiple-pdf-documents">Searching across multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-all-pdf-files-in-a-specific-location">Searching all PDF files in a specific location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-advanced-search-options-for-multiple-document-searches">Using advanced search options for multiple document searches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-pdf-index-files">Searching PDF index files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-boolean-queries">Using Boolean queries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#indexing-multiple-pdf-documents">Indexing multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#creating-updating-or-rebuilding-indexes">Creating, updating, or rebuilding indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-metadata">Searching metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-essentials">Security essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#methods-for-adding-security-to-pdf-documents">Methods for adding security to PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#passwords-and-restrictions">Passwords and restrictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-documents">Certifying documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#encrypting-files-using-certificates">Encrypting files using certificates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#userentity-object-properties">UserEntity object properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certificate-object-properties">Certificate object properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-policies">Security policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#secure-forms">Secure forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digitally-signing-pdf-documents">Digitally signing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#signing-a-pdf-document">Signing a PDF document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-security-handler-object">The security handler object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-signatureinfo-object">The SignatureInfo object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#applying-the-signature">Applying the signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#clearing-a-digital-signature">Clearing a digital signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#getting-signature-information-from-another-user">Getting signature information from another user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#removing-signatures">Removing signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-a-document">Certifying a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#validating-signatures">Validating signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#setting-digital-signature-properties-with-seed-values">Setting digital signature properties with seed values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-pdf-documents">Adding security to PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-passwords-and-setting-security-options">Adding passwords and setting security options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-usage-rights-to-a-document">Adding usage rights to a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-for-a-list-of-recipients">Encrypting PDF files for a list of recipients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-using-security-policies">Encrypting PDF files using security policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-document-attachments">Adding security to document attachments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digital-ids-and-certification-methods">Digital IDs and certification methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#digital-ids">Digital IDs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#about-digital-id-providers">About digital ID providers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#creating-a-digital-id-default-certificate-security">Creating a digital ID (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#using-digital-ids-default-certificate-security">Using digital IDs (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-ids-windows-certificate-security">Managing digital IDs (Windows certificate security)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-id-certificates">Managing digital ID certificates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#sharing-digital-id-certificates">Sharing digital ID certificates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#building-a-list-of-trusted-identities">Building a list of trusted identities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#checking-information-on-certificates">Checking information on certificates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#task-based-topics">Task based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#disallowing-changes-in-scripts">Disallowing changes in scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#hiding-scripts">Hiding scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Ubiquity.html">Rights-Enabled PDF Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#additional-usage-rights">Additional usage rights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#writing-javascript-for-adobe-reader">Writing JavaScript for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#enabling-collaboration">Enabling collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Databases.html">Interacting with Databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#about-adbc">About ADBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#establishing-an-adbc-connection">Establishing an ADBC connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#executing-sql-statements">Executing SQL statements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_SOAPWS.html">SOAP and Web Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-soap-and-web-services">Using SOAP and web services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#soap-and-web-services-topics">SOAP and web services topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-a-wsdl-proxy-to-invoke-a-web-service">Using a WSDL proxy to invoke a web service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#synchronous-and-asynchronous-information-exchange">Synchronous and asynchronous information exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#establishing-a-synchronous-connection">Establishing a synchronous connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#asynchronous-web-service-calls">Asynchronous web service calls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-document-literal-encoding">Using document/literal encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#exchanging-file-attachments-and-binary-data">Exchanging file attachments and binary data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#converting-between-string-and-readstream-information">Converting between string and readstream information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-version-information">Accessing SOAP version information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-header-information">Accessing SOAP header information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#dns-service-discovery">DNS service discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_JS43D.html">Interfacing with 3D JavaScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#basic-concepts">Basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#getting-the-annot3d-object-of-the-3d-annotation">Getting the Annot3D object of the 3D annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#annot3d-properties">Annot3D properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#acquiring-the-javascript-3d-engine">Acquiring the JavaScript 3D engine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#using-the-default-script-of-a-3d-annotation">Using the default script of a 3D annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#initializing-upon-activation">Initializing upon activation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_JavaScript.html">JavaScript APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_JavaScript.html#objects-properties-and-methods">Objects, properties, and methods</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat and PDFL SDK: JS Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Acrobat Templates</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="JS_Dev_SearchIndexEssentials.html" class="btn btn-neutral float-right" title="Search and Index Essentials" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="JS_Dev_ModifyUserInterface.html" class="btn btn-neutral float-left" title="Modifying the User Interface" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="acrobat-templates">
+<h1>Acrobat Templates<a class="headerlink" href="#acrobat-templates" title="Permalink to this headline">¶</a></h1>
+<p>This chapter will help you understand the role of templates in PDF form structures, and the options and implications related to their use. You will also learn about the parameters for the <code class="docutils literal notranslate"><span class="pre">template</span></code> object methods.</p>
+<a name="78613"></a><div class="section" id="the-role-of-templates-in-pdf-form-architecture">
+<h2>The role of templates in PDF form architecture<a class="headerlink" href="#the-role-of-templates-in-pdf-form-architecture" title="Permalink to this headline">¶</a></h2>
+<p>The Acrobat extension of JavaScript defines a template object that supports interactive form architectures. In this context, a <em>template</em> is a named page within a PDF document that provides a convenient format within which to automatically generate and manipulate a large number of form fields. These pages contain visibility settings, and can be used to spawn new pages containing identical sets of form controls to those defined within the template.</p>
+<p>As you learned earlier, it is possible to use templates to dynamically generate new content within a document. Templates help to create reusable content, and can be used for replicating logic.</p>
+<p>A template is used to reproduce the logic on a given page at any new location in the document. This logic may include form fields such as text fields and buttons, digital signatures, and embedded logic such as scripts that email form data to another user. To create a template based on a page, invoke the Doc object <code class="docutils literal notranslate"><span class="pre">createTemplate</span></code> method, in which you will name your template and specify the page from which it will be created. The code below creates a template called <code class="docutils literal notranslate"><span class="pre">myTemplate</span></code> based on page 5 of the current document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">createTemplate</span><span class="p">({</span><span class="n">cName</span><span class="p">:</span> <span class="s2">&quot;myTemplate&quot;</span><span class="p">,</span> <span class="n">nPage</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>There are two steps required to generate pages based on a template contained in the document:</p>
+<ol class="arabic simple">
+<li><p>Select a template from the Doc object <code class="docutils literal notranslate"><span class="pre">templates</span></code> property, which is an array of <code class="docutils literal notranslate"><span class="pre">template</span></code> objects.</p></li>
+<li><p>Spawn a page invoking the <code class="docutils literal notranslate"><span class="pre">template</span></code> object <code class="docutils literal notranslate"><span class="pre">spawn</span></code> method.</p></li>
+</ol>
+<p>The following code adds a new page at the end of the current document that is based on the first template contained in the document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">myTemplateArray</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">templates</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">myTemplate</span> <span class="o">=</span> <span class="n">myTemplateArray</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">myTemplate</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="99654"></a><p>Spawning templates</p>
+<p>In this section you will learn how to spawn a page and about the naming convention for any form fields residing on a template page. Finally, a detailed example is presented.</p>
+<div class="section" id="dynamic-form-field-generation">
+<h3>Dynamic form field generation<a class="headerlink" href="#dynamic-form-field-generation" title="Permalink to this headline">¶</a></h3>
+<p>When spawning templates, you an specify whether the form fields are renamed on the new page or retain the same names as those specified in the template. This is done through the optional <code class="docutils literal notranslate"><span class="pre">bRename</span></code> parameter. If you set the parameter’s value to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the form fields on each spawned page have unique names, and values entered into any of those fields do not affect values in their counterparts on other pages. This would be useful, for example, in forms containing expense report items. If you set the parameter’s value to <code class="docutils literal notranslate"><span class="pre">false</span></code>, the form fields on each spawned page have the same name as their counterparts on all the other spawned pages. This might be useful if you would like, for example, to duplicate a button or display the date on every page, since entering it once results in its duplication throughout all the spawned pages.</p>
+<p>Suppose the <code class="docutils literal notranslate"><span class="pre">bRename</span></code> parameter is <code class="docutils literal notranslate"><span class="pre">true</span></code> and the field name on the template is <code class="docutils literal notranslate"><span class="pre">myField</span></code>. If the template is named <code class="docutils literal notranslate"><span class="pre">myTemplate</span></code> and is spawned onto page 4, the new corresponding field name is <code class="docutils literal notranslate"><span class="pre">P4.myTemplate.myField</span></code>. The page number embedded in the new field guarantees its uniqueness.</p>
+<a name="61656"></a></div>
+<div class="section" id="dynamic-page-generation">
+<h3>Dynamic page generation<a class="headerlink" href="#dynamic-page-generation" title="Permalink to this headline">¶</a></h3>
+<p>When templates are used to spawn new pages, those pages contain an identical set of form fields to those defined in the template. Depending on the parameters used, this process may result in a file size inflation problem. This is because there are two ways to specify page generation: one option is to repeatedly spawn the same page which results in the duplication of <code class="docutils literal notranslate"><span class="pre">XObject</span></code> objects (external graphics objects), and the other is to generate page contents as <code class="docutils literal notranslate"><span class="pre">XObject</span></code> objects, which only requires that those objects be repositioned.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nPage</span></code> parameter is used to specify the zero-based index of the page number used to create the page. If the <code class="docutils literal notranslate"><span class="pre">bOverlay</span></code> value is set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the new page overlays on to the page number specified in the <code class="docutils literal notranslate"><span class="pre">nPage</span></code> parameter. If the <code class="docutils literal notranslate"><span class="pre">bOverlay</span></code> value is set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, the new page is inserted as a new page before the specified page. To append a page at the end of the document, set the <code class="docutils literal notranslate"><span class="pre">bOverlay</span></code> value to false and the <code class="docutils literal notranslate"><span class="pre">nPage</span></code> parameter to the total number of pages in the document.</p>
+<a name="48912"></a></div>
+<div class="section" id="template-syntax-and-usage">
+<h3>Template syntax and usage<a class="headerlink" href="#template-syntax-and-usage" title="Permalink to this headline">¶</a></h3>
+<p>In this first example, all the templates will be spawned once, the field names will not be unique in each resultant page (<code class="docutils literal notranslate"><span class="pre">bRename</span></code> will be <code class="docutils literal notranslate"><span class="pre">false</span></code>), and the resultant pages will be appended to the end of the document (<code class="docutils literal notranslate"><span class="pre">bOverlay</span></code> will be <code class="docutils literal notranslate"><span class="pre">false</span></code>). The <code class="docutils literal notranslate"><span class="pre">oXObject</span></code> parameter will be used to prevent file size inflation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">collection</span> <span class="n">of</span> <span class="n">templates</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">t</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">templates</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Spawn</span> <span class="n">each</span> <span class="n">template</span> <span class="n">once</span> <span class="k">as</span> <span class="n">a</span> <span class="n">page</span> <span class="n">appended</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span><span class="p">:</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">t</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In this next example, the same template will be spawned 10 times, will overlay on to pages 0 through 9 (<code class="docutils literal notranslate"><span class="pre">bOverlay</span></code> will be <code class="docutils literal notranslate"><span class="pre">true</span></code>), and the field names will be unique on each page (<code class="docutils literal notranslate"><span class="pre">bRename</span></code> will be <code class="docutils literal notranslate"><span class="pre">true</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">template</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">t</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">templates</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">T</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+<span class="o">//</span> <span class="n">Prevent</span> <span class="n">file</span> <span class="n">size</span> <span class="n">inflation</span> <span class="n">by</span> <span class="n">using</span> <span class="n">the</span> <span class="n">XObject</span><span class="o">.</span> <span class="n">Do</span> <span class="n">this</span> <span class="n">by</span>
+<span class="o">//</span> <span class="n">spawning</span> <span class="n">once</span><span class="p">,</span> <span class="n">saving</span> <span class="n">the</span> <span class="n">result</span> <span class="p">(</span><span class="n">an</span> <span class="n">XObject</span><span class="p">),</span> <span class="ow">and</span> <span class="n">passing</span>
+<span class="o">//</span> <span class="n">the</span> <span class="n">resultant</span> <span class="n">XObject</span> <span class="n">to</span> <span class="n">the</span> <span class="n">oXObject</span> <span class="n">parameter</span> <span class="ow">in</span>
+<span class="o">//</span> <span class="n">the</span> <span class="n">subsequent</span> <span class="n">calls</span> <span class="n">to</span> <span class="n">the</span> <span class="n">spawn</span> <span class="n">method</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">XO</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">T</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">XO</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In this next example, we will retrieve the template named <code class="docutils literal notranslate"><span class="pre">myTemplate</span></code>, overlay it onto pages 5 through 10 (<code class="docutils literal notranslate"><span class="pre">bOverlay</span></code> will be <code class="docutils literal notranslate"><span class="pre">true</span></code>), and use the same field names on each page (<code class="docutils literal notranslate"><span class="pre">bRename</span></code> will be <code class="docutils literal notranslate"><span class="pre">false</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Obtain</span> <span class="n">the</span> <span class="n">template</span> <span class="n">name</span> <span class="s2">&quot;myTemplate&quot;</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">t</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getTemplate</span><span class="p">(</span><span class="s2">&quot;myTemplate&quot;</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Prevent</span> <span class="n">file</span> <span class="n">size</span> <span class="n">inflation</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">XO</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Spawn</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">pages</span><span class="p">:</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">t</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">XO</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Gathering personal data using templates</p></li>
+</ol>
+<p>In this example, we have a two page document and one hidden template page named <code class="docutils literal notranslate"><span class="pre">datapage</span></code>. On the first page of the document, the head of household fills in his/her name, as well as the names of the dependents, the spouse and children. After doing this, a button is clicked. The button action spawns the hidden template, <code class="docutils literal notranslate"><span class="pre">datapage</span></code>, for a number of instances equal to the number of people in the household. The names of each member of the household are pre-populated into each of the templates. On each of these template pages, the head of household fills in personal data of each household member: name (pre-populated), age, gender (combo box, Male or Female), and income.</p>
+<p>The button action on the first page looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Define</span> <span class="n">an</span> <span class="n">array</span> <span class="n">of</span> <span class="n">field</span> <span class="n">names</span> <span class="k">for</span> <span class="n">the</span> <span class="n">first</span> <span class="n">page</span><span class="p">,</span> <span class="n">up</span> <span class="n">to</span> <span class="n">five</span> <span class="n">children</span>
+<span class="n">var</span> <span class="n">aFamily</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;family.head&quot;</span><span class="p">,</span><span class="s2">&quot;family.spouse&quot;</span><span class="p">,</span> <span class="s2">&quot;family.child1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;family.child2&quot;</span><span class="p">,</span> <span class="s2">&quot;family.child3&quot;</span><span class="p">,</span> <span class="s2">&quot;family.child4&quot;</span><span class="p">,</span> <span class="s2">&quot;family.child5&quot;</span> <span class="p">]</span>
+<span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">template</span> <span class="nb">object</span> <span class="n">of</span> <span class="n">the</span> <span class="n">template</span> <span class="n">datapage</span><span class="o">.</span>
+<span class="n">var</span> <span class="n">T</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getTemplate</span><span class="p">(</span><span class="s2">&quot;datapage&quot;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">fName</span> <span class="o">=</span> <span class="s2">&quot;P1.datapage.name&quot;</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Put</span> <span class="n">this</span> <span class="n">just</span> <span class="n">before</span> <span class="n">the</span> <span class="n">last</span> <span class="n">page</span><span class="o">.</span>
+<span class="n">var</span> <span class="n">XO</span> <span class="o">=</span> <span class="n">T</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="n">aFamily</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">var</span> <span class="n">g</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="n">fName</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Populate</span> <span class="n">this</span> <span class="n">name</span> <span class="n">field</span> <span class="n">of</span> <span class="n">the</span> <span class="n">first</span> <span class="n">template</span> <span class="k">with</span> <span class="n">the</span> <span class="n">name</span> <span class="n">of</span>
+<span class="o">//</span><span class="n">the</span> <span class="n">head</span> <span class="n">of</span> <span class="n">household</span>
+<span class="n">g</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Now</span><span class="p">,</span> <span class="n">go</span> <span class="n">through</span> <span class="n">the</span> <span class="n">other</span> <span class="n">fields</span><span class="p">,</span> <span class="n">extracting</span> <span class="n">names</span><span class="p">,</span> <span class="ow">and</span> <span class="n">spawning</span>
+<span class="o">//</span> <span class="n">templates</span>
+<span class="k">for</span> <span class="p">(</span> <span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">aFamily</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="n">aFamily</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">f</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="o">//</span> <span class="n">Insert</span> <span class="n">a</span> <span class="n">new</span> <span class="n">template</span> <span class="n">just</span> <span class="n">before</span> <span class="n">the</span> <span class="n">last</span> <span class="n">page</span><span class="o">.</span>
+        <span class="n">var</span> <span class="n">fName</span> <span class="o">=</span> <span class="s2">&quot;P&quot;</span><span class="o">+</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.datapage.name&quot;</span><span class="p">;</span>
+            <span class="n">T</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">true</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">XO</span><span class="p">);</span>
+            <span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;fName = &quot;</span> <span class="o">+</span> <span class="n">fName</span><span class="p">);</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">break</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now for the last page. On this page we have a series of four fields that summarizes the information entered in the template pages. These fields give the total number of dependents; the spouse’s name, age, and gender; and each of the children’s names, genders and ages. The following script is placed as a Page Open event for the last page, the one that contains the summary information.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">this</span><span class="o">.</span><span class="n">pageNum</span> <span class="o">!=</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Number</span> <span class="n">of</span> <span class="n">dependents</span> <span class="o">=</span> <span class="n">number</span> <span class="n">of</span> <span class="n">pages</span> <span class="o">-</span> <span class="mi">3</span>
+        <span class="n">var</span> <span class="n">numDependents</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">numPages</span> <span class="o">-</span> <span class="mi">3</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;dependents&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">numDependents</span><span class="p">;</span>
+
+        <span class="n">var</span> <span class="n">totalincome</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">head</span> <span class="n">of</span> <span class="n">household</span><span class="s1">&#39;s income</span>
+        <span class="n">var</span> <span class="n">income</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P1.datapage.income&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">totalincome</span> <span class="o">+=</span> <span class="n">income</span><span class="p">;</span>
+
+        <span class="o">//</span> <span class="n">Spouse</span><span class="s1">&#39;s name and gender is on P2</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">numDependents</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">var</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P2.datapage.gender&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">var</span> <span class="n">age</span> <span class="o">=</span>  <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P2.datapage.age&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">var</span> <span class="n">spouseStr</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P2.datapage.name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span>
+            <span class="o">+</span><span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">gender</span> <span class="o">+</span><span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">age</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">;</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;spouse&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">spouseStr</span>
+        <span class="n">income</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P2.datapage.income&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+        <span class="n">totalincome</span> <span class="o">+=</span> <span class="n">income</span><span class="p">;</span>
+    <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">numDependents</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">var</span> <span class="n">nChildren</span> <span class="o">=</span> <span class="n">numDependents</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">var</span> <span class="n">l</span> <span class="o">=</span> <span class="n">nChildren</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="n">var</span> <span class="n">childStr</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">var</span> <span class="n">childName</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="s2">&quot;.datapage.name&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+            <span class="n">var</span> <span class="n">gender</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="s2">&quot;.datapage.gender&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+            <span class="n">var</span> <span class="n">age</span> <span class="o">=</span>  <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="s2">&quot;.datapage.age&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+            <span class="n">childStr</span> <span class="o">+=</span> <span class="p">(</span><span class="n">childName</span> <span class="o">+</span> <span class="s2">&quot; (&quot;</span> <span class="o">+</span> <span class="n">gender</span> <span class="o">+</span><span class="s2">&quot;, &quot;</span><span class="o">+</span> <span class="n">age</span> <span class="o">+</span><span class="s2">&quot;); &quot;</span><span class="p">);</span>
+            <span class="n">var</span> <span class="n">income</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;P&quot;</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="s2">&quot;.datapage.income&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+            <span class="n">totalincome</span> <span class="o">+=</span> <span class="n">income</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;children&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">childStr</span><span class="p">;</span>
+    <span class="p">}</span>
+        <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;totalincome&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">totalincome</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the script above, the field names of the spawned templates have been renamed. To extract the information contained in these template pages, the field names have to be built. Knowledge of the naming convention used by templates, as well as the structure of the document and the placement of the templates in the document is essential.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: May 18, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

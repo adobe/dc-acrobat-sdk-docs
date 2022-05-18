@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+      <link rel="shortcut icon" href="../_static/favicon.ico" />  
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeindex.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mapping Table Elements Reference" href="SaveAsXML_DirectivesRef.html" />
+    <link rel="prev" title="SaveAsXML Plugin" href="toc.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat and PDFL SDK: Extending the SaveAsXML Plugin
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Acrobat and PDFL SDK: Extending the SaveAsXML Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sample-mapping-table">Sample mapping table</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#root-node">Root node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#emit-string">Emit-string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#walk-structure">Walk-structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#define-event-list">Define-event-list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#event">Event</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#call-proc-list">Call-proc-list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#walk-children">Walk-children</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proc-doc-text">Proc-doc-text</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#define-proc-list">Define-proc-list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#proc-var">Proc-var</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#proc-string">Proc-string</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#editing-the-mapping-tables">Editing the mapping tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SaveAsXML_DirectivesRef.html">Mapping Table Elements Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#call-event-list">Call-event-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#call-proc-list">Call-proc-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#comment">Comment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#conditional-delimiter">Conditional-delimiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#conditional-prefix">Conditional-prefix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#conditional-suffix">Conditional-suffix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#define-event-list">Define-event-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#define-proc-list">Define-proc-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#element-name">Element-name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#emit-all-metadata">Emit-all-metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#emit-string">Emit-string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#evaluate-var">Evaluate-var</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#event">Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-doc-text">Proc-doc-text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-enum">Proc-enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-enum-choice">Proc-enum-choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-fixed">Proc-fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-graphic-content">Proc-graphic-content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-hex">Proc-hex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-image-content">Proc-image-content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-integer">Proc-integer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-length">Proc-length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-pixels">Proc-pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-property">Proc-property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-string">Proc-string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#proc-var">Proc-var</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#property-name">Property-name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#property-type">Property-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#root">Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#void">Void</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#walk-cached-property-sets">Walk-cached-property-sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#walk-children">Walk-children</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#walk-layout">Walk-layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#walk-metadata">Walk-metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#walk-proplist">Walk-proplist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SaveAsXML_DirectivesRef.html#walk-structure">Walk-structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat and PDFL SDK: Extending the SaveAsXML Plugin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Acrobat and PDFL SDK: Extending the SaveAsXML Plugin</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="SaveAsXML_DirectivesRef.html" class="btn btn-neutral float-right" title="Mapping Table Elements Reference" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="toc.html" class="btn btn-neutral float-left" title="SaveAsXML Plugin" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="acrobat-and-pdfl-sdk-extending-the-saveasxml-plugin">
+<h1>Acrobat and PDFL SDK: Extending the SaveAsXML Plugin<a class="headerlink" href="#acrobat-and-pdfl-sdk-extending-the-saveasxml-plugin" title="Permalink to this headline">¶</a></h1>
+<p>This document describes a sample mapping table and its directives, how SaveAsXML interacts with the mapping tables, and how to edit mapping tables.</p>
+<p>When the SaveAsXML plug-in registers itself with Acrobat DC, it inspects the set of XML files in the <code class="docutils literal notranslate"><span class="pre">MappingTables</span></code> folder to determine the number of conversion services that are available.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">MappingTables</span></code> folder must be inside the <code class="docutils literal notranslate"><span class="pre">SaveAsXML</span></code> folder, which is at the same level as <code class="docutils literal notranslate"><span class="pre">SaveAsXML.api</span></code>. Files in the <code class="docutils literal notranslate"><span class="pre">MappingTables</span></code> folder are the only ones that are inspected as potential conversion services supported by the plug-in. This folder must not contain any files with the <code class="docutils literal notranslate"><span class="pre">.xml</span></code> extension that are not mapping tables.</p>
+<p>If the registration process finds the Root element and its menu-name attribute, which may be a string or a predefined identifier, it adds the menu-name to the list of file format choices available in the Save As dialog box. The menu-name must be unique, or the user may be confused by similarly identified entries among the Save As dialog box’s file formats.</p>
+<p>When a user selects an applicable file format in the Save As dialog box, the dialog box handler activates the SaveAsXML plug-in. The plug-in reads the associated mapping table and converts it to a binary in-memory format, which it uses to control the processing of the current tagged PDF document.</p>
+<div class="section" id="sample-mapping-table">
+<h2>Sample mapping table<a class="headerlink" href="#sample-mapping-table" title="Permalink to this headline">¶</a></h2>
+<p>The following sample mapping table, which is simplified and incomplete, demonstrates the basic operations of SaveAsXML processing. The sample is followed by a detailed analysis of the directives.</p>
+<p>For more complete examples, see the mapping tables distributed with SaveAsXML. Directives that are currently supported are used in one or more of the distributed tables. For a reference of directives and their attributes, see the following chapter, <a class="reference external" href="SaveAsXML_DirectivesRef.html#50409488_74509">Mapping Table Elements Reference</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;Root File-format = &quot;Xml-1-00&quot; Menu-name = &quot;Sample Mapping Table&quot;
+      Mac-creator = &quot;MSIE&quot; Mac-type = &quot;TEXT&quot; Win-suffix = &quot;xml&quot;
+      Encode-out = &quot;Utf-8-out&quot;&gt;
+  &lt;Emit-string ... &gt;&amp;lt;XML-Doc&amp;gt;&lt;/Emit-string&gt;
+  &lt;Walk-structure Use-event-list = &quot;Block-events&quot;&gt;&lt;/Walk-structure&gt;
+  &lt;Emit-string ...&gt;&amp;lt;/XML-Doc&amp;gt;&lt;/Emit-string&gt;
+  &lt;Define-event-list Name = &quot;Block-events&quot;&gt;
+    &lt;Event  Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+            Node-name = &quot;Div&quot; Alternate-name = &quot;-none-&quot;
+            Node-content = &quot;Has-kids&quot; Event-class = &quot;Enter&quot;&gt;
+      &lt;Emit-string ...&gt;&amp;lt;Div&lt;/Emit-string&gt;
+      &lt;Call-proc-list Name = &quot;Block-attributes&quot;&gt;&lt;/Call-proc-list&gt;
+      &lt;Emit-string ...&gt;&amp;gt;&lt;/Emit-string&gt;
+      &lt;Walk-children Use-event-list = &quot;Inline-events&quot;&gt;&lt;/Walk-children&gt;
+    &lt;/Event&gt;
+      &lt;Event  Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+              Node-name = &quot;Div&quot; Alternate-name = &quot;-none-&quot;
+              Node-content = &quot;Has-kids&quot; Event-class = &quot;Exit&quot;&gt;
+      &lt;Emit-string ...&gt;&amp;lt;/Div&amp;gt;&lt;/Emit-string&gt;
+    &lt;/Event&gt;
+    &lt;Event  Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+            Node-name = &quot;Div&quot; Alternate-name = &quot;-none-&quot;
+            Node-content = &quot;Empty&quot; Event-class = &quot;Enter&quot;&gt;
+      &lt;Emit-string ...&gt;&amp;lt;Div&lt;/Emit-string&gt;
+      &lt;Call-proc-list Name = &quot;Block-attributes&quot;&gt;&lt;/Call-proc-list&gt;
+      &lt;Emit-string ...&gt;/&amp;gt;&lt;/Emit-string&gt;
+    &lt;/Event&gt;
+  &lt;/Define-event-list&gt;
+  &lt;Define-event-list Name = &quot;Inline-events&quot;&gt;
+    &lt;Event  Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+            Node-name = &quot;Span&quot; Alternate-name = &quot;-none-&quot;
+            Node-content = &quot;Has-kids&quot; Event-class = &quot;Enter&quot;&gt;
+      &lt;Emit-string ...&gt;&amp;lt;Span&lt;/Emit-string&gt;
+      &lt;Call-proc-list Name = &quot;Span-attributes&quot;&gt;&lt;/Call-proc-list&gt;
+      &lt;Emit-string ...&gt;&amp;gt;&lt;/Emit-string&gt;
+      &lt;Walk-children Use-event-list = &quot;Inline-events&quot;&gt;&lt;/Walk-children&gt;
+    &lt;/Event&gt;
+    &lt;Event  Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+            Node-name = &quot;Span&quot; Alternate-name = &quot;-none-&quot;
+            Node-content = &quot;Has-kids&quot; Event-class = &quot;Exit&quot;&gt;
+      &lt;Emit-string ...&gt;&amp;lt;/Span&amp;gt;&lt;/Emit-string&gt;
+    &lt;/Event&gt;
+    &lt;Event  Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+            Node-name = &quot;Span&quot; Alternate-name = &quot;-none-&quot;
+            Node-content = &quot;Empty&quot; Event-class = &quot;Enter&quot;&gt;
+      &lt;Emit-string ...&gt;&amp;lt;Span&lt;/Emit-string&gt;
+      &lt;Call-proc-list Name = &quot;Span-attributes&quot;&gt;&lt;/Call-proc-list&gt;
+      &lt;Emit-string ...&gt;/&amp;gt;&lt;/Emit-string&gt;
+    &lt;/Event&gt;
+    &lt;Event  Inf-type = &quot;Pds-mc&quot; Name-type = &quot;Any&quot; Node-name = &quot;-none-&quot;
+            Alternate-name = &quot;-none-&quot; Node-content = &quot;Has-text-only&quot;
+            Event-class = &quot;Enter&quot;&gt;
+      &lt;Proc-doc-text do-br-substitution = &quot;do-br-substitution&quot;&gt;&lt;/Proc-doc-text&gt;
+    &lt;/Event&gt;
+  &lt;/Define-event-list&gt;
+  &lt;Define-proc-list Name = &quot;Block-attributes&quot;&gt;
+    &lt;Proc-var  Pdf-var = &quot;Alt&quot; Owner = &quot;Structelem&quot; Type = &quot;String&quot;
+              Has-enum = &quot;No-enum&quot; Inherit = &quot;Not-inherited&quot; Default = &quot;-none-&quot;
+              Condition = &quot;Has-value&quot;&gt;
+      &lt;Emit-string ...&gt;alt=&quot;&lt;/Emit-string&gt;
+      &lt;Proc-string&gt;&lt;/Proc-string&gt;
+      &lt;Emit-string ...&gt;&quot;&lt;/Emit-string&gt;
+    &lt;/Proc-var&gt;
+  &lt;/Define-proc-list&gt;
+  &lt;Define-proc-list Name = &quot;Span-attributes&quot;&gt;
+    &lt;Proc-var  Pdf-var = &quot;ActualText&quot; Owner = &quot;Structelem&quot; Type = &quot;String&quot;
+              Has-enum = &quot;No-enum&quot; Inherit = &quot;Not-inherited&quot; Default = &quot;-none-&quot;
+              Condition = &quot;Always&quot;&gt;
+      &lt;Emit-string ...&gt;actual-text=&quot;&lt;/Emit-string&gt;
+      &lt;Proc-string&gt;&lt;/Proc-string&gt;
+      &lt;Emit-string ...&gt;&quot;&lt;/Emit-string&gt;
+    &lt;/Proc-var&gt;
+  &lt;/Define-proc-list&gt;
+&lt;/Root&gt;
+</pre></div>
+</div>
+<div class="section" id="root-node">
+<h3>Root node<a class="headerlink" href="#root-node" title="Permalink to this headline">¶</a></h3>
+<p>Processing begins with the root node of the mapping table and generally proceeds as a pre-order hierarchical traversal of the control nodes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Root</span> <span class="n">File</span><span class="o">-</span><span class="nb">format</span> <span class="o">=</span> <span class="s2">&quot;Xml-1-00&quot;</span> <span class="n">Menu</span><span class="o">-</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Sample Mapping Table&quot;</span>
+      <span class="n">Mac</span><span class="o">-</span><span class="n">creator</span> <span class="o">=</span> <span class="s2">&quot;MSIE&quot;</span> <span class="n">Mac</span><span class="o">-</span><span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;TEXT&quot;</span> <span class="n">Win</span><span class="o">-</span><span class="n">suffix</span> <span class="o">=</span> <span class="s2">&quot;xml&quot;</span>
+      <span class="n">Encode</span><span class="o">-</span><span class="n">out</span> <span class="o">=</span> <span class="s2">&quot;Utf-8-out&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>In processing the <code class="docutils literal notranslate"><span class="pre">Root</span></code> node of the mapping table, the SaveAsXML processor opens the output file using the path and name of the PDF document to be saved, replacing the file suffix with that specified by the <code class="docutils literal notranslate"><span class="pre">Win-suffix</span></code> attribute in this node. In Mac OS, the <code class="docutils literal notranslate"><span class="pre">Mac-creator</span></code> and <code class="docutils literal notranslate"><span class="pre">Mac-type</span></code> are also used to open the output file. The remaining attributes in the <code class="docutils literal notranslate"><span class="pre">Root</span></code> node are available to the SaveAsXML processor and are used to control or optimize the conversion.</p>
+</div>
+<div class="section" id="emit-string">
+<h3>Emit-string<a class="headerlink" href="#emit-string" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">...</span> <span class="o">&gt;&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">XML</span><span class="o">-</span><span class="n">Doc</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Emit-string</span></code> directive causes its content to be translated to the output encoding specified in the <code class="docutils literal notranslate"><span class="pre">Encode-out</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">Root</span></code> node, then emits the converted data to the output file. In this sample, it issues the start tag for the document: <code class="docutils literal notranslate"><span class="pre">&lt;XML-Doc&gt;</span></code>. For clarity, the additional attributes of the <code class="docutils literal notranslate"><span class="pre">Emit-string</span></code> directive have been omitted in the sample.</p>
+<p>Here, as in any mapping table directive, the following code is used to represent special characters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;lt;</span></code> represents the less-than (&lt;) character.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;gt;</span></code> represents the greater-than (&gt;) character.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&amp;amp;</span></code> represents the ampersand (&amp;) character.</p></li>
+</ul>
+</div>
+<div class="section" id="walk-structure">
+<h3>Walk-structure<a class="headerlink" href="#walk-structure" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Walk</span><span class="o">-</span><span class="n">structure</span> <span class="n">Use</span><span class="o">-</span><span class="n">event</span><span class="o">-</span><span class="nb">list</span> <span class="o">=</span> <span class="s2">&quot;Block-events&quot;</span><span class="o">&gt;&lt;/</span><span class="n">Walk</span><span class="o">-</span><span class="n">structure</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Walk-structure</span></code> directive causes the SaveAsXML processor to walk the first-level structural elements (Kids array of the StructRoot) of the tagged PDF document to be saved. For more information, see <a class="reference external" href="SaveAsXML_DeveloperInfo.html#50409487_34099">Walk-children</a>.</p>
+<p>Structural elements are traversed in the order found in the logical structure tree. An event is generated on entering and on exiting each structural element. The event-list specified by the <code class="docutils literal notranslate"><span class="pre">Use-event-list</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">Walk-structure</span></code> directive is searched for a matching <code class="docutils literal notranslate"><span class="pre">Event</span></code> directive. For more information, see <a class="reference external" href="SaveAsXML_DeveloperInfo.html#50409487_51177">Define-event-list</a>.</p>
+<p>If a match is found, the directives within that <code class="docutils literal notranslate"><span class="pre">Event</span></code> directive are processed (which may include the recursive processing of children of the current structural element via a <code class="docutils literal notranslate"><span class="pre">Walk-children</span></code> directive). Searching of the event-list is terminated and the next event is generated.</p>
+<p>If no match is found, or when processing is completed on the matching <code class="docutils literal notranslate"><span class="pre">Event</span></code> directive, the next event is generated.</p>
+<p>Processing continues until all first-level structural elements (Kids array of the StructRoot) have been traversed, then the directive following the <code class="docutils literal notranslate"><span class="pre">Walk-structure</span></code> directive is processed. In this sample, it is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="n">Emit</span><span class="o">-</span><span class="n">space</span><span class="o">-</span><span class="n">after</span> <span class="o">=</span> <span class="s2">&quot;Emit-space-after&quot;</span> <span class="o">...&gt;</span>
+<span class="o">&amp;</span><span class="c1">#lt;/XML-Doc&amp;gt;</span>
+<span class="o">&lt;/</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">Emit-string</span></code> directive issues the end tag: <code class="docutils literal notranslate"><span class="pre">&lt;/XML-Doc&gt;</span></code>. Because newlines and spaces are often modified or stripped by various XML tools, the <code class="docutils literal notranslate"><span class="pre">Emit-space-after</span></code> attribute, and the other related attributes of the <code class="docutils literal notranslate"><span class="pre">Emit-string</span></code> directive, guarantees the retention of these characters.</p>
+</div>
+<div class="section" id="define-event-list">
+<h3>Define-event-list<a class="headerlink" href="#define-event-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Define</span><span class="o">-</span><span class="n">event</span><span class="o">-</span><span class="nb">list</span> <span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;Block-events&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Define-event-list</span></code> directive is similar to a macro or subroutine definition in most programming languages. It encapsulates and names a set of event directives. The directives are activated by a <code class="docutils literal notranslate"><span class="pre">Walk-structure</span></code>, <code class="docutils literal notranslate"><span class="pre">Walk-children</span></code>, or <code class="docutils literal notranslate"><span class="pre">Call-event-list</span></code> directive specifying the name of the event list in the <code class="docutils literal notranslate"><span class="pre">Use-event-list</span></code> attribute.</p>
+<div class="section" id="event">
+<h4>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;Event  Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+        Node-name = &quot;Div&quot; Alternate-name = &quot;-none-&quot;
+        Node-content = &quot;Has-kids&quot; Event-class = &quot;Enter&quot;&gt;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Event</span></code> directive includes a set of attributes that are used to determine if the directives within it are to be processed. The directive in the sample is activated by entering (either from a parent element or from the prior peer element) a structural element (<code class="docutils literal notranslate"><span class="pre">Inf-type</span> <span class="pre">=</span> <span class="pre">&quot;Struct-elem&quot;</span></code>), where the element is role-mapped (<code class="docutils literal notranslate"><span class="pre">Name-type</span> <span class="pre">=</span> <span class="pre">&quot;Structure-role&quot;</span></code>) to <code class="docutils literal notranslate"><span class="pre">&quot;Div&quot;</span></code> and the element has children.</p>
+<p>When an <code class="docutils literal notranslate"><span class="pre">Event</span></code> directive is activated, the directives within it (before its <code class="docutils literal notranslate"><span class="pre">&lt;/Event&gt;</span></code> tag) are processed. In this sample, the directive is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">...&gt;&amp;</span><span class="n">lt</span><span class="p">;</span><span class="n">Div</span><span class="o">&lt;/</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>This issues the <code class="docutils literal notranslate"><span class="pre">&quot;Div&quot;</span></code> portion of the output element’s start-tag.</p>
+</div>
+<div class="section" id="call-proc-list">
+<h4>Call-proc-list<a class="headerlink" href="#call-proc-list" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Call</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span> <span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;Block-attributes&quot;</span><span class="o">&gt;&lt;/</span><span class="n">Call</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Call-proc-list</span></code> directive processes the properties associated with this structural element, using the processing list specified by the <code class="docutils literal notranslate"><span class="pre">Name</span></code> property on the <code class="docutils literal notranslate"><span class="pre">Call-proc-list</span></code> directive.</p>
+<p>Although the event-list processing stops on the first match, the proc-list processing continues for every directive in the selected processing list.</p>
+<p>The directive:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">...&gt;&amp;</span><span class="n">gt</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>issues the closing <code class="docutils literal notranslate"><span class="pre">&quot;&gt;&quot;</span></code> on the output element’s start-tag.</p>
+</div>
+<div class="section" id="walk-children">
+<h4>Walk-children<a class="headerlink" href="#walk-children" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Walk</span><span class="o">-</span><span class="n">children</span> <span class="n">Use</span><span class="o">-</span><span class="n">event</span><span class="o">-</span><span class="nb">list</span> <span class="o">=</span> <span class="s2">&quot;Inline-events&quot;</span><span class="o">&gt;&lt;/</span><span class="n">Walk</span><span class="o">-</span><span class="n">children</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Walk-children</span></code> directive is functionally identical to the <code class="docutils literal notranslate"><span class="pre">Walk-structure</span></code> directive, except that it walks the first level children of the current structural element.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;/Event&gt;</span></code> tag indicates the end of the processing for this event. Remaining entries in this event-list follow a similar model.</p>
+<p>The next <code class="docutils literal notranslate"><span class="pre">Event</span></code> included in this event-list handles events that are generated when exiting <code class="docutils literal notranslate"><span class="pre">Div</span></code> elements that have children. This generates the close tag on the output element.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;Event Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+              Node-name = &quot;Div&quot; Alternate-name = &quot;-none-&quot;
+              Node-content = &quot;Has-kids&quot; Event-class = &quot;Exit&quot;&gt;
+      &lt;Emit-string ...&gt;&amp;lt;/Div&amp;gt;&lt;/Emit-string&gt;
+&lt;/Event&gt;
+</pre></div>
+</div>
+<p>The final <code class="docutils literal notranslate"><span class="pre">Event</span></code> directive included in this event-list handles events that are generated on entering an element which has no children. It does not and should not contain a <code class="docutils literal notranslate"><span class="pre">Walk-children</span></code> directive.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  &lt;Event Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+                Node-name = &quot;Div&quot; Alternate-name = &quot;-none-&quot;
+                Node-content = &quot;Empty&quot; Event-class = &quot;Enter&quot;&gt;
+          &lt;Emit-string ...&gt;&amp;lt;Div&lt;/Emit-string&gt;
+          &lt;Call-proc-list Name = &quot;Block-attributes&quot;&gt;&lt;/Call-proc-list&gt;
+          &lt;Emit-string ...&gt;/&amp;gt;&lt;/Emit-string&gt;
+  &lt;/Event&gt;
+&lt;/Define-event-list&gt;
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;/Define-event-list&gt;</span></code> tag ends the list of entries in the <code class="docutils literal notranslate"><span class="pre">Block-events</span></code> event-list.</p>
+<p>The following event-list handles inline elements and is similar to the one above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;Define-event-list Name = &quot;Inline-events&quot;&gt;
+  &lt;Event Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+                Node-name = &quot;Span&quot; Alternate-name = &quot;-none-&quot;
+                Node-content = &quot;Has-kids&quot; Event-class = &quot;Enter&quot;&gt;
+          &lt;Emit-string ...&gt;&amp;lt;Span&lt;/Emit-string&gt;
+          &lt;Call-proc-list Name = &quot;Span-attributes&quot;&gt;&lt;/Call-proc-list&gt;
+          &lt;Emit-string ...&gt;&amp;gt;&lt;/Emit-string&gt;
+          &lt;Walk-children Use-event-list = &quot;Inline-events&quot;&gt;
+          &lt;/Walk-children&gt;
+  &lt;/Event&gt;
+  &lt;Event Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+                Node-name = &quot;Span&quot; Alternate-name = &quot;-none-&quot;
+                Node-content = &quot;Has-kids&quot; Event-class = &quot;Exit&quot;&gt;
+          &lt;Emit-string ...&gt;&amp;lt;/Span&amp;gt;&lt;/Emit-string&gt;
+  &lt;/Event&gt;
+  &lt;Event Inf-type = &quot;Struct-elem&quot; Name-type = &quot;Structure-role&quot;
+                Node-name = &quot;Span&quot; Alternate-name = &quot;-none-&quot;
+                Node-content = &quot;Empty&quot; Event-class = &quot;Enter&quot;&gt;
+          &lt;Emit-string ...&gt;&amp;lt;Span&lt;/Emit-string&gt;
+          &lt;Call-proc-list Name = &quot;Span-attributes&quot;&gt;&lt;/Call-proc-list&gt;
+          &lt;Emit-string ...&gt;/&amp;gt;&lt;/Emit-string&gt;
+  &lt;/Event&gt;
+</pre></div>
+</div>
+<p>For event-lists that process structural elements that contain text or graphics, an <code class="docutils literal notranslate"><span class="pre">Event</span></code> entry similar to the following is required. The code in the SaveAsXML plug-in that traverses the logical structure tree also reports entering and exiting of the marked content containers (the wrappers around the low-level text and graphic content in the PDF page’s marking stream). The labels on these nodes are hidden in the Tags view in Acrobat DC. (The corresponding <code class="docutils literal notranslate"><span class="pre">Event</span></code> for a <code class="docutils literal notranslate"><span class="pre">Pds-mc</span></code> element where the content is <code class="docutils literal notranslate"><span class="pre">Image</span></code> is more complex. See the mapping tables distributed with SaveAsXML for complete examples.)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;Event Inf-type = &quot;Pds-mc&quot; Name-type = &quot;Any&quot; Node-name = &quot;-none-&quot;
+              Alternate-name = &quot;-none-&quot; Node-content = &quot;Has-text-only&quot;
+              Event-class = &quot;Enter&quot;&gt;
+</pre></div>
+</div>
+<p>This <code class="docutils literal notranslate"><span class="pre">Event</span></code> directive processes the low-level marked content containers (<code class="docutils literal notranslate"><span class="pre">Inf-type</span> <span class="pre">=</span> <span class="pre">&quot;Pds-mc&quot;</span></code>) that actually contain the text (<code class="docutils literal notranslate"><span class="pre">Node-content</span> <span class="pre">=</span> <span class="pre">&quot;Has-text-only&quot;</span></code>). A corresponding exit directive is not required.</p>
+</div>
+<div class="section" id="proc-doc-text">
+<h4>Proc-doc-text<a class="headerlink" href="#proc-doc-text" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Proc</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">text</span> <span class="n">do</span><span class="o">-</span><span class="n">br</span><span class="o">-</span><span class="n">substitution</span> <span class="o">=</span> <span class="s2">&quot;do-br-substitution&quot;</span><span class="o">&gt;&lt;/</span><span class="n">Proc</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">text</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Proc-doc-text</span></code> directive converts the text from the active marked content container in the PDF page’s marking stream to the output encoding specified in the <code class="docutils literal notranslate"><span class="pre">Encode-out</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">Root</span></code> node and then emits the converted data to the output file. The <code class="docutils literal notranslate"><span class="pre">do-br-substitution</span></code> attribute controls whether the LF character is to be converted to a <code class="docutils literal notranslate"><span class="pre">&lt;BR/&gt;</span></code> tag in the output stream, converted to a space, or discarded.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;/</span><span class="n">Event</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">Define</span><span class="o">-</span><span class="n">event</span><span class="o">-</span><span class="nb">list</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="define-proc-list">
+<h3>Define-proc-list<a class="headerlink" href="#define-proc-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Define</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span> <span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;Block-attributes&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Define-proc-list</span></code> directive is also a macro or subroutine similar to the <code class="docutils literal notranslate"><span class="pre">Define-event-list</span></code> directive. Whereas the event-list describes how to process transition events in traversing the logical structure tree, the proc-list describes how to process the properties (attributes) of a structural element.</p>
+<div class="section" id="proc-var">
+<h4>Proc-var<a class="headerlink" href="#proc-var" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Proc</span><span class="o">-</span><span class="n">var</span> <span class="n">Pdf</span><span class="o">-</span><span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;Alt&quot;</span> <span class="n">Owner</span> <span class="o">=</span> <span class="s2">&quot;Structelem&quot;</span> <span class="n">Type</span> <span class="o">=</span> <span class="s2">&quot;String&quot;</span>
+                 <span class="n">Has</span><span class="o">-</span><span class="n">enum</span> <span class="o">=</span> <span class="s2">&quot;No-enum&quot;</span> <span class="n">Inherit</span> <span class="o">=</span> <span class="s2">&quot;Not-inherited&quot;</span>
+                 <span class="n">Default</span> <span class="o">=</span> <span class="s2">&quot;-none-&quot;</span> <span class="n">Condition</span> <span class="o">=</span> <span class="s2">&quot;Has-value&quot;</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive searches an internal cache of the properties on the current structural element for the value of the property specified by its <code class="docutils literal notranslate"><span class="pre">Pdf-var</span></code> and <code class="docutils literal notranslate"><span class="pre">Owner</span></code> attributes. If inheritance is enabled, it also searches the cached properties of all ancestors of the current structural element for an applicable value. Once it determines if there is (or is not) a value, it uses the remaining attributes to determine if the value should be processed. If it determines it should be processed, then the directives contained in the <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive are processed.</p>
+</div>
+<div class="section" id="proc-string">
+<h4>Proc-string<a class="headerlink" href="#proc-string" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">...&gt;</span><span class="n">alt</span><span class="o">=</span><span class="s2">&quot;&lt;/Emit-string&gt;</span>
+<span class="o">&lt;</span><span class="n">Proc</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;&lt;/</span><span class="n">Proc</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Proc-string</span></code> directive causes the string selected by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive to be translated to the output encoding specified in the <code class="docutils literal notranslate"><span class="pre">Encode-out</span></code> attribute of the <code class="docutils literal notranslate"><span class="pre">Root</span></code> node, and then emits the converted data to the output file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>              <span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">...&gt;</span><span class="s2">&quot;&lt;/Emit-string&gt;</span>
+    <span class="o">&lt;/</span><span class="n">Proc</span><span class="o">-</span><span class="n">var</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">Define</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;/Define-proc-list&gt;</span></code> tag indicates the end of this proc-list.</p>
+<p>The following proc-list has a similar organization for <code class="docutils literal notranslate"><span class="pre">Block-attributes</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="o">&lt;</span><span class="n">Define</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span> <span class="n">Name</span> <span class="o">=</span> <span class="s2">&quot;Span-attributes&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">Proc</span><span class="o">-</span><span class="n">var</span> <span class="n">Pdf</span><span class="o">-</span><span class="n">var</span> <span class="o">=</span> <span class="s2">&quot;ActualText&quot;</span> <span class="n">Owner</span> <span class="o">=</span> <span class="s2">&quot;Structelem&quot;</span>
+                        <span class="n">Type</span> <span class="o">=</span> <span class="s2">&quot;String&quot;</span> <span class="n">Has</span><span class="o">-</span><span class="n">enum</span> <span class="o">=</span> <span class="s2">&quot;No-enum&quot;</span>
+                        <span class="n">Inherit</span> <span class="o">=</span> <span class="s2">&quot;Not-inherited&quot;</span> <span class="n">Default</span> <span class="o">=</span> <span class="s2">&quot;-none-&quot;</span>
+                        <span class="n">Condition</span> <span class="o">=</span> <span class="s2">&quot;Always&quot;</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">...&gt;</span><span class="n">actual</span><span class="o">-</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;&lt;/Emit-string&gt;</span>
+                <span class="o">&lt;</span><span class="n">Proc</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;&lt;/</span><span class="n">Proc</span><span class="o">-</span><span class="n">string</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">...&gt;</span><span class="s2">&quot;&lt;/Emit-string&gt;</span>
+      <span class="o">&lt;/</span><span class="n">Proc</span><span class="o">-</span><span class="n">var</span><span class="o">&gt;</span>
+  <span class="o">&lt;/</span><span class="n">Define</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span><span class="o">&gt;</span>
+
+<span class="o">&lt;/</span><span class="n">Root</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;/Root&gt;</span></code> tag is the last line of a mapping table file. It indicated the end of the <code class="docutils literal notranslate"><span class="pre">Root</span></code> directive.</p>
+</div>
+</div>
+</div>
+<div class="section" id="editing-the-mapping-tables">
+<h2>Editing the mapping tables<a class="headerlink" href="#editing-the-mapping-tables" title="Permalink to this headline">¶</a></h2>
+<p>You can edit the <code class="docutils literal notranslate"><span class="pre">.xml</span></code> versions of the mapping tables in any XML or SGML editor.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: May 18, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,984 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+      <link rel="shortcut icon" href="../_static/favicon.ico" />  
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeJS_Dev_SearchIndexEssentials.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Security" href="JS_Dev_Security.html" />
+    <link rel="prev" title="Acrobat Templates" href="JS_Dev_Templates.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat and PDFL SDK: JS Developer Guide
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">JavaScript Development for Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-for-acrobat-api-reference">JavaScript for Acrobat API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#object-summary">Object summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#app">app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#doc">Doc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dbg">dbg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#console">console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#global">global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#util">util</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dialog">dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#security">security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#soap">SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#search">search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#event">event</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-applications">JavaScript applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Tools.html">Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-javascript-debugger-console">Using the JavaScript Debugger console</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#opening-the-console">Opening the console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#formatting-code">Formatting code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugging-with-the-javascript-console">Debugging with the JavaScript Console</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-a-javascript-editor">Using a JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#specifying-the-default-javascript-editor">Specifying the default JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-an-external-editor">Using an external editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#additional-editor-capabilities">Additional editor capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#specifying-additional-capabilities-to-your-editor">Specifying additional capabilities to your editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#saving-and-closing-a-file-with-a-syntax-error">Saving and closing a file with a syntax error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-debugger-with-acrobat-reader">Using the Debugger with Acrobat Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#enabling-the-javascript-debugger">Enabling the JavaScript Debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#javascript-debugger">JavaScript Debugger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#main-groups-of-controls">Main groups of controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-view-windows">Debugger View windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-buttons">Debugger buttons</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#resume-execution">Resume execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#interrupt">Interrupt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#quit">Quit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-over">Step over</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-into">Step into</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-out">Step out</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-scripts-window">Debugger Scripts window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#accessing-scripts-in-the-scripts-window">Accessing scripts in the Scripts window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-inside-pdf-files">Scripts inside PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-outside-pdf-files">Scripts outside PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#call-stack-list">Call Stack list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window">Inspect details window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window-controls">Inspect details window controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspecting-variables">Inspecting variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#watches">Watches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-the-start-of-execution">Debugging from the start of execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-an-arbitrary-point-in-the-script">Debugging from an arbitrary point in the script</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#final-notes">Final notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Contexts.html">JavaScript Contexts in Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#the-concept-of-a-javascript-event">The concept of a JavaScript event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#about-contexts">About contexts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#folder-level">Folder level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#document-level">Document level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#page-level">Page level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#field-level">Field level</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#privileged-versus-non-privileged-context">Privileged versus non-privileged context</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-non-privileged-context">Executing privileged methods in a non-privileged context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-through-the-menu">Executing privileged methods through the menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-certified-document">Executing privileged methods in a certified document</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_PDFCreation.html">Creating and Modifying PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-and-modifying-pdf-files">Creating and modifying PDF files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-a-document-with-content">Creating a document with content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-pdf-documents">Combining PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-files">Combining files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-several-pdf-files">Combining several PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-files-of-different-formats">Combining files of different formats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#extracting-files">Extracting files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-file-attachments">Creating file attachments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#saving-form-data-to-and-reading-form-data-from-an-attachment">Saving form data to and reading form data from an attachment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#accessing-an-xml-attachment-using-e4x">Accessing an XML attachment using E4X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#cropping-and-rotating-pages">Cropping and rotating pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#cropping-pages">Cropping pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#rotating-pages">Rotating pages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#extracting-moving-deleting-replacing-and-copying-pages">Extracting, moving, deleting, replacing, and copying pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#adding-watermarks-and-backgrounds">Adding watermarks and backgrounds</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PDFCreation.html#converting-pdf-documents-to-xml-format">Converting PDF documents to XML format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_PrintProduction.html">Print Production</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-print-options">Setting print options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-pdf-documents">Printing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#silent-printing">Silent printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-comments-and-forms">Printing comments and forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#booklet-printing">Booklet printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-advanced-print-options">Setting advanced print options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-output-settings">Specifying output settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-marks-and-bleeds">Specifying marks and bleeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-postscript-options">Setting PostScript options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-font-options">Setting font options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_AcrobatForms.html">Using JavaScript in Forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#forms-essentials">Forms essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#about-pdf-forms">About PDF forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#elements-of-acrobat-forms">Elements of Acrobat forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#guidelines-for-creating-a-new-form">Guidelines for creating a new form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-acrobat-form-fields">Creating Acrobat form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-acrobat-form-field-properties">Setting Acrobat form field properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#field-properties">Field properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#button-fields">Button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#check-box-fields">Check box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#combo-box-fields">Combo box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#list-box-fields">List box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#radio-button-fields">Radio button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#signature-fields">Signature fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-fields">Text fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#validation-scripts">Validation scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#calculation-script">Calculation script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#task-based-topics">Task-based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-form-fields">Highlighting required form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-fields">Highlighting required fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-the-hierarchy-of-form-fields">Setting the hierarchy of form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-forms">Creating forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#positioning-form-fields">Positioning form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#duplicating-form-fields">Duplicating form fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#inserting-navigation-buttons-on-each-page">Inserting navigation buttons on each page</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-multiple-form-fields">Creating multiple form fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-the-tabbing-order">Defining the tabbing order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-form-field-calculation-order">Defining form field calculation order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-submit-button">Creating a submit button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-reset-form-button">Creating a reset form button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-cgi-export-values">Defining CGI export values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#importing-and-exporting-form-data">Importing and exporting form data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#emailing-completed-forms">Emailing completed forms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#use-date-objects">Use date objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-date-to-a-string">Converting from a date to a string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-string-to-a-date">Converting from a string to a date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#date-arithmetic">Date arithmetic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-global-variables-in-javascript">Defining global variables in JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#enable-the-global-object-security-policy">Enable the global object security policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-and-getting-a-global-variable">Setting and getting a global variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#deleting-global-variables">Deleting global variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-global-variables-persistent">Making global variables persistent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#querying-an-acrobat-form-field-value-in-another-open-form">Querying an Acrobat form field value in another open form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-object-security-policy">Global object security policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#intercepting-keystrokes-in-an-acrobat-form">Intercepting keystrokes in an Acrobat form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#constructing-custom-colors">Constructing custom colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#prompting-the-user-for-a-response">Prompting the user for a response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#fetching-an-url-from-javascript">Fetching an URL from JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-special-rollover-effects">Creating special rollover effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-submit">Global submit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-forms-accessible">Making forms accessible</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-to-speech">Text-to-speech</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#tagging-annotations">Tagging annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#document-metadata">Document metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#short-description">Short description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-tab-order">Setting tab order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#reading-order">Reading order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#using-javascript-to-secure-forms">Using JavaScript to secure forms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_RMA.html">Review, Markup, and Approval</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#working-with-comments-using-javascript">Working with comments using JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#annotation-types">Annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#getting-annotation-data">Getting annotation data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-comment-properties">Setting comment properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials">Online collaboration essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials-topics">Online collaboration essentials topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#reviewing-documents-with-additional-usage-rights">Reviewing documents with additional usage rights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#emailing-pdf-documents">Emailing PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#javascript-based-collaboration-driver">JavaScript-based collaboration driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#setting-spelling-preferences">Setting spelling preferences</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#adding-words-to-a-dictionary">Adding words to a dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#managing-comments">Managing comments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#selecting-moving-and-deleting-comments">Selecting, moving, and deleting comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#using-the-comments-list">Using the comments list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-status-of-comments">Changing the status of comments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-appearance-of-comments">Changing the appearance of comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#sorting-comments">Sorting comments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#showing-and-hiding-comments">Showing and hiding comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#exporting-and-importing-comments">Exporting and importing comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#aggregating-comments-for-use-in-excel">Aggregating comments for use in Excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#comparing-comments-in-two-pdf-documents">Comparing comments in two PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#extracting-comments-in-a-batch-process">Extracting comments in a batch process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#approving-documents-using-stamps-japanese-workflows">Approving documents using stamps (Japanese workflows)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-up-a-hanko-approval-workflow">Setting up a Hanko approval workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#participating-in-a-hanko-approval-workflow">Participating in a Hanko approval workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#installing-and-customizing-hanko-stamps">Installing and customizing Hanko stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#creating-custom-inkan-stamps">Creating custom Inkan stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#deleting-custom-stamps">Deleting custom stamps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_DigitalMedia.html">Working with Digital Media in PDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#media-players-control-settings-renditions-and-events">Media players: control, settings, renditions, and events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#accessing-a-list-of-active-players">Accessing a list of active players</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#specifying-playback-settings">Specifying playback settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#monitors">Monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#integrating-media-into-documents">Integrating media into documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-through-a-rendition-action">Controlling multimedia through a rendition action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-with-a-run-a-javascript-action">Controlling multimedia with a Run a JavaScript action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#adding-and-editing-renditions">Adding and editing renditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html">Modifying the User Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-toolbar-buttons-and-menu-items">Adding toolbar buttons and menu items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#thumbnails">Thumbnails</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-page-thumbnails">Creating page thumbnails</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-page-actions-with-page-thumbnails">Adding page actions with page thumbnails</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#bookmarks">Bookmarks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-bookmarks">Creating bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#managing-bookmarks">Managing bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-a-bookmark-hierarchy">Creating a bookmark hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#links">Links</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-and-removing-web-links-from-text">Adding and removing web links from text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-and-removing-links">Adding and removing links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-the-appearance-of-a-link">Defining the appearance of a link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#opening-links">Opening links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#opening-file-attachments">Opening file attachments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#using-destinations">Using destinations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#using-actions-for-special-effects">Using actions for special effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#highlighting-form-fields-and-navigational-components">Highlighting form fields and navigational components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-the-initial-view-in-full-screen-view">Defining the initial view in full screen view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-an-initial-view">Defining an initial view</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#working-with-pdf-layers">Working with PDF layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#navigating-with-layers">Navigating with layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#editing-the-properties-of-pdf-layers">Editing the properties of PDF layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#reordering-layers">Reordering layers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Templates.html">Acrobat Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Templates.html#the-role-of-templates-in-pdf-form-architecture">The role of templates in PDF form architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#dynamic-form-field-generation">Dynamic form field generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#dynamic-page-generation">Dynamic page generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#template-syntax-and-usage">Template syntax and usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Search and Index Essentials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#searching-for-text-in-pdf-documents">Searching for text in PDF documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#search-methods">Search methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#finding-words-in-an-pdf-document">Finding words in an PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-advanced-search-options">Using advanced search options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#searching-across-multiple-pdf-documents">Searching across multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#searching-all-pdf-files-in-a-specific-location">Searching all PDF files in a specific location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-advanced-search-options-for-multiple-document-searches">Using advanced search options for multiple document searches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#searching-pdf-index-files">Searching PDF index files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-boolean-queries">Using Boolean queries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#indexing-multiple-pdf-documents">Indexing multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-updating-or-rebuilding-indexes">Creating, updating, or rebuilding indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#searching-metadata">Searching metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-essentials">Security essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#methods-for-adding-security-to-pdf-documents">Methods for adding security to PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#passwords-and-restrictions">Passwords and restrictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-documents">Certifying documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#encrypting-files-using-certificates">Encrypting files using certificates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#userentity-object-properties">UserEntity object properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certificate-object-properties">Certificate object properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-policies">Security policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#secure-forms">Secure forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digitally-signing-pdf-documents">Digitally signing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#signing-a-pdf-document">Signing a PDF document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-security-handler-object">The security handler object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-signatureinfo-object">The SignatureInfo object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#applying-the-signature">Applying the signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#clearing-a-digital-signature">Clearing a digital signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#getting-signature-information-from-another-user">Getting signature information from another user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#removing-signatures">Removing signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-a-document">Certifying a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#validating-signatures">Validating signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#setting-digital-signature-properties-with-seed-values">Setting digital signature properties with seed values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-pdf-documents">Adding security to PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-passwords-and-setting-security-options">Adding passwords and setting security options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-usage-rights-to-a-document">Adding usage rights to a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-for-a-list-of-recipients">Encrypting PDF files for a list of recipients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-using-security-policies">Encrypting PDF files using security policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-document-attachments">Adding security to document attachments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digital-ids-and-certification-methods">Digital IDs and certification methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#digital-ids">Digital IDs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#about-digital-id-providers">About digital ID providers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#creating-a-digital-id-default-certificate-security">Creating a digital ID (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#using-digital-ids-default-certificate-security">Using digital IDs (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-ids-windows-certificate-security">Managing digital IDs (Windows certificate security)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-id-certificates">Managing digital ID certificates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#sharing-digital-id-certificates">Sharing digital ID certificates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#building-a-list-of-trusted-identities">Building a list of trusted identities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#checking-information-on-certificates">Checking information on certificates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#task-based-topics">Task based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#disallowing-changes-in-scripts">Disallowing changes in scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#hiding-scripts">Hiding scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Ubiquity.html">Rights-Enabled PDF Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#additional-usage-rights">Additional usage rights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#writing-javascript-for-adobe-reader">Writing JavaScript for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#enabling-collaboration">Enabling collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Databases.html">Interacting with Databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#about-adbc">About ADBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#establishing-an-adbc-connection">Establishing an ADBC connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#executing-sql-statements">Executing SQL statements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_SOAPWS.html">SOAP and Web Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-soap-and-web-services">Using SOAP and web services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#soap-and-web-services-topics">SOAP and web services topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-a-wsdl-proxy-to-invoke-a-web-service">Using a WSDL proxy to invoke a web service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#synchronous-and-asynchronous-information-exchange">Synchronous and asynchronous information exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#establishing-a-synchronous-connection">Establishing a synchronous connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#asynchronous-web-service-calls">Asynchronous web service calls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-document-literal-encoding">Using document/literal encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#exchanging-file-attachments-and-binary-data">Exchanging file attachments and binary data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#converting-between-string-and-readstream-information">Converting between string and readstream information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-version-information">Accessing SOAP version information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-header-information">Accessing SOAP header information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#dns-service-discovery">DNS service discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_JS43D.html">Interfacing with 3D JavaScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#basic-concepts">Basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#getting-the-annot3d-object-of-the-3d-annotation">Getting the Annot3D object of the 3D annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#annot3d-properties">Annot3D properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#acquiring-the-javascript-3d-engine">Acquiring the JavaScript 3D engine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#using-the-default-script-of-a-3d-annotation">Using the default script of a 3D annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#initializing-upon-activation">Initializing upon activation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_JavaScript.html">JavaScript APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_JavaScript.html#objects-properties-and-methods">Objects, properties, and methods</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat and PDFL SDK: JS Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Search and Index Essentials</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="JS_Dev_Security.html" class="btn btn-neutral float-right" title="Security" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="JS_Dev_Templates.html" class="btn btn-neutral float-left" title="Acrobat Templates" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="search-and-index-essentials">
+<h1>Search and Index Essentials<a class="headerlink" href="#search-and-index-essentials" title="Permalink to this headline">¶</a></h1>
+<p>This chapter will enable you to customize and extend searching operations for PDF document content and metadata, as well as indexing operations. The principal JavaScript objects used in searching and indexing are the <code class="docutils literal notranslate"><span class="pre">search</span></code>, <code class="docutils literal notranslate"><span class="pre">catalog</span></code>, and <code class="docutils literal notranslate"><span class="pre">index</span></code> objects. In this chapter we shall see how to use these objects.</p>
+<div class="section" id="searching-for-text-in-pdf-documents">
+<h2>Searching for text in PDF documents<a class="headerlink" href="#searching-for-text-in-pdf-documents" title="Permalink to this headline">¶</a></h2>
+<p>JavaScript provides a static <code class="docutils literal notranslate"><span class="pre">search</span></code> object, which provides powerful searching capabilities that may be applied to PDF documents and indexes. Its properties and methods are described in the following tables.</p>
+<p>Search properties</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>attachments</p></td>
+<td><p>Searches PDF attachments along with the base document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>available</p></td>
+<td><p>Determines if searching is possible.</p></td>
+</tr>
+<tr class="row-even"><td><p>docInfo</p></td>
+<td><p>Searches document metadata information.</p></td>
+</tr>
+<tr class="row-odd"><td><p>docText</p></td>
+<td><p>Searches document text.</p></td>
+</tr>
+<tr class="row-even"><td><p>docXMP</p></td>
+<td><p>Searches document XMP metadata.</p></td>
+</tr>
+<tr class="row-odd"><td><p>bookmarks</p></td>
+<td><p>Searches document bookmarks.</p></td>
+</tr>
+<tr class="row-even"><td><p>ignoreAccents</p></td>
+<td><p>Ignores accents and diactrics in search.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ignoreAsianCharacterWidth</p></td>
+<td><p>Matches Kana characters in query.</p></td>
+</tr>
+<tr class="row-even"><td><p>indexes</p></td>
+<td><p>Obtains all accessible <code class="docutils literal notranslate"><span class="pre">index</span></code> objects.</p></td>
+</tr>
+<tr class="row-odd"><td><p>jpegExif</p></td>
+<td><p>Searches EXIF data in associated JPEG images.</p></td>
+</tr>
+<tr class="row-even"><td><p>markup</p></td>
+<td><p>Searches annotations.</p></td>
+</tr>
+<tr class="row-odd"><td><p>matchCase</p></td>
+<td><p>Determines whether query is case-sensitive.</p></td>
+</tr>
+<tr class="row-even"><td><p>matchWholeWord</p></td>
+<td><p>Finds only occurrences of complete words.</p></td>
+</tr>
+<tr class="row-odd"><td><p>maxDocs</p></td>
+<td><p>Specifies the maximum number of documents returned.</p></td>
+</tr>
+<tr class="row-even"><td><p>proximity</p></td>
+<td><p>Uses proximity in results ranking for <code class="docutils literal notranslate"><span class="pre">AND</span></code> clauses.</p></td>
+</tr>
+<tr class="row-odd"><td><p>proximityRange</p></td>
+<td><p>Specifies the range of proximity search in number of words.</p></td>
+</tr>
+<tr class="row-even"><td><p>refine</p></td>
+<td><p>Uses previous results in query.</p></td>
+</tr>
+<tr class="row-odd"><td><p>stem</p></td>
+<td><p>Uses word stemming in searches.</p></td>
+</tr>
+<tr class="row-even"><td><p>wordMatching</p></td>
+<td><p>Determines how words will be matched (phrase, all words, any words, Boolean query).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="search-methods">
+<h2>Search methods<a class="headerlink" href="#search-methods" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>addIndex</p></td>
+<td><p>Adds an index to the list of searchable indexes.</p></td>
+</tr>
+<tr class="row-odd"><td><p>getIndexForPath</p></td>
+<td><p>Searches the index list according to a specified path.</p></td>
+</tr>
+<tr class="row-even"><td><p>query</p></td>
+<td><p>Searches the document or index for specified text.</p></td>
+</tr>
+<tr class="row-odd"><td><p>removeIndex</p></td>
+<td><p>Removes an index from the list of searchable indexes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="finding-words-in-an-pdf-document">
+<h2>Finding words in an PDF document<a class="headerlink" href="#finding-words-in-an-pdf-document" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">query</span></code> method is used to search for text within a PDF document. It accepts three parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cQuery</span></code>: the search text</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cWhere</span></code>: where to search:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ActiveDoc</span></code>: within the active document</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Folder</span></code>: within a specified folder</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Index</span></code>: within a specified index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ActiveIndexes</span></code>: within the active set of available indexes (the default)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cDIPath</span></code>: the path to a folder or index used in the search</p></li>
+</ul>
+<p>The simplest type of search is applied to the text within the PDF document. For example, the following code performs a case-insensitive search for the word Acrobat within the current document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Acrobat&quot;</span><span class="p">,</span> <span class="s2">&quot;ActiveDoc&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-advanced-search-options">
+<h2>Using advanced search options<a class="headerlink" href="#using-advanced-search-options" title="Permalink to this headline">¶</a></h2>
+<p>You can set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object properties to use advanced searching options, which can be used to determine how to match search strings, and whether to use proximity or stemming.</p>
+<p>To determine how the words in the search string will be matched, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">wordMatching</span></code> property to one of the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MatchPhrase</span></code>: match the exact phrase</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MatchAllWords</span></code>: match all the words without regard to the order in which they appear</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MatchAnyWord</span></code>: match any of the words in the search string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BooleanQuery</span></code>: perform a Boolean query for multiple-document searches (the default)</p></li>
+</ul>
+<p>For example, the following code matches the phrases “My Search” or “Search My”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">wordMatching</span> <span class="o">=</span> <span class="s2">&quot;MatchAllWords&quot;</span><span class="p">;</span>
+<span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;My Search&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To determine whether proximity is used in searches involving multiple documents or index definition files, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">wordMatching</span></code> property to <code class="docutils literal notranslate"><span class="pre">MatchAllWords</span></code> and set its <code class="docutils literal notranslate"><span class="pre">proximity</span></code> property to <code class="docutils literal notranslate"><span class="pre">true</span></code>. In the example below, all instances of the words <code class="docutils literal notranslate"><span class="pre">My</span></code> and <code class="docutils literal notranslate"><span class="pre">Search</span></code> that are not separated by more than 900 words will be listed in the search:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">wordMatching</span> <span class="o">=</span> <span class="s2">&quot;MatchAllWords&quot;</span><span class="p">;</span>
+<span class="n">search</span><span class="o">.</span><span class="n">proximity</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;My Search&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To use stemming in the search, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">stem</span></code> property to <code class="docutils literal notranslate"><span class="pre">true</span></code>. For example, the following search lists words that begin with “run”, such as “running” or “runs”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">stem</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;run&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To specify that the search should only identify occurrences of complete words, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">matchWholeWord</span></code> property to <code class="docutils literal notranslate"><span class="pre">true</span></code>. For example, the following code matches “nail”, but not “thumbnail” or “nails”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">matchWholeWord</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;nail&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To set the maximum number of documents to be returned as part of a query, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">maxDocs</span></code> property to the desired number (the default is 100). For example, the following code limits the number of documents to be searched to 5:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">maxDocs</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>To refine the results of the previous query, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">refine</span></code> property to <code class="docutils literal notranslate"><span class="pre">true</span></code>, as shown in the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">refine</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="searching-across-multiple-pdf-documents">
+<h2>Searching across multiple PDF documents<a class="headerlink" href="#searching-across-multiple-pdf-documents" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses searches involving more than one PDF document.</p>
+<div class="section" id="searching-all-pdf-files-in-a-specific-location">
+<h3>Searching all PDF files in a specific location<a class="headerlink" href="#searching-all-pdf-files-in-a-specific-location" title="Permalink to this headline">¶</a></h3>
+<p>To search all the PDF files within a folder, set the <code class="docutils literal notranslate"><span class="pre">cWhere</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">query</span></code> method to <code class="docutils literal notranslate"><span class="pre">Folder</span></code>. In the following example, all documents in <code class="docutils literal notranslate"><span class="pre">/C/MyFolder</span></code> will be searched for the word “Acrobat”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Acrobat&quot;</span><span class="p">,</span> <span class="s2">&quot;Folder&quot;</span><span class="p">,</span> <span class="s2">&quot;/C/MyFolder&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-advanced-search-options-for-multiple-document-searches">
+<h3>Using advanced search options for multiple document searches<a class="headerlink" href="#using-advanced-search-options-for-multiple-document-searches" title="Permalink to this headline">¶</a></h3>
+<p>In addition to the advanced options for matching phrases, using stemming, and using proximity, it is also possible to specify whether the search should be case-sensitive, whether to match whole words, to set the maximum number of documents to be returned as part of a query, and whether to refine the results of the previous query.</p>
+<p>To specify that a search should be case sensitive, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">matchCase</span></code> property to <code class="docutils literal notranslate"><span class="pre">true</span></code>. For example, the following code matches “Acrobat” but not “acrobat”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">matchCase</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Acrobat&quot;</span><span class="p">,</span> <span class="s2">&quot;Folder&quot;</span><span class="p">,</span> <span class="s2">&quot;/C/MyFolder&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="searching-pdf-index-files">
+<h3>Searching PDF index files<a class="headerlink" href="#searching-pdf-index-files" title="Permalink to this headline">¶</a></h3>
+<p>A PDF index file often covers multiple PDF files, and the time required to search an index is much less than that required to search each of the corresponding individual PDF files.</p>
+<p>To search a PDF index, set the <code class="docutils literal notranslate"><span class="pre">cWhere</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">search</span></code> object’s <code class="docutils literal notranslate"><span class="pre">query</span></code> method to <code class="docutils literal notranslate"><span class="pre">Index</span></code>. In the following example, <code class="docutils literal notranslate"><span class="pre">myIndex</span></code> is searched for the word “Acrobat”:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Acrobat&quot;</span><span class="p">,</span> <span class="s2">&quot;Index&quot;</span><span class="p">,</span> <span class="s2">&quot;/C/MyIndex.pdx&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-boolean-queries">
+<h3>Using Boolean queries<a class="headerlink" href="#using-boolean-queries" title="Permalink to this headline">¶</a></h3>
+<p>You can perform a Boolean query when searching multiple document or index files. Boolean queries use the following operations as logical connectors:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">AND</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OR</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">^</span></code> (exclusive or)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NOT</span></code></p></li>
+</ul>
+<p>For example, the phrase <code class="docutils literal notranslate"><span class="pre">&quot;Paris</span> <span class="pre">AND</span> <span class="pre">France&quot;</span></code> used in a search would return all documents containing both the words <code class="docutils literal notranslate"><span class="pre">Paris</span></code> and <code class="docutils literal notranslate"><span class="pre">France</span></code>.</p>
+<p>The phrase <code class="docutils literal notranslate"><span class="pre">&quot;Paris</span> <span class="pre">OR</span> <span class="pre">France&quot;</span></code> used in a search would return all documents containing one or both of the words <code class="docutils literal notranslate"><span class="pre">Paris</span></code> and <code class="docutils literal notranslate"><span class="pre">France</span></code>.</p>
+<p>The phrase <code class="docutils literal notranslate"><span class="pre">&quot;Paris</span> <span class="pre">^</span> <span class="pre">France&quot;</span></code> used in a search would return all documents containing exactly one (not both) of the words <code class="docutils literal notranslate"><span class="pre">Paris</span></code> and <code class="docutils literal notranslate"><span class="pre">France</span></code>.</p>
+<p>The phrase <code class="docutils literal notranslate"><span class="pre">&quot;Paris</span> <span class="pre">NOT</span> <span class="pre">France&quot;</span></code> used in a search would return all documents containing <code class="docutils literal notranslate"><span class="pre">Paris</span></code> that do not contain the word <code class="docutils literal notranslate"><span class="pre">France</span></code>.</p>
+<p>In addition, parentheses may be used. For example, the phrase <code class="docutils literal notranslate"><span class="pre">&quot;Acrobat</span> <span class="pre">AND</span> <span class="pre">(Standard</span> <span class="pre">OR</span> <span class="pre">Professional</span> <span class="pre">OR</span> <span class="pre">Pro)&quot;</span></code>. The result of this query would return all documents that contain the word “Acrobat” and either “Standard”, “Professional” or “Pro” in it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">search</span><span class="o">.</span><span class="n">wordMatching</span><span class="o">=</span><span class="s2">&quot;BooleanQuery&quot;</span><span class="p">;</span>
+   <span class="n">search</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;Acrobat AND (Standard OR Professional OR Pro)</span>
+<span class="s2">&quot;, &quot;</span><span class="n">Folder</span><span class="s2">&quot;,</span>
+       <span class="s2">&quot;/C/MyFolder&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To specify that a Boolean query will be used, be sure that the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">wordMatching</span></code> property is set to <code class="docutils literal notranslate"><span class="pre">BooleanQuery</span></code> (which is the default).</p>
+<a name="17671"></a></div>
+</div>
+<div class="section" id="indexing-multiple-pdf-documents">
+<h2>Indexing multiple PDF documents<a class="headerlink" href="#indexing-multiple-pdf-documents" title="Permalink to this headline">¶</a></h2>
+<p>It is possible to extend and customize indexes for multiple PDF documents using the JavaScript <code class="docutils literal notranslate"><span class="pre">catalog</span></code>, <code class="docutils literal notranslate"><span class="pre">catalogJob</span></code>, and <code class="docutils literal notranslate"><span class="pre">index</span></code> objects. These objects may be used to build, retrieve, or remove indexes. The <code class="docutils literal notranslate"><span class="pre">index</span></code> object represents a <code class="docutils literal notranslate"><span class="pre">catalog</span></code> -generated index, contains a <code class="docutils literal notranslate"><span class="pre">build</span></code> method that is used to create an index (and returns a <code class="docutils literal notranslate"><span class="pre">catalogJob</span></code> object containing information about the index), and has the properties shown below the following table.</p>
+<p>Index properties</p>
+<table class="colwidths-given docutils align-default" id="section-2">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>available</p></td>
+<td><p>Indicates whether an index is available</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>The name of the index</p></td>
+</tr>
+<tr class="row-even"><td><p>path</p></td>
+<td><p>The device-independent path of the index</p></td>
+</tr>
+<tr class="row-odd"><td><p>selected</p></td>
+<td><p>Indicates whether the index will participate in the search</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">catalog</span></code> object may be used to manage indexing jobs and retrieve indexes. It contains a <code class="docutils literal notranslate"><span class="pre">getIndex</span></code> method for retrieving an index, a <code class="docutils literal notranslate"><span class="pre">remove</span></code> method for removing a pending indexing job, and properties containing information about indexing jobs.</p>
+<div class="section" id="creating-updating-or-rebuilding-indexes">
+<h3>Creating, updating, or rebuilding indexes<a class="headerlink" href="#creating-updating-or-rebuilding-indexes" title="Permalink to this headline">¶</a></h3>
+<p>To determine which indexes are available, use the <code class="docutils literal notranslate"><span class="pre">search</span></code> object <code class="docutils literal notranslate"><span class="pre">indexes</span></code> property, which contains an array of <code class="docutils literal notranslate"><span class="pre">index</span></code> objects. For each object in the array, you can determine its name by using its <code class="docutils literal notranslate"><span class="pre">name</span></code> property. In the code below, the names and paths of all available selected indexes are printed to the console:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">arr</span> <span class="o">=</span> <span class="n">search</span><span class="o">.</span><span class="n">indexes</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">arr</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">selected</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">var</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Index[&quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;] = &quot;</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">;</span>
+        <span class="nb">str</span> <span class="o">+=</span> <span class="s2">&quot;nPath = &quot;</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">path</span><span class="p">;</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="nb">str</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To build an index, first invoke the <code class="docutils literal notranslate"><span class="pre">catalog</span></code> object <code class="docutils literal notranslate"><span class="pre">getIndex</span></code> method to retrieve the <code class="docutils literal notranslate"><span class="pre">index</span></code> object. This method accepts a parameter containing the path of the <code class="docutils literal notranslate"><span class="pre">index</span></code> object. Then invoke the <code class="docutils literal notranslate"><span class="pre">index</span></code> object <code class="docutils literal notranslate"><span class="pre">build</span></code> method, which returns a <code class="docutils literal notranslate"><span class="pre">catalogJob</span></code> object. The method accepts two parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cExpr</span></code>: a JavaScript expression executed once the build operation is complete</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bRebuildAll</span></code>: indicates whether to perform a clean build in which the existing index is first deleted and then completely built</p></li>
+</ul>
+<p>Finally, the returned <code class="docutils literal notranslate"><span class="pre">catalogJob</span></code> object contains three properties providing useful information about the indexing job:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">path</span></code>: the device-independent path of the index</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: the type of indexing operation (<code class="docutils literal notranslate"><span class="pre">Build</span></code>, <code class="docutils literal notranslate"><span class="pre">Rebuild</span></code>, or <code class="docutils literal notranslate"><span class="pre">Delete</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status</span></code>: the status of the indexing operation (<code class="docutils literal notranslate"><span class="pre">Pending</span></code>, <code class="docutils literal notranslate"><span class="pre">Processing</span></code>, <code class="docutils literal notranslate"><span class="pre">Completed</span></code>, or <code class="docutils literal notranslate"><span class="pre">CompletedWithErrors</span></code>)</p></li>
+</ul>
+<p>In the code shown below, the index <code class="docutils literal notranslate"><span class="pre">myIndex</span></code> is completely rebuilt, after which its status is reported:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Retrieve</span> <span class="n">the</span> <span class="n">Index</span> <span class="nb">object</span>
+<span class="n">var</span> <span class="n">idx</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">getIndex</span><span class="p">(</span><span class="s2">&quot;/C/myIndex.pdx&quot;</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Build</span> <span class="n">the</span> <span class="n">index</span>
+<span class="n">var</span> <span class="n">job</span> <span class="o">=</span> <span class="n">idx</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="s2">&quot;app.alert(&#39;Index build&#39;);&quot;</span><span class="p">,</span> <span class="n">true</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Confirm</span> <span class="n">the</span> <span class="n">path</span> <span class="n">of</span> <span class="n">the</span> <span class="n">rebuilt</span> <span class="n">index</span><span class="p">:</span>
+<span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Path of rebuilt index: &quot;</span> <span class="o">+</span> <span class="n">job</span><span class="o">.</span><span class="n">path</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Confirm</span> <span class="n">that</span> <span class="n">the</span> <span class="n">index</span> <span class="n">was</span> <span class="n">rebuilt</span><span class="p">:</span>
+<span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Type of operation: &quot;</span> <span class="o">+</span> <span class="n">job</span><span class="o">.</span><span class="n">type</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Report</span> <span class="n">the</span> <span class="n">job</span> <span class="n">status</span>
+<span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Status: &quot;</span> <span class="o">+</span> <span class="n">job</span><span class="o">.</span><span class="n">status</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="83210"></a></div>
+</div>
+<div class="section" id="searching-metadata">
+<h2>Searching metadata<a class="headerlink" href="#searching-metadata" title="Permalink to this headline">¶</a></h2>
+<p>PDF documents contain document metadata in XML format, which includes information such as the document title, subject, author’s name, keywords, copyright information, date modified, file size, and file name and location path.</p>
+<p>To use JavaScript to search a document’s XMP metadata, set the <code class="docutils literal notranslate"><span class="pre">search</span></code> object’s <code class="docutils literal notranslate"><span class="pre">docXMP</span></code> property to <code class="docutils literal notranslate"><span class="pre">true</span></code>, as shown in the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">search</span><span class="o">.</span><span class="n">docXMP</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: May 18, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

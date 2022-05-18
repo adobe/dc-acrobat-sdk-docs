@@ -1,0 +1,1195 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+      <link rel="shortcut icon" href="../_static/favicon.ico" />  
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeJS_Dev_PDFCreation.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Print Production" href="JS_Dev_PrintProduction.html" />
+    <link rel="prev" title="JavaScript Contexts in Acrobat" href="JS_Dev_Contexts.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat and PDFL SDK: JS Developer Guide
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">JavaScript Development for Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-for-acrobat-api-reference">JavaScript for Acrobat API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#object-summary">Object summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#app">app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#doc">Doc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dbg">dbg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#console">console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#global">global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#util">util</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dialog">dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#security">security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#soap">SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#search">search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#event">event</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-applications">JavaScript applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Tools.html">Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-javascript-debugger-console">Using the JavaScript Debugger console</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#opening-the-console">Opening the console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#formatting-code">Formatting code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugging-with-the-javascript-console">Debugging with the JavaScript Console</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-a-javascript-editor">Using a JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#specifying-the-default-javascript-editor">Specifying the default JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-an-external-editor">Using an external editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#additional-editor-capabilities">Additional editor capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#specifying-additional-capabilities-to-your-editor">Specifying additional capabilities to your editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#saving-and-closing-a-file-with-a-syntax-error">Saving and closing a file with a syntax error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-debugger-with-acrobat-reader">Using the Debugger with Acrobat Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#enabling-the-javascript-debugger">Enabling the JavaScript Debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#javascript-debugger">JavaScript Debugger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#main-groups-of-controls">Main groups of controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-view-windows">Debugger View windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-buttons">Debugger buttons</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#resume-execution">Resume execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#interrupt">Interrupt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#quit">Quit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-over">Step over</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-into">Step into</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-out">Step out</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-scripts-window">Debugger Scripts window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#accessing-scripts-in-the-scripts-window">Accessing scripts in the Scripts window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-inside-pdf-files">Scripts inside PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-outside-pdf-files">Scripts outside PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#call-stack-list">Call Stack list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window">Inspect details window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window-controls">Inspect details window controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspecting-variables">Inspecting variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#watches">Watches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-the-start-of-execution">Debugging from the start of execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-an-arbitrary-point-in-the-script">Debugging from an arbitrary point in the script</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#final-notes">Final notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Contexts.html">JavaScript Contexts in Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#the-concept-of-a-javascript-event">The concept of a JavaScript event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#about-contexts">About contexts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#folder-level">Folder level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#document-level">Document level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#page-level">Page level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#field-level">Field level</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#privileged-versus-non-privileged-context">Privileged versus non-privileged context</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-non-privileged-context">Executing privileged methods in a non-privileged context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-through-the-menu">Executing privileged methods through the menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-certified-document">Executing privileged methods in a certified document</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Creating and Modifying PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#creating-and-modifying-pdf-files">Creating and modifying PDF files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#creating-a-document-with-content">Creating a document with content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combining-pdf-documents">Combining PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combining-files">Combining files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#combining-several-pdf-files">Combining several PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combining-files-of-different-formats">Combining files of different formats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extracting-files">Extracting files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-file-attachments">Creating file attachments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#saving-form-data-to-and-reading-form-data-from-an-attachment">Saving form data to and reading form data from an attachment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-an-xml-attachment-using-e4x">Accessing an XML attachment using E4X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cropping-and-rotating-pages">Cropping and rotating pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cropping-pages">Cropping pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rotating-pages">Rotating pages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#extracting-moving-deleting-replacing-and-copying-pages">Extracting, moving, deleting, replacing, and copying pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-watermarks-and-backgrounds">Adding watermarks and backgrounds</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#converting-pdf-documents-to-xml-format">Converting PDF documents to XML format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_PrintProduction.html">Print Production</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-print-options">Setting print options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-pdf-documents">Printing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#silent-printing">Silent printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-comments-and-forms">Printing comments and forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#booklet-printing">Booklet printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-advanced-print-options">Setting advanced print options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-output-settings">Specifying output settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-marks-and-bleeds">Specifying marks and bleeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-postscript-options">Setting PostScript options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-font-options">Setting font options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_AcrobatForms.html">Using JavaScript in Forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#forms-essentials">Forms essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#about-pdf-forms">About PDF forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#elements-of-acrobat-forms">Elements of Acrobat forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#guidelines-for-creating-a-new-form">Guidelines for creating a new form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-acrobat-form-fields">Creating Acrobat form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-acrobat-form-field-properties">Setting Acrobat form field properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#field-properties">Field properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#button-fields">Button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#check-box-fields">Check box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#combo-box-fields">Combo box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#list-box-fields">List box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#radio-button-fields">Radio button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#signature-fields">Signature fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-fields">Text fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#validation-scripts">Validation scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#calculation-script">Calculation script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#task-based-topics">Task-based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-form-fields">Highlighting required form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-fields">Highlighting required fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-the-hierarchy-of-form-fields">Setting the hierarchy of form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-forms">Creating forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#positioning-form-fields">Positioning form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#duplicating-form-fields">Duplicating form fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#inserting-navigation-buttons-on-each-page">Inserting navigation buttons on each page</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-multiple-form-fields">Creating multiple form fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-the-tabbing-order">Defining the tabbing order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-form-field-calculation-order">Defining form field calculation order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-submit-button">Creating a submit button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-reset-form-button">Creating a reset form button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-cgi-export-values">Defining CGI export values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#importing-and-exporting-form-data">Importing and exporting form data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#emailing-completed-forms">Emailing completed forms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#use-date-objects">Use date objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-date-to-a-string">Converting from a date to a string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-string-to-a-date">Converting from a string to a date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#date-arithmetic">Date arithmetic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-global-variables-in-javascript">Defining global variables in JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#enable-the-global-object-security-policy">Enable the global object security policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-and-getting-a-global-variable">Setting and getting a global variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#deleting-global-variables">Deleting global variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-global-variables-persistent">Making global variables persistent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#querying-an-acrobat-form-field-value-in-another-open-form">Querying an Acrobat form field value in another open form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-object-security-policy">Global object security policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#intercepting-keystrokes-in-an-acrobat-form">Intercepting keystrokes in an Acrobat form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#constructing-custom-colors">Constructing custom colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#prompting-the-user-for-a-response">Prompting the user for a response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#fetching-an-url-from-javascript">Fetching an URL from JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-special-rollover-effects">Creating special rollover effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-submit">Global submit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-forms-accessible">Making forms accessible</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-to-speech">Text-to-speech</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#tagging-annotations">Tagging annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#document-metadata">Document metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#short-description">Short description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-tab-order">Setting tab order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#reading-order">Reading order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#using-javascript-to-secure-forms">Using JavaScript to secure forms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_RMA.html">Review, Markup, and Approval</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#working-with-comments-using-javascript">Working with comments using JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#annotation-types">Annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#getting-annotation-data">Getting annotation data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-comment-properties">Setting comment properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials">Online collaboration essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials-topics">Online collaboration essentials topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#reviewing-documents-with-additional-usage-rights">Reviewing documents with additional usage rights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#emailing-pdf-documents">Emailing PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#javascript-based-collaboration-driver">JavaScript-based collaboration driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#setting-spelling-preferences">Setting spelling preferences</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#adding-words-to-a-dictionary">Adding words to a dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#managing-comments">Managing comments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#selecting-moving-and-deleting-comments">Selecting, moving, and deleting comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#using-the-comments-list">Using the comments list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-status-of-comments">Changing the status of comments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-appearance-of-comments">Changing the appearance of comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#sorting-comments">Sorting comments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#showing-and-hiding-comments">Showing and hiding comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#exporting-and-importing-comments">Exporting and importing comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#aggregating-comments-for-use-in-excel">Aggregating comments for use in Excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#comparing-comments-in-two-pdf-documents">Comparing comments in two PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#extracting-comments-in-a-batch-process">Extracting comments in a batch process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#approving-documents-using-stamps-japanese-workflows">Approving documents using stamps (Japanese workflows)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-up-a-hanko-approval-workflow">Setting up a Hanko approval workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#participating-in-a-hanko-approval-workflow">Participating in a Hanko approval workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#installing-and-customizing-hanko-stamps">Installing and customizing Hanko stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#creating-custom-inkan-stamps">Creating custom Inkan stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#deleting-custom-stamps">Deleting custom stamps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_DigitalMedia.html">Working with Digital Media in PDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#media-players-control-settings-renditions-and-events">Media players: control, settings, renditions, and events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#accessing-a-list-of-active-players">Accessing a list of active players</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#specifying-playback-settings">Specifying playback settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#monitors">Monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#integrating-media-into-documents">Integrating media into documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-through-a-rendition-action">Controlling multimedia through a rendition action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-with-a-run-a-javascript-action">Controlling multimedia with a Run a JavaScript action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#adding-and-editing-renditions">Adding and editing renditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html">Modifying the User Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-toolbar-buttons-and-menu-items">Adding toolbar buttons and menu items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#thumbnails">Thumbnails</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-page-thumbnails">Creating page thumbnails</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-page-actions-with-page-thumbnails">Adding page actions with page thumbnails</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#bookmarks">Bookmarks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-bookmarks">Creating bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#managing-bookmarks">Managing bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#creating-a-bookmark-hierarchy">Creating a bookmark hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#links">Links</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-and-removing-web-links-from-text">Adding and removing web links from text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#adding-and-removing-links">Adding and removing links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-the-appearance-of-a-link">Defining the appearance of a link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#opening-links">Opening links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#opening-file-attachments">Opening file attachments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#using-destinations">Using destinations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#using-actions-for-special-effects">Using actions for special effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#highlighting-form-fields-and-navigational-components">Highlighting form fields and navigational components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-the-initial-view-in-full-screen-view">Defining the initial view in full screen view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#defining-an-initial-view">Defining an initial view</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#working-with-pdf-layers">Working with PDF layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#navigating-with-layers">Navigating with layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#editing-the-properties-of-pdf-layers">Editing the properties of PDF layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_ModifyUserInterface.html#reordering-layers">Reordering layers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Templates.html">Acrobat Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Templates.html#the-role-of-templates-in-pdf-form-architecture">The role of templates in PDF form architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#dynamic-form-field-generation">Dynamic form field generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#dynamic-page-generation">Dynamic page generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#template-syntax-and-usage">Template syntax and usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html">Search and Index Essentials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-for-text-in-pdf-documents">Searching for text in PDF documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#search-methods">Search methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#finding-words-in-an-pdf-document">Finding words in an PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-advanced-search-options">Using advanced search options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-across-multiple-pdf-documents">Searching across multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-all-pdf-files-in-a-specific-location">Searching all PDF files in a specific location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-advanced-search-options-for-multiple-document-searches">Using advanced search options for multiple document searches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-pdf-index-files">Searching PDF index files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-boolean-queries">Using Boolean queries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#indexing-multiple-pdf-documents">Indexing multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#creating-updating-or-rebuilding-indexes">Creating, updating, or rebuilding indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-metadata">Searching metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-essentials">Security essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#methods-for-adding-security-to-pdf-documents">Methods for adding security to PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#passwords-and-restrictions">Passwords and restrictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-documents">Certifying documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#encrypting-files-using-certificates">Encrypting files using certificates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#userentity-object-properties">UserEntity object properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certificate-object-properties">Certificate object properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-policies">Security policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#secure-forms">Secure forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digitally-signing-pdf-documents">Digitally signing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#signing-a-pdf-document">Signing a PDF document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-security-handler-object">The security handler object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-signatureinfo-object">The SignatureInfo object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#applying-the-signature">Applying the signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#clearing-a-digital-signature">Clearing a digital signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#getting-signature-information-from-another-user">Getting signature information from another user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#removing-signatures">Removing signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-a-document">Certifying a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#validating-signatures">Validating signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#setting-digital-signature-properties-with-seed-values">Setting digital signature properties with seed values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-pdf-documents">Adding security to PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-passwords-and-setting-security-options">Adding passwords and setting security options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-usage-rights-to-a-document">Adding usage rights to a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-for-a-list-of-recipients">Encrypting PDF files for a list of recipients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-using-security-policies">Encrypting PDF files using security policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-document-attachments">Adding security to document attachments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digital-ids-and-certification-methods">Digital IDs and certification methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#digital-ids">Digital IDs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#about-digital-id-providers">About digital ID providers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#creating-a-digital-id-default-certificate-security">Creating a digital ID (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#using-digital-ids-default-certificate-security">Using digital IDs (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-ids-windows-certificate-security">Managing digital IDs (Windows certificate security)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-id-certificates">Managing digital ID certificates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#sharing-digital-id-certificates">Sharing digital ID certificates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#building-a-list-of-trusted-identities">Building a list of trusted identities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#checking-information-on-certificates">Checking information on certificates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#task-based-topics">Task based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#disallowing-changes-in-scripts">Disallowing changes in scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#hiding-scripts">Hiding scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Ubiquity.html">Rights-Enabled PDF Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#additional-usage-rights">Additional usage rights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#writing-javascript-for-adobe-reader">Writing JavaScript for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#enabling-collaboration">Enabling collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Databases.html">Interacting with Databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#about-adbc">About ADBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#establishing-an-adbc-connection">Establishing an ADBC connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#executing-sql-statements">Executing SQL statements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_SOAPWS.html">SOAP and Web Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-soap-and-web-services">Using SOAP and web services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#soap-and-web-services-topics">SOAP and web services topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-a-wsdl-proxy-to-invoke-a-web-service">Using a WSDL proxy to invoke a web service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#synchronous-and-asynchronous-information-exchange">Synchronous and asynchronous information exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#establishing-a-synchronous-connection">Establishing a synchronous connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#asynchronous-web-service-calls">Asynchronous web service calls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-document-literal-encoding">Using document/literal encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#exchanging-file-attachments-and-binary-data">Exchanging file attachments and binary data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#converting-between-string-and-readstream-information">Converting between string and readstream information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-version-information">Accessing SOAP version information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-header-information">Accessing SOAP header information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#dns-service-discovery">DNS service discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_JS43D.html">Interfacing with 3D JavaScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#basic-concepts">Basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#getting-the-annot3d-object-of-the-3d-annotation">Getting the Annot3D object of the 3D annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#annot3d-properties">Annot3D properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#acquiring-the-javascript-3d-engine">Acquiring the JavaScript 3D engine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#using-the-default-script-of-a-3d-annotation">Using the default script of a 3D annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#initializing-upon-activation">Initializing upon activation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_JavaScript.html">JavaScript APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_JavaScript.html#objects-properties-and-methods">Objects, properties, and methods</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat and PDFL SDK: JS Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Creating and Modifying PDF Documents</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="JS_Dev_PrintProduction.html" class="btn btn-neutral float-right" title="Print Production" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="JS_Dev_Contexts.html" class="btn btn-neutral float-left" title="JavaScript Contexts in Acrobat" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="creating-and-modifying-pdf-documents">
+<h1>Creating and Modifying PDF Documents<a class="headerlink" href="#creating-and-modifying-pdf-documents" title="Permalink to this headline">¶</a></h1>
+<p>This chapter provides a detailed overview of how to apply JavaScript in order to dynamically create PDF files, modify them, and convert PDF files to XML format.</p>
+<div class="section" id="creating-and-modifying-pdf-files">
+<h2>Creating and modifying PDF files<a class="headerlink" href="#creating-and-modifying-pdf-files" title="Permalink to this headline">¶</a></h2>
+<p>The Acrobat extensions to JavaScript provide support for dynamic PDF file creation and content generation. This means that it is possible to dynamically create a new PDF file and modify its contents in an automated fashion. This can help make a document responsive to user input and can enhance the workflow.</p>
+<p>To create a new PDF file, invoke the <code class="docutils literal notranslate"><span class="pre">newDoc</span></code> method of the <code class="docutils literal notranslate"><span class="pre">app</span></code> object, as shown in the example below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">myDoc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">newDoc</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>This statement creates a blank PDF document and is used primarily for testing purposes.</p>
+<p>Once this statement has been executed from the console, you can manipulate the page by invoking methods contained within the Doc object, as indicated in the following table. Details of these methods are found in the <a class="reference external" href="https://www.adobe.com/go/acrobatsdk_jsapiref">Acrobat JavaScript API Reference</a>.</p>
+<p>JavaScript for manipulating a PDF document</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Content</p></th>
+<th class="head"><p>Object</p></th>
+<th class="head"><p>Methods</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>page</p></td>
+<td><p>Doc</p></td>
+<td><p>newPage, insertPages, replacePage</p></td>
+</tr>
+<tr class="row-odd"><td><p>page</p></td>
+<td><p>template</p></td>
+<td><p>spawn</p></td>
+</tr>
+<tr class="row-even"><td><p>annot</p></td>
+<td><p>Doc</p></td>
+<td><p>addAnnot</p></td>
+</tr>
+<tr class="row-odd"><td><p>field</p></td>
+<td><p>Doc</p></td>
+<td><p>addField</p></td>
+</tr>
+<tr class="row-even"><td><p>icon</p></td>
+<td><p>Doc</p></td>
+<td><p>addIcon</p></td>
+</tr>
+<tr class="row-odd"><td><p>link</p></td>
+<td><p>Doc</p></td>
+<td><p>addLink</p></td>
+</tr>
+<tr class="row-even"><td><p>document-level| JavaScript</p></td>
+<td><p>Doc</p></td>
+<td><p>addScript</p></td>
+</tr>
+<tr class="row-odd"><td><p>thumbnails</p></td>
+<td><p>Doc</p></td>
+<td><p>addThumbnails</p></td>
+</tr>
+<tr class="row-even"><td><p>bookmark</p></td>
+<td><p>Doc <code class="docutils literal notranslate"><span class="pre">.bookmarkRoot</span></code></p></td>
+<td><p>createChild, insertChild</p></td>
+</tr>
+<tr class="row-odd"><td><p>web link</p></td>
+<td><p>Doc</p></td>
+<td><p>addWebLinks</p></td>
+</tr>
+<tr class="row-even"><td><p>template</p></td>
+<td><p>Doc</p></td>
+<td><p>createTemplate</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">Doc.newDoc()</span></code> method cannot write text content to the newly created document. To do that, you need to use the <code class="docutils literal notranslate"><span class="pre">Report</span></code> object.</p>
+<div class="section" id="creating-a-document-with-content">
+<h3>Creating a document with content<a class="headerlink" href="#creating-a-document-with-content" title="Permalink to this headline">¶</a></h3>
+<p>The following example creates a PDF document, sets the font size, sets the color to blue, and writes a standard string to the document using the <code class="docutils literal notranslate"><span class="pre">writeText</span></code> method of the Report object. Finally, it opens the document in the viewer. See the <em>JavaScript for Acrobat API Reference</em> or details of this object, its properties and methods and for additional examples.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">rep</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Report</span><span class="p">();</span>
+<span class="n">rep</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">;</span>
+<span class="n">rep</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">blue</span><span class="p">;</span>
+<span class="n">rep</span><span class="o">.</span><span class="n">writeText</span><span class="p">(</span><span class="s2">&quot;Hello World!&quot;</span><span class="p">);</span>
+<span class="n">rep</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;My Report&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The Report object has many useful applications. With it, for example, you can create a document that reports back a list of all form fields in the document, along with their types and values; another application is to summarize all comments in a document. the <a class="reference external" href="https://www.adobe.com/go/acrobatsdk_jsapiref">Acrobat JavaScript API Reference</a> has an example of the latter application in the <code class="docutils literal notranslate"><span class="pre">Report</span></code> object section.</p>
+<a name="51553"></a></div>
+<div class="section" id="combining-pdf-documents">
+<h3>Combining PDF documents<a class="headerlink" href="#combining-pdf-documents" title="Permalink to this headline">¶</a></h3>
+<p>You can customize and automate the process of combining PDF documents.</p>
+<p>If you would like to combine multiple PDF files into a single PDF document, you can do so through a series of calls to the Doc object’s <code class="docutils literal notranslate"><span class="pre">insertPages</span></code> method.</p>
+<ol class="arabic simple">
+<li><p>Creating a new document from two other documents</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">PDF</span> <span class="n">document</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">newDoc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">newDoc</span><span class="p">();</span>
+
+<span class="o">//</span> <span class="n">Insert</span> <span class="n">doc1</span><span class="o">.</span><span class="n">pdf</span><span class="p">:</span>
+<span class="n">newDoc</span><span class="o">.</span><span class="n">insertPages</span><span class="p">({</span>
+    <span class="n">nPage</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/c/temp/doc1.pdf&quot;</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Insert</span> <span class="n">doc2</span><span class="o">.</span><span class="n">pdf</span><span class="p">:</span>
+<span class="n">newDoc</span><span class="o">.</span><span class="n">insertPages</span><span class="p">({</span>
+    <span class="n">nPage</span><span class="p">:</span> <span class="n">newDoc</span><span class="o">.</span><span class="n">numPages</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/c/temp/doc2.pdf&quot;</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Save</span> <span class="n">the</span> <span class="n">new</span> <span class="n">document</span><span class="p">:</span>
+<span class="n">newDoc</span><span class="o">.</span><span class="n">saveAs</span><span class="p">({</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/c/temp/myNewDoc.pdf&quot;</span><span class="p">;</span>
+<span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Close</span> <span class="n">the</span> <span class="n">new</span> <span class="n">document</span> <span class="n">without</span> <span class="n">notifying</span> <span class="n">the</span> <span class="n">user</span><span class="p">:</span>
+<span class="n">newDoc</span><span class="o">.</span><span class="n">closeDoc</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="57285"></a></div>
+<div class="section" id="combining-files">
+<h3>Combining files<a class="headerlink" href="#combining-files" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to combine several PDF files using the <code class="docutils literal notranslate"><span class="pre">Doc.insertPages()</span></code> method.</p>
+<div class="section" id="combining-several-pdf-files">
+<h4>Combining several PDF files<a class="headerlink" href="#combining-several-pdf-files" title="Permalink to this headline">¶</a></h4>
+<p>In this example, a document is opened with an absolute path reference, then other PDF files in the same folder are appended to the end of the document. For convenience, the files that are appended are placed in an array for easy execution and generalization.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">doc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">openDoc</span><span class="p">({</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/doc1.pdf&quot;</span>
+<span class="p">})</span>
+<span class="n">aFiles</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Array</span><span class="p">(</span><span class="s2">&quot;doc2.pdf&quot;</span><span class="p">,</span><span class="s2">&quot;doc3.pdf&quot;</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span> <span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">aFiles</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">doc</span><span class="o">.</span><span class="n">insertPages</span> <span class="p">({</span>
+    <span class="n">nPage</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">numPages</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="n">aFiles</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+    <span class="n">nStart</span><span class="p">:</span> <span class="mi">0</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Another problem is to combine several files of possibly different file types. In recent versions of Acrobat, the notion of a <em>binder</em> as introduced. There is a nice UI for combining files of different formats. How do you do it programmatically?</p>
+</div>
+<div class="section" id="combining-files-of-different-formats">
+<h4>Combining files of different formats<a class="headerlink" href="#combining-files-of-different-formats" title="Permalink to this headline">¶</a></h4>
+<p>In this example, an initial PDF file is opened, and all other files are appended to it.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">doc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">openDoc</span><span class="p">({</span> <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/doc1.pdf&quot;</span> <span class="p">})</span>
+<span class="o">//</span> <span class="n">List</span> <span class="n">of</span> <span class="n">files</span> <span class="n">of</span> <span class="n">different</span> <span class="n">extensions</span>
+<span class="n">aFiles</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Array</span><span class="p">(</span> <span class="s2">&quot;doc2.eps&quot;</span><span class="p">,</span> <span class="s2">&quot;doc3.jpg&quot;</span><span class="p">,</span> <span class="s2">&quot;doc4.pdf&quot;</span><span class="p">);</span>
+
+<span class="k">for</span> <span class="p">(</span> <span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">aFiles</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">//</span> <span class="n">Open</span> <span class="ow">and</span> <span class="n">convert</span> <span class="n">the</span> <span class="n">document</span>
+   <span class="n">newDoc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">openDoc</span><span class="p">({</span>
+       <span class="n">oDoc</span><span class="p">:</span> <span class="n">doc</span><span class="p">,</span>
+       <span class="n">cPath</span><span class="p">:</span> <span class="n">aFiles</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+       <span class="n">bUseConv</span><span class="p">:</span> <span class="n">true</span>
+   <span class="p">})</span>
+   <span class="o">//</span> <span class="n">Save</span> <span class="n">the</span> <span class="n">new</span> <span class="n">PDF</span> <span class="n">file</span> <span class="n">to</span> <span class="n">a</span> <span class="n">temp</span> <span class="n">folder</span>
+   <span class="n">newDoc</span><span class="o">.</span><span class="n">saveAs</span><span class="p">({</span> <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/c/temp/tmpDoc.pdf&quot;</span> <span class="p">});</span>
+   <span class="o">//</span> <span class="n">Close</span> <span class="n">it</span> <span class="n">without</span> <span class="n">notice</span>
+   <span class="n">newDoc</span><span class="o">.</span><span class="n">closeDoc</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
+   <span class="o">//</span> <span class="n">Now</span> <span class="n">insert</span> <span class="n">that</span> <span class="n">PDF</span> <span class="n">file</span> <span class="n">just</span> <span class="n">saved</span> <span class="n">to</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">first</span> <span class="n">document</span>
+   <span class="n">doc</span><span class="o">.</span><span class="n">insertPages</span> <span class="p">({</span>
+       <span class="n">nPage</span><span class="p">:</span> <span class="n">doc</span><span class="o">.</span><span class="n">numPages</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+       <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/c/temp/tmpDoc.pdf&quot;</span><span class="p">,</span>
+       <span class="n">nStart</span><span class="p">:</span> <span class="mi">0</span>
+   <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="extracting-files">
+<h3>Extracting files<a class="headerlink" href="#extracting-files" title="Permalink to this headline">¶</a></h3>
+<p>You can also programmatically extract pages and save them to a folder.</p>
+<p>Suppose the current document consists of a sequence of invoices, each of which occupies one page. The following code creates separate PDF files, one for each invoice:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">filename</span> <span class="o">=</span> <span class="s2">&quot;invoice&quot;</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">extractPages</span><span class="p">({</span>
+        <span class="n">nStart</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+        <span class="n">cPath</span> <span class="p">:</span> <span class="n">filename</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;.pdf&quot;</span>
+    <span class="p">});</span>
+</pre></div>
+</div>
+<a name="39711"></a></div>
+<div class="section" id="creating-file-attachments">
+<h3>Creating file attachments<a class="headerlink" href="#creating-file-attachments" title="Permalink to this headline">¶</a></h3>
+<p>Another way you can “combine files” is by attaching one or more files to your PDF document. This is useful for packaging a collection of documents and send them together by emailing the PDF file. This section describes the basic object, properties and methods of attaching and manipulating attachments.</p>
+<p>These are the objects, properties and methods relevant to file attachments.</p>
+<table class="colwidths-given docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Doc.createDataObject()</p></td>
+<td><p>Creates a file attachment.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Doc.dataObjects</p></td>
+<td><p>Returns an array of <code class="docutils literal notranslate"><span class="pre">Data</span></code> objects representing all files attached to the document.</p></td>
+</tr>
+<tr class="row-even"><td><p>Doc.exportDataObject()</p></td>
+<td><p>Saves the file attachment to the local file system</p></td>
+</tr>
+<tr class="row-odd"><td><p>Doc.getDataObject()</p></td>
+<td><p>Acquires the <code class="docutils literal notranslate"><span class="pre">Data</span></code> object of a particular attachment.</p></td>
+</tr>
+<tr class="row-even"><td><p>Doc.importDataObject()</p></td>
+<td><p>Attaches a file to the document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Doc.removeDataObject()</p></td>
+<td><p>Removes a file attachment from the document.</p></td>
+</tr>
+<tr class="row-even"><td><p>Doc.openDataObject()</p></td>
+<td><p>Returns the Doc object for an attached PDF file.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Doc.getDataObjectContents()</p></td>
+<td><p>Allows access to the contents of the file attachment associated with a <code class="docutils literal notranslate"><span class="pre">Data</span></code> object.</p></td>
+</tr>
+<tr class="row-even"><td><p>Doc.setDataObjectContents()</p></td>
+<td><p>Rights to the file attachment.</p></td>
+</tr>
+<tr class="row-odd"><td><p>util.streamFromString()</p></td>
+<td><p>Converts a stream from a string</p></td>
+</tr>
+<tr class="row-even"><td><p>util.stringFromStream()</p></td>
+<td><p>Converts a string from a stream.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="saving-form-data-to-and-reading-form-data-from-an-attachment">
+<h3>Saving form data to and reading form data from an attachment<a class="headerlink" href="#saving-form-data-to-and-reading-form-data-from-an-attachment" title="Permalink to this headline">¶</a></h3>
+<p>This example takes the response given in a text field of this document and appends it to an attached document. (Perhaps this document is circulating by email, and the user can add in their comments through a multiline text field.) This example uses four of the methods listed above.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">v</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;myTextField&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span> <span class="n">attachment</span> <span class="k">with</span> <span class="n">the</span> <span class="n">name</span> <span class="s2">&quot;MyNotes.txt&quot;</span>
+<span class="n">var</span> <span class="n">oFile</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getDataObjectContents</span><span class="p">(</span><span class="s2">&quot;MyNotes.txt&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Convert</span> <span class="n">the</span> <span class="n">returned</span> <span class="n">stream</span> <span class="n">to</span> <span class="n">a</span> <span class="n">string</span>
+<span class="n">var</span> <span class="n">cFile</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">stringFromStream</span><span class="p">(</span><span class="n">oFile</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Append</span> <span class="n">new</span> <span class="n">data</span> <span class="n">at</span> <span class="n">the</span> <span class="n">end</span> <span class="n">of</span> <span class="n">the</span> <span class="n">string</span>
+<span class="n">cFile</span> <span class="o">+=</span> <span class="s2">&quot;rn&quot;</span> <span class="o">+</span> <span class="n">v</span><span class="p">;</span>
+<span class="o">//</span> <span class="n">Convert</span> <span class="n">back</span> <span class="n">to</span> <span class="n">a</span> <span class="n">stream</span>
+<span class="n">oFile</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">streamFromString</span><span class="p">(</span> <span class="n">cFile</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Overwrite</span> <span class="n">the</span> <span class="n">old</span> <span class="n">attachment</span>
+<span class="n">this</span><span class="o">.</span><span class="n">setDataObjectContents</span><span class="p">(</span><span class="s2">&quot;MyNotes.txt&quot;</span><span class="p">,</span> <span class="n">oFile</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Read</span> <span class="n">the</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="n">file</span> <span class="n">attachment</span> <span class="n">to</span> <span class="n">a</span> <span class="n">multiline</span> <span class="n">text</span> <span class="n">field</span>
+<span class="n">var</span> <span class="n">oFile</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getDataObjectContents</span><span class="p">(</span><span class="s2">&quot;MyNotes.txt&quot;</span><span class="p">);</span>
+<span class="n">var</span> <span class="n">cFile</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">stringFromStream</span><span class="p">(</span><span class="n">oFile</span><span class="p">,</span> <span class="s2">&quot;utf-8&quot;</span><span class="p">);</span>
+<span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;myTextField&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">cFile</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Beginning with Acrobat 8, the JavaScript interpreter includes E4X, the ECMA-357 Standard that provides native support of XML in JavaScript. See the document <em>ECMAScript for XML (E4X) Specification</em> or the complete specification of E4X. The next example illustrates the use of E4X and file attachments.</p>
+</div>
+<div class="section" id="accessing-an-xml-attachment-using-e4x">
+<h3>Accessing an XML attachment using E4X<a class="headerlink" href="#accessing-an-xml-attachment-using-e4x" title="Permalink to this headline">¶</a></h3>
+<p>The following script describes a simple database system. The database is an XML document attached to the PDF file. The user enters the employee ID into a text field, the JavaScript accesses the attachment, finds the employee’s record and displays the contents of the retrieved record in form fields.</p>
+<p>We have a PDF file, <code class="docutils literal notranslate"><span class="pre">employee.pdf</span></code>, with three form fields, whose names are <code class="docutils literal notranslate"><span class="pre">employee.id</span></code>, <code class="docutils literal notranslate"><span class="pre">employee.name.first</span></code> and <code class="docutils literal notranslate"><span class="pre">employee.name.last</span></code>. Attached to the PDF file is an XML document created by the following script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Some</span> <span class="n">E4X</span> <span class="n">code</span> <span class="n">to</span> <span class="n">create</span> <span class="n">a</span> <span class="n">database</span> <span class="n">of</span> <span class="n">info</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">employees</span><span class="o">/&gt;</span><span class="p">;</span>
+<span class="n">function</span> <span class="n">popXML</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">id</span><span class="p">,</span><span class="n">fname</span><span class="p">,</span><span class="n">lname</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">a</span><span class="o">/&gt;</span><span class="p">;</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">employee</span><span class="o">.</span><span class="nd">@id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">;</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">employee</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">first</span> <span class="o">=</span> <span class="n">fname</span><span class="p">;</span>
+    <span class="n">y</span><span class="o">.</span><span class="n">employee</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="n">lname</span><span class="p">;</span>
+    <span class="n">x</span><span class="o">.</span><span class="n">employee</span> <span class="o">+=</span> <span class="n">y</span><span class="o">.</span><span class="n">employee</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="n">popXML</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;334234&quot;</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Public&quot;</span><span class="p">);</span>
+<span class="n">popXML</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;324234&quot;</span><span class="p">,</span> <span class="s2">&quot;Jane&quot;</span><span class="p">,</span> <span class="s2">&quot;Doe&quot;</span><span class="p">);</span>
+<span class="n">popXML</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;452342&quot;</span><span class="p">,</span> <span class="s2">&quot;Davey&quot;</span><span class="p">,</span> <span class="s2">&quot;Jones&quot;</span><span class="p">);</span>
+<span class="n">popXML</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;634583&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom&quot;</span><span class="p">,</span> <span class="s2">&quot;Jefferson&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Copy and paste this code into the console and execute it. You’ll see the XML document as the output of this script. The output was copied and pasted into a document named <code class="docutils literal notranslate"><span class="pre">employee.xml</span></code>, and saved to the same folder as <code class="docutils literal notranslate"><span class="pre">employee.pdf</span></code>.</p>
+<p>You can attach <code class="docutils literal notranslate"><span class="pre">employee.xml</span></code> using the UI, but the script for doing so is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>var thisPath = this.path.replace(/.pdf$/, &quot;.xml&quot;);
+try { this.importDataObject(&quot;employees&quot;, thisPath); }
+    catch(e) { console.println(e) };
+</pre></div>
+</div>
+<p>Of the three form fields in the document <code class="docutils literal notranslate"><span class="pre">employee.pdf</span></code>, only <code class="docutils literal notranslate"><span class="pre">employee.id</span></code> has any script. The following is a custom keystroke script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">willCommit</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">try</span> <span class="p">{</span>
+   <span class="o">//</span> <span class="n">Get</span> <span class="n">the</span> <span class="n">data</span> <span class="n">contents</span> <span class="n">of</span> <span class="n">the</span> <span class="s2">&quot;employees&quot;</span> <span class="n">attachment</span>
+   <span class="n">var</span> <span class="n">oDB</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getDataObjectContents</span><span class="p">(</span><span class="s2">&quot;employees&quot;</span><span class="p">);</span>
+   <span class="o">//</span> <span class="n">Convert</span> <span class="n">to</span> <span class="n">a</span> <span class="n">string</span>
+   <span class="n">var</span> <span class="n">cDB</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">stringFromStream</span><span class="p">(</span><span class="n">oDB</span><span class="p">);</span>
+   <span class="o">//</span> <span class="n">Use</span> <span class="n">the</span> <span class="nb">eval</span> <span class="n">method</span> <span class="n">to</span> <span class="n">evaluate</span> <span class="n">the</span> <span class="n">string</span><span class="p">,</span> <span class="n">you</span> <span class="n">get</span> <span class="n">an</span> <span class="n">XML</span> <span class="n">variable</span>
+   <span class="n">var</span> <span class="n">employees</span> <span class="o">=</span> <span class="nb">eval</span><span class="p">(</span><span class="n">cDB</span><span class="p">);</span>
+       <span class="o">//</span> <span class="n">Retrieve</span> <span class="n">record</span> <span class="k">with</span> <span class="n">the</span> <span class="nb">id</span> <span class="nb">input</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">employee</span><span class="o">.</span><span class="n">id</span> <span class="n">field</span>
+       <span class="n">var</span> <span class="n">record</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="n">employee</span><span class="o">.</span><span class="p">(</span><span class="nd">@id</span> <span class="o">==</span> <span class="n">event</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+       <span class="o">//</span> <span class="n">If</span> <span class="n">the</span> <span class="n">record</span> <span class="ow">is</span> <span class="n">an</span> <span class="n">empty</span> <span class="n">string</span><span class="p">,</span> <span class="ow">or</span> <span class="n">there</span> <span class="n">was</span> <span class="n">nothing</span> <span class="n">entered</span><span class="o">...</span>
+       <span class="k">if</span> <span class="p">(</span> <span class="n">event</span><span class="o">.</span><span class="n">value</span> <span class="o">!=</span> <span class="s2">&quot;&quot;</span> <span class="o">&amp;&amp;</span> <span class="n">record</span><span class="o">.</span><span class="n">toString</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="p">)</span> <span class="p">{</span>
+           <span class="n">app</span><span class="o">.</span><span class="n">alert</span><span class="p">(</span><span class="s2">&quot;Record not found&quot;</span><span class="p">);</span>
+           <span class="n">event</span><span class="o">.</span><span class="n">rc</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+       <span class="p">}</span>
+       <span class="o">//</span> <span class="n">Populate</span> <span class="n">the</span> <span class="n">two</span> <span class="n">other</span> <span class="n">fields</span>
+       <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;employee.name.first&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">first</span><span class="p">;</span>
+       <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;employee.name.last&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">last</span><span class="p">;</span>
+       <span class="p">}</span> <span class="n">catch</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+           <span class="n">app</span><span class="o">.</span><span class="n">alert</span><span class="p">(</span><span class="s2">&quot;The DB is not attached to this document!&quot;</span><span class="p">);</span>
+           <span class="n">event</span><span class="o">.</span><span class="n">rc</span> <span class="o">=</span> <span class="n">false</span><span class="p">;</span>
+       <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<a name="89656"></a></div>
+<div class="section" id="cropping-and-rotating-pages">
+<h3>Cropping and rotating pages<a class="headerlink" href="#cropping-and-rotating-pages" title="Permalink to this headline">¶</a></h3>
+<p>In this section we discuss the JavaScript API for cropping and rotating a page.</p>
+<div class="section" id="cropping-pages">
+<h4>Cropping pages<a class="headerlink" href="#cropping-pages" title="Permalink to this headline">¶</a></h4>
+<p>The Doc object provides methods for setting and retrieving the page layout dimensions. These are the <code class="docutils literal notranslate"><span class="pre">setPageBoxes</span></code> and <code class="docutils literal notranslate"><span class="pre">getPageBox</span></code> methods. There are five types of boxes available:</p>
+<ul class="simple">
+<li><p>Art</p></li>
+<li><p>Bleed</p></li>
+<li><p>Crop</p></li>
+<li><p>Media</p></li>
+<li><p>Trim</p></li>
+</ul>
+<p>See the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a> for a discussion of these types of boxes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">setPageBoxes</span></code> method accepts the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cBox</span></code>: the type of box</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nStart</span></code>: the zero-based index of the beginning page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nEnd</span></code>: the zero-based index of the last page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rBox</span></code>: the rectangle in rotated user space</p></li>
+</ul>
+<p>For example, the following code crops pages 2-5 of the document to a 400 by 500 pixel area:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">setPageBoxes</span><span class="p">({</span>
+    <span class="n">cBox</span><span class="p">:</span> <span class="s2">&quot;Crop&quot;</span><span class="p">,</span>
+    <span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">rBox</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">600</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">getPageBox</span></code> method accepts the following parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cBox</span></code>: the type of box</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nPage</span></code>: the zero-based index of the page</p></li>
+</ul>
+<p>For example, the following code retrieves the crop box for page 3:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getPageBox</span><span class="p">(</span><span class="s2">&quot;Crop&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rotating-pages">
+<h4>Rotating pages<a class="headerlink" href="#rotating-pages" title="Permalink to this headline">¶</a></h4>
+<p>You can use JavaScript to rotate pages in 90-degree increments in the clockwise direction relative to the normal position. This means that if you specify a 90-degree rotation, no matter what the current orientation is, the upper portion of the page is placed on the right side of your screen.</p>
+<p>The Doc object’s <code class="docutils literal notranslate"><span class="pre">setPageRotations</span></code> and <code class="docutils literal notranslate"><span class="pre">getPageRotation</span></code> methods are used to set and retrieve page rotations.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">setPageRotations</span></code> method accepts three parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nStart</span></code>: the zero-based index of the beginning page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nEnd</span></code>: the zero-based index of the last page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nRotate</span></code>: 0, 90, 180, or 270 are the possible values for the clockwise rotation</p></li>
+</ul>
+<p>In the following example, pages 2 and 5 are rotated 90 degrees in the clockwise direction:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">setPageRotations</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">90</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To retrieve the rotation for a given page, invoke the Doc object <code class="docutils literal notranslate"><span class="pre">getPageRotation</span></code> method, which requires only the page number as a parameter. The following code retrieves and displays the rotation in degrees for page 3 of the document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">rotation</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getPageRotation</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Page 3 is rotated &quot;</span> <span class="o">+</span> <span class="n">rotation</span> <span class="o">+</span> <span class="s2">&quot; degrees.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="29721"></a></div>
+</div>
+<div class="section" id="extracting-moving-deleting-replacing-and-copying-pages">
+<h3>Extracting, moving, deleting, replacing, and copying pages<a class="headerlink" href="#extracting-moving-deleting-replacing-and-copying-pages" title="Permalink to this headline">¶</a></h3>
+<p>The Doc object, in combination with the <code class="docutils literal notranslate"><span class="pre">app</span></code> object, can be used to extract pages from one document and place them in another, and moving or copying pages within or between documents.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">app</span></code> object an be used to create or open any document. To create a new document, invoke its <code class="docutils literal notranslate"><span class="pre">newDoc</span></code> method, and to open an existing document, invoke its <code class="docutils literal notranslate"><span class="pre">openDoc</span></code> method.</p>
+<p>The Doc object offers three useful methods for handling pages:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">insertPages</span></code>: Inserts pages from the source document into the current document</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">deletePages</span></code>: Deletes pages from the document</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">replacePages</span></code>: Replaces pages in the current document with pages from the source document.</p></li>
+</ul>
+<p>These methods enable you to customize the page content within and between documents.</p>
+<p>Suppose you would like to remove pages within a document. Invoke the Doc object’s <code class="docutils literal notranslate"><span class="pre">deletePages</span></code> method, which accepts two parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nStart</span></code>: the zero-based index of the beginning page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nEnd</span></code>: the zero-based index of the last page</p></li>
+</ul>
+<p>For example, the following code deletes pages 2 through 5 of the current document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">deletePages</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>Suppose you would like to copy pages from one document to another. Invoke the Doc object <code class="docutils literal notranslate"><span class="pre">insertPages</span></code> method, which accepts four parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nPage</span></code>: the zero-based index of the page after which to insert the new pages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cPath</span></code>: the device-independent path of the source file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nStart</span></code>: the zero-based index of the beginning page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nEnd</span></code>: the zero-based index of the last page</p></li>
+</ul>
+<p>For example, the following code inserts pages 2 through 5 from <code class="docutils literal notranslate"><span class="pre">mySource.pdf</span></code> at the beginning of the current document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">insertPages</span><span class="p">({</span>
+    <span class="n">nPage</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/mySource.pdf&quot;</span><span class="p">,</span>
+    <span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>You can combine these operations to extract pages from one document and move them to another (they will be deleted from the first document). The following code will extract pages 2 through 5 in <code class="docutils literal notranslate"><span class="pre">mySource.pdf</span></code> and move them into <code class="docutils literal notranslate"><span class="pre">myTarget.pdf</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">The</span> <span class="n">operator</span><span class="p">,</span> <span class="n">this</span><span class="p">,</span> <span class="n">represents</span> <span class="n">myTarget</span><span class="o">.</span><span class="n">pdf</span>
+<span class="o">//</span> <span class="n">First</span> <span class="n">copy</span> <span class="n">the</span> <span class="n">pages</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">source</span> <span class="n">to</span> <span class="n">the</span> <span class="n">target</span> <span class="n">document</span>
+<span class="n">this</span><span class="o">.</span><span class="n">insertPages</span><span class="p">({</span>
+    <span class="n">nPage</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/mySource.pdf&quot;</span><span class="p">,</span>
+    <span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Now</span> <span class="n">delete</span> <span class="n">the</span> <span class="n">pages</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">source</span> <span class="n">document</span>
+<span class="n">var</span> <span class="n">source</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">openDoc</span><span class="p">({</span><span class="n">cPath</span><span class="p">:</span><span class="s2">&quot;/C/temp/mySource.pdf&quot;</span><span class="p">});</span>
+<span class="n">source</span><span class="o">.</span><span class="n">deletePages</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>To replace pages in one document with pages from another document, invoke the target document’s <code class="docutils literal notranslate"><span class="pre">replacePages</span></code> method, which accepts four parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nPage</span></code>: The zero-based index of the page at which to start replacing pages</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cPath</span></code>: The device-independent pathname of the source file</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nStart</span></code>: The zero-based index of the beginning page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nEnd</span></code>: The zero-based index of the last page</p></li>
+</ul>
+<p>In the following example, pages 2 through 5 from <code class="docutils literal notranslate"><span class="pre">mySource.pdf</span></code> replace pages 30 through 33 of <code class="docutils literal notranslate"><span class="pre">myTarget.pdf</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">This</span> <span class="n">represents</span> <span class="n">myTarget</span><span class="o">.</span><span class="n">pdf</span>
+<span class="n">this</span><span class="o">.</span><span class="n">replacePages</span><span class="p">({</span>
+    <span class="n">nPage</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/mySource.pdf&quot;</span><span class="p">,</span>
+    <span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>To safely move pages within the same document, it is advisable to perform the following sequence:</p>
+<ol class="arabic simple">
+<li><p>Copy the source pages to a temporary file.</p></li>
+<li><p>Insert the pages in the temporary file at the new location in the original document.</p></li>
+<li><p>Delete the source pages from the original document.</p></li>
+</ol>
+<p>The following example moves pages 2 through 5 to follow page 30 in the document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">First</span> <span class="n">create</span> <span class="n">the</span> <span class="n">temporary</span> <span class="n">document</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">tempDoc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">newDoc</span><span class="p">(</span><span class="s2">&quot;/C/temp/temp.pdf&quot;</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">Copy</span> <span class="n">pages</span> <span class="mi">2</span> <span class="n">to</span> <span class="mi">5</span> <span class="n">into</span> <span class="n">the</span> <span class="n">temporary</span> <span class="n">file</span>
+<span class="n">tempDoc</span><span class="o">.</span><span class="n">insertPages</span><span class="p">({</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/mySource.pdf&quot;</span><span class="p">,</span>
+    <span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Copy</span> <span class="nb">all</span> <span class="n">of</span> <span class="n">the</span> <span class="n">temporary</span> <span class="n">file</span> <span class="n">pages</span> <span class="n">back</span> <span class="n">into</span> <span class="n">the</span> <span class="n">original</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">insertPages</span><span class="p">({</span>
+    <span class="n">nPage</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/temp.pdf&quot;</span>
+<span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Now</span> <span class="n">delete</span> <span class="n">pages</span> <span class="mi">2</span> <span class="n">to</span> <span class="mi">5</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">source</span> <span class="n">document</span>
+<span class="n">this</span><span class="o">.</span><span class="n">deletePages</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+</pre></div>
+</div>
+<a name="11561"></a></div>
+<div class="section" id="adding-watermarks-and-backgrounds">
+<h3>Adding watermarks and backgrounds<a class="headerlink" href="#adding-watermarks-and-backgrounds" title="Permalink to this headline">¶</a></h3>
+<p>The Doc object <code class="docutils literal notranslate"><span class="pre">addWatermarkFromText</span></code> and <code class="docutils literal notranslate"><span class="pre">addWatermarkFromFile</span></code> methods create watermarks within a document, and place them in <em>optional content groups</em> (OCGs).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">addWatermarkFromFile</span></code> method adds a page as a watermark to the specified pages in the document. The example below adds the first page of <code class="docutils literal notranslate"><span class="pre">watermark.pdf</span></code> as a watermark to the center of all pages within the current document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">addWatermarkFromFile</span><span class="p">(</span><span class="s2">&quot;/C/temp/watermark.pdf&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the next example, the <code class="docutils literal notranslate"><span class="pre">addWatermarkFromFile</span></code> method is used to add the second page of <code class="docutils literal notranslate"><span class="pre">watermark.pdf</span></code> as a watermark to the first 10 pages of the current document. It is rotated counterclockwise by 45 degrees, and positioned one inch down and two inches over from the top left corner of each page:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">addWatermarkFromFile</span><span class="p">({</span>
+    <span class="n">cDIPath</span><span class="p">:</span> <span class="s2">&quot;/C/temp/watermark.pdf&quot;</span><span class="p">,</span>
+    <span class="n">nSourcePage</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">nEnd</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+    <span class="n">nHorizAlign</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">nVertAlign</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">nHorizValue</span><span class="p">:</span> <span class="mi">144</span><span class="p">,</span>
+    <span class="n">nVertValue</span><span class="p">:</span> <span class="o">-</span><span class="mi">72</span><span class="p">,</span>
+    <span class="n">nRotation</span><span class="p">:</span> <span class="mi">45</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>It is also possible to use the <code class="docutils literal notranslate"><span class="pre">addWatermarkFromText</span></code> method to create watermarks. In this next example, the word <code class="docutils literal notranslate"><span class="pre">Confidential</span></code> is placed in the center of all the pages of the document, and its font helps it stand out:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">addWatermarkFromText</span><span class="p">(</span>
+    <span class="s2">&quot;Confidential&quot;</span><span class="p">,</span>
+    <span class="mi">0</span><span class="p">,</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">Helv</span><span class="p">,</span>
+    <span class="mi">24</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">.</span><span class="n">red</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<a name="51169"></a></div>
+</div>
+<div class="section" id="converting-pdf-documents-to-xml-format">
+<h2>Converting PDF documents to XML format<a class="headerlink" href="#converting-pdf-documents-to-xml-format" title="Permalink to this headline">¶</a></h2>
+<p>Since XML is often the basis for information exchange within web services and enterprise infrastructures, it may often be useful to convert your PDF documents into XML format.</p>
+<p>It is a straightforward process to do this using the Doc object <code class="docutils literal notranslate"><span class="pre">saveAs</span></code> method, which not only performs the conversion to XML, but also to a number of other formats.</p>
+<p>In order to convert your PDF document to a given format, you will need to determine the device-independent path to which you will save your file, and the conversion ID used to save in the desired format. A list of conversion IDs for all formats is provided in the <a class="reference external" href="https://www.adobe.com/go/acrobatsdk_jsapiref">Acrobat JavaScript API Reference</a>. For XML, the conversion ID is <code class="docutils literal notranslate"><span class="pre">com.adobe.acrobat.xml-1-00</span></code>.</p>
+<p>The following code converts the current PDF file to XML and saves it at <code class="docutils literal notranslate"><span class="pre">C:temptest.xml</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">saveAs</span><span class="p">(</span><span class="s2">&quot;/c/temp/test.xml&quot;</span><span class="p">,</span> <span class="s2">&quot;com.adobe.acrobat.xml-1-00&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: May 18, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

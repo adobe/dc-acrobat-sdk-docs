@@ -1,0 +1,1264 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homepdfmark_Logical.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="pdfmark_Examples.html" />
+    <link rel="prev" title="Actions and Destinations" href="pdfmark_Actions.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> PDFMark Reference
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">PDFMark Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#whats-in-this-guide">What’s in this guide?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#who-should-read-this-guide">Who should read this guide?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Syntax.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#syntax-of-pdfmark-operators">Syntax of pdfmark operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#usage-with-standard-postscript-interpreters">Usage with standard PostScript interpreters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#syntax-for-private-keys">Syntax for private keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Syntax.html#named-objects">Named objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#built-in-named-objects">Built-in named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#user-defined-named-objects">User-defined named objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#namespaces">Namespaces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Syntax.html#adding-content-to-named-objects">Adding content to named objects</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#arrays">Arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#dictionaries">Dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Syntax.html#streams">Streams</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Basic.html">Basic Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#annotations-ann">Annotations (ANN)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#text-annotations-notes">Text annotations (notes)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#links">Links</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#other-annotations">Other annotations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#articles-article">Articles (ARTICLE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#bookmarks-out">Bookmarks (OUT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-info-dictionary-docinfo">Document Info dictionary (DOCINFO)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#document-open-options-docview">Document open options (DOCVIEW)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#embedded-file-content-embed">Embedded file content (EMBED)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#distiller-command-line-options-to-enable-file-embedding">Distiller command line options to enable file embedding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#graphics-encapsulation-bp-ep-sp">Graphics encapsulation (BP, EP, SP)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#marked-content-mp-dp-bmc-bdc-emc">Marked content (MP, DP, BMC, BDC, EMC)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-points">Marked-content points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#marked-content-sequences">Marked-content sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#metadata-metadata">Metadata (Metadata)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#named-images-ni">Named images (NI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-crops-page-pages">Page crops (PAGE, PAGES)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#page-label-and-plate-color-pagelabel">Page label and plate color (PAGELABEL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Basic.html#transparency-settransparency">Transparency (SetTransparency)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject-and-soft-mask">Transparency group XObject and soft mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#transparency-group-xobject">Transparency group XObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-dictionaries">Soft mask dictionaries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="pdfmark_Basic.html#soft-mask-images">Soft mask images</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Actions.html">Actions and Destinations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#actions">Actions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#goto-actions">GoTo actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#gotor-actions">GoToR actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#launch-actions">Launch actions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#article-actions">Article actions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Actions.html#destinations">Destinations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#view-destinations">View destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#defining-named-destinations">Defining named destinations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_Actions.html#referencing-named-destinations">Referencing named destinations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Logical Structure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elements-and-parents">Elements and parents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#structure-operators">Structure operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#structure-tree-root">Structure Tree Root</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#strolemap">StRoleMap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stclassmap">StClassMap</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#elements">Elements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stpne">StPNE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stbookmarkroot">StBookmarkRoot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stpush">StPush</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stpop">StPop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stpopall">StPopAll</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stupdate">StUpdate</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#element-content">Element content</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stbmc">StBMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stbdc">StBDC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#emc">EMC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stobj">StOBJ</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#attribute-objects">Attribute objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#stattr">StAttr</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#storage-and-retrieval-of-the-implicit-parent-stack">Storage and retrieval of the implicit parent stack</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ststore">StStore</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stretrieve">StRetrieve</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#eps-considerations">EPS considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tagged-pdf">Tagged PDF</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_Examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#building-an-output-intents-array">Building an Output Intents array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#named-object-examples">Named object examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#forms-examples">Forms examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_Examples.html#structure-examples">Structure examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_JDF.html">JDF Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_JDF.html#syntax">Syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_JDF.html#xpath-examples">XPath Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pdfmark_OC_Interface.html">Distilling Optional Content</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#initialization-and-termination-code">Initialization and termination code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pdfmark_OC_Interface.html#procedure-definitions">Procedure definitions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#addasevent">AddASEvent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#beginoc">BeginOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#endoc">EndOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#getocgpdfmarktag">GetOCGPdfmarkTag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#ocendpage">OCEndPage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocginitstate">SetOCGInitState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgintent">SetOCGIntent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#setocgusage">SetOCGUsage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pdfmark_OC_Interface.html#simpleoc">SimpleOC</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">PDFMark Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Logical Structure</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="pdfmark_Examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="pdfmark_Actions.html" class="btn btn-neutral float-left" title="Actions and Destinations" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="logical-structure">
+<h1>Logical Structure<a class="headerlink" href="#logical-structure" title="Permalink to this headline">¶</a></h1>
+<p>PDF files (in versions 1.3 and later) can contain <em>structure trees</em> giving a logical structure to the information in a document. The facilities for logical structure in PDF are described in the <em>PDF Reference</em> .</p>
+<p>A <em>structure suite</em> of names is used with the pdfmark operator that can be used to specify logical structure within PDF files.</p>
+<p><a class="reference external" href="pdfmark_Examples.html#50454555_65255">Structure examples</a> gives a variety of examples of using the structure suite.</p>
+<div class="section" id="elements-and-parents">
+<h2>Elements and parents<a class="headerlink" href="#elements-and-parents" title="Permalink to this headline">¶</a></h2>
+<p>A document’s logical structure consists of a hierarchy of <em>structure elements.</em> Elements can contain contents and attributes. At the root of the hierarchy is a dictionary object called the Structure Tree Root.</p>
+<p>When using the structure suite, the hierarchy is established by means of the <em>implicit parent stack</em> of elements. Elements can be pushed onto or popped off of this stack. When an element is created, its parent is the current top item on the stack. If the stack is empty, the document’s Structure Tree Root is made the parent; the Structure Tree Root is created if it does not already exist. When element content is created, its containing element is the current top item on the stack.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some operators that specify an element cannot accept the Structure Tree Root as the implicit argument; therefore these commands are in error if the implicit parent stack is empty when they are encountered or if the top item on the stack is the Structure Tree Root. These cases are noted in the command descriptions.</p>
+</div>
+</div>
+<div class="section" id="structure-operators">
+<h2>Structure operators<a class="headerlink" href="#structure-operators" title="Permalink to this headline">¶</a></h2>
+<p>This section lists the pdfmark names that make up the structure suite. Most of these are directly related to PDF logical structure features, but some only manipulate the state of the PDF creation process, without corresponding to any particular output.</p>
+<ul class="simple">
+<li><p>Structure Tree Root</p>
+<ul>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_91312">StRoleMap</a> adds entries to the role map.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_StClassMap">StClassMap</a> adds entries to the class map.</p></li>
+</ul>
+</li>
+<li><p>Elements</p>
+<ul>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_48437">StPNE</a> creates a new structure element.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_34079">StBookmarkRoot</a> creates a root bookmark for a structure bookmark tree.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_75789">StPush</a> pushes an existing element onto the implicit parent stack.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_69556">StPop</a> pops an element off the implicit parent stack.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_66687">StPopAll</a> empties the implicit parent stack.</p></li>
+</ul>
+</li>
+<li><p>Element Content</p>
+<ul>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_53028">StBMC</a> indicates the beginning of marked content.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_73021">StBDC</a> indicates the beginning of marked content with a dictionary.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_75598">EMC</a> delimits the end of marked content.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_43183">StOBJ</a> adds an existing PDF object as part of an element’s content.</p></li>
+</ul>
+</li>
+<li><p>Attributes</p>
+<ul>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_10527">StAttr</a> enables the attachment of attribute objects to elements.</p></li>
+</ul>
+</li>
+<li><p>Saving and restoring the stack</p>
+<ul>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_60367">StStore</a> saves the current state of the implicit parent stack.</p></li>
+<li><p><a class="reference external" href="pdfmark_Logical.html#50454553_89182">StRetrieve</a> restores the implicit parent stack from a saved state.</p></li>
+</ul>
+</li>
+</ul>
+<p>The following sections provide details about the structure suite.</p>
+</div>
+<div class="section" id="structure-tree-root">
+<h2>Structure Tree Root<a class="headerlink" href="#structure-tree-root" title="Permalink to this headline">¶</a></h2>
+<p>Distiller automatically creates a new Structure Tree Root the first time it creates a new element with <code class="docutils literal notranslate"><span class="pre">StPNE</span></code> (see <a class="reference external" href="pdfmark_Logical.html#50454553_48437">StPNE</a>).</p>
+<p>The Structure Tree Root contains a <em>role map</em> and a <em>class map</em> (see the <em>PDF Reference</em> for details). The following two pdfmark features can be used to add information to these maps.</p>
+<div class="section" id="strolemap">
+<h3>StRoleMap<a class="headerlink" href="#strolemap" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StRoleMap</span></code> specifies key-value pairs to be added as dictionary entries to the Structure Tree Root’s role map. If the Structure Tree Root doesn’t already exist, it is created; if the Structure Tree Root doesn’t have a role map dictionary, one is created. A given key–value pair always modifies the role map, even if the key is already in the dictionary.</p>
+<p>The syntax for adding entries to a role map is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span>
+<span class="n">new</span><span class="o">-</span><span class="n">element</span><span class="o">-</span><span class="n">subtype</span><span class="o">-</span><span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+            <span class="o">/</span>
+<span class="n">standard</span><span class="o">-</span><span class="n">structural</span><span class="o">-</span><span class="n">subtype</span><span class="o">-</span><span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">...</span><span class="p">[</span> <span class="o">/</span>           <span class="o">/</span>
+<span class="n">new</span><span class="o">-</span><span class="n">element</span><span class="o">-</span><span class="n">subtype</span><span class="o">-</span><span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+            <span class="o">/</span>
+<span class="n">standard</span><span class="o">-</span><span class="n">structural</span><span class="o">-</span><span class="n">subtype</span><span class="o">-</span><span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">StRoleMap</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stclassmap">
+<h3>StClassMap<a class="headerlink" href="#stclassmap" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StClassMap</span></code> behaves like <code class="docutils literal notranslate"><span class="pre">StRoleMap</span></code> , except that it adds entries to the Structure Tree Root’s class map, rather than the role map. The syntax for adding entries to a class map is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span>
+<span class="n">class</span><span class="o">-</span><span class="n">name</span>
+<span class="o">/</span>
+<span class="n">attribute</span><span class="o">-</span><span class="nb">object</span><span class="o">-</span><span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">...</span><span class="p">[</span> <span class="o">/</span>           <span class="o">/</span>
+<span class="n">class</span><span class="o">-</span><span class="n">name</span>
+<span class="o">/</span>
+<span class="n">attribute</span><span class="o">-</span><span class="nb">object</span><span class="o">-</span><span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">StClassMap</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="elements">
+<h2>Elements<a class="headerlink" href="#elements" title="Permalink to this headline">¶</a></h2>
+<p>The structure suite provides several commands to create elements and link them into structure trees.</p>
+<div class="section" id="stpne">
+<h3>StPNE<a class="headerlink" href="#stpne" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StPNE</span></code> (“Push New Element”) creates a new element whose parent is the element on the top of the implicit parent stack. Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span>
+<span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span>
+<span class="n">objname</span>
+<span class="p">}[</span> <span class="o">/</span>           <span class="o">/</span><span class="n">Title</span>
+<span class="n">string</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">Alt</span>
+<span class="n">string</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">ID</span>
+<span class="n">string</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">Class</span>
+<span class="n">name</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">At</span>
+<span class="n">integer</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">Bookmark</span>
+<span class="n">dictionary</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>These keys are described in the following table.</p>
+<p>Common element keys</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 3%" />
+<col style="width: 93%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Subtype</p></td>
+<td><p>name</p></td>
+<td><p>Required. The element type, such as Link or Section.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Title</p></td>
+<td><p>string</p></td>
+<td><p>Optional. A human-readable name for the particular element.</p></td>
+</tr>
+<tr class="row-even"><td><p>Alt</p></td>
+<td><p>string</p></td>
+<td><p>Optional. An alternate representation of the element’s contents as human-readable text</p></td>
+</tr>
+<tr class="row-odd"><td><p>ID</p></td>
+<td><p>string</p></td>
+<td><p>Optional. A unique identifier for the element. The identifier must be unique within the document in which the element occurs. It is an error to specify an element with the same ID as an existing element in the same tree.</p></td>
+</tr>
+<tr class="row-even"><td><p>Class</p></td>
+<td><p>name</p></td>
+<td><p>Optional. The class name to be associated with the element</p></td>
+</tr>
+<tr class="row-odd"><td><p>At</p></td>
+<td><p>integer</p></td>
+<td><p>Optional. Index at which to insert this item within its parent. If omitted, or greater than or equal to the parent’s current number of children, the item is added as the <em>last</em> child of its parent, retaining all existing items in their original positions. If less than or equal to zero, the new item becomes the <em>first</em> child of its parent. If the index is any other number, the item is inserted at that index within the container, and all items that had indices greater than or equal to the given index are shifted to the position with index one greater. An item may be an element, marked content, or a PDF object.</p></td>
+</tr>
+<tr class="row-even"><td><p>Bookmark</p></td>
+<td><p>dictionary</p></td>
+<td><p>Optional. Specifies a bookmark that is generated for this structural element. The table <a class="reference external" href="pdfmark_Logical.html#50454553_33804">Bookmark dictionary / bookmark tree root</a> describes this dictionary.</p></td>
+</tr>
+</tbody>
+</table>
+<p>A new element is added to its parent at the index specified with the <code class="docutils literal notranslate"><span class="pre">At</span></code> key. The newly-created element is pushed onto the implicit parent stack.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the implicit parent stack is empty, the Structure Tree Root is pushed onto the stack and used as the new element’s parent. If there is no Structure Tree Root, one is created, pushed onto the stack, and used as the new element’s parent.</p>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">StPNE</span></code> may also take the key <code class="docutils literal notranslate"><span class="pre">_objdef</span></code> to specify an object name for the element. Once an element is named, it can be referenced with the <code class="docutils literal notranslate"><span class="pre">E</span></code> key of the <code class="docutils literal notranslate"><span class="pre">StPush</span></code> pdfmark (see <a class="reference external" href="pdfmark_Logical.html#50454553_75789">StPush</a>).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Bookmark</span></code> key allows a bookmark to be automatically generated for an element and added to the Structured Bookmark subtree. Its value is a bookmark dictionary, which may contain the <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">Open</span></code> keys described in the following table.</p>
+<p>Bookmark dictionary / bookmark tree root</p>
+<table class="docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 5%" />
+<col style="width: 91%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Semantics</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Open</p></td>
+<td><p>Boolean</p></td>
+<td><p>Optional. If <code class="docutils literal notranslate"><span class="pre">true</span></code> , the bookmark is open, that is, its children are visible. If <code class="docutils literal notranslate"><span class="pre">false</span></code> , the bookmark is closed. If this key is absent, the bookmark is closed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Title</p></td>
+<td><p>string</p></td>
+<td><p>Optional. The bookmark title. The encoding and character set used is either PDFDocEncoding (as described in the <em>PDF Reference</em> ) or Unicode. If Unicode, the string must begin with &lt;FEFF&gt;. For example, the Unicode string for (ABC) is &lt;FEFF004100420043&gt;. <code class="docutils literal notranslate"><span class="pre">Title</span></code> has a maximum length of 255 PDFDocEncoding characters or 126 Unicode values, although a practical limit of 32 characters is advised so that it can be read easily in the Acrobat viewer.</p></td>
+</tr>
+</tbody>
+</table>
+<p>If the <code class="docutils literal notranslate"><span class="pre">Title</span></code> key is absent, the title is the title of the element or its subtype.</p>
+<p>The bookmark dictionary may also contain key-value pairs that specify an action to be taken when the bookmark is activated (see <a class="reference external" href="pdfmark_Actions.html#50454557_94191">Actions and Destinations</a>). If none of the action keys are present, the bookmark’s action is to go to either the first page where marked content is a child of this element or a child in one of its descendant elements.</p>
+<p>The example <a class="reference external" href="pdfmark_Examples.html#50454555_70689">A bookmark for a structural element</a> defines a bookmark for an element.</p>
+</div>
+<div class="section" id="stbookmarkroot">
+<h3>StBookmarkRoot<a class="headerlink" href="#stbookmarkroot" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StBookmarkRoot</span></code> creates the root bookmark for structure bookmarks added by a <code class="docutils literal notranslate"><span class="pre">StPNE</span></code> with a <code class="docutils literal notranslate"><span class="pre">Bookmark</span></code> key. Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">Title</span>
+<span class="n">string</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">Open</span>
+<span class="n">boolean</span><span class="p">[</span> <span class="o">/</span>           <span class="o">...</span> <span class="n">action</span><span class="o">-</span><span class="n">specifying</span><span class="o">-</span><span class="n">keys</span> <span class="o">...</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">StBookmarkRoot</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>It contains the <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">Open</span></code> keys shown in the table <a class="reference external" href="pdfmark_Logical.html#50454553_33804">Bookmark dictionary / bookmark tree root</a>. If the <code class="docutils literal notranslate"><span class="pre">Title</span></code> key is absent, the title is “Untitled”.</p>
+<p>It may also contain the action keys in <a class="reference external" href="pdfmark_Actions.html#50454557_94191">Actions and Destinations</a> if none of these keys are present, the bookmark root has no action associated with it.</p>
+<p>An operator with <code class="docutils literal notranslate"><span class="pre">StBookmarkRoot</span></code> <em>must</em> appear before any <code class="docutils literal notranslate"><span class="pre">StPNE</span></code> with a <code class="docutils literal notranslate"><span class="pre">Bookmark</span></code> key; otherwise the default (“Untitled”, closed, no action) is used for the structured bookmark subtree.</p>
+</div>
+<div class="section" id="stpush">
+<h3>StPush<a class="headerlink" href="#stpush" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StPush</span></code> pushes an existing element onto the implicit parent stack. The syntax for pushing an element is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span><span class="o">/</span><span class="n">E</span> <span class="p">{</span>
+<span class="n">objname</span>
+<span class="p">}</span>
+
+    <span class="o">/</span><span class="n">StPush</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">E</span></code> key specifies an existing element, given as an object name of the special form {objname} used to refer to Cos objects. It must be a name that was created by a previous <code class="docutils literal notranslate"><span class="pre">StPNE</span></code> using the <code class="docutils literal notranslate"><span class="pre">_objdef</span></code> key (see <a class="reference external" href="pdfmark_Logical.html#50454553_48437">StPNE</a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">E</span></code> key is omitted, the Structure Tree Root of the document is specified. The Structure Tree Root is created if it does not already exist.</p>
+</div>
+</div>
+<div class="section" id="stpop">
+<h3>StPop<a class="headerlink" href="#stpop" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StPop</span></code> removes the element at the top of the implicit parent stack. It is an error for <code class="docutils literal notranslate"><span class="pre">StPop</span></code> to be encountered when the implicit parent stack is empty.</p>
+<p>The syntax for popping an element is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stpopall">
+<h3>StPopAll<a class="headerlink" href="#stpopall" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StPopAll</span></code> completely empties the implicit parent stack. The syntax for emptying the stack is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">StPopAll</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stupdate">
+<h3>StUpdate<a class="headerlink" href="#stupdate" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StUpdate</span></code> updates the entries of the current structure element. The syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span>   <span class="o">&lt;&lt;</span>
+<span class="o">/</span><span class="n">S</span> <span class="o">/</span><span class="n">Span</span><span class="o">...</span>
+ <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">StUpdate</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="element-content">
+<h2>Element content<a class="headerlink" href="#element-content" title="Permalink to this headline">¶</a></h2>
+<p>Elements can have two kinds of document content: marked content and references to PDF objects.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">StBDC</span></code> and <code class="docutils literal notranslate"><span class="pre">StBMC</span></code> to indicate the beginning of marked content and <code class="docutils literal notranslate"><span class="pre">EMC</span></code> to delimit the end of marked content. These operators combine the creation of the marked content region in the PDF content stream with the creation of marked content and its placement within the structure hierarchy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Marked content can be specified independently of the structure suite, using the operators described in <a class="reference external" href="pdfmark_Basic.html#50454556_41438">Marked content (MP, DP, BMC, BDC, EMC)</a>.</p>
+</div>
+<p>It is possible to nest marked content by nesting the <code class="docutils literal notranslate"><span class="pre">StBMC/BDC</span></code> and <code class="docutils literal notranslate"><span class="pre">EMC</span></code> operators. This is different from the nesting maintained by the tree structure of elements, which is implemented using <code class="docutils literal notranslate"><span class="pre">StPNE</span></code> and <code class="docutils literal notranslate"><span class="pre">StPop</span></code> . Note that nested marked content may belong to elements in different branches of a Structure Tree.</p>
+<p>To specify references to PDF objects, use the <code class="docutils literal notranslate"><span class="pre">StOBJ</span></code> operator.</p>
+<div class="section" id="stbmc">
+<h3>StBMC<a class="headerlink" href="#stbmc" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StBMC</span></code> marks the beginning of a sequence of marked content objects. Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">T</span>
+<span class="n">tag</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">At</span>
+<span class="n">integer</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The marked content is added to its containing element (the top element of the implicit parent stack) at the position optionally specified by the <code class="docutils literal notranslate"><span class="pre">At</span></code> key (see the table <a class="reference external" href="pdfmark_Logical.html#50454553_65055">Common element keys</a>). The <code class="docutils literal notranslate"><span class="pre">T</span></code> key is described in the following table. It is an error if the implicit parent stack is empty when <code class="docutils literal notranslate"><span class="pre">StBMC</span></code> is encountered.</p>
+<p>Specifying tags and property list entries for marked content</p>
+<table class="docutils align-default" id="section-2">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Key</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>P (Properties)</p></td>
+<td><p>dictionary</p></td>
+<td><p>Optional. Key–value pairs that are entered into the properties dictionary of the marked content being created. If this key is omitted, no properties other than those required by the implementation of logical structure in PDF are entered into the properties dictionary. This key is supported only with StBDC.</p></td>
+</tr>
+<tr class="row-odd"><td><p>T (Tag)</p></td>
+<td><p>name</p></td>
+<td><p>Optional. The tag to be given to the marked content being created. If this key is omitted, the subtype of the containing element is used.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="stbdc">
+<h3>StBDC<a class="headerlink" href="#stbdc" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StBDC</span></code> marks the beginning of a sequence of page content objects with an associated property list, given by a dictionary. <code class="docutils literal notranslate"><span class="pre">StBDC</span></code> behaves just like <code class="docutils literal notranslate"><span class="pre">StBMC</span></code> , with the addition of a property list. Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">T</span>
+<span class="n">tag</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">P</span>
+<span class="n">properties</span><span class="o">-</span><span class="n">dictionary</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">At</span>
+<span class="n">integer</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">StBDC</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The marked content is added to its containing element (the element on top of the implicit parent stack) at the position optionally specified by the <code class="docutils literal notranslate"><span class="pre">At</span></code> key (see the table <a class="reference external" href="pdfmark_Logical.html#50454553_65055">Common element keys</a>). The <code class="docutils literal notranslate"><span class="pre">P</span> <span class="pre">(Properties)</span></code> and <code class="docutils literal notranslate"><span class="pre">T</span> <span class="pre">(Tag)</span></code> keys are described in the table <a class="reference external" href="pdfmark_Logical.html#50454553_43535">Specifying tags and property list entries for marked content</a>. It is an error if the implicit parent stack is empty when <code class="docutils literal notranslate"><span class="pre">StBDC</span></code> is encountered.</p>
+</div>
+<div class="section" id="emc">
+<h3>EMC<a class="headerlink" href="#emc" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">EMC</span></code> signals the end of a marked sequence of page content operators. Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="stobj">
+<h3>StOBJ<a class="headerlink" href="#stobj" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StOBJ</span></code> adds an existing PDF object to the content of the top element of the implicit parent stack, using the Cos object reference mechanism. Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span>
+<span class="n">objname</span>
+<span class="p">}[</span> <span class="o">/</span>           <span class="o">/</span><span class="n">At</span>
+<span class="n">integer</span><span class="p">[</span> <span class="o">/</span>
+        <span class="o">/</span><span class="n">StOBJ</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Obj</span></code> key specifies the object to be added as data to the specified element, given as an object name of the special form {objname} used to refer to Cos objects. This object must have been created previously and must be a dictionary or stream.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">At</span></code> key (see the table <a class="reference external" href="pdfmark_Logical.html#50454553_65055">Common element keys</a>) specifies the position of the new content within the containing element.</p>
+<p>It is an error if the implicit parent stack is empty when <code class="docutils literal notranslate"><span class="pre">StOBJ</span></code> is encountered.</p>
+</div>
+</div>
+<div class="section" id="attribute-objects">
+<h2>Attribute objects<a class="headerlink" href="#attribute-objects" title="Permalink to this headline">¶</a></h2>
+<p>Elements can have additional information, or attributes, associated with them. Attributes are held in attribute objects, which can be associated with either a single element by using <code class="docutils literal notranslate"><span class="pre">StAttr</span></code> (see <a class="reference external" href="pdfmark_Logical.html#50454553_10527">StAttr</a>), or with a group of objects by storing it in the <code class="docutils literal notranslate"><span class="pre">ClassMap</span></code> of the Structure Tree Root, using <code class="docutils literal notranslate"><span class="pre">StClassMap</span></code> (see <a class="reference external" href="pdfmark_Logical.html#50454553_StClassMap">StClassMap</a>).</p>
+<div class="section" id="stattr">
+<h3>StAttr<a class="headerlink" href="#stattr" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StAttr</span></code> creates a new attribute object and adds it to the element on top of the implicit parent stack.</p>
+<p>The syntax to create a new attribute object is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span>
+<span class="n">objname</span>
+<span class="p">}</span>
+
+        <span class="o">/</span><span class="n">StAttr</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Obj</span></code> key specifies the object to be added as an attribute object to the specified element, given as an object name of the special form {objname} used to refer to Cos objects. This object must have been created previously and must be a dictionary or stream.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the PDF file, the attribute object is stored in the <code class="docutils literal notranslate"><span class="pre">A</span></code> key in the element’s dictionary.</p>
+</div>
+<p>It is an error if the implicit parent stack is empty when <code class="docutils literal notranslate"><span class="pre">StAttr</span></code> is encountered.</p>
+</div>
+</div>
+<div class="section" id="storage-and-retrieval-of-the-implicit-parent-stack">
+<h2>Storage and retrieval of the implicit parent stack<a class="headerlink" href="#storage-and-retrieval-of-the-implicit-parent-stack" title="Permalink to this headline">¶</a></h2>
+<p>Structure suite operators specify parents implicitly by means of the stack. However, it is not always possible to mimic a tree’s structure by nesting the structure within the document. For example, a paragraph may be represented by regions on more than one page, or it may be interrupted by other page content.</p>
+<p>To allow applications flexibility in their page output while allowing them the convenience of specifying tree structure, the structure suite provides a way of storing and later retrieving the tree’s context.</p>
+<p>See <a class="reference external" href="pdfmark_Examples.html#50454555_16737">Interrupted structure</a> for an example of storing and retrieving the implicit parent stack.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The names under which implicit parent stacks are stored and retrieved are in the current namespace governed by the stack operators <code class="docutils literal notranslate"><span class="pre">NamespacePush</span></code> and <code class="docutils literal notranslate"><span class="pre">NamespacePop</span></code> , defined in <a class="reference external" href="pdfmark_Syntax.html#50454537_19819">Namespaces</a>.</p>
+</div>
+<div class="section" id="ststore">
+<h3>StStore<a class="headerlink" href="#ststore" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StStore</span></code> saves the current state of the implicit parent stack (without changing it). Its syntax is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">StoreName</span>
+<span class="n">name</span>
+        <span class="o">/</span><span class="n">StStore</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">StoreName</span></code> key specifies a name object to be associated with the saved implicit parent stack state. Storing an implicit parent stack state under a previously used name completely replaces the implicit parent stack state already stored under that name.</p>
+</div>
+<div class="section" id="stretrieve">
+<h3>StRetrieve<a class="headerlink" href="#stretrieve" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">StRetrieve</span></code> restores the implicit parent stack from a saved state, whose name is specified by the <code class="docutils literal notranslate"><span class="pre">StoreName</span></code> key (as described in <a class="reference external" href="pdfmark_Logical.html#50454553_60367">StStore</a>). The syntax for a restoring the current state is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">StoreName</span>
+<span class="n">name</span>
+ <span class="o">/</span><span class="n">StRetrieve</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>The previous state of the implicit parent stack is overwritten by the restored state. It is an error to try to retrieve a nonexistent state, that is, to use a name that was not associated with a stack state by a previous <code class="docutils literal notranslate"><span class="pre">StStore</span></code> .</p>
+</div>
+</div>
+<div class="section" id="eps-considerations">
+<h2>EPS considerations<a class="headerlink" href="#eps-considerations" title="Permalink to this headline">¶</a></h2>
+<p>Encapsulated PostScript (EPS) is a form of PostScript used to embed graphics created in one application in a document created in another application. Applications can create EPS files containing structure elements without knowing anything about the environment into which the EPS file is to be embedded, which complicates the processing of a structure inside embedded EPS.</p>
+<p>The logical structure design allows structure within an embedded EPS to be connected to the structure of the surrounding file by way of the implicit parent stack, while insulating the namespace of the containing file from accidents due to naming coincidences in embedded EPS files.</p>
+<p>It is strongly recommended that applications embedding EPS files wrap the embedded PostScript between NamespacePush and NamespacePop to insulate the overall PostScript document from the consequences of multiply-defined object names.</p>
+</div>
+<div class="section" id="tagged-pdf">
+<h2>Tagged PDF<a class="headerlink" href="#tagged-pdf" title="Permalink to this headline">¶</a></h2>
+<p>PDF 1.4 introduced the concept of <em>tagged PDF.</em> Tagged PDF is a type of structured PDF that allows page content to be extracted and reused for various purposes, such as reflow of text and graphics, conversion to various file formats such as HTML and XML, and accessibility to the visually impaired.</p>
+<p>For detailed information on tagged PDF, see the <em>PDF Reference</em> .</p>
+<p>In PDF 1.4, the Catalog dictionary contains a <code class="docutils literal notranslate"><span class="pre">MarkInfo</span></code> entry whose value is a dictionary. That dictionary has a single key called <code class="docutils literal notranslate"><span class="pre">Marked</span></code> whose value is a Boolean; a value of <code class="docutils literal notranslate"><span class="pre">true</span></code> indicates that the document is a tagged PDF.</p>
+<p>The syntax for indicating tagged PDF using pdfmark is as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>   <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">MarkInfo</span> <span class="o">&lt;&lt;/</span><span class="n">Marked</span> <span class="n">true</span> <span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Tagged PDF</p></li>
+</ol>
+<p>This is a sample PostScript file that illustrates the use of tagged PDF.</p>
+<p>Three items should be added to this example for completeness:</p>
+<ol class="arabic simple">
+<li><p>A small table (just two rows, three column)</p></li>
+<li><p>A figure (either standalone, or actually embedded in the text)</p></li>
+<li><p>If possible, the encoding of a font so that the soft hyphen really works without the “actual text”</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">Creator</span> <span class="p">(</span><span class="n">Hand</span> <span class="n">Created</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">CreationDate</span> <span class="p">(</span><span class="n">D</span><span class="p">:</span><span class="mi">20010508130548</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">ModDate</span> <span class="p">(</span><span class="n">D</span><span class="p">:</span><span class="mi">20010508145339</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Author</span> <span class="p">(</span><span class="n">Adobe</span> <span class="n">Developer</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Sample</span> <span class="n">Document</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">tagged</span> <span class="n">PDF</span> <span class="n">creation</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Subject</span> <span class="p">(</span><span class="n">A</span> <span class="n">base</span> <span class="n">document</span> <span class="k">for</span> <span class="n">the</span> <span class="n">creation</span> <span class="n">of</span> <span class="n">some</span> <span class="n">simple</span> <span class="n">PostScript</span> <span class="ow">and</span>
+
+  <span class="n">PDFMarks</span> <span class="n">to</span> <span class="n">show</span> <span class="n">tagged</span> <span class="n">PDF</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Session</span> <span class="p">(</span><span class="n">Tagged</span> <span class="n">PDF</span> <span class="n">Dev</span> <span class="n">Tech</span> <span class="n">Seminar</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">Purpose</span> <span class="p">(</span><span class="n">Demonstration</span><span class="p">)</span>
+    <span class="o">/</span><span class="n">DOCINFO</span> <span class="n">pdfmark</span>
+
+<span class="p">[</span>   <span class="p">{</span><span class="n">Catalog</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">MarkInfo</span> <span class="o">&lt;&lt;/</span><span class="n">Marked</span> <span class="n">true</span><span class="o">&gt;&gt;&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>Layout class for documenttitle below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">C1</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+ <span class="p">[</span>   <span class="p">{</span><span class="n">C1</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">SpaceAfter</span> <span class="mi">10</span> <span class="o">/</span><span class="n">SpaceBefore</span> <span class="mi">10</span> <span class="o">/</span><span class="n">TextAlign</span> <span class="o">/</span><span class="n">Center</span><span class="o">&gt;&gt;</span>
+ <span class="o">/</span>   <span class="n">PUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">CM1</span> <span class="p">{</span><span class="n">C1</span><span class="p">}</span> <span class="o">/</span><span class="n">StClassMap</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>Layout class for topichead</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">C2</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+ <span class="p">[</span>   <span class="p">{</span><span class="n">C2</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">SpaceAfter</span> <span class="mi">5</span> <span class="o">/</span><span class="n">SpaceBefore</span> <span class="mi">5</span> <span class="o">/</span><span class="n">TextAlign</span> <span class="o">/</span><span class="n">Left</span><span class="o">&gt;&gt;</span>
+     <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">CM2</span> <span class="p">{</span><span class="n">C2</span><span class="p">}</span> <span class="o">/</span><span class="n">StClassMap</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>Layout class for topichead2</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">C3</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+ <span class="p">[</span>   <span class="p">{</span><span class="n">C3</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">SpaceAfter</span> <span class="mi">3</span> <span class="o">/</span><span class="n">SpaceBefore</span> <span class="mi">3</span> <span class="o">/</span><span class="n">TextAlign</span> <span class="o">/</span><span class="n">Left</span><span class="o">&gt;&gt;</span>
+     <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">CM3</span> <span class="p">{</span><span class="n">C3</span><span class="p">}</span> <span class="o">/</span><span class="n">StClassMap</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>Layout class for p</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">C4</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+ <span class="p">[</span>   <span class="p">{</span><span class="n">C4</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">SpaceAfter</span> <span class="mi">1</span> <span class="o">/</span><span class="n">SpaceBefore</span> <span class="mi">3</span> <span class="o">/</span><span class="n">TextAlign</span> <span class="o">/</span><span class="n">Left</span><span class="o">&gt;&gt;</span>
+     <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">CM4</span> <span class="p">{</span><span class="n">C4</span><span class="p">}</span> <span class="o">/</span><span class="n">StClassMap</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">document</span> <span class="o">/</span><span class="n">Lang</span> <span class="p">(</span><span class="n">en</span><span class="o">-</span><span class="n">US</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">dta1</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span>   <span class="p">{</span><span class="n">dta1</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">XML</span><span class="o">-</span><span class="mf">1.00</span> <span class="o">/</span><span class="n">Author</span> <span class="p">(</span><span class="n">Joe</span><span class="p">)</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">documenttitle</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM1</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span><span class="n">dta1</span><span class="p">}</span> <span class="o">/</span><span class="n">StAttr</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Bold</span> <span class="n">findfont</span> <span class="mi">24</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">216</span> <span class="mi">720</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">Title</span> <span class="n">of</span> <span class="n">Document</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topic</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topichead</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM2</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Bold</span> <span class="n">findfont</span> <span class="mi">18</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">72</span> <span class="mi">690</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">First</span> <span class="n">Topic</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">p</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM4</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span> <span class="n">findfont</span> <span class="mi">12</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">72</span> <span class="mi">674</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">Some</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">paragraph</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">first</span> <span class="n">topic</span><span class="o">.</span> <span class="n">These</span> <span class="n">lines</span> <span class="n">may</span> <span class="ow">not</span> <span class="n">be</span>
+
+   <span class="n">justified</span><span class="p">,</span> <span class="n">but</span> <span class="n">are</span> <span class="n">illustrative</span><span class="o">.</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topic</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topichead</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM2</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Bold</span> <span class="n">findfont</span> <span class="mi">18</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">72</span> <span class="mi">648</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">Second</span> <span class="n">Topic</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">p</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM4</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span> <span class="n">findfont</span> <span class="mi">12</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">72</span> <span class="mi">632</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">paragraph</span> <span class="n">of</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">second</span> <span class="n">topic</span><span class="o">.</span> <span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">emph</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Oblique</span> <span class="n">findfont</span> <span class="mi">12</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="p">(</span><span class="n">Emphasized</span> <span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span> <span class="n">findfont</span> <span class="mi">12</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="p">(</span><span class="n">words</span> <span class="p">)</span> <span class="n">show</span>
+
+ <span class="mi">72</span> <span class="mi">618</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">here</span><span class="o">.</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topic</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topichead2</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM3</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Bold</span> <span class="n">findfont</span> <span class="mi">14</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">72</span> <span class="mi">596</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">Subtopic</span> <span class="n">of</span> <span class="n">second</span> <span class="n">topic</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">p</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM4</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span> <span class="n">findfont</span> <span class="mi">12</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">72</span> <span class="mi">580</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">This</span> <span class="n">paragraph</span> <span class="n">of</span> <span class="n">text</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">second</span> <span class="n">topic</span><span class="p">,</span> <span class="n">first</span> <span class="n">subtopic</span><span class="o">.</span> <span class="p">)</span> <span class="n">show</span>
+ <span class="mi">72</span> <span class="mi">566</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">Hyphenated</span> <span class="n">words</span> <span class="n">make</span> <span class="n">up</span> <span class="n">this</span> <span class="n">para</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Span</span> <span class="o">/</span><span class="n">ActualText</span> <span class="o">&lt;</span><span class="n">FEFF00AD</span><span class="o">&gt;</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="p">(</span><span class="o">-</span><span class="p">)</span> <span class="n">show</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">72</span> <span class="mi">552</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">graph</span> <span class="n">also</span><span class="o">.</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+</pre></div>
+</div>
+<p>Add another topic with line numbers</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topic</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">topichead</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM2</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Bold</span> <span class="n">findfont</span> <span class="mi">18</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">72</span> <span class="mi">510</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">Line</span> <span class="n">Numbered</span> <span class="n">Topic</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">p</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CM4</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span> <span class="n">findfont</span> <span class="mi">12</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Artifact</span> <span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Layout</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">BDC</span> <span class="n">pdfmark</span>
+ <span class="mi">48</span> <span class="mi">494</span> <span class="n">moveto</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">72</span> <span class="mi">494</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">This</span> <span class="ow">is</span> <span class="n">some</span> <span class="n">text</span> <span class="n">such</span> <span class="k">as</span> <span class="n">would</span> <span class="n">appear</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">legal</span> <span class="n">bill</span><span class="o">.</span> <span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Artifact</span> <span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Layout</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">BDC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">48</span> <span class="mi">478</span> <span class="n">moveto</span> <span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">72</span> <span class="mi">478</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">Note</span> <span class="n">that</span> <span class="n">this</span> <span class="n">text</span> <span class="n">has</span> <span class="n">line</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">but</span> <span class="n">that</span> <span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Artifact</span> <span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Layout</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">BDC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">48</span> <span class="mi">464</span> <span class="n">moveto</span> <span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">72</span> <span class="mi">464</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">the</span> <span class="n">numbers</span> <span class="n">disappear</span> <span class="n">when</span> <span class="n">you</span> <span class="n">reflow</span> <span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Artifact</span> <span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Layout</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">BDC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">48</span> <span class="mi">450</span> <span class="n">moveto</span> <span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="mi">72</span> <span class="mi">450</span> <span class="n">moveto</span>
+ <span class="p">(</span><span class="n">the</span> <span class="n">text</span> <span class="ow">or</span> <span class="n">save</span> <span class="n">the</span> <span class="n">text</span> <span class="k">as</span> <span class="n">XML</span><span class="o">.</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="o">=================================================================</span>
+<span class="o">%</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">simple</span> <span class="n">link</span> <span class="n">example</span>
+<span class="o">%</span> <span class="o">=================================================================</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">P</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Link</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">annotObj</span><span class="p">}</span> <span class="o">/</span><span class="n">Rect</span> <span class="p">[</span><span class="mi">70</span> <span class="mi">398</span> <span class="mi">202</span> <span class="mi">412</span><span class="p">]</span>
+     <span class="o">/</span><span class="n">Action</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">URI</span> <span class="o">/</span><span class="n">URI</span> <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">adobe</span><span class="o">.</span><span class="n">com</span><span class="p">)</span> <span class="o">&gt;&gt;</span>
+     <span class="o">/</span><span class="n">Border</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+     <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Link</span>
+     <span class="o">/</span><span class="n">ANN</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span><span class="n">annotObj</span><span class="p">}</span> <span class="o">/</span><span class="n">StOBJ</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+     <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="n">setrgbcolor</span>
+     <span class="mi">72</span> <span class="mi">400</span> <span class="n">moveto</span>
+
+ <span class="p">(</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">adobe</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="p">)</span> <span class="n">show</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">tab</span> <span class="n">order</span> <span class="k">for</span> <span class="n">the</span> <span class="n">page</span> <span class="n">to</span> <span class="n">structure</span> <span class="n">order</span><span class="o">.</span>
+
+<span class="p">[</span>   <span class="p">{</span><span class="n">ThisPage</span><span class="p">}</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Tabs</span> <span class="o">/</span><span class="n">S</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="o">=================================================================</span>
+<span class="o">%</span> <span class="n">Create</span> <span class="n">figure</span> <span class="k">with</span> <span class="n">a</span> <span class="n">bounding</span> <span class="n">box</span>
+<span class="o">%</span> <span class="o">=================================================================</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Figure</span> <span class="o">/</span><span class="n">Alt</span> <span class="p">(</span><span class="n">Logo</span><span class="o">.</span><span class="p">)</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Company</span> <span class="n">Logo</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Generate</span> <span class="n">attribute</span> <span class="n">dictionary</span> <span class="k">for</span> <span class="n">figure</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">layoutObj</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+<span class="p">[</span>   <span class="p">{</span><span class="n">layoutObj</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">Height</span> <span class="mi">70</span> <span class="o">/</span><span class="n">Width</span> <span class="mi">140</span> <span class="o">/</span><span class="n">BBox</span> <span class="p">[</span><span class="mi">90</span> <span class="mi">290</span> <span class="mi">250</span> <span class="mi">360</span><span class="p">]</span>
+     <span class="o">/</span><span class="n">Placement</span> <span class="o">/</span><span class="n">Block</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Attach</span> <span class="n">attributes</span> <span class="n">to</span> <span class="n">figure</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span><span class="n">layoutObj</span><span class="p">}</span> <span class="o">/</span><span class="n">StAttr</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span> <span class="n">findfont</span> <span class="mi">48</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">setrgbcolor</span>
+ <span class="mi">90</span> <span class="mi">290</span> <span class="n">moveto</span>
+ <span class="mi">90</span> <span class="mi">360</span> <span class="n">lineto</span>
+ <span class="mi">250</span> <span class="mi">360</span> <span class="n">lineto</span>
+ <span class="mi">250</span> <span class="mi">290</span> <span class="n">lineto</span>
+ <span class="n">closepath</span>
+ <span class="n">stroke</span>
+ <span class="mi">100</span> <span class="mi">300</span> <span class="n">moveto</span>
+ <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">setrgbcolor</span>
+ <span class="p">(</span><span class="n">LOGO</span><span class="p">)</span> <span class="n">false</span> <span class="n">charpath</span>
+ <span class="mi">2</span> <span class="n">setlinewidth</span> <span class="n">stroke</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="o">=================================================================</span>
+<span class="o">%</span> <span class="n">Simple</span> <span class="n">List</span> <span class="n">Example</span>
+<span class="o">%</span> <span class="o">=================================================================</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Bold</span> <span class="n">findfont</span> <span class="mi">18</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+ <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="n">setrgbcolor</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">L</span> <span class="o">/</span><span class="n">Lang</span> <span class="p">(</span><span class="n">en</span><span class="o">-</span><span class="n">US</span><span class="p">)</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Some</span> <span class="n">salutations</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Create</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">attribute</span> <span class="n">which</span> <span class="n">specifies</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">label</span> <span class="n">to</span> <span class="n">use</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">firstAttrObj</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+ <span class="p">[</span>   <span class="p">{</span><span class="n">firstAttrObj</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">List</span> <span class="o">/</span><span class="n">ListNumbering</span> <span class="o">/</span><span class="n">LowerRoman</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Create</span> <span class="n">an</span> <span class="n">attribute</span> <span class="n">specifying</span> <span class="n">the</span> <span class="n">writing</span> <span class="n">direction</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">secondAttrObj</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+ <span class="p">[</span>   <span class="p">{</span><span class="n">secondAttrObj</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">WritingMode</span> <span class="o">/</span><span class="n">LrTb</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Set</span> <span class="n">attribute</span> <span class="nb">dict</span> <span class="n">on</span> <span class="nb">list</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span><span class="n">firstAttrObj</span><span class="p">}</span> <span class="o">/</span><span class="n">StAttr</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span><span class="n">secondAttrObj</span><span class="p">}</span> <span class="o">/</span><span class="n">StAttr</span> <span class="n">pdfmark</span>
+
+ <span class="o">/</span><span class="n">Helvetica</span><span class="o">-</span><span class="n">Oblique</span> <span class="n">findfont</span> <span class="mi">12</span> <span class="n">scalefont</span> <span class="n">setfont</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">LI</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Lbl</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+             <span class="mi">48</span> <span class="mi">238</span> <span class="n">moveto</span>
+             <span class="p">(</span><span class="n">i</span> <span class="p">)</span> <span class="n">show</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">LBody</span> <span class="o">/</span><span class="n">Lang</span> <span class="p">(</span><span class="n">en</span><span class="o">-</span><span class="n">cockney</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+             <span class="mi">72</span> <span class="mi">238</span> <span class="n">moveto</span>
+             <span class="p">(</span><span class="n">whatcha</span><span class="p">)</span> <span class="n">show</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">LI</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Lbl</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+             <span class="mi">48</span> <span class="mi">226</span> <span class="n">moveto</span>
+             <span class="p">(</span><span class="n">ii</span> <span class="p">)</span> <span class="n">show</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">LBody</span> <span class="o">/</span><span class="n">Lang</span> <span class="p">(</span><span class="n">fr</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+             <span class="mi">72</span> <span class="mi">226</span> <span class="n">moveto</span>
+             <span class="p">(</span><span class="n">bon</span> <span class="n">jour</span><span class="p">)</span> <span class="n">show</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="o">=================================================================</span>
+<span class="o">%</span> <span class="n">Simple</span> <span class="n">Table</span> <span class="n">Example</span>
+<span class="o">%</span> <span class="o">=================================================================</span>
+
+<span class="o">%</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">table</span> <span class="n">element</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">Table</span> <span class="o">/</span><span class="n">Lang</span> <span class="p">(</span><span class="n">en</span><span class="o">-</span><span class="n">US</span><span class="p">)</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Place</span> <span class="n">the</span> <span class="n">frame</span> <span class="n">of</span> <span class="n">the</span> <span class="n">table</span> <span class="ow">in</span> <span class="n">an</span> <span class="n">artifact</span>
+
+    <span class="p">[</span> <span class="o">/</span><span class="n">Artifact</span> <span class="o">&lt;&lt;/</span><span class="n">Type</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">BBox</span> <span class="p">[</span><span class="mi">40</span> <span class="mi">175</span> <span class="mi">340</span> <span class="mi">220</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">BDC</span> <span class="n">pdfmark</span>
+         <span class="mi">40</span> <span class="mi">220</span> <span class="n">moveto</span> <span class="mi">340</span> <span class="mi">220</span> <span class="n">lineto</span> <span class="mi">340</span> <span class="mi">175</span> <span class="n">lineto</span> <span class="mi">40</span> <span class="mi">175</span> <span class="n">lineto</span> <span class="n">closepath</span>
+         <span class="mi">40</span> <span class="mi">196</span> <span class="n">moveto</span> <span class="mi">340</span> <span class="mi">196</span> <span class="n">lineto</span>
+         <span class="mi">190</span> <span class="mi">220</span> <span class="n">moveto</span> <span class="mi">190</span> <span class="mi">175</span> <span class="n">lineto</span>
+         <span class="n">stroke</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+
+
+    <span class="o">%</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">table</span> <span class="n">attribute</span> <span class="n">which</span> <span class="n">specifies</span> <span class="n">the</span> <span class="nb">type</span> <span class="n">of</span> <span class="n">label</span> <span class="n">to</span> <span class="n">use</span>
+
+    <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">tableattrObj</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+     <span class="p">[</span>   <span class="p">{</span><span class="n">tableattrObj</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">Placement</span> <span class="o">/</span><span class="n">Block</span> <span class="o">/</span><span class="n">SpaceAfter</span> <span class="mi">10</span>
+
+   <span class="o">/</span><span class="n">BorderColor</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Attach</span> <span class="n">attribute</span> <span class="n">to</span> <span class="n">table</span>
+
+    <span class="p">[</span> <span class="o">/</span><span class="n">Obj</span> <span class="p">{</span><span class="n">tableattrObj</span><span class="p">}</span> <span class="o">/</span><span class="n">StAttr</span> <span class="n">pdfmark</span>
+
+
+<span class="o">%</span> <span class="n">Create</span> <span class="n">an</span> <span class="n">attribute</span> <span class="nb">object</span> <span class="k">with</span> <span class="n">the</span> <span class="n">common</span> <span class="n">settings</span> <span class="k">for</span> <span class="n">each</span> <span class="n">table</span> <span class="n">data</span> <span class="n">cell</span>
+
+    <span class="p">[</span> <span class="o">/</span><span class="n">_objdef</span> <span class="p">{</span><span class="n">tableCellsObj</span><span class="p">}</span> <span class="o">/</span><span class="nb">type</span> <span class="o">/</span><span class="nb">dict</span> <span class="o">/</span><span class="n">OBJ</span> <span class="n">pdfmark</span>
+     <span class="p">[</span>   <span class="p">{</span><span class="n">tableCellsObj</span><span class="p">}</span> <span class="o">&lt;&lt;/</span><span class="n">O</span> <span class="o">/</span><span class="n">Layout</span> <span class="o">/</span><span class="n">Width</span> <span class="mi">150</span> <span class="o">/</span><span class="n">BorderStyle</span> <span class="o">/</span><span class="n">Solid</span>
+
+   <span class="o">/</span><span class="n">BorderThickness</span> <span class="mi">2</span> <span class="o">/</span><span class="n">BorderColor</span> <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Add</span> <span class="n">it</span> <span class="n">to</span> <span class="n">the</span> <span class="n">classmap</span>
+
+    <span class="p">[</span> <span class="o">/</span><span class="n">CommonTableInfo</span> <span class="p">{</span><span class="n">widthObj</span><span class="p">}</span> <span class="o">/</span><span class="n">StClassMap</span> <span class="n">pdfmark</span>
+
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">THead</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">TR</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">TH</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CommonTableInfo</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+                 <span class="mi">48</span> <span class="mi">200</span> <span class="n">moveto</span>
+                 <span class="p">(</span><span class="n">Item</span><span class="p">)</span> <span class="n">show</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">TH</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CommonTableInfo</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+                 <span class="mi">200</span> <span class="mi">200</span> <span class="n">moveto</span>
+                 <span class="p">(</span><span class="n">Description</span><span class="p">)</span> <span class="n">show</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">TBody</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">TR</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">TD</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CommonTableInfo</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+                 <span class="mi">48</span> <span class="mi">180</span> <span class="n">moveto</span>
+                 <span class="p">(</span><span class="n">Thing</span><span class="p">)</span> <span class="n">show</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+         <span class="p">[</span> <span class="o">/</span><span class="n">Subtype</span> <span class="o">/</span><span class="n">TD</span> <span class="o">/</span><span class="n">Class</span> <span class="o">/</span><span class="n">CommonTableInfo</span> <span class="o">/</span><span class="n">StPNE</span> <span class="n">pdfmark</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">StBMC</span> <span class="n">pdfmark</span>
+                 <span class="mi">200</span> <span class="mi">180</span> <span class="n">moveto</span>
+                 <span class="p">(</span><span class="n">Things</span><span class="p">)</span> <span class="n">show</span>
+             <span class="p">[</span> <span class="o">/</span><span class="n">EMC</span> <span class="n">pdfmark</span>
+         <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+     <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+
+ <span class="p">[</span> <span class="o">/</span><span class="n">StPop</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">Now</span> <span class="n">that</span> <span class="n">the</span> <span class="n">text</span> <span class="ow">is</span> <span class="n">done</span><span class="p">,</span> <span class="n">let</span><span class="s1">&#39;s make the outlines.</span>
+<span class="o">%</span> <span class="n">The</span> <span class="n">first</span> <span class="n">bookmark</span> <span class="n">magnifies</span> <span class="mi">400</span> <span class="n">percent</span><span class="p">,</span> <span class="k">while</span> <span class="n">the</span> <span class="n">others</span> <span class="n">go</span> <span class="n">to</span> <span class="n">their</span>
+<span class="o">%</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">text</span><span class="o">.</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">Count</span> <span class="mi">4</span> <span class="o">/</span><span class="n">Page</span> <span class="mi">1</span> <span class="o">/</span><span class="n">View</span> <span class="p">[</span><span class="o">/</span><span class="n">XYZ</span> <span class="mi">216</span> <span class="mi">744</span> <span class="mf">4.0</span><span class="p">]</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Title</span> <span class="n">of</span> <span class="n">Document</span><span class="p">)</span>
+ <span class="o">/</span><span class="n">OUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Page</span> <span class="mi">1</span> <span class="o">/</span><span class="n">View</span> <span class="p">[</span><span class="o">/</span><span class="n">XYZ</span> <span class="mi">0</span> <span class="mi">704</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">First</span> <span class="n">Topic</span><span class="p">)</span> <span class="o">/</span><span class="n">OUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Count</span> <span class="o">-</span><span class="mi">1</span> <span class="o">/</span><span class="n">Page</span> <span class="mi">1</span> <span class="o">/</span><span class="n">View</span> <span class="p">[</span><span class="o">/</span><span class="n">XYZ</span> <span class="mi">0</span> <span class="mi">662</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Second</span> <span class="n">Topic</span><span class="p">)</span> <span class="o">/</span><span class="n">OUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Page</span> <span class="mi">1</span> <span class="o">/</span><span class="n">View</span> <span class="p">[</span><span class="o">/</span><span class="n">XYZ</span> <span class="mi">0</span> <span class="mi">610</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Subtopic</span> <span class="n">of</span> <span class="n">second</span> <span class="n">Topic</span><span class="p">)</span> <span class="o">/</span><span class="n">OUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">Page</span> <span class="mi">1</span> <span class="o">/</span><span class="n">View</span> <span class="p">[</span><span class="o">/</span><span class="n">XYZ</span> <span class="mi">0</span> <span class="mi">530</span> <span class="mf">1.0</span><span class="p">]</span> <span class="o">/</span><span class="n">Title</span> <span class="p">(</span><span class="n">Line</span> <span class="n">Numbered</span> <span class="n">Topic</span><span class="p">)</span> <span class="o">/</span><span class="n">OUT</span> <span class="n">pdfmark</span>
+ <span class="p">[</span> <span class="o">/</span><span class="n">PageMode</span> <span class="o">/</span><span class="n">UseOutlines</span> <span class="o">/</span><span class="n">Page</span> <span class="mi">1</span> <span class="o">/</span><span class="n">View</span> <span class="p">[</span><span class="o">/</span><span class="n">XYZ</span> <span class="n">null</span> <span class="n">null</span> <span class="n">null</span><span class="p">]</span> <span class="o">/</span><span class="n">DOCVIEW</span> <span class="n">pdfmark</span>
+
+<span class="o">%</span> <span class="n">And</span> <span class="k">finally</span> <span class="n">the</span> <span class="n">rolemap</span><span class="p">,</span> <span class="k">with</span> <span class="n">every</span> <span class="n">tag</span> <span class="n">that</span> <span class="n">we</span> <span class="n">have</span> <span class="n">used</span> <span class="n">defined</span><span class="o">.</span>
+
+<span class="p">[</span> <span class="o">/</span><span class="n">document</span> <span class="o">/</span><span class="n">Document</span>
+     <span class="o">/</span><span class="n">documenttitle</span> <span class="o">/</span><span class="n">H</span>
+     <span class="o">/</span><span class="n">p</span> <span class="o">/</span><span class="n">P</span>
+     <span class="o">/</span><span class="n">emph</span> <span class="o">/</span><span class="n">Span</span>
+     <span class="o">/</span><span class="n">topic</span> <span class="o">/</span><span class="n">Div</span>
+     <span class="o">/</span><span class="n">topic2</span> <span class="o">/</span><span class="n">Div</span>
+     <span class="o">/</span><span class="n">topichead</span> <span class="o">/</span><span class="n">H1</span>
+     <span class="o">/</span><span class="n">topichead2</span> <span class="o">/</span><span class="n">H2</span>
+     <span class="o">/</span><span class="n">StRoleMap</span> <span class="n">pdfmark</span>
+
+ <span class="n">showpage</span>
+ <span class="p">(</span><span class="o">%%</span><span class="p">[</span><span class="n">Page</span><span class="p">:</span> <span class="mi">1</span><span class="p">]</span><span class="o">%%</span><span class="p">)</span> <span class="o">=</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Apr 26, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

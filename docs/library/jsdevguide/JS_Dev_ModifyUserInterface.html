@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+      <link rel="shortcut icon" href="../_static/favicon.ico" />  
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeJS_Dev_ModifyUserInterface.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Acrobat Templates" href="JS_Dev_Templates.html" />
+    <link rel="prev" title="Working with Digital Media in PDF" href="JS_Dev_DigitalMedia.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat and PDFL SDK: JS Developer Guide
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">JavaScript Development for Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-for-acrobat-api-reference">JavaScript for Acrobat API Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#object-summary">Object summary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#app">app</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#doc">Doc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dbg">dbg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#console">console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#global">global</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#util">util</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dialog">dialog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#security">security</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#soap">SOAP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#search">search</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#event">event</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#javascript-applications">JavaScript applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Tools.html">Tools</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-javascript-debugger-console">Using the JavaScript Debugger console</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#opening-the-console">Opening the console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#formatting-code">Formatting code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugging-with-the-javascript-console">Debugging with the JavaScript Console</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-a-javascript-editor">Using a JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#specifying-the-default-javascript-editor">Specifying the default JavaScript editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-an-external-editor">Using an external editor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#additional-editor-capabilities">Additional editor capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#specifying-additional-capabilities-to-your-editor">Specifying additional capabilities to your editor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#saving-and-closing-a-file-with-a-syntax-error">Saving and closing a file with a syntax error</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#using-the-debugger-with-acrobat-reader">Using the Debugger with Acrobat Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#enabling-the-javascript-debugger">Enabling the JavaScript Debugger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Tools.html#javascript-debugger">JavaScript Debugger</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#main-groups-of-controls">Main groups of controls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-view-windows">Debugger View windows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-buttons">Debugger buttons</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#resume-execution">Resume execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#interrupt">Interrupt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#quit">Quit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-over">Step over</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-into">Step into</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#step-out">Step out</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#debugger-scripts-window">Debugger Scripts window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#accessing-scripts-in-the-scripts-window">Accessing scripts in the Scripts window</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-inside-pdf-files">Scripts inside PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#scripts-outside-pdf-files">Scripts outside PDF files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#call-stack-list">Call Stack list</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window">Inspect details window</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspect-details-window-controls">Inspect details window controls</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#inspecting-variables">Inspecting variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#watches">Watches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-the-start-of-execution">Debugging from the start of execution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Tools.html#debugging-from-an-arbitrary-point-in-the-script">Debugging from an arbitrary point in the script</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Tools.html#final-notes">Final notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Contexts.html">JavaScript Contexts in Acrobat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#the-concept-of-a-javascript-event">The concept of a JavaScript event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#about-contexts">About contexts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#folder-level">Folder level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#document-level">Document level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#page-level">Page level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#field-level">Field level</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Contexts.html#privileged-versus-non-privileged-context">Privileged versus non-privileged context</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-non-privileged-context">Executing privileged methods in a non-privileged context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-through-the-menu">Executing privileged methods through the menu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Contexts.html#executing-privileged-methods-in-a-certified-document">Executing privileged methods in a certified document</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_PDFCreation.html">Creating and Modifying PDF Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-and-modifying-pdf-files">Creating and modifying PDF files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-a-document-with-content">Creating a document with content</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-pdf-documents">Combining PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-files">Combining files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-several-pdf-files">Combining several PDF files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#combining-files-of-different-formats">Combining files of different formats</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#extracting-files">Extracting files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#creating-file-attachments">Creating file attachments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#saving-form-data-to-and-reading-form-data-from-an-attachment">Saving form data to and reading form data from an attachment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#accessing-an-xml-attachment-using-e4x">Accessing an XML attachment using E4X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#cropping-and-rotating-pages">Cropping and rotating pages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#cropping-pages">Cropping pages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PDFCreation.html#rotating-pages">Rotating pages</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#extracting-moving-deleting-replacing-and-copying-pages">Extracting, moving, deleting, replacing, and copying pages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PDFCreation.html#adding-watermarks-and-backgrounds">Adding watermarks and backgrounds</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PDFCreation.html#converting-pdf-documents-to-xml-format">Converting PDF documents to XML format</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_PrintProduction.html">Print Production</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-print-options">Setting print options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-pdf-documents">Printing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#silent-printing">Silent printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#printing-comments-and-forms">Printing comments and forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#booklet-printing">Booklet printing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-advanced-print-options">Setting advanced print options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-output-settings">Specifying output settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#specifying-marks-and-bleeds">Specifying marks and bleeds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-postscript-options">Setting PostScript options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_PrintProduction.html#setting-font-options">Setting font options</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_AcrobatForms.html">Using JavaScript in Forms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#forms-essentials">Forms essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#about-pdf-forms">About PDF forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#elements-of-acrobat-forms">Elements of Acrobat forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#guidelines-for-creating-a-new-form">Guidelines for creating a new form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-acrobat-form-fields">Creating Acrobat form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-acrobat-form-field-properties">Setting Acrobat form field properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#field-properties">Field properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#button-fields">Button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#check-box-fields">Check box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#combo-box-fields">Combo box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#list-box-fields">List box fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#radio-button-fields">Radio button fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#signature-fields">Signature fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-fields">Text fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#validation-scripts">Validation scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#calculation-script">Calculation script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#task-based-topics">Task-based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-form-fields">Highlighting required form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#highlighting-required-fields">Highlighting required fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-the-hierarchy-of-form-fields">Setting the hierarchy of form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-forms">Creating forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#positioning-form-fields">Positioning form fields</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#duplicating-form-fields">Duplicating form fields</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_AcrobatForms.html#inserting-navigation-buttons-on-each-page">Inserting navigation buttons on each page</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-multiple-form-fields">Creating multiple form fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-the-tabbing-order">Defining the tabbing order</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-form-field-calculation-order">Defining form field calculation order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-submit-button">Creating a submit button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-a-reset-form-button">Creating a reset form button</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-cgi-export-values">Defining CGI export values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#importing-and-exporting-form-data">Importing and exporting form data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#emailing-completed-forms">Emailing completed forms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#use-date-objects">Use date objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-date-to-a-string">Converting from a date to a string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#converting-from-a-string-to-a-date">Converting from a string to a date</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#date-arithmetic">Date arithmetic</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#defining-global-variables-in-javascript">Defining global variables in JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#enable-the-global-object-security-policy">Enable the global object security policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-and-getting-a-global-variable">Setting and getting a global variable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#deleting-global-variables">Deleting global variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-global-variables-persistent">Making global variables persistent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#querying-an-acrobat-form-field-value-in-another-open-form">Querying an Acrobat form field value in another open form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-object-security-policy">Global object security policy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#intercepting-keystrokes-in-an-acrobat-form">Intercepting keystrokes in an Acrobat form</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#constructing-custom-colors">Constructing custom colors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#prompting-the-user-for-a-response">Prompting the user for a response</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#fetching-an-url-from-javascript">Fetching an URL from JavaScript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#creating-special-rollover-effects">Creating special rollover effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#global-submit">Global submit</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#making-forms-accessible">Making forms accessible</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#text-to-speech">Text-to-speech</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#tagging-annotations">Tagging annotations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#document-metadata">Document metadata</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#short-description">Short description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#setting-tab-order">Setting tab order</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_AcrobatForms.html#reading-order">Reading order</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_AcrobatForms.html#using-javascript-to-secure-forms">Using JavaScript to secure forms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_RMA.html">Review, Markup, and Approval</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#working-with-comments-using-javascript">Working with comments using JavaScript</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#annotation-types">Annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#getting-annotation-data">Getting annotation data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-comment-properties">Setting comment properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials">Online collaboration essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#online-collaboration-essentials-topics">Online collaboration essentials topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#reviewing-documents-with-additional-usage-rights">Reviewing documents with additional usage rights</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#emailing-pdf-documents">Emailing PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#javascript-based-collaboration-driver">JavaScript-based collaboration driver</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#setting-spelling-preferences">Setting spelling preferences</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#adding-words-to-a-dictionary">Adding words to a dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#managing-comments">Managing comments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#selecting-moving-and-deleting-comments">Selecting, moving, and deleting comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#using-the-comments-list">Using the comments list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-status-of-comments">Changing the status of comments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#changing-the-appearance-of-comments">Changing the appearance of comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#sorting-comments">Sorting comments</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#showing-and-hiding-comments">Showing and hiding comments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#exporting-and-importing-comments">Exporting and importing comments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#aggregating-comments-for-use-in-excel">Aggregating comments for use in Excel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#comparing-comments-in-two-pdf-documents">Comparing comments in two PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#extracting-comments-in-a-batch-process">Extracting comments in a batch process</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_RMA.html#approving-documents-using-stamps-japanese-workflows">Approving documents using stamps (Japanese workflows)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#setting-up-a-hanko-approval-workflow">Setting up a Hanko approval workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_RMA.html#participating-in-a-hanko-approval-workflow">Participating in a Hanko approval workflow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#installing-and-customizing-hanko-stamps">Installing and customizing Hanko stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#creating-custom-inkan-stamps">Creating custom Inkan stamps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_RMA.html#deleting-custom-stamps">Deleting custom stamps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_DigitalMedia.html">Working with Digital Media in PDF</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#media-players-control-settings-renditions-and-events">Media players: control, settings, renditions, and events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#accessing-a-list-of-active-players">Accessing a list of active players</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#specifying-playback-settings">Specifying playback settings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#monitors">Monitors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_DigitalMedia.html#integrating-media-into-documents">Integrating media into documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-through-a-rendition-action">Controlling multimedia through a rendition action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#controlling-multimedia-with-a-run-a-javascript-action">Controlling multimedia with a Run a JavaScript action</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_DigitalMedia.html#adding-and-editing-renditions">Adding and editing renditions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Modifying the User Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#adding-toolbar-buttons-and-menu-items">Adding toolbar buttons and menu items</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#thumbnails">Thumbnails</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-page-thumbnails">Creating page thumbnails</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-page-actions-with-page-thumbnails">Adding page actions with page thumbnails</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bookmarks">Bookmarks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-bookmarks">Creating bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#managing-bookmarks">Managing bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-bookmark-hierarchy">Creating a bookmark hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#links">Links</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#adding-and-removing-web-links-from-text">Adding and removing web links from text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#adding-and-removing-links">Adding and removing links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defining-the-appearance-of-a-link">Defining the appearance of a link</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opening-links">Opening links</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opening-file-attachments">Opening file attachments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-destinations">Using destinations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#using-actions-for-special-effects">Using actions for special effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#highlighting-form-fields-and-navigational-components">Highlighting form fields and navigational components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#defining-the-initial-view-in-full-screen-view">Defining the initial view in full screen view</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#defining-an-initial-view">Defining an initial view</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-pdf-layers">Working with PDF layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#navigating-with-layers">Navigating with layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#editing-the-properties-of-pdf-layers">Editing the properties of PDF layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reordering-layers">Reordering layers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Templates.html">Acrobat Templates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Templates.html#the-role-of-templates-in-pdf-form-architecture">The role of templates in PDF form architecture</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#dynamic-form-field-generation">Dynamic form field generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#dynamic-page-generation">Dynamic page generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Templates.html#template-syntax-and-usage">Template syntax and usage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html">Search and Index Essentials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-for-text-in-pdf-documents">Searching for text in PDF documents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#search-methods">Search methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#finding-words-in-an-pdf-document">Finding words in an PDF document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-advanced-search-options">Using advanced search options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-across-multiple-pdf-documents">Searching across multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-all-pdf-files-in-a-specific-location">Searching all PDF files in a specific location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-advanced-search-options-for-multiple-document-searches">Using advanced search options for multiple document searches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-pdf-index-files">Searching PDF index files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#using-boolean-queries">Using Boolean queries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#indexing-multiple-pdf-documents">Indexing multiple PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#creating-updating-or-rebuilding-indexes">Creating, updating, or rebuilding indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SearchIndexEssentials.html#searching-metadata">Searching metadata</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Security.html">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-essentials">Security essentials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#methods-for-adding-security-to-pdf-documents">Methods for adding security to PDF documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#passwords-and-restrictions">Passwords and restrictions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-documents">Certifying documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#encrypting-files-using-certificates">Encrypting files using certificates</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#userentity-object-properties">UserEntity object properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certificate-object-properties">Certificate object properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#security-policies">Security policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#secure-forms">Secure forms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digitally-signing-pdf-documents">Digitally signing PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#signing-a-pdf-document">Signing a PDF document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-security-handler-object">The security handler object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#the-signatureinfo-object">The SignatureInfo object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#applying-the-signature">Applying the signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#clearing-a-digital-signature">Clearing a digital signature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#getting-signature-information-from-another-user">Getting signature information from another user</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#removing-signatures">Removing signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#certifying-a-document">Certifying a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#validating-signatures">Validating signatures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#setting-digital-signature-properties-with-seed-values">Setting digital signature properties with seed values</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-pdf-documents">Adding security to PDF documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-passwords-and-setting-security-options">Adding passwords and setting security options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-usage-rights-to-a-document">Adding usage rights to a document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-for-a-list-of-recipients">Encrypting PDF files for a list of recipients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#encrypting-pdf-files-using-security-policies">Encrypting PDF files using security policies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#adding-security-to-document-attachments">Adding security to document attachments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#digital-ids-and-certification-methods">Digital IDs and certification methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#digital-ids">Digital IDs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#about-digital-id-providers">About digital ID providers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#creating-a-digital-id-default-certificate-security">Creating a digital ID (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#using-digital-ids-default-certificate-security">Using digital IDs (default certificate security)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-ids-windows-certificate-security">Managing digital IDs (Windows certificate security)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#managing-digital-id-certificates">Managing digital ID certificates</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#sharing-digital-id-certificates">Sharing digital ID certificates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#building-a-list-of-trusted-identities">Building a list of trusted identities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_Dev_Security.html#checking-information-on-certificates">Checking information on certificates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Security.html#task-based-topics">Task based topics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#disallowing-changes-in-scripts">Disallowing changes in scripts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_Security.html#hiding-scripts">Hiding scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Ubiquity.html">Rights-Enabled PDF Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#additional-usage-rights">Additional usage rights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#writing-javascript-for-adobe-reader">Writing JavaScript for Adobe Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Ubiquity.html#enabling-collaboration">Enabling collaboration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_Databases.html">Interacting with Databases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#about-adbc">About ADBC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#establishing-an-adbc-connection">Establishing an ADBC connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_Databases.html#executing-sql-statements">Executing SQL statements</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_SOAPWS.html">SOAP and Web Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-soap-and-web-services">Using SOAP and web services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#soap-and-web-services-topics">SOAP and web services topics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-a-wsdl-proxy-to-invoke-a-web-service">Using a WSDL proxy to invoke a web service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#synchronous-and-asynchronous-information-exchange">Synchronous and asynchronous information exchange</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#establishing-a-synchronous-connection">Establishing a synchronous connection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#asynchronous-web-service-calls">Asynchronous web service calls</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#using-document-literal-encoding">Using document/literal encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#exchanging-file-attachments-and-binary-data">Exchanging file attachments and binary data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#converting-between-string-and-readstream-information">Converting between string and readstream information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-version-information">Accessing SOAP version information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#accessing-soap-header-information">Accessing SOAP header information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_SOAPWS.html#authentication">Authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_SOAPWS.html#dns-service-discovery">DNS service discovery</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_Dev_JS43D.html">Interfacing with 3D JavaScript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#basic-concepts">Basic concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#getting-the-annot3d-object-of-the-3d-annotation">Getting the Annot3D object of the 3D annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#annot3d-properties">Annot3D properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_Dev_JS43D.html#acquiring-the-javascript-3d-engine">Acquiring the JavaScript 3D engine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#using-the-default-script-of-a-3d-annotation">Using the default script of a 3D annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_Dev_JS43D.html#initializing-upon-activation">Initializing upon activation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reader_JavaScript.html">JavaScript APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Reader_JavaScript.html#objects-properties-and-methods">Objects, properties, and methods</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat and PDFL SDK: JS Developer Guide</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Modifying the User Interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="JS_Dev_Templates.html" class="btn btn-neutral float-right" title="Acrobat Templates" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="JS_Dev_DigitalMedia.html" class="btn btn-neutral float-left" title="Working with Digital Media in PDF" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="modifying-the-user-interface">
+<h1>Modifying the User Interface<a class="headerlink" href="#modifying-the-user-interface" title="Permalink to this headline">¶</a></h1>
+<p>This chapter will provide you with an understanding of the ways in which you can present and modify the user interface. You will learn how to use JavaScript to add menu items and toolbars, customize navigation in PDF documents and customize PDF layers.</p>
+<a name="46316"></a><div class="section" id="adding-toolbar-buttons-and-menu-items">
+<h2>Adding toolbar buttons and menu items<a class="headerlink" href="#adding-toolbar-buttons-and-menu-items" title="Permalink to this headline">¶</a></h2>
+<p>You can add menu items and toolbar buttons to help the user navigate through your application, or to help the user perform designated tasks.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">app.addSubMenu</span></code> and/or <code class="docutils literal notranslate"><span class="pre">app.addMenuItem</span></code> to add a menu item. The following example uses only <code class="docutils literal notranslate"><span class="pre">app.addMenuItem</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Adding a menu item</p></li>
+</ol>
+<p>The intention of this menu is to add a button set to the toolbar; the button set will only appear on the toolbar if there is no document open in the window. Once the button set is installed on the toolbar, the menu item is only enabled if there is a document open in the window.</p>
+<p>This code is placed in the user JavaScript folder and uses a variable <code class="docutils literal notranslate"><span class="pre">atbtoolbuttons</span></code> to detect if this menu item should be marked. It is set to marked if <code class="docutils literal notranslate"><span class="pre">atbtoolbuttons</span></code> is defined and is <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   var atbtoolbuttons;
+   app.addMenuItem({
+       cName: &quot;atbToolButtonSet&quot;,
+       cUser: &quot;My Menu&quot;,
+       cParent: &quot;Tools&quot;,
+       cMarked: &quot;event.rc = ( (typeof atbtoolbuttons != &#39;undefined&#39;)
+           &amp;&amp; !atbtoolbuttons )&quot;,
+       cEnable: &quot;event.rc = (event.target == null);&quot;,
+       cExec: &quot;loadATBToolButton();&quot;, nPos: 0
+});
+</pre></div>
+</div>
+<p>There is brief example of <code class="docutils literal notranslate"><span class="pre">app.addSubMenu</span></code> and <code class="docutils literal notranslate"><span class="pre">app.addMenuItem</span></code>, see <a class="reference external" href="JS_Dev_Contexts.html#40133">Executing privileged methods through the menu</a>.</p>
+<p>The Example <a class="reference external" href="JS_Dev_ModifyUserInterface.html#95641">Adding a menu item</a> installs a menu item under the main Tools menu. When executed, the menu calls the function <code class="docutils literal notranslate"><span class="pre">loadATBToolButton()</span></code>. This function loads the custom toolbar set, the definition of which follows.</p>
+<ol class="arabic simple">
+<li><p>Installing and uninstalling a toolbar</p></li>
+</ol>
+<p>If this function is called with <code class="docutils literal notranslate"><span class="pre">atbtoolbuttons</span></code> set to <code class="docutils literal notranslate"><span class="pre">false</span></code>, it means the toolbar is already installed, and the function uninstalls the toolbar set; otherwise, the toolbar set is installed.</p>
+<p>The method <code class="docutils literal notranslate"><span class="pre">app.addToolButton</span></code> is used to add a toolbar button, and <code class="docutils literal notranslate"><span class="pre">app.removeToolButton</span></code> is used to remove a toolbar button.</p>
+<p>For Acrobat 8, this script assumes that the Enable Global Object Security Policy is enabled in the JavaScript section of the Preferences, see the discussion in <a class="reference external" href="JS_Dev_AcrobatForms.html#43014">Enable the global object security policy</a>.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">loadATBToolButton</span></code> is a trusted function because it executes privileged methods, such as <code class="docutils literal notranslate"><span class="pre">app.getPath</span></code> and <code class="docutils literal notranslate"><span class="pre">app.openDoc</span></code>.</p>
+<p>The icons for the toolbar buttons are contained in <code class="docutils literal notranslate"><span class="pre">icon_toolbar.pdf</span></code>, which resides in the same folder as this script. The document contains two named icons with the names of <code class="docutils literal notranslate"><span class="pre">myIcon1</span></code> and <code class="docutils literal notranslate"><span class="pre">myIcon2</span></code>. Note that according to the <a class="reference external" href="https://www.adobe.com/go/acrobatsdk_jsapiref">Acrobat JavaScript API Reference</a>, the icon size is restricted to 20 by 20 pixels. If an icon of larger dimensions is used, an exception is thrown.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>var loadATBToolButton = app.trustedFunction( function ()
+{
+   if ( typeof atbtoolbuttons == &quot;undefined&quot; )
+       atbtoolbuttons = true;
+   else {
+       if (!atbtoolbuttons) {
+           app.removeToolButton(&quot;atbToolButton1&quot;);
+           app.removeToolButton(&quot;atbToolButton2&quot;);
+           atbtoolbuttons = true;
+           return;
+       }
+   }
+   if ( atbtoolbuttons ) {
+       app.beginPriv();
+       // Get the path to the user JavaScript folder
+       var atbPath=app.getPath({cCategory: &quot;user&quot;, cFolder: &quot;javascript&quot;});
+       try {
+           // Try opening the icon doc as in hidden mode, and retrieve its doc
+           // object.
+           var doc=app.openDoc({
+               cPath: atbPath+&quot;/icon_toolbar.pdf&quot;, bHidden: true});
+       } catch (e) { console.println(&quot;Could not open icon file&quot;); return;}
+       // Get the icon stream for myIcon1 from the hidden doc
+       var oIcon = util.iconStreamFromIcon(doc.getIcon(&quot;myIcon1&quot;));
+       // Add a tool button using this icon
+       app.addToolButton({
+           cName: &quot;atbToolButton1&quot;,
+           oIcon: oIcon,
+           cExec: &quot;atbTask1();&quot;,
+           cTooltext: &quot;My toolbar button 1&quot;,
+           nPos: 0
+       });
+       // Now get myIcon2 from the hidden document.
+       oIcon = util.iconStreamFromIcon(doc.getIcon(&quot;myIcon2&quot;));
+       // and install this toolbar button as well
+       app.addToolButton({
+           cName: &quot;atbToolButton2&quot;,
+           oIcon: oIcon,
+           cExec: &quot;atbTask2()&quot;,
+           cTooltext: &quot;My toolbar button 2&quot;,
+           nPos: 0
+       });
+       // Close our hidden document containing the icons.
+       doc.closeDoc();
+       app.endPriv();
+       // Set this variable to signal that the toolbars are installed.
+       atbtoolbuttons = false;
+   }
+})
+</pre></div>
+</div>
+<a name="78613"></a><p>Adding navigation to PDF documents</p>
+<p>JavaScript for Acrobat provides a number of constructs that enable you to add and customize navigation features within PDF documents. These features make it convenient for the user to see and visit areas of interest within the document, and you can associate a variety of actions with navigation events. In addition, you can customize the appearance of your form fields and pages, manipulate multiple documents, add and delete pages, and add headers, footers, watermarks, backgrounds, and buttons.</p>
+<p>The list of topics in this section is:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#35265">Thumbnails</a></p></li>
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#14709">Bookmarks</a></p></li>
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#23951">Links</a></p></li>
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#36257">Using actions for special effects</a></p></li>
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#60825">Highlighting form fields and navigational components</a></p></li>
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#94930">Setting up a presentation</a></p></li>
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#36794">Numbering pages</a></p></li>
+<li><p><a class="reference external" href="JS_Dev_ModifyUserInterface.html#23421">Creating buttons</a></p></li>
+</ul>
+<a name="35265"></a><div class="section" id="thumbnails">
+<h3>Thumbnails<a class="headerlink" href="#thumbnails" title="Permalink to this headline">¶</a></h3>
+<p>This section discusses how to embed thumbnail images in a PDF document and how to add page actions.</p>
+<div class="section" id="creating-page-thumbnails">
+<h4>Creating page thumbnails<a class="headerlink" href="#creating-page-thumbnails" title="Permalink to this headline">¶</a></h4>
+<p>Acrobat renders thumbnail images of each page on the fly. Should you want to store the images as part of the PDF document, there are methods for adding and removing thumbnails in a document. To add a set of thumbnails, invoke the Doc object <code class="docutils literal notranslate"><span class="pre">addThumbnails</span></code> method, which creates thumbnails for a specified set of pages in the document. It accepts two optional parameters: <code class="docutils literal notranslate"><span class="pre">nStart</span></code> and <code class="docutils literal notranslate"><span class="pre">nEnd</span></code> represent the beginning and end of an inclusive range of page numbers.</p>
+<p>For example, to add thumbnails for pages 2 through 5, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">addThumbnails</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>To add a thumbnail for just one page, just provide a value for <code class="docutils literal notranslate"><span class="pre">nStart</span></code>. The following example adds a thumbnail for page 7:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">addThumbnails</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">7</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>To add thumbnails from page 0 to a specified page, just provide a value for <code class="docutils literal notranslate"><span class="pre">nEnd</span></code>. The following example adds thumbnails for pages 0-7:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">addThumbnails</span><span class="p">({</span><span class="n">nEnd</span><span class="p">:</span> <span class="mi">7</span><span class="p">});</span>
+</pre></div>
+</div>
+<p>To add thumbnails for all the pages in the document, omit both parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">addThumbnails</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>To remove a set of thumbnails, invoke the Doc object’s <code class="docutils literal notranslate"><span class="pre">removeThumbnails</span></code> method, which accepts the same parameters as the <code class="docutils literal notranslate"><span class="pre">addThumbnails</span></code> method. For example, to remove the thumbnails for pages 2 to 5, use the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">removeThumbnails</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-page-actions-with-page-thumbnails">
+<h4>Adding page actions with page thumbnails<a class="headerlink" href="#adding-page-actions-with-page-thumbnails" title="Permalink to this headline">¶</a></h4>
+<p>You can associate a <code class="docutils literal notranslate"><span class="pre">Page</span></code> <code class="docutils literal notranslate"><span class="pre">Open</span></code> event with a page thumbnail. The most straightforward way of doing this is to specify a <code class="docutils literal notranslate"><span class="pre">Page</span></code> <code class="docutils literal notranslate"><span class="pre">Open</span></code> or <code class="docutils literal notranslate"><span class="pre">Page</span></code> <code class="docutils literal notranslate"><span class="pre">Clos</span></code> e action in the Page Properties dialog box.</p>
+<p>To customize a page action using JavaScript, invoke the Doc object <code class="docutils literal notranslate"><span class="pre">setPageAction</span></code> method for the page to be opened. In the following example, a greeting is displayed when the user clicks on the thumbnail for page 2:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">setPageAction</span><span class="p">({</span> <span class="n">nPage</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">cTrigger</span><span class="p">:</span> <span class="s2">&quot;Open&quot;</span><span class="p">,</span>
+    <span class="n">cScript</span><span class="p">:</span> <span class="s2">&quot;app.alert(&#39;Hello&#39;);&quot;</span><span class="p">}</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>The advantage of this approach is that you can dynamically build JavaScript strings to be used in the method call.</p>
+<a name="14709"></a></div>
+</div>
+<div class="section" id="bookmarks">
+<h3>Bookmarks<a class="headerlink" href="#bookmarks" title="Permalink to this headline">¶</a></h3>
+<p>You can use JavaScript to customize the appearance and behavior of the bookmarks that appear in the Bookmarks navigation panel. Every PDF document has an object known as the <code class="docutils literal notranslate"><span class="pre">bookmarkRoot</span></code>, which is the root of the bookmark tree for the document. It is possible to recursively add and modify levels of bookmarks underneath the root. Each node is a <code class="docutils literal notranslate"><span class="pre">bookmark</span></code> object which can have any number of children.</p>
+<p>Acrobat makes the <code class="docutils literal notranslate"><span class="pre">bookmarkRoot</span></code> object available as a property of the Doc object. This root node contains a property called <code class="docutils literal notranslate"><span class="pre">children</span></code>, which is an array of <code class="docutils literal notranslate"><span class="pre">bookmark</span></code> objects. The <code class="docutils literal notranslate"><span class="pre">bookmark</span></code> object has the properties shown in the table <a class="reference external" href="JS_Dev_ModifyUserInterface.html#52466">Bookmark properties</a>, and the methods shown in the table <a class="reference external" href="JS_Dev_ModifyUserInterface.html#52995">Bookmark methods</a>.</p>
+<p>Bookmark properties</p>
+<table class="colwidths-given docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>children</p></td>
+<td><p>Returns the array of child objects for the current node.</p></td>
+</tr>
+<tr class="row-odd"><td><p>color</p></td>
+<td><p>Specifies the color for the bookmark.</p></td>
+</tr>
+<tr class="row-even"><td><p>doc</p></td>
+<td><p>The Doc object for the bookmark.</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>The text string appearing in the navigational panel.</p></td>
+</tr>
+<tr class="row-even"><td><p>open</p></td>
+<td><p>Determines if children are shown.</p></td>
+</tr>
+<tr class="row-odd"><td><p>parent</p></td>
+<td><p>The parent bookmark.</p></td>
+</tr>
+<tr class="row-even"><td><p>style</p></td>
+<td><p>Font style.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Bookmark methods</p>
+<table class="colwidths-given docutils align-default" id="section-2">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>createChild</p></td>
+<td><p>Creates a new child bookmark.</p></td>
+</tr>
+<tr class="row-odd"><td><p>execute</p></td>
+<td><p>Executes the <code class="docutils literal notranslate"><span class="pre">Mouse</span> <span class="pre">Up</span></code> action for the bookmark.</p></td>
+</tr>
+<tr class="row-even"><td><p>insertChild</p></td>
+<td><p>Inserts a bookmark as a new child for this bookmark (this may be used to move existing bookmarks).</p></td>
+</tr>
+<tr class="row-odd"><td><p>remove</p></td>
+<td><p>Removes the bookmark and all its children.</p></td>
+</tr>
+<tr class="row-even"><td><p>setAction</p></td>
+<td><p>Sets a <code class="docutils literal notranslate"><span class="pre">Mouse</span> <span class="pre">Up</span></code> action for the bookmark.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="64295"></a><div class="section" id="creating-bookmarks">
+<h4>Creating bookmarks<a class="headerlink" href="#creating-bookmarks" title="Permalink to this headline">¶</a></h4>
+<p>To create a bookmark, it is necessary to navigate through the bookmark tree and identify the parent of the new node. Begin by accessing the <code class="docutils literal notranslate"><span class="pre">bookmarkRoot</span></code>, which is a property of the current document representing the top node in the bookmark tree:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">myRoot</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">bookmarkRoot</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Assume there are no bookmarks in the document. To create a new bookmark, invoke the Bookmark object <code class="docutils literal notranslate"><span class="pre">createChild</span></code> method to which you can submit the following parameters: <code class="docutils literal notranslate"><span class="pre">cName</span></code> (the name to appear in the navigation panel), <code class="docutils literal notranslate"><span class="pre">cExpr</span></code> (an optional JavaScript to be executed when the bookmark is clicked), and <code class="docutils literal notranslate"><span class="pre">nIndex</span></code> (an optional zero-based index into the <code class="docutils literal notranslate"><span class="pre">children</span></code> array).</p>
+<p>The following code creates a bookmark that displays a greeting when clicked. Note that the omission of the <code class="docutils literal notranslate"><span class="pre">nIndex</span></code> value means that it is placed at position 0 in the <code class="docutils literal notranslate"><span class="pre">children</span></code> array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myRoot</span><span class="o">.</span><span class="n">createChild</span><span class="p">(</span><span class="s2">&quot;myBookmark&quot;</span><span class="p">,</span> <span class="s2">&quot;app.alert(&#39;Hello!&#39;);&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The following code adds a bookmark called <code class="docutils literal notranslate"><span class="pre">grandChild</span></code> as a child of <code class="docutils literal notranslate"><span class="pre">myBookmark</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">current</span> <span class="o">=</span> <span class="n">myRoot</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">current</span><span class="o">.</span><span class="n">createChild</span><span class="p">(</span><span class="s2">&quot;grandChild&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To move <code class="docutils literal notranslate"><span class="pre">grandChild</span></code> so that it becomes a child of the root, invoke the Bookmark object <code class="docutils literal notranslate"><span class="pre">insertChild</span></code> method, and provide a reference to <code class="docutils literal notranslate"><span class="pre">grandChild</span></code> as a parameter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">grandChild</span> <span class="o">=</span> <span class="n">myRoot</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">myRoot</span><span class="o">.</span><span class="n">insertChild</span><span class="p">(</span><span class="n">grandChild</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="managing-bookmarks">
+<h4>Managing bookmarks<a class="headerlink" href="#managing-bookmarks" title="Permalink to this headline">¶</a></h4>
+<p>You can use JavaScript to change the <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">color</span></code>, and <code class="docutils literal notranslate"><span class="pre">style</span></code> properties of a bookmark. Note that the <code class="docutils literal notranslate"><span class="pre">style</span></code> property is an integer: <code class="docutils literal notranslate"><span class="pre">0</span></code> means normal, <code class="docutils literal notranslate"><span class="pre">1</span></code> means italic, <code class="docutils literal notranslate"><span class="pre">2</span></code> means bold, and <code class="docutils literal notranslate"><span class="pre">3</span></code> means bold-italic. The code below changes the name to <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Name</span></code>, the color to red, and the font style to bold:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">myRoot</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">bookmarkRoot</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">myChild</span> <span class="o">=</span> <span class="n">myRoot</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">myChild</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;New Name&quot;</span><span class="p">;</span>
+<span class="n">myChild</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">red</span><span class="p">;</span>
+<span class="n">myChild</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In addition to adding new or existing bookmarks as you learned in <a class="reference external" href="JS_Dev_ModifyUserInterface.html#64295">Creating bookmarks</a>, you can also delete a bookmark and its children by invoking its <code class="docutils literal notranslate"><span class="pre">remove</span></code> method. The following line of code removes all bookmarks from the document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">bookmarkRoot</span><span class="o">.</span><span class="n">remove</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-a-bookmark-hierarchy">
+<h4>Creating a bookmark hierarchy<a class="headerlink" href="#creating-a-bookmark-hierarchy" title="Permalink to this headline">¶</a></h4>
+<p>Because of the tree structure associated with bookmarks, it is possible to construct a hierarchy of bookmarks; a child of a bookmark represents a subsection of the section represented by that bookmark. To create a hierarchy, first add bookmarks to the root, then to the children of the root, and recursively to their children.</p>
+<p>The following code creates bookmarks <code class="docutils literal notranslate"><span class="pre">A</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>, <code class="docutils literal notranslate"><span class="pre">C</span></code>. Each section has 3 children. Child <code class="docutils literal notranslate"><span class="pre">A</span></code> has children <code class="docutils literal notranslate"><span class="pre">A0</span></code>, <code class="docutils literal notranslate"><span class="pre">A1</span></code>, and <code class="docutils literal notranslate"><span class="pre">A2</span></code>. Child <code class="docutils literal notranslate"><span class="pre">B</span></code> has children <code class="docutils literal notranslate"><span class="pre">B0</span></code>, <code class="docutils literal notranslate"><span class="pre">B1</span></code>, and <code class="docutils literal notranslate"><span class="pre">B2</span></code>. Child <code class="docutils literal notranslate"><span class="pre">C</span></code> has children <code class="docutils literal notranslate"><span class="pre">C0</span></code>, <code class="docutils literal notranslate"><span class="pre">C1</span></code>, and <code class="docutils literal notranslate"><span class="pre">C2</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">myRoot</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">bookmarkRoot</span><span class="p">;</span>
+<span class="n">myRoot</span><span class="o">.</span><span class="n">createChild</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">);</span>
+<span class="n">myRoot</span><span class="o">.</span><span class="n">createChild</span><span class="p">({</span><span class="n">cName</span><span class="p">:</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">nIndex</span><span class="p">:</span> <span class="mi">1</span><span class="p">});</span>
+<span class="n">myRoot</span><span class="o">.</span><span class="n">createChild</span><span class="p">({</span><span class="n">cName</span><span class="p">:</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">nIndex</span><span class="p">:</span> <span class="mi">2</span><span class="p">});</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">myRoot</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">var</span> <span class="n">child</span> <span class="o">=</span> <span class="n">myRoot</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">var</span> <span class="n">name</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="n">j</span><span class="p">;</span>
+        <span class="n">child</span><span class="o">.</span><span class="n">createChild</span><span class="p">({</span><span class="n">cName</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="n">nIndex</span><span class="p">:</span> <span class="n">j</span><span class="p">});</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To print out the hierarchy to the console, you can keep track of levels as shown in the following code. Note its recursive nature:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">DumpBookmark</span><span class="p">(</span><span class="n">bm</span><span class="p">,</span> <span class="n">nLevel</span><span class="p">){</span>
+    <span class="o">//</span> <span class="n">Build</span> <span class="n">indents</span> <span class="n">to</span> <span class="n">illustrate</span> <span class="n">the</span> <span class="n">level</span>
+    <span class="n">var</span> <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nLevel</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">Print</span> <span class="n">out</span> <span class="n">the</span> <span class="n">bookmark</span><span class="s1">&#39;s name:</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">s</span> <span class="o">+</span> <span class="s2">&quot;+-&quot;</span> <span class="o">+</span> <span class="n">bm</span><span class="o">.</span><span class="n">name</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Recursively</span> <span class="nb">print</span> <span class="n">out</span> <span class="n">the</span> <span class="n">bookmark</span><span class="s1">&#39;s children:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">bm</span><span class="o">.</span><span class="n">children</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bm</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">DumpBookmark</span><span class="p">(</span><span class="n">bm</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">nLevel</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">Open</span> <span class="n">the</span> <span class="n">console</span> <span class="n">to</span> <span class="n">begin</span><span class="p">:</span>
+<span class="n">console</span><span class="o">.</span><span class="n">clear</span><span class="p">();</span> <span class="n">console</span><span class="o">.</span><span class="n">show</span><span class="p">();</span>
+
+<span class="o">//</span> <span class="n">Recursively</span> <span class="nb">print</span> <span class="n">out</span> <span class="n">the</span> <span class="n">bookmark</span> <span class="n">tree</span>
+<span class="n">DumpBookmark</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">bookmarkRoot</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="23951"></a></div>
+</div>
+<div class="section" id="links">
+<h3>Links<a class="headerlink" href="#links" title="Permalink to this headline">¶</a></h3>
+<p>JavaScript provides support for the addition, customization, or removal of links within PDF documents. These links may be used to access URLs, file attachments, or destinations within the document.</p>
+<p>The Doc object contains methods for adding, retrieving, and removing links. These include the methods listed in the table <a class="reference external" href="JS_Dev_ModifyUserInterface.html#88290">Doc object link methods</a>. This is used in conjunction with the <code class="docutils literal notranslate"><span class="pre">link</span></code> object, which contains properties as well as a <code class="docutils literal notranslate"><span class="pre">setAction</span></code> method for customizing the appearance and behavior of a given link. Its properties are listed in the table <a class="reference external" href="JS_Dev_ModifyUserInterface.html#38017">Link properties</a>.</p>
+<p>In addition, the <code class="docutils literal notranslate"><span class="pre">app</span></code> object contains a property called <code class="docutils literal notranslate"><span class="pre">openInPlace</span></code>, which can be used to specify whether cross-document links are opened in the same window or in a new one.</p>
+<p>Doc object link methods</p>
+<table class="colwidths-given docutils align-default" id="section-3">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>addLink</p></td>
+<td><p>Adds a new link to a page.</p></td>
+</tr>
+<tr class="row-odd"><td><p>addWeblinks</p></td>
+<td><p>Converts text instances to web links with URL actions.</p></td>
+</tr>
+<tr class="row-even"><td><p>getLinks</p></td>
+<td><p>Retrieves the links within a specified area on a page.</p></td>
+</tr>
+<tr class="row-odd"><td><p>getURL</p></td>
+<td><p>Opens a web page.</p></td>
+</tr>
+<tr class="row-even"><td><p>gotoNamedDest</p></td>
+<td><p>Goes to a named destination within the document.</p></td>
+</tr>
+<tr class="row-odd"><td><p>removeLinks</p></td>
+<td><p>Removes the links within a specified area on a page.</p></td>
+</tr>
+<tr class="row-even"><td><p>removeWeblinks</p></td>
+<td><p>Removes web links created with the Acrobat user interface.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Link properties</p>
+<table class="colwidths-given docutils align-default" id="section-4">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>borderColor</p></td>
+<td><p>The border color of the bounding rectangle.</p></td>
+</tr>
+<tr class="row-odd"><td><p>borderWidth</p></td>
+<td><p>The border width of the surrounding rectangle.</p></td>
+</tr>
+<tr class="row-even"><td><p>highlightMode</p></td>
+<td><p>The visual effect when the user clicks the link.</p></td>
+</tr>
+<tr class="row-odd"><td><p>rect</p></td>
+<td><p>The rotated user space coordinates of the link.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="adding-and-removing-web-links-from-text">
+<h4>Adding and removing web links from text<a class="headerlink" href="#adding-and-removing-web-links-from-text" title="Permalink to this headline">¶</a></h4>
+<p>If a PDF document contains text beginning with <a class="reference external" href="http://">http://</a>, such as <a class="reference external" href="http://www.example.com">http://www.example.com</a>, you can convert all such instances to links with URL actions by invoking the Doc object <code class="docutils literal notranslate"><span class="pre">addWeblinks</span></code> method. The method returns an integer representing the number of text instances converted, as shown in the code below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">numberOfLinks</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">addWeblinks</span><span class="p">();</span>
+<span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;Converted &quot;</span> <span class="o">+</span> <span class="n">numberOfLinks</span> <span class="o">+</span> <span class="s2">&quot; links.&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To remove web links that were authored in Acrobat, invoke the Doc object <code class="docutils literal notranslate"><span class="pre">removeWeblinks</span></code> method. It accepts two optional parameters: <code class="docutils literal notranslate"><span class="pre">nStart</span></code> and <code class="docutils literal notranslate"><span class="pre">nEnd</span></code> represent the beginning and end of an inclusive range of page numbers. The following examples illustrate how to remove web links from different page ranges in the document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Remove</span> <span class="n">the</span> <span class="n">web</span> <span class="n">links</span> <span class="kn">from</span> <span class="nn">pages</span> <span class="mi">2</span> <span class="n">through</span> <span class="mi">5</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">removeWeblinks</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Remove</span> <span class="n">the</span> <span class="n">web</span> <span class="n">links</span> <span class="kn">from</span> <span class="nn">page</span> <span class="mi">7</span>
+<span class="n">this</span><span class="o">.</span><span class="n">removeWeblinks</span><span class="p">({</span><span class="n">nStart</span><span class="p">:</span> <span class="mi">7</span><span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Remove</span> <span class="n">the</span> <span class="n">web</span> <span class="n">links</span> <span class="kn">from</span> <span class="nn">pages</span> <span class="mi">0</span> <span class="n">through</span> <span class="mi">7</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">removeWeblinks</span><span class="p">({</span><span class="n">nEnd</span><span class="p">:</span> <span class="mi">7</span><span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Remove</span> <span class="nb">all</span> <span class="n">the</span> <span class="n">web</span> <span class="n">links</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">document</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">removeWeblinks</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-and-removing-links">
+<h4>Adding and removing links<a class="headerlink" href="#adding-and-removing-links" title="Permalink to this headline">¶</a></h4>
+<p>To add a single link to a PDF document, first invoke the Doc object <code class="docutils literal notranslate"><span class="pre">addLink</span></code> method, and then customize the returned <code class="docutils literal notranslate"><span class="pre">link</span></code> object properties. The <code class="docutils literal notranslate"><span class="pre">addLink</span></code> method requires two parameters: the page number and the coordinates, in rotated user space, of the bounding rectangle. The next example illustrates the use of <code class="docutils literal notranslate"><span class="pre">addLink</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Add navigation links to the document</p></li>
+</ol>
+<p>In this example, navigational links are added to the lower left and right corners of each page in the document. The left link opens the previous page, and the right link opens the next page:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">linkWidth</span> <span class="o">=</span> <span class="mi">36</span><span class="p">,</span> <span class="n">linkHeight</span> <span class="o">=</span> <span class="mi">18</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">the</span> <span class="n">coordinates</span> <span class="k">for</span> <span class="n">the</span> <span class="n">left</span> <span class="n">link</span><span class="p">:</span>
+    <span class="n">var</span> <span class="n">lRect</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">linkHeight</span><span class="p">,</span> <span class="n">linkWidth</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">the</span> <span class="n">coordinates</span> <span class="k">for</span> <span class="n">the</span> <span class="n">right</span> <span class="n">link</span><span class="p">:</span>
+    <span class="n">var</span> <span class="n">cropBox</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getPageBox</span><span class="p">(</span><span class="s2">&quot;Crop&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">offset</span> <span class="o">=</span> <span class="n">cropBox</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">cropBox</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">linkWidth</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">rRect</span> <span class="o">=</span> <span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="n">linkHeight</span><span class="p">,</span> <span class="n">linkWidth</span> <span class="o">+</span> <span class="n">offset</span><span class="p">,</span> <span class="mi">0</span><span class="p">];</span>
+
+    <span class="o">//</span> <span class="n">Create</span> <span class="n">the</span> <span class="n">Link</span> <span class="n">objects</span><span class="p">:</span>
+    <span class="n">var</span> <span class="n">leftLink</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">addLink</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">lRect</span><span class="p">);</span>
+    <span class="n">var</span> <span class="n">rightLink</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">addLink</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">rRect</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Calculate</span> <span class="n">the</span> <span class="n">previous</span> <span class="ow">and</span> <span class="nb">next</span> <span class="n">page</span> <span class="n">numbers</span><span class="p">:</span>
+    <span class="n">var</span> <span class="n">nextPage</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="p">;</span>
+    <span class="n">var</span> <span class="n">prevPage</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">prevPage</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">prevPage</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">numPages</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">link</span> <span class="n">actions</span> <span class="n">to</span> <span class="n">go</span> <span class="n">to</span> <span class="n">the</span> <span class="n">pages</span><span class="p">:</span>
+    <span class="n">leftLink</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;this.pageNum = &quot;</span> <span class="o">+</span> <span class="n">prevPage</span><span class="p">);</span>
+    <span class="n">rightLink</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;this.pageNum = &quot;</span> <span class="o">+</span> <span class="n">nextPage</span><span class="p">);</span>
+
+    <span class="o">//</span> <span class="n">Customize</span> <span class="n">the</span> <span class="n">link</span> <span class="n">appearance</span><span class="p">:</span>
+    <span class="n">leftLink</span><span class="o">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">red</span><span class="p">;</span>
+    <span class="n">leftLink</span><span class="o">.</span><span class="n">borderWidth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">rightLink</span><span class="o">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">red</span><span class="p">;</span>
+    <span class="n">rightLink</span><span class="o">.</span><span class="n">borderWidth</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To remove a known link object from a given page, retrieve its bounding rectangle coordinates and invoke the Doc object <code class="docutils literal notranslate"><span class="pre">removeLinks</span></code> method. In the following example, <code class="docutils literal notranslate"><span class="pre">myLink</span></code> is removed from page 2 of the document. In the script below, it is assumed that <code class="docutils literal notranslate"><span class="pre">myLink</span></code> is a Link object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">linkRect</span> <span class="o">=</span> <span class="n">myLink</span><span class="o">.</span><span class="n">rect</span><span class="p">;</span>
+<span class="n">this</span><span class="o">.</span><span class="n">removeLinks</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">linkRect</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To remove all links from the document, simply use the crop box for each page, as shown in the code below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">page</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">page</span> <span class="o">&lt;</span> <span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="p">;</span> <span class="n">page</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">var</span> <span class="n">box</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getPageBox</span><span class="p">(</span><span class="s2">&quot;Crop&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">);</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">removeLinks</span><span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">box</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-the-appearance-of-a-link">
+<h4>Defining the appearance of a link<a class="headerlink" href="#defining-the-appearance-of-a-link" title="Permalink to this headline">¶</a></h4>
+<p>The Example <a class="reference external" href="JS_Dev_ModifyUserInterface.html#41025">Add navigation links to the document</a> contains a script that sets the appearance of the bounding rectangle for the links through their <code class="docutils literal notranslate"><span class="pre">borderColor</span></code> and <code class="docutils literal notranslate"><span class="pre">borderWidth</span></code> properties. You can also specify how the link will appear when it is clicked by setting its <code class="docutils literal notranslate"><span class="pre">highlightMode</span></code> property to one of four values: <code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">Outline</span></code>, <code class="docutils literal notranslate"><span class="pre">Invert</span></code> (the default), or <code class="docutils literal notranslate"><span class="pre">Push</span></code>.</p>
+<p>For example, the following code sets the border color to blue, the border thickness to 2, and the highlight mode to <code class="docutils literal notranslate"><span class="pre">Outline</span></code> for <code class="docutils literal notranslate"><span class="pre">myLink</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myLink</span><span class="o">.</span><span class="n">borderColor</span> <span class="o">=</span> <span class="n">color</span><span class="o">.</span><span class="n">blue</span><span class="p">;</span>
+<span class="n">myLink</span><span class="o">.</span><span class="n">borderWidth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">myLink</span><span class="o">.</span><span class="n">highlightMode</span> <span class="o">=</span> <span class="s2">&quot;Outline&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="opening-links">
+<h4>Opening links<a class="headerlink" href="#opening-links" title="Permalink to this headline">¶</a></h4>
+<p>To open a web page for a given link, invoke the Link object <code class="docutils literal notranslate"><span class="pre">setAction</span></code> method, and pass in a script containing a call to the Doc object <code class="docutils literal notranslate"><span class="pre">getURL</span></code> method.</p>
+<p>For example, suppose you have created a Link object named <code class="docutils literal notranslate"><span class="pre">myLink</span></code>. The following code opens <code class="docutils literal notranslate"><span class="pre">http://www.example.com</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myLink</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;this.getURL(&#39;http://www.example.com&#39;)&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To open a file that resides in a known location on your local hard drive, use the <code class="docutils literal notranslate"><span class="pre">app</span></code> object <code class="docutils literal notranslate"><span class="pre">openDoc</span></code> method.</p>
+<p>The following example opens <code class="docutils literal notranslate"><span class="pre">myDoc.pdf</span></code> when <code class="docutils literal notranslate"><span class="pre">myLink</span></code> is clicked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myLink</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;app.openDoc(&#39;/C/temp/myDoc.pdf&#39;);&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="opening-file-attachments">
+<h4>Opening file attachments<a class="headerlink" href="#opening-file-attachments" title="Permalink to this headline">¶</a></h4>
+<p>To open a file that is an attachment of the document, use the Doc object <code class="docutils literal notranslate"><span class="pre">exportDataObject</span></code> method. The method takes up to three parameters: <code class="docutils literal notranslate"><span class="pre">cName</span></code>, the name of the data object to extract; <code class="docutils literal notranslate"><span class="pre">bAllowAuth</span></code>, a Boolean value which, if true, uses a dialog box to obtain user authorization; <code class="docutils literal notranslate"><span class="pre">nLaunch</span></code>, a number that controls how the attachment is launched, permissible values are 0 (user is prompted to save, file not launched), 1 (user is prompted to save, and the file is launched), and 2 (file is saved to a temporary file and launched, file will be deleted by Acrobat upon application shutdown).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">exportDataObject</span><span class="p">({</span> <span class="n">cName</span><span class="p">:</span> <span class="s2">&quot;myDoc.pdf&quot;</span><span class="p">,</span> <span class="n">nLaunch</span><span class="p">:</span> <span class="mi">2</span> <span class="p">});</span>
+</pre></div>
+</div>
+<p>The file <code class="docutils literal notranslate"><span class="pre">myDoc.pdf</span></code> can be attached to a PDF document by executing the following script in the console:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">var</span> <span class="n">thisPath</span> <span class="o">=</span> <span class="s2">&quot;/c/temp/myDoc.pdf&quot;</span><span class="p">;</span>
+<span class="n">this</span><span class="o">.</span><span class="n">importDataObject</span><span class="p">({</span><span class="n">cName</span><span class="p">:</span><span class="s2">&quot;myDoc.pdf&quot;</span><span class="p">,</span> <span class="n">cDIPath</span><span class="p">:</span> <span class="n">thisPath</span> <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-destinations">
+<h4>Using destinations<a class="headerlink" href="#using-destinations" title="Permalink to this headline">¶</a></h4>
+<p>To go to a named destination within a document, embed a script in the call to the Link object <code class="docutils literal notranslate"><span class="pre">setAction</span></code> method. The script contains a call to the Doc object <code class="docutils literal notranslate"><span class="pre">gotoNamedDest</span></code> method.</p>
+<p>The following example goes to the destination named as <code class="docutils literal notranslate"><span class="pre">myDest</span></code> in the current document when <code class="docutils literal notranslate"><span class="pre">myLink</span></code> is clicked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myLink</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;this.gotoNamedDest(&#39;myDest&#39;);&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The following example opens a document, then goes to a named destination within that document. The example assumes the document being opened by <code class="docutils literal notranslate"><span class="pre">openDoc</span></code> is <code class="docutils literal notranslate"><span class="pre">disclosed</span></code> and can be used for a link action.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Open</span> <span class="n">a</span> <span class="n">new</span> <span class="n">document</span>
+<span class="n">var</span> <span class="n">myDoc</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">openDoc</span><span class="p">(</span><span class="s2">&quot;/c/temp/myDoc.pdf&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Go</span> <span class="n">to</span> <span class="n">a</span> <span class="n">destination</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">new</span> <span class="n">doc</span>
+<span class="n">myDoc</span><span class="o">.</span><span class="n">gotoNamedDest</span><span class="p">(</span><span class="s2">&quot;myDest&quot;</span><span class="p">);</span>
+<span class="o">//</span> <span class="n">Close</span> <span class="n">the</span> <span class="n">old</span> <span class="n">document</span>
+<span class="n">this</span><span class="o">.</span><span class="n">closeDoc</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Beginning with Acrobat 8, there is an additional parameter, <code class="docutils literal notranslate"><span class="pre">cDest</span></code>, for the <code class="docutils literal notranslate"><span class="pre">app.openDoc</span></code> method to set the destination. With this parameter, the target document need not be <code class="docutils literal notranslate"><span class="pre">disclosed</span></code>. For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">openDoc</span><span class="p">({</span> <span class="n">cPath</span><span class="p">:</span> <span class="s2">&quot;/c/temp/myDoc.pdf&quot;</span><span class="p">,</span> <span class="n">cDest</span><span class="p">:</span> <span class="s2">&quot;myDest&quot;</span> <span class="p">});</span>
+<span class="n">this</span><span class="o">.</span><span class="n">closeDoc</span><span class="p">();</span>
+</pre></div>
+</div>
+<a name="36257"></a></div>
+</div>
+<div class="section" id="using-actions-for-special-effects">
+<h3>Using actions for special effects<a class="headerlink" href="#using-actions-for-special-effects" title="Permalink to this headline">¶</a></h3>
+<p>Thumbnails, bookmarks, links, and other objects have actions associated with them, and you can use JavaScript to customize these actions. For example, you can display messages, jump to destinations in the same document or any other, open attachments, open web pages, execute menu commands, or perform a variety of other tasks.</p>
+<p>As you learned earlier, you can associate a thumbnail with a <code class="docutils literal notranslate"><span class="pre">Page</span></code> <code class="docutils literal notranslate"><span class="pre">Open</span></code> event, and associate bookmarks and links with <code class="docutils literal notranslate"><span class="pre">Mouse</span></code> <code class="docutils literal notranslate"><span class="pre">Up</span></code> events.</p>
+<p>You can use JavaScript to customize the actions associated with a thumbnail by invoking the Doc object <code class="docutils literal notranslate"><span class="pre">setPageAction</span></code> method. To customize the actions associated with bookmarks and links, create a string containing script and pass it to the object’s <code class="docutils literal notranslate"><span class="pre">setAction</span></code> method. In the examples shown below, a greeting is displayed when a thumbnail, bookmark, and link are clicked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Open</span> <span class="n">action</span> <span class="k">for</span> <span class="n">thumbnail</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">setPageAction</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Open&quot;</span><span class="p">,</span> <span class="s2">&quot;app.alert(&#39;Hello!&#39;);&quot;</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="n">MouseUp</span> <span class="n">actions</span> <span class="k">for</span> <span class="n">bookmark</span> <span class="ow">and</span> <span class="n">link</span><span class="p">:</span>
+<span class="n">myBookmark</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;app.alert(&#39;Hello!&#39;);&quot;</span><span class="p">);</span>
+<span class="n">myLink</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;app.alert(&#39;Hello!&#39;);&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="60825"></a></div>
+<div class="section" id="highlighting-form-fields-and-navigational-components">
+<h3>Highlighting form fields and navigational components<a class="headerlink" href="#highlighting-form-fields-and-navigational-components" title="Permalink to this headline">¶</a></h3>
+<p>You can use JavaScript to customize the actions associated with buttons, links, and bookmarks so that they change their appearance after the user has clicked them.</p>
+<p>For a button, which is a field, you can invoke its <code class="docutils literal notranslate"><span class="pre">highlight</span></code> property, which allows you to specify how the button appears once it has been clicked. There are four choices, as shown in the following table.</p>
+<p>Button appearance</p>
+<table class="colwidths-given docutils align-default" id="section-5">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Keyword</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>none</p></td>
+<td><p>highlight.n</p></td>
+</tr>
+<tr class="row-odd"><td><p>invert</p></td>
+<td><p>highlight.i</p></td>
+</tr>
+<tr class="row-even"><td><p>push</p></td>
+<td><p>highlight.p</p></td>
+</tr>
+<tr class="row-odd"><td><p>outline</p></td>
+<td><p>highlight.o</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example, the following code makes the button appear pushed when clicked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">highlight</span> <span class="n">mode</span> <span class="n">to</span> <span class="n">push</span>
+<span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getField</span><span class="p">(</span><span class="s2">&quot;myButton&quot;</span><span class="p">);</span>
+<span class="n">f</span><span class="o">.</span><span class="n">highlight</span> <span class="o">=</span> <span class="n">highlight</span><span class="o">.</span><span class="n">p</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As you learned earlier, the <code class="docutils literal notranslate"><span class="pre">link</span></code> object also has a <code class="docutils literal notranslate"><span class="pre">highlight</span></code> property.</p>
+<p>There are other ways in which you can creatively address the issue of highlighting. For example, you can change the background color of the button when clicked, by including a line of code in the script passed into its <code class="docutils literal notranslate"><span class="pre">setAction</span></code> method.</p>
+<p>In the following example, the button displays a greeting and changes its background color to blue when the mouse enters its area:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">script</span> <span class="o">=</span> <span class="s2">&quot;app.alert(&#39;Hello!&#39;);&quot;</span><span class="p">;</span>
+<span class="n">script</span> <span class="o">+=</span> <span class="s2">&quot;var myButton = this.getField(&#39;myButton&#39;);&quot;</span><span class="p">;</span>
+<span class="n">script</span> <span class="o">+=</span> <span class="s2">&quot;myButton.fillColor = color.blue;&quot;</span><span class="p">;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">setAction</span><span class="p">(</span><span class="s2">&quot;MouseEnter&quot;</span><span class="p">,</span> <span class="n">script</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The above script can also be entered through the UI as well.</p>
+<p>This idea can be applied to the <code class="docutils literal notranslate"><span class="pre">bookMark</span></code> object’s <code class="docutils literal notranslate"><span class="pre">color</span></code> property, as well as the <code class="docutils literal notranslate"><span class="pre">link</span></code> object’s <code class="docutils literal notranslate"><span class="pre">borderColor</span></code> property. In both cases, similar code to that shown in the example above can be used in the scripts passed into their <code class="docutils literal notranslate"><span class="pre">setAction</span></code> methods.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">bookMark</span></code> objects, you can change the text or font style through its <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">style</span></code> properties. For example, the following code adds the word <code class="docutils literal notranslate"><span class="pre">VISITED</span></code> to <code class="docutils literal notranslate"><span class="pre">myBookmark</span></code> and changes the font style to bold:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myBookmark</span><span class="o">.</span><span class="n">name</span> <span class="o">+=</span> <span class="s2">&quot; - VISITED&quot;</span><span class="p">);</span>
+<span class="n">myBookmark</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</pre></div>
+</div>
+<a name="94930"></a><p>Setting up a presentation</p>
+<p>There are two viewing modes for Acrobat and Acrobat Reader: full screen mode and regular viewing mode. Full screen mode is often appropriate for presentations, since PDF pages can fill the entire screen with the menu bar, toolbar, and window controls hidden.</p>
+<p>You can use JavaScript to customize the viewing mode when setting up presentations. The <code class="docutils literal notranslate"><span class="pre">app</span></code> object <code class="docutils literal notranslate"><span class="pre">fs</span></code> property may be used to set the viewing mode. (Media clips can also be played in full screen, see the Example <a class="reference external" href="JS_Dev_DigitalMedia.html#90837">Play a clip in full screen</a>.)</p>
+<div class="section" id="defining-the-initial-view-in-full-screen-view">
+<h4>Defining the initial view in full screen view<a class="headerlink" href="#defining-the-initial-view-in-full-screen-view" title="Permalink to this headline">¶</a></h4>
+<p>To cause Acrobat and Acrobat Reader to display in full screen mode, include the following statement in a document JavaScript triggered when the document is opened.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">isFullScreen</span><span class="o">=</span><span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">app.fs</span></code> is the FullScreen object, which can be used to set your full screen preferences.</p>
+<ol class="arabic simple">
+<li><p>Setting full screen preferences and resetting them</p></li>
+</ol>
+<p>You want the document to be viewed in full screen, but as a courtesy, you want to restore the screen preferences of the user back to the original settings. Place the following script as document JavaScript, it will be executed once and only once upon loading the document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Save</span> <span class="n">the</span> <span class="n">settings</span> <span class="n">we</span> <span class="n">plan</span> <span class="n">to</span> <span class="n">change</span><span class="o">.</span>
+<span class="n">var</span> <span class="n">_clickAdvances</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">clickAdvances</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">_defaultTransition</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">defaultTransition</span><span class="p">;</span>
+<span class="n">var</span> <span class="n">_escapeExits</span> <span class="o">=</span> <span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">escapeExits</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Change</span> <span class="n">these</span> <span class="n">settings</span> <span class="n">now</span><span class="o">.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">clickAdvances</span><span class="o">=</span><span class="n">true</span><span class="p">;</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">defaultTransition</span> <span class="o">=</span> <span class="s2">&quot;UncoverLeft&quot;</span><span class="p">;</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">escapeExits</span><span class="o">=</span><span class="n">true</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">Now</span><span class="p">,</span> <span class="n">go</span> <span class="n">into</span> <span class="n">full</span> <span class="n">screen</span><span class="o">.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">isFullScreen</span><span class="o">=</span><span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>To restore the settings, place the following code in the Will Close section of the Document JavaScripts, located at Tools panel &gt; JavaScript &gt; Set Document Actions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Restore</span> <span class="n">the</span> <span class="n">full</span> <span class="n">screen</span> <span class="n">preferences</span> <span class="n">that</span> <span class="n">we</span> <span class="n">changed</span><span class="o">.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">clickAdvances</span> <span class="o">=</span> <span class="n">_clickAdvances</span><span class="p">;</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">defaultTransition</span> <span class="o">=</span> <span class="n">_defaultTransition</span><span class="p">;</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">escapeExits</span> <span class="o">=</span> <span class="n">_escapeExits</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can use JavaScript to customize how page transitions occur for any pages within a document. This is accomplished through the Doc object’s <code class="docutils literal notranslate"><span class="pre">setPageTransitions</span></code> and <code class="docutils literal notranslate"><span class="pre">getPageTransitions</span></code> methods.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">setPageTransitions</span></code> method accepts three parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nStart</span></code>: the zero-based index of the beginning page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nEnd</span></code>: the zero-based index of the last page</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">aTrans</span></code>: a page transition array containing three values:</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nDuration</span></code>: the time a page is displayed before automatically changing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cTransition</span></code>: the name of the transition to be applied</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nTransDuration</span></code>: the duration in seconds of the transition effect</p></li>
+</ul>
+<p>The name of the transition to be applied can be chosen from a comprehensive list made available through the FullScreen object <code class="docutils literal notranslate"><span class="pre">transitions</span></code> property. To obtain the list, type the following code into the console:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">&quot;[&quot;</span> <span class="o">+</span> <span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">transitions</span> <span class="o">+</span> <span class="s2">&quot;]&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In addition, you can set up a default page transition through the FullScreen object <code class="docutils literal notranslate"><span class="pre">defaultTransition</span></code> property, as the Example <a class="reference external" href="JS_Dev_ModifyUserInterface.html#68950">Setting full screen preferences and resetting them</a> demonstrates.</p>
+<ol class="arabic simple">
+<li><p>Adding page transitions</p></li>
+</ol>
+<p>In the following example, page transitions are applied to pages 2 through 5. Each page displays for 10 seconds, and then an automatic transition occurs for one second:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">setPageTransitions</span><span class="p">({</span>
+    <span class="n">nStart</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">nEnd</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">aTrans</span><span class="p">:</span> <span class="p">{</span>
+        <span class="n">nDuration</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">cTransition</span><span class="p">:</span> <span class="s2">&quot;WipeLeft&quot;</span><span class="p">,</span>
+        <span class="n">nTransDuration</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="o">//</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">viewing</span> <span class="n">mode</span> <span class="n">to</span> <span class="n">full</span> <span class="n">screen</span>
+<span class="n">app</span><span class="o">.</span><span class="n">fs</span><span class="o">.</span><span class="n">isFullScreen</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="defining-an-initial-view">
+<h4>Defining an initial view<a class="headerlink" href="#defining-an-initial-view" title="Permalink to this headline">¶</a></h4>
+<p>In addition to specifying whether the full screen or regular viewing mode will be used, you can also use JavaScript to set up the document view. You can customize the initial view in terms of magnification, page layout, application and document viewing dimensions, the initial page to which the document opens, and whether parts of the user interface will be visible.</p>
+<p>The Doc object <code class="docutils literal notranslate"><span class="pre">layout</span></code> property allows you to specify page layout by assigning one of the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SinglePage</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OneColumn</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TwoColumnLeft</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TwoColumnRight</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TwoPageLeft</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TwoPageRight</span></code></p></li>
+</ul>
+<p>For example, the script <code class="docutils literal notranslate"><span class="pre">this.layout</span> <span class="pre">=</span> <span class="pre">&quot;SinglePage&quot;</span></code> puts the document into single page viewing.</p>
+<p>To set up the magnification, assign a value to the Doc object <code class="docutils literal notranslate"><span class="pre">zoom</span></code> property. For example, the following code sets up a magnification of 125%:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">zoom</span> <span class="o">=</span> <span class="mi">125</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can also set the zoom type by assigning one of the settings, shown in the following table, to the Doc object’s <code class="docutils literal notranslate"><span class="pre">zoomtype</span></code> property:</p>
+<p>ZoomType settings</p>
+<table class="colwidths-given docutils align-default" id="section-6">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Zoom type</p></th>
+<th class="head"><p>Property value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>NoVary</p></td>
+<td><p>zoomtype.none</p></td>
+</tr>
+<tr class="row-odd"><td><p>FitPage</p></td>
+<td><p>zoomtype.fitP</p></td>
+</tr>
+<tr class="row-even"><td><p>FitWidth</p></td>
+<td><p>zoomtype.fitW</p></td>
+</tr>
+<tr class="row-odd"><td><p>FitHeight</p></td>
+<td><p>zoomtype.fitH</p></td>
+</tr>
+<tr class="row-even"><td><p>FitVisibleWidth</p></td>
+<td><p>zoomtype.fitV</p></td>
+</tr>
+<tr class="row-odd"><td><p>Preferred</p></td>
+<td><p>zoomtype.pref</p></td>
+</tr>
+<tr class="row-even"><td><p>ReflowWidth</p></td>
+<td><p>zoomtype.refW</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following example sets the zoom type of the document to fit the width:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">zoomType</span> <span class="o">=</span> <span class="n">zoomtype</span><span class="o">.</span><span class="n">fitW</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>To specify the page to which the document initially opens (or to simply change the page), set the Doc object <code class="docutils literal notranslate"><span class="pre">pageNum</span></code> property. If the following code is included in the script used in the document <code class="docutils literal notranslate"><span class="pre">Open</span></code> event, the document automatically opens to page 30:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">this</span><span class="o">.</span><span class="n">pageNum</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Finally, you can choose whether menu items and toolbar buttons will be visible by invoking the following methods of the <code class="docutils literal notranslate"><span class="pre">app</span></code> object:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">hideMenuItem</span></code>: Removes a specific menu item</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hideToolbarButton</span></code>: Removes a specific toolbar button</p></li>
+</ul>
+<p>For example, if the following code is placed in a folder-level script, the Hand toolbar button is removed when Acrobat or Acrobat Reader is started:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">app</span><span class="o">.</span><span class="n">hideToolbarButton</span><span class="p">(</span><span class="s2">&quot;Hand&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="36794"></a><p>Numbering pages</p>
+<p>You can customize the page numbering schemes used throughout a document. There are three numbering formats:</p>
+<ul class="simple">
+<li><p>decimal (often used for normal page ranges)</p></li>
+<li><p>roman (often used for front matter such as a preface)</p></li>
+<li><p>alphabetic (often used for back matter such as appendices)</p></li>
+</ul>
+<p>The Doc object <code class="docutils literal notranslate"><span class="pre">getPageLabel</span></code> and <code class="docutils literal notranslate"><span class="pre">setPageLabels</span></code> methods can be used to control and customize the appearance of numbering schemes within a PDF document.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">getPageLabel</span></code> method accepts the zero-based page index and returns a string containing the label for a given page.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">setPageLabels</span></code> method accepts two parameters: <code class="docutils literal notranslate"><span class="pre">nPage</span></code> is the zero-based index for the page to be labeled, and <code class="docutils literal notranslate"><span class="pre">aLabel</span></code> is an array of three values representing the numbering scheme. If <code class="docutils literal notranslate"><span class="pre">aLabel</span></code> is not supplied, the method removes page numbering for the specified page and any others up to the next specified label.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aLabel</span></code> array contains three required values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cStyle</span></code>: the style of page numbering as shown in the following table</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cPrefix</span></code>: the string used to prefix the numeric portion of the page label</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nStart</span></code>: the ordinal with which to start numbering the pages</p></li>
+</ul>
+<p>Page numbering style values</p>
+<table class="colwidths-given docutils align-default" id="section-7">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>cStyle value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>D</p></td>
+<td><p>Decimal numbering</p></td>
+</tr>
+<tr class="row-odd"><td><p>R</p></td>
+<td><p>Upper case Roman numbering</p></td>
+</tr>
+<tr class="row-even"><td><p>r</p></td>
+<td><p>Lower case Roman numbering</p></td>
+</tr>
+<tr class="row-odd"><td><p>A</p></td>
+<td><p>Upper case alphabetic numbering</p></td>
+</tr>
+<tr class="row-even"><td><p>a</p></td>
+<td><p>Lower case alphabetic numbering</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example, the code shown below labels 10 pages within a document using the following scheme: <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">ii</span></code>, <code class="docutils literal notranslate"><span class="pre">iii</span></code>, <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code>, <code class="docutils literal notranslate"><span class="pre">Appendix-A</span></code>, <code class="docutils literal notranslate"><span class="pre">Appendix-B</span></code> :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Pages</span> <span class="mi">0</span><span class="o">-</span><span class="mi">2</span> <span class="n">will</span> <span class="n">have</span> <span class="n">lower</span> <span class="n">case</span> <span class="n">roman</span> <span class="n">numerals</span> <span class="n">i</span><span class="p">,</span> <span class="n">ii</span><span class="p">,</span> <span class="n">iii</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">setPageLabels</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="o">//</span> <span class="n">Pages</span> <span class="mi">3</span><span class="o">-</span><span class="mi">7</span> <span class="n">will</span> <span class="n">have</span> <span class="n">decimal</span> <span class="n">numbering</span> <span class="mi">1</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">setPageLabels</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="o">//</span> <span class="n">Pages</span> <span class="mi">8</span><span class="o">-</span><span class="mi">9</span> <span class="n">will</span> <span class="n">have</span> <span class="n">alphabetic</span> <span class="n">numbering</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">setPageLabels</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;Appendix-&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">]);</span>
+
+<span class="o">//</span> <span class="n">The</span> <span class="n">page</span> <span class="n">labels</span> <span class="n">will</span> <span class="n">be</span> <span class="n">printed</span> <span class="n">to</span> <span class="n">the</span> <span class="n">console</span><span class="p">:</span>
+<span class="n">var</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getPageLabel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">this</span><span class="o">.</span><span class="n">numPages</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">+=</span> <span class="s2">&quot;, &quot;</span> <span class="o">+</span> <span class="n">this</span><span class="o">.</span><span class="n">getPageLabel</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="n">console</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">labels</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>It is also possible to remove a page label by omitting the <code class="docutils literal notranslate"><span class="pre">aLabel</span></code> parameter, as shown in the code below (which assumes the existence of the labels in the previous example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">The</span> <span class="n">labels</span> <span class="k">for</span> <span class="n">pages</span> <span class="mi">3</span><span class="o">-</span><span class="mi">7</span> <span class="n">will</span> <span class="n">be</span> <span class="n">removed</span><span class="p">:</span>
+<span class="n">this</span><span class="o">.</span><span class="n">setPageLabels</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="23421"></a><p>Creating buttons</p>
+<p>Though buttons are normally considered form fields, you can add them to any document. A button may be used for a variety of purposes, such as opening files, playing sound or movie clips, or submitting data to a web server. As you learned earlier, you can place text and images on a button, making it a user-friendly interactive portion of your document. To show or hide portions of graphic buttons, use the <code class="docutils literal notranslate"><span class="pre">Mouse</span></code> <code class="docutils literal notranslate"><span class="pre">Enter</span></code> and <code class="docutils literal notranslate"><span class="pre">Mouse</span></code> <code class="docutils literal notranslate"><span class="pre">Exit</span></code> events or other types of control mechanisms to manage the usage of the Field object <code class="docutils literal notranslate"><span class="pre">buttonSetIcon</span></code> method.</p>
+<ol class="arabic simple">
+<li><p>Creating a rollover effect</p></li>
+</ol>
+<p>The following code shows one icon when the mouse enters the button field, and a different icon when the mouse exits:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Mouse</span> <span class="n">enter</span> <span class="n">script</span><span class="o">.</span>
+<span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">target</span><span class="p">;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">buttonSetIcon</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">getIcon</span><span class="p">(</span><span class="s1">&#39;oneIcon&#39;</span><span class="p">));</span>
+
+<span class="o">//</span> <span class="n">Mouse</span> <span class="n">exit</span> <span class="n">script</span><span class="o">.</span>
+<span class="n">var</span> <span class="n">f</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">target</span><span class="p">;</span>
+<span class="n">f</span><span class="o">.</span><span class="n">buttonSetIcon</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">getIcon</span><span class="p">(</span><span class="s1">&#39;otherIcon&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<a name="43845"></a></div>
+</div>
+</div>
+<div class="section" id="working-with-pdf-layers">
+<h2>Working with PDF layers<a class="headerlink" href="#working-with-pdf-layers" title="Permalink to this headline">¶</a></h2>
+<p>PDF layers (called Optional Content Groups in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>) are sections of content that can be selectively viewed or hidden by document authors or consumers. Multiple components may be visible or hidden depending on their settings, and may be used to support the display, navigation, and printing of layered PDF content by various applications. It is possible to edit the properties of layers, to lock layers, to add navigation to them, to merge or flatten layers, and to combine PDF layered documents. Properties and methods for handling PDF layers are accessed through the OCG object.</p>
+<p>To obtain an array of the OCG objects for a given page in the document, invoke the Doc object <code class="docutils literal notranslate"><span class="pre">getOCGs</span></code> method. The following code obtains the array of OCG objects contained on page 3 of the document:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ocgArray</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getOCGs</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The getOCGs method returns an array of OCG objects or <code class="docutils literal notranslate"><span class="pre">null</span></code>, if there are none; consequently, in situations in which it is uncertain if there are any OCGs on the page, you need to test the return value for null:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ocgArray</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getOCGs</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span> <span class="n">ocgArray</span> <span class="o">!=</span> <span class="n">null</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="o">&lt;</span><span class="n">some</span> <span class="n">action</span> <span class="n">script</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="navigating-with-layers">
+<h3>Navigating with layers<a class="headerlink" href="#navigating-with-layers" title="Permalink to this headline">¶</a></h3>
+<p>Since information can be stored in different layers of a PDF document, navigational controls can be customized within different layers, whose visibility settings may be dynamically customized so that they are tied to context and user interaction. For example, if the user selects a given option, a set of navigational links belonging to a corresponding optional content group may be shown.</p>
+<ol class="arabic simple">
+<li><p>Toggling a PDF layer</p></li>
+</ol>
+<p>This example is a Mouse Up action for a button. The action is to toggle the visibility of a particular layer. The methodology is to get the array of OCGs on the page, search through them to find the particular layer of interest, and finally, to toggle its state property, which determines the visibility of the layer, see <a class="reference external" href="JS_Dev_ModifyUserInterface.html#42039">OCG properties</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>var ocgLayerName = &quot;myLayer&quot;;
+var ocgArray = this.getOCGs(this.pageNum);
+for ( var i=0; i &lt; ocgArray.length; i++) {
+    if ( ocgArray[i].name == ocgLayerName ) {
+        ocgArray[i].state = !ocgArray[i].state;
+        break;
+    }
+}
+</pre></div>
+</div>
+</div>
+<div class="section" id="editing-the-properties-of-pdf-layers">
+<h3>Editing the properties of PDF layers<a class="headerlink" href="#editing-the-properties-of-pdf-layers" title="Permalink to this headline">¶</a></h3>
+<p>The OCG object provides properties that can be used to determine whether the object’s default state should be on or off, whether its intent should be for viewing or design purposes, whether it should be locked, the text string seen in the user interface, and the current state. The properties are shown in the following table.</p>
+<p>OCG properties</p>
+<table class="colwidths-given docutils align-default" id="section-8">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>initState</p></td>
+<td><p>Determines whether the <code class="docutils literal notranslate"><span class="pre">OCG</span></code> object is on or off by default</p></td>
+</tr>
+<tr class="row-odd"><td><p>intent</p></td>
+<td><p>The intent of the <code class="docutils literal notranslate"><span class="pre">OCG</span></code> object (View or Design)</p></td>
+</tr>
+<tr class="row-even"><td><p>locked</p></td>
+<td><p>Whether the on/off state can be toggled through the user interface</p></td>
+</tr>
+<tr class="row-odd"><td><p>name</p></td>
+<td><p>The text string seen in the user interface for the <code class="docutils literal notranslate"><span class="pre">OCG</span></code> object</p></td>
+</tr>
+<tr class="row-even"><td><p>state</p></td>
+<td><p>The current on/off state of the <code class="docutils literal notranslate"><span class="pre">OCG</span></code> object</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">initState</span></code> property can be used to set the default state for an optional content group. In the following example, <code class="docutils literal notranslate"><span class="pre">myLayer</span></code> is set to <code class="docutils literal notranslate"><span class="pre">on</span></code> by default:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myLayer</span><span class="o">.</span><span class="n">initState</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">intent</span></code> property, which is an array of values, can be used to define the intent of a particular optional content group. There are two possible values used in the array: <code class="docutils literal notranslate"><span class="pre">View</span></code> and <code class="docutils literal notranslate"><span class="pre">Design</span></code>. A <code class="docutils literal notranslate"><span class="pre">Design</span></code> layer is created for informational purposes only, and does not affect the visibility of content. Its purpose is to represent a document designer’s structural organization of artwork. The <code class="docutils literal notranslate"><span class="pre">View</span></code> layer is intended for interactive use by document consumers. If <code class="docutils literal notranslate"><span class="pre">View</span></code> is used, the visibility of the layer is affected.</p>
+<p>In the following example, the intent of all the <code class="docutils literal notranslate"><span class="pre">OCG</span></code> objects in the document is set to both values:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ocgs</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getOCGs</span><span class="p">();</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">ocgs</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">ocgs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">intent</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;View&quot;</span><span class="p">,</span> <span class="s2">&quot;Design&quot;</span><span class="p">];</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">locked</span></code> property is used to determine whether a given layer can be toggled through the user interface. In the following example, <code class="docutils literal notranslate"><span class="pre">myLayer</span></code> is locked, meaning that it cannot be toggled through the user interface:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myLayer</span><span class="o">.</span><span class="n">locked</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">state</span></code> property represents the current on/off state for a given OCG. In the following example, all the OCGs are turned on:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">var</span> <span class="n">ocgs</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getOCGs</span><span class="p">();</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">ocgs</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">ocgs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">name</span></code> property represents the text string seen in the user interface that is used to identify layers. In the following example, the <code class="docutils literal notranslate"><span class="pre">Watermark</span></code> OCG is toggled:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>var ocgs = this.getOCGs();
+for (var i=0; i&lt;ocgs.length; i++)
+    if (ocgs[i].name == &quot;Watermark&quot;)
+        ocgs[i].state = !ocgs[i].state;
+</pre></div>
+</div>
+</div>
+<div class="section" id="reordering-layers">
+<h3>Reordering layers<a class="headerlink" href="#reordering-layers" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to determine the order in which layers are displayed in the user interface by invoking the Doc object <code class="docutils literal notranslate"><span class="pre">getOCGOrder</span></code> and <code class="docutils literal notranslate"><span class="pre">setOCGOrder</span></code> methods. In the following example, the display order of all the layers is reversed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">var</span> <span class="n">ocgOrder</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">getOCGOrder</span><span class="p">();</span>
+   <span class="n">var</span> <span class="n">newOrder</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Array</span><span class="p">();</span>
+   <span class="k">for</span> <span class="p">(</span><span class="n">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">ocgOrder</span><span class="o">.</span><span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+       <span class="n">newOrder</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ocgOrder</span><span class="p">[</span><span class="n">ocgOrder</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+   <span class="n">this</span><span class="o">.</span><span class="n">setOCGOrder</span><span class="p">(</span><span class="n">newOrder</span>
+<span class="p">)</span>
+<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: May 18, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1663 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link href="../_static/jquery-ui.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+      <link rel="shortcut icon" href="../_static/favicon.ico" />  
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeSaveAsXML_DirectivesRef.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/language_data.js"></script>
+  <script type="text/javascript" src="../_static/searchtools.js"></script>
+  <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Acrobat and PDFL SDK: Extending the SaveAsXML Plugin" href="index.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat and PDFL SDK: Extending the SaveAsXML Plugin
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Acrobat and PDFL SDK: Extending the SaveAsXML Plugin</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#sample-mapping-table">Sample mapping table</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#root-node">Root node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#emit-string">Emit-string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#walk-structure">Walk-structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#define-event-list">Define-event-list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="index.html#event">Event</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#call-proc-list">Call-proc-list</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#walk-children">Walk-children</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#proc-doc-text">Proc-doc-text</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#define-proc-list">Define-proc-list</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="index.html#proc-var">Proc-var</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#proc-string">Proc-string</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#editing-the-mapping-tables">Editing the mapping tables</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Mapping Table Elements Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#call-event-list">Call-event-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#call-proc-list">Call-proc-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#comment">Comment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditional-delimiter">Conditional-delimiter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditional-prefix">Conditional-prefix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conditional-suffix">Conditional-suffix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-event-list">Define-event-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-proc-list">Define-proc-list</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#element-name">Element-name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#emit-all-metadata">Emit-all-metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#emit-string">Emit-string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-var">Evaluate-var</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event">Event</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-doc-text">Proc-doc-text</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-enum">Proc-enum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-enum-choice">Proc-enum-choice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-fixed">Proc-fixed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-graphic-content">Proc-graphic-content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-hex">Proc-hex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-image-content">Proc-image-content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-integer">Proc-integer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-length">Proc-length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-pixels">Proc-pixels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-property">Proc-property</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-string">Proc-string</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proc-var">Proc-var</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#property-name">Property-name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#property-type">Property-type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#root">Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#void">Void</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walk-cached-property-sets">Walk-cached-property-sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walk-children">Walk-children</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walk-layout">Walk-layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walk-metadata">Walk-metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walk-proplist">Walk-proplist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#walk-structure">Walk-structure</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat and PDFL SDK: Extending the SaveAsXML Plugin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Mapping Table Elements Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Acrobat and PDFL SDK: Extending the SaveAsXML Plugin" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mapping-table-elements-reference">
+<h1>Mapping Table Elements Reference<a class="headerlink" href="#mapping-table-elements-reference" title="Permalink to this headline">¶</a></h1>
+<p>This chapter provides complete details of all mapping table directives and their attributes.</p>
+<div class="section" id="call-event-list">
+<h2>Call-event-list<a class="headerlink" href="#call-event-list" title="Permalink to this headline">¶</a></h2>
+<p>Inserts the named event-list at this point in the mapping table. This directive is identical to a macro call.</p>
+<p>DTD content rule</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of a event list (as in <code class="docutils literal notranslate"><span class="pre">&lt;Define-event-list&gt;</span></code>) to be included at this point in the current event list. |</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="call-proc-list">
+<h2>Call-proc-list<a class="headerlink" href="#call-proc-list" title="Permalink to this headline">¶</a></h2>
+<p>Inserts the named proc-list at this point in the mapping table. This directive is identical to a macro call.</p>
+<p id="dtd-content-rule-1"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of a variable processing list (see <code class="docutils literal notranslate"><span class="pre">&lt;define-proc-list&gt;</span></code>) to be included at this point in the current event or proc-list. |</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="comment">
+<h2>Comment<a class="headerlink" href="#comment" title="Permalink to this headline">¶</a></h2>
+<p>Allows documentation or notes to be included in the mapping table. This directive does no processing.</p>
+<p id="dtd-content-rule-2"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">TEXT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="conditional-delimiter">
+<h2>Conditional-delimiter<a class="headerlink" href="#conditional-delimiter" title="Permalink to this headline">¶</a></h2>
+<p>Emits the contained text if this <code class="docutils literal notranslate"><span class="pre">proc-var</span></code> is not the first one to be accepted and processed after the start of an event or the first one to be processed after a <code class="docutils literal notranslate"><span class="pre">conditional-prefix</span></code> control element.</p>
+<p id="dtd-content-rule-3"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">TEXT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Emit-newline-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-before</span></code>: Emit a newline before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-before</span></code>: Do not emit a newline before emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-newline-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-after</span></code>: Emit a newline after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-after</span></code>: Do not emit a newline after emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>Emit-space-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-after</span></code>: Emit a space after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-after</span></code>: Do not emit a space after emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-space-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-before</span></code>: Emit a space before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-before</span></code>: Do not emit a space before emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="conditional-prefix">
+<h2>Conditional-prefix<a class="headerlink" href="#conditional-prefix" title="Permalink to this headline">¶</a></h2>
+<p>Caches and emits the contained text if any <code class="docutils literal notranslate"><span class="pre">proc-var</span></code> is accepted to be processed before the end of the current event or before the next <code class="docutils literal notranslate"><span class="pre">Conditional-suffix</span></code> control element.</p>
+<p id="dtd-content-rule-4"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">TEXT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p id="attributes-3"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Emit-newline-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-after</span></code>: Emit a newline after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-after</span></code>: Do not emit a newline after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-newline-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-before</span></code>: Emit a newline before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-before</span></code>: Do not emit a newline before emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Emit-space-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-after</span></code>: Emit a space after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-after</span></code>: Do not emit a space after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-space-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-before</span></code>: Emit a space before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-before</span></code>: Do not emit a space before emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="conditional-suffix">
+<h2>Conditional-suffix<a class="headerlink" href="#conditional-suffix" title="Permalink to this headline">¶</a></h2>
+<p>Emits the contained text if the preceding <code class="docutils literal notranslate"><span class="pre">Conditional-prefix</span></code> within the current event was emitted.</p>
+<p id="dtd-content-rule-5"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">TEXT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p id="attributes-4"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-4">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Emit-newline-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-after</span></code>: Emit a newline after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-after</span></code>: Do not emit a newline after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-newline-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-before</span></code>: Emit a newline before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-before</span></code>: Do not emit a newline before emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Emit-space-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-after</span></code>: Emit a space after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-after</span></code>: Do not emit a space after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-space-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space in each element and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-before</span></code>: Emit a space before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-before</span></code>: Do not emit a space before emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-event-list">
+<h2>Define-event-list<a class="headerlink" href="#define-event-list" title="Permalink to this headline">¶</a></h2>
+<p>Event-lists and proc-lists, like macros, allow the user to define a series of processing directives that can be used in multiple locations within the SaveAs mapping table.</p>
+<p>Event-lists govern the selection and processing of elements in the layout, metadata, logical structure, or stylesheet trees. Proc-lists govern the processing of attributes or properties associated with a given event or structural element. For more information, see <a class="reference external" href="SaveAsXML_DirectivesRef.html#50409488_50945">Define-proc-list</a>.</p>
+<p id="dtd-content-rule-6"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span> <span class="n">Comment</span> <span class="o">|</span> <span class="n">Event</span> <span class="o">|</span> <span class="n">Call</span><span class="o">-</span><span class="n">event</span><span class="o">-</span><span class="nb">list</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-5"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-5">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name to be applied to the event processing list being defined by this element. This is referenced in the <code class="docutils literal notranslate"><span class="pre">&lt;Walk-*&gt;</span></code> elements by the <code class="docutils literal notranslate"><span class="pre">Use-event-list</span></code> attribute. The name must be unique across all Define-event-list elements within a given mapping table file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="define-proc-list">
+<h2>Define-proc-list<a class="headerlink" href="#define-proc-list" title="Permalink to this headline">¶</a></h2>
+<p>Proc-lists and event-lists, like macros, allow the user to define a series of processing directives that can be used in multiple locations within the SaveAs mapping table.</p>
+<p>Proc-lists govern the processing of attributes and properties associated with a given event or structural element. Event-lists govern the selection and processing of elements in the layout, metadata, logical structure, or stylesheet trees. (See <a class="reference external" href="SaveAsXML_DirectivesRef.html#50409488_81516">Define-event-list</a>.)</p>
+<p id="dtd-content-rule-7"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">var</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">proplist</span> <span class="o">|</span> <span class="n">Call</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-6"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-6">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Name</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name to be applied to the variable processing list being defined by this element. This is referenced in the <code class="docutils literal notranslate"><span class="pre">&lt;Call-proc-list&gt;</span></code> element via its <code class="docutils literal notranslate"><span class="pre">Name</span></code> attribute. The name must be unique across all <code class="docutils literal notranslate"><span class="pre">Define-proc-list</span></code> elements within a given mapping table file.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="element-name">
+<h2>Element-name<a class="headerlink" href="#element-name" title="Permalink to this headline">¶</a></h2>
+<p>Outputs the Element-name, which is used in the XML output filter to generate the user-supplied element tag.</p>
+<p id="dtd-content-rule-8"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-7"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-7">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Node-type</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Specifies whether to get the structural element name to emit directly from the <code class="docutils literal notranslate"><span class="pre">/S</span></code> key of the StructElem (<code class="docutils literal notranslate"><span class="pre">Structure-user-label</span></code>) or from the result of processing that key via the RoleMap (<code class="docutils literal notranslate"><span class="pre">Structure-role</span></code>). One of: |</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Structure-role</span></code>: Use the result of processing the StructElem’s <code class="docutils literal notranslate"><span class="pre">/S</span></code> key via the RoleMap.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Structure-user-label</span></code>: Use the StructElem’s <code class="docutils literal notranslate"><span class="pre">/S</span></code> key.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="emit-all-metadata">
+<h2>Emit-all-metadata<a class="headerlink" href="#emit-all-metadata" title="Permalink to this headline">¶</a></h2>
+<p>Copies the full set of XAP metadata to the output file.</p>
+<p id="dtd-content-rule-9"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-8"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-8">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Emit-newline-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. XML strips the first and last space and most newlines from the parsed result, so it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-after</span></code>: Emit a newline after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-after</span></code>: Do not emit a newline after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-newline-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. XML strips the first and last space in each element and most newlines from the parsed result, so it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-before</span></code>: Emit a newline before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-before</span></code>: Do not emit a newline before emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Emit-space-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. XML strips the first and last space in each element and most newlines from the parsed result, so it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-after</span></code>: Emit a space after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-after</span></code>: Do not emit a space after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-space-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. XML strips the first and last space in each element and most newlines from the parsed result, so it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-before</span></code>: Emit a space before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-before</span></code>: Do not emit a space before emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="emit-string">
+<h2>Emit-string<a class="headerlink" href="#emit-string" title="Permalink to this headline">¶</a></h2>
+<p>Emits the text contained in this mapping table element.</p>
+<p id="dtd-content-rule-10"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">TEXT</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p id="attributes-9"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-9">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Emit-newline-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-after</span></code>: Emit a newline after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-after</span></code>: Do not emit a newline after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-newline-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-newline-before</span></code>: Emit a newline before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-newline-before</span></code>: Do not emit a newline before emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Emit-space-after</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-after</span></code>: Emit a space after emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-after</span></code>: Do not emit a space after emitting any content text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Emit-space-before</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Since XML strips the first and last space and most newlines from the parsed result, it is necessary to have this set of flags to control explicit insertion of these control codes. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Emit-space-before</span></code>: Emit a space before emitting any content text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">No-space-before</span></code>: Do not emit a space before emitting any content text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="evaluate-var">
+<h2>Evaluate-var<a class="headerlink" href="#evaluate-var" title="Permalink to this headline">¶</a></h2>
+<p>Does the same processing as <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code>, except it does not make the data value available to the other contained processing directives. For more information, see <a class="reference external" href="SaveAsXML_DirectivesRef.html#50409488_21899">Proc-var</a>.</p>
+<p id="dtd-content-rule-11"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">delimeter</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">prefix</span> <span class="o">|</span>
+<span class="n">Element</span><span class="o">-</span><span class="n">name</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">integer</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">fixed</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">length</span> <span class="o">|</span>
+<span class="n">Proc</span><span class="o">-</span><span class="n">pixels</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">enum</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">var</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">proplist</span> <span class="o">|</span> <span class="n">Call</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span> <span class="o">|</span>
+<span class="n">Proc</span><span class="o">-</span><span class="n">graphic</span><span class="o">-</span><span class="n">content</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">content</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">text</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">children</span> <span class="o">|</span>
+<span class="n">Walk</span><span class="o">-</span><span class="n">metadata</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">metadata</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">cached</span><span class="o">-</span><span class="nb">property</span><span class="o">-</span><span class="n">sets</span> <span class="o">|</span>
+<span class="n">Walk</span><span class="o">-</span><span class="n">structure</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">layout</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">suffix</span> <span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-10"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Compare</p></td>
+<td><p>String</p></td>
+<td><p>Optional. The value used to determine <code class="docutils literal notranslate"><span class="pre">Diff-from-value</span></code>, <code class="docutils literal notranslate"><span class="pre">Matches-value</span></code>, <code class="docutils literal notranslate"><span class="pre">Less-than-value</span></code>, or <code class="docutils literal notranslate"><span class="pre">More-than-value</span></code>. This should be the same type (Fixed, Int32, Atom, String) as the property.                    |</p></td>
+</tr>
+<tr class="row-odd"><td><p>Condition</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Indicates whether the directives that are children of the <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive are to be executed. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Always</span></code>: Always execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Has-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found on this node (either explicit or Default).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-default-for-event</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by Default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-ancestor</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by searching the inheritance tree for any ancestor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-parent</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by examining the inheritance cache of the parent.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-predecessor</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by examining the inheritance cache of the preceding peer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can be used with any type.                                         |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Matches-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value matches that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can be used with any type.                                                |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Less-than-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is less than that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String.                 |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Less-equal-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is less than or equal to that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String.    |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">More-than-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is greater than that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String.              |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">More-equal-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is greater than or equal to that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String. |</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>Default</p></td>
+<td><p>String</p></td>
+<td><p>Optional. The value to be used if the property is not found on this element (or through inheritance). This should be the same type (Fixed, Int32, Atom, String) as the property.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inherit</p></td>
+<td><p>Choice</p></td>
+<td><p>Optional. Whether the property value can be inherited from a parent. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Inheritable</span></code>: This property can be inherited.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Not-inherited</span></code>: This property cannot be inherited (Default).</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>Owner</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. The owner of the property dictionary. One of:</p>
+<blockquote>
+<div><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Metadata</span></code>: This is a pseudo-owner for entries in the document’s metadata.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Structelem</span></code>: This is a pseudo-owner for properties specified directly in the StructElem’s obj dictionary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Layout</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by Layout.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Link</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by Link.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">List</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by List.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Table</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by Table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Auto-span</span></code>: This is a pseudo-owner generated by the SaveAs processor for each span it synthesizes by consolidating Tj operators having common styling properties (font, size, color, etc.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Inline-markup</span></code>: This is a pseudo-owner generated by the SaveAs processor when the following inline marking is encountered:</p>
+<blockquote>
+<div><p>/Span &lt;&lt; … &gt;&gt; BDC (abbrev.) Tj EMC</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Pdf-var</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of a property in a given property dictionary (see <code class="docutils literal notranslate"><span class="pre">Owner</span></code>) to be processed or evaluated.                                                                                                               |</p></td>
+</tr>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. The primary PDF datatype of the property (see <code class="docutils literal notranslate"><span class="pre">Has-enum</span></code> for a possible secondary datatype). One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Fixed</span></code>: Fixed-point number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Int32</span></code>: A signed integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Atom</span></code>: A PDF key (/XYZ).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span></code>: A PDF string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Color</span></code>: An RGB color (array of three Fixed values).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BBox</span></code>: A bounding box (array of four Fixed values).</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="event">
+<h2>Event<a class="headerlink" href="#event" title="Permalink to this headline">¶</a></h2>
+<p>Governs the processing of a node in the layout, logical-structure, metadata, or stylesheet trees. Specifies the processing that is to be performed on entering or exiting the named node.</p>
+<p id="dtd-content-rule-12"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">prefix</span> <span class="o">|</span> <span class="n">Element</span><span class="o">-</span><span class="n">name</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">var</span> <span class="o">|</span>
+<span class="n">Walk</span><span class="o">-</span><span class="n">proplist</span> <span class="o">|</span> <span class="n">Call</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">suffix</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">graphic</span><span class="o">-</span><span class="n">content</span> <span class="o">|</span>
+<span class="n">Proc</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">content</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">text</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">children</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">metadata</span> <span class="o">|</span>
+<span class="n">Emit</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">metadata</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">cached</span><span class="o">-</span><span class="nb">property</span><span class="o">-</span><span class="n">sets</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">structure</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">layout</span> <span class="o">|</span>
+<span class="n">Evaluate</span><span class="o">-</span><span class="n">var</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-11"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-11">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Event-class</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Identifies which transition into or out of the node is to be processed using this event description. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Enter</span></code>: Node is being entered from either parent or peer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Enter-from-parent</span></code>: Node is being entered from parent, but not from peer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Enter-from-peer</span></code>: Node is being entered from peer, but not from parent.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exit</span></code>: Node is being exited to either parent or to peer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exit-to-parent</span></code>: Node is being exited to parent, but not to peer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Exit-to-peer</span></code>: Node is being exited to peer, but not to parent.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Begin-children</span></code>: Node is being exited to begin processing its children.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">End-children</span></code>: Node is being re-entered after processing its children.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Node-content</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Empty</span></code>: Node has no children or direct content.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Has-text-only</span></code>: Node has only text content (no other elements).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Has-kids</span></code>: Node has child elements (including possible text-only spans.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Graphic</span></code>: Node contains (vector) graphic data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Image</span></code>: Node contains bitmap image data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Other</span></code>: Node is something other than those listed above.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>Node-name</p></td>
+<td><p>String</p></td>
+<td><p>Required. Name of the element or role to match, in order to select this event descriptor for processing.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Node-type</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. The <code class="docutils literal notranslate"><span class="pre">Node-name</span></code> attribute is matched against either the <code class="docutils literal notranslate"><span class="pre">/S</span></code> key of the StructElem (<code class="docutils literal notranslate"><span class="pre">Structure-user-label</span></code>) or against the result of processing that key via the RoleMap (<code class="docutils literal notranslate"><span class="pre">Structure-role</span></code>). One of: |</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Any</span></code>: Attempt to match on <code class="docutils literal notranslate"><span class="pre">Structure-user-label</span></code> then on <code class="docutils literal notranslate"><span class="pre">Structure-role</span></code>. Also used for matching within metadata and stylesheet construction.                                                                  |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Structure-role</span></code>: Compare <code class="docutils literal notranslate"><span class="pre">Node-name</span></code> to the result of processing the StructElem’s <code class="docutils literal notranslate"><span class="pre">/S</span></code> key via the RoleMap.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Structure-user-label</span></code>: Compare <code class="docutils literal notranslate"><span class="pre">Node-name</span></code> to the StructElem’s <code class="docutils literal notranslate"><span class="pre">/S</span></code> key.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-doc-text">
+<h2>Proc-doc-text<a class="headerlink" href="#proc-doc-text" title="Permalink to this headline">¶</a></h2>
+<p>Emits the text contained in the current structural element.</p>
+<p id="dtd-content-rule-13"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-12"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-12">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>do-br-substitution</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">do-br-substitution</span></code>: Emit a <code class="docutils literal notranslate"><span class="pre">&lt;BR&gt;</span></code> for every newline found in the doc text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">do-xml-br-substitution</span></code>: Emit a <code class="docutils literal notranslate"><span class="pre">&lt;br</span> <span class="pre">/&gt;</span></code> for every newline found in the doc text.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">no-substitution</span></code>: Disregard newlines in doc text.</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-enum">
+<h2>Proc-enum<a class="headerlink" href="#proc-enum" title="Permalink to this headline">¶</a></h2>
+<p>If the data cached by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive is a string or an atom, searches for a match among the <code class="docutils literal notranslate"><span class="pre">proc-enum</span></code> choice elements that are children of this control element. If a match is found, issues the <code class="docutils literal notranslate"><span class="pre">Value-out</span></code> value of the matching <code class="docutils literal notranslate"><span class="pre">Proc-enum-choice</span></code> directive as a string.</p>
+<p id="dtd-content-rule-14"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Proc</span><span class="o">-</span><span class="n">enum</span><span class="o">-</span><span class="n">choice</span><span class="o">+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="proc-enum-choice">
+<h2>Proc-enum-choice<a class="headerlink" href="#proc-enum-choice" title="Permalink to this headline">¶</a></h2>
+<p>Specifies the choice and output values for a <code class="docutils literal notranslate"><span class="pre">Proc-enum</span></code> directive.</p>
+<p id="dtd-content-rule-15"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-13"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-13">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Value-in</p></td>
+<td><p>String</p></td>
+<td><p>Required. This value is compared to the value cached by the containing <code class="docutils literal notranslate"><span class="pre">proc-var</span></code> directive.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Value-out</p></td>
+<td><p>String</p></td>
+<td><p>Required. This value is emitted as a string if a match against <code class="docutils literal notranslate"><span class="pre">Value-in</span></code> is found.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-fixed">
+<h2>Proc-fixed<a class="headerlink" href="#proc-fixed" title="Permalink to this headline">¶</a></h2>
+<p>If the data cached by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive is a FixedPoint number, emits the text representation of the value. This value is scaled using the attributes of this directive as follows:</p>
+<ol class="arabic simple">
+<li><p>The original value is multiplied by the value of the <code class="docutils literal notranslate"><span class="pre">Mul</span></code> attribute.</p></li>
+<li><p>The value of the <code class="docutils literal notranslate"><span class="pre">Add</span></code> attribute is added to the result of step 1.</p></li>
+<li><p>The result of step 2 is divided by <code class="docutils literal notranslate"><span class="pre">Div</span></code>.</p></li>
+<li><p>The result of step 3 is converted to a string. <code class="docutils literal notranslate"><span class="pre">Frac-len</span></code> controls the number of digits to the right of the decimal point. <code class="docutils literal notranslate"><span class="pre">Frac-dlm</span></code> is the fraction-radix character to be issued if <code class="docutils literal notranslate"><span class="pre">Frac-len</span></code> is greater than 0.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">Proc-fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">Proc-length</span></code>, and <code class="docutils literal notranslate"><span class="pre">Proc-pixels</span></code> vary only in the default values for <code class="docutils literal notranslate"><span class="pre">Mul</span></code>, <code class="docutils literal notranslate"><span class="pre">Div</span></code>, and <code class="docutils literal notranslate"><span class="pre">Add</span></code>.</p>
+<p id="dtd-content-rule-16"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-14"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-14">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Add</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Div</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>Frac-dlm</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is “.”</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frac-len</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 2.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mul</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 1.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-graphic-content">
+<h2>Proc-graphic-content<a class="headerlink" href="#proc-graphic-content" title="Permalink to this headline">¶</a></h2>
+<p>Processes the content of the current structural element as a vector graphic.</p>
+<p id="dtd-content-rule-17"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+</div>
+<div class="section" id="proc-hex">
+<h2>Proc-hex<a class="headerlink" href="#proc-hex" title="Permalink to this headline">¶</a></h2>
+<p>If the data cached by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive is an Int32, an Uns32, or a Fixed, emits the text representation of the integer portion of the value, after the scaling algorithm is applied. This value is scaled using the attributes of this directive as follows:</p>
+<ol class="arabic simple">
+<li><p>The original value is multiplied by the value of the <code class="docutils literal notranslate"><span class="pre">Mul</span></code> attribute.</p></li>
+<li><p>The value of the <code class="docutils literal notranslate"><span class="pre">Add</span></code> attribute is added to the result of step 1.</p></li>
+<li><p>The result of step 2 is divided by <code class="docutils literal notranslate"><span class="pre">Div</span></code> and the fraction is discarded.</p></li>
+<li><p>The result of step 3 is converted to a string.</p></li>
+</ol>
+<p id="dtd-content-rule-18"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-15"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-15">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Add</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Div</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mul</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Num-digits</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 2.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-image-content">
+<h2>Proc-image-content<a class="headerlink" href="#proc-image-content" title="Permalink to this headline">¶</a></h2>
+<p>Processes the content of the current structural element as a bitmapped graphic.</p>
+<p id="dtd-content-rule-19"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+</div>
+<div class="section" id="proc-integer">
+<h2>Proc-integer<a class="headerlink" href="#proc-integer" title="Permalink to this headline">¶</a></h2>
+<p>If the data cached by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive is an Int32 or an Uns32, emits the text representation of the value. This value is scaled using the attributes of this directive as follows:</p>
+<ol class="arabic simple">
+<li><p>The original value is multiplied by the value of the <code class="docutils literal notranslate"><span class="pre">Mul</span></code> attribute.</p></li>
+<li><p>The value of the <code class="docutils literal notranslate"><span class="pre">Add</span></code> attribute is added to the result of step 1.</p></li>
+<li><p>The result of step 2 is divided by <code class="docutils literal notranslate"><span class="pre">Div</span></code> and the fraction is discarded.</p></li>
+<li><p>The result of step 3 is converted to a string.</p></li>
+</ol>
+<p id="dtd-content-rule-20"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-16"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-16">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Add</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Div</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mul</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 1.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-length">
+<h2>Proc-length<a class="headerlink" href="#proc-length" title="Permalink to this headline">¶</a></h2>
+<p>If the data cached by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive is a FixedPoint number, emits the text representation of the value. This value is scaled using the attributes of this directive as follows:</p>
+<ol class="arabic simple">
+<li><p>The original value is multiplied by the value of the <code class="docutils literal notranslate"><span class="pre">Mul</span></code> attribute.</p></li>
+<li><p>The value of the <code class="docutils literal notranslate"><span class="pre">Add</span></code> attribute is added to the result of step 1.</p></li>
+<li><p>The result of step 2 is divided by <code class="docutils literal notranslate"><span class="pre">Div</span></code>.</p></li>
+<li><p>The result of step 3 is converted to a string. <code class="docutils literal notranslate"><span class="pre">Frac-len</span></code> controls the number of digits to the right of the decimal point. <code class="docutils literal notranslate"><span class="pre">Frac-dlm</span></code> is the fraction-radix character to be issued if <code class="docutils literal notranslate"><span class="pre">Frac-len</span></code> is greater than 0.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">Proc-fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">Proc-length</span></code>, and <code class="docutils literal notranslate"><span class="pre">Proc-pixels</span></code> vary only in the default values for <code class="docutils literal notranslate"><span class="pre">Mul</span></code>, <code class="docutils literal notranslate"><span class="pre">Div</span></code>, and <code class="docutils literal notranslate"><span class="pre">Add</span></code>.</p>
+<p id="dtd-content-rule-21"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-17"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-17">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Add</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Div</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 72.</p></td>
+</tr>
+<tr class="row-even"><td><p>Frac-dlm</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is “.” (decimal point).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frac-len</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 2.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mul</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 72.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-pixels">
+<h2>Proc-pixels<a class="headerlink" href="#proc-pixels" title="Permalink to this headline">¶</a></h2>
+<p>If the data cached by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive is a FixedPoint number, emits the text representation of the value. This value is scaled using the attributes of this directive:</p>
+<ol class="arabic simple">
+<li><p>The original value is multiplied by the value of the <code class="docutils literal notranslate"><span class="pre">Mul</span></code> attribute.</p></li>
+<li><p>The value of the <code class="docutils literal notranslate"><span class="pre">Add</span></code> attribute is added to the result of step 1.</p></li>
+<li><p>The result of step 2 is divided by <code class="docutils literal notranslate"><span class="pre">Div</span></code>.</p></li>
+<li><p>The result of step 3 is converted to a string. <code class="docutils literal notranslate"><span class="pre">Frac-len</span></code> controls the number of digits to the right of the decimal point. <code class="docutils literal notranslate"><span class="pre">Frac-dlm</span></code> is the fraction-radix character to be issued if <code class="docutils literal notranslate"><span class="pre">Frac-len</span></code> is greater than 0.</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">Proc-fixed</span></code>, <code class="docutils literal notranslate"><span class="pre">Proc-length</span></code>, and <code class="docutils literal notranslate"><span class="pre">Proc-pixels</span></code> vary only in the default values for <code class="docutils literal notranslate"><span class="pre">Mul</span></code>, <code class="docutils literal notranslate"><span class="pre">Div</span></code>, and <code class="docutils literal notranslate"><span class="pre">Add</span></code>.</p>
+<p id="dtd-content-rule-22"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-18"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-18">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Add</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 36.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Div</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 72.</p></td>
+</tr>
+<tr class="row-even"><td><p>Frac-dlm</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is “.” (decimal point).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Frac-len</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>Mul</p></td>
+<td><p>String</p></td>
+<td><p>Optional. Default is 96.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="proc-property">
+<h2>Proc-property<a class="headerlink" href="#proc-property" title="Permalink to this headline">¶</a></h2>
+<p>Processes an arbitrary property. This is similar to <code class="docutils literal notranslate"><span class="pre">proc-var</span></code>, except that it does not select or filter which properties are processed, but simply takes each property owned by the current owner in turn.</p>
+<p id="dtd-content-rule-23"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">delimeter</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Property</span><span class="o">-</span><span class="n">name</span> <span class="o">|</span> <span class="n">Property</span><span class="o">-</span><span class="nb">type</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="proc-string">
+<h2>Proc-string<a class="headerlink" href="#proc-string" title="Permalink to this headline">¶</a></h2>
+<p>If the data cached by the containing <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive is a string or an atom, emits the text content of the string or a text representation of the atom’s name.</p>
+<p id="dtd-content-rule-24"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+</div>
+<div class="section" id="proc-var">
+<h2>Proc-var<a class="headerlink" href="#proc-var" title="Permalink to this headline">¶</a></h2>
+<p>Specifies the formatting and conversion of the named attribute or property (PDF-variable).</p>
+<p>This directive also caches the data value and type of the value specified for use by various processing directives within this element.</p>
+<p id="dtd-content-rule-25"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">delimeter</span> <span class="o">|</span><span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">prefix</span> <span class="o">|</span>
+<span class="n">Element</span><span class="o">-</span><span class="n">name</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">integer</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">fixed</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">length</span> <span class="o">|</span>
+<span class="n">Proc</span><span class="o">-</span><span class="n">pixels</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">enum</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">text</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">graphic</span><span class="o">-</span><span class="n">content</span> <span class="o">|</span>
+<span class="n">Proc</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">content</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">suffix</span> <span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-19"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-19">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Compare</p></td>
+<td><p>String</p></td>
+<td><p>Optional. The value used to determine <code class="docutils literal notranslate"><span class="pre">Diff-from-value</span></code>, <code class="docutils literal notranslate"><span class="pre">Matches-value</span></code>, <code class="docutils literal notranslate"><span class="pre">Less-than-value</span></code>, or <code class="docutils literal notranslate"><span class="pre">More-than-value</span></code>. This should be the same type (Fixed, Int32, Atom, String) as the property.                    |</p></td>
+</tr>
+<tr class="row-odd"><td><p>Condition</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Indicates whether the directives that are children of the <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive are to be executed. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Always</span></code>: Always execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Has-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found on this node (either explicit or Default).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-default-for-event</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by Default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-ancestor</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by searching the inheritance tree for any ancestor.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-parent</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by examining the inheritance cache of the parent.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-predecessor</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by examining the inheritance cache of the preceding peer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Diff-from-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value differs from that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can be used with any type.                                         |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Matches-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value matches that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can be used with any type.                                                |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Less-than-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is less than that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String.                 |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Less-equal-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is less than or equal to that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String.    |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">More-than-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is greater than that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String.              |</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">More-equal-value</span></code>: Execute the children of this <code class="docutils literal notranslate"><span class="pre">Proc-var</span></code> directive if a value is found and that value is greater than or equal to that specified by <code class="docutils literal notranslate"><span class="pre">Compare</span></code>. Can only be used with: Fixed, Int32, Atom, String. |</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>Default</p></td>
+<td><p>String</p></td>
+<td><p>Optional. The value to be used if the property is not found on this element (or through inheritance). This should be the same type (Fixed, Int32, Atom, String) as the property.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Inherit</p></td>
+<td><p>Choice</p></td>
+<td><p>Optional. Whether the property value can be inherited from a parent. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Inheritable</span></code>: This property can be inherited.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Not-inherited</span></code>: This property cannot be inherited (Default).</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>Owner</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. The owner of the property dictionary. One of:</p>
+<blockquote>
+<div><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">Metadata</span></code>: This is a pseudo-owner for entries in the document’s metadata.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Structelem</span></code>: This is a pseudo-owner for properties specified directly in the StructElem’s obj dictionary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Layout</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by Layout.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Link</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by Link.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">List</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by List.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Table</span></code>: Properties in the StructElem’s Attribute dictionary list within the dictionary owned by Table.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Auto-span</span></code>: This is a pseudo-owner generated by the SaveAs processor for each span it synthesizes by consolidating Tj operators having common styling properties (font, size, color, etc.).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Inline-markup</span></code>: This is a pseudo-owner generated by the SaveAs processor when the following inline marking is encountered:</p>
+<blockquote>
+<div><p>/Span &lt;&lt; … &gt;&gt; BDC (abbrev.) Tj EMC</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Pdf-var</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of a property in a given property dictionary (see Owner) to be processed or evaluated.</p></td>
+</tr>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. The primary PDF datatype of the property (see <code class="docutils literal notranslate"><span class="pre">Has-enum</span></code> for a possible secondary datatype). One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Fixed</span></code>: Fixed-point number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Int32</span></code>: A signed integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Atom</span></code>: A PDF key (/XYZ).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span></code>: A PDF string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Color</span></code>: An RGB color (array of three Fixed values)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BBox</span></code>: A bounding box (array of four Fixed values)</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="property-name">
+<h2>Property-name<a class="headerlink" href="#property-name" title="Permalink to this headline">¶</a></h2>
+<p>Processes the name and key portion of an arbitrary property.</p>
+<p id="dtd-content-rule-26"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+</div>
+<div class="section" id="property-type">
+<h2>Property-type<a class="headerlink" href="#property-type" title="Permalink to this headline">¶</a></h2>
+<p>Processes the data portion of an arbitrary property.</p>
+<p id="dtd-content-rule-27"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">delimeter</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">integer</span> <span class="o">|</span>
+<span class="n">Proc</span><span class="o">-</span><span class="n">fixed</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">length</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">pixels</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">enum</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">doc</span><span class="o">-</span><span class="n">text</span> <span class="o">|</span>
+<span class="n">Proc</span><span class="o">-</span><span class="n">graphic</span><span class="o">-</span><span class="n">content</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">content</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-20"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-20">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>Choice</p></td>
+<td><p>Required—The primary PDF datatype of the property. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Fixed</span></code>: Fixed-point number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Int32</span></code>: A signed integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Atom</span></code>: A PDF key (/XYZ).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">String</span></code>: A PDF string.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Color</span></code>: An RGB color (array of three Fixed values).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BBox</span></code>: A bounding box (array of four Fixed values).</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="root">
+<h2>Root<a class="headerlink" href="#root" title="Permalink to this headline">¶</a></h2>
+<p>The root node of a mapping table. Its attributes specify the name of the filter to appear in the menu and information necessary to properly generate the output file name and type information.</p>
+<p id="dtd-content-rule-28"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Define</span><span class="o">-</span><span class="n">event</span><span class="o">-</span><span class="nb">list</span> <span class="o">|</span> <span class="n">Define</span><span class="o">-</span><span class="n">proc</span><span class="o">-</span><span class="nb">list</span> <span class="o">|</span>
+<span class="n">Walk</span><span class="o">-</span><span class="n">metadata</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="nb">all</span><span class="o">-</span><span class="n">metadata</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">cached</span><span class="o">-</span><span class="nb">property</span><span class="o">-</span><span class="n">sets</span> <span class="o">|</span>
+<span class="n">Walk</span><span class="o">-</span><span class="n">structure</span> <span class="o">|</span> <span class="n">Walk</span><span class="o">-</span><span class="n">layout</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-21"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-21">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Encode-out</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. The encoding of the output file. One of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Utf-8-out</span></code>: The file is encoded in UTF-8 (8-bit Unicode).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Utf-16-out</span></code>: The file is encoded in UTF-16 (16-bit Unicode).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Ucs-4-out</span></code>: The file is encoded in UCS-4 (32-bit Unicode).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Iso-latin-1-out</span></code>: The file is encoded as ISO-Latin-1. All Unicode values above 0x00FF are output as numeric character entities (&amp;#xFFFF;).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Html-ascii-out</span></code>: The file is encoded as 7-bit ASCII. All Unicode values above 0x007F are output as numeric character entities (&amp;#xFFFF;).</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>File-format</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Internal unique name that describes the format of the output file. The following formats are provided:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Html-3-02</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Html-4-01-with-css-1-00</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Xml-1-00</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Plain</span> <span class="pre">Text</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>Mac-creator</p></td>
+<td><p>String</p></td>
+<td><p>Required. The file creator field for a Mac OS file.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Mac-type</p></td>
+<td><p>String</p></td>
+<td><p>Required. The file type field for a Mac OS file.</p></td>
+</tr>
+<tr class="row-even"><td><p>Menu-name</p></td>
+<td><div class="line-block">
+<div class="line">String or | Identifier</div>
+</div>
+</td>
+<td><p>Required. The text string describing the file format that appears in the Save As dialog box’s pulldown menu. The following predefined identifiers, which provide localized menu name strings, can be used in place of a string:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">$IDS_HTML_3_2_MENU_NAME</span> <span class="pre">-</span> <span class="pre">localized</span> <span class="pre">string</span> <span class="pre">&quot;HTML</span> <span class="pre">3.2&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$IDS_HTML_4_01_CSS_1_0_MENU_NAME</span> <span class="pre">-</span> <span class="pre">localized</span> <span class="pre">string</span> <span class="pre">&quot;HTML</span> <span class="pre">4.01</span> <span class="pre">with</span> <span class="pre">CSS</span> <span class="pre">1.0&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$IDS_XML_1_0_MENU_NAME</span> <span class="pre">-</span> <span class="pre">localized</span> <span class="pre">string</span> <span class="pre">&quot;XML</span> <span class="pre">1.0&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$IDS_PLAIN_TEXT_MENU_NAME</span> <span class="pre">-</span> <span class="pre">localized</span> <span class="pre">string</span> <span class="pre">&quot;Text</span> <span class="pre">(Plain)&quot;</span></code></p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Win-suffix</p></td>
+<td><p>String</p></td>
+<td><p>Required. The three-letter file type suffix for the Windows environment. Also used on Mac OS files.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="void">
+<h2>Void<a class="headerlink" href="#void" title="Permalink to this headline">¶</a></h2>
+<p>This node is used to avoid the <code class="docutils literal notranslate"><span class="pre">&lt;empty/&gt;</span></code> syntax of XML and force the <code class="docutils literal notranslate"><span class="pre">&lt;name&gt;&lt;/name&gt;</span></code> syntax of SGML, which allows editing on any SGML editor as well as any XML editor.</p>
+<p>Many elements have the content rule “Void?”. However, the Void element should never be specified, thereby leaving the containing node empty.</p>
+<p id="dtd-content-rule-29"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">EMPTY</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="walk-cached-property-sets">
+<h2>Walk-cached-property-sets<a class="headerlink" href="#walk-cached-property-sets" title="Permalink to this headline">¶</a></h2>
+<p>Directs the SaveAs processor to construct a stylesheet cache and walk the stylesheet data.</p>
+<p id="dtd-content-rule-30"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-22"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-22">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Use-event-list</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of an event processing list (as in <code class="docutils literal notranslate"><span class="pre">&lt;define-event-list&gt;</span></code>) to be used to process the events generated by walking the stylesheet data (ClassMap and class information) of the document. |</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="walk-children">
+<h2>Walk-children<a class="headerlink" href="#walk-children" title="Permalink to this headline">¶</a></h2>
+<p>Directs the SaveAs processor to walk the kids list of the current structural element.</p>
+<p id="dtd-content-rule-31"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-23"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-23">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Use-event-list</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of an event processing list (see <code class="docutils literal notranslate"><span class="pre">&lt;define-event-list&gt;</span></code>) to be used to process the events generated by walking the first-level children of the current structural element. |</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="walk-layout">
+<h2>Walk-layout<a class="headerlink" href="#walk-layout" title="Permalink to this headline">¶</a></h2>
+<p>This directive is not supported in this version of SaveAsXML.</p>
+</div>
+<div class="section" id="walk-metadata">
+<h2>Walk-metadata<a class="headerlink" href="#walk-metadata" title="Permalink to this headline">¶</a></h2>
+<p>Directs the SaveAsXML processor to walk the <code class="docutils literal notranslate"><span class="pre">DocInfo</span></code> metadata portion of the PDF document.</p>
+<p id="dtd-content-rule-32"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-24"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-24">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Use-proc-list</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of an event processing list (as in <code class="docutils literal notranslate"><span class="pre">&lt;define-proc-list&gt;</span></code>) to be used to process the attributes found by walking the metadata portion of the document. |</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="walk-proplist">
+<h2>Walk-proplist<a class="headerlink" href="#walk-proplist" title="Permalink to this headline">¶</a></h2>
+<p>Directs the SaveAs processor to walk the specified generic property list (property lists owned by XML, HTML-3.20, and HTML-4.01). This is used to process arbitrary, user-supplied attributes of the current structural element.</p>
+<p id="dtd-content-rule-33"><strong>DTD content rule</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Comment</span> <span class="o">|</span> <span class="n">Conditional</span><span class="o">-</span><span class="n">delimeter</span> <span class="o">|</span> <span class="n">Emit</span><span class="o">-</span><span class="n">string</span> <span class="o">|</span> <span class="n">Proc</span><span class="o">-</span><span class="nb">property</span><span class="p">)</span><span class="o">+</span>
+</pre></div>
+</div>
+<p id="attributes-25"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-25">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Owner</p></td>
+<td><p>Choice</p></td>
+<td><p>Required. Selects the attribute list owner. One of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Xml</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Html-3.20</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Html-4.01</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Css-1.00</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Css-2.00</span></code></p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="walk-structure">
+<h2>Walk-structure<a class="headerlink" href="#walk-structure" title="Permalink to this headline">¶</a></h2>
+<p>Directs the SaveAsXML processor to walk the logical structure tree and associated content of the PDF document.</p>
+<p id="dtd-content-rule-34">DTD content rule</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Void?
+</pre></div>
+</div>
+<p id="attributes-26"><strong>Attributes</strong></p>
+<table class="colwidths-given docutils align-default" id="section-26">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Name</p></td>
+<td><p>Type</p></td>
+<td><p>Description</p></td>
+</tr>
+<tr class="row-even"><td><p>Use-event-list</p></td>
+<td><p>String</p></td>
+<td><p>Required. The name of an event processing list (as in <code class="docutils literal notranslate"><span class="pre">&lt;define-event-list&gt;</span></code>) to be used to process the events generated by walking the structure tree of the document. |</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: May 18, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
