@@ -1,0 +1,2788 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="Weblink,,,,WebDriverVector,WWWOpenURLParamsRec,WDVCURRENTREV,PROGRESS_HAS_METER,PROGRESS_HAS_CANCEL,WEB_LINK_HFT_LATEST_VERSION,WebLinkNUMSELECTORS,WLHFTNAME,Init_gWLHFT,RegisterWebDriver,BeginWebProgress,UpdateWebProgress,EndWebProgress,GetAppSpecifier,WebProgressDidCancel,WWWOpenURL,WLCreateOrDeleteWebLinks,WWWOpenURLWithParams,WDAppSpecifier,WWWOpenURLParams,WebProgressMonitor,WDAppSupportPredicate,WDFollowLinkFunction,WDFollowLinkWithParamsFunction,WDBecomeDriverFunction,WDBringFrontFunction,WDOptionsFunction,WDIsDriverBusyFunction,gWLHFT,WDAppSupportPredicateProc,WDFollowLinkFunctionProc,WDFollowLinkWithParamsFunctionProc,WDBecomeDriverFunctionProc,WDBringFrontFunctionProc,WDOptionsFunctionProc,WDIsDriverBusyFunctionProc,RegisterWebDriver,BeginWebProgress,UpdateWebProgress,EndWebProgress,GetAppSpecifier,WebProgressDidCancel,WWWOpenURL,WLCreateOrDeleteWebLinks,WWWOpenURLWithParams,WDAppSpecifier,WDAppSpecifier" name="keywords">
+<title>AV_Layer.Weblink (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Weblink - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?AV_Layer/Weblink.html&amp;AV_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Weblink</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#defineSummary">Defines</a>&nbsp;| <a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#variableSummary">Variables</a>&nbsp;| <a href="#structureSummary">Structures</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Weblink"); titleBar_setSubNav(true,true,false,true,true,false,false,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">AV_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">Weblink</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>
+          A link in <a href="#a" target="">a</a> PDF document that references a URL is referred to as a <i>Weblink</i>.
+        </p><p>
+          The Adobe Acrobat Weblink plug-in adds the capability of linking to documents on the World
+          Wide Web. It allows other plug-ins to access its functionality by means of a Host Function Table (<a href="../AS_Layer/HFT_and_HFT_Server.html#HFT" target="">HFT</a>)
+          API.
+        </p><p>
+          This document describes the Weblink APIs. It also provides information on Adobe's Standard
+          Weblink Driver, which performs low-level, platform-specific functions with a Web browser on behalf of
+          Weblink.
+        </p><p>
+          The Acrobat Weblink plug-in exports its own Host Function Table (HFT), whose methods can be
+          <a href="../PDF_Library/General.html#used" target="">used</a> by other plug-ins. The HFT's <a href="../PDFEdit_Layer/General.html#name" target="">name</a> is <a href="../PDF_Library/General.html#defined" target="">defined</a> in the <a href="Weblink.html#WLHFTNAME" target="">WLHFTNAME</a> macro, and its <a href="General.html#version" target="">version</a> number is
+          <code>WEB_LINK_HFT_LATEST_VERSION</code>.
+        </p><p>
+          To use the Weblink plug-in's HFT, a plug-in must <a href="#include" target="">include</a> the <a href="../COS_Layer/General.html#header" target="">header</a>
+          <a href="../PD_Layer/General.html#file" target="">file</a> <code>WeblinkHFT.h</code>. The plug-in must also import the HFT using
+          ASExtensionMgrGetHFT() and assign the HFT returned by this call to a plug-in-defined global
+          variable named <code>gWLHFT</code>. The easiest way to do this is to use the
+          Init_gWLHFT macro defined in the header files.
+        </p><p>
+          <b>Weblink services</b>
+        </p><p>The Weblink plug-in provides the following services:</p><ul>
+          <li>Maintenance of links (editing and storage of URLs associated with links, and so on)</li>
+          <li>Manipulation of links (appropriate cursor changes and dynamic display of URL destinations)</li>
+          <li>Selection of the external Web browser</li>
+          <li>Driver manipulation</li>
+          <li>Basic progress status services (progress monitor, wait cursor, and so on)</li>
+        </ul><p>
+          <b>Standard Weblink driver</b>
+        </p><p>
+          The Weblink plug-in includes a standard driver, known as Adobe's Standard Web Driver. It
+          allows support for transport mechanisms or Web browsers to be added at a later time.
+        </p><p>
+          The Standard Driver uses DDE messages and Apple events to communicate with a web browser.
+          It supports a protocol that consists of a suite of verbs, some going to and some coming from the
+          web browser. These verb definitions are provided so that Web browsers can implement this protocol
+          to be compatible with the Adobe Standard Web Driver. Each verb is specified in terms of the
+          platform-specific implementation: DDE on <a href="Windows.html" target="">Windows</a> and Apple events on Mac OS.
+          The Standard Driver's use of each verb is also described. Browsers that wish to use their own protocol
+          may do so by writing a custom driver.
+        </p><p>
+          The Weblink plug-in communications software in the Weblink driver is independent of the
+          Acrobat mechanism for handling links (the PDF implementation of URLs). This separation improves
+          portability by isolating the highly platform-specific Interapplication Communication messages.
+          Even on a given platform, there is no standard among Web browsers for handling interapplication
+          communication, and the actual transport mechanism may vary over time. By separating out the transport
+          code, the Weblink plug-in remains portable across platforms, across different vendor's implementations
+          of web browsers, and across different versions of web browsers from the same vendor.
+        </p><p>
+          <b>Custom Weblink driver</b>
+        </p><p>
+          A driver is an Acrobat core plug-in, written like any other plug-in. A driver must register
+          itself with the Weblink plug-in during the import, replace, and register phase of the plug-in
+          initialization process by calling <a href="Weblink.html#RegisterWebDriver()" target="">RegisterWebDriver</a>(). You pass this method a <a href="Weblink.html#WebDriverVector" target="">WebDriverVector</a> structure
+          containing a version number and six pointers to functions that your driver provides to handle
+          web browser-specific tasks.
+        </p><p>A driver is responsible for the following:</p><ul>
+          <li>Connection with external services (either directly or through an external application).</li>
+          <li>Communication with external services.</li>
+          <li>Association of a base URL with a given document.</li>
+          <li>Identification of external browsers that are compatible with the driver.</li>
+        </ul><p>In a typical session, the following actions might occur:</p><ul>
+          <li>
+            <p>The user launches Acrobat.</p>
+            <ul>
+              <li>
+                The Weblink plug-in publishes a Host Function Table (HFT) during the
+                exportHFTsCallback() phase of initialization.
+              </li>
+              <li>
+                During the importReplaceAndRegisterCallback() phase, all drivers in turn call
+                RegisterWebDriver() in the Weblink plug-in's HFT to register themselves as available.
+              </li>
+              <li>
+                During the initCallback phase, the Weblink plug-in, if possible, selects an appropriate
+                driver and notifies it that it is the active driver.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>The user opens a PDF document with Weblinks and clicks a Weblink.</p>
+            <ul>
+              <li>The Weblink plug-in extracts the URL from the link and passes it to the driver.</li>
+              <li>
+                The driver packages the URL into an Interapplication Communication (IAC) message and
+                sends it to an external web browser (launching the web browser application, if
+                necessary).
+              </li>
+              <li>
+                The external Web browser brings itself to the foreground unless the URL's MIME type
+                is <code>application/pdf</code>.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>The Web browser retrieves the document and packages an IAC message.</p>
+            <ul>
+              <li>
+                The driver accepts the IAC message from the browser and opens the PDF document using
+                AVDocOpenFromFile(). The driver should associate the URL with the document.
+              </li>
+              <li>
+                To resolve relative links, Weblink prepends either a base URL with the document, or if
+                there is no base URL, the appropriate portion of the URL of the document the link is
+                in. For mapped links (links with the <code>isMap</code> attribute), it
+                appends a <code>"?"</code> followed by the mouse location's x- and
+                y-coordinates.
+              </li>
+            </ul>
+          </li>
+        </ul><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="defineSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Define Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Define</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#BeginWebProgress405">BeginWebProgress</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#EndWebProgress407">EndWebProgress</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#GetAppSpecifier408">GetAppSpecifier</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#Init_gWLHFT397">Init_gWLHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PROGRESS_HAS_CANCEL67">PROGRESS_HAS_CANCEL</a>
+<div class="summaryTableDescription">Add either a Cancel button or a message directing the user how to abort the operation. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PROGRESS_HAS_METER63">PROGRESS_HAS_METER</a>
+<div class="summaryTableDescription">Put a thermometer-style meter in the progress display. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#RegisterWebDriver404">RegisterWebDriver</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#UpdateWebProgress406">UpdateWebProgress</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDVCURRENTREV58">WDVCURRENTREV</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WEB_LINK_HFT_LATEST_VERSION372">WEB_LINK_HFT_LATEST_VERSION</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WebLinkNUMSELECTORS385">WebLinkNUMSELECTORS</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WebProgressDidCancel409">WebProgressDidCancel</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WLCreateOrDeleteWebLinks411">WLCreateOrDeleteWebLinks</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WLHFTNAME395">WLHFTNAME</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WWWOpenURL410">WWWOpenURL</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WWWOpenURLWithParams412">WWWOpenURLWithParams</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDAppSpecifier">WDAppSpecifier</a> (Macintosh)<div class="summaryTableDescription">A data structure that specifies the path name to the web browser. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDAppSpecifier">WDAppSpecifier</a> (UNIX)<div class="summaryTableDescription">A data structure that specifies the path name to the web browser. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDAppSpecifier">WDAppSpecifier</a> (Windows)<div class="summaryTableDescription">A data structure that specifies the path name to the web browser. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDAppSupportPredicate">WDAppSupportPredicate</a>
+<div class="summaryTableDescription">Tests whether a driver can support a given web browser application. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDBecomeDriverFunction">WDBecomeDriverFunction</a>
+<div class="summaryTableDescription">Called whenever the state of the driver changes from inactive to current, or vice versa. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDBringFrontFunction">WDBringFrontFunction</a>
+<div class="summaryTableDescription">Called when the user clicks on the Weblink toolbar button to switch to the browser application. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDFollowLinkFunction">WDFollowLinkFunction</a>
+<div class="summaryTableDescription">Follows and retrieves the link specified by a URL from the PDF document specified by theDoc. Weblink supplies the driver a fully resolved the URL. The driver is solely responsible for launching a web browser, if it requires one. If the driver depends on an external web browser, the driver or the web browser is responsible for bringing that browser to the foreground if the link data is not displayed by the Acrobat viewer.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDFollowLinkWithParamsFunction">WDFollowLinkWithParamsFunction</a>
+<div class="summaryTableDescription">Follows and retrieves the link specified by a URL from the PDF document specified by theDoc, going to a target frame. Weblink supplies the driver a fully resolved the URL. The driver is solely responsible for launching a web browser, if it requires one. If the driver depends on an external web browser, the driver or the web browser is responsible for bringing that browser to the foreground if the link data is not displayed by the Acrobat viewer.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDIsDriverBusyFunction">WDIsDriverBusyFunction</a>
+<div class="summaryTableDescription">(Optional) Called to determine if the driver is performing a transaction. Weblink uses this to check that the driver is not busy (driver-defined) before allowing a user to change preferences.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WDOptionsFunction">WDOptionsFunction</a>
+<div class="summaryTableDescription">(Optional) Called when the user clicks the Options button in the Weblink Preferences dialog box. If this function is NULL, the Options button is disabled. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WebProgressMonitor">WebProgressMonitor</a>
+<div class="summaryTableDescription">A data structure that implements a progress monitor. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#WWWOpenURLParams">WWWOpenURLParams</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="variableSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Variable Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Variable</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gWLHFT387">gWLHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="structureSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Structure Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Structure</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#WebDriverVector348">WebDriverVector</a>
+<div class="summaryTableDescription">A data structure containing callbacks that implement a Weblink driver. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#WWWOpenURLParamsRec74">WWWOpenURLParamsRec</a>
+<div class="summaryTableDescription">A parameter block specifying the target frame of a URL. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">WebProgressMonitor <a class="signatureLink" href="#BeginWebProgress74()">BeginWebProgress</a>(char* message, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> timeoutTime)</div>
+<div class="summaryTableDescription">Creates a new Weblink progress. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#EndWebProgress111()">EndWebProgress</a>(<a href="Weblink.html#WebProgressMonitor" target="">WebProgressMonitor</a> progMon)</div>
+<div class="summaryTableDescription">Ends Web Progress. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">WDAppSpecifier <a class="signatureLink" href="#GetAppSpecifier125()">GetAppSpecifier</a>(<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> promptUser)</div>
+<div class="summaryTableDescription">Get App Specifier. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#RegisterWebDriver51()">RegisterWebDriver</a>(const char* driverName, void* driverRock, <a href="Weblink.html#WebDriverVector" target="">WebDriverVector</a>* wdVec)</div>
+<div class="summaryTableDescription">Register Web Driver.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#UpdateWebProgress105()">UpdateWebProgress</a>(<a href="Weblink.html#WebProgressMonitor" target="">WebProgressMonitor</a> progMon, char* message, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> from, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> to, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> outOf, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> timeoutTime)</div>
+<div class="summaryTableDescription">Updates Web Progress. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WDAppSupportPredicateProc112()">WDAppSupportPredicateProc</a>(void* driverRock, <a href="Weblink.html#WDAppSpecifier" target="">WDAppSpecifier</a> timeoutTime)</div>
+<div class="summaryTableDescription">Callback functions to test a driver. It tests whether a driver can support a given web browser application. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WDBecomeDriverFunctionProc180()">WDBecomeDriverFunctionProc</a>(void* driverRock, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bComing)</div>
+<div class="summaryTableDescription">Callback functions for driver state changes.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#WDBringFrontFunctionProc188()">WDBringFrontFunctionProc</a>(void* driverRock)</div>
+<div class="summaryTableDescription">Callback functions for Weblink toolbar button click.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WDFollowLinkFunctionProc137()">WDFollowLinkFunctionProc</a>(void* driverRock, <a href="AVDoc.html#AVDoc" target="">AVDoc</a> theDoc, char* cURL, char* cFormData)</div>
+<div class="summaryTableDescription">Callback functions for to Follow a Link.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WDFollowLinkWithParamsFunctionProc164()">WDFollowLinkWithParamsFunctionProc</a>(void* driverRock, <a href="AVDoc.html#AVDoc" target="">AVDoc</a> theDoc, char* cURL, char* cFormData, <a href="Weblink.html#WWWOpenURLParamsRec" target="">WWWOpenURLParams</a> params)</div>
+<div class="summaryTableDescription">Callback functions for to Follow a Link with parameters.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WDIsDriverBusyFunctionProc207()">WDIsDriverBusyFunctionProc</a>(void* driverRock)</div>
+<div class="summaryTableDescription">Callback functions to check driver transaction status (Optional) Called to determine if the driver is performing a transaction or not. Weblink uses this to check that the driver is not busy before allowing a user to change preferences. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#WDOptionsFunctionProc197()">WDOptionsFunctionProc</a>(void* driverRock)</div>
+<div class="summaryTableDescription">Callback functions for a Weblink Options button click.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WebProgressDidCancel133()">WebProgressDidCancel</a>(<a href="Weblink.html#WebProgressMonitor" target="">WebProgressMonitor</a> progMon)</div>
+<div class="summaryTableDescription">Checks if the Cancel button was clicked. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#WLCreateOrDeleteWebLinks161()">WLCreateOrDeleteWebLinks</a>(<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bCreate, <a href="../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> pdd, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> nStart, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> nEnd, ProgressMonitor pm, void* vPMData, CancelProc cp, void* vCPData)</div>
+<div class="summaryTableDescription">Creates Or Deletes WebLinks </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WWWOpenURL144()">WWWOpenURL</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* cURL, const char* cFormData)</div>
+<div class="summaryTableDescription">Opens a new URL. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#WWWOpenURLWithParams174()">WWWOpenURLWithParams</a>(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* cURL, const char* cFormData, <a href="Weblink.html#WWWOpenURLParamsRec" target="">WWWOpenURLParams</a> params)</div>
+<div class="summaryTableDescription">Opens a new URL With Parameters . </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<div class="detailSectionHeader">Defines Detail</div>
+<a name="BeginWebProgress405"></a><a name="BeginWebProgress"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BeginWebProgress</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define BeginWebProgress ((*((BeginWebProgress_SELPROTO)(gWLHFT[BeginWebProgress_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>405</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="EndWebProgress407"></a><a name="EndWebProgress"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">EndWebProgress</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define EndWebProgress ((*((EndWebProgress_SELPROTO)(gWLHFT[EndWebProgress_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>407</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="GetAppSpecifier408"></a><a name="GetAppSpecifier"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">GetAppSpecifier</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define GetAppSpecifier ((*((GetAppSpecifier_SELPROTO)(gWLHFT[GetAppSpecifier_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>408</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="Init_gWLHFT397"></a><a name="Init_gWLHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Init_gWLHFT</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define Init_gWLHFT ASExtensionMgrGetHFT( ASAtomFromString(WLHFTNAME), WEB_LINK_HFT_LATEST_VERSION);</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>397</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PROGRESS_HAS_CANCEL67"></a><a name="PROGRESS_HAS_CANCEL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PROGRESS_HAS_CANCEL</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define PROGRESS_HAS_CANCEL (1L &lt;&lt; 1)</div>
+</code>
+<br>
+<span class="label">Description</span><p>Add either <a href="#a" target="">a</a> <a href="../AS_Layer/General.html#Cancel" target="">Cancel</a> button or a <a href="General.html#message" target="">message</a> directing the user how to abort the operation. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>67</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PROGRESS_HAS_METER63"></a><a name="PROGRESS_HAS_METER"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PROGRESS_HAS_METER</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define PROGRESS_HAS_METER (1L &lt;&lt; 0)</div>
+</code>
+<br>
+<span class="label">Description</span><p>Put <a href="#a" target="">a</a> thermometer-style meter in the progress <a href="General.html#display" target="">display</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>63</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="RegisterWebDriver404"></a><a name="RegisterWebDriver"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RegisterWebDriver</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define RegisterWebDriver ((*((RegisterWebDriver_SELPROTO)(gWLHFT[RegisterWebDriver_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>404</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="UpdateWebProgress406"></a><a name="UpdateWebProgress"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">UpdateWebProgress</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define UpdateWebProgress ((*((UpdateWebProgress_SELPROTO)(gWLHFT[UpdateWebProgress_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>406</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDVCURRENTREV58"></a><a name="WDVCURRENTREV"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDVCURRENTREV</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WDVCURRENTREV (0L)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>58</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WEB_LINK_HFT_LATEST_VERSION372"></a><a name="WEB_LINK_HFT_LATEST_VERSION"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WEB_LINK_HFT_LATEST_VERSION</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WEB_LINK_HFT_LATEST_VERSION (2L)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>372</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WebLinkNUMSELECTORS385"></a><a name="WebLinkNUMSELECTORS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WebLinkNUMSELECTORS</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WebLinkNUMSELECTORS (WLNUMSELECTORSplusOne - 1)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>385</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WebProgressDidCancel409"></a><a name="WebProgressDidCancel"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WebProgressDidCancel</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WebProgressDidCancel ((*((WebProgressDidCancel_SELPROTO)(gWLHFT[WebProgressDidCancel_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>409</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WLCreateOrDeleteWebLinks411"></a><a name="WLCreateOrDeleteWebLinks"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WLCreateOrDeleteWebLinks</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WLCreateOrDeleteWebLinks ((*((WLCreateOrDeleteWebLinks_SELPROTO)(gWLHFT[WLCreateOrDeleteWebLinks_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>411</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WLHFTNAME395"></a><a name="WLHFTNAME"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WLHFTNAME</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WLHFTNAME "WebLink"</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>395</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WWWOpenURL410"></a><a name="WWWOpenURL"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WWWOpenURL</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WWWOpenURL ((*((WWWOpenURL_SELPROTO)(gWLHFT[WWWOpenURL_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>410</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WWWOpenURLWithParams412"></a><a name="WWWOpenURLWithParams"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WWWOpenURLWithParams</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define WWWOpenURLWithParams ((*((WWWOpenURLWithParams_SELPROTO)(gWLHFT[WWWOpenURLWithParams_SEL]))))</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>412</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="WDAppSpecifier"></a><a name="WDAppSpecifier46"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDAppSpecifier</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef FSSpec* WDAppSpecifier;</code>
+</div>
+<br><p>A <a href="#data" target="">data</a> structure that specifies the <a href="../PD_Layer/General.html#path" target="">path</a> <a href="../PDFEdit_Layer/General.html#name" target="">name</a> to the web browser. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Weblink.html#WDAppSupportPredicate" target="">WDAppSupportPredicate</a> <br><a href="Weblink.html#GetAppSpecifier()" target="">GetAppSpecifier</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>46</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDAppSpecifier"></a><a name="WDAppSpecifier55"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDAppSpecifier</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef char* WDAppSpecifier;</code>
+</div>
+<br><p>A <a href="#data" target="">data</a> structure that specifies the <a href="../PD_Layer/General.html#path" target="">path</a> <a href="../PDFEdit_Layer/General.html#name" target="">name</a> to the web browser. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Weblink.html#WDAppSupportPredicate" target="">WDAppSupportPredicate</a> <br><a href="Weblink.html#GetAppSpecifier()" target="">GetAppSpecifier</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>55</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDAppSpecifier"></a><a name="WDAppSpecifier51"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDAppSpecifier</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Windows</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef char* WDAppSpecifier;</code>
+</div>
+<br><p>A <a href="#data" target="">data</a> structure that specifies the <a href="../PD_Layer/General.html#path" target="">path</a> <a href="../PDFEdit_Layer/General.html#name" target="">name</a> to the web browser. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Weblink.html#WDAppSupportPredicate" target="">WDAppSupportPredicate</a> <br><a href="Weblink.html#GetAppSpecifier()" target="">GetAppSpecifier</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>51</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDAppSupportPredicate"></a><a name="WDAppSupportPredicate222"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDAppSupportPredicate</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef WDAppSupportPredicateProc* WDAppSupportPredicate;</code>
+</div>
+<br><p>Tests whether <a href="#a" target="">a</a> driver can support a given web browser application. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>222</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDBecomeDriverFunction"></a><a name="WDBecomeDriverFunction313"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDBecomeDriverFunction</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef WDBecomeDriverFunctionProc* WDBecomeDriverFunction;</code>
+</div>
+<br><p>Called whenever the state of the driver changes from inactive to current, or vice versa. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>313</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDBringFrontFunction"></a><a name="WDBringFrontFunction321"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDBringFrontFunction</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef WDBringFrontFunctionProc* WDBringFrontFunction;</code>
+</div>
+<br><p>Called when the user clicks on the <a href="Weblink.html" target="">Weblink</a> toolbar button to switch to the browser application. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>321</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDFollowLinkFunction"></a><a name="WDFollowLinkFunction258"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDFollowLinkFunction</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef WDFollowLinkFunctionProc* WDFollowLinkFunction;</code>
+</div>
+<br><p>Follows and retrieves the link specified by a URL from the PDF document specified by <code>theDoc</code>. Weblink supplies the driver a fully resolved the URL. The driver is solely responsible for launching a web browser, if it requires one. If the driver depends on an external web browser, the driver or the web browser is responsible for bringing that browser to the foreground if the link data is not displayed by the Acrobat viewer.</p><p>For relative links, Weblink prepends a base URL if specified; otherwise, it prepends the appropriate portion from the current document's URL to resolve a relative link. </p><p>Weblink automatically handles mapped links, that is, links that generate different results based on the location of the mouse within the links. (Such links are specified by checking the Mapped Coordinates Link box in the Edit URL dialog box. These links have the <code>isMap</code> attribute). Weblink appends <code>"?"</code> to the URL, followed by the x- and y-coordinates of the mouse at the time the link was selected, relative to the upper-left corner of the link's rectangle. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>258</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDFollowLinkWithParamsFunction"></a><a name="WDFollowLinkWithParamsFunction296"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDFollowLinkWithParamsFunction</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef WDFollowLinkWithParamsFunctionProc* WDFollowLinkWithParamsFunction;</code>
+</div>
+<br><p>Follows and retrieves the link specified by a URL from the PDF document specified by <code>theDoc</code>, going to a target frame. Weblink supplies the driver a fully resolved the URL. The driver is solely responsible for launching a web browser, if it requires one. If the driver depends on an external web browser, the driver or the web browser is responsible for bringing that browser to the foreground if the link data is not displayed by the Acrobat viewer.</p><p>For relative links, Weblink prepends a base URL if specified; otherwise, it prepends the appropriate portion from the current document's URL to resolve a relative link. </p><p>Weblink automatically handles mapped links, that is, links that generate different results based on the location of the mouse within the links. (Such links are specified by checking the Mapped Coordinates Link box in the Edit URL dialog box. These links have the <code>isMap</code> attribute). Weblink appends <code>"?"</code> to the URL, followed by the x- and y-coordinates of the mouse at the time the link was selected, relative to the upper-left corner of the link's rectangle.</p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>296</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDIsDriverBusyFunction"></a><a name="WDIsDriverBusyFunction343"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDIsDriverBusyFunction</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef WDIsDriverBusyFunctionProc* WDIsDriverBusyFunction;</code>
+</div>
+<br><p>(Optional) Called to determine <a href="../PDFEdit_Layer/General.html#if" target="">if</a> the driver is performing a transaction. <a href="Weblink.html" target="">Weblink</a> uses this to check that the driver is not busy (driver-defined) <a href="General.html#before" target="">before</a> allowing a user to change preferences.</p><p>The driver should return busy whenever it is not convenient for it to become the current driver as requested by <code>
+<a href="Weblink.html#WDBecomeDriverFunction" target="">WDBecomeDriverFunction()</a>
+</code>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>343</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDOptionsFunction"></a><a name="WDOptionsFunction329"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDOptionsFunction</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef WDOptionsFunctionProc* WDOptionsFunction;</code>
+</div>
+<br><p>(Optional) Called when the user clicks the Options button in the <a href="Weblink.html" target="">Weblink</a> Preferences dialog box. If this function is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, the Options button is disabled. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>329</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WebProgressMonitor"></a><a name="WebProgressMonitor98"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WebProgressMonitor</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef void* WebProgressMonitor;</code>
+</div>
+<br><p>A <a href="#data" target="">data</a> structure that implements a progress monitor. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>98</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WWWOpenURLParams"></a><a name="WWWOpenURLParams94"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WWWOpenURLParams</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Weblink.html#WWWOpenURLParamsRec" target="">WWWOpenURLParamsRec</a> WWWOpenURLParams;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>94</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Variables Detail</div>
+<a name="gWLHFT387"></a><a name="gWLHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gWLHFT</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>HFT gWLHFT;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>387</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="structureDetail"></a>
+<div class="detailSectionHeader">Structure Detail</div>
+<a name="WebDriverVector348"></a><a name="WebDriverVector"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WebDriverVector</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct WebDriverVector {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>&nbsp;<a href="#WebDriverVectorWDVRev"><b>WDVRev</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>&nbsp;<a href="#WebDriverVectornReserved"><b>nReserved</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Weblink.html#WDAppSupportPredicate" target="">WDAppSupportPredicate</a>&nbsp;<b>doYouSupport</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Weblink.html#WDFollowLinkFunction" target="">WDFollowLinkFunction</a>&nbsp;<b>followLink</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Weblink.html#WDBecomeDriverFunction" target="">WDBecomeDriverFunction</a>&nbsp;<b>becomeDriver</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Weblink.html#WDBringFrontFunction" target="">WDBringFrontFunction</a>&nbsp;<b>bringFront</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Weblink.html#WDOptionsFunction" target="">WDOptionsFunction</a>&nbsp;<b>options</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Weblink.html#WDIsDriverBusyFunction" target="">WDIsDriverBusyFunction</a>&nbsp;<b>isDriverBusy</b>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Weblink.html#WDFollowLinkWithParamsFunction" target="">WDFollowLinkWithParamsFunction</a>&nbsp;<b>followLinkWithParams</b>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>A <a href="#data" target="">data</a> structure containing callbacks that implement a <a href="Weblink.html" target="">Weblink</a> driver. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Weblink.html#RegisterWebDriver()" target="">RegisterWebDriver</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>348</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="WebDriverVectorWDVRev"></a>WDVRev&nbsp;&nbsp;</td><td><p>Driver <a href="General.html#version" target="">version</a> number. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="WebDriverVectornReserved"></a>nReserved&nbsp;&nbsp;</td><td><p>Currently unused. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+</table>
+</div>
+<a name="WWWOpenURLParamsRec74"></a><a name="WWWOpenURLParamsRec"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WWWOpenURLParamsRec</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct WWWOpenURLParamsRec {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASSize_t" target="">ASSize_t</a>&nbsp;<a href="#WWWOpenURLParamsRecsize"><b>size</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td>const char*&nbsp;<a href="#WWWOpenURLParamsReccFrame"><b>cFrame</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>A parameter block specifying the target <a href="General.html#frame" target="">frame</a> of a URL. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="Weblink.html#WWWOpenURLWithParams()" target="">WWWOpenURLWithParams</a> <br><a href="Weblink.html#WDFollowLinkWithParamsFunction" target="">WDFollowLinkWithParamsFunction</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>74</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="WWWOpenURLParamsRecsize"></a>size&nbsp;&nbsp;</td><td><p>Should be initialized to <code>sizeof(<a href="Weblink.html#WWWOpenURLParamsRec" target="">WWWOpenURLParamsRec</a>)</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="WWWOpenURLParamsReccFrame"></a>cFrame&nbsp;&nbsp;</td><td><p>The <a href="../PDFEdit_Layer/General.html#name" target="">name</a> of the <a href="General.html#frame" target="">frame</a> to <a href="../AS_Layer/General.html#open" target="">open</a>. </p></td>
+</tr>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="BeginWebProgress74()"></a><a name="BeginWebProgress()"></a><a name="BeginWebProgress(char*,ASUns32,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">BeginWebProgress</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Weblink.html#WebProgressMonitor" target="">WebProgressMonitor</a> BeginWebProgress(char* message, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> timeoutTime)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates a new <a href="Weblink.html" target="">Weblink</a> progress. </p><p>It creates a new Weblink progress monitor to provide feedback during long operations. Current web browsers follow links asynchronously and use <a href="Weblink.html#BeginWebProgress" target="">BeginWebProgress()</a>, <a href="Weblink.html#UpdateWebProgress" target="">UpdateWebProgress()</a>, and <a href="Weblink.html#EndWebProgress" target="">EndWebProgress()</a> to assure a user that a request is making progress.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">message</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> Message <a href="#text" target="">text</a>. A <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated C string that represents a message to display with the progress monitor. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> Possible flag <a href="../PDF_Library/General.html#options" target="">options</a> for the progress monitor. There are two <a href="General.html#flags" target="">flags</a> <a href="../PDF_Library/General.html#defined" target="">defined</a> (in <a href="Weblink.html#WLHFT.h" target="">WLHft.h</a>):</p><p>
+
+</p><table ><tr>
+<th>
+<p>Flag option</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>PROGRESS_HAS_METER</code>
+</p>
+</td><td valign="top">
+<p>Put a thermometer-style meter in the progress display. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>
+<code>PROGRESS_HAS_CANCEL</code>
+</p>
+</td><td valign="top">
+<p>Add either a Cancel button or a message directing the user how to abort the operation. </p>
+</td>
+</tr></table></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">timeoutTime</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> Timeout period. The amount of time in seconds <a href="General.html#before" target="">before</a> the progress monitor indicates that progress is not being made. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Monitor creation status. A non-<code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> value if the monitor's creation was successful, <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> otherwise. In the current implementation, there can be at most one progress monitor. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>74</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="EndWebProgress111()"></a><a name="EndWebProgress()"></a><a name="EndWebProgress(WebProgressMonitor)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">EndWebProgress</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void EndWebProgress(<a href="Weblink.html#WebProgressMonitor" target="">WebProgressMonitor</a> progMon)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Ends Web Progress. </p><p>Terminates the current progress monitor. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">progMon</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The current progress monitor. </p></td>
+</tr>
+</table>
+</p>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>111</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="GetAppSpecifier125()"></a><a name="GetAppSpecifier()"></a><a name="GetAppSpecifier(ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">GetAppSpecifier</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Weblink.html#WDAppSpecifier" target="">WDAppSpecifier</a> GetAppSpecifier(<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> promptUser)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Get App Specifier. </p><p>Obtains a platform-specific structure specifying the application the user has chosen as the web browser.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">promptUser</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> <code>true</code> if there is no current web browser and the user is prompted to choose one, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A pointer to <a href="#a" target="">a</a> platform-specific <a href="#data" target="">data</a> structure that specifies the web browser. On the Mac OS, it is a pointer to an FSSpec. On <a href="Windows.html" target="">Windows</a> and <a href="UNIX.html" target="">UNIX</a> platforms, it is a pointer to a string (<code>char*</code>) representing the full path of the executable application. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>125</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="RegisterWebDriver51()"></a><a name="RegisterWebDriver()"></a><a name="RegisterWebDriver(const char*,void*,WebDriverVector*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">RegisterWebDriver</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> RegisterWebDriver(const char* driverName, void* driverRock, <a href="Weblink.html#WebDriverVector" target="">WebDriverVector</a>* wdVec)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Register Web Driver.</p><p>Registers <a href="#a" target="">a</a> driver with the <a href="Weblink.html" target="">Weblink</a> plug-in. It must be called during the import, replace, and register phase of the plug-in initialization process of any plug-ins that want to use Weblink services.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverName</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The driver's <a href="../PDFEdit_Layer/General.html#name" target="">name</a>. It is a <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated C string shown to the user to identify the current driver. The string is limited to 255 characters and is copied internally. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure. This <a href="../PD_Layer/General.html#value" target="">value</a> is passed to the driver for every driver-supplied function call. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">wdVec</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> <a href="#data" target="">data</a> structure of driver-supplied callback functions. It is not copied; therefore, the structure must be either statically or dynamically allocated, rather than automatically allocated as a local variable. It must not be modified, moved, or deallocated until the plug-in terminates within Acrobat. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Registration status. <code>true</code> if the registration was successful, <code>false</code> otherwise. Failure occurs if there is insufficient memory or the version number in <code>wdVec</code> is incompatible with the Weblink plug-in. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>51</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="UpdateWebProgress105()"></a><a name="UpdateWebProgress()"></a><a name="UpdateWebProgress(WebProgressMonitor,char*,ASInt32,ASInt32,ASInt32,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">UpdateWebProgress</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> UpdateWebProgress(<a href="Weblink.html#WebProgressMonitor" target="">WebProgressMonitor</a> progMon, char* message, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> from, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> to, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> outOf, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> timeoutTime)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Updates Web Progress. </p><p>It updates the state of the current progress monitor.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">progMon</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The current progress monitor returned from <a href="Weblink.html#BeginWebProgress" target="">BeginWebProgress()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">message</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> Message <a href="#text" target="">text</a>. If non-<code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, the text displayed is changed to that represented by <code><a href="General.html#message" target="">message</a></code>. If <code><a href="General.html#message" target="">message</a></code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, the text is not changed. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">from</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The lower bound of <a href="#a" target="">a</a> sub-range between <code>0</code> and <code>outOf</code> to highlight: <code>from</code> and <code>to</code> are the lower and upper bounds of a subrange between <code>0</code> and <code>outOf</code> to highlight. Typically the lower bound, <code>from</code>, is zero, but a driver may wish to indicate the progress of an operation that has no known magnitude as a priority. It could do so with a <i>chaser light</i> display by cycling the lower bound, <code>from</code>, through the range between <code>0</code> and <code>outOf - 1</code>, and defining the upper bound, <code>to</code>, as <code>from + 1</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">to</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The upper bound of <a href="#a" target="">a</a> sub-range between <code>0</code> and <code>outOf</code> to highlight. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">outOf</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> If <code><a href="../AS_Layer/General.html#progMon" target="">progMon</a></code> was created with the <code><a href="Weblink.html#PROGRESS_HAS_METER" target="">PROGRESS_HAS_METER</a></code> flag, the <code>from</code>, <code>to</code>, and <code>outOf</code> arguments are used to change the state of the bar. The range of the meter is defined from <code>0</code> to <code>outOf</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">timeoutTime</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> (Optional) The new timeout period in seconds. If it is non-zero, a new timeout is set.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>Update status. <code>true</code> if the update was successful, <code>false</code> if the monitor timed out or the user canceled the operation. The latter case only happens when the progress monitor was created with the <code><a href="Weblink.html#PROGRESS_HAS_CANCEL" target="">PROGRESS_HAS_CANCEL</a></code> flag in <a href="Weblink.html#BeginWebProgress" target="">BeginWebProgress()</a>. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>105</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDAppSupportPredicateProc112()"></a><a name="WDAppSupportPredicateProc()"></a><a name="WDAppSupportPredicateProc(void*,WDAppSpecifier)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDAppSupportPredicateProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WDAppSupportPredicateProc(void* driverRock, <a href="Weblink.html#WDAppSpecifier" target="">WDAppSpecifier</a> timeoutTime)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Callback functions to test a driver. It tests whether a driver can support a given web browser application. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure provided in <a href="Weblink.html#RegisterWebDriver" target="">RegisterWebDriver()</a>. WDAppSpecifier A platform-specific data structure used to identify the web browser application. On Mac OS, it is a pointer to an FSRef(64 bit) or and FSSpec (32 bit). </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">timeoutTime</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> <a href="#data" target="">data</a> structure. On <a href="Windows.html" target="">Windows</a>, it is a pointer to a string (<code>char*</code>) representing the full path of the executable application. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the driver is compatible with the given web browser application, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>112</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDBecomeDriverFunctionProc180()"></a><a name="WDBecomeDriverFunctionProc()"></a><a name="WDBecomeDriverFunctionProc(void*,ASBool)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDBecomeDriverFunctionProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WDBecomeDriverFunctionProc(void* driverRock, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bComing)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Callback functions for driver state changes.</p><p>It is called whenever the state of the driver changes from inactive to current, or vice versa.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure provided in <a href="Weblink.html#RegisterWebDriver" target="">RegisterWebDriver()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bComing</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> Tells the driver whether it should become current or relinquish control. If it is <code>true</code>, the driver is being requested to become the current Weblink driver, and it should take any action that is appropriate, such as installing IAC message handlers, opening TCP drivers, and so on. If it is <code>false</code>, the driver is being asked to relinquish its status as current driver and should take whatever action is necessary to accomplish this. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>false</code> if the driver fails to change its state to that requested in <code>bComing</code>, <code>true</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>180</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDBringFrontFunctionProc188()"></a><a name="WDBringFrontFunctionProc()"></a><a name="WDBringFrontFunctionProc(void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDBringFrontFunctionProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void WDBringFrontFunctionProc(void* driverRock)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Callback functions for <a href="Weblink.html" target="">Weblink</a> toolbar button click.</p><p>It is called when the user clicks on the Weblink toolbar button to switch to the browser application. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure provided in <a href="Weblink.html#RegisterWebDriver" target="">RegisterWebDriver()</a>. </p></td>
+</tr>
+</table>
+</p>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>188</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDFollowLinkFunctionProc137()"></a><a name="WDFollowLinkFunctionProc()"></a><a name="WDFollowLinkFunctionProc(void*,AVDoc,char*,char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDFollowLinkFunctionProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WDFollowLinkFunctionProc(void* driverRock, <a href="AVDoc.html#AVDoc" target="">AVDoc</a> theDoc, char* cURL, char* cFormData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Callback functions for to Follow a Link.</p><p>Follows and retrieves the link specified by <code>cURL</code> from the PDF document specified by <code>theDoc</code>. Weblink supplies the driver a fully resolved URL. The driver is solely responsible for launching a web browser, if it requires one. If the driver depends on an external web browser, the driver or the web browser is responsible for bringing that browser to the foreground if the link data is not displayed by the Acrobat viewer. For relative links, Weblink prepends a base URL if specified; otherwise, it prepends the appropriate portion from the current document's URL to resolve a relative link. Weblink automatically handles mapped links, which are links that generate different results based on the location of the mouse within the links. (Such links are specified by checking the Mapped Coordinates Link box in the Edit URL dialog box. These links have the <code>isMap</code> attribute). Weblink appends <code>"?"</code> to the URL, followed by the x- and y-coordinates of the mouse at the time the link was selected, relative to the upper-left corner of the link's rectangle.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure provided in <a href="Weblink.html#RegisterWebDriver" target="">RegisterWebDriver()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">theDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The PDF document that contains the link. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cURL</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated C string containing the URL the link points to. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cFormData</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> Data from a form to be sent with the URL as post <a href="#data" target="">data</a>. The default MIME <a href="../AS_Layer/General.html#type" target="">type</a> of form data is <code>"application/x-www-formunencoded"</code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the driver has successfully begun the process of following the link, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>137</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDFollowLinkWithParamsFunctionProc164()"></a><a name="WDFollowLinkWithParamsFunctionProc()"></a><a name="WDFollowLinkWithParamsFunctionProc(void*,AVDoc,char*,char*,WWWOpenURLParams)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDFollowLinkWithParamsFunctionProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WDFollowLinkWithParamsFunctionProc(void* driverRock, <a href="AVDoc.html#AVDoc" target="">AVDoc</a> theDoc, char* cURL, char* cFormData, <a href="Weblink.html#WWWOpenURLParamsRec" target="">WWWOpenURLParams</a> params)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Callback functions for to Follow a Link with parameters.</p><p>Follows and retrieves the link specified by <code>cURL</code> from the PDF document specified by <code>theDoc</code>. Weblink supplies the driver a fully resolved URL. The driver is solely responsible for launching a web browser, if it requires one. If the driver depends on an external web browser, the driver or the web browser is responsible for bringing that browser to the foreground if the link data is not displayed by the Acrobat viewer. For relative links, Weblink prepends a base URL if specified; otherwise, it prepends the appropriate portion from the current document's URL to resolve a relative link. Weblink automatically handles mapped links, which are links that generate different results based on the location of the mouse within the links. (Such links are specified by checking the Mapped Coordinates Link box in the Edit URL dialog box. These links have the <code>isMap</code> attribute). Weblink appends <code>"?"</code> to the URL, followed by the x- and y-coordinates of the mouse at the time the link was selected, relative to the upper-left corner of the link's rectangle. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure provided in <a href="Weblink.html#RegisterWebDriver" target="">RegisterWebDriver()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">theDoc</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The PDF document that contains the link. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cURL</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated C string containing the URL the link points to. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cFormData</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Data from a form to be sent with the URL as post <a href="#data" target="">data</a>. The default MIME <a href="../AS_Layer/General.html#type" target="">type</a> of form data is <code>"application/x-www-formunencoded"</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">params</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A parameter block specifying a target <a href="General.html#frame" target="">frame</a>.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the driver has successfully begun the process of following the link, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>164</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDIsDriverBusyFunctionProc207()"></a><a name="WDIsDriverBusyFunctionProc()"></a><a name="WDIsDriverBusyFunctionProc(void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDIsDriverBusyFunctionProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WDIsDriverBusyFunctionProc(void* driverRock)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Callback functions to check driver transaction status (Optional) Called to determine <a href="../PDFEdit_Layer/General.html#if" target="">if</a> the driver is performing a transaction or not. <a href="Weblink.html" target="">Weblink</a> uses this to check that the driver is not busy <a href="General.html#before" target="">before</a> allowing a user to change preferences. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure provided in <a href="Weblink.html#RegisterWebDriver" target="">RegisterWebDriver()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the driver is busy (driver-defined), <code>false</code> otherwise. The driver should return busy whenever it is not convenient for it to become the current driver as requested by &lt;DXRef&gt;WDBecomeDriverFunction. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>207</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WDOptionsFunctionProc197()"></a><a name="WDOptionsFunctionProc()"></a><a name="WDOptionsFunctionProc(void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WDOptionsFunctionProc</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void WDOptionsFunctionProc(void* driverRock)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Callback functions for a <a href="Weblink.html" target="">Weblink</a> Options button click.</p><p>It is called when the user clicks on the Options button in the Weblink Preferences dialog box. If this function is <code>NULL</code>, the Options button is disabled. Optional: set it to <code>NULL</code> if there no options dialog. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">driverRock</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A pointer to <a href="#a" target="">a</a> driver-defined <a href="#data" target="">data</a> structure provided in <a href="Weblink.html#RegisterWebDriver" target="">RegisterWebDriver()</a>. </p></td>
+</tr>
+</table>
+</p>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>197</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WebProgressDidCancel133()"></a><a name="WebProgressDidCancel()"></a><a name="WebProgressDidCancel(WebProgressMonitor)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WebProgressDidCancel</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WebProgressDidCancel(<a href="Weblink.html#WebProgressMonitor" target="">WebProgressMonitor</a> progMon)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Checks <a href="../PDFEdit_Layer/General.html#if" target="">if</a> the <a href="../AS_Layer/General.html#Cancel" target="">Cancel</a> button was clicked. </p><p>It tests whether the user clicked the Cancel button in the progress monitor dialog.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">progMon</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The current progress monitor. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the progress monitor has been canceled, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>133</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WLCreateOrDeleteWebLinks161()"></a><a name="WLCreateOrDeleteWebLinks()"></a><a name="WLCreateOrDeleteWebLinks(ASBool,PDDoc,ASInt32,ASInt32,ProgressMonitor,void*,CancelProc,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WLCreateOrDeleteWebLinks</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> WLCreateOrDeleteWebLinks(<a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bCreate, <a href="../PD_Layer/PDDoc.html#PDDoc" target="">PDDoc</a> pdd, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> nStart, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> nEnd, ProgressMonitor pm, void* vPMData, CancelProc cp, void* vCPData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Creates Or Deletes WebLinks </p><p>Used by other plug-ins that want to create or delete weblinks in a document. </p><p>Adobe Reader does not, by default, create or delete items in a PDF document. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bCreate</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> A <a href="../AS_Layer/General.html#boolean" target="">boolean</a> to indicate whether links should be created. If it is <code>false</code>, links will be deleted. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pdd</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The <a href="../PD_Layer/PDDoc.html" target="">PDDoc</a> in which to create or delete weblinks. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nStart</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The starting <a href="../PDSEdit_Layer/General.html#page" target="">page</a> </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nEnd</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The ending <a href="../PDSEdit_Layer/General.html#page" target="">page</a> </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">pm</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The current progress monitor. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">vPMData</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The <a href="#data" target="">data</a> to be passed to the progress monitor. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cp</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The cancel proc </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">vCPData</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The <a href="#data" target="">data</a> to be passed to the cancel proc. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The number of web links created or deleted. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>161</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WWWOpenURL144()"></a><a name="WWWOpenURL()"></a><a name="WWWOpenURL(AVDoc,const char*,const char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WWWOpenURL</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WWWOpenURL(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* cURL, const char* cFormData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Opens <a href="#a" target="">a</a> new URL. </p><p>Asks <a href="Weblink.html" target="">Weblink</a> to follow the specified URL. If the URL specifies a PDF document, it opens it in a new <a href="../PD_Layer/General.html#window" target="">window</a> (an <a href="AVDoc.html" target="">AVDoc</a> <a href="../PD_Layer/General.html#view" target="">view</a>). It is <a href="../PDF_Library/General.html#used" target="">used</a> by other plug-ins that wish to <a href="../PD_Layer/General.html#start" target="">start</a> a download.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> If specified, it is the <a href="AVDoc.html" target="">AVDoc</a> that contains the source of the URL. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cURL</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The URL to be opened. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cFormData</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The <a href="#data" target="">data</a> for a form to be posted. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the request succeeded, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>144</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="WWWOpenURLWithParams174()"></a><a name="WWWOpenURLWithParams()"></a><a name="WWWOpenURLWithParams(AVDoc,const char*,const char*,WWWOpenURLParams)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">WWWOpenURLWithParams</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> WWWOpenURLWithParams(<a href="AVDoc.html#AVDoc" target="">AVDoc</a> avd, const char* cURL, const char* cFormData, <a href="Weblink.html#WWWOpenURLParamsRec" target="">WWWOpenURLParams</a> params)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Opens <a href="#a" target="">a</a> new URL With Parameters . </p><p>Asks <a href="Weblink.html" target="">Weblink</a> to follow a URL, specifying a target <a href="General.html#frame" target="">frame</a>. If the URL specifies a PDF document, it opens it in a new <a href="../PD_Layer/General.html#window" target="">window</a> (an <a href="AVDoc.html" target="">AVDoc</a> <a href="../PD_Layer/General.html#view" target="">view</a>). It is <a href="../PDF_Library/General.html#used" target="">used</a> by other plug-ins that wish to <a href="../PD_Layer/General.html#start" target="">start</a> a download and specify a target frame. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">avd</span></code>&nbsp;&mdash;&nbsp;</td><td><p>If specified, it is the <a href="AVDoc.html" target="">AVDoc</a> that contains the source of the URL. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cURL</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The URL to be opened. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cFormData</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="#data" target="">data</a> for a form to be posted. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">params</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The parameter block specifying the <a href="../PDFEdit_Layer/General.html#name" target="">name</a> of the <a href="General.html#frame" target="">frame</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the request succeeded, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>WLHFTProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>174</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->

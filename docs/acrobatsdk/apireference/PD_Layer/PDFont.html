@@ -1,0 +1,3249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="PDFont,,,,_t_PDFontFlags,_t_PDFontMetrics,_t_PDFontStyles,PDFont,PDFontEncoding,PDFontMetric,PDFontAngle,PDFontOffset,PDiFontMetric,PDFontFlags,PDFontEnumProc,PDFontStyles,PDFontMetrics,PDFontMetricsP,PDFontGetName,PDFontGetSubtype,PDFontGetCharSet,PDFontGetEncodingIndex,PDFontAcquireEncodingArray,PDFontEncodingArrayRelease,PDFontGetMetrics,PDFontGetBBox,PDFontGetWidths,PDFontIsEmbedded,PDFontXlateWidths,PDFontXlateString,PDFontAcquireXlateTable,PDFontXlateTableRelease,PDFontGetFontMatrix,PDFontSetMetrics,PDFontGetCosObj,PDFontEnumCharProcs,PDFontGetDescendant,PDFontGetEncodingName,PDFontGetCIDSystemInfo,PDFontGetCIDSystemSupplement,PDFontXlateToHost,PDFontXlateToUCS,PDFontFromCosObj,PDFontGetASTextName,PDFontGetDescendant,PDFontStyle,PDFontDownloadContext" name="keywords">
+<title>PD_Layer.PDFont (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'PDFont - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?PD_Layer/PDFont.html&amp;PD_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">PDFont</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#defineSummary">Defines</a>&nbsp;| <a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#enumerationSummary">Enumerations</a>&nbsp;| <a href="#structureSummary">Structures</a>&nbsp;| <a href="#callbackSummary">Callbacks</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("PDFont"); titleBar_setSubNav(true,true,true,false,true,false,true,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">PD_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">PDFont</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>A PDFont is <a href="#a" target="">a</a> <a href="General.html#font" target="">font</a> that is <a href="../PDF_Library/General.html#used" target="">used</a> to draw <a href="#text" target="">text</a> on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a>. It corresponds to a font resource in a 
+PDF <a href="General.html#file" target="">file</a> (see Chapter 5, <i>Text</i>, in the <i>PDF Reference</i>).
+</p><p>Plug-ins can get a <a href="../PDF_Library/General.html#list" target="">list</a> of PDFont objects used on a <a href="PDPage.html" target="">PDPage</a> or a range of PDPage objects. 
+More than one PDPage may reference the same PDFont object.</p><p>A PDFont has a number of attributes whose values can be <a href="../AS_Layer/General.html#read" target="">read</a> or set, including an array of 
+widths, the character <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>, and the font's resource <a href="../PDFEdit_Layer/General.html#name" target="">name</a>.</p><p>In general, a PDFont refers to a base font and an encoding. The base font is specified by 
+the font name and the <a href="General.html#subtype" target="">subtype</a> (typically <a href="../AV_Layer/General.html#Type" target="">Type</a> 0, Type 1, MMType1, Type3, or TrueType). 
+This combination of base font and encoding is commonly referred to as a <i>font instance</i>.</p><p>In single-byte character systems, an encoding specifies a mapping from an 8-bit <a href="General.html#index" target="">index</a>, often 
+called a <i>codepoint</i>, to a glyph.</p><p>Type 0 fonts support single-byte or multibyte encodings and can refer to one or more 
+<i>descendent fonts</i>. These fonts are analogous to the Type 0 or composite fonts supported 
+by Level 2 PostScript interpreters. However, PDF Type 0 fonts only support character encodings 
+defined by a <i>character map</i> (CMap). The CMap defines the encoding for a Type 0 font. 
+It specifies the mappings between character codes and the glyphs in the descendant fonts. 
+For more information on Type 0 fonts, see Section 5.6.5, <i>Type 0 Font Dictionaries</i>, 
+in the <i>PDF Reference</i>. See Section 5.6.4, <i>CMaps</i>, for information on CMaps.</p><p>Type 0 fonts may have a CIDFont as a descendent. A CIDFont is designed to contain a 
+large number of glyph procedures and is used for languages such as Chinese, Japanese, or Korean. 
+Instead of being accessed by a name, each glyph procedure is accessed by an integer known as 
+a character identifier or CID. Instead of a font encoding, CIDFonts use a CMap to define the 
+mapping from character codes to a font number and a character selector. For more information on 
+CIDFonts, see the following sections in the <i>PDF Reference</i>:</p><ul>
+<li>Section 5.6.1, <i>CID-Keyed Fonts Overview</i></li>
+<li>Section 5.6.2, <i>CIDSystemInfo Dictionaries</i></li>
+<li>Section 5.6.3, <i>CIDFonts</i></li>
+</ul><p>To access documents on CIDFonts, see the Adobe Solutions Network Web site 
+(http://partners.adobe.com/asn).</p><p>For general information on CID Fonts, refer to these technical notes:</p><p>For information on specific CID fonts, see these technical notes:</p><p>Each base font contains a fixed set of glyphs. There are some common sets of glyph <a href="../PDFEdit_Layer/General.html#names" target="">names</a>, 
+and these sets are typically called <i>charsets</i>. Acrobat takes advantage of the most common 
+charset to enable font substitution. This charset is called the <i>Adobe Standard Roman Character Set</i> 
+(see the <i>PostScript Language Reference</i>). If Acrobat encounters a 
+font with this charset, it knows that it can represent all of the glyphs in the font using font 
+substitution. Other common charsets are the Adobe Expert and Expert Subset charsets, and the 
+Symbol charset. Most decorative fonts, such as Carta and Wingdings, have custom charsets.</p><p>Given a base font and its charset, multiple encodings are possible. For example, one encoding 
+for a font could specify that the glyph for the letter <code>'A'</code> appears at codepoint 65. 
+A different encoding could specify that <code>'A'</code> appears at both codepoint 65 and at 
+codepoint 97. If text were rendered using the second encoding using the text string 
+<code>"a is always A"</code>, it would appear as <code>"A is always A"</code> using a font 
+such as Times. Encodings allow glyphs to be reordered to the most convenient order for an 
+application or operating system.</p><p>Every font has a default encoding, commonly called its <i>built-in encoding</i>. In PDF, 
+shortcuts are taken when specifying an encoding in order to minimize document size. If a font 
+instance uses the built-in encoding, no encoding information is written into the PDF document. 
+If a font has a different encoding, only those codepoints for which the encoding differs from 
+the built-in encoding are recorded in the PDF file. This information is called a difference 
+encoding; it describes the difference between the built-in encoding and the current encoding.</p><p>For non-Roman systems, the font encoding may be a variety of encodings, which are defined 
+by a CMap. See Section 5.6.4, <i>CMaps</i>, in the <i>PDF Reference</i> for a list of predefined CMaps, 
+such as SHIFT-JIS for Japanese.</p><p>A host encoding is a platform-dependent encoding for the host machine's base font. For 
+non-UNIX Roman systems, it is <code>WinAnsiEncoding</code> on Windows and <code>MacRomanEncoding</code> on Mac OS. 
+For UNIX (except HP-UX) Roman systems, it is 
+<code>ISO8859-1</code> (ISO Latin-1). For HP-UX, it is <code>HP-ROMAN8</code>. See Appendix D, 
+<i>Character Sets and Encoding</i>, in the <i>PDF Reference</i> for descriptions of <code>WinAnsiEncoding</code> and 
+<code>MacRomanEncoding</code>. These encodings specify a mapping from codepoint to glyph name for 
+fonts that use the Adobe Standard Roman Character Set on Mac OS and Windows.</p><p>Across PDF documents, or even within a single PDF document, the same base font can be used with 
+more than one encoding. This allows documents from different platforms to be combined without 
+losing information. Therefore, it is not uncommon to see a document that contains two instances 
+of Helvetica, one using MacRoman encoding and another using WinAnsi encoding. See Appendix D, 
+<i>Character Sets and Encoding</i>, in the <i>PDF Reference</i> for descriptions of <code>WinAnsiEncoding</code>
+and <code>MacRomanEncoding</code>. For non-Roman systems, the host encoding may be a variety of encodings, 
+which are defined by a CMap.</p><p>Type 3 fonts do not have the ability to provide a base font with more than one encoding. For each Type 3 
+font, there is only one encoding. This encoding is completely specified in the PDF file; there are no 
+shortcuts as there are for other fonts.</p><p>See Section 5.7, <i>Font Descriptors</i>, in the <i>PDF Reference</i> for a discussion of font descriptors. 
+Methods are provided to create and destroy fonts, as well as to access the information in the font's 
+descriptor.</p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="defineSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Define Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Define</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontGetDescendant164">PDFontGetDescendant</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFont">PDFont</a>
+<div class="summaryTableDescription">A font that is used to draw text on a page. It corresponds to a Font Resource in a PDF file. Applications can get a list of PDFont objects used on a PDPage or a range of PDPage objects. More than one PDPage may reference the same PDFont object. A PDFont has a number of attributes whose values can be read or set, including an array of widths, the character encoding, and the font's resource name.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontAngle">PDFontAngle</a>
+<div class="summaryTableDescription">An italic angle value in degrees, for use in PDFontMetrics. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontDownloadContext">PDFontDownloadContext</a>
+<div class="summaryTableDescription">A resource tree for a PDPage or other PDModel object. Maintains information about the current print job and what fonts have been downloaded. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontFlags">PDFontFlags</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontMetric">PDFontMetric</a>
+<div class="summaryTableDescription">An unsigned measurement of a font characteristic (for example, width). </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontMetrics">PDFontMetrics</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontMetricsP">PDFontMetricsP</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontOffset">PDFontOffset</a>
+<div class="summaryTableDescription">A font offset value, for use in PDFontMetrics. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontStyles">PDFontStyles</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDiFontMetric">PDiFontMetric</a>
+<div class="summaryTableDescription">A font metric value (which is never negative), for use in PDFontMetrics. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="enumerationSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Enumeration Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Enumeration</th>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#PDFontEncoding2197"><b>PDFontEncoding</b></a></code>
+<div class="summaryTableDescription">An enumerated data type that specifies a font's encoding. </div>
+</td>
+</div>
+</tr>
+<tr class="row0">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#PDFontStyle208"><b>PDFontStyle</b></a></code>
+<div class="summaryTableDescription">Specifies a synthetic font style. </div>
+</td>
+</div>
+</tr>
+</table>
+</div>
+<a name="structureSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Structure Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Structure</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#_t_PDFontFlags2154">_t_PDFontFlags</a>
+<div class="summaryTableDescription">A data structure containing additional information about a font. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#_t_PDFontMetrics2321">_t_PDFontMetrics</a>
+<div class="summaryTableDescription">A data structure containing information about a font's metrics. See Section 5.5.1 in the PDF Reference for more information about font metrics.You also can find information about Adobe Font Metrics (AFM) at http://partners.adobe.com/asn. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#_t_PDFontStyles2279">_t_PDFontStyles</a>
+<div class="summaryTableDescription">A data structure containing PANOSE and sFamily class values for a font. It is used in the PDFontMetrics structure. See Section 5.7.2 in the PDF Reference for more information. For additional details on the PANOSE number, see the Japanese TrueType Font Property Selection Guidelines by the TrueType Conference Technical Committee. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="callbackSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Callback Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Callback</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#PDFontEnumProc2175">PDFontEnumProc</a>
+<div class="summaryTableDescription">A callback used by PDDocEnumFonts() and PDDocEnumLoadedFonts(). It is called once for each font. </div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASUns8** <a class="signatureLink" href="#PDFontAcquireEncodingArray2749()">PDFontAcquireEncodingArray</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Acquires a font's encoding array (the mapping of character codes to glyphs). When you are done with this array, call PDFontEncodingArrayRelease() to release it.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt16* <a class="signatureLink" href="#PDFontAcquireXlateTable2934()">PDFontAcquireXlateTable</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Increments the specified font's XlateTable reference count and also returns the XlateTable, which is a 256-entry table that maps characters from their encoding in the PDF file to host encoding. If a character cannot be mapped to host encoding, then the table entry will (for that character) contain -1. When you are done using the XlateTable, call PDFontXlateTableRelease() to release it.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontEncodingArrayRelease2760()">PDFontEncodingArrayRelease</a>(<a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>** array)</div>
+<div class="summaryTableDescription">Releases a font's encoding array (the mapping of character codes to glyphs). Call this method after you are done using an encoding array acquired using PDFontAcquireEncodingArray().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontEnumCharProcs3931()">PDFontEnumCharProcs</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="PDCharProc.html#PDCharProcEnumProc" target="">PDCharProcEnumProc</a> proc, void* clientData)</div>
+<div class="summaryTableDescription">Enumerates a Type 3 font's character drawing procedures. The elements of a single character procedure can be enumerated using PDCharProcEnum(). </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDFont <a class="signatureLink" href="#PDFontFromCosObj7660()">PDFontFromCosObj</a>(<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a> fontObj)</div>
+<div class="summaryTableDescription">Converts a dictionary Cos object to a font. This method does not copy the object, but is instead the logical equivalent of a type cast. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontGetASTextName10988()">PDFontGetASTextName</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> removePrefix, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> nameToFill)</div>
+<div class="summaryTableDescription">Fills in an ASText object with the font name, to be used in displaying lists or menus.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontGetBBox2790()">PDFontGetBBox</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/Fixed_Point_Math.html#_t_ASFixedRect" target="">ASFixedRect</a>* bboxP)</div>
+<div class="summaryTableDescription">Gets a Type 3 font's bounding box, which is the smallest rectangle that would enclose every character in the font if they were overlaid and painted. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDCharSet <a class="signatureLink" href="#PDFontGetCharSet2707()">PDFontGetCharSet</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets the font's character set. This is derived from the 'Uses Adobe standard encoding' bit in the font descriptor (if the font has a font descriptor) or from the font's name (if the font is one of the base 14 fonts and does not have a font descriptor).</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASAtom <a class="signatureLink" href="#PDFontGetCIDSystemInfo6221()">PDFontGetCIDSystemInfo</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets an ASAtom representing Registry and Ordering for a CIDFont. This information resides in the CIDSystemInfo entry of the CIDFont dictionary, which describes a CIDFont.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#PDFontGetCIDSystemSupplement6263()">PDFontGetCIDSystemSupplement</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets the SystemSupplement number of a CIDFont. This field resides in the CIDSystemInfo entry of the CIDFont dictionary, which describes a CIDFont.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">CosObj <a class="signatureLink" href="#PDFontGetCosObj2993()">PDFontGetCosObj</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets the Cos object for a font. This method does not copy the object, but is instead the logical equivalent of a type cast. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">PDFont <a class="signatureLink" href="#PDFontGetDescendant6143()">PDFontGetDescendant</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets a Type 0 font's descendant, which may be a CIDType0 or CIDType2 font.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#PDFontGetEncodingIndex2723()">PDFontGetEncodingIndex</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets a font's encoding index.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">const ASUns8* <a class="signatureLink" href="#PDFontGetEncodingName6171()">PDFontGetEncodingName</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets a string representing a font's encoding.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontGetFontMatrix2963()">PDFontGetFontMatrix</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> fontP, <a href="../AS_Layer/Fixed_Point_Math.html#_t_ASFixedMatrix" target="">ASFixedMatrix</a>* matrixP)</div>
+<div class="summaryTableDescription">Gets a font's matrix, which specifies the transformation from character space to text space. See Section 5.5.4 in the PDF Reference. This is only valid for Type 3 fonts.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontGetMetrics2779()">PDFontGetMetrics</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="PDFont.html#_t_PDFontMetrics" target="">PDFontMetricsP</a> metricsP, os_size_t sizeMetrics)</div>
+<div class="summaryTableDescription">Gets a font's metrics, which provide the information needed to create a substitute Multiple Master font when the original font is unavailable. See Section 5.7 in the PDF Reference for a discussion of font descriptors. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#PDFontGetName2679()">PDFontGetName</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, char* buffer, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> bufSize)</div>
+<div class="summaryTableDescription">Gets the name of a font. The behavior depends on the font type; for a Type 3 font it gets the value of the Name key in a PDF Font resource. See Section 5.5.4 in the PDF Reference. For other types it gets the value of the BaseFont key in a PDF font resource. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASAtom <a class="signatureLink" href="#PDFontGetSubtype2690()">PDFontGetSubtype</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Gets a font's subtype. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontGetWidths2816()">PDFontGetWidths</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* widths)</div>
+<div class="summaryTableDescription">Gets the advance width of every glyph in a font. The advance width is the amount by which the current point advances when the glyph is drawn. The advance width may not correspond to the visible width of the glyph (for example, a glyph representing an accent mark might have an advance width of zero so that characters can be drawn under it). For this reason, the advance width cannot be used to determine the glyphs' bounding boxes.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDFontIsEmbedded2861()">PDFontIsEmbedded</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</div>
+<div class="summaryTableDescription">Tests whether the specified font is embedded in the PDF file, meaning that the font is stored as a font file, which is a stream embedded in the PDF file. Only Type 1 and TrueType fonts can be embedded. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontSetMetrics2980()">PDFontSetMetrics</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="PDFont.html#_t_PDFontMetrics" target="">PDFontMetricsP</a> metricsP, os_size_t sizeMetrics)</div>
+<div class="summaryTableDescription">Sets a font's metrics, which provide the information needed to create a substitute Multiple Master font when the original font is unavailable. See Section 5.7 in the PDF Reference for a discussion of font descriptors. This method can only be used on Type 1, Multiple Master Type 1, and TrueType fonts; it cannot be used on Type 3 fonts. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#PDFontXlateString2913()">PDFontXlateString</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* inP, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* outP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> len)</div>
+<div class="summaryTableDescription">Translates a string from the PDFont's encoding into host encoding. If any characters cannot be represented in host encoding, they are replaced with space characters. If no XlateTable exists in the font, the function returns false and outP is not written.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontXlateTableRelease2948()">PDFontXlateTableRelease</a>(<a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* table)</div>
+<div class="summaryTableDescription">Decrements the specified font's XlateTable reference count. The XlateTable is a 256-entry table that maps characters from their encoding in the PDF file to host encoding. If a character cannot be mapped to host encoding, then the table entry will (for that character) contain -1. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#PDFontXlateToHost6516()">PDFontXlateToHost</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> fontP, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* inP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> inLen, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* outP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> outLen)</div>
+<div class="summaryTableDescription">Translates a string from the PDFont's encoding to host encoding. This is useful for converting the text from a PDWord into host encoding. In the same way that PDXlateToHostEx() converts text from bookmark titles to host encoding, PDFontXlateToHost() converts text from a page contents stream to host encoding. Use PDFontXlateToUCS() to translate from the PDFont's encoding to Unicode.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#PDFontXlateToUCS6561()">PDFontXlateToUCS</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> fontP, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* inP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> inLen, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* outP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> outLen)</div>
+<div class="summaryTableDescription">Translates a string from whatever encoding the PDFont uses to Unicode encoding. This is useful for converting the text from a PDWord into Unicode. Use PDFontXlateToHost() to translate from the PDFont's encoding to host encoding.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#PDFontXlateWidths2883()">PDFontXlateWidths</a>(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* inP, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* outP)</div>
+<div class="summaryTableDescription">Translates an array of 256 glyph advance widths (obtained from PDFontGetWidths()) from their order in the PDF file into host encoding order. If the widths are already in host encoding order, the widths are merely copied. All un-encoded code points are given a width of zero.</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<div class="detailSectionHeader">Defines Detail</div>
+<a name="PDFontGetDescendant164"></a><a name="PDFontGetDescendant"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetDescendant</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define PDFontGetDescendant PDFontGetDescendantInt</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDCalls.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>164</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="PDFont"></a><a name="PDFont96"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFont</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_PDFont* PDFont;</code>
+</div>
+<br><p>A <a href="General.html#font" target="">font</a> that is <a href="../PDF_Library/General.html#used" target="">used</a> to draw <a href="#text" target="">text</a> on a <a href="../PDSEdit_Layer/General.html#page" target="">page</a>. It corresponds to a Font Resource in a PDF <a href="General.html#file" target="">file</a>. Applications can get a <a href="../PDF_Library/General.html#list" target="">list</a> of PDFont objects used on a <a href="PDPage.html" target="">PDPage</a> or a range of PDPage objects. More than one PDPage may reference the same PDFont object. A PDFont has a number of attributes whose values can be <a href="../AS_Layer/General.html#read" target="">read</a> or set, including an array of widths, the character <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>, and the font's resource <a href="../PDFEdit_Layer/General.html#name" target="">name</a>.</p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> <br><a href="PDDoc.html#PDDocEnumLoadedFonts()" target="">PDDocEnumLoadedFonts</a> <br><a href="PDFont.html#PDFontGetDescendant()" target="">PDFontGetDescendant</a> <br><a href="PDStyle.html#PDStyleGetFont()" target="">PDStyleGetFont</a> <br><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> <br><a href="PDFont.html#PDFontEnumCharProcs()" target="">PDFontEnumCharProcs</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDBasicExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>96</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontAngle"></a><a name="PDFontAngle67"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontAngle</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a> PDFontAngle;</code>
+</div>
+<br><p>An italic <a href="General.html#angle" target="">angle</a> <a href="General.html#value" target="">value</a> in degrees, for use in <a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>67</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontDownloadContext"></a><a name="PDFontDownloadContext1632"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontDownloadContext</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef struct _t_PDFontDownloadContext* PDFontDownloadContext;</code>
+</div>
+<br><p>A resource tree for <a href="#a" target="">a</a> <a href="PDPage.html" target="">PDPage</a> or other PDModel object. Maintains information about the current print job and what fonts have been downloaded. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="../PDF_Library/General.html#PDFontDownloadContextCreate()" target="">PDFontDownloadContextCreate</a> <br><a href="../PDF_Library/General.html#PDFontDownloadContextDestroy()" target="">PDFontDownloadContextDestroy</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDFLExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>1632</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontFlags"></a><a name="PDFontFlags2161"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontFlags</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="PDFont.html#_t_PDFontFlags" target="">_t_PDFontFlags</a> PDFontFlags;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2161</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontMetric"></a><a name="PDFontMetric62"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontMetric</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="../AS_Layer/General.html#ASUns16" target="">ASUns16</a> PDFontMetric;</code>
+</div>
+<br><p>An unsigned measurement of a <a href="General.html#font" target="">font</a> characteristic (for example, <a href="#width" target="">width</a>). </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>62</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontMetrics"></a><a name="PDFontMetrics2373"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontMetrics</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="PDFont.html#_t_PDFontMetrics" target="">_t_PDFontMetrics</a> PDFontMetrics;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2373</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontMetricsP"></a><a name="PDFontMetricsP2373"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontMetricsP</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="PDFont.html#_t_PDFontMetrics" target="">_t_PDFontMetrics</a> PDFontMetricsP;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2373</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontOffset"></a><a name="PDFontOffset72"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontOffset</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a> PDFontOffset;</code>
+</div>
+<br><p>A <a href="General.html#font" target="">font</a> <a href="../AS_Layer/General.html#offset" target="">offset</a> <a href="General.html#value" target="">value</a>, for use in <a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>72</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontStyles"></a><a name="PDFontStyles2311"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontStyles</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="PDFont.html#_t_PDFontStyles" target="">_t_PDFontStyles</a> PDFontStyles;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2311</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDiFontMetric"></a><a name="PDiFontMetric77"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDiFontMetric</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a> PDiFontMetric;</code>
+</div>
+<br><p>A <a href="General.html#font" target="">font</a> metric <a href="General.html#value" target="">value</a> (which is never <a href="General.html#negative" target="">negative</a>), for use in <a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a>. </p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>77</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Enumeration Detail</div>
+<a name="PDFontEncoding2197"></a><a name="PDFontEncoding"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontEncoding</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum PDFontEncoding {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="#PDFontEncodingPDBuiltInEncoding"><b>PDBuiltInEncoding</b></a>&nbsp;=&nbsp;-1,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDFontEncodingPDMacRomanEncoding"><b>PDMacRomanEncoding</b></a>&nbsp;=&nbsp;0,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDFontEncodingPDMacExpertEncoding"><b>PDMacExpertEncoding</b></a>&nbsp;=&nbsp;1,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDFontEncodingPDWinAnsiEncoding"><b>PDWinAnsiEncoding</b></a>&nbsp;=&nbsp;2,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDFontEncodingPDStdEncoding"><b>PDStdEncoding</b></a>&nbsp;=&nbsp;3,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#PDFontEncodingPDFDocEncoding"><b>PDFDocEncoding</b></a>&nbsp;=&nbsp;4,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>PDLastKnownEncoding</b></td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2197</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="PDFontEncodingPDBuiltInEncoding"></a>PDBuiltInEncoding&nbsp;&nbsp;</td><td><p>The <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> specified internally in the <a href="General.html#font" target="">font</a>. In the case of a <a href="../AV_Layer/General.html#Type" target="">Type</a> 1 or MMType 1 font, this is specified by the Encoding <a href="General.html#value" target="">value</a> in the font's <code>fontdict</code>. In the case of TrueType fonts, this is the encoding specified by the default one-byte <code>CMap</code> for the platform. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDFontEncodingPDMacRomanEncoding"></a>PDMacRomanEncoding&nbsp;&nbsp;</td><td><p>MacRomanEncoding, as <a href="../PDF_Library/General.html#defined" target="">defined</a> in Appendix D in the <i>PDF Reference</i>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDFontEncodingPDMacExpertEncoding"></a>PDMacExpertEncoding&nbsp;&nbsp;</td><td><p>MacExpertEncoding, as <a href="../PDF_Library/General.html#defined" target="">defined</a> in Appendix D in the <i>PDF Reference</i>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDFontEncodingPDWinAnsiEncoding"></a>PDWinAnsiEncoding&nbsp;&nbsp;</td><td><p>WinAnsiEncoding, as <a href="../PDF_Library/General.html#defined" target="">defined</a> in Appendix D in the <i>PDF Reference</i>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDFontEncodingPDStdEncoding"></a>PDStdEncoding&nbsp;&nbsp;</td><td><p>StandardEncoding, as <a href="../PDF_Library/General.html#defined" target="">defined</a> in Appendix D in the <i>PDF Reference</i>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="PDFontEncodingPDFDocEncoding"></a>PDFDocEncoding&nbsp;&nbsp;</td><td><p>PDFDocEncoding, as <a href="../PDF_Library/General.html#defined" target="">defined</a> in Appendix D in the <i>PDF Reference</i>. This will never be returned for a font; it is used internally. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+</table>
+</div>
+<a name="PDFontStyle208"></a><a name="PDFontStyle"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontStyle</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum PDFontStyle {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><b>PDRoman</b>&nbsp;=&nbsp;0,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>PDItalic</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>PDBold</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>PDBoldItalic</b></td>
+</tr>
+</table>}</code>
+</div>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="../PDF_Library/General.html#PDPrintFontRec" target="">PDPrintFontRec</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDFLExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>208</td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<br>
+<a name="structureDetail"></a>
+<div class="detailSectionHeader">Structure Detail</div>
+<a name="_t_PDFontFlags2154"></a><a name="_t_PDFontFlags"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_t_PDFontFlags</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct _t_PDFontFlags {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a>&nbsp;<a href="#_t_PDFontFlagsnotUsed"><b>notUsed</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>&nbsp;<a href="#_t_PDFontFlagsflags"><b>flags</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>A <a href="#data" target="">data</a> structure containing additional information about a <a href="General.html#font" target="">font</a>. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> <br><a href="PDFont.html#PDFontEnumProc" target="">PDFontEnumProc</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2154</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontFlagsnotUsed"></a>notUsed&nbsp;&nbsp;</td><td><p>Not <a href="../PDF_Library/General.html#used" target="">used</a>. For backward compatibility. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontFlagsflags"></a>flags&nbsp;&nbsp;</td><td><p>It must be an OR of the <code>PDFONTFLAGS_</code> values. All unused flags must be off. </p></td>
+</tr>
+</table>
+</div>
+<a name="_t_PDFontMetrics2321"></a><a name="_t_PDFontMetrics"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_t_PDFontMetrics</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct _t_PDFontMetrics {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASFlagBits" target="">ASFlagBits</a>&nbsp;<a href="#_t_PDFontMetricsflags"><b>flags</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/Fixed_Point_Math.html#_t_ASFixedRect" target="">ASFixedRect</a>&nbsp;<a href="#_t_PDFontMetricsfontBBox"><b>fontBBox</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsmissingWidth"><b>missingWidth</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsstemV"><b>stemV</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsstemH"><b>stemH</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricscapHeight"><b>capHeight</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsxHeight"><b>xHeight</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsascent"><b>ascent</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsdescent"><b>descent</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsleading"><b>leading</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsmaxWidth"><b>maxWidth</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDiFontMetric" target="">PDiFontMetric</a>&nbsp;<a href="#_t_PDFontMetricsavgWidth"><b>avgWidth</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDFontAngle" target="">PDFontAngle</a>&nbsp;<a href="#_t_PDFontMetricsitalicAngle"><b>italicAngle</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#_t_PDFontStyles" target="">PDFontStyles</a>&nbsp;<a href="#_t_PDFontMetricsstyle"><b>style</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="PDFont.html#PDFontOffset" target="">PDFontOffset</a>&nbsp;<a href="#_t_PDFontMetricsbaseLineAdj"><b>baseLineAdj</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>A <a href="#data" target="">data</a> structure containing information about a font's metrics. See Section 5.5.1 in the <i>PDF Reference</i> for more information about font metrics.You also can find information about Adobe Font Metrics (AFM) at  </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetMetrics()" target="">PDFontGetMetrics</a> <br><a href="PDFont.html#PDFontSetMetrics()" target="">PDFontSetMetrics</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2321</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsflags"></a>flags&nbsp;&nbsp;</td><td><p>It must be an OR of the Font Flags values. All unused flags must be off. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsfontBBox"></a>fontBBox&nbsp;&nbsp;</td><td><p>A <a href="General.html#font" target="">font</a> bounding box in 1000 EM units. An EM is <a href="#a" target="">a</a> typographic unit of measurement equal to the <a href="../AV_Layer/General.html#size" target="">size</a> of a font. In a 12-point font, an EM is 12 points. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsmissingWidth"></a>missingWidth&nbsp;&nbsp;</td><td><p>The <a href="#width" target="">width</a> of the missing character (<code>.notdef</code>) </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsstemV"></a>stemV&nbsp;&nbsp;</td><td><p>The vertical stem <a href="#width" target="">width</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsstemH"></a>stemH&nbsp;&nbsp;</td><td><p>The horizontal stem <a href="#width" target="">width</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricscapHeight"></a>capHeight&nbsp;&nbsp;</td><td><p>The capital <a href="#height" target="">height</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsxHeight"></a>xHeight&nbsp;&nbsp;</td><td><p>The <a href="#X" target="">X</a> <a href="#height" target="">height</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsascent"></a>ascent&nbsp;&nbsp;</td><td><p>The maximum ascender <a href="#height" target="">height</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsdescent"></a>descent&nbsp;&nbsp;</td><td><p>The maximum descender <a href="../AV_Layer/General.html#depth" target="">depth</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsleading"></a>leading&nbsp;&nbsp;</td><td><p>The additional leading between lines. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsmaxWidth"></a>maxWidth&nbsp;&nbsp;</td><td><p>The maximum character <a href="#width" target="">width</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsavgWidth"></a>avgWidth&nbsp;&nbsp;</td><td><p>The average character <a href="#width" target="">width</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsitalicAngle"></a>italicAngle&nbsp;&nbsp;</td><td><p>The italic <a href="General.html#angle" target="">angle</a> in degrees, <a href="../PDFEdit_Layer/General.html#if" target="">if</a> any. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsstyle"></a>style&nbsp;&nbsp;</td><td><p>The PANOSE and sFamily class values. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontMetricsbaseLineAdj"></a>baseLineAdj&nbsp;&nbsp;</td><td><p>The baseline adjustment, which is a vertical adjustment for <a href="General.html#font" target="">font</a> baseline difference and writing mode 1 (vertical). This should only be <a href="../PDF_Library/General.html#used" target="">used</a> for CIDFontType 2 fonts with font substitution. </p></td>
+</tr>
+</table>
+</div>
+<a name="_t_PDFontStyles2279"></a><a name="_t_PDFontStyles"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_t_PDFontStyles</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct _t_PDFontStyles {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>&nbsp;<a href="#_t_PDFontStylessFamilyClassID"><b>sFamilyClassID</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>&nbsp;<a href="#_t_PDFontStylessFamilySubclassID"><b>sFamilySubclassID</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>&nbsp;<a href="#_t_PDFontStylesbFamilyType"><b>bFamilyType</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>&nbsp;<a href="#_t_PDFontStylesbSerifStyle"><b>bSerifStyle</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>&nbsp;<a href="#_t_PDFontStylesbWeight"><b>bWeight</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>&nbsp;<a href="#_t_PDFontStylesbProportion"><b>bProportion</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div><p>A <a href="#data" target="">data</a> structure containing PANOSE and sFamily class values for a <a href="General.html#font" target="">font</a>. It is <a href="../PDF_Library/General.html#used" target="">used</a> in the <a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a> structure. See Section 5.7.2 in the <i>PDF Reference</i> for more information. For additional details on the PANOSE number, see the <i>Japanese TrueType Font Property Selection Guidelines</i> by the TrueType Conference Technical Committee. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetMetrics()" target="">PDFontGetMetrics</a> <br><a href="PDFont.html#PDFontSetMetrics()" target="">PDFontSetMetrics</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2279</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontStylessFamilyClassID"></a>sFamilyClassID&nbsp;&nbsp;</td><td><p>A number that identifies the <a href="General.html#font" target="">font</a> family and determines the meaning of the remaining PANOSE digits. The possible families are Latin, Kanji, Hebrew, and so forth. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontStylessFamilySubclassID"></a>sFamilySubclassID&nbsp;&nbsp;</td><td><p>A number to identify the kind of family: <a href="#text" target="">text</a>, decorative, handwritten, symbols, and so on. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontStylesbFamilyType"></a>bFamilyType&nbsp;&nbsp;</td><td><p>A number to identify the family <a href="../AS_Layer/General.html#type" target="">type</a>: <a href="#text" target="">text</a>, decorative, handwritten, symbols, and so on. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontStylesbSerifStyle"></a>bSerifStyle&nbsp;&nbsp;</td><td><p>A number that specifies the font's serif <a href="General.html#style" target="">style</a>, such as cove, obtuse cove, square, bone, and so forth. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontStylesbWeight"></a>bWeight&nbsp;&nbsp;</td><td><p>A number that specifies the font's weight, such as very light, heavy, <a href="#black" target="">black</a>, and so on. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_PDFontStylesbProportion"></a>bProportion&nbsp;&nbsp;</td><td><p>A number that specifies the font's proportions, such as modern, expanded, condensed, mono-spaced, and so on. </p></td>
+</tr>
+</table>
+</div>
+<div class="detailSectionHeader">Callbacks Detail</div>
+<a name="PDFontEnumProc2175"></a><a name="PDFontEnumProc"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontEnumProc</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> (*PDFontEnumProc)(<a href="PDFont.html" target="">PDFont</a> <a href="General.html#font" target="">font</a>, <a href="PDFont.html#PDFontFlags" target="">PDFontFlags</a> *fontFlags, <a href="../Acrobat_Forms_Layer/General.html#void()" target="">void</a> *clientData)</code>
+</div>
+<br><p>A callback <a href="../PDF_Library/General.html#used" target="">used</a> by <a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts()</a> and <a href="PDDoc.html#PDDocEnumLoadedFonts()" target="">PDDocEnumLoadedFonts()</a>. It is called once for each font. </p><p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> <br><a href="PDDoc.html#PDDocEnumLoadedFonts()" target="">PDDocEnumLoadedFonts</a> </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDExpT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2175</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="PDFontAcquireEncodingArray2749()"></a><a name="PDFontAcquireEncodingArray()"></a><a name="PDFontAcquireEncodingArray(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontAcquireEncodingArray</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a> PDFontAcquireEncodingArray(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Acquires <a href="#a" target="">a</a> font's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> array (the mapping of character codes to <a href="../PDFEdit_Layer/General.html#glyphs" target="">glyphs</a>). When you are done with this array, call <a href="PDFont.html#PDFontEncodingArrayRelease()" target="">PDFontEncodingArrayRelease()</a> to release it.</p><p>The array contains 256 pointers. If a pointer is not <code>NULL</code>, it points to a C string containing the name of the glyph for the code point corresponding to the index. If it is <code>NULL</code>, then the name of the glyph is unchanged from that specified by the font's built-in encoding. </p><p>For a <a href="../AV_Layer/General.html#Type" target="">Type</a> 3 font, all glyph <a href="../PDFEdit_Layer/General.html#names" target="">names</a> will be present in the encoding array, and <code>NULL</code> entries correspond to un-encoded code points. </p><p>For non-Roman character set viewers, it is not appropriate to call this method.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#font" target="">font</a> whose <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> array is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The font's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> array. It returns <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if there is no encoding array associated with the font. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontEncodingArrayRelease()" target="">PDFontEncodingArrayRelease</a> <br><a href="PDFont.html#PDFontGetEncodingIndex()" target="">PDFontGetEncodingIndex</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2749</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontAcquireXlateTable2934()"></a><a name="PDFontAcquireXlateTable()"></a><a name="PDFontAcquireXlateTable(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontAcquireXlateTable</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a> PDFontAcquireXlateTable(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Increments the specified font's XlateTable reference <a href="#count" target="">count</a> and also returns the XlateTable, which is a 256-entry table that maps characters from their <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> in the PDF <a href="General.html#file" target="">file</a> to host encoding. If a character cannot be mapped to host encoding, then the table entry will (for that character) contain <code>-1</code>. When you are done using the XlateTable, call <a href="PDFont.html#PDFontXlateTableRelease()" target="">PDFontXlateTableRelease()</a> to release it.</p><p>For non-Roman character set viewers, it is not appropriate to call this method.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose XlateTable is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A pointer to the font's XlateTable, <a href="../PDFEdit_Layer/General.html#if" target="">if</a> any. Otherwise it returns <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>.</p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontXlateTableRelease()" target="">PDFontXlateTableRelease</a> <br><a href="PDFont.html#PDFontXlateString()" target="">PDFontXlateString</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2934</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontEncodingArrayRelease2760()"></a><a name="PDFontEncodingArrayRelease()"></a><a name="PDFontEncodingArrayRelease(ASUns8**)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontEncodingArrayRelease</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontEncodingArrayRelease(<a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>** array)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Releases a font's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> array (the mapping of character codes to <a href="../PDFEdit_Layer/General.html#glyphs" target="">glyphs</a>). Call this method after you are done using an encoding array acquired using <a href="PDFont.html#PDFontAcquireEncodingArray()" target="">PDFontAcquireEncodingArray()</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">array</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> array to release. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontAcquireEncodingArray()" target="">PDFontAcquireEncodingArray</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2760</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontEnumCharProcs3931()"></a><a name="PDFontEnumCharProcs()"></a><a name="PDFontEnumCharProcs(PDFont,PDCharProcEnumProc,void*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontEnumCharProcs</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontEnumCharProcs(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="PDCharProc.html#PDCharProcEnumProc" target="">PDCharProcEnumProc</a> proc, void* clientData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Enumerates a <a href="../AV_Layer/General.html#Type" target="">Type</a> 3 font's character drawing procedures. The elements of a single character procedure can be enumerated using <a href="PDCharProc.html#PDCharProcEnum()" target="">PDCharProcEnum()</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="../AV_Layer/General.html#Type" target="">Type</a> 3 font's character drawing procedures are being enumerated. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">proc</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A user-supplied callback to call for each character in the <a href="General.html#font" target="">font</a>. Enumeration ends <a href="../PDFEdit_Layer/General.html#if" target="">if</a> <code>proc</code> returns <code>false</code>. If the font contains no characters, <code>proc</code> will not be called.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">clientData</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to user-supplied <a href="#data" target="">data</a> passed to <code>proc</code> each time it is called. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDCharProc.html#PDCharProcEnum()" target="">PDCharProcEnum</a> <br><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> <br><a href="PDDoc.html#PDDocEnumLoadedFonts()" target="">PDDocEnumLoadedFonts</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>3931</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontFromCosObj7660()"></a><a name="PDFontFromCosObj()"></a><a name="PDFontFromCosObj(CosObj)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontFromCosObj</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDFont.html#PDFont" target="">PDFont</a> PDFontFromCosObj(<a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a> fontObj)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Converts <a href="#a" target="">a</a> dictionary Cos object to a <a href="General.html#font" target="">font</a>. This method does not copy the object, but is instead the logical equivalent of a <a href="../AS_Layer/General.html#type" target="">type</a> cast. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fontObj</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The dictionary Cos object for the <a href="General.html#font" target="">font</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="PDFont.html" target="">PDFont</a> for <code>fontObj</code>. It returns <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> if there is no CosDoc or PDDoc containing <code>fontObj</code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00040000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>7660</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetASTextName10988()"></a><a name="PDFontGetASTextName()"></a><a name="PDFontGetASTextName(PDFont,ASBool,ASText)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetASTextName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontGetASTextName(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> removePrefix, <a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> nameToFill)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Fills in an <a href="../AS_Layer/ASText.html" target="">ASText</a> object with the <a href="General.html#font" target="">font</a> <a href="../PDFEdit_Layer/General.html#name" target="">name</a>, to be <a href="../PDF_Library/General.html#used" target="">used</a> in displaying lists or menus.</p><p>In PDF 1.5, the font name can be represented with a UTF8 byte sequence. In previous versions of Acrobat the name could also be represented by host encodings such as Shift- JIS, Big5, KSC, and so on. This routine tries to return a <a href="#text" target="">text</a> object that uses the correct script, but cannot always do so. </p><p>The ASText object is owned by the caller. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#font" target="">font</a> whose <a href="../PDFEdit_Layer/General.html#name" target="">name</a> is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">removePrefix</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Whether to <a href="../AS_Layer/General.html#remove" target="">remove</a> the subset prefix, <a href="../PDFEdit_Layer/General.html#if" target="">if</a> present. For example, when <code>true</code>, the name <code>"ABCDEF+Myriad"</code> is returned as <code>"Myriad"</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nameToFill</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) The <a href="../AS_Layer/ASText.html" target="">ASText</a> object for the font's <a href="../PDFEdit_Layer/General.html#name" target="">name</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00060000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>10988</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetBBox2790()"></a><a name="PDFontGetBBox()"></a><a name="PDFontGetBBox(PDFont,ASFixedRect*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetBBox</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontGetBBox(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/Fixed_Point_Math.html#_t_ASFixedRect" target="">ASFixedRect</a>* bboxP)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> <a href="../AV_Layer/General.html#Type" target="">Type</a> 3 font's bounding box, which is the smallest rectangle that would enclose every character in the font <a href="../PDFEdit_Layer/General.html#if" target="">if</a> they were overlaid and painted. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose bounding box is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bboxP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) A pointer to <a href="#a" target="">a</a> rectangle specifying the font's bounding box. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2790</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetCharSet2707()"></a><a name="PDFontGetCharSet()"></a><a name="PDFontGetCharSet(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetCharSet</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="General.html#PDCharSet" target="">PDCharSet</a> PDFontGetCharSet(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the font's character set. This is derived from the 'Uses Adobe standard encoding' bit in the font descriptor (<a href="../PDFEdit_Layer/General.html#if" target="">if</a> the font has a font descriptor) or from the font's <a href="../PDFEdit_Layer/General.html#name" target="">name</a> (if the font is one of the base 14 fonts and does not have a font descriptor).</p><p>For non-Roman character set viewers, call <a href="PDFont.html#PDFontGetEncodingName()" target="">PDFontGetEncodingName()</a> instead.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose character set is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The font's character set. For non-Roman character set viewers, it returns PDUnknownCharSet. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetEncodingName()" target="">PDFontGetEncodingName</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2707</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetCIDSystemInfo6221()"></a><a name="PDFontGetCIDSystemInfo()"></a><a name="PDFontGetCIDSystemInfo(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetCIDSystemInfo</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> PDFontGetCIDSystemInfo(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets an <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> representing Registry and Ordering for a CIDFont. This information resides in the CIDSystemInfo entry of the CIDFont dictionary, which describes a CIDFont.</p><p>
+<a href="PDFont.html#PDFontGetCIDSystemInfo()" target="">PDFontGetCIDSystemInfo()</a> takes either a Type 0 font or a descendant font (CIDType0 or CIDType2) as an argument. This information is always present for any Type 0 font; the actual registry ordering information is a part of the descendant font. </p><p>This method provides one way to identify a font's language. </p><p>The CIDSystemInfo entry uses three components to identify a character collection uniquely: 
+</p><ul>
+<li>
+<p>A registry name to identify an issuer of ordering information.  </p>
+</li>
+<li>
+<p>An ordering name to identify an ordered character collection.  </p>
+</li>
+<li>
+<p>A supplement number to indicate that the ordered character collection for a registry, ordering, and previous supplement has been changed to add new characters assigned CIDs beginning with the next available CID.  </p>
+</li>
+</ul><p>The <a href="PDFont.html#PDFontGetCIDSystemInfo()" target="">PDFontGetCIDSystemInfo()</a> method obtains the first two of these components. </p><p>A CIDFont is designed to contain a large number of glyph procedures. Instead of being accessed by a name, each glyph procedure is accessed by an integer known as a character identifier or CID. Instead of a font <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>, CIDFonts use a CMap with a Type 0 composite font to define the mapping from character codes to a font number and a character selector. </p><p>For more information on Type 0 fonts, CIDFonts, and CMaps, see Section 5.6 in the <i>PDF Reference</i>. For detailed information on CIDFonts, see <i>Technical Note # 5092, CID-Keyed Font Technology Overview</i>, and <i>Technical Note # 5014, Adobe CMap and CIDFont Files Specification</i>.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose Registry and Ordering information is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> representing the CIDFont's Registry and Ordering information (for example, <code>"Adobe-Japan1"</code>). </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetCIDSystemSupplement()" target="">PDFontGetCIDSystemSupplement</a> <br><a href="PDFont.html#PDFontGetDescendant()" target="">PDFontGetDescendant</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020003 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6221</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetCIDSystemSupplement6263()"></a><a name="PDFontGetCIDSystemSupplement()"></a><a name="PDFontGetCIDSystemSupplement(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetCIDSystemSupplement</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> PDFontGetCIDSystemSupplement(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the SystemSupplement number of <a href="#a" target="">a</a> CIDFont. This field resides in the CIDSystemInfo entry of the CIDFont dictionary, which describes a CIDFont.</p><p>The CIDSystemInfo entry uses three components to identify a character collection uniquely: 
+</p><ul>
+<li>
+<p>A registry name to identify an issuer of orderings.  </p>
+</li>
+<li>
+<p>An ordering name to identify an ordered character collection.  </p>
+</li>
+<li>
+<p>A supplement number to indicate that the ordered character collection for a registry, ordering, and previous supplement has been changed to add new characters assigned CIDs beginning with the next available CID.  </p>
+</li>
+</ul><p>
+<a href="PDFont.html#PDFontGetCIDSystemInfo()" target="">PDFontGetCIDSystemInfo()</a> provides character collection information, and <a href="PDFont.html#PDFontGetCIDSystemSupplement()" target="">PDFontGetCIDSystemSupplement()</a> specifies the version of the ordering. </p><p>A CIDFont is designed to contain a large number of glyph procedures. Instead of being accessed by a name, each glyph procedure is accessed by an integer known as a character identifier or CID. Instead of a <a href="General.html#font" target="">font</a> <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>, CIDFonts use a CMap with a <a href="../AV_Layer/General.html#Type" target="">Type</a> 0 composite font to define the mapping from character codes to a font number and a character selector. </p><p>For more information on Type 0 fonts, CIDFonts, and CMaps, see Section 5.6 in the <i>PDF Reference</i>. For detailed information on CIDFonts, see <i>Technical Note # 5092, CID-Keyed Font Technology Overview</i>, and <i>Technical Note # 5014, Adobe CMap and CIDFont Files Specification</i>.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose <code>SystemSupplement</code> field is obtained.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <code>SystemSupplement</code> field from the CIDFont. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetDescendant()" target="">PDFontGetDescendant</a> <br><a href="PDFont.html#PDFontGetCIDSystemInfo()" target="">PDFontGetCIDSystemInfo</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020003 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6263</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetCosObj2993()"></a><a name="PDFontGetCosObj()"></a><a name="PDFontGetCosObj(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetCosObj</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#OPAQUE_64_BITS" target="">CosObj</a> PDFontGetCosObj(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the Cos object for <a href="#a" target="">a</a> <a href="General.html#font" target="">font</a>. This method does not copy the object, but is instead the logical equivalent of a <a href="../AS_Layer/General.html#type" target="">type</a> cast. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose Cos object is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The dictionary Cos object for the <a href="General.html#font" target="">font</a>. The dictionary's contents may be enumerated with <a href="../COS_Layer/CosObj.html#CosObjEnum()" target="">CosObjEnum()</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2993</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetDescendant6143()"></a><a name="PDFontGetDescendant()"></a><a name="PDFontGetDescendant(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetDescendant</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="PDFont.html#PDFont" target="">PDFont</a> PDFontGetDescendant(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> <a href="../AV_Layer/General.html#Type" target="">Type</a> 0 font's descendant, which may be a CIDType0 or CIDType2 font.</p><p>Type 0 fonts support single-byte or multi-byte encodings and can refer to one or more descendant fonts. These fonts are analogous to the Type 0 or composite fonts supported by Level 2 PostScript interpreters. However, PDF Type 0 fonts only support character encodings <a href="../PDF_Library/General.html#defined" target="">defined</a> by a CMap. The CMap specifies the mappings between character codes and the <a href="../PDFEdit_Layer/General.html#glyphs" target="">glyphs</a> in the descendant fonts. </p><p>For information on Type 0 fonts, see Section 5.6 in the <i>PDF Reference</i>. See Section 5.6.4 for more details on CMaps. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose descendant is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The font's descendant font. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetCIDSystemInfo()" target="">PDFontGetCIDSystemInfo</a> <br><a href="PDFont.html#PDFontGetCIDSystemSupplement()" target="">PDFontGetCIDSystemSupplement</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020003 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6143</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetEncodingIndex2723()"></a><a name="PDFontGetEncodingIndex()"></a><a name="PDFontGetEncodingIndex(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetEncodingIndex</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> PDFontGetEncodingIndex(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> font's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> <a href="General.html#index" target="">index</a>.</p><p>For non-Roman character set viewers, call <a href="PDFont.html#PDFontGetEncodingName()" target="">PDFontGetEncodingName()</a> instead. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> <a href="General.html#index" target="">index</a> is obtained.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A <a href="General.html#font" target="">font</a> <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> <a href="General.html#index" target="">index</a>. If the index is greater than <a href="General.html#PDLastKnownEncoding" target="">PDLastKnownEncoding</a>, it is a custom encoding, and is unique within the document. If the index is less than PDLastKnownEncoding, it must be one of the <a href="PDFont.html#PDFontEncoding" target="">PDFontEncoding</a> values. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontAcquireEncodingArray()" target="">PDFontAcquireEncodingArray</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2723</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetEncodingName6171()"></a><a name="PDFontGetEncodingName()"></a><a name="PDFontGetEncodingName(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetEncodingName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a> PDFontGetEncodingName(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> string representing a font's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>.</p><p>Use <a href="PDFont.html#PDFontGetEncodingIndex()" target="">PDFontGetEncodingIndex()</a> to get encoding information for Roman viewers. </p><p>Host encoding is a platform-dependent encoding for the host machine. For non-UNIX Roman systems, it is <code>WinAnsiEncoding</code> on Windows and <code>MacRomanEncoding</code> on Mac OS. On UNIX (except HP-UX) Roman systems, it is <code>ISO8859-1</code> (ISO Latin-1); for HP-UX, it is <code>HP-ROMAN8</code>. See Appendix D in the <i>PDF Reference</i> for descriptions of <code>WinAnsiEncoding</code>, <code>MacRomanEncoding</code>, and <code>PDFDocEncoding</code>. </p><p>For non-Roman systems, the host encoding may be a variety of encodings, which are <a href="../PDF_Library/General.html#defined" target="">defined</a> by a CMap (character map). See Section 5.6.4 in the <i>PDF Reference</i> for a list of predefined CMaps. In this case, the encoding string contains values such as <code>"90ms-RKSJ-H"</code>, <code>"90msp-RKSJ-H"</code>, <code>"Identity-V"</code>, or <code>"90pv-RKSJ-H"</code>; it does not return a string like <code>"Shift-JIS"</code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#font" target="">font</a> whose <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> <a href="../PDFEdit_Layer/General.html#name" target="">name</a> is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The string representing the font's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetEncodingIndex()" target="">PDFontGetEncodingIndex</a> <br><a href="General.html#PDGetHostEncoding()" target="">PDGetHostEncoding</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020003 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6171</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetFontMatrix2963()"></a><a name="PDFontGetFontMatrix()"></a><a name="PDFontGetFontMatrix(PDFont,ASFixedMatrix*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetFontMatrix</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontGetFontMatrix(<a href="PDFont.html#PDFont" target="">PDFont</a> fontP, <a href="../AS_Layer/Fixed_Point_Math.html#_t_ASFixedMatrix" target="">ASFixedMatrix</a>* matrixP)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> font's <a href="General.html#matrix" target="">matrix</a>, which specifies the transformation from character <a href="General.html#space" target="">space</a> to <a href="#text" target="">text</a> space. See Section 5.5.4 in the <i>PDF Reference</i>. This is only valid for Type 3 fonts.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fontP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose <a href="General.html#matrix" target="">matrix</a> is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">matrixP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) A pointer to the font's <a href="General.html#matrix" target="">matrix</a>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2963</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetMetrics2779()"></a><a name="PDFontGetMetrics()"></a><a name="PDFontGetMetrics(PDFont,PDFontMetricsP,os_size_t)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetMetrics</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontGetMetrics(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="PDFont.html#_t_PDFontMetrics" target="">PDFontMetricsP</a> metricsP, os_size_t sizeMetrics)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> font's metrics, which provide the information needed to create a substitute Multiple Master font when the original font is unavailable. See Section 5.7 in the <i>PDF Reference</i> for <a href="#a" target="">a</a> discussion of font descriptors. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose metrics are being obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">metricsP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) A pointer to <a href="#a" target="">a</a> <a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a> structure containing the font's metrics. The font metric values may be patched <a href="../AV_Layer/General.html#before" target="">before</a> being returned. If the actual values in the PDF <a href="General.html#file" target="">file</a> are required, use Cos instead to get trustworthy metrics. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">sizeMetrics</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT It must be <code>sizeof(<a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a>)</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetWidths()" target="">PDFontGetWidths</a> <br><a href="PDFont.html#PDFontSetMetrics()" target="">PDFontSetMetrics</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2779</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetName2679()"></a><a name="PDFontGetName()"></a><a name="PDFontGetName(PDFont,char*,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetName</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> PDFontGetName(<a href="PDFont.html#PDFont" target="">PDFont</a> font, char* buffer, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> bufSize)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="../PDFEdit_Layer/General.html#name" target="">name</a> of a <a href="General.html#font" target="">font</a>. The behavior depends on the font type; for a <a href="../AV_Layer/General.html#Type" target="">Type</a> 3 font it gets the <a href="General.html#value" target="">value</a> of the Name key in a PDF Font resource. See Section 5.5.4 in the <i>PDF Reference</i>. For other types it gets the value of the BaseFont key in a PDF font resource. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose <a href="../PDFEdit_Layer/General.html#name" target="">name</a> is obtained. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">buffer</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) The buffer into which the font's <a href="../PDFEdit_Layer/General.html#name" target="">name</a> is stored. The client may pass in <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code> to obtain the buffer size, excluding the terminating <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, and then call the method with a buffer of the appropriate size. You must pass at least the <code><a href="../AS_Layer/General.html#bufSize" target="">bufSize</a> + 1</code> as the buffer size </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bufSize</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#length" target="">length</a> of <code>buffer</code> in bytes. The maximum font name length that the Acrobat viewer will return is <code><a href="General.html#PSNAMESIZE" target="">PSNAMESIZE</a></code> (see PDExpT. h). </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The number of characters in the <a href="General.html#font" target="">font</a> <a href="../PDFEdit_Layer/General.html#name" target="">name</a>. If the font name is too long to fit into <code>buffer</code>, <code><a href="../AS_Layer/General.html#bufSize" target="">bufSize</a> - 1</code> bytes are copied into <code>buffer</code>, and <code>buffer</code> is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>-terminated. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> <br><a href="PDFont.html#PDFontGetEncodingName()" target="">PDFontGetEncodingName</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2679</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetSubtype2690()"></a><a name="PDFontGetSubtype()"></a><a name="PDFontGetSubtype(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetSubtype</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASAtom.html#ASAtom" target="">ASAtom</a> PDFontGetSubtype(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> font's <a href="General.html#subtype" target="">subtype</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose <a href="General.html#subtype" target="">subtype</a> is obtained. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The font's <a href="General.html#subtype" target="">subtype</a>. The <a href="../AS_Layer/ASAtom.html" target="">ASAtom</a> returned can be converted to a string using <a href="../AS_Layer/ASAtom.html#ASAtomGetString()" target="">ASAtomGetString()</a>. It must be one of the Font Subtypes. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2690</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontGetWidths2816()"></a><a name="PDFontGetWidths()"></a><a name="PDFontGetWidths(PDFont,ASInt16*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontGetWidths</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontGetWidths(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* widths)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the advance <a href="#width" target="">width</a> of every glyph in a <a href="General.html#font" target="">font</a>. The advance width is the amount by which the current <a href="../PDFEdit_Layer/General.html#point" target="">point</a> advances when the glyph is drawn. The advance width may not correspond to the <a href="../AV_Layer/General.html#visible" target="">visible</a> width of the glyph (for example, a glyph representing an accent mark might have an advance width of zero so that characters can be drawn under it). For this <a href="../AV_Layer/General.html#reason" target="">reason</a>, the advance width cannot be <a href="../PDF_Library/General.html#used" target="">used</a> to determine the glyphs' bounding boxes.</p><p>For non-Roman character set viewers, this method gets the width for a single byte range (<code>0</code> through <code>255</code>).  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose glyph advance widths are obtained.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">widths</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) An array of glyph advance widths, measured in character <a href="General.html#space" target="">space</a> units. Un-encoded code points will have a width of zero. For non-Roman character set viewers, an array for a single byte range (<code>0</code> through <code>255</code>). </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetMetrics()" target="">PDFontGetMetrics</a> <br><a href="PDFont.html#PDFontSetMetrics()" target="">PDFontSetMetrics</a> <br><a href="PDFont.html#PDFontXlateWidths()" target="">PDFontXlateWidths</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2816</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontIsEmbedded2861()"></a><a name="PDFontIsEmbedded()"></a><a name="PDFontIsEmbedded(PDFont)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontIsEmbedded</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDFontIsEmbedded(<a href="PDFont.html#PDFont" target="">PDFont</a> font)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether the specified <a href="General.html#font" target="">font</a> is <a href="../AV_Layer/General.html#embedded" target="">embedded</a> in the PDF <a href="General.html#file" target="">file</a>, meaning that the font is stored as a font file, which is a stream embedded in the PDF file. Only <a href="../AV_Layer/General.html#Type" target="">Type</a> 1 and TrueType fonts can be embedded. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#font" target="">font</a> to test. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if the font is embedded in the file, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDDoc.html#PDDocEnumFonts()" target="">PDDocEnumFonts</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2861</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontSetMetrics2980()"></a><a name="PDFontSetMetrics()"></a><a name="PDFontSetMetrics(PDFont,PDFontMetricsP,os_size_t)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontSetMetrics</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, PDFL</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontSetMetrics(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="PDFont.html#_t_PDFontMetrics" target="">PDFontMetricsP</a> metricsP, os_size_t sizeMetrics)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets <a href="#a" target="">a</a> font's metrics, which provide the information needed to create a substitute Multiple Master font when the original font is unavailable. See Section 5.7 in the <i>PDF Reference</i> for <a href="#a" target="">a</a> discussion of font descriptors. This method can only be used on Type 1, Multiple Master Type 1, and TrueType fonts; it cannot be used on Type 3 fonts. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose metrics are being set. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">metricsP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT A pointer to <a href="#a" target="">a</a> <a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a> structure containing the font's metrics. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">sizeMetrics</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT It must be <code>sizeof(<a href="PDFont.html#PDFontMetrics" target="">PDFontMetrics</a>)</code>. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetMetrics()" target="">PDFontGetMetrics</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2980</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontXlateString2913()"></a><a name="PDFontXlateString()"></a><a name="PDFontXlateString(PDFont,ASUns8*,ASUns8*,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontXlateString</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> PDFontXlateString(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* inP, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* outP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> len)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Translates a string from the PDFont's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> into host encoding. If any characters cannot be represented in host encoding, they are replaced with <a href="General.html#space" target="">space</a> characters. If no XlateTable exists in the <a href="General.html#font" target="">font</a>, the function returns <code>false</code> and <code>outP</code> is not written.</p><p>For non-Roman character set viewers, it is not appropriate to call this method. Instead call one of the following: <a href="PDFont.html#PDFontXlateToHost()" target="">PDFontXlateToHost()</a>, <a href="PDFont.html#PDFontXlateToUCS()" target="">PDFontXlateToUCS()</a>, <a href="General.html#PDXlateToHostEx()" target="">PDXlateToHostEx()</a>, or <a href="General.html#PDXlateToPDFDocEncEx()" target="">PDXlateToPDFDocEncEx()</a>.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#font" target="">font</a> (and hence, the <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a>) that <code>inP</code> uses.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The string to translate. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">outP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) The translated string. <code>outP</code> may point to the same buffer as <code>inP</code>, to allow in-place translation. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">len</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#length" target="">length</a> of <code>inP</code> and <code>outP</code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if an XlateTable exists in the font, <code>false</code> otherwise. If no XlateTable exists in the font, <code>outP</code> is not written. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontXlateToHost()" target="">PDFontXlateToHost</a> <br><a href="PDFont.html#PDFontAcquireXlateTable()" target="">PDFontAcquireXlateTable</a> <br><a href="PDFont.html#PDFontXlateToUCS()" target="">PDFontXlateToUCS</a> <br><a href="General.html#PDXlateToHostEx()" target="">PDXlateToHostEx</a> <br><a href="General.html#PDXlateToPDFDocEncEx()" target="">PDXlateToPDFDocEncEx</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2913</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontXlateTableRelease2948()"></a><a name="PDFontXlateTableRelease()"></a><a name="PDFontXlateTableRelease(ASInt16*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontXlateTableRelease</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontXlateTableRelease(<a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* table)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Decrements the specified font's XlateTable reference <a href="#count" target="">count</a>. The XlateTable is a 256-entry table that maps characters from their <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> in the PDF <a href="General.html#file" target="">file</a> to host encoding. If a character cannot be mapped to host encoding, then the table entry will (for that character) contain <code>-1</code>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">table</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The XlateTable to release. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontAcquireXlateTable()" target="">PDFontAcquireXlateTable</a> <br><a href="PDFont.html#PDFontXlateString()" target="">PDFontXlateString</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2948</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontXlateToHost6516()"></a><a name="PDFontXlateToHost()"></a><a name="PDFontXlateToHost(PDFont,ASUns8*,ASInt32,ASUns8*,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontXlateToHost</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> PDFontXlateToHost(<a href="PDFont.html#PDFont" target="">PDFont</a> fontP, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* inP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> inLen, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* outP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> outLen)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Translates a string from the PDFont's <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> to host encoding. This is useful for converting the <a href="#text" target="">text</a> from a <a href="PDWord.html" target="">PDWord</a> into host encoding. In the same way that <a href="General.html#PDXlateToHostEx()" target="">PDXlateToHostEx()</a> converts text from bookmark titles to host encoding, <a href="PDFont.html#PDFontXlateToHost()" target="">PDFontXlateToHost()</a> converts text from a page contents stream to host encoding. Use <a href="PDFont.html#PDFontXlateToUCS()" target="">PDFontXlateToUCS()</a> to translate from the PDFont's encoding to Unicode.</p><p>Non-Roman fonts, such as PostScript composite fonts, can be encoded in different ways, such as SHIFT-JIS, RKSJ, and so on. To use <a href="PDFont.html#PDFontXlateToHost()" target="">PDFontXlateToHost()</a>, the caller does not need to know which encoding he is converting from, since that information is contained in the PDFont. </p><p>Host encoding is a platform-dependent encoding for the host machine. For non-UNIX Roman systems, it is <code>WinAnsiEncoding</code> on Windows and <code>MacRomanEncoding</code> on Mac OS. On UNIX (except HP-UX) Roman systems, it is <code>ISO8859-1</code> (ISO Latin-1); for HP-UX, it is <code>HP-ROMAN8</code>. See Appendix D in the <i>PDF Reference</i> for descriptions of <code>MacRomanEncoding</code>, <code>WinAnsiEncoding</code>, and <code>PDFDocEncoding</code>. </p><p>For non-Roman systems, the host encoding may be a variety of encodings, which are <a href="../PDF_Library/General.html#defined" target="">defined</a> by a CMap (character map). See Section 5.6.4 in the <i>PDF Reference</i> for a list of predefined CMaps. </p><p>Use <a href="General.html#PDGetHostEncoding()" target="">PDGetHostEncoding()</a> to determine if a system's host encoding is Roman. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fontP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#font" target="">font</a> <a href="../PDF_Library/General.html#used" target="">used</a> in the input string <code>inP</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to the string to translate. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inLen</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#length" target="">length</a> of the <code>inP</code> buffer in bytes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">outP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A pointer to the translated string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">outLen</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#length" target="">length</a> of the <code>outP</code> buffer in bytes. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The number of bytes in the translated string <code>outP</code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontXlateString()" target="">PDFontXlateString</a> <br><a href="PDFont.html#PDFontXlateToUCS()" target="">PDFontXlateToUCS</a> <br><a href="General.html#PDGetHostEncoding()" target="">PDGetHostEncoding</a> <br><a href="General.html#PDXlateToHostEx()" target="">PDXlateToHostEx</a> <br><a href="General.html#PDXlateToPDFDocEncEx()" target="">PDXlateToPDFDocEncEx</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020003 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6516</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontXlateToUCS6561()"></a><a name="PDFontXlateToUCS()"></a><a name="PDFontXlateToUCS(PDFont,ASUns8*,ASInt32,ASUns8*,ASInt32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontXlateToUCS</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> PDFontXlateToUCS(<a href="PDFont.html#PDFont" target="">PDFont</a> fontP, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* inP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> inLen, <a href="../AS_Layer/General.html#ASUns8" target="">ASUns8</a>* outP, <a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> outLen)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Translates a string from whatever <a href="../PDFEdit_Layer/General.html#encoding" target="">encoding</a> the <a href="PDFont.html" target="">PDFont</a> uses to Unicode encoding. This is useful for converting the <a href="#text" target="">text</a> from a <a href="PDWord.html" target="">PDWord</a> into Unicode. Use <a href="PDFont.html#PDFontXlateToHost()" target="">PDFontXlateToHost()</a> to translate from the PDFont's encoding to host encoding.</p><p>Non-Roman fonts, like PostScript composite fonts, can be encoded in different ways, such as SHIFT-JIS, RKSJ, and so on. The caller does not need to know which encoding they're converting from, since that information is contained in the PDFont. </p><p>Host encoding is a platform-dependent encoding for the host machine. For non-UNIX Roman systems, it is <code>WinAnsiEncoding</code> on Windows and <code>MacRomanEncoding</code> on Mac OS. On UNIX (except HP-UX) Roman systems, it is <code>ISO8859-1</code> (ISO Latin-1); for HP-UX, it is <code>HP-ROMAN8</code>. See Appendix D in the <i>PDF Reference</i> for descriptions of <code>WinAnsiEncoding</code>, <code>MacRomanEncoding</code>, and <code>PDFDocEncoding</code>. </p><p>For non-Roman systems, the host encoding may be a variety of encodings, which are <a href="../PDF_Library/General.html#defined" target="">defined</a> by a CMap (character map). See Section 5.6.4 in the <i>PDF Reference</i> for a list of predefined CMaps. </p><p>Use <a href="General.html#PDGetHostEncoding()" target="">PDGetHostEncoding()</a> to determine if a system's host encoding is Roman. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fontP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#font" target="">font</a> of the input string <code>inP</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to the string to translate. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inLen</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#length" target="">length</a> of the <code>inP</code> buffer in bytes. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">outP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>(Filled by the method) A pointer to the translated string. If it is <code><a href="../AS_Layer/General.html#NULL" target="">NULL</a></code>, the method returns the size of the translated string. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">outLen</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="General.html#length" target="">length</a> of the <code>outP</code> buffer in bytes. If it is <code>0</code>, the method returns the size of the translated string. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The number of bytes in the translated string in <code>outP</code>. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontXlateToHost()" target="">PDFontXlateToHost</a> <br><a href="General.html#PDGetHostEncoding()" target="">PDGetHostEncoding</a> <br><a href="General.html#PDXlateToHostEx()" target="">PDXlateToHostEx</a> <br><a href="General.html#PDXlateToPDFDocEncEx()" target="">PDXlateToPDFDocEncEx</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020003 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>6561</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="PDFontXlateWidths2883()"></a><a name="PDFontXlateWidths()"></a><a name="PDFontXlateWidths(PDFont,ASInt16*,ASInt16*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">PDFontXlateWidths</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>All</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>All</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void PDFontXlateWidths(<a href="PDFont.html#PDFont" target="">PDFont</a> font, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* inP, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a>* outP)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Translates an array of 256 glyph advance widths (obtained from <a href="PDFont.html#PDFontGetWidths()" target="">PDFontGetWidths()</a>) from their order in the PDF file into host encoding order. If the widths are already in host encoding order, the widths are merely copied. All un-encoded code points are given a width of zero.</p><p>For non-Roman character set viewers, it is not appropriate to call this method.  </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">font</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The <a href="General.html#font" target="">font</a> whose glyph widths are translated.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">inP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT The array of glyph advance widths to rearrange.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">outP</span></code>&nbsp;&mdash;&nbsp;</td><td><p>IN/OUT (Filled by the method) The rearranged array of glyph advance widths. </p></td>
+</tr>
+</table>
+</p>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="PDFont.html#PDFontGetWidths()" target="">PDFontGetWidths</a> </div>
+<p>
+<span class="label">Since</span>
+</p>
+<div class="seeAlso"><a href="../AS_Layer/General.html#PI_PDMODEL_VERSION" target="">PI_PDMODEL_VERSION</a> &gt;= 0x00020000 </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>PDProcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>2883</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->

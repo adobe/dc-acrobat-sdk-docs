@@ -1,0 +1,2814 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../print.css" type="text/css" media="print">
+<meta content="Search,,,,_t_SearchQueryDataRec,SearchHFT_NAME,SearchHFT_LATEST_VERSION,Init_SearchHFT,SearchNUMSELECTORS,_SearchSelector,SearchSelector,gSearchHFT,SetUpSearchHFTServer,SearchExecuteQuery,SearchGetIndexList,SearchCountIndexList,SearchGetNthIndex,SearchGetIndexByPath,SearchAddIndex,SearchRemoveIndex,SearchGetIndexFlags,SearchSetIndexFlags,SearchGetIndexTitle,SearchGetIndexPath,SearchGetIndexByPathEx,SearchAddIndexEx,SearchGetIndexTitleEx,SearchGetIndexPathEx,SearchGetIndexFileSys,SearchIsLegacySearchAvailable,SearchExecuteQueryEx,kSearchDocumentText,kSearchBookmarks,kSearchMarkup,kSearchDocumentXMP,kSearchSignatures,kSearchDocInfo,kSearchJPEGExif,kSearchUserProperties,kSearchPDFAttachments,kSearchEveryWhere,SearchType,SearchMatchOption,SearchWordOptions,SearchScope,SearchQueryDataRec,SearchIndexListPtr,SearchIndexPtr" name="keywords">
+<title>AV_Layer.Search (Acrobat)</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../cdoc.js"></script><script type="text/javascript" language="javascript" src="../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Search - Acrobat and PDF Library API Reference';
+				var baseRef = '../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">Acrobat API Reference</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../all-classes.html'); loadPackageListFrame('../package-list.html')" href="../package-summary.html">All Layers</a>&nbsp;|&nbsp;<a href="../class-summary.html">All Objects</a>&nbsp;|&nbsp;<a href="../Index/all-index-Symbols.html">Index</a>&nbsp;|&nbsp;<a href="../Samples/CodeSamples/sample-descriptions.html">Samples</a>&nbsp;| <a href="../index.html?AV_Layer/Search.html&amp;AV_Layer/class-list.html&amp;package-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1"> No Frames </a></td><td rowspan="3" align="right" class="titleTableLogo"><img class="logoImage" src="../images/logo.jpg" alt=" Adobe Logo " title=" Adobe Logo "></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Search</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#defineSummary">Defines</a>&nbsp;| <a href="#typedefSummary">Typedefs</a>&nbsp;| <a href="#enumerationSummary">Enumerations</a>&nbsp;| <a href="#variableSummary">Variables</a>&nbsp;| <a href="#structureSummary">Structures</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Search"); titleBar_setSubNav(true,true,true,true,true,false,false,true);}
+--></script>
+<div xmlns:fn="http://www.w3.org/2005/02/xpath-functions" class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Layer</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">AV_Layer</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Object</td><td class="classSignature">Search</td>
+</tr>
+</table>
+<p></p>
+<p></p><p>
+          The Adobe Acrobat Search plug-in allows users to perform <a href="#text" target="">text</a> searches in PDF documents. It adds menus,
+          menu items, toolbar button, and a <b>Search</b> panel to the Acrobat viewer.
+        </p><p>
+          The Search plug-in exports a Host Function Table (<a href="../AS_Layer/HFT_and_HFT_Server.html#HFT" target="">HFT</a>) containing several methods that can
+          be <a href="../PDF_Library/General.html#used" target="">used</a> by other plug-ins.
+        </p><p>
+          The HFT's <a href="../PDFEdit_Layer/General.html#name" target="">name</a> is <code>Search</code>, and its version number
+          is <code>0</code>. To use the Search plug-in's HFT, a
+          plug-in must include the header file <code>SrchClls.h</code>. The plug-in must also import
+          the HFT using ASExtensionMgrGetHFT() and assign the HFT returned by this call to a plug-in-defined
+          global variable named <code>gSearchHFT</code>.
+        </p><p>
+          Acrobat 6.0 and later has two versions of the Search plug-in, <code>Search</code>
+          (new in Acrobat 6.0) and <code>Search5</code> (also available in Acrobat 5.0).
+        </p><ul>
+          <li>
+            The <code>Search</code> plug-in uses a search engine licensed from Lextek
+            International. Lextek can be contacted at http://www.lextek.com.
+          </li>
+          <li>
+            The <code>Search5</code> plug-in uses a search engine licensed from
+            Verity, Inc. Verity can be contacted at http://www.verity.com.
+          </li>
+        </ul><p>You can do the following with either version of the Search plug-in:</p><ul>
+          <li>Create or delete indexes.</li>
+          <li>Ask what indexes are available.</li>
+          <li>Send queries to an existing index.</li>
+        </ul><p>
+          You cannot use either version of the Search plug-in to directly obtain the results of a
+          search, for manipulation or for <a href="General.html#display" target="">display</a> in an application other than Adobe Acrobat.
+        </p><p>
+          Search supports interapplication communication (IAC) in the form of DDE messages on <a href="Windows.html" target="">Windows</a> and Apple events on
+          Mac OS. These DDE messages and Apple events allow remote clients to submit search queries and
+          manipulate a <a href="../PDF_Library/General.html#list" target="">list</a> of indexes (the list of indexes is referred to as the shelf).
+        </p><p>
+          This document describes the Search HFT. The Interapplication Communication (IAC) APIs
+          supported by the Acrobat Search plug-in are described
+          in <i>Developing Applications using Interapplication Communication</i>
+          and the <i>Interapplication Communication API Reference</i>.
+        </p><p></p>
+<p>
+<span class="classHeaderTableLabel"></span>
+</p>
+<div class="seeAlso"></div>
+<br>
+<hr>
+</div>
+<a name="defineSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Define Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Define</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#Init_SearchHFT31">Init_SearchHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchBookmarks90">kSearchBookmarks</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchDocInfo106">kSearchDocInfo</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchDocumentText86">kSearchDocumentText</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchDocumentXMP98">kSearchDocumentXMP</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchEveryWhere128">kSearchEveryWhere</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchJPEGExif110">kSearchJPEGExif</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchMarkup94">kSearchMarkup</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchPDFAttachments124">kSearchPDFAttachments</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchSignatures102">kSearchSignatures</a>
+<div class="summaryTableDescription">SearchWordOptions </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#kSearchUserProperties120">kSearchUserProperties</a>
+<div class="summaryTableDescription">By including the kSearchUserProperties option, you will ensure that the object level data is the same as that seen by the menu item Object Data Tool in Acrobat. This is not the metadata associated with individual COS level objects in the PDF document.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchHFT_LATEST_VERSION29">SearchHFT_LATEST_VERSION</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchHFT_NAME28">SearchHFT_NAME</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchNUMSELECTORS44">SearchNUMSELECTORS</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="typedefSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Typedef Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Typedef</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchIndexListPtr">SearchIndexListPtr</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchIndexPtr">SearchIndexPtr</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchQueryDataRec">SearchQueryDataRec</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchScope">SearchScope</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchSelector">SearchSelector</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#SearchWordOptions">SearchWordOptions</a>
+<div class="summaryTableDescription">The client must supply all the search word options in the scope parameter by doing an OR (|) operation on all options where the search needs to be executed. For example, if the client needs to search on attachments, and within attachments the search needs to be done on document text and XMP data, then it can be specified as follows:</div>
+</td>
+</tr>
+</table>
+</div>
+<a name="enumerationSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Enumeration Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Enumeration</th>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#_SearchSelector36"><b>_SearchSelector</b></a></code>
+<div class="summaryTableDescription"></div>
+</td>
+</div>
+</tr>
+<tr class="row0">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#SearchMatchOption150"><b>SearchMatchOption</b></a></code>
+<div class="summaryTableDescription">Search Match Options </div>
+</td>
+</div>
+</tr>
+<tr class="row1">
+<div class="summarySignature">
+<td class="summaryTablePaddingCol">&nbsp;</td>
+</div>
+<div class="summaryTableDescription">
+<td valign="top"><code><a href="#SearchType137"><b>SearchType</b></a></code>
+<div class="summaryTableDescription"></div>
+</td>
+</div>
+</tr>
+</table>
+</div>
+<a name="variableSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Variable Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Variable</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#gSearchHFT53">gSearchHFT</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="structureSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Structure Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Structure</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td valign="top"><a class="signatureLink" href="#_t_SearchQueryDataRec162">_t_SearchQueryDataRec</a>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Method Summary</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">SearchIndexPtr <a class="signatureLink" href="#SearchAddIndex175()">SearchAddIndex</a>(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, char* fullPath, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags)</div>
+<div class="summaryTableDescription">Superseded in Acrobat 6.0 by SearchAddIndexEx().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">SearchIndexPtr <a class="signatureLink" href="#SearchAddIndexEx294()">SearchAddIndexEx</a>(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="../AS_Layer/ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> indexPath, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags)</div>
+<div class="summaryTableDescription">Supersedes SearchAddIndex() in Acrobat 6.0.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASUns32 <a class="signatureLink" href="#SearchCountIndexList112()">SearchCountIndexList</a>(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list)</div>
+<div class="summaryTableDescription">Gets the number of indices currently on the shelf. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASInt32 <a class="signatureLink" href="#SearchExecuteQuery97()">SearchExecuteQuery</a>(char* cQuery, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a> nParserID, <a href="../AS_Layer/General.html#ASUns16" target="">ASUns16</a> nSortCount, char** cSortNames, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* bSortWays, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> nWordOptions, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bOverrideWordOptions, <a href="../AS_Layer/General.html#ASUns16" target="">ASUns16</a> nMaxDocs)</div>
+<div class="summaryTableDescription">Superseded in Acrobat 6.0 by SearchExecuteQueryEx(), which allows a broader range of search locations.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SearchExecuteQueryEx350()">SearchExecuteQueryEx</a>(const <a href="Search.html#_t_SearchQueryDataRec" target="">SearchQueryDataRec</a>* queryData)</div>
+<div class="summaryTableDescription">Supersedes SearchExecuteQuery() in Acrobat 6.0.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">SearchIndexPtr <a class="signatureLink" href="#SearchGetIndexByPath145()">SearchGetIndexByPath</a>(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, char* fullPath)</div>
+<div class="summaryTableDescription">Superseded by SearchGetIndexPathEx() in Acrobat 6.0.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">SearchIndexPtr <a class="signatureLink" href="#SearchGetIndexByPathEx263()">SearchGetIndexByPathEx</a>(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="../AS_Layer/ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> indexPath)</div>
+<div class="summaryTableDescription">Supersedes SearchGetIndexPath() in Acrobat 6.0.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASFileSys <a class="signatureLink" href="#SearchGetIndexFileSys325()">SearchGetIndexFileSys</a>(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</div>
+<div class="summaryTableDescription">Gets the file system for a specified index as an ASFileSys object. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASUns32 <a class="signatureLink" href="#SearchGetIndexFlags197()">SearchGetIndexFlags</a>(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</div>
+<div class="summaryTableDescription">Gets the flags for a specified index. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">SearchIndexListPtr <a class="signatureLink" href="#SearchGetIndexList105()">SearchGetIndexList</a>()</div>
+<div class="summaryTableDescription">Gets a list of the indices currently on the shelf. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">char* <a class="signatureLink" href="#SearchGetIndexPath245()">SearchGetIndexPath</a>(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</div>
+<div class="summaryTableDescription">Superseded in Acrobat 6.0 by SearchGetIndexPathEx().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASPathName <a class="signatureLink" href="#SearchGetIndexPathEx316()">SearchGetIndexPathEx</a>(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</div>
+<div class="summaryTableDescription">Supersedes SearchGetIndexPath() in Acrobat 6.0.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">char* <a class="signatureLink" href="#SearchGetIndexTitle229()">SearchGetIndexTitle</a>(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</div>
+<div class="summaryTableDescription">Superseded in Acrobat 6.0 by SearchGetIndexTitleEx().</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASText <a class="signatureLink" href="#SearchGetIndexTitleEx305()">SearchGetIndexTitleEx</a>(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</div>
+<div class="summaryTableDescription">Supersedes SearchGetIndexTitle() in Acrobat 6.0.</div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">SearchIndexPtr <a class="signatureLink" href="#SearchGetNthIndex125()">SearchGetNthIndex</a>(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> n)</div>
+<div class="summaryTableDescription">Gets the nth index on the shelf. The index can be passed to other Search plug-in methods to remove it from the shelf, obtain its title, and so forth. </div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SearchIsLegacySearchAvailable334()">SearchIsLegacySearchAvailable</a>()</div>
+<div class="summaryTableDescription">Tests whether the search mechanism (Search5) for previous Acrobat versions (prior to 6.0) is available for the current system. When Search5 is available, you can search indexes from Acrobat 5.0 and earlier. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">void <a class="signatureLink" href="#SearchRemoveIndex182()">SearchRemoveIndex</a>(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</div>
+<div class="summaryTableDescription">Removes the specified index from the shelf.</div>
+</td>
+</tr>
+<tr class="row0">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASUns32 <a class="signatureLink" href="#SearchSetIndexFlags218()">SearchSetIndexFlags</a>(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags)</div>
+<div class="summaryTableDescription">Sets the flags for a specified index. </div>
+</td>
+</tr>
+<tr class="row1">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">ASBool <a class="signatureLink" href="#SetUpSearchHFTServer54()">SetUpSearchHFTServer</a>()</div>
+<div class="summaryTableDescription"></div>
+</td>
+</tr>
+</table>
+</div>
+<div class="MainContent">
+<div class="detailSectionHeader">Defines Detail</div>
+<a name="Init_SearchHFT31"></a><a name="Init_SearchHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">Init_SearchHFT</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define Init_SearchHFT ASExtensionMgrGetHFT(ASAtomFromString(SearchHFT_NAME), SearchHFT_LATEST_VERSION)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>31</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchBookmarks90"></a><a name="kSearchBookmarks"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchBookmarks</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchBookmarks 0x00000002L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>90</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchDocInfo106"></a><a name="kSearchDocInfo"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchDocInfo</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchDocInfo 0x00000020L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>106</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchDocumentText86"></a><a name="kSearchDocumentText"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchDocumentText</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchDocumentText 0x00000001L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>86</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchDocumentXMP98"></a><a name="kSearchDocumentXMP"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchDocumentXMP</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchDocumentXMP 0x00000008L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>98</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchEveryWhere128"></a><a name="kSearchEveryWhere"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchEveryWhere</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchEveryWhere ASMAXUns32</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>128</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchJPEGExif110"></a><a name="kSearchJPEGExif"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchJPEGExif</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchJPEGExif 0x00000040L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>110</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchMarkup94"></a><a name="kSearchMarkup"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchMarkup</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchMarkup 0x00000004L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>94</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchPDFAttachments124"></a><a name="kSearchPDFAttachments"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchPDFAttachments</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchPDFAttachments 0x00000100L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>124</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchSignatures102"></a><a name="kSearchSignatures"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchSignatures</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchSignatures 0x00000010L</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>102</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="kSearchUserProperties120"></a><a name="kSearchUserProperties"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">kSearchUserProperties</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define kSearchUserProperties 0x00000080L</div>
+</code>
+<br>
+<span class="label">Description</span><p>By including the kSearchUserProperties option, you will ensure that the object <a href="../PDF_Library/General.html#level" target="">level</a> <a href="#data" target="">data</a> is the same as that seen by the menu item Object Data Tool in Acrobat. This is <i>not</i> the metadata associated with individual COS level objects in the PDF document.</p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>120</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchHFT_LATEST_VERSION29"></a><a name="SearchHFT_LATEST_VERSION"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchHFT_LATEST_VERSION</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SearchHFT_LATEST_VERSION (0L)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>29</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchHFT_NAME28"></a><a name="SearchHFT_NAME"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchHFT_NAME</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SearchHFT_NAME "Search"</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>28</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchNUMSELECTORS44"></a><a name="SearchNUMSELECTORS"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchNUMSELECTORS</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<code>
+<div class="seeAlso">#define SearchNUMSELECTORS (SearchNUMSELECTORSplusOne - 1)</div>
+</code>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>44</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<div class="detailSectionHeader">Typedefs Detail</div>
+<a name="SearchIndexListPtr"></a><a name="SearchIndexListPtr206"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchIndexListPtr</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef void* SearchIndexListPtr;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>206</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchIndexPtr"></a><a name="SearchIndexPtr208"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchIndexPtr</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef void* SearchIndexPtr;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>208</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchQueryDataRec"></a><a name="SearchQueryDataRec201"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchQueryDataRec</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Search.html#_t_SearchQueryDataRec" target="">_t_SearchQueryDataRec</a> SearchQueryDataRec;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>201</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchScope"></a><a name="SearchScope133"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchScope</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> SearchScope;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>133</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchSelector"></a><a name="SearchSelector40"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchSelector</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="Search.html#_SearchSelector" target="">_SearchSelector</a> SearchSelector;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchWordOptions"></a><a name="SearchWordOptions82"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchWordOptions</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>typedef <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> SearchWordOptions;</code>
+</div>
+<br><p>The client must supply all the search word <a href="../PDF_Library/General.html#options" target="">options</a> in the <a href="../PDF_Library/General.html#scope" target="">scope</a> parameter by doing an <code>OR</code> (<code>|</code>) operation on all options where the search needs to be executed. For example, if the client needs to search on attachments, and within attachments the search needs to be done on document text and XMP data, then it can be specified as follows:</p><p>
+<code>scope = kSearchDocumentText | kSearchDocumentXMP | kSearchPDFAttachments;</code>
+</p><p>In most cases, however, the client might want to search on all the places possible, so it would suffice to <a href="../AS_Layer/General.html#write" target="">write</a>:</p><p>
+<code>scope = kSearchEveryWhere;</code>
+</p><br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>82</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Enumeration Detail</div>
+<a name="_SearchSelector36"></a><a name="_SearchSelector"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_SearchSelector</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum _SearchSelector {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><b>SearchBAD_SELECTOR</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="#_SearchSelectorSearchNUMSELECTORSplusOne"><b>SearchNUMSELECTORSplusOne</b></a>&nbsp;=&nbsp;(char *cQuery, ASInt16 nParserID, ASUns16 nSortCount, char **cSortNames, ASBool *bSortWays, ASUns32 nWordOptions, ASBool bOverrideWordOptions, ASUns16 nMaxDocs)(void)(SearchIndexListPtr list)(SearchIndexListPtr list, ASUns32 n)(SearchIndexListPtr list, char *fullPath)(SearchIndexListPtr list, char *fullPath, ASUns32 flags)(SearchIndexListPtr list, SearchIndexPtr index)(SearchIndexPtr index)(SearchIndexPtr index, ASUns32 flags)(SearchIndexPtr index)(SearchIndexPtr index)(SearchIndexListPtr list, ASFileSys fileSys, ASPathName indexPath)(SearchIndexListPtr list, ASFileSys fileSys, ASPathName indexPath, ASUns32 flags)(SearchIndexPtr index)(SearchIndexPtr index)(SearchIndexPtr index)(void)(const SearchQueryDataRec *queryData)</td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>36</td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<a name="SearchMatchOption150"></a><a name="SearchMatchOption"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchMatchOption</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum SearchMatchOption {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><b>kMatchPhrase</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kMatchAllWords</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kMatchAnyWords</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kBooleanQuery</b></td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>150</td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<a name="SearchType137"></a><a name="SearchType"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchType</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>enum SearchType {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><b>kSearchActiveDoc</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kSearchFolder</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kSearchIndex</b>,</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><b>kSearchActiveIndexes</b></td>
+</tr>
+</table>}</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>137</td>
+</tr>
+</tbody>
+</table>
+<br>
+</div>
+<div class="detailSectionHeader">Variables Detail</div>
+<a name="gSearchHFT53"></a><a name="gSearchHFT"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">gSearchHFT</td><td>&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>HFT gSearchHFT;</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>53</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<a name="structureDetail"></a>
+<div class="detailSectionHeader">Structure Detail</div>
+<a name="_t_SearchQueryDataRec162"></a><a name="_t_SearchQueryDataRec"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">_t_SearchQueryDataRec</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>struct _t_SearchQueryDataRec {<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASSize_t" target="">ASSize_t</a>&nbsp;<a href="#_t_SearchQueryDataRecsize"><b>size</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASText.html#ASText" target="">ASText</a>&nbsp;<a href="#_t_SearchQueryDataRecquery"><b>query</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Search.html#SearchType" target="">SearchType</a>&nbsp;<a href="#_t_SearchQueryDataRectype"><b>type</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Search.html#SearchMatchOption" target="">SearchMatchOption</a>&nbsp;<a href="#_t_SearchQueryDataRecmatch"><b>match</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Search.html#SearchWordOptions" target="">SearchWordOptions</a>&nbsp;<a href="#_t_SearchQueryDataRecoptions"><b>options</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="Search.html#SearchScope" target="">SearchScope</a>&nbsp;<a href="#_t_SearchQueryDataRecscope"><b>scope</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a>&nbsp;<a href="#_t_SearchQueryDataRecpath"><b>path</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a>&nbsp;<a href="#_t_SearchQueryDataRecfs"><b>fs</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns16" target="">ASUns16</a>&nbsp;<a href="#_t_SearchQueryDataRecmaxDocs"><b>maxDocs</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>&nbsp;<a href="#_t_SearchQueryDataRecstartPage"><b>startPage</b></a>;</td><td>&nbsp;</td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td><td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a>&nbsp;<a href="#_t_SearchQueryDataRecproximityRange"><b>proximityRange</b></a>;</td><td>&nbsp;</td>
+</tr>
+</table>}<p></p>
+</code>
+</div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchType.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>162</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Elements</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecsize"></a>size&nbsp;&nbsp;</td><td><p>The size of the <a href="#data" target="">data</a> structure. It must be set to <code>sizeof(<a href="Search.html#SearchQueryDataRec" target="">SearchQueryDataRec</a>)</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecquery"></a>query&nbsp;&nbsp;</td><td><p>The <a href="#text" target="">text</a> to be searched. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRectype"></a>type&nbsp;&nbsp;</td><td><p>The location to search in. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecmatch"></a>match&nbsp;&nbsp;</td><td><p>How the <i><a href="../PDF_Library/General.html#query" target="">query</a></i> text should be matched in the document. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecoptions"></a>options&nbsp;&nbsp;</td><td><p>The search options. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecscope"></a>scope&nbsp;&nbsp;</td><td><p>The content in the PDFs that should be searched. It should be an <code>OR</code> of values specified in SearchScope. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecpath"></a>path&nbsp;&nbsp;</td><td><p>The path of the folder or <a href="../PD_Layer/General.html#index" target="">index</a>. It is required only when <code><a href="../AS_Layer/General.html#type" target="">type</a></code> is kSearchFolder or kSearchIndex. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecfs"></a>fs&nbsp;&nbsp;</td><td><p>The <a href="../AS_Layer/ASFileSys.html" target="">ASFileSys</a> of the folder or <a href="../PD_Layer/General.html#index" target="">index</a>. It is required only when <code><a href="../AS_Layer/General.html#type" target="">type</a></code> is kSearchFolder or kSearchIndex. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecmaxDocs"></a>maxDocs&nbsp;&nbsp;</td><td><p>The maximum number of documents to <a href="General.html#display" target="">display</a> in the Results <a href="../PD_Layer/General.html#window" target="">window</a>. If more documents than this have hits, only the first <code>maxDocs</code> are displayed. <code>maxDocs</code> must be no greater than <code>999</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecstartPage"></a>startPage&nbsp;&nbsp;</td><td><p>The <a href="../PDSEdit_Layer/General.html#page" target="">page</a> number to <a href="../PD_Layer/General.html#start" target="">start</a> the search; <code>0</code> is the first page. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><a name="_t_SearchQueryDataRecproximityRange"></a>proximityRange&nbsp;&nbsp;</td><td><p>The range of words for proximity searches. </p></td>
+</tr>
+</table>
+</div>
+<br>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method Detail</div>
+<a name="SearchAddIndex175()"></a><a name="SearchAddIndex()"></a><a name="SearchAddIndex(SearchIndexListPtr,char*,ASUns32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchAddIndex</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> SearchAddIndex(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, char* fullPath, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Superseded in Acrobat 6.0 by <a href="Search.html#SearchAddIndexEx()" target="">SearchAddIndexEx()</a>.</p><p>Adds a specified <a href="../PD_Layer/General.html#index" target="">index</a> to the shelf. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">list</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PDF_Library/General.html#list" target="">list</a> of indices on the shelf, obtained using <a href="Search.html#SearchGetIndexList()" target="">SearchGetIndexList()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fullPath</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A platform-dependent <a href="../PD_Layer/General.html#path" target="">path</a> to the <a href="../PD_Layer/General.html#index" target="">index</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A platform-dependent <a href="../PD_Layer/General.html#path" target="">path</a> to the <a href="../PD_Layer/General.html#index" target="">index</a>: 
+</p><ul>
+<li>
+<p>On Mac OS, it is of the form <code>MyDisk:TopFolder:BottomFolder:Strange.pdx</code>.  </p>
+</li>
+<li>
+<p>On Windows, it is of the form <code>C:\LVL1\MYFILES\INDEX</code>. On UNIX and Windows, the .PDX extension is automatically added to the specified path name. </p>
+</li>
+</ul></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> that was added. This <a href="../PD_Layer/General.html#value" target="">value</a> may be <a href="../PDF_Library/General.html#used" target="">used</a> in subsequent calls to <a href="../AS_Layer/General.html#remove" target="">remove</a> the index, obtain its <a href="General.html#title" target="">title</a>, and so forth. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>175</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchAddIndexEx294()"></a><a name="SearchAddIndexEx()"></a><a name="SearchAddIndexEx(SearchIndexListPtr,ASFileSys,ASPathName,ASUns32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchAddIndexEx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> SearchAddIndexEx(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="../AS_Layer/ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> indexPath, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Supersedes <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a> in Acrobat 6.0.</p><p>Adds a specified <a href="../PD_Layer/General.html#index" target="">index</a> to the shelf, using the Acrobat 6.0 <a href="../PD_Layer/General.html#file" target="">file</a> system and <a href="../PD_Layer/General.html#path" target="">path</a> mechanism. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">list</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PDF_Library/General.html#list" target="">list</a> of indices on the shelf, obtained using <a href="Search.html#SearchGetIndexList()" target="">SearchGetIndexList()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> system on which the <a href="../PD_Layer/General.html#index" target="">index</a> is found.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">indexPath</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#path" target="">path</a> to the <a href="../PD_Layer/General.html#index" target="">index</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Flags that indicate the state of the <a href="../PD_Layer/General.html#index" target="">index</a>. It must be an <code>OR</code> of the following values (see <a href="../PDF_Library/General.html#SrchType.h" target="">SrchType.h</a>):</p><p>
+
+</p><table ><tr>
+<th>
+<p>Value</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>kIndexAvailableFlag</p>
+</td><td valign="top">
+<p>The index is available for searching. Indices that are not available appear grayed out in the Search plug-in's user interface. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kIndexSelectedFlag</p>
+</td><td valign="top">
+<p>The index is used for searching. Indices that are selected appear with a filled in check box in the Search plug-in's user interface. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kIndexPtrInvalidFlag</p>
+</td><td valign="top">
+<p>(Read only: cannot be set). The index cannot be located; it does not exist. </p>
+</td>
+</tr></table><p>In practice, kIndexAvailableFlag should always be set.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> that was added. This <a href="../PD_Layer/General.html#value" target="">value</a> may be <a href="../PDF_Library/General.html#used" target="">used</a> in subsequent calls to <a href="../AS_Layer/General.html#remove" target="">remove</a> the index, obtain its <a href="General.html#title" target="">title</a>, and so forth.</p><p>It returns <a href="Spell.html#kAddIndexFailed" target="">kAddIndexFailed</a> <a href="../PDFEdit_Layer/General.html#if" target="">if</a> the specified index could not be added to the shelf. It returns <a href="Catalog.html#kIndexExists" target="">kIndexExists</a> if the index is already on the shelf. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>294</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchCountIndexList112()"></a><a name="SearchCountIndexList()"></a><a name="SearchCountIndexList(SearchIndexListPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchCountIndexList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> SearchCountIndexList(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the number of indices currently on the shelf. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">list</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PDF_Library/General.html#list" target="">list</a> of indices on the shelf, obtained using <a href="Search.html#SearchGetIndexList()" target="">SearchGetIndexList()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The number of indices on the shelf. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>112</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchExecuteQuery97()"></a><a name="SearchExecuteQuery()"></a><a name="SearchExecuteQuery(char*,ASInt16,ASUns16,char**,ASBool*,ASUns32,ASBool,ASUns16)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchExecuteQuery</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASInt32" target="">ASInt32</a> SearchExecuteQuery(char* cQuery, <a href="../AS_Layer/General.html#ASInt16" target="">ASInt16</a> nParserID, <a href="../AS_Layer/General.html#ASUns16" target="">ASUns16</a> nSortCount, char** cSortNames, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a>* bSortWays, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> nWordOptions, <a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> bOverrideWordOptions, <a href="../AS_Layer/General.html#ASUns16" target="">ASUns16</a> nMaxDocs)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Superseded in Acrobat 6.0 by <a href="Search.html#SearchExecuteQueryEx()" target="">SearchExecuteQueryEx()</a>, which allows a broader range of search locations.</p><p>Executes a specified <a href="../PDF_Library/General.html#query" target="">query</a>, using the set of indices currently on the shelf. The search results are displayed in the Acrobat Search plug-in's Results <a href="../PD_Layer/General.html#window" target="">window</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cQuery</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PDF_Library/General.html#query" target="">query</a>. Its format is the same as what a user would <a href="../AS_Layer/General.html#type" target="">type</a> into the <a href="Search.html" target="">Search</a> query dialog, and depends on the search language specified by <code>parserID</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nParserID</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The search language <a href="../PDF_Library/General.html#used" target="">used</a> in the <a href="../PDF_Library/General.html#query" target="">query</a>. It must be one of the following values (see <a href="../PDF_Library/General.html#SrchType.h" target="">SrchType.h</a>):</p><p>
+
+</p><table ><tr>
+<th>
+<p>Value</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>kParserSimple</p>
+</td><td valign="top">
+<p>Allows only simple phrase searches; it does not allow boolean searching. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kParserCQL</p>
+</td><td valign="top">
+<p>Allows boolean searches using <code>AND</code>, <code>OR</code>, and <code>NOT</code>, as described in the Acrobat Search plug-in's online help file. </p>
+</td>
+</tr></table></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nSortCount</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The number of entries in the <code>sortSpec</code> list. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">cSortNames</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An array of strings, each specifying a key whose <a href="../PD_Layer/General.html#value" target="">value</a> is <a href="../PDF_Library/General.html#used" target="">used</a> to sort the search results. The first entry is the primary sort key, the <a href="../AS_Layer/General.html#second" target="">second</a> is the secondary sort key, and so forth. Each string may be any field that appears in the <a href="../PD_Layer/General.html#index" target="">index</a>, plus <code>Score</code> (which sorts results by relevance ranking). Some common fields are <code>Title</code>, <code>ModificationDate</code>, <code>CreationDate</code>, and <code>Keywords</code>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bSortWays</span></code>&nbsp;&mdash;&nbsp;</td><td><p>An array of <a href="../AS_Layer/General.html#boolean" target="">boolean</a> values indicating sort <a href="General.html#order" target="">order</a>, corresponding to the array of sortSpecs with <code>true</code> meaning ascending and <code>false</code> meaning descending. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nWordOptions</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="Search.html" target="">Search</a> <a href="../PDF_Library/General.html#options" target="">options</a>. It must be an <code>OR</code> of the following values (see <a href="../PDF_Library/General.html#SrchType.h" target="">SrchType.h</a>):</p><p>
+
+</p><table ><tr>
+<th>
+<p>Value</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>kWordOptionCase</p>
+</td><td valign="top">
+<p>The search is case-sensitive. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kWordOptionStemming</p>
+</td><td valign="top">
+<p>Find not only the specified word, but other words that have the same stem (for example, <code>run</code> and <code>ran</code> have the same stem). </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kWordOptionProximity</p>
+</td><td valign="top">
+<p>Consider the proximity of results when using the <code>AND</code> operator to look for more than one word in a document. Without this option, <code>AND</code>ed terms can be anywhere in a document. Searching for <code>"red"</code> and <code>"blue"</code>, for example, finds a document where <code>"red"</code> is the first word on the first page and <code>"blue"</code> is the last word on the last page. With this option, however, <code>AND</code>ed terms must be within two or three pages of each other to be found. Also, the closer <code>AND</code>ed terms appear together, the higher the relevance ranking of the document that contains them.  </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kWordOptionRefine</p>
+</td><td valign="top">
+<p>Do not search the entire list of indices, but only the documents that matched the previous search. This is used to refine the results of the previous search. The manner in which <code>wordOptions</code> is used depends on the value of <code>overrideWordOptions</code>. </p>
+</td>
+</tr></table></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">bOverrideWordOptions</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Flag that indicates whether <code>wordOptions</code> is <code>OR</code>ed with the search options set in the user interface, or is used instead of them. If it is <code>0</code>, <code>wordOptions</code> is <code>OR</code>ed with the user interface search options, and the resulting value is used. If it is non-zero, <code>wordOptions</code> is used instead of the user interface search options. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">nMaxDocs</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The maximum number of documents to <a href="General.html#display" target="">display</a> in the Results <a href="../PD_Layer/General.html#window" target="">window</a>. If more documents than this have hits, only the first <a href="../PDF_Library/General.html#maxDocs" target="">maxDocs</a> are displayed. <code><a href="../PDF_Library/General.html#maxDocs" target="">maxDocs</a></code> must be no greater than <code>9999</code>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if successful, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>97</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchExecuteQueryEx350()"></a><a name="SearchExecuteQueryEx()"></a><a name="SearchExecuteQueryEx(const SearchQueryDataRec*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchExecuteQueryEx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SearchExecuteQueryEx(const <a href="Search.html#_t_SearchQueryDataRec" target="">SearchQueryDataRec</a>* queryData)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Supersedes <a href="Search.html#SearchExecuteQuery()" target="">SearchExecuteQuery()</a> in Acrobat 6.0.</p><p>Executes a specified <a href="../PDF_Library/General.html#query" target="">query</a>, using the given set of search parameters. The search results are displayed in the Acrobat Search plug-in's Results <a href="../PD_Layer/General.html#window" target="">window</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">queryData</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A pointer to the structure containing the search parameters. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if successful, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<p>
+<span class="label">See Also</span>
+</p>
+<div class="seeAlso"><a href="../PDF_Library/General.html#maxDocs" target="">maxDocs</a> The maximum number of documents to <a href="General.html#display" target="">display</a> in the Results <a href="../PD_Layer/General.html#window" target="">window</a>. If more documents than this have hits, only the first maxDocs are displayed. <code><a href="../PDF_Library/General.html#maxDocs" target="">maxDocs</a></code> must be no greater than <code>999</code>. </div>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>350</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexByPath145()"></a><a name="SearchGetIndexByPath()"></a><a name="SearchGetIndexByPath(SearchIndexListPtr,char*)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexByPath</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> SearchGetIndexByPath(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, char* fullPath)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Superseded by <a href="Search.html#SearchGetIndexPathEx()" target="">SearchGetIndexPathEx()</a> in Acrobat 6.0.</p><p>Gets the <a href="../PD_Layer/General.html#index" target="">index</a> that has the specified <a href="../PD_Layer/General.html#path" target="">path</a>. The index must already be on the shelf. The index can be passed to other Search plug-in methods to <a href="../AS_Layer/General.html#remove" target="">remove</a> it from the shelf, obtain its <a href="General.html#title" target="">title</a>, and so forth. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">list</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PDF_Library/General.html#list" target="">list</a> of indices on the shelf, obtained using <a href="Search.html#SearchGetIndexList()" target="">SearchGetIndexList()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fullPath</span></code>&nbsp;&mdash;&nbsp;</td><td><p>A platform-dependent <a href="../PD_Layer/General.html#path" target="">path</a> to the <a href="../PD_Layer/General.html#index" target="">index</a>: 
+</p><ul>
+<li>
+<p>On Mac OS, it is of the form <code>MyDisk:TopFolder:BottomFolder:Strange.pdx</code>.  </p>
+</li>
+<li>
+<p>On Windows, it is of the form <code>C:\LVL1\MYFILES\INDEX</code>. The .PDX extension is automatically added to the specified path name. </p>
+</li>
+</ul></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The specified <a href="../PD_Layer/General.html#index" target="">index</a>. This <a href="../PD_Layer/General.html#value" target="">value</a> may be <a href="../PDF_Library/General.html#used" target="">used</a> in subsequent calls to <a href="../AS_Layer/General.html#remove" target="">remove</a> the index, obtain its <a href="General.html#title" target="">title</a>, and so forth. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>145</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexByPathEx263()"></a><a name="SearchGetIndexByPathEx()"></a><a name="SearchGetIndexByPathEx(SearchIndexListPtr,ASFileSys,ASPathName)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexByPathEx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> SearchGetIndexByPathEx(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="../AS_Layer/ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> fileSys, <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> indexPath)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Supersedes <a href="Search.html#SearchGetIndexPath()" target="">SearchGetIndexPath()</a> in Acrobat 6.0.</p><p>Gets the <a href="../PD_Layer/General.html#index" target="">index</a> that has the specified <a href="../PD_Layer/General.html#path" target="">path</a>. The index must already be on the shelf. The index can be passed to other Search plug-in methods to <a href="../AS_Layer/General.html#remove" target="">remove</a> it from the shelf, obtain its <a href="General.html#title" target="">title</a>, and so forth. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">list</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PDF_Library/General.html#list" target="">list</a> of indices on the shelf, obtained using <a href="Search.html#SearchGetIndexList()" target="">SearchGetIndexList()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">fileSys</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#file" target="">file</a> system on which the <a href="../PD_Layer/General.html#index" target="">index</a> is found.</p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">indexPath</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#path" target="">path</a> to the <a href="../PD_Layer/General.html#index" target="">index</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The specified <a href="../PD_Layer/General.html#index" target="">index</a>. This <a href="../PD_Layer/General.html#value" target="">value</a> may be <a href="../PDF_Library/General.html#used" target="">used</a> in subsequent calls to <a href="../AS_Layer/General.html#remove" target="">remove</a> the index, obtain its <a href="General.html#title" target="">title</a>, and so forth. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>263</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexFileSys325()"></a><a name="SearchGetIndexFileSys()"></a><a name="SearchGetIndexFileSys(SearchIndexPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexFileSys</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASFileSys.html#_t_ASFileSysRec" target="">ASFileSys</a> SearchGetIndexFileSys(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="../PD_Layer/General.html#file" target="">file</a> system for <a href="#a" target="">a</a> specified <a href="../PD_Layer/General.html#index" target="">index</a> as an <a href="../AS_Layer/ASFileSys.html" target="">ASFileSys</a> object. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> whose <a href="../PD_Layer/General.html#path" target="">path</a> is obtained. The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../AS_Layer/ASFileSys.html" target="">ASFileSys</a> object. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>325</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexFlags197()"></a><a name="SearchGetIndexFlags()"></a><a name="SearchGetIndexFlags(SearchIndexPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexFlags</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> SearchGetIndexFlags(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <a href="General.html#flags" target="">flags</a> for a specified <a href="../PD_Layer/General.html#index" target="">index</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> whose <a href="General.html#flags" target="">flags</a> are to be obtained (set). The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="General.html#flags" target="">flags</a> returned are the actual values set, and may not always be the same as the requested value. It gets a <a href="../PDF_Library/General.html#list" target="">list</a> of the indices currently on the shelf.</p><p>The list of indices currently on the shelf is returned. This value can subsequently be <a href="../PDF_Library/General.html#used" target="">used</a> by other <a href="Search.html" target="">Search</a> plug-in methods to obtain information about a specific <a href="../PD_Layer/General.html#index" target="">index</a>, the number of indices on the shelf, and so forth. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>197</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexList105()"></a><a name="SearchGetIndexList()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexList</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> SearchGetIndexList()</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets <a href="#a" target="">a</a> <a href="../PDF_Library/General.html#list" target="">list</a> of the indices currently on the shelf. </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../PDF_Library/General.html#list" target="">list</a> of indices currently on the shelf. This <a href="../PD_Layer/General.html#value" target="">value</a> can subsequently be <a href="../PDF_Library/General.html#used" target="">used</a> by other <a href="Search.html" target="">Search</a> plug-in methods to obtain information about a specific <a href="../PD_Layer/General.html#index" target="">index</a>, the number of indices on the shelf, and so forth. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>105</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexPath245()"></a><a name="SearchGetIndexPath()"></a><a name="SearchGetIndexPath(SearchIndexPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexPath</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>char* SearchGetIndexPath(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Superseded in Acrobat 6.0 by <a href="Search.html#SearchGetIndexPathEx()" target="">SearchGetIndexPathEx()</a>.</p><p>Gets the platform-dependent <a href="../PD_Layer/General.html#path" target="">path</a> for a specified <a href="../PD_Layer/General.html#index" target="">index</a>.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> whose <a href="../PD_Layer/General.html#path" target="">path</a> is obtained. The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>A platform-dependent <a href="../PD_Layer/General.html#path" target="">path</a> to the <a href="../PD_Layer/General.html#index" target="">index</a>: 
+</p><ul>
+<li>
+<p>On Windows, it is of the form <code>C:\LVL1\MYFILES\INDEX</code>. The .PDX extension is automatically added to the specified path name. </p>
+</li>
+<li>
+<p>On Mac OS, it is of the form <code>MyDisk:TopFolder:BottomFolder:Strange.pdx</code>.  </p>
+</li>
+</ul></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>245</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexPathEx316()"></a><a name="SearchGetIndexPathEx()"></a><a name="SearchGetIndexPathEx(SearchIndexPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexPathEx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> SearchGetIndexPathEx(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Supersedes <a href="Search.html#SearchGetIndexPath()" target="">SearchGetIndexPath()</a> in Acrobat 6.0.</p><p>Gets the <a href="../PD_Layer/General.html#path" target="">path</a> for a specified <a href="../PD_Layer/General.html#index" target="">index</a> as an <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> object. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> whose <a href="../PD_Layer/General.html#path" target="">path</a> is obtained. The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="../AS_Layer/ASFileSys.html#ASPathName" target="">ASPathName</a> object. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>316</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexTitle229()"></a><a name="SearchGetIndexTitle()"></a><a name="SearchGetIndexTitle(SearchIndexPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexTitle</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>char* SearchGetIndexTitle(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Superseded in Acrobat 6.0 by <a href="Search.html#SearchGetIndexTitleEx()" target="">SearchGetIndexTitleEx()</a>.</p><p>Gets the <a href="General.html#title" target="">title</a> of a specified <a href="../PD_Layer/General.html#index" target="">index</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> whose <a href="General.html#title" target="">title</a> is obtained. The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="General.html#title" target="">title</a> of the specified <a href="../PD_Layer/General.html#index" target="">index</a>. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>229</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetIndexTitleEx305()"></a><a name="SearchGetIndexTitleEx()"></a><a name="SearchGetIndexTitleEx(SearchIndexPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetIndexTitleEx</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/ASText.html#ASText" target="">ASText</a> SearchGetIndexTitleEx(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Supersedes <a href="Search.html#SearchGetIndexTitle()" target="">SearchGetIndexTitle()</a> in Acrobat 6.0.</p><p>Gets the <a href="General.html#title" target="">title</a> of a specified <a href="../PD_Layer/General.html#index" target="">index</a> as an <a href="../AS_Layer/ASText.html" target="">ASText</a> object. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> whose <a href="General.html#title" target="">title</a> is obtained. The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="General.html#title" target="">title</a> of the specified <a href="../PD_Layer/General.html#index" target="">index</a> as an <a href="../AS_Layer/ASText.html" target="">ASText</a> object. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>305</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchGetNthIndex125()"></a><a name="SearchGetNthIndex()"></a><a name="SearchGetNthIndex(SearchIndexListPtr,ASUns32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchGetNthIndex</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> SearchGetNthIndex(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> n)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Gets the <code>n</code>th index on the shelf. The index can be passed to other Search plug-in methods to remove it from the shelf, obtain its title, and so forth. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">list</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PDF_Library/General.html#list" target="">list</a> of indices on the shelf, obtained using <a href="Search.html#SearchGetIndexList()" target="">SearchGetIndexList()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">n</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> to get. The first index on the shelf is index zero. </p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <code>n</code>th index on the shelf. This value may be used in subsequent calls to remove the index, obtain its title, and so forth. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>125</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchIsLegacySearchAvailable334()"></a><a name="SearchIsLegacySearchAvailable()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchIsLegacySearchAvailable</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SearchIsLegacySearchAvailable()</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Tests whether the search mechanism (Search5) for previous Acrobat versions (prior to 6.0) is available for the current system. When Search5 is available, you can search indexes from Acrobat 5.0 and earlier. </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p><code>true</code> if legacy searches are available, <code>false</code> otherwise. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>334</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchRemoveIndex182()"></a><a name="SearchRemoveIndex()"></a><a name="SearchRemoveIndex(SearchIndexListPtr,SearchIndexPtr)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchRemoveIndex</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td>void SearchRemoveIndex(<a href="Search.html#SearchIndexListPtr" target="">SearchIndexListPtr</a> list, <a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Removes the specified <a href="../PD_Layer/General.html#index" target="">index</a> from the shelf.</p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">list</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The <a href="../PDF_Library/General.html#list" target="">list</a> of indices on the shelf, obtained using <a href="Search.html#SearchGetIndexList()" target="">SearchGetIndexList()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p><a href="../PD_Layer/General.html#IN" target="">IN</a> The <a href="../PD_Layer/General.html#index" target="">index</a> to be removed. The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+</table>
+</p>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>182</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SearchSetIndexFlags218()"></a><a name="SearchSetIndexFlags()"></a><a name="SearchSetIndexFlags(SearchIndexPtr,ASUns32)"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SearchSetIndexFlags</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> SearchSetIndexFlags(<a href="Search.html#SearchIndexPtr" target="">SearchIndexPtr</a> index, <a href="../AS_Layer/General.html#ASUns32" target="">ASUns32</a> flags)</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>Sets the <a href="General.html#flags" target="">flags</a> for a specified <a href="../PD_Layer/General.html#index" target="">index</a>. </p><p>
+<span class="label"> Parameters </span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">index</span></code>&nbsp;&mdash;&nbsp;</td><td><p>The <a href="../PD_Layer/General.html#index" target="">index</a> whose <a href="General.html#flags" target="">flags</a> are to be set. The index may be obtained using <a href="Search.html#SearchGetIndexByPath()" target="">SearchGetIndexByPath()</a>, <a href="Search.html#SearchGetNthIndex()" target="">SearchGetNthIndex()</a>, or <a href="Search.html#SearchAddIndex()" target="">SearchAddIndex()</a>. </p></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td valign="top"><code><span class="label">flags</span></code>&nbsp;&mdash;&nbsp;</td><td><p>Flags that indicate the status of the <a href="../PD_Layer/General.html#index" target="">index</a>. <code><a href="General.html#flags" target="">flags</a></code> must be an <code>OR</code> of the values (see <a href="../PDF_Library/General.html#SrchType.h" target="">SrchType.h</a>):</p><p>
+
+</p><table ><tr>
+<th>
+<p>Value</p>
+</th><th>
+<p>Description </p>
+</th>
+</tr>
+<tr>
+<td valign="top">
+<p>kIndexAvailableFlag</p>
+</td><td valign="top">
+<p>The index is available for searching. Indices that are not available appear grayed out in the Search plug-in's user interface. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kIndexSelectedFlag</p>
+</td><td valign="top">
+<p>The index is used for searching. Indices that are selected appear with a filled in check box in the Search plug-in's user interface. </p>
+</td>
+</tr>
+<tr>
+<td valign="top">
+<p>kIndexPtrInvalidFlag</p>
+</td><td valign="top">
+<p>(Read only: cannot be set). The index cannot be located; it does not exist. </p>
+</td>
+</tr></table><p>In practice, kIndexAvailableFlag should always be set.</p></td>
+</tr>
+</table>
+</p>
+<p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td><p>The <a href="General.html#flags" target="">flags</a> returned are the actual values set, and may not always be the same as the requested value. </p></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchPrcs.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>218</td>
+</tr>
+</tbody>
+</table>
+</div>
+<a name="SetUpSearchHFTServer54()"></a><a name="SetUpSearchHFTServer()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">SetUpSearchHFTServer</td><td class="detailHeaderParens">()</td><td class="detailHeaderType"></td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<table>
+<tbody>
+<tr>
+<td><span class="label">Product availability: </span>Acrobat, Reader</td>
+</tr>
+<tr>
+<td><span class="label">Platform availability: </span>Macintosh, Windows, UNIX</td>
+</tr>
+</tbody>
+</table>
+<br>
+<span class="label">Syntax</span>
+<p></p>
+<div class="seeAlso">
+<code>
+<table>
+<tbody>
+<tr>
+<td><a href="../AS_Layer/General.html#ASBool" target="">ASBool</a> SetUpSearchHFTServer()</td>
+</tr>
+</tbody>
+</table>
+</code>
+</div>
+<p></p><p>
+        </p><p></p>
+<span class="label">Returns</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td><td></td>
+</tr>
+</table>
+<br>
+<table>
+<tbody>
+<tr>
+<td><span class="label">File: </span>SrchHFT.h</td>
+</tr>
+<tr>
+<td><span class="label">Line: </span>54</td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. <br>Thu Jan 21 2016, 11:19 AM IST </center>
+</div>
+</body>
+</html>
+<!-- &copy; 2004-2013 Adobe Systems Incorporated. All rights reserved. Thu Jan 21 2016, 11:19 AM IST -->
