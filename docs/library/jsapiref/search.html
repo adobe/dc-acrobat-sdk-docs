@@ -1,0 +1,1982 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link href="../../_static/jquery-ui.css" rel="stylesheet" />  
+  <link href="../../_static/copybutton.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+      <link rel="shortcut icon" href="../../_static/favicon.ico" />  
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homesearch.html" />
+  
+
+  
+    
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../../_static/jquery.js"></script>
+  <script type="text/javascript" src="../../_static/underscore.js"></script>
+  <script type="text/javascript" src="../../_static/doctools.js"></script>
+  <script type="text/javascript" src="../../_static/language_data.js"></script>
+  <script type="text/javascript" src="../../_static/searchtools.js"></script>
+  <script type="text/javascript" src="../../_static/clipboard.min.js"></script>
+  <script type="text/javascript" src="../../_static/copybutton.js"></script>
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+   
+  
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="search" title="Search" href="#" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat-PDFL SDK: JavaScript Reference
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Acrobat JavaScript API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#version-compatibility">Version compatibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#syntax">Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#method-arguments">Method arguments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#parameter-help">Parameter help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#paths">Paths</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#safe-path">Safe path</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#privileged-context">Privileged context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#privileged-versus-non-privileged-context">Privileged versus non-privileged context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#user-preferences">User preferences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#table-quick-key">Table quick key</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#domain-names-in-code-samples">Domain names in code samples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_API_AcroJSChanges.html">Changes Across Versions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-xi-changes">Acrobat XI changes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#changes-to-printparams-object">Changes to PrintParams object</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-x-changes">Acrobat X changes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#new-javascript-version">New JavaScript version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#impact-of-acrobat-menu-restructuring-on-javascript-apis">Impact of Acrobat menu restructuring on JavaScript APIs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#new-util-method">New util method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#changes-to-search-object">Changes to search object</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#changes-to-searchexecutequery">Changes to SearchExecuteQuery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#function-searchislegacysearchavailable-deprecated">Function SearchIsLegacySearchAvailable deprecated</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#enhancements-to-pdfoptpdfversion">Enhancements to PDFOptPDFVersion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#enhancements-to-doc-object">Enhancements to Doc object</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJSChanges.html#enhancements-to-the-getdataobjectcontents-method">Enhancements to the getDataObjectContents method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJSChanges.html#enhancements-to-the-saveas-method">Enhancements to the SaveAs Method</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJSChanges.html#new-timestampsign-and-certifyinvisiblesign-doc-methods">New timestampSign and certifyInvisibleSign Doc methods</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#signature-support-for-emerging-pades-etsi-esi-standard">Signature support for Emerging PAdES ETSI ESI standard</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJSChanges.html#adding-an-invisible-timestamp">Adding an invisible timestamp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJSChanges.html#adding-an-invisible-certification">Adding an invisible Certification</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#adbc-support-removed-from-documentation">ADBC Support Removed from Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-9-0-changes">Acrobat 9.0 changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-8-1-changes">Acrobat 8.1 changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-8-0-changes">Acrobat 8.0 changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-7-0-5-changes">Acrobat 7.0.5 changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-7-0-changes">Acrobat 7.0 changes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#introduced-in-acrobat-7-0">Introduced in Acrobat 7.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#modified-in-acrobat-7-0">Modified in Acrobat 7.0</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-6-0-changes">Acrobat 6.0 changes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#introduced-in-acrobat-6-0">Introduced in Acrobat 6.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#modified-in-acrobat-6-0">Modified in Acrobat 6.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#deprecated-in-acrobat-6-0">Deprecated in Acrobat 6.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#introduced-in-acrobat-6-0-2">Introduced in Acrobat 6.0.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJSChanges.html#acrobat-5-0-changes">Acrobat 5.0 changes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#introduced-in-acrobat-5-0">Introduced in Acrobat 5.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#modified-in-acrobat-5-0">Modified in Acrobat 5.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#deprecated-in-acrobat-5-0">Deprecated in Acrobat 5.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#modified-in-acrobat-5-05">Modified in Acrobat 5.05</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJSChanges.html#modified-in-adobe-reader-5-1">Modified in Adobe Reader 5.1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="JS_API_AcroJS.html">JavaScript APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#alerter">Alerter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#alerter-methods">Alerter methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#dispatch">dispatch</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#alternatepresentation">AlternatePresentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#alternatepresentation-properties">AlternatePresentation properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#active">active</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#type">type</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#alternatepresentation-methods">AlternatePresentation methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#start">start</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#stop">stop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#annotattachment">annotAttachment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#annotattachment-properties">annotAttachment properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#contentstream">contentStream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#creationdate">creationDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mimetype">MIMEtype</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#moddate">modDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pathname">pathname</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#size">size</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#annotation">Annotation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#annotation-types">Annotation types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#annotation-properties">Annotation properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alignment">alignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#attachment">attachment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ap">AP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#arrowbegin">arrowBegin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#arrowend">arrowEnd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#attachicon">attachIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#author">author</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bordereffectintensity">borderEffectIntensity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bordereffectstyle">borderEffectStyle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#callout">callout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#cattachmentpath">cAttachmentPath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#caretsymbol">caretSymbol</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#contents">contents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#creationdate-1">creationDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#dash">dash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#delay">delay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc">doc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#docaption">doCaption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fillcolor">fillColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#gestures">gestures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#hidden">hidden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#inreplyto">inReplyTo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#intent">intent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#leaderextend">leaderExtend</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#leaderlength">leaderLength</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#lineending">lineEnding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#lock">lock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#moddate-1">modDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-1">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#noteicon">noteIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#noview">noView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#opacity">opacity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#overlaytext">overlayText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#page">page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#point">point</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#points">points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#popupopen">popupOpen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#popuprect">popupRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#print">print</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#quads">quads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rect">rect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#readonly">readOnly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#reftype">refType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#repeat">repeat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#richcontents">richContents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#richdefaults">richDefaults</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rotate">rotate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#seqnum">seqNum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#soundicon">soundIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#state">state</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#statemodel">stateModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#strokecolor">strokeColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#style">style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#subject">subject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#textfont">textFont</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#textsize">textSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#togglenoview">toggleNoView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id11">type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#vertices">vertices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#width">width</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#annotation-methods">Annotation methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#destroy">destroy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getprops">getProps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getstateinmodel">getStateInModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setprops">setProps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#transitiontostate">transitionToState</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#annotrichmedia">AnnotRichMedia</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#annotrichmedia-properties">AnnotRichMedia properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#activated">activated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#context3d">context3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-2">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id14">page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rect-1">rect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#subtype">subtype</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#annotrichmedia-methods">AnnotRichMedia methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#callas">callAS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#annot3d">Annot3D</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#annot3d-properties">Annot3D properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#activated-1">activated</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id17">context3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#innerrect">innerRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-3">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#page-1">page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rect-2">rect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#app">app</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#app-properties">app properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#activedocs">activeDocs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#calculate">calculate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#constants">constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#focusrect">focusRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#formsversion">formsVersion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#frompdfconverters">fromPDFConverters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fs">fs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fullscreen">fullscreen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#language">language</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#media">media</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#monitors">monitors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#numplugins">numPlugIns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#openinplace">openInPlace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#platform">platform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#plugins">plugIns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printcolorprofiles">printColorProfiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printernames">printerNames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#runtimehighlight">runtimeHighlight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#runtimehighlightcolor">runtimeHighlightColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#thermometer">thermometer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#toolbar">toolbar</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#toolbarhorizontal">toolbarHorizontal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#toolbarvertical">toolbarVertical</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#viewertype">viewerType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#viewervariation">viewerVariation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#viewerversion">viewerVersion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#app-methods">app methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addmenuitem">addMenuItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addsubmenu">addSubMenu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addtoolbutton">addToolButton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alert">alert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#beep">beep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#beginpriv">beginPriv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#browsefordoc">browseForDoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#clearinterval">clearInterval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#cleartimeout">clearTimeOut</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#endpriv">endPriv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#execdialog">execDialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#execmenuitem">execMenuItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getnthpluginname">getNthPlugInName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getpath">getPath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#goback">goBack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#goforward">goForward</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#hidemenuitem">hideMenuItem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#hidetoolbarbutton">hideToolbarButton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#launchurl">launchURL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#listmenuitems">listMenuItems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#listtoolbarbuttons">listToolbarButtons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#loadpolicyfile">loadPolicyFile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mailgetaddrs">mailGetAddrs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mailmsg">mailMsg</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#newdoc">newDoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#newcollection">newCollection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#newfdf">newFDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#opendoc">openDoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#openfdf">openFDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#popupmenu">popUpMenu</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#popupmenuex">popUpMenuEx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#removetoolbutton">removeToolButton</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#response">response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setinterval">setInterval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#settimeout">setTimeOut</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#trustedfunction">trustedFunction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#trustpropagatorfunction">trustPropagatorFunction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#app-media">app.media</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#app-media-properties">app.media properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#align">align</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#canresize">canResize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#closereason">closeReason</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#defaultvisible">defaultVisible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ifoffscreen">ifOffScreen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#layout">layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#monitortype">monitorType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#opencode">openCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#over">over</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pageeventnames">pageEventNames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#raisecode">raiseCode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#raisesystem">raiseSystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#renditiontype">renditionType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#status">status</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#trace">trace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#version">version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#windowtype">windowType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#app-media-methods">app.media methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addstockevents">addStockEvents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alertfilenotfound">alertFileNotFound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alertselectfailed">alertSelectFailed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#argsdwim">argsDWIM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#canplayoralert">canPlayOrAlert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#computefloatwinrect">computeFloatWinRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#constrainrecttoscreen">constrainRectToScreen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#createplayer">createPlayer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getalttextdata">getAltTextData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getalttextsettings">getAltTextSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getannotstockevents">getAnnotStockEvents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getannottraceevents">getAnnotTraceEvents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getplayers">getPlayers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getplayerstockevents">getPlayerStockEvents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getplayertraceevents">getPlayerTraceEvents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getrenditionsettings">getRenditionSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#geturldata">getURLData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#geturlsettings">getURLSettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getwindowbordersize">getWindowBorderSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#openplayer">openPlayer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#removestockevents">removeStockEvents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#startplayer">startPlayer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#bookmark">Bookmark</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#bookmark-properties">Bookmark properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#children">children</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#color">color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-1">doc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-4">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#open">open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#parent">parent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#style-1">style</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#bookmark-methods">Bookmark methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#createchild">createChild</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#execute">execute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#insertchild">insertChild</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#remove">remove</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setaction">setAction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#catalog">catalog</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#catalog-properties">catalog properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#isidle">isIdle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#jobs">jobs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#catalog-methods">catalog methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getindex">getIndex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#remove-1">remove</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#catalogjob">CatalogJob</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#catalogjob-properties">CatalogJob properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#path">path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id29">type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#status-1">status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#certificate">Certificate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#certificate-properties">Certificate properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#binary">binary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#issuerdn">issuerDN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#keyusage">keyUsage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#md5hash">MD5Hash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#privatekeyvalidityend">privateKeyValidityEnd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#privatekeyvaliditystart">privateKeyValidityStart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#sha1hash">SHA1Hash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#serialnumber">serialNumber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#subjectcn">subjectCN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#subjectdn">subjectDN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ubrights">ubRights</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#usage">usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#validityend">validityEnd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#validitystart">validityStart</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#collab">Collab</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#collab-methods">Collab methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addstatemodel">addStateModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#documenttostream">documentToStream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#removestatemodel">removeStateModel</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#color-1">color</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#color-arrays">Color arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#color-properties">color properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#color-methods">color methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#convert">convert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#equal">equal</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#colorconvertaction">colorConvertAction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#colorconvertaction-properties">colorConvertAction properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#action">action</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alias">alias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#colorantname">colorantName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#convertintent">convertIntent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#convertprofile">convertProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#embed">embed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#isprocesscolor">isProcessColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#matchattributesall">matchAttributesAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#matchattributesany">matchAttributesAny</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#matchintent">matchIntent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#matchspacetypeall">matchSpaceTypeAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#matchspacetypeany">matchSpaceTypeAny</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#preserveblack">preserveBlack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#useblackpointcompensation">useBlackPointCompensation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#collection">Collection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#collection-properties">Collection properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fields">fields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#initialdoc">initialDoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#initialview">initialView</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#collection-methods">Collection methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addfield">addField</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getfield">getField</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#removefield">removeField</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#collectionfield">collectionField</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#collectionfield-properties">collectionField properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-5">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#order">order</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#readonly-1">readOnly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#sort">sort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#text">text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id36">type</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#column">Column</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#column-properties">Column properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#columnnum">columnNum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-6">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id38">type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#typename">typeName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#value">value</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#columninfo">ColumnInfo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#columninfo-properties">ColumnInfo properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-7">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#description">description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id40">type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#typename-1">typeName</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#console">console</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#console-methods">console methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#clear">clear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#hide">hide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#println">println</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#show">show</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#data">Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#data-properties">Data properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#creationdate-2">creationDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#description-1">description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mimetype-1">MIMEType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#moddate-2">modDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-8">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#path-1">path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#size-1">size</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#data-methods">Data methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getfieldvalue">getFieldValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setfieldvalue">setFieldValue</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#datasourceinfo">DataSourceInfo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#datasourceinfo-properties">DataSourceInfo properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-9">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#description-2">description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#dbg">dbg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#dbg-properties">dbg properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bps">bps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#dbg-methods">dbg methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#c">c</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#cb">cb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#q">q</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#sb">sb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#si">si</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#sn">sn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#so">so</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#sv">sv</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#dialog">Dialog</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#dialog-methods">Dialog methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#enable">enable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#end">end</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#load">load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#store">store</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#dirconnection">DirConnection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#dirconnection-properties">DirConnection properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#canlist">canList</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#candocustomsearch">canDoCustomSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#candocustomuisearch">canDoCustomUISearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#candostandardsearch">canDoStandardSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#groups">groups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-10">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#uiname">uiName</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#dirconnection-methods">DirConnection methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#search">search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setoutputfields">setOutputFields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#directory">Directory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#directory-properties">Directory properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#info">info</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#directory-methods">Directory methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#connect">connect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#embedded-pdf">Embedded PDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#embedded-pdf-properties">Embedded PDF properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#messagehandler">messageHandler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#embedded-pdf-methods">Embedded PDF methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#postmessage">postMessage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#error">Error</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#error-properties">Error properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#filename">fileName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#linenumber">lineNumber</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#extmessage">extMessage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#message">message</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-11">name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#error-methods">Error methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#tostring">toString</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#event">event</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#event-type-name-combinations">Event type/name combinations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#app-init">App/Init</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#batch-exec">Batch/Exec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bookmark-mouse-up">Bookmark/Mouse Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#console-exec">Console/Exec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-didprint">Doc/DidPrint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-didsave">Doc/DidSave</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-open">Doc/Open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-willclose">Doc/WillClose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-willprint">Doc/WillPrint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-willsave">Doc/WillSave</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#external-exec">External/Exec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-blur">Field/Blur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-calculate">Field/Calculate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-focus">Field/Focus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-format">Field/Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-keystroke">Field/Keystroke</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-mouse-down">Field/Mouse Down</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-mouse-enter">Field/Mouse Enter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-mouse-exit">Field/Mouse Exit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-mouse-up">Field/Mouse Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#field-validate">Field/Validate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#link-mouse-up">Link/Mouse Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#menu-exec">Menu/Exec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#page-open">Page/Open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#page-close">Page/Close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-blur">Screen/Blur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-close">Screen/Close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-focus">Screen/Focus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-inview">Screen/InView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-mouse-down">Screen/Mouse Down</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-mouse-enter">Screen/Mouse Enter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-mouse-exit">Screen/Mouse Exit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-mouse-up">Screen/Mouse Up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-open">Screen/Open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#screen-outview">Screen/OutView</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#document-event-processing">Document Event Processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#form-event-processing">Form event processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#multimedia-event-processing">Multimedia event processing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#event-properties">event properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#change">change</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#changeex">changeEx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#commitkey">commitKey</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fieldfull">fieldFull</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#keydown">keyDown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#modifier">modifier</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-12">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rc">rc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#richchange">richChange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#richchangeex">richChangeEx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#richvalue">richValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#selend">selEnd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#selstart">selStart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#shift">shift</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#source">source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#target">target</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#targetname">targetName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id56">type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#value-1">value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#willcommit">willCommit</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#eventlistener">EventListener</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#eventlistener-methods">EventListener methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterblur">afterBlur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterclose">afterClose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterdestroy">afterDestroy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterdone">afterDone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#aftererror">afterError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterescape">afterEscape</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#aftereveryevent">afterEveryEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterfocus">afterFocus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterpause">afterPause</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterplay">afterPlay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterready">afterReady</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterscript">afterScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterseek">afterSeek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterstatus">afterStatus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#afterstop">afterStop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onblur">onBlur</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onclose">onClose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ondestroy">onDestroy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ondone">onDone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onerror">onError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#oneveryevent">onEveryEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ongetrect">onGetRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onpause">onPause</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onplay">onPlay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onready">onReady</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onscript">onScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onseek">onSeek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onstatus">onStatus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#onstop">onStop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#events">Events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#events-methods">Events methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#add">add</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#dispatch-1">dispatch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#remove-2">remove</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#fdf">FDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#fdf-properties">FDF properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#deleteoption">deleteOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#issigned">isSigned</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#numembeddedfiles">numEmbeddedFiles</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#fdf-methods">FDF methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addcontact">addContact</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addembeddedfile">addEmbeddedFile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addrequest">addRequest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#close">close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mail">mail</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#save">save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signatureclear">signatureClear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signaturesign">signatureSign</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signaturevalidate">signatureValidate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#field">Field</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#field-versus-widget-attributes">Field versus widget attributes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#field-properties">Field properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id63">alignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonalignx">buttonAlignX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonaligny">buttonAlignY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonfitbounds">buttonFitBounds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonposition">buttonPosition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonscalehow">buttonScaleHow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonscalewhen">buttonScaleWhen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#calcorderindex">calcOrderIndex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#charlimit">charLimit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#comb">comb</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#commitonselchange">commitOnSelChange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#currentvalueindices">currentValueIndices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#defaultstyle">defaultStyle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#defaultvalue">defaultValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#donotscroll">doNotScroll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#donotspellcheck">doNotSpellCheck</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#delay-2">delay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#display">display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-3">doc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#editable">editable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#exportvalues">exportValues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fileselect">fileSelect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fillcolor-1">fillColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#hidden-2">hidden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#highlight">highlight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#multiline">multiline</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#multipleselection">multipleSelection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-13">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#numitems">numItems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#page-2">page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#password">password</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id70">print</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#radiosinunison">radiosInUnison</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#readonly-2">readonly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rect-3">rect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#required">required</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#richtext">richText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#richvalue-1">richValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rotation">rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id74">strokeColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#style-2">style</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#submitname">submitName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#textcolor">textColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#textfont-1">textFont</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#textsize-1">textSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id78">type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#username">userName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#value-2">value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#valueasstring">valueAsString</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#field-methods">Field methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#browseforfiletosubmit">browseForFileToSubmit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttongetcaption">buttonGetCaption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttongeticon">buttonGetIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonimporticon">buttonImportIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonsetcaption">buttonSetCaption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#buttonseticon">buttonSetIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#checkthisbox">checkThisBox</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#clearitems">clearItems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#defaultischecked">defaultIsChecked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#deleteitemat">deleteItemAt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getarray">getArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getitemat">getItemAt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getlock">getLock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#insertitemat">insertItemAt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#isboxchecked">isBoxChecked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#isdefaultchecked">isDefaultChecked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setaction-2">setAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setfocus">setFocus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setitems">setItems</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setlock">setLock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signaturegetmodifications">signatureGetModifications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signaturegetseedvalue">signatureGetSeedValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signatureinfo">signatureInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signaturesetseedvalue">signatureSetSeedValue</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id82">signatureSign</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signaturevalidate-1">signatureValidate</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#fullscreen-1">FullScreen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#fullscreen-properties">FullScreen properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#backgroundcolor">backgroundColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#clickadvances">clickAdvances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#cursor">cursor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#defaulttransition">defaultTransition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#escapeexits">escapeExits</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#isfullscreen">isFullScreen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#loop">loop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#timedelay">timeDelay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#transitions">transitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#usepagetiming">usePageTiming</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#usetimer">useTimer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#global">global</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#creating-global-properties">Creating global properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#deleting-global-properties">Deleting global properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#global-object-security-policy">Global object security policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#global-methods">global methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setpersistent">setPersistent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#subscribe">subscribe</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#hostcontainer">HostContainer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#hostcontainer-properties">HostContainer properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#messagehandler-1">messageHandler</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#hostcontainer-methods">HostContainer methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#postmessage-1">postMessage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#icon">Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#icon-stream">Icon Stream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#identity">identity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#identity-properties">identity properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#corporation">corporation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#email">email</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#loginname">loginName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-14">name</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#index">Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#index-properties">Index properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#available">available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-15">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#path-3">path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#selected">selected</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#index-methods">Index methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#build">build</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#link">Link</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#link-properties">Link properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bordercolor">borderColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#borderwidth">borderWidth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#highlightmode">highlightMode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rect-4">rect</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#link-methods">Link methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setaction-3">setAction</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#monitor">Monitor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#monitor-properties">Monitor properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#colordepth">colorDepth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#isprimary">isPrimary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rect-5">rect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#workrect">workRect</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#monitors-1">Monitors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#monitors-methods">Monitors methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bestcolor">bestColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bestfit">bestFit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#desktop">desktop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#document">document</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#filter">filter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#largest">largest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#leastoverlap">leastOverlap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mostoverlap">mostOverlap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#nondocument">nonDocument</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#primary">primary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#secondary">secondary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#select">select</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#tallest">tallest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#widest">widest</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#net">Net</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#net-properties">Net properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#soap">SOAP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#discovery">Discovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#http">HTTP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#net-methods">Net methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#net-http">Net.HTTP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#net-http-methods">Net.HTTP methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#request">request</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#ocg">OCG</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#ocg-properties">OCG properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#constants-1">constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#initstate">initState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#locked">locked</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-17">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#state-1">state</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#ocg-methods">OCG methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getintent">getIntent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setaction-4">setAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setintent">setIntent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#playerinfo-properties">PlayerInfo properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id-1">id</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mimetypes">mimeTypes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-18">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#version-1">version</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#playerinfo-methods">PlayerInfo methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#canplay">canPlay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#canusedata">canUseData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#honors">honors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#playerinfolist">PlayerInfoList</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#playerinfolist-methods">PlayerInfoList methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#select-1">select</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#plugin">PlugIn</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#plugin-properties">PlugIn properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#certified">certified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#loaded">loaded</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-19">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#path-4">path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#version-2">version</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#printparams">PrintParams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#printparams-properties">PrintParams properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#binaryok">binaryOK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bitmapdpi">bitmapDPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#booklet">booklet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#colorprofile">colorProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#constants-2">constants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#downloadfareastfonts">downloadFarEastFonts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#duplextype">DuplexType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#filename-1">fileName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#firstpage">firstPage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#flags">flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fontpolicy">fontPolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#gradientdpi">gradientDPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#interactive">interactive</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#lastpage">lastPage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#nupautorotate">nUpAutoRotate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#nupnumpagesh">nUpNumPagesH</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#nupnumpagesv">nUpNumPagesV</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#nuppageborder">nUpPageBorder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#nuppageorder">nUpPageOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#numcopies">NumCopies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pagehandling">pageHandling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pagesubset">pageSubset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printasimage">printAsImage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printcontent">printContent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printrange">printRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printername">printerName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pslevel">psLevel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rasterflags">rasterFlags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#reversepages">reversePages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#tilelabel">tileLabel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#tilemark">tileMark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#tileoverlap">tileOverlap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#tilescale">tileScale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#transparencylevel">transparencyLevel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#useprintercrd">usePrinterCRD</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#uset1conversion">useT1Conversion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#rdn">RDN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#readstream">ReadStream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#rendition">Rendition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#rendition-properties">Rendition properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alttext">altText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-5">doc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#filename-2">fileName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id111">type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#uiname-1">uiName</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#rendition-methods">Rendition methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getplaysettings">getPlaySettings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#select-2">select</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#testcriteria">testCriteria</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#report">Report</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#report-properties">Report properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#absindent">absIndent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#color-2">color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#size-2">size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#style-3">style</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#report-methods">Report methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#breakpage">breakPage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#divide">divide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#indent">indent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#mail-1">mail</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#open-2">open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#outdent">outdent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#report-2">Report</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#save-1">save</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#writetext">writeText</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#row">Row</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#screenannot">ScreenAnnot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#screenannot-properties">ScreenAnnot properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alttext-1">altText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alwaysshowfocus">alwaysShowFocus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#display-1">display</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doc-6">doc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#events-8">events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#extfocusrect">extFocusRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#innerdevicerect">innerDeviceRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#notrigger">noTrigger</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#outerdevicerect">outerDeviceRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#page-5">page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#player">player</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#rect-6">rect</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#screenannot-methods">ScreenAnnot methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#hasfocus">hasFocus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setfocus-1">setFocus</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#id128">search</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#search-properties">search properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#attachments">attachments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#available-1">available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#bookmarks">bookmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#docinfo">docInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#doctext">docText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#docxmp">docXMP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ignoreaccents">ignoreAccents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ignoreasiancharacterwidth">ignoreAsianCharacterWidth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#indexes">indexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#jpegexif">jpegExif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#legacysearch">legacySearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#markup">markup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#matchcase">matchCase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#matchwholeword">matchWholeWord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#maxdocs">maxDocs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#objectmetadata">objectMetadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#proximity">proximity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#proximityrange">proximityRange</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#refine">refine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#stem">stem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#wordmatching">wordMatching</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#search-methods">search methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addindex">addIndex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getindexforpath">getIndexForPath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#query">query</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#removeindex">removeIndex</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#security">security</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#security-constants">security constants</a></li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#security-properties">security properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#handlers">handlers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#validatesignaturesonopen">validateSignaturesOnOpen</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#security-methods">security methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#chooserecipientsdialog">chooseRecipientsDialog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#choosesecuritypolicy">chooseSecurityPolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#exporttofile">exportToFile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#gethandler">getHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getsecuritypolicies">getSecurityPolicies</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#importfromfile">importFromFile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#importsettings">importSettings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#securityhandler">SecurityHandler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#securityhandler-properties">SecurityHandler properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#appearances">appearances</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#digitalids">digitalIDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#directories">directories</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#directoryhandlers">directoryHandlers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#docdecrypt">docDecrypt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#docencrypt">docEncrypt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#isloggedin">isLoggedIn</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#loginname-1">loginName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#loginpath">loginPath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-21">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signauthor">signAuthor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signfdf">signFDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signinvisible">signInvisible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signvalidate">signValidate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signvisible">signVisible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#uiname-2">uiName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#validatefdf">validateFDF</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#securityhandler-methods">SecurityHandler methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#login">login</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#logout">logout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#newdirectory">newDirectory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#newuser">newUser</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#setpasswordtimeout">setPasswordTimeout</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#securitypolicy">SecurityPolicy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#securitypolicy-properties">SecurityPolicy properties</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#signatureinfo-1">SignatureInfo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#signatureinfo-properties">SignatureInfo properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#signatureinfo-object-public-key-security-handler-properties">SignatureInfo object public key security handler properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#status-and-idvalidity-properties">status and idValidity properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#validity-values">Validity Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#private-validity-values">Private Validity Values</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#modification-detection-and-prevention-mdp-values">Modification Detection and Prevention (MDP) Values</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#id135">SOAP</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#soap-properties">SOAP properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#wiredump">wireDump</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#soap-methods">SOAP methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#id136">connect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#queryservices">queryServices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#resolveservice">resolveService</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#request-1">request</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#response-1">response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#streamdecode">streamDecode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#streamdigest">streamDigest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#streamencode">streamEncode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#streamfromstring">streamFromString</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#stringfromstream">stringFromStream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#sound">Sound</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#sound-properties">Sound properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-22">name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#sound-methods">Sound methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pause">pause</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#play">play</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#stop-2">stop</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#span">Span</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#span-properties">Span properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#alignment-1">alignment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fontfamily">fontFamily</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fontstretch">fontStretch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fontstyle">fontStyle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#fontweight">fontWeight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#strikethrough">strikethrough</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#subscript">subscript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#superscript">superscript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#text-1">text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#textcolor-1">textColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#textsize-2">textSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#underline">underline</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#spell">spell</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#spell-properties">spell properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#available-2">available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#dictionarynames">dictionaryNames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#dictionaryorder">dictionaryOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#domainnames">domainNames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#languages">languages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#languageorder">languageOrder</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#spell-methods">spell methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#adddictionary">addDictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#addword">addWord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#check">check</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#checktext">checkText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#checkword">checkWord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#customdictionaryclose">customDictionaryClose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#customdictionarycreate">customDictionaryCreate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#customdictionarydelete">customDictionaryDelete</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#customdictionaryexport">customDictionaryExport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#customdictionaryopen">customDictionaryOpen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#ignoreall">ignoreAll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#removedictionary">removeDictionary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#removeword">removeWord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#userwords">userWords</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#tableinfo">TableInfo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#template">Template</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#template-properties">Template properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#hidden-3">hidden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#name-23">name</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#template-methods">Template methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#spawn">spawn</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#thermometer-1">Thermometer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#thermometer-properties">Thermometer properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#cancelled">cancelled</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#duration">duration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#text-2">text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#value-3">value</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#thermometer-methods">Thermometer methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#begin">begin</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#end-1">end</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#this">this</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#tts">TTS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#tts-properties">TTS properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#available-3">available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#numspeakers">numSpeakers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pitch">pitch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#soundcues">soundCues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#speaker">speaker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#speechcues">speechCues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#speechrate">speechRate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#volume">volume</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#tts-methods">TTS methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#getnthspeakername">getNthSpeakerName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#pause-2">pause</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#qsilence">qSilence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#qsound">qSound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#qtext">qText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#reset">reset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#resume">resume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#stop-3">stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#talk">talk</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#util">util</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#util-methods">util methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#crackurl">crackURL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#iconstreamfromicon">iconStreamFromIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printd">printd</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printf">printf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#printx">printx</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#readfileintostream">readFileIntoStream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#scand">scand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#spanstoxml">spansToXML</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#streamfromstring-1">streamFromString</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#stringfromstream-1">stringFromStream</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#xmltospans">xmlToSpans</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#xfa">XFA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="JS_API_AcroJS.html#xmldata">XMLData</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="JS_API_AcroJS.html#xmldata-methods">XMLData methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#applyxpath">applyXPath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="JS_API_AcroJS.html#parse">parse</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="doc.html">Doc and Doc.Media APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="doc.html#doc">Doc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc.html#doc-properties">Doc properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#alternatepresentations">alternatePresentations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#author">author</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#baseurl">baseURL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#bookmarkroot">bookmarkRoot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#calculate">calculate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#collection">collection</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#creationdate">creationDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#creator">creator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#dataobjects">dataObjects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#delay">delay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#dirty">dirty</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#disclosed">disclosed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#docid">docID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#documentfilename">documentFileName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#dynamicxfaform">dynamicXFAForm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#external">external</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#filesize">filesize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#hidden">hidden</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#hostcontainer">hostContainer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#icons">icons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#info">info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#innerappwindowrect">innerAppWindowRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#innerdocwindowrect">innerDocWindowRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#ismodal">isModal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#keywords">keywords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#layout">layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#media">media</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#metadata">metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#moddate">modDate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#mousex">mouseX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#mousey">mouseY</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#noautocomplete">noautocomplete</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#numfields">numFields</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#numpages">numPages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#numtemplates">numTemplates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#path">path</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#outerappwindowrect">outerAppWindowRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#outerdocwindowrect">outerDocWindowRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#pagenum">pageNum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#pagewindowrect">pageWindowRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#permstatusready">permStatusReady</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#producer">producer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#requiresfullsave">requiresFullSave</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#securityhandler">securityHandler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#selectedannots">selectedAnnots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#sounds">sounds</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#spelldictionaryorder">spellDictionaryOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#spelllanguageorder">spellLanguageOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#subject">subject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#templates">templates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#title">title</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#url">URL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#viewstate">viewState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#xfa">xfa</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#xfaforeground">XFAForeground</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#zoom">zoom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#zoomtype">zoomType</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc.html#doc-methods">Doc methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addannot">addAnnot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addfield">addField</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addicon">addIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addlink">addLink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addrecipientlistcryptfilter">addRecipientListCryptFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addrequirement">addRequirement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addscript">addScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addthumbnails">addThumbnails</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addwatermarkfromfile">addWatermarkFromFile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addwatermarkfromtext">addWatermarkFromText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#addweblinks">addWeblinks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#applyredactions">applyRedactions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#bringtofront">bringToFront</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#calculatenow">calculateNow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#certifyinvisiblesign">certifyInvisibleSign</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#closedoc">closeDoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#colorconvertpage">colorConvertPage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#createdataobject">createDataObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#createtemplate">createTemplate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#deletepages">deletePages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#deletesound">deleteSound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#embeddocasdataobject">embedDocAsDataObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#embedoutputintent">embedOutputIntent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#encryptforrecipients">encryptForRecipients</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#encryptusingpolicy">encryptUsingPolicy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#exportasfdf">exportAsFDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#exportasfdfstr">exportAsFDFStr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#exportastext">exportAsText</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#exportasxfdf">exportAsXFDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#exportasxfdfstr">exportAsXFDFStr</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#exportdataobject">exportDataObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#exportxfadata">exportXFAData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#extractpages">extractPages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#flattenpages">flattenPages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannot">getAnnot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannotrichmedia">getAnnotRichMedia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannot3d">getAnnot3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannots">getAnnots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannotsrichmedia">getAnnotsRichMedia</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannots3d">getAnnots3D</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getcolorconvertaction">getColorConvertAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getdataobject">getDataObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getdataobjectcontents">getDataObjectContents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getfield">getField</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#geticon">getIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getlegalwarnings">getLegalWarnings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getlinks">getLinks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getnthfieldname">getNthFieldName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getnthtemplate">getNthTemplate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getocgs">getOCGs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getocgorder">getOCGOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpagebox">getPageBox</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpagelabel">getPageLabel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpagenthword">getPageNthWord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpagenthwordquads">getPageNthWordQuads</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpagenumwords">getPageNumWords</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpagerotation">getPageRotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpagetransition">getPageTransition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getpreflightaudittrail">getPreflightAuditTrail</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getprintparams">getPrintParams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getsound">getSound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#gettemplate">getTemplate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#geturl">getURL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getuserunitsize">getUserUnitSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#gotonameddest">gotoNamedDest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#importanfdf">importAnFDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#importanxfdf">importAnXFDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#importdataobject">importDataObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#importicon">importIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#importsound">importSound</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#importtextdata">importTextData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#importxfadata">importXFAData</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#maildoc">mailDoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#mailform">mailForm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#movepage">movePage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#newpage">newPage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#opendataobject">openDataObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#preflight">preflight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#print">print</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removedataobject">removeDataObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removefield">removeField</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removeicon">removeIcon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removelinks">removeLinks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removepreflightaudittrail">removePreflightAuditTrail</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removerequirement">removeRequirement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removescript">removeScript</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removethumbnails">removeThumbnails</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#removeweblinks">removeWeblinks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#replacepages">replacePages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#resetform">resetForm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#saveas">saveAs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#scroll">scroll</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#selectpagenthword">selectPageNthWord</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setaction">setAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setdataobjectcontents">setDataObjectContents</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setocgorder">setOCGOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setpageaction">setPageAction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setpageboxes">setPageBoxes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setpagelabels">setPageLabels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setpagerotations">setPageRotations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setpagetaborder">setPageTabOrder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#setpagetransitions">setPageTransitions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#spawnpagefromtemplate">spawnPageFromTemplate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#submitform">submitForm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#syncannotscan">syncAnnotScan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#timestampsign">timestampSign</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#validatepreflightaudittrail">validatePreflightAuditTrail</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="doc.html#doc-media">Doc.media</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="doc.html#doc-media-properties">Doc.media properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#canplay">canPlay</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc.html#doc-media-methods">Doc.media methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#deleterendition">deleteRendition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannot-1">getAnnot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getannots-1">getAnnots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getopenplayers">getOpenPlayers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#getrendition">getRendition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc.html#newplayer">newPlayer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="preflight.html">Preflight APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="preflight.html#preflight">Preflight</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preflight.html#preflight-methods">Preflight methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#createcomplianceprofile">createComplianceProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#getnthprofile">getNthProfile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#getnumprofiles">getNumProfiles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#getprofilebyname">getProfileByName</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#getprofilebyfingerprint">getProfileByFingerPrint</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="preflight.html#preflightaudittrail">PreflightAuditTrail</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preflight.html#preflightaudittrail-properties">PreflightAuditTrail properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#preflight-executed-date">preflight_executed_date</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#preflight-results">preflight_results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#preflight-results-description">preflight_results_description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#profile-creator">profile_creator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#profile-creator-version">profile_creator_version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#profile-fingerprint">profile_fingerprint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#profile-format-version">profile_format_version</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#profile-name">profile_name</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="preflight.html#preflightprofile">PreflightProfile</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preflight.html#preflightprofile-properties">PreflightProfile properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#name">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#description">description</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#hasfixups">hasFixups</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#haschecks">hasChecks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="preflight.html#preflightprofile-methods">PreflightProfile methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#hasconversion">hasConversion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="preflight.html#preflightresult">PreflightResult</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="preflight.html#preflightresult-properties">PreflightResult properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#numerrors">numErrors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#numwarnings">numWarnings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#numinfos">numInfos</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#numfixed">numFixed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#numnotfixed">numNotFixed</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="preflight.html#preflightresult-methods">PreflightResult methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="preflight.html#report">report</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="media.html">Media and Marker APIs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="media.html#marker">Marker</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="media.html#marker-properties">Marker properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#frame">frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#index">index</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#name">name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#time">time</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="media.html#markers">Markers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="media.html#markers-properties">Markers properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#player">player</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="media.html#markers-methods">Markers methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#get">get</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="media.html#mediaoffset">MediaOffset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="media.html#mediaoffset-properties">MediaOffset properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#frame-1">frame</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#marker-1">marker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#time-1">time</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="media.html#mediaplayer">MediaPlayer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="media.html#mediaplayer-properties">MediaPlayer properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#annot">annot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#defaultsize">defaultSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#doc">doc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#events">events</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#hasfocus">hasFocus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#id">id</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#innerrect">innerRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#isopen">isOpen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#isplaying">isPlaying</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#markers-1">markers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#outerrect">outerRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#page">page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#settings">settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#uisize">uiSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#visible">visible</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="media.html#mediaplayer-methods">MediaPlayer methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#close">close</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#open">open</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#pause">pause</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#play">play</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#seek">seek</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#setfocus">setFocus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#stop">stop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#triggergetrect">triggerGetRect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#where">where</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="media.html#mediareject">MediaReject</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="media.html#mediareject-properties">MediaReject properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#rendition">rendition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="media.html#mediaselection">MediaSelection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="media.html#mediaselection-properties">MediaSelection properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#selectcontext">selectContext</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#players">players</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#rejects">rejects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#rendition-1">rendition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="media.html#mediasettings">MediaSettings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="media.html#mediasettings-properties">MediaSettings properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="media.html#autoplay">autoPlay</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#baseurl">baseURL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#bgcolor">bgColor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#bgopacity">bgOpacity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#data">data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#duration">duration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#endat">endAt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#floating">floating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#layout">layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#monitor">monitor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#monitortype">monitorType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#id6">page</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#palindrome">palindrome</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#players-1">players</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#rate">rate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#repeat">repeat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#showui">showUI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#startat">startAt</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#visible-1">visible</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#volume">volume</a></li>
+<li class="toctree-l4"><a class="reference internal" href="media.html#windowtype">windowType</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">Master Doc Search and TOC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat-PDFL SDK: JavaScript Reference</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Search</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <noscript>
+  <div id="fallback" class="admonition warning">
+    <p class="last">
+      Please activate JavaScript to enable the search functionality.
+    </p>
+  </div>
+  </noscript>
+
+  
+  <div id="search-results">
+  
+  </div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Jun 24, 2022. 
+        <img src="../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+  <script type="text/javascript">
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+  
+  <script type="text/javascript" id="searchindexloader"></script>
+   
+
+
+</body>
+</html>
