@@ -1,0 +1,939 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link href="../../_static/jquery-ui.css" rel="stylesheet" />  
+  <link href="../../_static/copybutton.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeAccess_DOM.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../../_static/jquery.js"></script>
+  <script type="text/javascript" src="../../_static/underscore.js"></script>
+  <script type="text/javascript" src="../../_static/doctools.js"></script>
+  <script type="text/javascript" src="../../_static/language_data.js"></script>
+  <script type="text/javascript" src="../../_static/searchtools.js"></script>
+  <script type="text/javascript" src="../../_static/clipboard.min.js"></script>
+  <script type="text/javascript" src="../../_static/copybutton.js"></script>
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Reading PDF Files Through MSAA" href="MSAA%26PDF.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat-PDFL SDK:  Accessibility
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Acrobat-PDFL SDK: Accessibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#determining-rendering-order-and-logical-order">Determining rendering order and logical order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#accessing-documents-and-pages">Accessing documents and pages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#processing-inaccessible-documents">Processing inaccessible documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#processing-protected-documents">Processing protected documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#processing-empty-documents">Processing empty documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#processing-unavailable-documents">Processing unavailable documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#handling-event-notifications">Handling event notifications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#retrieving-an-msaa-object-for-an-event">Retrieving an MSAA object for an event</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#retrieving-a-pdf-dom-object-for-an-event">Retrieving a PDF DOM object for an event</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="MSAA%26PDF.html">Reading PDF Files Through MSAA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#acrobat-implementation-of-iaccessible-objects">Acrobat implementation of IAccessible objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#igetpddomnode-interface">IGetPDDomNode interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-pddomnode">get_PDDomNode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#iselecttext-interface">ISelectText interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#selecttext">selectText</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#identifying-iaccessible-objects-in-a-document">Identifying IAccessible objects in a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accid">get_accID</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#iaccessible-method-summary">IAccessible method summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#navigation-and-hierarchy">Navigation and hierarchy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#accnavigate">accNavigate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accchild">get_accChild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accchildcount">get_accChildCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accparent">get_accParent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#descriptive-properties-and-methods">Descriptive properties and methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#accdodefaultaction">accDoDefaultAction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accdefaultaction">get_accDefaultAction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accdescription">get_accDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accname">get_accName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accrole">get_accRole</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accstate">get_accState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accvalue">get_accValue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#selection-and-focus">Selection and focus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#accselect">accSelect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accfocus">get_accFocus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#get-accselection">get_accSelection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#spatial-mapping">Spatial mapping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#acclocation">accLocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#acchittest">accHitTest</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="MSAA%26PDF.html#iaccessible-object-types-for-pdf">IAccessible object types for PDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-document">PDF Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-page">PDF Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-protected-document">PDF Protected Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#empty-pdf-document">Empty PDF Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-structure-element">PDF Structure Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-content-element">PDF Content Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-comment">PDF Comment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-link">PDF Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-text-form-field">PDF Text Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-button-form-field">PDF Button Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-checkbox-form-field">PDF CheckBox Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-radiobutton-form-field">PDF RadioButton Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-combobox-form-field">PDF ComboBox Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-list-box-form-field">PDF List Box Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-digital-signature-form-field">PDF Digital Signature Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="MSAA%26PDF.html#pdf-caret">PDF Caret</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reading PDF Files Through the DOM Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ipddomnode-data-types">IPDDomNode data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cpddomnodetype">CPDDomNodeType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pddom-fontstyle">PDDom_FontStyle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fontinfostate">FontInfoState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docstate">DocState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#noderelationship">NodeRelationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipddomnode-methods">IPDDomNode methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#words-and-lines-in-text">Words and lines in text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getparent">GetParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gettype">GetType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getchild">GetChild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getchildcount">GetChildCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getname">GetName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getvalue">GetValue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#issame">IsSame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gettextcontent">GetTextContent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getfontinfo">GetFontInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getlocation">GetLocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getfromid">GetFromID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getiaccessible">GetIAccessible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scrollto">ScrollTo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gettextinlines">GetTextInLines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipddomnodeext-methods">IPDDomNodeExt methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#navigate">Navigate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scrolltoex">ScrollToEx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setfocus">SetFocus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getstate">GetState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getindex">GetIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getpagenum">GetPageNum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dodefaultaction">DoDefaultAction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relationship">Relationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipddomdocument-methods">IPDDomDocument methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setcaret">SetCaret</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getcaret">GetCaret</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#nextfocusnode">NextFocusNode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getfocusnode">GetFocusNode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#selecttext">SelectText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gettextselection">GetTextSelection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getselectionbounds">GetSelectionBounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getdocinfo">GetDocInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gotopage">GoToPage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipddomelement-methods">IPDDomElement Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gettagname">GetTagName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getstdname">GetStdName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getid">GetID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getattribute">GetAttribute</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#accessibility-attributes">Accessibility attributes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipddomword-methods">IPDDomWord methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lastwordofline">LastWordOfLine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ipddomgroupinfo-method">IPDDomGroupInfo method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#getgroupposition">GetGroupPosition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">Master Doc Search and TOC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat-PDFL SDK:  Accessibility</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Reading PDF Files Through the DOM Interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+      
+        <a href="MSAA%26PDF.html" class="btn btn-neutral float-left" title="Reading PDF Files Through MSAA" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reading-pdf-files-through-the-dom-interface">
+<h1>Reading PDF Files Through the DOM Interface<a class="headerlink" href="#reading-pdf-files-through-the-dom-interface" title="Permalink to this headline">¶</a></h1>
+<p>Acrobat 6.0 and later defines a document object model (DOM) that provides more complete access to the document structure than the MSAA interface. The Accessibility plug-in defines and exports five COM interfaces in <code class="docutils literal notranslate"><span class="pre">AcrobatAccess.lib</span></code> that expose Acrobat’s document hierarchy:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> defines methods that apply to all elements of the document hierarchy.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IPDDomDocument</span></code> interface is exported by the root object for the page or document.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface is exported by every object that exports <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> .</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IPDDomElement</span></code> defines additional methods that apply only to structure elements.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IPDDomWord</span></code> defines additional methods that apply only to individual words in the document.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IPDDomGroupInfo</span></code> defines an additional method that applies to radio buttons, list boxes, and combo boxes.</p></li>
+</ul>
+<p>Clients of these interfaces must include the files <code class="docutils literal notranslate"><span class="pre">AcrobatAccess.h</span></code> , <code class="docutils literal notranslate"><span class="pre">AcrobatAccess_i.c</span></code> and <code class="docutils literal notranslate"><span class="pre">IPDDom.h</span></code> .</p>
+<a name="17539"></a><div class="section" id="ipddomnode-data-types">
+<h2>IPDDomNode data types<a class="headerlink" href="#ipddomnode-data-types" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the data types for the PDF DOM hierarchy.</p>
+<div class="section" id="cpddomnodetype">
+<h3>CPDDomNodeType<a class="headerlink" href="#cpddomnodetype" title="Permalink to this headline">¶</a></h3>
+<p>Defines the type of a node in the PDF DOM hierarchy returned by <code class="docutils literal notranslate"><span class="pre">GetType</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">enum</span> <span class="p">{</span>
+   <span class="n">CPDDomNode_Document</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Page</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+   <span class="n">CPDDomNode_StructElement</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Text</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Word</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Char</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Graphic</span> <span class="o">=</span> <span class="mi">7</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Link</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+   <span class="n">CPDDomNode_PushButtonField</span> <span class="o">=</span> <span class="mi">9</span><span class="p">,</span>
+   <span class="n">CPDDomNode_TextEditField</span> <span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+   <span class="n">CPDDomNode_StaticTextField</span> <span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+   <span class="n">CPDDomNode_ListboxField</span> <span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+   <span class="n">CPDDomNode_ComboboxField</span> <span class="o">=</span><span class="mi">13</span><span class="p">,</span>
+   <span class="n">CPDDomNode_CheckboxField</span> <span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+   <span class="n">CPDDomNode_RadioButtonField</span> <span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+   <span class="n">PDDomNode_SignatureField</span> <span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+   <span class="n">CPDDomNode_OtherField</span> <span class="o">=</span><span class="mi">17</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Comment</span> <span class="o">=</span><span class="mi">18</span><span class="p">,</span>
+   <span class="n">CPDDomNode_TextComment</span> <span class="o">=</span><span class="mi">19</span><span class="p">,</span>
+   <span class="n">CPDDomNode_Other</span> <span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+   <span class="n">CPDDomNode_LineSeg</span> <span class="o">=</span><span class="mi">21</span><span class="p">,</span>
+   <span class="n">CPDDomNode_WordSeg</span> <span class="o">=</span><span class="mi">22</span>
+<span class="p">}</span> <span class="n">CPDDomNodeType</span><span class="p">;</span>
+</pre></div>
+</div>
+<a name="51223"></a></div>
+<div class="section" id="pddom-fontstyle">
+<h3>PDDom_FontStyle<a class="headerlink" href="#pddom-fontstyle" title="Permalink to this headline">¶</a></h3>
+<p>Constants for font styles returned by <code class="docutils literal notranslate"><span class="pre">GetFontInfo</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">enum</span> <span class="p">{</span>
+   <span class="n">PDDOM_FONTATTR_ITALIC</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">,</span>
+   <span class="n">PDDOM_FONTATTR_SMALLCAP</span> <span class="o">=</span> <span class="mh">0x2</span><span class="p">,</span>
+   <span class="n">PDDOM_FONTATTR_ALLCAP</span> <span class="o">=</span> <span class="mh">0x4</span><span class="p">,</span>
+   <span class="n">PDDOM_FONTATTR_SCRIPT</span> <span class="o">=</span> <span class="mh">0x8</span><span class="p">,</span>
+   <span class="n">PDDOM_FONTATTR_BOLD</span> <span class="o">=</span> <span class="mh">0x10</span><span class="p">,</span>
+   <span class="n">PDDOM_FONTATTR_LIGHT</span> <span class="o">=</span> <span class="mh">0x20</span>
+<span class="p">}</span> <span class="n">PDDOM_FontStyle</span><span class="p">;</span>
+</pre></div>
+</div>
+<a name="39567"></a></div>
+<div class="section" id="fontinfostate">
+<h3>FontInfoState<a class="headerlink" href="#fontinfostate" title="Permalink to this headline">¶</a></h3>
+<p>Constants for font status returned by <code class="docutils literal notranslate"><span class="pre">GetFontInfo</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">enum</span> <span class="p">{</span>
+   <span class="n">FontInfo_Unchecked</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+   <span class="n">FontInfo_NoInfo</span> <span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+   <span class="n">FontInfo_MixedInfo</span> <span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+   <span class="n">FontInfo_Valid</span> <span class="o">=</span><span class="mi">4</span>
+<span class="p">}</span> <span class="n">FontInfoState</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="docstate">
+<h3>DocState<a class="headerlink" href="#docstate" title="Permalink to this headline">¶</a></h3>
+<p>Constants for document status returned by <code class="docutils literal notranslate"><span class="pre">GetDocInfo</span></code> in the IPDDomDocument interface.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="n">DocState</span> <span class="p">{</span>
+   <span class="n">DocState_OK</span> <span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+   <span class="n">DocState_Protected</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+   <span class="n">DocState_Empty</span> <span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+   <span class="n">DocState_Unavailable</span> <span class="o">=</span><span class="mi">3</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="noderelationship">
+<h3>NodeRelationship<a class="headerlink" href="#noderelationship" title="Permalink to this headline">¶</a></h3>
+<p>Constants returned by <code class="docutils literal notranslate"><span class="pre">Relationship</span></code> in the IPDDomNodeExt interface.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="n">NodeRelationship</span> <span class="p">{</span>
+   <span class="n">NodeRelationship_Descendant</span> <span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+   <span class="n">NodeRelationship_Ancestor</span> <span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+   <span class="n">NodeRelationship_Before</span> <span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+   <span class="n">NodeRelationship_After</span> <span class="o">=</span><span class="mi">3</span>
+   <span class="n">NodeRelationship_Equal</span> <span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+   <span class="n">NodeRelationship_None</span> <span class="o">=</span><span class="mi">5</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<a name="16187"></a></div>
+</div>
+<div class="section" id="ipddomnode-methods">
+<h2>IPDDomNode methods<a class="headerlink" href="#ipddomnode-methods" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> defines methods that apply to all elements of the document hierarchy.</p>
+<a name="33811"></a><div class="section" id="words-and-lines-in-text">
+<h3>Words and lines in text<a class="headerlink" href="#words-and-lines-in-text" title="Permalink to this headline">¶</a></h3>
+<p>An <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> that represents a text node has the role <code class="docutils literal notranslate"><span class="pre">CPDDomNode_Text</span></code> . By default, the children of text nodes are word nodes. To get the word children of a text node, call the <code class="docutils literal notranslate"><span class="pre">IPDomNode</span></code> method <code class="docutils literal notranslate"><span class="pre">GetChild</span></code> . An <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> that represents a word has the role <code class="docutils literal notranslate"><span class="pre">CPDDomNode_Word</span></code> .</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a word is hyphenated and thus appears on two lines, each segment of the word is returned as a child that has the role <code class="docutils literal notranslate"><span class="pre">CPDDom_WordSeg</span></code> .</p>
+</div>
+<p>Text can also be thought of as having lines as children. To get the line children of a text node, call the <code class="docutils literal notranslate"><span class="pre">IPDomNode</span></code> method <code class="docutils literal notranslate"><span class="pre">GetTextInLines</span></code> . This method returns a new object for the text node. Subsequently, calling <code class="docutils literal notranslate"><span class="pre">getChild</span></code> on this object returns lines as children. An <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> that represents a line has the role <code class="docutils literal notranslate"><span class="pre">CPDDomNode_LineSeg</span></code> . The children of that line node will be the words in that line.</p>
+</div>
+<div class="section" id="getparent">
+<h3>GetParent<a class="headerlink" href="#getparent" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ppDispParent</span></code> returns the <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> for the parent of this element if there ís a parent element in the DOM hierarchy, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if this element is the root element of the hierarchy.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetParent</span> <span class="p">(</span><span class="n">IDispatch</span> <span class="o">**</span><span class="n">ppDispParent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gettype">
+<h3>GetType<a class="headerlink" href="#gettype" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">nodeType</span></code> returns the <code class="docutils literal notranslate"><span class="pre">CPDDomNodeType</span></code> of this element.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetType</span> <span class="p">(</span><span class="n">long</span> <span class="o">*</span><span class="n">nodeType</span><span class="p">)</span>
+</pre></div>
+</div>
+<a name="76623"></a></div>
+<div class="section" id="getchild">
+<h3>GetChild<a class="headerlink" href="#getchild" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ppDispChild</span></code> returns the <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> for the child of this element at position <code class="docutils literal notranslate"><span class="pre">index</span></code> , or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if there is no child at position <code class="docutils literal notranslate"><span class="pre">index</span></code> .</p>
+<p>For a text node, this returns child words; see <a class="reference external" href="Access_DOM.html#33811">Words and lines in text</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetChild</span> <span class="p">(</span><span class="n">ASInt32</span> <span class="n">index</span><span class="p">,</span>  <span class="n">IDispatch</span> <span class="o">**</span><span class="n">ppDispChild</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getchildcount">
+<h3>GetChildCount<a class="headerlink" href="#getchildcount" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pCountChildren</span></code> returns the number of children of this element.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetChildCount</span> <span class="p">(</span><span class="n">long</span> <span class="o">*</span><span class="n">pCountChildren</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getname">
+<h3>GetName<a class="headerlink" href="#getname" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pszName</span></code> returns the name of this element.</p>
+<ul class="simple">
+<li><p>For individual words, this is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></li>
+<li><p>For form fields, it is the short description associated with the field.</p></li>
+<li><p>For comments, it is a combination of the comment type and subject (if any).</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetName</span> <span class="p">(</span><span class="n">BSTR</span> <span class="o">*</span><span class="n">pszName</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getvalue">
+<h3>GetValue<a class="headerlink" href="#getvalue" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pszValue</span></code> returns the value of this element.</p>
+<ul class="simple">
+<li><p>For individual words, this is the word itself.</p></li>
+<li><p>For form fields, it is the current text content of the field.</p></li>
+<li><p>For links, it is a description of the associated action.</p></li>
+<li><p>For comments, it is the contents.</p></li>
+<li><p>For a signature field, it is the name of the signer and the date signed.</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetValue</span> <span class="p">(</span><span class="n">BSTR</span> <span class="o">*</span><span class="n">pszValue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="issame">
+<h3>IsSame<a class="headerlink" href="#issame" title="Permalink to this headline">¶</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">pNode</span></code> refers to the same node as this element, <code class="docutils literal notranslate"><span class="pre">isSame</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">IsSame</span> <span class="p">(</span><span class="n">IPDDomNode</span> <span class="o">*</span><span class="n">pNode</span><span class="p">,</span>  <span class="n">BOOL</span> <span class="o">*</span><span class="n">isSame</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gettextcontent">
+<h3>GetTextContent<a class="headerlink" href="#gettextcontent" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pszText</span></code> returns the value of all text in the document subtree rooted at this element. Alternate text, actual text, and expansion attributes are included and may override text within the document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetTextContent</span> <span class="p">(</span><span class="n">BSTR</span> <span class="o">*</span><span class="n">pszText</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getfontinfo">
+<h3>GetFontInfo<a class="headerlink" href="#getfontinfo" title="Permalink to this headline">¶</a></h3>
+<p>These values describe the font characteristics for the text content of this element.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fontStatus</span></code> returns a value of type <code class="docutils literal notranslate"><span class="pre">FontInfoState</span></code> .</p>
+<ul>
+<li><p>If value is <code class="docutils literal notranslate"><span class="pre">FontInfo_NoInfo</span></code> , the text is not rendered, so it has no font characteristics. For example, alternate text has no font characteristics.</p></li>
+<li><p>If value is <code class="docutils literal notranslate"><span class="pre">FontInfo_Valid</span></code> , the rest of the values describe the font characteristics for all of the text in the subtree. That is, each word of the text either has these characteristics or has no font characteristics.</p></li>
+<li><p>If value is <code class="docutils literal notranslate"><span class="pre">FontInfo_MixedInfo</span></code> , different words of the text have different font characteristics, and the document subtree must be examined more closely to determine which text has which font characteristics.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pszName</span></code> returns the name of the font.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fontSize</span></code> returns the point size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fontAttr</span></code> returns the set of <code class="docutils literal notranslate"><span class="pre">PDDom_FontStyle</span></code> values.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">red,</span> <span class="pre">green,</span> <span class="pre">blue</span></code> return the RGB components of the color of the text. Each component is a value between 0 and 1.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetFontInfo</span> <span class="p">(</span><span class="n">long</span><span class="o">*</span> <span class="n">fontStatus</span><span class="p">,</span>  <span class="n">BSTR</span><span class="o">*</span> <span class="n">pszName</span><span class="p">,</span>  <span class="nb">float</span><span class="o">*</span> <span class="n">fontSize</span><span class="p">,</span>  <span class="n">long</span><span class="o">*</span> <span class="n">fontAttr</span><span class="p">,</span> <span class="nb">float</span><span class="o">*</span> <span class="n">red</span><span class="p">,</span>  <span class="nb">float</span><span class="o">*</span> <span class="n">green</span><span class="p">,</span>  <span class="nb">float</span><span class="o">*</span> <span class="n">blue</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getlocation">
+<h3>GetLocation<a class="headerlink" href="#getlocation" title="Permalink to this headline">¶</a></h3>
+<p>Returns the screen coordinates of the upper left corner, width, and height of the content of the element. Note that this is not exactly the same as the bounding box. If the element spans multiple pages, this method returns only the location on the first visible page. If none of the element’s contents are visible, this method returns an empty location.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetLocation</span> <span class="p">(</span><span class="n">long</span> <span class="o">*</span><span class="n">pxLeft</span><span class="p">,</span> <span class="n">ong</span> <span class="o">*</span><span class="n">pyTop</span><span class="p">,</span>  <span class="n">long</span> <span class="o">*</span><span class="n">pcxWidth</span><span class="p">,</span>  <span class="n">long</span> <span class="o">*</span><span class="n">pcyHeight</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getfromid">
+<h3>GetFromID<a class="headerlink" href="#getfromid" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ppDispNode</span></code> returns the <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> for the element in the same document with the matching ID attribute, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if there is no such element.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">id</span></code> value is not the same as the UID returned by <code class="docutils literal notranslate"><span class="pre">IAccID</span></code> in the MSAA interface; it is an optional attribute of the PDF file itself, as returned by <code class="docutils literal notranslate"><span class="pre">GetID</span></code> in <code class="docutils literal notranslate"><span class="pre">IPDDomElement</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetFromID</span> <span class="p">(</span><span class="n">BSTR</span> <span class="nb">id</span><span class="p">,</span>  <span class="n">IDispatch</span> <span class="o">**</span><span class="n">ppDispNode</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getiaccessible">
+<h3>GetIAccessible<a class="headerlink" href="#getiaccessible" title="Permalink to this headline">¶</a></h3>
+<p>Returns the MSAA <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> element corresponding to this element. (Acrobat exports an MSAA interface to the document, as well as a DOM interface.)</p>
+<p>Not all DOM elements have corresponding MSAA elements, because the DOM tree breaks the content down into much smaller pieces. If <code class="docutils literal notranslate"><span class="pre">ppIAccessible</span></code> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> , search for an ancestor with a non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code> value for <code class="docutils literal notranslate"><span class="pre">GetIAccessible</span></code> to find the corresponding MSAA interface.</p>
+<p>Use the method <code class="docutils literal notranslate"><span class="pre">get_PDDomNode</span></code> to find the <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> corresponding to a PDF document <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetIAccessible</span> <span class="p">(</span><span class="n">IDispatch</span> <span class="o">**</span><span class="n">ppIAccessible</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scrollto">
+<h3>ScrollTo<a class="headerlink" href="#scrollto" title="Permalink to this headline">¶</a></h3>
+<p>Makes the contents of the node visible. If the contents cover more than one page, only the contents on the first page are made visible. If the entire contents do not fit, the upper left portion is shown.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">ScrollTo</span><span class="p">()</span>
+</pre></div>
+</div>
+<a name="54271"></a></div>
+<div class="section" id="gettextinlines">
+<h3>GetTextInLines<a class="headerlink" href="#gettextinlines" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ppDispTextLines</span></code> returns an <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> whose children (obtained by calling <code class="docutils literal notranslate"><span class="pre">GetChild</span></code> ) have the role <code class="docutils literal notranslate"><span class="pre">CPDDomNode_LineSeg</span></code> ; see <a class="reference external" href="Access_DOM.html#33811">Words and lines in text</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">visibleOnly</span></code> controls whether the children include only lines that contain at least some visible text.</p>
+<p>If the role the node is not <code class="docutils literal notranslate"><span class="pre">CPDDomNode_Text</span></code> , this method returns <code class="docutils literal notranslate"><span class="pre">E_FAIL</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetTextInLines</span> <span class="p">(</span><span class="n">BOOL</span> <span class="n">visibleOnly</span><span class="p">,</span>  <span class="n">IDispatch</span><span class="o">**</span> <span class="n">ppDispTextLines</span><span class="p">)</span>
+</pre></div>
+</div>
+<a name="70643"></a></div>
+</div>
+<div class="section" id="ipddomnodeext-methods">
+<h2>IPDDomNodeExt methods<a class="headerlink" href="#ipddomnodeext-methods" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface is exported by every object that exports <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> . For Acrobat 7.0 and later, the following methods are available from all objects.</p>
+<div class="section" id="navigate">
+<h3>Navigate<a class="headerlink" href="#navigate" title="Permalink to this headline">¶</a></h3>
+<p>Traverses to another user interface element within a container and retrieves the object. <code class="docutils literal notranslate"><span class="pre">navDir</span></code> indicates which type of navigation is desired, and the node in that direction is returned in <code class="docutils literal notranslate"><span class="pre">next</span></code> . This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">Navigate</span><span class="p">(</span>
+<span class="n">long</span> <span class="n">navDir</span><span class="p">,</span>
+<span class="n">IPDDomNode</span><span class="o">*</span> <span class="nb">next</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="scrolltoex">
+<h3>ScrollToEx<a class="headerlink" href="#scrolltoex" title="Permalink to this headline">¶</a></h3>
+<p>Determines where to scroll when the item is too large to fit in the window. If both parameters are <code class="docutils literal notranslate"><span class="pre">true</span></code> , this method is equivalent to <code class="docutils literal notranslate"><span class="pre">ScrollTo</span></code> . This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">ScrollToEx</span><span class="p">(</span>
+<span class="n">BOOL</span> <span class="n">favorLeft</span><span class="p">,</span>
+<span class="n">BOOL</span> <span class="n">favorTop</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="setfocus">
+<h3>SetFocus<a class="headerlink" href="#setfocus" title="Permalink to this headline">¶</a></h3>
+<p>Sets the focus to this node, if it can take focus. This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">SetFocus</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getstate">
+<h3>GetState<a class="headerlink" href="#getstate" title="Permalink to this headline">¶</a></h3>
+<p>Returns a set of state flags identical to those returned by <code class="docutils literal notranslate"><span class="pre">get_accState</span></code> for the corresponding <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object. This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetState</span><span class="p">(</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">state</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getindex">
+<h3>GetIndex<a class="headerlink" href="#getindex" title="Permalink to this headline">¶</a></h3>
+<p>Returns the child index of this node in its parent. The root node returns -1. This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetIndex</span><span class="p">(</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">pIndex</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getpagenum">
+<h3>GetPageNum<a class="headerlink" href="#getpagenum" title="Permalink to this headline">¶</a></h3>
+<p>Returns the first and last pages on which the node appears. This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetPageNum</span><span class="p">(</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">firstPage</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">lastPage</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dodefaultaction">
+<h3>DoDefaultAction<a class="headerlink" href="#dodefaultaction" title="Permalink to this headline">¶</a></h3>
+<p>Executes the default action for a node. This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">DoDefaultAction</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="relationship">
+<h3>Relationship<a class="headerlink" href="#relationship" title="Permalink to this headline">¶</a></h3>
+<p>Returns the relationship of the <code class="docutils literal notranslate"><span class="pre">node</span></code> parameter to this node. The value is of type <code class="docutils literal notranslate"><span class="pre">NodeRelationship</span></code> , defined in IPDDom.h. This method is defined in the <code class="docutils literal notranslate"><span class="pre">IPDDomNodeExt</span></code> interface on any node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">Relationship</span><span class="p">(</span>
+<span class="n">PDDomNode</span><span class="o">*</span> <span class="n">node</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">pRel</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ipddomdocument-methods">
+<h2>IPDDomDocument methods<a class="headerlink" href="#ipddomdocument-methods" title="Permalink to this headline">¶</a></h2>
+<p>The root object for the page or document exports the <code class="docutils literal notranslate"><span class="pre">IPDDomDocument</span></code> interface. For Acrobat 7.0 and later, the following methods are available from the root object.</p>
+<div class="section" id="setcaret">
+<h3>SetCaret<a class="headerlink" href="#setcaret" title="Permalink to this headline">¶</a></h3>
+<p>Sets the caret to the specified index in the word. If the index is 0, it is placed at the beginning of the word.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">SetCaret</span><span class="p">(</span>
+<span class="n">IPDDomWord</span><span class="o">*</span> <span class="n">node</span><span class="p">,</span>
+<span class="n">long</span> <span class="n">index</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getcaret">
+<h3>GetCaret<a class="headerlink" href="#getcaret" title="Permalink to this headline">¶</a></h3>
+<p>Returns the screen location of the caret, the node containing the caret, and the zero-based index of the caret within the node. The node may be a word node or a form field. If there is no active caret, the call returns <code class="docutils literal notranslate"><span class="pre">S_FALSE</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetCaret</span><span class="p">(</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">pxLeft</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">pyTop</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">pcxWidth</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">pcyHeight</span><span class="p">,</span>
+<span class="n">IPDDomNode</span><span class="o">**</span> <span class="n">node</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">index</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="nextfocusnode">
+<h3>NextFocusNode<a class="headerlink" href="#nextfocusnode" title="Permalink to this headline">¶</a></h3>
+<p>Gets the next or previous focusable <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> . If <code class="docutils literal notranslate"><span class="pre">forward</span></code> is <code class="docutils literal notranslate"><span class="pre">true</span></code> , it gets the next focusable node. Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if there is not another focusable node in the selected direction. Searches only the current DOM tree, which means that in page mode it will only return results within the page tree instead of the entire document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">NextFocusNode</span><span class="p">(</span>
+<span class="n">BOOL</span> <span class="n">forward</span><span class="p">,</span>
+<span class="n">IPDDomNode</span><span class="o">*</span> <span class="n">node</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getfocusnode">
+<h3>GetFocusNode<a class="headerlink" href="#getfocusnode" title="Permalink to this headline">¶</a></h3>
+<p>Returns the <code class="docutils literal notranslate"><span class="pre">IPDDomNode</span></code> with focus. The node is set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if the focus is on the document (rather than an annotation) or if the focus is not within the document.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetFocusNode</span><span class="p">(</span>
+<span class="n">IPDDomNode</span><span class="o">*</span> <span class="n">node</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="selecttext">
+<h3>SelectText<a class="headerlink" href="#selecttext" title="Permalink to this headline">¶</a></h3>
+<p>Sets the text selection by identifying the start and end locations of the selection.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">SelectText</span><span class="p">(</span>
+<span class="n">IPDDomWord</span><span class="o">*</span> <span class="n">startNode</span><span class="p">,</span>
+<span class="n">long</span> <span class="n">startIndex</span><span class="p">,</span>
+<span class="n">IPDDomWord</span><span class="o">*</span> <span class="n">endNode</span><span class="p">,</span>
+<span class="n">long</span> <span class="n">endIndex</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gettextselection">
+<h3>GetTextSelection<a class="headerlink" href="#gettextselection" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the value of the selected text.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetTextSelection</span><span class="p">(</span>
+<span class="n">BSTR</span><span class="o">*</span> <span class="n">selection</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getselectionbounds">
+<h3>GetSelectionBounds<a class="headerlink" href="#getselectionbounds" title="Permalink to this headline">¶</a></h3>
+<p><strong>Not implemented</strong> . This procedure always returns <code class="docutils literal notranslate"><span class="pre">S_FALSE</span></code> .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetSelectionBounds</span><span class="p">(</span>
+<span class="n">IPDDomWord</span><span class="o">**</span> <span class="n">start</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">startIndex</span><span class="p">,</span>
+<span class="n">IPDDomWord</span><span class="o">**</span> <span class="n">stop</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">stopIndex</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getdocinfo">
+<h3>GetDocInfo<a class="headerlink" href="#getdocinfo" title="Permalink to this headline">¶</a></h3>
+<p>Returns the full pathname of the file, how many pages it contains, and the range of pages that are at least partially visible. The <code class="docutils literal notranslate"><span class="pre">status</span></code> indicates whether there are issues with this document or page, such as access controls prohibiting access or an apparently empty page or document. If <code class="docutils literal notranslate"><span class="pre">lang</span></code> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code> , it is the default language used in the document.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GetDocInfo</span></code> and <code class="docutils literal notranslate"><span class="pre">GoToPage</span></code> methods use different numbering systems. The page numbers returned as <code class="docutils literal notranslate"><span class="pre">firstVisiblePage</span></code> and <code class="docutils literal notranslate"><span class="pre">lastVisiblePage</span></code> by <code class="docutils literal notranslate"><span class="pre">GetDocInfo</span></code> are based on page 1 as the first page of the document. However, the <code class="docutils literal notranslate"><span class="pre">GoToPage</span></code> method treats page 0 as the first page of the document. Therefore, you must adjust accordingly when passing the value of <code class="docutils literal notranslate"><span class="pre">pageNum</span></code> to <code class="docutils literal notranslate"><span class="pre">GoToPage</span></code> .</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GetDocInfo</span><span class="p">(</span>
+<span class="n">BSTR</span><span class="o">*</span> <span class="n">fileName</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">nPages</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">firstVisiblePage</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">lastVisiblePage</span><span class="p">,</span>
+<span class="n">long</span><span class="o">*</span> <span class="n">status</span><span class="p">,</span>
+<span class="n">BSTR</span><span class="o">*</span> <span class="n">lang</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gotopage">
+<h3>GoToPage<a class="headerlink" href="#gotopage" title="Permalink to this headline">¶</a></h3>
+<p>Positions the document so that the requested page is visible.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GetDocInfo</span></code> and <code class="docutils literal notranslate"><span class="pre">GoToPage</span></code> methods use different numbering systems. The page numbers returned as <code class="docutils literal notranslate"><span class="pre">firstVisiblePage</span></code> and <code class="docutils literal notranslate"><span class="pre">lastVisiblePage</span></code> by <code class="docutils literal notranslate"><span class="pre">GetDocInfo</span></code> are based on page 1 as the first page of the document. However, the <code class="docutils literal notranslate"><span class="pre">GoToPage</span></code> method treats page 0 as the first page of the document. Therefore, you must adjust accordingly when passing the value of <code class="docutils literal notranslate"><span class="pre">pageNum</span></code> to <code class="docutils literal notranslate"><span class="pre">GoToPage</span></code> .</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">GoToPage</span><span class="p">(</span>
+<span class="n">long</span> <span class="n">pageNum</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="99257"></a></div>
+</div>
+<div class="section" id="ipddomelement-methods">
+<h2>IPDDomElement Methods<a class="headerlink" href="#ipddomelement-methods" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">IPDDomElement</span></code> defines additional methods that apply only to structure elements.</p>
+<div class="section" id="gettagname">
+<h3>GetTagName<a class="headerlink" href="#gettagname" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pszTagName</span></code> returns the structural element tag for this element.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetTagName</span> <span class="p">(</span><span class="n">BSTR</span> <span class="o">*</span><span class="n">pszTagName</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getstdname">
+<h3>GetStdName<a class="headerlink" href="#getstdname" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pszStdName</span></code> returns the standard role for this element. The standard roles are:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Document</span><span class="p">,</span> <span class="n">Part</span><span class="p">,</span> <span class="n">Art</span><span class="p">,</span> <span class="n">Sect</span><span class="p">,</span> <span class="n">Div</span><span class="p">,</span> <span class="n">BlockQuote</span><span class="p">,</span> <span class="n">Caption</span><span class="p">,</span> <span class="n">TOC</span><span class="p">,</span> <span class="n">TOCI</span><span class="p">,</span> <span class="n">Index</span><span class="p">,</span> <span class="n">NonStruct</span><span class="p">,</span> <span class="n">Private</span><span class="p">,</span> <span class="n">Table</span><span class="p">,</span> <span class="n">TR</span><span class="p">,</span> <span class="n">TH</span><span class="p">,</span> <span class="n">TD</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">LI</span><span class="p">,</span> <span class="n">Lbl</span><span class="p">,</span> <span class="n">LBody</span><span class="p">,</span> <span class="n">P</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">H1</span><span class="p">,</span> <span class="n">H2</span><span class="p">,</span> <span class="n">H3</span><span class="p">,</span> <span class="n">H4</span><span class="p">,</span> <span class="n">H5</span><span class="p">,</span> <span class="n">H6</span><span class="p">,</span> <span class="n">Span</span><span class="p">,</span> <span class="n">Quote</span><span class="p">,</span> <span class="n">Note</span><span class="p">,</span> <span class="n">Reference</span><span class="p">,</span> <span class="n">BibEntry</span><span class="p">,</span> <span class="n">Code</span><span class="p">,</span> <span class="n">Link</span><span class="p">,</span> <span class="n">Figure</span><span class="p">,</span> <span class="n">Formula</span><span class="p">,</span><span class="n">Form</span>
+</pre></div>
+</div>
+<p>For details, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetStdName</span> <span class="p">(</span><span class="n">BSTR</span> <span class="o">*</span><span class="n">pszStdName</span><span class="p">)</span>
+</pre></div>
+</div>
+<a name="85767"></a></div>
+<div class="section" id="getid">
+<h3>GetID<a class="headerlink" href="#getid" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pszId</span></code> returns the ID string associated with this element, if it has been defined.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">id</span></code> value is not the same as the UID returned by <code class="docutils literal notranslate"><span class="pre">IAccID</span></code> in the MSAA interface; it is an optional attribute of the PDF file itself. For details, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. .</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetID</span> <span class="p">(</span><span class="n">BSTR</span> <span class="o">*</span><span class="n">pszId</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="getattribute">
+<h3>GetAttribute<a class="headerlink" href="#getattribute" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">pszAttrVal</span></code> returns the value of the specified attribute for specified owner for this element. Owner can be <code class="docutils literal notranslate"><span class="pre">NULL</span></code> or an empty string.</p>
+<p>If the element does not have the requested attribute, the method returns <code class="docutils literal notranslate"><span class="pre">S_FALSE</span></code> .</p>
+<p>The set of owners and attributes is open-ended, but the standard structure attributes for Tagged PDF are defined in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. See the table below for accessibility attributes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">GetAttribute</span> <span class="p">(</span><span class="n">BSTR</span> <span class="n">pszAttr</span><span class="p">,</span> <span class="n">BSTR</span> <span class="n">pszOwner</span><span class="p">,</span>  <span class="n">BSTR</span> <span class="o">*</span><span class="n">pszAttrVal</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="accessibility-attributes">
+<h4>Accessibility attributes<a class="headerlink" href="#accessibility-attributes" title="Permalink to this headline">¶</a></h4>
+<p>Some of the attributes that are useful for assistive technology are listed here. For a complete list, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. .</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute</p></th>
+<th class="head"><p>Owner</p></th>
+<th class="head"><p>Value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Lang</p></td>
+<td></td>
+<td><p>ISO language code for text within this element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Alt</p></td>
+<td></td>
+<td><p>Text containing an equivalent replacement for the content of this element.</p>
+<p>Automatically incorporated into the value or text content of the element or any of its ancestor elements.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>ActualText</p></td>
+<td></td>
+<td><p>Text which is an exact replacement for the content of this element, for example, the text of an illuminated character.</p>
+<p>Automatically incorporated into the value or text content of the element or any of its ancestor elements.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>E</p></td>
+<td></td>
+<td><p>The expanded form of the element’s content, when it is an abbreviation or acronym.</p></td>
+</tr>
+<tr class="row-even"><td><p>RowSpan</p></td>
+<td><p>Table</p></td>
+<td><p>Number of rows spanned by the table cell.</p></td>
+</tr>
+<tr class="row-odd"><td><p>ColSpan</p></td>
+<td><p>Table</p></td>
+<td><p>Number of columns spanned by the table cell.</p></td>
+</tr>
+<tr class="row-even"><td><p>Headers</p></td>
+<td><p>Table</p></td>
+<td><p>Array of IDs of Table Header (TH) cells associated with this table cell (TD or TH).</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scope</p></td>
+<td><p>Table</p></td>
+<td><p>The scope of this table header cell: <code class="docutils literal notranslate"><span class="pre">Row</span></code> , <code class="docutils literal notranslate"><span class="pre">Column</span></code> , or <code class="docutils literal notranslate"><span class="pre">Both</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>Summary</p></td>
+<td><p>Table</p></td>
+<td><p>Text that describes the table’s purpose and structure, for use in non-visual rendering such as speech or Braille.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="96578"></a></div>
+</div>
+</div>
+<div class="section" id="ipddomword-methods">
+<h2>IPDDomWord methods<a class="headerlink" href="#ipddomword-methods" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">IPDDomWord</span></code> defines additional methods that apply only to individual words in the document.</p>
+<div class="section" id="lastwordofline">
+<h3>LastWordOfLine<a class="headerlink" href="#lastwordofline" title="Permalink to this headline">¶</a></h3>
+<p>If this is the last word in a line on the page, <code class="docutils literal notranslate"><span class="pre">isLast</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> . Use this function to determine where the line breaks occur in text. Note that line breaks are inserted into the text content for elements.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">LastWordOfLine</span> <span class="p">(</span><span class="n">BOOL</span> <span class="o">*</span><span class="n">isLast</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ipddomgroupinfo-method">
+<h2>IPDDomGroupInfo method<a class="headerlink" href="#ipddomgroupinfo-method" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">IPDDomGroupInfo</span></code> defines an additional method that applies to radio buttons, list boxes, and combo boxes.</p>
+<div class="section" id="getgroupposition">
+<h3>GetGroupPosition<a class="headerlink" href="#getgroupposition" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">groupSize</span></code> returns the number of items in the radio button set, the list, or the combo box drop-down list. <code class="docutils literal notranslate"><span class="pre">position</span></code> returns the 1-based index of the node in that set of values. That is, a value of 1 for <code class="docutils literal notranslate"><span class="pre">position</span></code> indicates the first value in the set.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GetGroupPosition</span> <span class="p">(</span><span class="n">long</span> <span class="o">*</span><span class="n">groupSize</span><span class="p">,</span> <span class="n">long</span> <span class="o">*</span><span class="n">position</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Jun 24, 2022. 
+        <img src="../../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

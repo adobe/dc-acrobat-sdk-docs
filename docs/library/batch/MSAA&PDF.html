@@ -1,0 +1,2315 @@
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  
+  <!-- Ben removed the title tag -->
+  
+
+  
+   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link href="../../_static/jquery-ui.css" rel="stylesheet" />  
+  <link href="../../_static/copybutton.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../_static/theme_overrides.css" type="text/css" />
+
+    
+  
+  
+  <link rel="canonical" href="https://www.adobe.com/go/acrobatsdk_homeMSAA&PDF.html" />
+  
+
+  
+  
+  
+  <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+  <script type="text/javascript" src="../../_static/jquery.js"></script>
+  <script type="text/javascript" src="../../_static/underscore.js"></script>
+  <script type="text/javascript" src="../../_static/doctools.js"></script>
+  <script type="text/javascript" src="../../_static/language_data.js"></script>
+  <script type="text/javascript" src="../../_static/searchtools.js"></script>
+  <script type="text/javascript" src="../../_static/clipboard.min.js"></script>
+  <script type="text/javascript" src="../../_static/copybutton.js"></script>
+  <script type="text/javascript" src="../../_static/js/theme.js"></script>
+   
+  
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reading PDF Files Through the DOM Interface" href="Access_DOM.html" />
+    <link rel="prev" title="Acrobat-PDFL SDK: Accessibility" href="index.html" /> 
+  
+<script type='text/javascript'> window.marketingtech = { adobe: { launch: { property: "global", environment: "production" } }, };</script>
+<script src="https://www.adobe.com/marketingtech/main.min.js"></script>
+
+	<script>
+    $(document).ready(function () {
+      $(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+          $('.fixedbar, .wy-nav-side').addClass('scroll');
+          $('.wy-top-menu-wrapper').fadeOut();
+        } else {
+          $('.fixedbar, .wy-nav-side').removeClass('scroll');
+          $('.wy-top-menu-wrapper').fadeIn();
+        }
+      });
+      $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+          $('#scroll').fadeIn();
+        } else {
+          $('#scroll').fadeOut();
+        }
+      });
+      $('#scroll').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+      });
+    });
+  </script>
+
+<style>
+  .wy-nav-content {max-width:90%}
+  </style>
+</head>
+
+<body class="wy-body-for-nav">
+
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+	  
+	  	  
+<!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="wy-logo-wrapper"> 
+          <a href="https://www.adobe.com/go/dc_developer">
+            <img src="../../_static/acrobaticon.png" class="logo"/> 
+          Acrobat and PDFL Developer Guides
+          </a>
+        </div> 
+ <!-- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+ 
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="toc.html" class="icon icon-home"> Acrobat-PDFL SDK:  Accessibility
+          
+
+          
+          </a>
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Acrobat-PDFL SDK: Accessibility</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html#determining-rendering-order-and-logical-order">Determining rendering order and logical order</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#accessing-documents-and-pages">Accessing documents and pages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#processing-inaccessible-documents">Processing inaccessible documents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#processing-protected-documents">Processing protected documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#processing-empty-documents">Processing empty documents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#processing-unavailable-documents">Processing unavailable documents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#handling-event-notifications">Handling event notifications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#retrieving-an-msaa-object-for-an-event">Retrieving an MSAA object for an event</a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#retrieving-a-pdf-dom-object-for-an-event">Retrieving a PDF DOM object for an event</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Reading PDF Files Through MSAA</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#acrobat-implementation-of-iaccessible-objects">Acrobat implementation of IAccessible objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#igetpddomnode-interface">IGetPDDomNode interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-pddomnode">get_PDDomNode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iselecttext-interface">ISelectText interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#selecttext">selectText</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#identifying-iaccessible-objects-in-a-document">Identifying IAccessible objects in a document</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-accid">get_accID</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iaccessible-method-summary">IAccessible method summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#navigation-and-hierarchy">Navigation and hierarchy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accnavigate">accNavigate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accchild">get_accChild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accchildcount">get_accChildCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accparent">get_accParent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#descriptive-properties-and-methods">Descriptive properties and methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accdodefaultaction">accDoDefaultAction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accdefaultaction">get_accDefaultAction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accdescription">get_accDescription</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accname">get_accName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accrole">get_accRole</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accstate">get_accState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accvalue">get_accValue</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#selection-and-focus">Selection and focus</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#accselect">accSelect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accfocus">get_accFocus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-accselection">get_accSelection</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#spatial-mapping">Spatial mapping</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#acclocation">accLocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#acchittest">accHitTest</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#iaccessible-object-types-for-pdf">IAccessible object types for PDF</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-document">PDF Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-page">PDF Page</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-protected-document">PDF Protected Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#empty-pdf-document">Empty PDF Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-structure-element">PDF Structure Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-content-element">PDF Content Element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-comment">PDF Comment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-link">PDF Link</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-text-form-field">PDF Text Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-button-form-field">PDF Button Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-checkbox-form-field">PDF CheckBox Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-radiobutton-form-field">PDF RadioButton Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-combobox-form-field">PDF ComboBox Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-list-box-form-field">PDF List Box Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-digital-signature-form-field">PDF Digital Signature Form Field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pdf-caret">PDF Caret</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Access_DOM.html">Reading PDF Files Through the DOM Interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Access_DOM.html#ipddomnode-data-types">IPDDomNode data types</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#cpddomnodetype">CPDDomNodeType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#pddom-fontstyle">PDDom_FontStyle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#fontinfostate">FontInfoState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#docstate">DocState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#noderelationship">NodeRelationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Access_DOM.html#ipddomnode-methods">IPDDomNode methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#words-and-lines-in-text">Words and lines in text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getparent">GetParent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#gettype">GetType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getchild">GetChild</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getchildcount">GetChildCount</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getname">GetName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getvalue">GetValue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#issame">IsSame</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#gettextcontent">GetTextContent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getfontinfo">GetFontInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getlocation">GetLocation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getfromid">GetFromID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getiaccessible">GetIAccessible</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#scrollto">ScrollTo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#gettextinlines">GetTextInLines</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Access_DOM.html#ipddomnodeext-methods">IPDDomNodeExt methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#navigate">Navigate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#scrolltoex">ScrollToEx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#setfocus">SetFocus</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getstate">GetState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getindex">GetIndex</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getpagenum">GetPageNum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#dodefaultaction">DoDefaultAction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#relationship">Relationship</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Access_DOM.html#ipddomdocument-methods">IPDDomDocument methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#setcaret">SetCaret</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getcaret">GetCaret</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#nextfocusnode">NextFocusNode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getfocusnode">GetFocusNode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#selecttext">SelectText</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#gettextselection">GetTextSelection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getselectionbounds">GetSelectionBounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getdocinfo">GetDocInfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#gotopage">GoToPage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Access_DOM.html#ipddomelement-methods">IPDDomElement Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#gettagname">GetTagName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getstdname">GetStdName</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getid">GetID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getattribute">GetAttribute</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Access_DOM.html#accessibility-attributes">Accessibility attributes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Access_DOM.html#ipddomword-methods">IPDDomWord methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#lastwordofline">LastWordOfLine</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="Access_DOM.html#ipddomgroupinfo-method">IPDDomGroupInfo method</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="Access_DOM.html#getgroupposition">GetGroupPosition</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="../index.html#://">Master Doc Search and TOC</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+        <div class="fixedbar">  
+          <div class="wy-menu-items">
+            <a href="https://www.adobe.com/go/dc_developer" class="topbarlink">Acrobat Developer Home</a>
+            <a href="https://www.adobe.io/apis/documentcloud/dcsdk/" class="topbarlink">Document Services SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsigndevguide" class="topbarlink">Acrobat Sign SDK</a>
+            <a href="https://www.adobe.com/go/acrobatsdk_home" class="topbarlink">Acrobat SDK</a>
+            <a href="https://www.adobe.com/go/pdflibrary" class="topbarlink">PDF Library SDK</a>
+          </div>  
+          <div class="sign-in">
+            <a href="https://adminconsole.adobe.com//" class="btn btn-console">Console</a>
+           <!-- <a href="https://auth.services.adobe.com/en_US/index.html">Sign in</a>-->
+          </div>
+        </div>
+        <!--- @@@@@@@@@@@@@@@@ Custom @@@@@@@@@@@@@@@@ -->
+
+
+
+
+   
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="toc.html">Acrobat-PDFL SDK:  Accessibility</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+      <a href="#" id="scroll" style="display:inline;"><span></span></a>
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="toc.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Reading PDF Files Through MSAA</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="Access_DOM.html" class="btn btn-neutral float-right" title="Reading PDF Files Through the DOM Interface" accesskey="n">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Acrobat-PDFL SDK: Accessibility" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reading-pdf-files-through-msaa">
+<h1>Reading PDF Files Through MSAA<a class="headerlink" href="#reading-pdf-files-through-msaa" title="Permalink to this headline">¶</a></h1>
+<p>Microsoft Active Accessibility defines the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> interface to applications. This interface consists of a set of methods and properties that are defined in the MSAA documentation.</p>
+<p>Acrobat implements and exports a set of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects of different types to represent a document, its pages, and other elements of the document hierarchy.</p>
+<p>An MSAA client can retrieve an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for a user interface element in the following four ways:</p>
+<ul class="simple">
+<li><p>Set a <code class="docutils literal notranslate"><span class="pre">WinEvent</span></code> hook, receive a notification, and call <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFromEvent</span></code> to retrieve an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> interface pointer for the user interface element that generated the event. See <a class="reference external" href="AccessOverview.html#21082">Handling event notifications</a> for details.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFromWindow</span></code> and pass the user interface element’s window handle. Each open document in Acrobat is associated with its own window handle.</p></li>
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFromPoint</span></code> and pass a screen location that lies within the user interface element’s bounding rectangle.</p></li>
+<li><p>Call an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> method such as <code class="docutils literal notranslate"><span class="pre">accNavigate</span></code> or <code class="docutils literal notranslate"><span class="pre">get_accParent</span></code> to move to a different <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object.</p></li>
+</ul>
+<div class="section" id="acrobat-implementation-of-iaccessible-objects">
+<h2>Acrobat implementation of IAccessible objects<a class="headerlink" href="#acrobat-implementation-of-iaccessible-objects" title="Permalink to this headline">¶</a></h2>
+<p>Each type of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object has a different implementation of the standard methods:</p>
+<ul class="simple">
+<li><p>Links, tables, and form fields are explicitly identified through MSAA.</p></li>
+<li><p>Headers, paragraphs, and other elements of document structure are only represented implicitly.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These elements are explicit in the DOM interface; see <a class="reference external" href="Access_DOM.html#30124">Reading PDF Files Through the DOM Interface</a>.</p>
+</div>
+<p>For each document, Acrobat builds a tree of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects representing the document and its internal structure. Because there is just one window handle associated with the document, Acrobat posts all event notifications to that window. In each notification, a <code class="docutils literal notranslate"><span class="pre">childID</span></code> identifies an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for an element in the document. For example, when the user tabs to the next link, the <code class="docutils literal notranslate"><span class="pre">EVENT_OBJECT_FOCUS</span></code> notification includes a <code class="docutils literal notranslate"><span class="pre">childID</span></code> that is the UID of the link object. See <a class="reference external" href="AccessOverview.html#21082">Handling event notifications</a>.</p>
+<p>The following interfaces are exported from the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object by Acrobat:</p>
+<a name="10950"></a></div>
+<div class="section" id="igetpddomnode-interface">
+<h2>IGetPDDomNode interface<a class="headerlink" href="#igetpddomnode-interface" title="Permalink to this headline">¶</a></h2>
+<p>This interface exports one function, <code class="docutils literal notranslate"><span class="pre">get_PDDomNode</span></code> , which returns a DOM object. The methods described in <a class="reference external" href="Access_DOM.html#30124">Reading PDF Files Through the DOM Interface</a>” can then be used on this object.</p>
+<div class="section" id="get-pddomnode">
+<h3>get_PDDomNode<a class="headerlink" href="#get-pddomnode" title="Permalink to this headline">¶</a></h3>
+<p>Returns a DOM object. For more information, see <a class="reference external" href="Access_DOM.html#30124">Reading PDF Files Through the DOM Interface</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">varID</span></code> is the same as for the other MSAA methods (see <a class="reference external" href="MSAA&amp;PDF.html#89440">Descriptive properties and methods</a>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">get_PDDomNode</span><span class="p">(</span>
+<span class="n">VARIANT</span> <span class="n">varID</span><span class="p">,</span>
+<span class="n">IPDDomNode</span> <span class="o">**</span><span class="n">ppDispDoc</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="iselecttext-interface">
+<h2>ISelectText interface<a class="headerlink" href="#iselecttext-interface" title="Permalink to this headline">¶</a></h2>
+<p>In Acrobat 7.0, the <code class="docutils literal notranslate"><span class="pre">ISelectText</span></code> interface is an interface exported by the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects. It exports one function, <code class="docutils literal notranslate"><span class="pre">selectText</span></code> , that sets the text selection, but specifies the end location via <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects instead of DOM nodes. The <code class="docutils literal notranslate"><span class="pre">ISelectText</span></code> interface is available from the root <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object.</p>
+<div class="section" id="selecttext">
+<h3>selectText<a class="headerlink" href="#selecttext" title="Permalink to this headline">¶</a></h3>
+<p>Sets the text selection. <code class="docutils literal notranslate"><span class="pre">startAccID</span></code> and <code class="docutils literal notranslate"><span class="pre">endAccID</span></code> are the <code class="docutils literal notranslate"><span class="pre">accID</span></code> identifiers for the starting and ending <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> elements, and <code class="docutils literal notranslate"><span class="pre">startIndex</span></code> and <code class="docutils literal notranslate"><span class="pre">endIndex</span></code> are zero-based indexes into the text of those <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LRESULT</span> <span class="n">selectText</span><span class="p">(</span>
+<span class="n">long</span> <span class="n">startAccID</span><span class="p">,</span>
+<span class="n">long</span> <span class="n">startIndex</span><span class="p">,</span>
+<span class="n">long</span> <span class="n">endAccID</span><span class="p">,</span>
+<span class="n">long</span> <span class="n">endIndex</span><span class="p">);</span>
+</pre></div>
+</div>
+<a name="99842"></a></div>
+</div>
+<div class="section" id="identifying-iaccessible-objects-in-a-document">
+<h2>Identifying IAccessible objects in a document<a class="headerlink" href="#identifying-iaccessible-objects-in-a-document" title="Permalink to this headline">¶</a></h2>
+<p>You can identify the type of an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object by using the <code class="docutils literal notranslate"><span class="pre">get_accRole</span></code> method to get its Role attribute. However, you must also distinguish individual objects from others of the same type. You can do this by means of a unique identifier (UID) defined by Acrobat.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects defined by Acrobat export a private interface, <code class="docutils literal notranslate"><span class="pre">IAccID</span></code> , defined in the file <code class="docutils literal notranslate"><span class="pre">IAccID.h</span></code> . It contains one function, <code class="docutils literal notranslate"><span class="pre">get_accID</span></code> . Use this UID to determine when two <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects refer to the same element in the document.</p>
+<p>When a value-change notification or a focus notification has a non-zero <code class="docutils literal notranslate"><span class="pre">childID</span></code> , the value of <code class="docutils literal notranslate"><span class="pre">childID</span></code> is the UID of one of the objects on the page or document. Use the UID to uniquely identify the object that is the target of the notification.</p>
+<div class="section" id="get-accid">
+<h3>get_accID<a class="headerlink" href="#get-accid" title="Permalink to this headline">¶</a></h3>
+<p>Returns an identifier that is unique within the open document or page.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span> <span class="n">get_accID</span><span class="p">(</span><span class="n">long</span> <span class="o">*</span><span class="nb">id</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Parameters</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>id</p></td>
+<td><p>(Filled by the method) Returns the unique identifier of the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object. Must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<p>Always returns <code class="docutils literal notranslate"><span class="pre">s_ok</span></code> .</p>
+<p><strong>Example</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>IAccID *pID;
+ long uid;
+ /* query for the IAccID interface */
+ RESULT hr = pObj-&gt;QueryInterface (IID_IAccID,
+                                         reinterpret_cast&lt;void **&gt;(&amp;pID));
+ if (!FAILED(hr))
+ {
+         pID-&gt;get_accID(&amp;uid);
+         pID-&gt;Release();
+ }
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you obtained the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object via a call to <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFrom</span></code> XXX, it is not possible to query directly for this private interface. In that case, you must use this alternate code:</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">IServiceProvider</span> <span class="o">*</span><span class="n">sp</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
+ <span class="n">hr</span> <span class="o">=</span> <span class="n">n</span><span class="o">-&gt;</span><span class="n">QueryInterface</span><span class="p">(</span><span class="n">IID_IServiceProvider</span><span class="p">,</span> <span class="p">(</span><span class="n">LPVOID</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sp</span><span class="p">);</span>
+ <span class="k">if</span> <span class="p">(</span><span class="n">SUCCEEDED</span><span class="p">(</span><span class="n">hr</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">sp</span><span class="p">)</span> <span class="p">{</span>
+         <span class="n">hr</span> <span class="o">=</span> <span class="n">sp</span><span class="o">-&gt;</span><span class="n">QueryService</span><span class="p">(</span><span class="n">SID_AccID</span><span class="p">,</span> <span class="n">IID_IAccID</span><span class="p">,</span> <span class="p">(</span><span class="n">LPVOID</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">pID</span><span class="p">);</span>
+         <span class="n">sp</span><span class="o">-&gt;</span><span class="n">Release</span><span class="p">();</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+<a name="29922"></a></div>
+</div>
+<div class="section" id="iaccessible-method-summary">
+<h2>IAccessible method summary<a class="headerlink" href="#iaccessible-method-summary" title="Permalink to this headline">¶</a></h2>
+<p>This section provides a brief syntax summary of the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> interface methods as defined by MSAA. All methods return <code class="docutils literal notranslate"><span class="pre">HRESULT</span></code> . The methods and properties are organized into the following groups:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#73526">Navigation and hierarchy</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#89440">Descriptive properties and methods</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#22290">Selection and focus</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#57514">Spatial mapping</a></p></li>
+</ul>
+<a name="73526"></a></div>
+<div class="section" id="navigation-and-hierarchy">
+<h2>Navigation and hierarchy<a class="headerlink" href="#navigation-and-hierarchy" title="Permalink to this headline">¶</a></h2>
+<p>This section provides information on the APIs used in navigation and to traverse the hierarchy.</p>
+<div class="section" id="accnavigate">
+<h3>accNavigate<a class="headerlink" href="#accnavigate" title="Permalink to this headline">¶</a></h3>
+<p>Traverses to another user interface element within a container and retrieves the object. All visual objects support this method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">accNavigate</span> <span class="p">(</span><span class="n">long</span> <span class="n">navDir</span><span class="p">,</span> <span class="n">VARIANT</span> <span class="n">varStart</span><span class="p">,</span> <span class="n">VARIANT</span><span class="o">*</span> <span class="n">pvarEnd</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-1">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 89%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>navDir</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p>The direction to navigate, in spatial order or logical order. These are the spatial navigation constants:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>NAVDIR_UP</dt><dd><p>NAVDIR_DOWN
+NAVDIR_RIGHT
+NAVDIR_LEFT</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>These are the logical navigation constants:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>NAVDIR_FIRSTCHILD</dt><dd><p>NAVDIR_LASTCHILD
+NAVDIR_NEXT
+NAVDIR_PREVIOUS</p>
+</dd>
+</dl>
+</div></blockquote>
+<ul class="simple">
+<li><p>All <code class="docutils literal notranslate"><span class="pre">accNavigate</span></code> methods in PDF objects support the logical navigation directions. Only a few (PDF Structure Element, PDF ComboBox Form Field, and PDF ListBox Form Field) support the spatial navigation directions. Spatial navigation is only supported where it is explicitly noted.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>varStart</p>
+<p>[in]</p>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to start navigation at the object itself, a child ID to start at one of the object’s child elements.</p></td>
+</tr>
+<tr class="row-odd"><td><p>pvarEnd</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns a structure that contains information about the destination object. See MSAA documentation for details.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accchild">
+<h3>get_accChild<a class="headerlink" href="#get-accchild" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves an <code class="docutils literal notranslate"><span class="pre">IDispatch</span></code> interface pointer for the specified child, if one exists. All objects support this property.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accChild</span> <span class="p">(</span><span class="n">VARIANT</span> <span class="n">varChildID</span><span class="p">,</span> <span class="n">IDispatch</span><span class="o">**</span> <span class="n">ppdispChild</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-2">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varChildID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p>The child ID for which to obtain a pointer. This can be a UID or the 1-based index of the child to retrieve.</p></td>
+</tr>
+<tr class="row-even"><td><p>ppdispChild</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns the address of the child’s <code class="docutils literal notranslate"><span class="pre">IDispatch</span></code> interface.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accchildcount">
+<h3>get_accChildCount<a class="headerlink" href="#get-accchildcount" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the number of children that belong to this object. All objects support this property.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accChildCount</span> <span class="p">(</span><span class="n">long</span><span class="o">*</span> <span class="n">pcountChildren</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-3">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>pcountChildren</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns the number of children. The children are accessible objects or child elements. If the object has no children, this value is zero.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accparent">
+<h3>get_accParent<a class="headerlink" href="#get-accparent" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves an <code class="docutils literal notranslate"><span class="pre">IDispatch</span></code> interface pointer for the parent of this object. All objects support this property.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accParent</span> <span class="p">(</span><span class="n">IDispatch</span><span class="o">**</span> <span class="n">ppdispParent</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-4">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 64%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ppdispParent</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns the address of the parent’s <code class="docutils literal notranslate"><span class="pre">IDispatch</span></code> interface.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+<a name="89440"></a></div>
+</div>
+<div class="section" id="descriptive-properties-and-methods">
+<h2>Descriptive properties and methods<a class="headerlink" href="#descriptive-properties-and-methods" title="Permalink to this headline">¶</a></h2>
+<p>This section provides information on the descriptive APIs.</p>
+<div class="section" id="accdodefaultaction">
+<h3>accDoDefaultAction<a class="headerlink" href="#accdodefaultaction" title="Permalink to this headline">¶</a></h3>
+<p>Performs the object’s default action. Not all objects have a default action.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">accDoDefaultAction</span> <span class="p">(</span><span class="n">VARIANT</span> <span class="n">varID</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-5">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to perform the action for the object itself, a child ID to perform the action for one of the object’s child elements.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accdefaultaction">
+<h3>get_accDefaultAction<a class="headerlink" href="#get-accdefaultaction" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves a string that describes the object’s default action. Not all objects have a default action.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accDefaultAction</span><span class="p">(</span><span class="n">VARIANT</span> <span class="n">varID</span><span class="p">,</span> <span class="n">BSTR</span><span class="o">*</span> <span class="n">pszDefaultAction</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-6">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to get information for the object itself, a child ID to get information for one of the object’s child elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>pszDefaultAction</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns a localized string that describes the default action for the object, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if this object has no default action.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accdescription">
+<h3>get_accDescription<a class="headerlink" href="#get-accdescription" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves a string that describes the visual appearance of the object. Not all objects have a description.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accDescription</span> <span class="p">(</span><span class="n">VARIANT</span> <span class="n">varID</span><span class="p">,</span> <span class="n">BSTR</span><span class="o">*</span> <span class="n">pszDescription</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-7">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to get information for the object itself, a child ID to get information for one of the object’s child elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>pszDescription</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns a localized string that describes the object, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if this object has no description.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accname">
+<h3>get_accName<a class="headerlink" href="#get-accname" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the name of the object. All objects have a name.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accName</span> <span class="p">(</span><span class="n">VARIANT</span> <span class="n">varID</span><span class="p">,</span> <span class="n">BSTR</span><span class="o">*</span> <span class="n">pszName</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-8">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to get information for the object itself, a child ID to get information for one of the object’s child elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>pszName</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns a localized string that contains the name of the object.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accrole">
+<h3>get_accRole<a class="headerlink" href="#get-accrole" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the role of the object. All objects have a role.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accRole</span> <span class="p">(</span><span class="n">VARIANT</span> <span class="n">varID</span><span class="p">,</span> <span class="n">VARIANT</span><span class="o">*</span> <span class="n">pvarRole</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-9">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to get information for the object itself, a child ID to get information for one of the object’s child elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>pvarRole</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns a structure that contain an object role constant in its <code class="docutils literal notranslate"><span class="pre">IVal</span></code> member.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accstate">
+<h3>get_accState<a class="headerlink" href="#get-accstate" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the state of the object. All objects have a state.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accState</span> <span class="p">(</span><span class="n">VARIANT</span> <span class="n">varID</span><span class="p">,</span> <span class="n">VARIANT</span><span class="o">*</span> <span class="n">pvarState</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-10">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to get information for the object itself, a child ID to get information for one of the object’s child elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>pvarRole</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns a structure that contain an object state constant in its <code class="docutils literal notranslate"><span class="pre">IVal</span></code> member.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accvalue">
+<h3>get_accValue<a class="headerlink" href="#get-accvalue" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the value of the object. Not all objects have a value.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accValue</span> <span class="p">(</span><span class="n">VARIANT</span> <span class="n">varID</span><span class="p">,</span> <span class="n">BSTR</span><span class="o">*</span> <span class="n">pszValue</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-11">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to get information for the object itself, a child ID to get information for one of the object’s child elements.</p></td>
+</tr>
+<tr class="row-even"><td><p>pszValue</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns a localized string that contains the current value of the object.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+<a name="22290"></a></div>
+</div>
+<div class="section" id="selection-and-focus">
+<h2>Selection and focus<a class="headerlink" href="#selection-and-focus" title="Permalink to this headline">¶</a></h2>
+<p>This section provides information on the selection and focus APIs.</p>
+<div class="section" id="accselect">
+<h3>accSelect<a class="headerlink" href="#accselect" title="Permalink to this headline">¶</a></h3>
+<p>Modifies the selection or moves the keyboard focus of the object. All objects that support selection or receive the keyboard focus support this method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">accSelect</span> <span class="p">(</span><span class="n">long</span> <span class="n">flagsSelect</span><span class="p">,</span> <span class="n">VARIANT</span> <span class="n">varID</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-12">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 77%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><dl class="simple">
+<dt>flagsSelect</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p>Flags that control how the selection or focus operation is performed. A logical OR of these <code class="docutils literal notranslate"><span class="pre">SELFLAG</span></code> constants:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>SELFLAG_NONE</dt><dd><p>SELFLAG_TAKEFOCUS
+SELFLAG_TAKESELECTION
+SELFLAG_EXTENDSELECTION
+SELFLAG_ADDSELECTION
+SELFLAG_REMOVESELECTION</p>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to select the object itself, a child ID to select one of the object’s child elements.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accfocus">
+<h3>get_accFocus<a class="headerlink" href="#get-accfocus" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the object that has the keyboard focus. All objects that receive the keyboard focus support this property.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accFocus</span> <span class="p">(</span><span class="n">VARIANT</span><span class="o">*</span> <span class="n">pvarID</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-13">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>pvarID</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns the address of a <code class="docutils literal notranslate"><span class="pre">VARIANT</span></code> structure that contains information about the object that has the focus. See MSAA documentation for details.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="get-accselection">
+<h3>get_accSelection<a class="headerlink" href="#get-accselection" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the selected children of the object. All objects that support selection support this property.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">get_accSelection</span> <span class="p">(</span><span class="n">VARIANT</span><span class="o">*</span> <span class="n">pvarChildren</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-14">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>pvarChildren</p>
+<p>[out, retval]</p>
+</td>
+<td><p>Returns the address of a <code class="docutils literal notranslate"><span class="pre">VARIANT</span></code> structure that contains information about the selected children. See the MSAA documentation for details.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+<a name="57514"></a></div>
+</div>
+<div class="section" id="spatial-mapping">
+<h2>Spatial mapping<a class="headerlink" href="#spatial-mapping" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="acclocation">
+<h3>accLocation<a class="headerlink" href="#acclocation" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the object’s current screen location. All visual objects support this method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">accLocation</span> <span class="p">(</span><span class="n">long</span><span class="o">*</span> <span class="n">pxLeft</span><span class="p">,</span> <span class="n">long</span><span class="o">*</span> <span class="n">pyTop</span><span class="p">,</span> <span class="n">long</span><span class="o">*</span> <span class="n">pcxWidth</span><span class="p">,</span> <span class="n">long</span><span class="o">*</span> <span class="n">pcyHeight</span><span class="p">,</span> <span class="n">VARIANT</span> <span class="n">varID</span> <span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-15">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>pxLeft, pxTop
+[out]</p></td>
+<td><p>Return the x and y screen coordinates of the upper-left boundary of the object’s location. (The origin is the upper left corner of the screen.)</p></td>
+</tr>
+<tr class="row-even"><td><p>pxWidth, pxHeight
+[in]</p></td>
+<td><p>Return the object’s width and height in pixels.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="simple">
+<dt>varID</dt><dd><p>[in]</p>
+</dd>
+</dl>
+</td>
+<td><p><code class="docutils literal notranslate"><span class="pre">CHILDID_SELF</span></code> to get information for the object itself, a child ID to get information for one of the object’s child elements.</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="acchittest">
+<h3>accHitTest<a class="headerlink" href="#acchittest" title="Permalink to this headline">¶</a></h3>
+<p>Retrieves the object at a specific screen location. All visual objects support this method.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">accHitTest</span> <span class="p">(</span><span class="n">long</span><span class="p">,</span> <span class="n">long</span><span class="p">,</span> <span class="n">VARIANT</span><span class="o">*</span> <span class="n">pvarID</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Properties</strong></p>
+<table class="docutils align-default" id="section-16">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>pxLeft, pxTop
+[in]</p></td>
+<td><p>The x and y screen coordinates of the point to test. (The origin is the upper left corner of the screen.)</p></td>
+</tr>
+<tr class="row-even"><td><dl class="simple">
+<dt>pvarID</dt><dd><p>[out, retval]</p>
+</dd>
+</dl>
+</td>
+<td><p>Address of a <code class="docutils literal notranslate"><span class="pre">VARIANT</span></code> structure that identifies the object at the specified point. The information returned depends on the location of the specified point in relation to the object whose <code class="docutils literal notranslate"><span class="pre">accHitTest</span></code> method is being called. You can use this method to determine whether the object at that point is a child of the object for which the method is called. For details, see the MSAA documentation.</p>
+<ul class="simple">
+<li><p>For PDF objects, hit testing has been implemented in a very basic way; it does not identify the boundaries of the object itself with fine granularity, but reports whether or not the tested location is within the bounding box of an element or subtree.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HRESULT</span>
+</pre></div>
+</div>
+<a name="88342"></a></div>
+</div>
+<div class="section" id="iaccessible-object-types-for-pdf">
+<h2>IAccessible object types for PDF<a class="headerlink" href="#iaccessible-object-types-for-pdf" title="Permalink to this headline">¶</a></h2>
+<p>This section describes the MSAA <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object types that are defined to represent PDF documents and their elements. For each object, its methods are listed along with notes on how the implementation is specific to the object type.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Methods that are not listed are not implemented for a given object type.</p>
+</div>
+<p>The objects are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#39396">PDF Document</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#89992">PDF Page</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#72837">PDF Protected Document</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#10863">Empty PDF Document</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#77828">PDF Structure Element</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#23328">PDF Content Element</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#22500">PDF Comment</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#55866">PDF Link</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#40546">PDF Text Form Field</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#91493">PDF Button Form Field</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#13511">PDF CheckBox Form Field</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#19394">PDF RadioButton Form Field</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#25792">PDF ComboBox Form Field</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#20747">PDF List Box Form Field</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#91488">PDF Digital Signature Form Field</a></p></li>
+<li><p><a class="reference external" href="MSAA&amp;PDF.html#49405">PDF Caret</a></p></li>
+</ul>
+<p>The following are some general notes:</p>
+<ul class="simple">
+<li><p>PDF form fields generally correspond closely to standard user interface elements described in the MSAA SDK document. The <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects of form fields attempt to match the behavior described in Appendix A, “Supported User Interface Elements,” of the MSAA document. An exception is the PDF combo box, which has a much simpler structure.</p></li>
+<li><p>Form fields, links, and comments, as well as the document as a whole, can take keyboard focus. Subparts of the document (sections, paragraphs, and so on) cannot take focus.</p></li>
+<li><p>A document’s contents may be only partially visible on the screen. The <code class="docutils literal notranslate"><span class="pre">get_accLocation</span></code> method for a given object returns the screen location of the visible part of the object only. You can use this method to determine which portions of the content are visible.</p></li>
+</ul>
+<a name="39396"></a><div class="section" id="pdf-document">
+<h3>PDF Document<a class="headerlink" href="#pdf-document" title="Permalink to this headline">¶</a></h3>
+<p>Represents the contents of an entire PDF document. The subtree of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects beneath the PDF Document object reflects the logical structure of the document.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Content that is not part of the logical structure, such as page headers and footers, is not presented through the MSAA interface.</p>
+</div>
+<table class="docutils align-default" id="section-17">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 84%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accHitTest</p></td>
+<td><p>Returns the object at a given location if the location is within the document’s bounding box.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the document.</p></td>
+</tr>
+<tr class="row-even"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-odd"><td><p>accSelect</p></td>
+<td><p>For <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> , the focus is set to the window containing the document and the document is positioned at the beginning. The other <code class="docutils literal notranslate"><span class="pre">SELFLAG</span></code> values are not supported.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accChild</p></td>
+<td><p>Returns a child object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>Returns the number of child objects beneath this one.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDescription</p></td>
+<td><p>The description contains the full path name of the document and the number of pages it contains: “fileName, XXX pages”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_DOCUMENT</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><p>If the root of the structure tree has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute, the value is the contents of the <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="89992"></a></div>
+<div class="section" id="pdf-page">
+<h3>PDF Page<a class="headerlink" href="#pdf-page" title="Permalink to this headline">¶</a></h3>
+<p>Represents the contents of one page of a PDF document. The subtree of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects beneath the PDF Page node reflects the logical structure of the page.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Content that is not part of the logical structure, such as page headers and footers, is not presented through the MSAA interface.</p>
+</div>
+<table class="docutils align-default" id="section-18">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accHitTest</p></td>
+<td><p>Returns the object at the given location if the location is within the page’s bounding box.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the page.</p></td>
+</tr>
+<tr class="row-even"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-odd"><td><p>accSelect</p></td>
+<td><p>For <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> , the focus is set to the window containing the page and the page is positioned at the top. The other <code class="docutils literal notranslate"><span class="pre">SELFLAG</span></code> values are not supported.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accChild</p></td>
+<td><p>Returns a child object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>Returns the number of child objects beneath this one.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDescription</p></td>
+<td><p>The description contains the full path name of the document and the page number of the page: “fileName, page XXX”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accRole</p></td>
+<td><p>A custom role, <code class="docutils literal notranslate"><span class="pre">Page</span></code> , is defined for this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><p>If the root of the structure tree has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute, the value is the contents of the <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute</p></td>
+</tr>
+</tbody>
+</table>
+<a name="72837"></a></div>
+<div class="section" id="pdf-protected-document">
+<h3>PDF Protected Document<a class="headerlink" href="#pdf-protected-document" title="Permalink to this headline">¶</a></h3>
+<p>Represents a protected document. When the permissions associated with a document disable accessibility, the contents are not exported through the MSAA interface. The <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for such a document informs the client that the document is protected.</p>
+<table class="docutils align-default" id="section-19">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accHitTest</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>accLocation</p></td>
+<td><p>The screen coordinates of the visible part of the document.</p></td>
+</tr>
+<tr class="row-even"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-odd"><td><p>accSelect</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accName</p></td>
+<td><p>The name is “Alert: Protection Failure”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accState</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_ALERT_MEDIUM</span> <span class="pre">+</span> <span class="pre">STATE_SYSTEM_UNAVAILABLE</span> <span class="pre">+</span> <span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accValue</p></td>
+<td><p>The value is “This document’s security settings prevent access.”</p></td>
+</tr>
+</tbody>
+</table>
+<a name="10863"></a></div>
+<div class="section" id="empty-pdf-document">
+<h3>Empty PDF Document<a class="headerlink" href="#empty-pdf-document" title="Permalink to this headline">¶</a></h3>
+<p>Represents an empty or apparently empty document. A PDF file may have no contents to export through MSAA if, for instance, the file is a scanned image that has not been run through an optical character recognition (OCR) tool. The <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for empty documents and pages informs the client that there may be a problem, even if the document or page is genuinely empty.</p>
+<table class="docutils align-default" id="section-20">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accHitTest</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the document.</p></td>
+</tr>
+<tr class="row-even"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-odd"><td><p>accSelect</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accName</p></td>
+<td><p>The name is “Alert: Empty document”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accState</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accValue</p></td>
+<td><p>The value is “This document appears to be empty. It may be a scanned image that needs OCR or it may have malformed structure.”</p></td>
+</tr>
+</tbody>
+</table>
+<a name="77828"></a></div>
+<div class="section" id="pdf-structure-element">
+<h3>PDF Structure Element<a class="headerlink" href="#pdf-structure-element" title="Permalink to this headline">¶</a></h3>
+<p>Represents a subtree of the logical structure tree for the document. It might correspond to a paragraph, a heading, a chapter, a span of text within a word, or a figure.</p>
+<table class="docutils align-default" id="section-21">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 87%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>If the element has state <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_LINKED</span></code> , performs the action associated with the link.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object or any child at the given location if the location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the subtree.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Only spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ) is supported for table elements (<code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_CELL</span></code> , <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_ROW</span></code> , <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_ROWHEADER</span></code> , <code class="docutils literal notranslate"><span class="pre">ROW_SYSTEM_COLUMNHEADER</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>For <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> , sets focus to the document window and positions the document to the beginning of the structure element content. The other <code class="docutils literal notranslate"><span class="pre">SELFLAG</span></code> values are not supported.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChild</p></td>
+<td><p>Returns a child object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accChildCount</p></td>
+<td><p>Returns the number of child objects beneath this one.</p>
+<p>If the node has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> attribute, the child count is always zero.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accDefaultAction</p></td>
+<td><p>If the element has state <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_LINKED</span></code> , returns a text description of the action associated with the link (such as “go to page 5” or “play movie”).</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>The parent is either another structure element or the document structure root.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The role is one of:</p>
+<blockquote>
+<div><dl>
+<dt>ROLE_SYSTEM_GROUPING</dt><dd><p>ROLE_SYSTEM_TABLE
+ROLE_SYSTEM_CELL
+ROLE_SYSTEM_ROW
+ROLE_SYSTEM_ROWHEADER</p>
+<blockquote>
+<div><p>ROW_SYSTEM_COLUMNHEADER</p>
+</div></blockquote>
+</dd>
+</dl>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accState</p></td>
+<td><p>The state is a logical OR of one or more of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_LINKED</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> is always set.</p></li>
+<li><p>If the element is part of a link (that is, if it has an ancestor of role <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LINK</span></code> ) then both <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_LINKED</span></code> and <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_FOCUSABLE</span></code> are set, and <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_FOCUSED</span></code> can also be set.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accValue</p></td>
+<td><p>If this node has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> attribute, the value is the contents of the attribute.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="23328"></a></div>
+<div class="section" id="pdf-content-element">
+<h3>PDF Content Element<a class="headerlink" href="#pdf-content-element" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a leaf node of the logical structure tree for the document. It corresponds to marking commands in the page content stream.</p>
+<table class="docutils align-default" id="section-22">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>If the element has state <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_LINKED</span></code> , performs the action associated with the link.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the element.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>For <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> , sets focus to the document window and positions the document to the beginning of the content. The other <code class="docutils literal notranslate"><span class="pre">SELFLAG</span></code> values are not supported.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDefaultAction</p></td>
+<td><p>If the element has state <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_LINKED</span></code> , describes the action associated with the link.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><p>The parent is either a structure element or the document structure root.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accRole</p></td>
+<td><p>The role is one of:</p>
+<blockquote>
+<div><p>ROLE_SYSTEM_TEXT</p>
+<blockquote>
+<div><p>ROLE_SYSTEM_GRAPHIC</p>
+<p>ROLE_SYSTEM_CLIENT</p>
+</div></blockquote>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state is a logical OR of one or more of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_LINKED</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> is always set.</p></li>
+<li><p>If the element is part of a link (that is, if it has an ancestor of role <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LINK</span></code> ) then both <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_LINKED</span></code> and <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_FOCUSABLE</span></code> are set, and <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_FOCUSED</span></code> can also be set.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><p>If this node has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> attribute, the value is the content of that attribute. Otherwise, the value is all of the text contained in the marking commands for this node.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="22500"></a></div>
+<div class="section" id="pdf-comment">
+<h3>PDF Comment<a class="headerlink" href="#pdf-comment" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a comment, such as a text note or highlight comment, attached to the document.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PDF comments cover a range of objects, many of which do not map into the standard MSAA roles. The <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object captures the most important properties of comments.</p>
+</div>
+<table class="docutils align-default" id="section-23">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 81%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>The default action depends on the type of comment. It can, for example, open or close a popup.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> (that is, selecting the comment gives it the keyboard focus).</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDefaultAction</p></td>
+<td><p>Describes the default action, which depends on the type of comment.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accDescription</p></td>
+<td><p>For file attachment and sound comments, a description of the icon for the comment.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accName</p></td>
+<td><ul class="simple">
+<li><p>The name indicates the type of comment; for example, Text Comment or Underline Comment.</p></li>
+<li><p>If the comment is open and has a title, the name also contains the title of the comment.</p></li>
+<li><p>If the comment is a Free Text comment or modifies a span of text (such as an Underline or Strikeout Comment), the name also contains the text.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><p>The parent is either a structure element or the document structure root.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accRole</p></td>
+<td><p>The role is one of:</p>
+<blockquote>
+<div><p>ROLE_SYSTEM_TEXT</p>
+<blockquote>
+<div><p>ROLE_SYSTEM_WHITESPACE</p>
+<p>ROLE_SYSTEM_PUSHBUTTON</p>
+</div></blockquote>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state is a logical OR of one or more of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_LINKED</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_EXPANDED</p></li>
+<li><p>STATE_SYSTEM_COLLAPSED</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>If a comment can be opened, <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_LINKED</span></code> is set.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_EXPANDED</span></code> and <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_COLLAPSED</span></code> indicate whether the comment is open.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><ul class="simple">
+<li><p>If the comment is open, the value is the contents of the comment pop-up window.</p></li>
+<li><p>If the comment is a type that does not open, the value is the contents of the comment itself.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<a name="55866"></a></div>
+<div class="section" id="pdf-link">
+<h3>PDF Link<a class="headerlink" href="#pdf-link" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a link in the document.</p>
+<table class="docutils align-default" id="section-24">
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>Performs the link’s action.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object or any child at the given location if the location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChild</p></td>
+<td><p>Returns a child object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accChildCount</p></td>
+<td><p>Returns the number of children. If the node has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> attribute, the child count is always zero.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accDefaultAction</p></td>
+<td><p>Describes the action defined for this link.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accName</p></td>
+<td><p>If there is an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> attribute associated with this link, the name is the associated <code class="docutils literal notranslate"><span class="pre">Alt</span></code> text or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> . Otherwise, the name is the value of the first content child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><p>The parent is either a structure element or the document structure root.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LINK</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accSelection</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state is a logical OR of the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_LINKED</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><p>The value is a unique identifier for each link.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="40546"></a></div>
+<div class="section" id="pdf-text-form-field">
+<h3>PDF Text Form Field<a class="headerlink" href="#pdf-text-form-field" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a text form field in the document.</p>
+<table class="docutils align-default" id="section-25">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>Sets focus to the text field for editing.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> (that is, selecting the field gives it the keyboard focus).</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDefaultAction</p></td>
+<td><p>The default action is “DoubleClick”, which sets the keyboard focus to this field.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accName</p></td>
+<td><p>The user name (short description) of the form field.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>Returns the parent object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state of the text field is a logical OR of one of more of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_SELECTABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+<li><p>STATE_SYSTEM_PROTECTED</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><p>The value is the text in the text field.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="91493"></a></div>
+<div class="section" id="pdf-button-form-field">
+<h3>PDF Button Form Field<a class="headerlink" href="#pdf-button-form-field" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a button form field in the document.</p>
+<table class="docutils align-default" id="section-26">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>Presses the button.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> (that is, selecting the field gives it the keyboard focus).</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDefaultAction</p></td>
+<td><p>The default action is “Press”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accName</p></td>
+<td><p>The user name of the form field (short description).</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>Returns the parent object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_PUSHBUTTON</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state of the button is a logical OR of one or more of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<a name="13511"></a></div>
+<div class="section" id="pdf-checkbox-form-field">
+<h3>PDF CheckBox Form Field<a class="headerlink" href="#pdf-checkbox-form-field" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a checkbox form field in the document.</p>
+<table class="docutils align-default" id="section-27">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>Checks or unchecks the box.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> (that is, selecting the field gives it the keyboard focus).</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDefaultAction</p></td>
+<td><ul class="simple">
+<li><p>If the check box has been selected, the default action is “UnCheck”.</p></li>
+<li><p>If the check box has not been selected, the default action is “Check”.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accName</p></td>
+<td><p>The user name (short description) of the form field.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>Returns the parent object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_CHECKBUTTON</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state of the check box is a logical OR of one or more of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+<li><p>STATE_SYSTEM_CHECKED</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<a name="19394"></a></div>
+<div class="section" id="pdf-radiobutton-form-field">
+<h3>PDF RadioButton Form Field<a class="headerlink" href="#pdf-radiobutton-form-field" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a radio button form field in the document.</p>
+<table class="docutils align-default" id="section-28">
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>Clicks the radio button.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> (that is, selecting the field gives it the keyboard focus).</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDefaultAction</p></td>
+<td><p>The default action is “Check”.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accName</p></td>
+<td><p>The user name (short description) of the form field.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>Returns the parent object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_RADIOBUTTON</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The state of the radio button is a logical OR of one or more of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+<li><p>STATE_SYSTEM_CHECKED</p></li>
+</ul>
+</div></blockquote>
+</td>
+</tr>
+</tbody>
+</table>
+<a name="25792"></a></div>
+<div class="section" id="pdf-combobox-form-field">
+<h3>PDF ComboBox Form Field<a class="headerlink" href="#pdf-combobox-form-field" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a combo box form field in the document. It can represent either the combo box itself, or a list item in a combo box.</p>
+<table class="docutils align-default" id="section-29">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><ul class="simple">
+<li><p>The combo box does not have a default action.</p></li>
+<li><p>For a list item, the default action is “DoubleClick”, which selects the list item.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><ul class="simple">
+<li><p>For a combo box, returns this object or any child at the given location if the location is within the bounding box of this object.</p></li>
+<li><p>For a list item, returns this object if the given location is within the bounding box of this object.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><ul class="simple">
+<li><p>For a combo box, returns the screen coordinates of the visible part of the object.</p></li>
+<li><p>For a list item, the location is always reported as 0,0,0,0.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><ul class="simple">
+<li><p>Spatial directions <code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> and <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> are available for list items.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><ul class="simple">
+<li><p>The combo box supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> (that is, selecting the field gives it the keyboard focus).</p></li>
+<li><p>For a list item, sets the combo box to the list item value.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accChild</p></td>
+<td><ul class="simple">
+<li><p>For a combo box, gets the child items.</p></li>
+<li><p>A list item has no children.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accChildCount</p></td>
+<td><ul class="simple">
+<li><p>For a combo box, the child count is the number of items in the list.</p></li>
+<li><p>For a list item, the child count is 0.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accDefaultAction</p></td>
+<td><ul class="simple">
+<li><p>The combobox does not have a default action.</p></li>
+<li><p>For a list item, the default action is “DoubleClick”, which selects the list item.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accFocus</p></td>
+<td><ul class="simple">
+<li><p>Returns the object that has the keyboard focus if it is this object or its child.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accName</p></td>
+<td><ul class="simple">
+<li><p>For a combo box, the name is the user name (short description) of the form field if it has been defined.</p></li>
+<li><p>For a list item, the name is the text of the list item.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><ul class="simple">
+<li><p>Returns the parent object.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accSelection</p></td>
+<td><ul class="simple">
+<li><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><ul class="simple">
+<li><p>For a combo box, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_COMBOBOX</span></code> .</p></li>
+<li><p>For a list item, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LISTITEM</span></code> .</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><ul>
+<li><p>For a combo box, the state is a logical OR of one or more these values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+<li><p>STATE_SYSTEM_SELECTABLE</p></li>
+<li><p>STATE_SYSTEM_SELECTED</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>For a list box item, the state is a logical OR of one or more these values:</dt><dd><ul class="simple">
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_SELECTABLE</p></li>
+<li><p>STATE_SYSTEM_SELECTED</p></li>
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><ul class="simple">
+<li><p>For a combo box, the value is the text value of the currently selected list item.</p></li>
+<li><p>For a list item, the value is the text of the list item.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<a name="20747"></a></div>
+<div class="section" id="pdf-list-box-form-field">
+<h3>PDF List Box Form Field<a class="headerlink" href="#pdf-list-box-form-field" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a list box form field in the document. It can represent either the list box itself or a list item in a list box.</p>
+<table class="docutils align-default" id="section-30">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 79%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><ul class="simple">
+<li><p>The list box does not have a default action.</p></li>
+<li><p>For a list item, the default action is “Double Click,” which selects the item.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><ul class="simple">
+<li><p>For a list box, returns this object or any child at the given location if the location is within the bounding box of this object.</p></li>
+<li><p>For a list item, returns this object if the given location is within the bounding box of this object.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><ul class="simple">
+<li><p>For a list box, returns the screen coordinates of the visible part of the object.</p></li>
+<li><p>For a list item, the location is always reported as 0,0,0,0.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><ul class="simple">
+<li><p>Spatial directions <code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> and <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> are available for list items.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><ul class="simple">
+<li><p>The list box supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> (that is, selecting the field gives it the keyboard focus).</p></li>
+<li><p>For a list item, sets the list box selection to the list item value.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accChild</p></td>
+<td><ul class="simple">
+<li><p>For a list box, gets the child items.</p></li>
+<li><p>A list item has no children.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accChildCount</p></td>
+<td><ul class="simple">
+<li><p>For a list box, the child count is the number of items in the list box.</p></li>
+<li><p>For a list item, the child count is 0.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accDefaultAction</p></td>
+<td><ul class="simple">
+<li><p>The list box does not have a default action.</p></li>
+<li><p>For a list item, the default action is “Double Click,” which selects the item.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accFocus</p></td>
+<td><ul class="simple">
+<li><p>Returns the object that has the keyboard focus if it is this object or its child.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accName</p></td>
+<td><ul class="simple">
+<li><p>For a list box, the name is the user name (short description) for the form field.</p></li>
+<li><p>For a list item, the name is the text of the list item.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><ul class="simple">
+<li><p>Returns the parent object.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accRole</p></td>
+<td><ul class="simple">
+<li><p>For a list box, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LIST</span></code> .</p></li>
+<li><p>For a list item, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LISTITEM</span></code> .</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accState</p></td>
+<td><ul>
+<li><p>For a list box, the state is a logical OR of one or more these values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_INVISIBLEc</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>For a list item, the state is a logical OR of one or more these values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_SELECTABLE</p></li>
+<li><p>STATE_SYSTEM_SELECTED</p></li>
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p>get_accSelection</p></td>
+<td><ul class="simple">
+<li><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><ul class="simple">
+<li><p>For a list box, the value is the text value of the currently selected list item.</p></li>
+<li><p>For a list item, the <code class="docutils literal notranslate"><span class="pre">Value</span></code> attribute is the text of the list item.</p></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<a name="91488"></a></div>
+<div class="section" id="pdf-digital-signature-form-field">
+<h3>PDF Digital Signature Form Field<a class="headerlink" href="#pdf-digital-signature-form-field" title="Permalink to this headline">¶</a></h3>
+<p>Corresponds to a digital signature form field in the document.</p>
+<table class="docutils align-default" id="section-31">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 88%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accDoDefaultAction</p></td>
+<td><p>Signs the document if the signature field is unsigned and has either been opened with Acrobat or the document has permissions that allow signing. If the document is signed, the default action brings up a dialog box containing the signature information.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-even"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the visible part of the object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accNavigate</p></td>
+<td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
+</tr>
+<tr class="row-even"><td><p>accSelect</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accDefaultAction</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accFocus</p></td>
+<td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accName</p></td>
+<td><p>The user name (short description) of the form field.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accParent</p></td>
+<td><p>Returns the parent object.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accRole</p></td>
+<td><p>The Digital Signature form field does not map to any of the existing roles, and a custom role, <code class="docutils literal notranslate"><span class="pre">Signature</span></code> , has been defined for it.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accState</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">State</span></code> attribute of the digital signature is a logical OR of one of more of these values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>STATE_SYSTEM_INVISIBLE</p></li>
+<li><p>STATE_SYSTEM_UNAVAILABLE</p></li>
+<li><p>STATE_SYSTEM_READONLY</p></li>
+<li><p>STATE_SYSTEM_FOCUSABLE</p></li>
+<li><p>STATE_SYSTEM_FOCUSED</p></li>
+<li><p>STATE_SYSTEM_CHECKED</p></li>
+<li><p>STATE_SYSTEM_TRAVERSED</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_CHECKED</span></code> is set, but not <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_TRAVERSED</span></code> , the signature is unverified.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_TRAVERSED</span></code> is set, but not <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_CHECKED</span></code> , the signature is invalid.</p></li>
+<li><p>If both <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_CHECKED</span></code> and <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_TRAVERSED</span></code> are set, the signature is valid.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accValue</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">Value</span></code> attribute is the name and date of the signature, if that information is present.</p></td>
+</tr>
+</tbody>
+</table>
+<a name="49405"></a></div>
+<div class="section" id="pdf-caret">
+<h3>PDF Caret<a class="headerlink" href="#pdf-caret" title="Permalink to this headline">¶</a></h3>
+<p>Represents a caret (text cursor). If a document contains the system caret because focus is within an editable text field or an editable ComboBox field, clients can obtain an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for the caret to determine where it is located.</p>
+<table class="docutils align-default" id="section-32">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Implementation notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>accHitTest</p></td>
+<td><p>Returns this object if the given location is within the bounding box of this object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>accLocation</p></td>
+<td><p>Returns the screen coordinates of the caret, both when the caret is in a form field and when it is in the document.</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accChildCount</p></td>
+<td><p>The child count is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accDescription</p></td>
+<td><p>The description is a string containing the index of the character in the field that follows the caret.</p>
+<p>If the caret is at the beginning of the field, the description string is “0”. If the caret follows the first character, the description string is “1”.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p>get_accParent</p></td>
+<td><p>The parent is the field containing the caret. However, the caret <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object is not listed among the children of that field’s <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accRole</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_CARET</span></code> .</p></td>
+</tr>
+<tr class="row-even"><td><p>get_accState</p></td>
+<td><p>The state is 0.</p></td>
+</tr>
+<tr class="row-odd"><td><p>get_accValue</p></td>
+<td><p>The value is the current value of the Text field or ComboBox form field containing the caret.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022, Adobe Inc..
+      <span class="lastupdated">
+        Last update: Jun 24, 2022. 
+        <img src="../../_static/adobelogo.png" class="logo"/> 
+      </span>
+
+    </p>
+  </div> 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
