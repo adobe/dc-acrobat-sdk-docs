@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,26 +871,26 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-page-views-and-contents">
-<h1>Working with Page Views and Contents<a class="headerlink" href="#working-with-page-views-and-contents" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Page Views and Contents<a class="headerlink" href="#working-with-page-views-and-contents" title="Permalink to this headline">¶</a></h1>
 <p>A page view is the area of the Acrobat or Adobe Reader window that displays the visible content of a document page. An example of a page view is a PDF document page displayed within Adobe Reader or Acrobat at a 120% magnification.</p>
 <div class="section" id="about-page-coordinates">
-<h2>About page coordinates<a class="headerlink" href="#about-page-coordinates" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About page coordinates<a class="headerlink" href="#about-page-coordinates" title="Permalink to this headline">¶</a></h2>
 <p>When working with page views and page contents, it is often necessary to specify page coordinates. Two coordinate systems are applicable to the Acrobat core API:</p>
 <ul class="simple">
 <li><p>User space</p></li>
 <li><p>Device space</p></li>
 </ul>
-<p>User space is the coordinate system used within PDF documents. It specifies coordinates for most objects in the PD layer. (See <a class="reference external" href="Plugins_Introduction.html#50618410_55631">Portable Document layer</a>.)</p>
-<p>When working with the user space coordinate system, you use an <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object to represent a rectangle. For example, to place an annotation on a page, create an <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object and specify its coordinates. To specify a <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object’s coordinates, you must define its <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, and <code class="docutils literal notranslate"><span class="pre">left</span></code> attributes. (See <a class="reference external" href="Plugins_Annotations.html#50618420_15829">Creating text annotations</a>.)</p>
+<p>User space is the coordinate system used within PDF documents. It specifies coordinates for most objects in the PD layer. (See <span class="xref std std-ref">Portable Document layer</span>.)</p>
+<p>When working with the user space coordinate system, you use an <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object to represent a rectangle. For example, to place an annotation on a page, create an <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object and specify its coordinates. To specify a <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object’s coordinates, you must define its <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, <code class="docutils literal notranslate"><span class="pre">bottom</span></code>, and <code class="docutils literal notranslate"><span class="pre">left</span></code> attributes. (See <a class="reference internal" href="Plugins_Annotations.html#creating-text-annotations"><span class="std std-ref">Creating text annotations</span></a>.)</p>
 <p>The following diagram shows a user space coordinate system.</p>
 <img alt="_images/userspace.png" src="_images/userspace.png" />
 <p>Device space specifies coordinates in screen pixels and is used in the AV layer to specify screen coordinates of windows. In device space, you use an <code class="docutils literal notranslate"><span class="pre">AVRect</span></code> object to represent a specific coordinate. The following diagram shows a device space coordinate system.</p>
 <img alt="_images/devicespace.png" src="_images/devicespace.png" />
-<p>The <code class="docutils literal notranslate"><span class="pre">AVPageViewRectToDevice</span></code> method can transform a rectangle’s coordinates from user space to device space. For example, you can use PD methods to determine user space coordinates of a rectangle. However, to display an outline around the rectangle, you must convert user space coordinates to device space coordinates. (See <a class="reference external" href="Plugins_Pages.html#50618407_23519">Modifying page contents</a>.)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AVPageViewRectToDevice</span></code> method can transform a rectangle’s coordinates from user space to device space. For example, you can use PD methods to determine user space coordinates of a rectangle. However, to display an outline around the rectangle, you must convert user space coordinates to device space coordinates. (See <a class="reference internal" href="#modifying-page-contents"><span class="std std-ref">Modifying page contents</span></a>.)</p>
 </div>
 <div class="section" id="about-page-views">
-<h2>About page views<a class="headerlink" href="#about-page-views" title="Permalink to this headline">¶</a></h2>
-<p>A page view is represented by an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object. To create an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object, invoke the <code class="docutils literal notranslate"><span class="pre">AVDocGetPageView</span></code> method. (See <a class="reference external" href="Plugins_Pages.html#50618407_52579">Displaying page views</a>.)</p>
+<span id="id3"></span><h2>About page views<a class="headerlink" href="#about-page-views" title="Permalink to this headline">¶</a></h2>
+<p>A page view is represented by an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object. To create an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object, invoke the <code class="docutils literal notranslate"><span class="pre">AVDocGetPageView</span></code> method. (See <a class="reference internal" href="#displaying-page-views"><span class="std std-ref">Displaying page views</span></a>.)</p>
 <p>Using <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> methods, you can perform page-view tasks such as:</p>
 <ul class="simple">
 <li><p>Displaying a page.</p></li>
@@ -906,16 +906,16 @@
 </div>
 </div>
 <div class="section" id="displaying-page-views">
-<h2>Displaying page views<a class="headerlink" href="#displaying-page-views" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Displaying page views<a class="headerlink" href="#displaying-page-views" title="Permalink to this headline">¶</a></h2>
 <p>Using the Acrobat core API, you can programmatically display a page view by performing the following tasks:</p>
 <ol class="arabic simple">
-<li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object that represents the PDF document that contains the page on which the page view is based. (See <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDF documents</a>.)</p></li>
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object that represents the PDF document that contains the page on which the page view is based. (See <span class="xref std std-ref">Opening PDF documents</span>.)</p></li>
 <li><p>If desired, ensure that the specified page number does not exceed the number of pages located in the document. Convert the <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object to a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPDDoc</span></code> method. This method requires an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> and returns a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object. Get the total number of pages located within the document by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocGetNumPages</span></code> method. This method requires a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object and returns an <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> object representing the number of pages within the document.</p></li>
 <li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that represents the page view by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPageView</span></code> method. This method requires an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object and returns an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object.</p></li>
 <li><p>Specify the page view’s page number by invoking the <code class="docutils literal notranslate"><span class="pre">AVPageViewGoTo</span></code> method. This method requires an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that represents the page view and an <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> object that specifies the page number. The page number uses a zero-based index value. Therefore the value of the first page is <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></li>
 <li><p>Display the page view by invoking the <code class="docutils literal notranslate"><span class="pre">AVPageViewDrawNow</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object. When you invoke a method that affects a page view, you must invoke this method to redraw the page and display the page view. Otherwise, changes to a page view are not displayed.</p></li>
 </ol>
-<p>The following code example displays a page view that is based on an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myDocument</span></code>. The specified page of the page view is 40 (which displays page 41). For information about creating an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object, see <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDF documents</a>.</p>
+<p>The following code example displays a page view that is based on an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myDocument</span></code>. The specified page of the page view is 40 (which displays page 41). For information about creating an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object, see <span class="xref std std-ref">Opening PDF documents</span>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">local</span> <span class="n">variables</span>
    <span class="n">ASInt32</span> <span class="n">totalPages</span><span class="p">;</span>
    <span class="n">ASInt32</span> <span class="n">pageNum</span><span class="o">=</span> <span class="mi">40</span><span class="p">;</span>
@@ -938,13 +938,13 @@
 </div>
 </div>
 <div class="section" id="modifying-page-contents">
-<h2>Modifying page contents<a class="headerlink" href="#modifying-page-contents" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>Modifying page contents<a class="headerlink" href="#modifying-page-contents" title="Permalink to this headline">¶</a></h2>
 <p>Pages in a PDF document are represented by a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object. Pages can contain properties such as annotations, contents, resources, bounding box, media box, crop box, rotation state, and Cos objects. These properties make up the page’s content. <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> methods enable you to perform tasks such as retrieving objects such as annotations, adding new objects, removing objects, and modifying existing objects.</p>
 <p>To access a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object, you must obtain the applicable <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object, either directly or by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPDDoc</span></code> method. You can then invoke the <code class="docutils literal notranslate"><span class="pre">PDDocAcquirePage</span></code> method to acquire the page (the <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object).</p>
 <p>To access the contents of PDF pages, you use <code class="docutils literal notranslate"><span class="pre">PD</span></code> layer methods. In addition, the Acrobat core API provides the <code class="docutils literal notranslate"><span class="pre">PDFEdit</span></code> typedef, which provides an easy way to access to the contents of a PDF page. <code class="docutils literal notranslate"><span class="pre">PDFEdit</span></code> methods are useful when working with page items such as images, paths, graphics, and text objects. This API treats the contents of a page as a list of objects whose values and attributes can be modified.</p>
-<p>Each <code class="docutils literal notranslate"><span class="pre">PDFEdit</span></code> object encapsulates all the relevant information about itself. A <code class="docutils literal notranslate"><span class="pre">PDEText</span></code> object, for example, contains text and its attributes such as font and position on the page. It can access single characters or multiple character strings, but not words. To access words, you need to use <code class="docutils literal notranslate"><span class="pre">PD</span></code> layer methods. For information see <a class="reference external" href="Plugins_Introduction.html#50618410_55631">Portable Document layer</a>.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">PDFEdit</span></code> object encapsulates all the relevant information about itself. A <code class="docutils literal notranslate"><span class="pre">PDEText</span></code> object, for example, contains text and its attributes such as font and position on the page. It can access single characters or multiple character strings, but not words. To access words, you need to use <code class="docutils literal notranslate"><span class="pre">PD</span></code> layer methods. For information see <span class="xref std std-ref">Portable Document layer</span>.</p>
 <div class="section" id="creating-a-pdecontent-object">
-<h3>Creating a PDEContent object<a class="headerlink" href="#creating-a-pdecontent-object" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>Creating a PDEContent object<a class="headerlink" href="#creating-a-pdecontent-object" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object is a container object that contains modifiable contents of a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> including <code class="docutils literal notranslate"><span class="pre">PDEText</span></code>, <code class="docutils literal notranslate"><span class="pre">PDEPath</span></code>, and <code class="docutils literal notranslate"><span class="pre">PDEImage</span></code> objects. After you create a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object, you can access and modify objects that it contains.</p>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object by performing the following tasks:</p>
 <ol class="arabic simple">
@@ -973,11 +973,11 @@
 </div>
 </div>
 <div class="section" id="accessing-page-contents">
-<h3>Accessing page contents<a class="headerlink" href="#accessing-page-contents" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3>Accessing page contents<a class="headerlink" href="#accessing-page-contents" title="Permalink to this headline">¶</a></h3>
 <p>Before you can modify page contents, you must access them by using a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object, which is a collection object that stores page contents. Each page content is stored as an element within the <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object. An element is represented by a <code class="docutils literal notranslate"><span class="pre">PDEElement</span></code> object. For example, a <code class="docutils literal notranslate"><span class="pre">PDEElement</span></code> object can contain an annotation.</p>
 <p>To access page contents, perform the following tasks:</p>
 <ol class="arabic simple">
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object. (See <a class="reference external" href="Plugins_Pages.html#50618407_91421">Creating a PDEContent object</a>.)</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object. (See <a class="reference internal" href="#creating-a-pdecontent-object"><span class="std std-ref">Creating a PDEContent object</span></a>.)</p></li>
 <li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">PDEContentGetNumElems</span></code> method to retrieve the number of elements located within the <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object. This method requires a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object and returns an <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> object that specifies the number of elements.</p></li>
 <li><p>Iterate through the <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object and retrieve each element by invoking the <code class="docutils literal notranslate"><span class="pre">PDEContentGetElem</span></code> method. This method requires a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object and an <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> object that specifies the element index (this is a zero-based value) and returns a <code class="docutils literal notranslate"><span class="pre">PDEElement</span></code> object that represents a specific page property.</p></li>
 </ol>
@@ -1002,9 +1002,9 @@
 </div>
 </div>
 <div class="section" id="determining-page-element-types">
-<h3>Determining page element types<a class="headerlink" href="#determining-page-element-types" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Determining page element types<a class="headerlink" href="#determining-page-element-types" title="Permalink to this headline">¶</a></h3>
 <p>You can determine the element type that a <code class="docutils literal notranslate"><span class="pre">PDEElement</span></code> object represents by invoking the <code class="docutils literal notranslate"><span class="pre">PDEObjectGetType</span></code> method. This method requires a <code class="docutils literal notranslate"><span class="pre">PDEObject</span></code> ; however, you can pass a <code class="docutils literal notranslate"><span class="pre">PDEElement</span></code> object and cast it to a <code class="docutils literal notranslate"><span class="pre">PDEObject</span></code>. This method returns an <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> object that specifies the element type. For example, if the element is a text element, this method returns <code class="docutils literal notranslate"><span class="pre">kPDEText</span></code>. For a listing of all element types, see the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
-<p>The following code example determines the element type by adding application logic to the application logic introduced in <a class="reference external" href="Plugins_Pages.html#50618407_26389">Accessing page contents</a>.</p>
+<p>The following code example determines the element type by adding application logic to the application logic introduced in <a class="reference internal" href="#accessing-page-contents"><span class="std std-ref">Accessing page contents</span></a>.</p>
 <ol class="arabic">
 <li><p>Determining page element types</p>
 <p>//Declare a PDEElement object
@@ -1026,7 +1026,7 @@ for (int j=0; j&lt;eleNum; j++){</p>
 </ol>
 </div>
 <div class="section" id="modifying-text-elements">
-<h3>Modifying text elements<a class="headerlink" href="#modifying-text-elements" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>Modifying text elements<a class="headerlink" href="#modifying-text-elements" title="Permalink to this headline">¶</a></h3>
 <p>You can modify elements located within a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object. This section discusses modifying text elements by placing a red border around them. To place a red border around a text element, you must create a <code class="docutils literal notranslate"><span class="pre">PDColorValueRec</span></code> object and define its attributes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">PDColorValue</span> <span class="ow">and</span> <span class="n">define</span> <span class="n">red</span>
 <span class="n">PDColorValueRec</span> <span class="n">red</span><span class="p">;</span>
@@ -1055,7 +1055,7 @@ for (int j=0; j&lt;eleNum; j++){</p>
 <ol class="arabic simple" start="2">
 <li><p>Transform the bounding box’s coordinates from user space to device space by invoking the <code class="docutils literal notranslate"><span class="pre">AVPageViewRectToDevice</span></code> method and passing the following arguments:</p>
 <ul class="simple">
-<li><p>An <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that represents the page view for which the coordinates are transformed. Use the same <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that was used to create a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object. (See <a class="reference external" href="Plugins_Pages.html#50618407_91421">Creating a PDEContent object</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that represents the page view for which the coordinates are transformed. Use the same <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that was used to create a <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object. (See <a class="reference internal" href="#creating-a-pdecontent-object"><span class="std std-ref">Creating a PDEContent object</span></a>.)</p></li>
 <li><p>The address of the <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object that was passed to the <code class="docutils literal notranslate"><span class="pre">PDETextGetBBox</span></code> method. This object contains coordinate data that is transformed.</p></li>
 <li><p>The address of an <code class="docutils literal notranslate"><span class="pre">AVRect</span></code> object that is populated with device space coordinates.</p></li>
 </ul>
@@ -1167,7 +1167,7 @@ for (int j=0; j&lt;eleNum; j++){</p>
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

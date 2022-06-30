@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,15 +871,15 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-unicode-paths">
-<h1>Working with Unicode Paths<a class="headerlink" href="#working-with-unicode-paths" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Unicode Paths<a class="headerlink" href="#working-with-unicode-paths" title="Permalink to this headline">¶</a></h1>
 <p>This chapter explains how to work with Acrobat or Adobe Reader’s support of Unicode paths. Using this feature, you can programmatically open and save Unicode-named files and select Unicode-named folders. You can, for example, enable a user to open a Unicode-named file and view the corresponding PDF document in Acrobat or Adobe Reader.</p>
 <div class="section" id="about-unicode-paths">
-<h2>About Unicode paths<a class="headerlink" href="#about-unicode-paths" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About Unicode paths<a class="headerlink" href="#about-unicode-paths" title="Permalink to this headline">¶</a></h2>
 <p>The Unicode file path feature takes effect when an end user selects a Unicode-named PDF file to open or save. This feature is also used when a Unicode-named file path is passed as an argument to an Acrobat core API method. However, this feature is in effect only when it is required. That is, when a non-Unicode file system is used, the Unicode path feature is not in effect. As a result, the Unicode file system is separate from the default file system, which is non-Unicode.</p>
 <p>You can programmatically use this feature by obtaining a pointer to the Unicode file system <code class="docutils literal notranslate"><span class="pre">fileSys</span></code> argument and then invoking a method that accepts the <code class="docutils literal notranslate"><span class="pre">fileSys</span></code> argument. The Windows Unicode file system can be obtained by either invoking the <code class="docutils literal notranslate"><span class="pre">ASGetDefaultUnicodeFileSys</span></code> method or by invoking the <code class="docutils literal notranslate"><span class="pre">ASFileGetFileSysByName</span></code> method and passing either <code class="docutils literal notranslate"><span class="pre">ASAtomFromString(&quot;Win&quot;)</span></code>.</p>
 </div>
 <div class="section" id="creating-unicode-file-path-application-logic">
-<h2>Creating Unicode file path application logic<a class="headerlink" href="#creating-unicode-file-path-application-logic" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Creating Unicode file path application logic<a class="headerlink" href="#creating-unicode-file-path-application-logic" title="Permalink to this headline">¶</a></h2>
 <p>When creating application logic that requires a file system argument (either a Unicode file system or the default file system), do not pass <code class="docutils literal notranslate"><span class="pre">Null</span></code> and avoid invoking the <code class="docutils literal notranslate"><span class="pre">ASGetDefaultFileSys</span></code> method. A file system argument must be provided along with the path name argument.</p>
 <p>Never assume that the <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> argument is a character pointer. Do not typecast any character value to an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code>, and do not typecast a returned <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> value to a character pointer. If you are passing an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> argument without a file system argument, then ensure that you add the file system argument.</p>
 <p>Never assume that path and file names can be stored and passed as character pointers (<code class="docutils literal notranslate"><span class="pre">char</span></code> <code class="docutils literal notranslate"><span class="pre">*</span></code> values). If you have limited code that passes file names, then change them to an <code class="docutils literal notranslate"><span class="pre">ASText</span></code> value or to something that is capable of storing a full Unicode path. If you have a lot of code that passes character pointer values as file names, then consider changing the internal representation of those character pointer values to UTF-8 encoded file names.</p>
@@ -934,10 +934,10 @@
 </tbody>
 </table>
 <p>If you have Windows-specific application logic that uses <code class="docutils literal notranslate"><span class="pre">ASPlatformPathGetCstringPtr</span></code> to get the native path name, invoke the <code class="docutils literal notranslate"><span class="pre">ASFileSysAcquirePlatformPath</span></code> method and pass <code class="docutils literal notranslate"><span class="pre">WinUnicodePath</span></code> as the <code class="docutils literal notranslate"><span class="pre">platformPathType</span></code> argument. The <code class="docutils literal notranslate"><span class="pre">ASPlatformPathGetCstringPtr</span></code> method will return an <code class="docutils literal notranslate"><span class="pre">ASUTF16</span></code> path.</p>
-<p>If you use any of the following methods <code class="docutils literal notranslate"><span class="pre">AVAppOpenDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">AVAppSaveDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">AVAppChooseFolderDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">CUIOpenDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">CUISaveDialog</span></code>, or <code class="docutils literal notranslate"><span class="pre">CUIFolderDialog</span></code> then ensure that the flag argument passed to these includes the <code class="docutils literal notranslate"><span class="pre">kAVOpenSaveAllowForeignFileSystems</span></code> flag so the Unicode file system can be used. (See <a class="reference external" href="Plugins_Documents.html#50618416_74021">Opening a PDF document in an external window</a>.)</p>
+<p>If you use any of the following methods <code class="docutils literal notranslate"><span class="pre">AVAppOpenDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">AVAppSaveDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">AVAppChooseFolderDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">CUIOpenDialog</span></code>, <code class="docutils literal notranslate"><span class="pre">CUISaveDialog</span></code>, or <code class="docutils literal notranslate"><span class="pre">CUIFolderDialog</span></code> then ensure that the flag argument passed to these includes the <code class="docutils literal notranslate"><span class="pre">kAVOpenSaveAllowForeignFileSystems</span></code> flag so the Unicode file system can be used. (See <span class="xref std std-ref">Opening a PDF document in an external window</span>.)</p>
 </div>
 <div class="section" id="retrieving-unicode-path-values">
-<h2>Retrieving Unicode path values<a class="headerlink" href="#retrieving-unicode-path-values" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Retrieving Unicode path values<a class="headerlink" href="#retrieving-unicode-path-values" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to retrieve a Unicode path value. The Unicode file system is essentially the same as the classic Windows file system except that its <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object supports a few additional calls (through the file system call table) and the implementation uses the wide-char (Unicode) version of the Window’s APIs to access the native file system.</p>
 <p>You can create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object by using one of the following methods:</p>
 <ul class="simple">
@@ -946,7 +946,7 @@
 </ul>
 <p>When you invoke either one of these methods, you must create an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object to use as an argument.</p>
 <div class="section" id="creating-an-asfilesys-object">
-<h3>Creating an ASFileSys object<a class="headerlink" href="#creating-an-asfilesys-object" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>Creating an ASFileSys object<a class="headerlink" href="#creating-an-asfilesys-object" title="Permalink to this headline">¶</a></h3>
 <p>Regardless whether you are working with Unicode paths or non-Unicode paths, you must create an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object when performing tasks that manipulate files, such as opening a PDF file. An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object represents the file system in which the file that you are manipulating is located.</p>
 <p>To create an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object, invoke the <code class="docutils literal notranslate"><span class="pre">ASGetDefaultFileSysForPath</span></code> method and specify the following arguments:</p>
 <ul class="simple">
@@ -960,7 +960,7 @@
 <li><p>A void pointer that specifies the location of the file.</p></li>
 </ul>
 <p>On Windows, the <code class="docutils literal notranslate"><span class="pre">ASGetDefaultFileSysForPath</span></code> method checks the specified path values and decides if the classic default file system is used works or if the Unicode file system is used. On Mac OS, the default file system is always returned (because neither has a separate Unicode file system; Mac OS already supports Unicode-named paths).</p>
-<p>The following code example creates an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object as part of the process of opening a PDF file. (See <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDF documents</a>.)</p>
+<p>The following code example creates an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object as part of the process of opening a PDF file. (See <span class="xref std std-ref">Opening PDF documents</span>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#if NOT_USING_UNICODE</span>
 
 <span class="o">//</span><span class="n">Specify</span> <span class="n">the</span> <span class="n">PDF</span> <span class="n">file</span> <span class="n">to</span> <span class="nb">open</span> <span class="p">(</span><span class="n">host</span> <span class="n">encoded</span> <span class="n">names</span> <span class="n">only</span><span class="p">)</span>
@@ -992,7 +992,7 @@
 </div>
 </div>
 <div class="section" id="creating-an-asfilesys-object-that-supports-unicode-paths">
-<h3>Creating an ASFileSys object that supports Unicode paths<a class="headerlink" href="#creating-an-asfilesys-object-that-supports-unicode-paths" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>Creating an ASFileSys object that supports Unicode paths<a class="headerlink" href="#creating-an-asfilesys-object-that-supports-unicode-paths" title="Permalink to this headline">¶</a></h3>
 <p>You can invoke the <code class="docutils literal notranslate"><span class="pre">ASGetDefaultUnicodeFileSys</span></code> method to create an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents a file system that supports Unicode paths. On Windows, this method returns an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that uses Unicode paths. On Mac OS, this method returns the value that the <code class="docutils literal notranslate"><span class="pre">ASGetDefaultFileSys</span></code> method returns because the Mac OS default file system already supports Unicode paths.</p>
 <p>A Unicode file system can be retrieved by using the <code class="docutils literal notranslate"><span class="pre">ASFileGetFileSysByName</span></code> method if you pass <code class="docutils literal notranslate"><span class="pre">Win</span></code> (or <code class="docutils literal notranslate"><span class="pre">ASAtomFromString(&quot;Win&quot;</span></code> )) for the <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> name argument.</p>
 <p>As of Acrobat 8, a new <code class="docutils literal notranslate"><span class="pre">platformPathType</span></code> type named <code class="docutils literal notranslate"><span class="pre">WinUnicodePath</span></code> is supported. This is the Unicode version of the <code class="docutils literal notranslate"><span class="pre">Cstring</span> <span class="pre">platformPathType</span></code> type. It is used to get the Unicode platform path on Windows.</p>
@@ -1000,8 +1000,8 @@
 <p class="admonition-title">Note</p>
 <p>The classic Windows file system supports both <code class="docutils literal notranslate"><span class="pre">Cstring</span></code> and <code class="docutils literal notranslate"><span class="pre">WinUnicodePath</span></code> in its implementation of the <code class="docutils literal notranslate"><span class="pre">ASFileSysAcquirePlatformPath</span></code> and <code class="docutils literal notranslate"><span class="pre">ASPlatformPathGetCstringPtr</span></code> methods.</p>
 </div>
-<p>The SnippetRunner samples include a shared snippet named OpenUnicodeNamedDocSnip that demonstrates how to open a file with a Unicode (UTF-8) file name. The SnippetRunner samples are available at <a class="reference external" href="http://www.adobe.com/go/acrobat_developer">Acrobat Developer Center</a>.</p>
-<p>The following code example retrieves the host encoded platform path on Windows.</p>
+<p>The <a class="reference external" href="../snippet/index.html">SnippetRunner samples</a> include a shared snippet named OpenUnicodeNamedDocSnip that demonstrates how to open a file with a Unicode (UTF-8) file name.
+The following code example retrieves the host encoded platform path on Windows.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">char</span><span class="o">*</span> <span class="n">path</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
 <span class="n">ASPlatformPath</span> <span class="n">platformPath</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
 <span class="n">ASInt32</span> <span class="n">result</span> <span class="o">=</span> <span class="n">ASFileSysAcquirePlatformPath</span><span class="p">(</span>
@@ -1038,7 +1038,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

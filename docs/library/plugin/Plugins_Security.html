@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,9 +871,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-document-security">
-<h1>Working with Document Security<a class="headerlink" href="#working-with-document-security" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Document Security<a class="headerlink" href="#working-with-document-security" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="about-document-security">
-<h2>About document security<a class="headerlink" href="#about-document-security" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About document security<a class="headerlink" href="#about-document-security" title="Permalink to this headline">¶</a></h2>
 <p>Encryption is controlled by an encryption dictionary in the PDF file. The Acrobat core API uses RC4 (a proprietary algorithm provided by RSA Data Security, Inc.) to encrypt document data, and a standard (proprietary) method to encrypt, decrypt, and verify user passwords to determine whether or not a user is authorized to open a document.</p>
 <p>Each stream or string object in a PDF file is individually encrypted. This level of encryption improves performance because objects can be individually decrypted as needed rather than decrypting an entire file. All objects, except for the encryption dictionary (which contains the security handler’s private data), are encrypted using the RC4 algorithm Adobe licenses from RSA Data Security, Inc. A plugin may not substitute another encryption scheme for RC4.</p>
 <p>A plugin that implements a security handler is responsible for encrypting the values it places into the encryption dictionary, and it may use any encryption scheme. If the security handler does not encrypt the values it places into the encryption dictionary, the values are in plain text.</p>
@@ -881,7 +881,7 @@
 <p>Security handlers may use these methods to encrypt data they want to put into the PDF file’s encryption dictionary and decrypt data when it is read from the dictionary. Security handlers may instead choose to ignore these methods and use their own encryption algorithms.</p>
 </div>
 <div class="section" id="about-security-handlers">
-<h2>About security handlers<a class="headerlink" href="#about-security-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>About security handlers<a class="headerlink" href="#about-security-handlers" title="Permalink to this headline">¶</a></h2>
 <p>Application logic that performs user authorization and sets permissions is known as a security handler. Acrobat has these built-in security handlers: password, Adobe and public key security handler. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p>
 <p>A security handler supports two passwords:</p>
 <ul class="simple">
@@ -904,9 +904,9 @@
 </ul>
 <p>A document may have zero, one, or two security handlers associated with it. A document has zero security handlers if no security is used on the file. When security is applied to a file, or the user selects a different security handler for a secured file, the newly-chosen security handler is not put in place immediately. Instead this new security handler is simply associated with the document; it is a pending security handler until the document is saved.</p>
 <p>The new security handler is not put in place immediately because it is responsible for decrypting the contents of the document’s encryption dictionary, and that dictionary is re-encrypted in the correct format for the new security handler only when the document is saved. As a result, a document may have both a current and a new security handler associated with it.</p>
-<p>A security handler has two names: one that is placed in each PDF file that is saved by the handler (for example, ADBE_Crypt), and another name that Acrobat can use in any user interface items in which the security handler appears (for example, Acrobat Developer Technologies default encryption). This is similar to the two-name scheme used for menu items: a language-independent name that the application logic can refer to regardless of the user interface language, and another name that appears in the user interface. (See <a class="reference external" href="Plugins_Menu.html#50618409_63428">Adding menu commands to menus</a>.)</p>
+<p>A security handler has two names: one that is placed in each PDF file that is saved by the handler (for example, ADBE_Crypt), and another name that Acrobat can use in any user interface items in which the security handler appears (for example, Acrobat Developer Technologies default encryption). This is similar to the two-name scheme used for menu items: a language-independent name that the application logic can refer to regardless of the user interface language, and another name that appears in the user interface. (See <a class="reference internal" href="Plugins_Menu.html#adding-menu-commands-to-menus"><span class="std std-ref">Adding menu commands to menus</span></a>.)</p>
 <div class="section" id="adding-a-security-handler">
-<h3>Adding a security handler<a class="headerlink" href="#adding-a-security-handler" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Adding a security handler<a class="headerlink" href="#adding-a-security-handler" title="Permalink to this headline">¶</a></h3>
 <p>You can add a security handler by performing the following tasks:</p>
 <ul class="simple">
 <li><p>Writing a set of callback routines to perform security-related functions.</p></li>
@@ -914,7 +914,7 @@
 <li><p>Registering the handler by passing the structure to <code class="docutils literal notranslate"><span class="pre">PDRegisterCryptHandlerEx</span></code>.</p></li>
 </ul>
 <div class="section" id="security-handlers-data">
-<h4>Security handlers data<a class="headerlink" href="#security-handlers-data" title="Permalink to this headline">¶</a></h4>
+<span id="id5"></span><h4>Security handlers data<a class="headerlink" href="#security-handlers-data" title="Permalink to this headline">¶</a></h4>
 <p>The following list describes three types of data used by security handlers:</p>
 <ul class="simple">
 <li><p>Authorization data is the data the security handler needs to determine the user’s authorization level for a particular file (for example, not authorized to open the file, authorized to access the file with user permissions, authorized to access the file with owner permissions). Passwords are a common type of authorization data.</p></li>
@@ -923,7 +923,7 @@
 </ul>
 </div>
 <div class="section" id="security-handler-callbacks">
-<h4>Security handler callbacks<a class="headerlink" href="#security-handler-callbacks" title="Permalink to this headline">¶</a></h4>
+<span id="id6"></span><h4>Security handler callbacks<a class="headerlink" href="#security-handler-callbacks" title="Permalink to this headline">¶</a></h4>
 <p>A security handler must provide callbacks that performs the following tasks:</p>
 <ul class="simple">
 <li><p>Determines whether a user is authorized to open a particular file and what permissions the user has once the file is open (<code class="docutils literal notranslate"><span class="pre">PDCryptAuthorizeExProc</span></code> ).</p></li>
@@ -940,7 +940,7 @@
 <p>To support batch processing, a security handler should provide a non-NULL value for <code class="docutils literal notranslate"><span class="pre">CryptBatchHandler</span></code> and implement the batch callbacks. Prior to Acrobat 5.0, the maximum length of the encryption key that Acrobat accepted was 40 bits. Acrobat version 5.0 or later accommodates an encryption key length of 128 bits. These length limitations are imposed to comply with export restrictions.</p>
 </div>
 <div class="section" id="acrobat-s-authorization-procedure">
-<h4>Acrobat’s authorization procedure<a class="headerlink" href="#acrobat-s-authorization-procedure" title="Permalink to this headline">¶</a></h4>
+<span id="id7"></span><h4>Acrobat’s authorization procedure<a class="headerlink" href="#acrobat-s-authorization-procedure" title="Permalink to this headline">¶</a></h4>
 <p>Acrobat’s built-in authorization procedure works as follows:</p>
 <ol class="arabic simple">
 <li><p>Acrobat invokes the security handler’s authorize callback (which is either <code class="docutils literal notranslate"><span class="pre">PDCryptAuthorizeExProc</span></code>, introduced with Acrobat 5.0, or the older <code class="docutils literal notranslate"><span class="pre">PDCryptAuthorizeProc</span></code> ) to determine whether the user is allowed to open the file. It passes NULL authorization data, to handle the case where no authorization data is needed. Acrobat also passes the following values:</p>
@@ -960,13 +960,13 @@
 </div>
 </div>
 <div class="section" id="opening-a-secured-file">
-<h3>Opening a secured file<a class="headerlink" href="#opening-a-secured-file" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Opening a secured file<a class="headerlink" href="#opening-a-secured-file" title="Permalink to this headline">¶</a></h3>
 <p>The Acrobat core API has several methods for opening files. The <code class="docutils literal notranslate"><span class="pre">PDDocOpen</span></code> (or <code class="docutils literal notranslate"><span class="pre">PDDocOpenEx</span></code> ) method is used to open PDF files, even when a plugin calls AV layer methods such as <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromASFileWithParams</span></code>. As a result, the sequence of operations is largely the same regardless of whether the document is being opened from the PD layer or from the AV layer. The difference is that if you call <code class="docutils literal notranslate"><span class="pre">PDDocOpen</span></code> directly, you must pass your own authorization procedure (<code class="docutils literal notranslate"><span class="pre">PDAuthProc</span></code> ), while AV layer methods always use Acrobat’s built-in authorization procedure.</p>
 <p>The authorization procedure must implement the authorization strategy, such as giving the user three chances to enter a password. The <code class="docutils literal notranslate"><span class="pre">PDAuthProc</span></code> is not part of a security handler, but it must call the security handler’s methods to authorize the user (for example, to get the password from the user and to check whether or not the password is valid).</p>
 <p>Acrobat performs the following steps to open a secured PDF file:</p>
 <ol class="arabic simple">
 <li><p>Searches for an Encrypt key in the PDF document’s trailer, to determine whether or not the document is encrypted. If there is no Encrypt key, Acrobat opens the document immediately.</p></li>
-<li><p>If there is an Encrypt key, its value is an encryption dictionary. Acrobat gets the value of the Filter key in the dictionary to determine which security handler was used when the file was saved. It looks in the list of registered security handlers (which contains Acrobat’s built-in handler and any handlers that plugins or applications have registered) for one whose name matches the name found in the PDF file. For information about a dictionary, see <a class="reference external" href="Plugins_Cos.html#50618418_96656">Working with Cos dictionaries</a>.</p></li>
+<li><p>If there is an Encrypt key, its value is an encryption dictionary. Acrobat gets the value of the Filter key in the dictionary to determine which security handler was used when the file was saved. It looks in the list of registered security handlers (which contains Acrobat’s built-in handler and any handlers that plugins or applications have registered) for one whose name matches the name found in the PDF file. For information about a dictionary, see <a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries"><span class="std std-ref">Working with Cos dictionaries</span></a>.</p></li>
 <li><p>If Acrobat finds no match, indicating that the necessary handler could not be found, it does not open the document. If it finds a matching security handler, it invokes that handler’s P <code class="docutils literal notranslate"><span class="pre">DCryptNewSecurityDataProc</span></code> callback to extract and decrypt information from the PDF file’s encryption dictionary.</p></li>
 <li><p>Acrobat invokes the security handler’s authorize callback (<code class="docutils literal notranslate"><span class="pre">PDCryptAuthorizeExProc</span></code> ) with NULL authorization data, and with the requested permissions set to <code class="docutils literal notranslate"><span class="pre">PDPermReqOprOpen</span></code> or <code class="docutils literal notranslate"><span class="pre">pdPermOpen</span></code> (requesting that the user be allowed to open the file). This allows support for authorization schemes that do not need authorization data.</p></li>
 <li><p>If authorization succeeds, the handler’s authorization callback must return the <code class="docutils literal notranslate"><span class="pre">PDPermReqStatus</span></code> (when the callback is <code class="docutils literal notranslate"><span class="pre">PDCryptAuthorizeExProc</span></code> ) or <code class="docutils literal notranslate"><span class="pre">pdPermOpen</span></code> (when the callback is <code class="docutils literal notranslate"><span class="pre">PDCryptAuthorizeProc</span></code> ) indicating that the user is permitted to open the file.</p></li>
@@ -976,7 +976,7 @@
 </ol>
 </div>
 <div class="section" id="saving-a-secured-file">
-<h3>Saving a secured file<a class="headerlink" href="#saving-a-secured-file" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>Saving a secured file<a class="headerlink" href="#saving-a-secured-file" title="Permalink to this headline">¶</a></h3>
 <p>When saving a file, it is important to remember the following information:</p>
 <ul class="simple">
 <li><p>When a user selects document encryption for the first time or has selected a different security handler for an already encrypted file, the newly-selected handler does not take effect until the document is saved.</p></li>
@@ -994,14 +994,14 @@
 </div>
 </div>
 <div class="section" id="setting-security-for-a-document">
-<h2>Setting security for a document<a class="headerlink" href="#setting-security-for-a-document" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Setting security for a document<a class="headerlink" href="#setting-security-for-a-document" title="Permalink to this headline">¶</a></h2>
 <p>Acrobat calls the new security handler’s <code class="docutils literal notranslate"><span class="pre">PDCryptUpdateSecurityDataProc</span></code> callback to present whatever user interface the security handler has for allowing the user to set security, passwords, and so forth.</p>
 <p>When security is set, the security handler obtains the permissions and authorization data (such as passwords) to be used for the file. The settings do not take effect until the file is saved, as described in the previous section.</p>
 <div class="section" id="saving-a-file-with-an-encryption-dictionary">
-<h3>Saving a file with an encryption dictionary<a class="headerlink" href="#saving-a-file-with-an-encryption-dictionary" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3>Saving a file with an encryption dictionary<a class="headerlink" href="#saving-a-file-with-an-encryption-dictionary" title="Permalink to this headline">¶</a></h3>
 <p>To save a file with a new encryption dictionary, use the following callbacks in the <code class="docutils literal notranslate"><span class="pre">PDCryptHandlerRec</span></code> :</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">PDCryptNewSecurityDataProc</span></code> creates and initializes a security data structure. It is called with <code class="docutils literal notranslate"><span class="pre">encryptDict</span></code> (a Cos object) set either to NULL or to a valid encryption dictionary, in which case the fields of the encryption dictionary are read and placed into the security data structure. For information about a Cos object, see <a class="reference external" href="Plugins_Cos.html#50618418_86959">Working with Cos Objects</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PDCryptNewSecurityDataProc</span></code> creates and initializes a security data structure. It is called with <code class="docutils literal notranslate"><span class="pre">encryptDict</span></code> (a Cos object) set either to NULL or to a valid encryption dictionary, in which case the fields of the encryption dictionary are read and placed into the security data structure. For information about a Cos object, see <a class="reference internal" href="Plugins_Cos.html#working-with-cos-objects"><span class="std std-ref">Working with Cos Objects</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">PDCryptUpdateSecurityDataProc</span></code> gets the current security data structure by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocGetNewSecurityData</span></code> method. It then makes a copy of the structure with which to work. This new copy is freed if an error or cancel condition is encountered. The user is requested to log in to their PKI infrastructure to access the user’s keys and certificates.</p></li>
 </ol>
 <p>If the security data structure was seeded with information from <code class="docutils literal notranslate"><span class="pre">encryptDict</span></code>, an internal authorize procedure is called. This procedure decrypts and examines the data fields in the security data structure copy that are set to indicate the user’s permissions and, possibly, information relating to the document symmetric key.</p>
@@ -1011,7 +1011,7 @@
 </ol>
 </div>
 <div class="section" id="opening-an-encrypted-file">
-<h3>Opening an encrypted file<a class="headerlink" href="#opening-an-encrypted-file" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>Opening an encrypted file<a class="headerlink" href="#opening-an-encrypted-file" title="Permalink to this headline">¶</a></h3>
 <p>The following callbacks are used when opening an encrypted file:</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">PDCryptNewSecurityDataPr</span></code> oc is invoked as described in the previous section.</p></li>
@@ -1035,7 +1035,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

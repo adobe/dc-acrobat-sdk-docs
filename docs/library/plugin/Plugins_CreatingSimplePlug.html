@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,13 +871,13 @@
            <div itemprop="articleBody">
             
   <div class="section" id="creating-plugin-and-pdf-library-applications">
-<h1>Creating Plugin and PDF Library Applications<a class="headerlink" href="#creating-plugin-and-pdf-library-applications" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Creating Plugin and PDF Library Applications<a class="headerlink" href="#creating-plugin-and-pdf-library-applications" title="Permalink to this headline">¶</a></h1>
 <p>Use the Acrobat SDK and the Adobe PDF Library SDK to create plugin applications as well as stand-alone applications that interact with PDF documents.</p>
 <div class="section" id="working-with-platform-specific-techniques">
-<h2>Working with platform-specific techniques<a class="headerlink" href="#working-with-platform-specific-techniques" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Working with platform-specific techniques<a class="headerlink" href="#working-with-platform-specific-techniques" title="Permalink to this headline">¶</a></h2>
 <p>The Acrobat API is nearly platform-independent. By using the memory allocation and file system APIs provided by Acrobat or Adobe Reader, many parts of a plugin are highly portable across platforms. While this chapter contains platform-specific development information for Windows and Mac, the guidelines here should help you plugins more portable among the various supported platforms.</p>
 <div class="section" id="about-platform-dependent-data">
-<h3>About platform-dependent data<a class="headerlink" href="#about-platform-dependent-data" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3>About platform-dependent data<a class="headerlink" href="#about-platform-dependent-data" title="Permalink to this headline">¶</a></h3>
 <p>The following are platform-specific data types that appear explicitly in the Acrobat core API:</p>
 <ul class="simple">
 <li><p><strong>platform data structures</strong>: Data structures such as the Win32 data structure that represents a window.</p></li>
@@ -894,7 +894,7 @@
 </ul>
 </div>
 <div class="section" id="portability-techniques">
-<h3>Portability techniques<a class="headerlink" href="#portability-techniques" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Portability techniques<a class="headerlink" href="#portability-techniques" title="Permalink to this headline">¶</a></h3>
 <p>The following techniques can improve your plugin’s portability:</p>
 <ul class="simple">
 <li><p>Use predefined types instead of short and long.</p></li>
@@ -904,14 +904,14 @@
 </ul>
 </div>
 <div class="section" id="windows-techniques">
-<h3>Windows techniques<a class="headerlink" href="#windows-techniques" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>Windows techniques<a class="headerlink" href="#windows-techniques" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="developing-windows-plugins">
-<h4>Developing Windows plugins<a class="headerlink" href="#developing-windows-plugins" title="Permalink to this headline">¶</a></h4>
+<span id="id6"></span><h4>Developing Windows plugins<a class="headerlink" href="#developing-windows-plugins" title="Permalink to this headline">¶</a></h4>
 <p>You can put your plugins in the default Acrobat plugin location the plugins folder (in the same directory as the Acrobat executable).</p>
 <p>You are encouraged to use the plugin samples BasicUI and Starter as a basis for developing plugins. These samples have all of the appropriate project settings. The Starter sample only builds a loadable plugin while the BasicUI sample adds menu items.</p>
 </div>
 <div class="section" id="locating-and-loading-plugins">
-<h4>Locating and loading plugins<a class="headerlink" href="#locating-and-loading-plugins" title="Permalink to this headline">¶</a></h4>
+<span id="id7"></span><h4>Locating and loading plugins<a class="headerlink" href="#locating-and-loading-plugins" title="Permalink to this headline">¶</a></h4>
 <p>When Acrobat or Adobe Reader starts, it scans the plugins folder (in the same directory as the Acrobat executable) for DLLs with the extension.API. Acrobat or Adobe Reader also searches nested directories, allowing you to group plugins in folders. When it locates a file with the extension.API, it looks for the <code class="docutils literal notranslate"><span class="pre">PlugInMain</span></code> exported symbol, which specifies the entry point for your plugin. Acrobat or Adobe Reader loads the plugin by invoking the <code class="docutils literal notranslate"><span class="pre">LoadLibrary</span></code> function and then calls the function referenced by the <code class="docutils literal notranslate"><span class="pre">PlugInMain</span></code> symbol.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">LoadLibrary</span></code> function calls your plugin’s <code class="docutils literal notranslate"><span class="pre">DLLMain</span></code> entry point with the parameter <code class="docutils literal notranslate"><span class="pre">DLL_PROCESS_ATTACH</span></code> passed. Your plugin can run some initialization code in DLLMain, such as allocating memory, before its <code class="docutils literal notranslate"><span class="pre">PluginMain</span></code> function is called by Acrobat or Adobe Reader.</p>
 <p>If you allocate memory in your plugin’s <code class="docutils literal notranslate"><span class="pre">DLLMain</span></code> entry point, it must deallocate that memory when <code class="docutils literal notranslate"><span class="pre">DLLMain</span></code> is called with <code class="docutils literal notranslate"><span class="pre">DLL_PROCESS_DETACH</span></code>. If your plugin relies on its implementation of the <code class="docutils literal notranslate"><span class="pre">PluginUnload</span></code> function to deallocate memory, it could fail if Acrobat or Adobe Reader unloads the plugin immediately without calling the plugin’s handshaking callbacks. This would happen in the following situations:</p>
@@ -921,7 +921,7 @@
 </ul>
 </div>
 <div class="section" id="why-a-plugin-might-not-load">
-<h4>Why a plugin might not load<a class="headerlink" href="#why-a-plugin-might-not-load" title="Permalink to this headline">¶</a></h4>
+<span id="id8"></span><h4>Why a plugin might not load<a class="headerlink" href="#why-a-plugin-might-not-load" title="Permalink to this headline">¶</a></h4>
 <p>There are several reasons why a plugin may not load successfully:</p>
 <ul class="simple">
 <li><p>The plugin’s filename extension was not changed from.dll to.api.</p></li>
@@ -932,7 +932,7 @@
 </ul>
 </div>
 <div class="section" id="macros-and-project-settings">
-<h4>Macros and project settings<a class="headerlink" href="#macros-and-project-settings" title="Permalink to this headline">¶</a></h4>
+<span id="id9"></span><h4>Macros and project settings<a class="headerlink" href="#macros-and-project-settings" title="Permalink to this headline">¶</a></h4>
 <p>The following macros must be defined or set in your preprocessor definitions:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">WIN_ENV</span></code></p></li>
@@ -940,15 +940,15 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">WIN32</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">WINDOWS</span></code></p></li>
 </ul>
-<p>For a plugin to be loaded, it must export the symbol <code class="docutils literal notranslate"><span class="pre">PlugInMain</span></code>. This task can be accomplished by including a.def file in the project for the plugin or by including the line <code class="docutils literal notranslate"><span class="pre">/EXPORT:PlugInMain</span></code> in the project settings for the plugin. If you are developing an Adobe Reader plugin, you also must define a macro to access HFTs available to Adobe Reader. (See <a class="reference external" href="Plugins_ReaderPlug.html#50618405_11144">Creating an Adobe Reader plugin</a>.)</p>
+<p>For a plugin to be loaded, it must export the symbol <code class="docutils literal notranslate"><span class="pre">PlugInMain</span></code>. This task can be accomplished by including a.def file in the project for the plugin or by including the line <code class="docutils literal notranslate"><span class="pre">/EXPORT:PlugInMain</span></code> in the project settings for the plugin. If you are developing an Adobe Reader plugin, you also must define a macro to access HFTs available to Adobe Reader. (See <a class="reference internal" href="Plugins_ReaderPlug.html#creating-an-adobe-reader-plugin"><span class="std std-ref">Creating an Adobe Reader Plugin</span></a>.)</p>
 </div>
 <div class="section" id="interapplication-communication">
-<h4>Interapplication communication<a class="headerlink" href="#interapplication-communication" title="Permalink to this headline">¶</a></h4>
+<span id="id10"></span><h4>Interapplication communication<a class="headerlink" href="#interapplication-communication" title="Permalink to this headline">¶</a></h4>
 <p>Plugins can add their own DDE messages to those supported by Acrobat or Adobe Reader by registering to receive DDE messages directly. The DDEClnt sample in the Acrobat SDK shows how to do this.</p>
 <p>A plugin cannot implement OLE automation or be an ActiveX server through the use of MFC. This is because Acrobat or Adobe Reader uses MFC to implement its OLE automation and there cannot be two MFC-based OLE automation servers in the same process. OLE or ActiveX server plugins must be implemented using the ActiveX Template Library. Plugins should use the DDEML library to handle DDE messages. Problems may arise if they do not.</p>
 </div>
 <div class="section" id="debugging">
-<h4>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h4>
+<span id="id11"></span><h4>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h4>
 <p>Generally, the debugger built into Visual C++ is adequate to debug plugins. Debugging a Windows plugin compiled with Visual C++ is quite simple if you remember a few things:</p>
 <ul class="simple">
 <li><p>Specify the Acrobat plugin directory under the link | output tab in the Project Settings dialog box.</p></li>
@@ -964,7 +964,7 @@
 </ul>
 </div>
 <div class="section" id="handling-the-thread-local-storage-tls-limit">
-<h4>Handling the thread local storage (TLS) limit<a class="headerlink" href="#handling-the-thread-local-storage-tls-limit" title="Permalink to this headline">¶</a></h4>
+<span id="id12"></span><h4>Handling the thread local storage (TLS) limit<a class="headerlink" href="#handling-the-thread-local-storage-tls-limit" title="Permalink to this headline">¶</a></h4>
 <p>There is a limit to the number of plugins that Acrobat or Adobe Reader can load at any given time. This is due to a limitation of the multi-threading model used by the Win32 API and is dependent on the code generation settings of the plugins being loaded.</p>
 <p>The following information can help maximize the ability of Acrobat and Adobe Reader to load plugins.</p>
 <p>When a process is created, an array of bit flags is allocated for the management of thread-specific data. In the current Win32 implementation, this array is limited to 64 members or TLS slots. Every DLL/plugin that uses thread local storage is allocated at least one slot when loaded using LoadLibrary. This includes system DLLs, plugins, and all the DLLs they load. When all of the TLS slots have been occupied for a process, LoadLibrary will fail for any DLL requiring a TLS slot.</p>
@@ -979,7 +979,7 @@
 </div>
 </div>
 <div class="section" id="using-modal-dialog-boxes">
-<h4>Using modal dialog boxes<a class="headerlink" href="#using-modal-dialog-boxes" title="Permalink to this headline">¶</a></h4>
+<span id="id13"></span><h4>Using modal dialog boxes<a class="headerlink" href="#using-modal-dialog-boxes" title="Permalink to this headline">¶</a></h4>
 <p>If you write plugins that contain modal dialog boxes on the Windows platform, you need to perform the following steps:</p>
 <ol class="arabic simple">
 <li><p>When you are creating your dialog box, get the parent <code class="docutils literal notranslate"><span class="pre">HWND</span></code> of the dialog box using the <code class="docutils literal notranslate"><span class="pre">WinAppGetModalParent</span></code> method. Then use this <code class="docutils literal notranslate"><span class="pre">HWND</span></code> when creating the dialog box.</p></li>
@@ -1019,9 +1019,9 @@
 </div>
 </div>
 <div class="section" id="mac-os-techniques">
-<h3>Mac OS techniques<a class="headerlink" href="#mac-os-techniques" title="Permalink to this headline">¶</a></h3>
+<span id="id14"></span><h3>Mac OS techniques<a class="headerlink" href="#mac-os-techniques" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="developing-a-mac-os-plugin">
-<h4>Developing a Mac OS plugin<a class="headerlink" href="#developing-a-mac-os-plugin" title="Permalink to this headline">¶</a></h4>
+<span id="id15"></span><h4>Developing a Mac OS plugin<a class="headerlink" href="#developing-a-mac-os-plugin" title="Permalink to this headline">¶</a></h4>
 <p>Apple Xcode 9.2is the currently-supported development environment for developing plugins. Apple developer tools contain the correct frameworks and libraries in addition to extensive documentation on making plugins (and applications) Mach-O and Carbon compliant.</p>
 <p>With macOS 10.14.5 and macOS 10.15 Catalina, Apple has mandated notarization of all applications. Conforming to this requirement, October 2019 updates for both Adobe Acrobat and Adobe Acrobat Reader applications on DC and 2017 tracks are notarized. Adobe recommends that third-party plug-in developers should get their plug-ins notarized by Apple. Without notarization, your plug-ins will fail to load in Adobe Acrobat and Adobe Acrobat Reader on macOS 10.14.5 and above.</p>
 <p>For more information on the Apple Notarization process, see <a class="reference external" href="https://developer.apple.com/documentation/security/notarizing_your_app_before_distribution">Notarizing Your App Before Distribution</a>.</p>
@@ -1031,12 +1031,12 @@
 </div>
 </div>
 <div class="section" id="using-the-samples">
-<h4>Using the samples<a class="headerlink" href="#using-the-samples" title="Permalink to this headline">¶</a></h4>
+<span id="id16"></span><h4>Using the samples<a class="headerlink" href="#using-the-samples" title="Permalink to this headline">¶</a></h4>
 <p>You are encouraged to use the Starter plugin sample as a basis for developing your plugins. This sample contains the appropriate project settings as defined in the supplied Xcode project configuration files. The Starter sample does nothing other than build a loadable plugin. In addition, other plugins that could be useful as a starting point for developing plugins are available.</p>
 <p>The Info.plist file contains a list of properties used by the package. Adobe provides a common info.plist file. It uses project settings to define properties appropriately for each plugin.</p>
 </div>
 <div class="section" id="establishing-carbon-or-cocoa-compliance">
-<h4>Establishing Carbon or Cocoa compliance<a class="headerlink" href="#establishing-carbon-or-cocoa-compliance" title="Permalink to this headline">¶</a></h4>
+<span id="id17"></span><h4>Establishing Carbon or Cocoa compliance<a class="headerlink" href="#establishing-carbon-or-cocoa-compliance" title="Permalink to this headline">¶</a></h4>
 <p>Carbon and Cocoa are application environments of the Mac OS X operating system. Each includes programming interfaces that include header files, a library, and a runtime.</p>
 <p>Acrobat 9.0 uses property lists (Info.plists), which are stored with the executable files and resources that make up an application, known as an application bundle. For more information about converting existing Mac OS applications into Carbon, see <a class="reference external" href="http://developer.apple.com/documentation/Carbon/Conceptual/carbon_porting_guide/">http://developer.apple.com/documentation/Carbon/Conceptual/carbon_porting_guide/</a>.</p>
 <div class="admonition note">
@@ -1045,7 +1045,7 @@
 </div>
 </div>
 <div class="section" id="xcode-configuration-files">
-<h4>Xcode configuration files<a class="headerlink" href="#xcode-configuration-files" title="Permalink to this headline">¶</a></h4>
+<span id="id18"></span><h4>Xcode configuration files<a class="headerlink" href="#xcode-configuration-files" title="Permalink to this headline">¶</a></h4>
 <p>Mac OS plugin sample build settings are defined in SDK and project-level configuration files and not within the projects themselves. Xcode configuration files include lists of build settings definitions that can be applied to multiple projects and/or multiple targets.</p>
 <p>The configuration files and settings have a hierarchical structure modeled after <a class="reference external" href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/XcodeUserGuide/Contents/Resources/en.lproj/05_05_build_configs/chapter_33_section_6.html">Apple Developer documentation</a></p>
 <p>Each project is based on a project-level build settings file(s) that includes SDK-level settings.</p>
@@ -1062,7 +1062,7 @@
 <p>Project-level configuration files whose names begins with Project are the default project settings included with most SDK plugin samples. Project-level configuration files that are prefixed with a specific sample’s name include settings specific to that sample. The build settings for most SDK projects are extremely similar with most definitions residing in the SDK configuration files.</p>
 </div>
 <div class="section" id="using-setgworld-rather-than-setport">
-<h4>Using SetGWorld rather than SetPort<a class="headerlink" href="#using-setgworld-rather-than-setport" title="Permalink to this headline">¶</a></h4>
+<span id="id19"></span><h4>Using SetGWorld rather than SetPort<a class="headerlink" href="#using-setgworld-rather-than-setport" title="Permalink to this headline">¶</a></h4>
 <p>With the move to carbonization and double buffering, you should use GetGWorld rather than the toolbox call SetPort. Using both calls in the same plugin can cause the current port to get out of sync with the current device. Using only GetGWorld maintains the correct port and device settings.</p>
 <p>In all cases, you should pass <code class="docutils literal notranslate"><span class="pre">GetMainDevice</span></code> unless you have a particular device in mind or you are restoring the GWorld to its original state. The following code is an example.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">foo</span><span class="p">(</span><span class="n">AVPageView</span> <span class="n">pageView</span><span class="p">)</span>
@@ -1082,24 +1082,24 @@
 </div>
 </div>
 <div class="section" id="locating-and-loading-a-plugin">
-<span id="locating-and-loading-plugins-1"></span><h4>Locating and loading a plugin<a class="headerlink" href="#locating-and-loading-a-plugin" title="Permalink to this headline">¶</a></h4>
-<p>When Acrobat or Adobe Reader starts, it scans the plugin folder to locate and load plugins with the acroplugin file extension. PowerPC plugins must have creator <code class="docutils literal notranslate"><span class="pre">CARO</span></code> (CFBundleSignature) and type <code class="docutils literal notranslate"><span class="pre">XTND</span></code> (CFBundlePackageType). Each plugin exports a single main entry point, <code class="docutils literal notranslate"><span class="pre">AcroPluginMain</span></code>. When loading a plugin, Acrobat or Adobe Reader jumps to the plugin’s entry point to begin handshaking. (See <a class="reference external" href="Plugins_Pimech.html#50618406_89824">Handshaking</a>.)</p>
+<span id="locating-and-loading-plugins-1"></span><span id="id20"></span><h4>Locating and loading a plugin<a class="headerlink" href="#locating-and-loading-a-plugin" title="Permalink to this headline">¶</a></h4>
+<p>When Acrobat or Adobe Reader starts, it scans the plugin folder to locate and load plugins with the acroplugin file extension. PowerPC plugins must have creator <code class="docutils literal notranslate"><span class="pre">CARO</span></code> (CFBundleSignature) and type <code class="docutils literal notranslate"><span class="pre">XTND</span></code> (CFBundlePackageType). Each plugin exports a single main entry point, <code class="docutils literal notranslate"><span class="pre">AcroPluginMain</span></code>. When loading a plugin, Acrobat or Adobe Reader jumps to the plugin’s entry point to begin handshaking. (See <a class="reference internal" href="Plugins_Pimech.html#handshaking"><span class="std std-ref">Handshaking</span></a>.)</p>
 </div>
 <div class="section" id="using-memory">
-<h4>Using memory<a class="headerlink" href="#using-memory" title="Permalink to this headline">¶</a></h4>
-<p>The Acrobat or Adobe Reader memory allocator gets its memory from the system and not from the application’s memory partition. (See <a class="reference external" href="Plugins_Pimech.html#50618406_68646">Acquiring and releasing objects</a>.)</p>
+<span id="id21"></span><h4>Using memory<a class="headerlink" href="#using-memory" title="Permalink to this headline">¶</a></h4>
+<p>The Acrobat or Adobe Reader memory allocator gets its memory from the system and not from the application’s memory partition. (See <a class="reference internal" href="Plugins_Pimech.html#acquiring-and-releasing-objects"><span class="std std-ref">Acquiring and releasing objects</span></a>.)</p>
 <p>Memory allocation guidelines are particularly important in Mac OS to ensure that memory is allocated from the system rather than from the application partition. Otherwise, your plugin is very likely to cause Acrobat or Adobe Reader to run out of memory.</p>
 </div>
 <div class="section" id="resource-file-considerations">
-<h4>Resource file considerations<a class="headerlink" href="#resource-file-considerations" title="Permalink to this headline">¶</a></h4>
+<span id="id22"></span><h4>Resource file considerations<a class="headerlink" href="#resource-file-considerations" title="Permalink to this headline">¶</a></h4>
 <p>Acrobat or Adobe Reader open a plugin’s resource file with read-only permissions. In addition, plugins cannot assume that their resource file is on top of the resource chain each time they are entered by using an <code class="docutils literal notranslate"><span class="pre">ASCallback</span></code>. Plugins must explicitly move their resource file to the top of the resource chain before accessing resources in it. As a result, all code that directly or indirectly invokes <code class="docutils literal notranslate"><span class="pre">GetResource</span></code> must be modified. This can be accomplished either directly or by using the SafeResources routines in the Acrobat SDK.</p>
 </div>
 <div class="section" id="using-saferesources">
-<h4>Using SafeResources<a class="headerlink" href="#using-saferesources" title="Permalink to this headline">¶</a></h4>
+<span id="id23"></span><h4>Using SafeResources<a class="headerlink" href="#using-saferesources" title="Permalink to this headline">¶</a></h4>
 <p>The recommended way to access resources in the plugin file is to use the functions declared in the header file SafeResources.h in the SDK. These functions are direct replacements for each Toolbox function that directly or indirectly calls <code class="docutils literal notranslate"><span class="pre">GetResource</span></code>. The replacement functions automatically place the plugin file on top of the resource chain before accessing the resource, and restore the old resource chain after accessing the resource.</p>
 </div>
 <div class="section" id="manipulating-the-resource-chain-directly">
-<h4>Manipulating the resource chain directly<a class="headerlink" href="#manipulating-the-resource-chain-directly" title="Permalink to this headline">¶</a></h4>
+<span id="id24"></span><h4>Manipulating the resource chain directly<a class="headerlink" href="#manipulating-the-resource-chain-directly" title="Permalink to this headline">¶</a></h4>
 <p>If you choose to manipulate the resource chain directly, you must modify all code that directly or indirectly calls GetResource. The list of such Toolbox calls can be determined from SafeResources.h, by removing the prefix Safe from the names of the calls. Before calling each such Toolbox function, you must put the plugin’s resource file on top of the resource chain, and after such calls, you must restore the old resource chain. For example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DialogPtr</span> <span class="n">myDialog</span> <span class="o">=</span> <span class="n">GetNewDialog</span><span class="p">(</span><span class="mi">23</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="p">(</span><span class="n">Ptr</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 </pre></div>
@@ -1116,7 +1116,7 @@
 <p>The global variable <code class="docutils literal notranslate"><span class="pre">gResFile</span></code> is automatically set up during handshaking and is declared in PICommon.h.</p>
 </div>
 <div class="section" id="macros">
-<h4>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h4>
+<span id="id25"></span><h4>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h4>
 <p>The following macros must be defined:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">POWER_PC</span></code> must be defined</p></li>
@@ -1126,17 +1126,17 @@
 <p>These macros are automatically defined correctly for the platform and development environment by the header file PIPrefix.h. You are encouraged to use this header file.</p>
 </div>
 <div class="section" id="mac-os-only-methods">
-<h4>Mac OS-only methods<a class="headerlink" href="#mac-os-only-methods" title="Permalink to this headline">¶</a></h4>
+<span id="id26"></span><h4>Mac OS-only methods<a class="headerlink" href="#mac-os-only-methods" title="Permalink to this headline">¶</a></h4>
 <p>Plugins should not use the <code class="docutils literal notranslate"><span class="pre">ASPathFromPlatformPath</span></code> method in Mac OS. Instead, they should invoke <code class="docutils literal notranslate"><span class="pre">ASFileSysCreatePathName</span></code>. The <code class="docutils literal notranslate"><span class="pre">AVAppDidOrWillSwitchForDialog</span></code> method is only useful to plugins in Mac OS.</p>
 </div>
 <div class="section" id="inter-application-communication">
-<span id="interapplication-communication-1"></span><h4>Inter application communication<a class="headerlink" href="#inter-application-communication" title="Permalink to this headline">¶</a></h4>
+<span id="interapplication-communication-1"></span><span id="id27"></span><h4>Inter application communication<a class="headerlink" href="#inter-application-communication" title="Permalink to this headline">¶</a></h4>
 <p>Plugins can add their own Apple events to those supported by Acrobat or Adobe Reader by hooking into the Apple event handling loop for Acrobat or Adobe Reader. This is done by replacing the <code class="docutils literal notranslate"><span class="pre">AVAppHandleAppleEvent</span></code> method in the API. If the plugin receives an Apple event it does not want to handle, it should invoke the implementation of the method it replaced, allowing other plugins or Acrobat or Adobe Reader the opportunity to handle the Apple event.</p>
 </div>
 </div>
 </div>
 <div class="section" id="creating-a-sample-plugin">
-<h2>Creating a sample plugin<a class="headerlink" href="#creating-a-sample-plugin" title="Permalink to this headline">¶</a></h2>
+<span id="id28"></span><h2>Creating a sample plugin<a class="headerlink" href="#creating-a-sample-plugin" title="Permalink to this headline">¶</a></h2>
 <p>When you start a new Acrobat plugin for the Windows platform, it is recommended that you use the Starter sample plugin as a starting point. On Windows, the project file is named Starter.sln and can be found in the following directories:</p>
 <ul class="simple">
 <li><p>C:Acrobat SDKPluginSupportSamplesStarterwin32</p></li>
@@ -1144,7 +1144,7 @@
 </ul>
 <p>However, to improve your understanding of creating plugins, the remaining parts of this section discuss what tasks you must perform when creating a plugin from a blank project. When using the Starter sample plugin, it is not necessary to perform some of the tasks discussed in this section. For example, you do not need to start a new project, include header files, or add the PIMain source file. However, you still have to add application logic, compile, and build your project.</p>
 <p>If you are developing on Windows using Visual Studio, you can use the Plugin Wizard tool to set up your plugin project. This tool includes the Acrobat SDK header files required for specific types of plugin solutions, and it adds the PIMain source file. The Wizard creates classes that uses <code class="docutils literal notranslate"><span class="pre">ToDo</span></code> markers to identify logic you must supply. You must still compile and build your plugin, as described in this section. See the <a class="reference external" href="../SamplesGuide/book/Samples_Tools.html#96791">Plugin Wizard, see</a>.</p>
-<p>For information on developing an Adobe Reader plugin, see <a class="reference external" href="Plugins_ReaderPlug.html#50618405_11144">Creating an Adobe Reader plugin</a>.</p>
+<p>For information on developing an Adobe Reader plugin, see <a class="reference internal" href="Plugins_ReaderPlug.html#creating-an-adobe-reader-plugin"><span class="std std-ref">Creating an Adobe Reader Plugin</span></a>.</p>
 <p>To create a plugin:</p>
 <ol class="arabic simple">
 <li><p>Start a new C project.</p></li>
@@ -1154,7 +1154,7 @@
 <li><p>Compile and build your plugin.</p></li>
 </ol>
 <div class="section" id="including-acrobat-sdk-library-files">
-<h3>Including Acrobat SDK library files<a class="headerlink" href="#including-acrobat-sdk-library-files" title="Permalink to this headline">¶</a></h3>
+<span id="id29"></span><h3>Including Acrobat SDK library files<a class="headerlink" href="#including-acrobat-sdk-library-files" title="Permalink to this headline">¶</a></h3>
 <p>To create a plugin, you must include Acrobat SDK library files, such as header files, into your project. You can link to these library files from within your development environment. For more information, see the documentation that accompanies your development environment.</p>
 <p>The Acrobat SDK library files are separated into the following categories:</p>
 <ul class="simple">
@@ -1164,7 +1164,7 @@
 <p>You can find these header files in  Acrobat SDKPluginSupportHeaders</p>
 </div>
 <div class="section" id="adding-the-pimain-source-file">
-<h3>Adding the PIMain source file<a class="headerlink" href="#adding-the-pimain-source-file" title="Permalink to this headline">¶</a></h3>
+<span id="id30"></span><h3>Adding the PIMain source file<a class="headerlink" href="#adding-the-pimain-source-file" title="Permalink to this headline">¶</a></h3>
 <p>You must add the PIMain.c file to your project in order to create a plugin. This source file contains application logic such as handshaking methods, that are required by plugins. You can find this file in Acrobat SDKPluginSupportHeadersAPI</p>
 <p>After you add this file, you can add application logic to your project.</p>
 <div class="admonition note">
@@ -1173,7 +1173,7 @@
 </div>
 </div>
 <div class="section" id="adding-application-logic">
-<h3>Adding application logic<a class="headerlink" href="#adding-application-logic" title="Permalink to this headline">¶</a></h3>
+<span id="id31"></span><h3>Adding application logic<a class="headerlink" href="#adding-application-logic" title="Permalink to this headline">¶</a></h3>
 <p>You must add a source file to your project that contains the following methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code></p></li>
@@ -1183,28 +1183,28 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">GetExtensionName</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">PIHandshake</span></code></p></li>
 </ul>
-<p>You can copy the source code that is located in the StartInit.cpp file (located in the Starter plugin) and paste it. For information about these methods, see <a class="reference external" href="Plugins_Pimech.html#50618406_58810">About plugin initialization</a>.</p>
+<p>You can copy the source code that is located in the StartInit.cpp file (located in the Starter plugin) and paste it. For information about these methods, see <a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization"><span class="std std-ref">Plugin loading and initialization</span></a>.</p>
 <p>The entry point to a plugin is the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> method. For example, if you add the following line of code to this method, an alert box is displayed when Adobe Reader or Acrobat is started:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVAlertNote</span><span class="p">(</span><span class="s2">&quot;This is your first plugin&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>You can add an application to the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> method to meet your business requirements. You can invoke other user-defined functions that you create or you can add application logic to this method that performs a specific task. For example, you can add application logic to this method that adds a new menu item to Adobe Reader or Acrobat. (See <a class="reference external" href="Plugins_Menu.html#50618409_98126">Creating Menus and Menu Commands</a>.)</p>
+<p>You can add an application to the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> method to meet your business requirements. You can invoke other user-defined functions that you create or you can add application logic to this method that performs a specific task. For example, you can add application logic to this method that adds a new menu item to Adobe Reader or Acrobat. (See <a class="reference internal" href="Plugins_Menu.html#creating-menus-and-menu-commands"><span class="std std-ref">Creating Menus and Menu Commands</span></a>.)</p>
 </div>
 <div class="section" id="compiling-and-building-your-plugin">
-<h3>Compiling and building your plugin<a class="headerlink" href="#compiling-and-building-your-plugin" title="Permalink to this headline">¶</a></h3>
+<span id="id32"></span><h3>Compiling and building your plugin<a class="headerlink" href="#compiling-and-building-your-plugin" title="Permalink to this headline">¶</a></h3>
 <p>You must compile your plugin to build the API file. As stated earlier in this guide, plugins are equivalent to Windows DLLs; however, the file extension is.api, not.dll. Once you create an API file, you must add it to Program FilesAdobeAcrobatplugins.</p>
 <p>After you add the plugin to this directory, you must restart Acrobat for the plugin to take effect.</p>
 </div>
 </div>
 <div class="section" id="creating-a-sample-pdf-library-application">
-<h2>Creating a sample PDF Library application<a class="headerlink" href="#creating-a-sample-pdf-library-application" title="Permalink to this headline">¶</a></h2>
+<span id="id33"></span><h2>Creating a sample PDF Library application<a class="headerlink" href="#creating-a-sample-pdf-library-application" title="Permalink to this headline">¶</a></h2>
 <p>A PDF Library application does not have the same overhead as a plugin. That is, unlike a plugin, a PDF Library project does not require handshaking and initialization methods. A PDF Library application is a standard C/C++ project with PDF Library files included.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For a detailed discussion about using the PDF Library API, see <a class="reference external" href="Plugins_Insertext.html#50618411_44849">Inserting Text into PDF Documents</a>.</p>
+<p>For a detailed discussion about using the PDF Library API, see <a class="reference internal" href="Plugins_Insertext.html#inserting-text-into-pdf-documents"><span class="std std-ref">Inserting Text into PDF Documents</span></a>.</p>
 </div>
 <div class="section" id="contents-of-the-pdf-library-sdk">
-<h3>Contents of the PDF Library SDK<a class="headerlink" href="#contents-of-the-pdf-library-sdk" title="Permalink to this headline">¶</a></h3>
+<span id="id34"></span><h3>Contents of the PDF Library SDK<a class="headerlink" href="#contents-of-the-pdf-library-sdk" title="Permalink to this headline">¶</a></h3>
 <p>The Adobe PDF Library SDK consists of the following components:</p>
 <ul class="simple">
 <li><p>Core libraries that provide PDF Library functionality</p></li>
@@ -1214,7 +1214,7 @@
 <li><p>Documentation discussing development techniques and the PDF Library APIs.</p></li>
 </ul>
 <div class="section" id="including-library-files">
-<h4>Including library files<a class="headerlink" href="#including-library-files" title="Permalink to this headline">¶</a></h4>
+<span id="id35"></span><h4>Including library files<a class="headerlink" href="#including-library-files" title="Permalink to this headline">¶</a></h4>
 <p>The following components are shipped with the PDF Library SDK:</p>
 <ul>
 <li><p><strong>Acrobat PDF Library</strong>: These are DLLs on the Windows platform and a shared object library Mac OS. In Windows, an interface library must be included in your Microsoft Visual Studio project. The following are the file names of these libraries:</p></li>
@@ -1223,12 +1223,12 @@
 <li><p><strong>libpdfl.so</strong>: The shared object library for supported UNIX platforms (deprecated).</p></li>
 <li><p><strong>AdobePDFL framework</strong>: The framework for Mac OS.</p></li>
 <li><p>PDF Library SDK header files: The PDF Library SDK include directory contains headers for accessing the API methods. You can link to these library files from within your development environment. Consult the documentation that accompanies your development environment for information about linking to library files.</p>
-<p>These files perform the same task in the PDF Library SDK as in the Acrobat SDK. For example, the PDCalls.h provides HFT functionality for PD layer functions. (See <a class="reference external" href="Plugins_CreatingSimplePlug.html#50618417_78469">Including Acrobat SDK library files</a>.)</p>
+<p>These files perform the same task in the PDF Library SDK as in the Acrobat SDK. For example, the PDCalls.h provides HFT functionality for PD layer functions. (See <a class="reference internal" href="#including-acrobat-sdk-library-files"><span class="std std-ref">Including Acrobat SDK library files</span></a>.)</p>
 </li>
 </ul>
 </div>
 <div class="section" id="sample-code">
-<h4>Sample code<a class="headerlink" href="#sample-code" title="Permalink to this headline">¶</a></h4>
+<span id="id36"></span><h4>Sample code<a class="headerlink" href="#sample-code" title="Permalink to this headline">¶</a></h4>
 <p>Samples are provided for the Windows and Mac OS in two forms:</p>
 <ul class="simple">
 <li><p>Stand-alone sample programs-  mi</p></li>
@@ -1313,14 +1313,14 @@ $ helowrld
 </div>
 </div>
 <div class="section" id="developing-applications-with-the-adobe-pdf-library">
-<h3>Developing applications with the Adobe PDF Library<a class="headerlink" href="#developing-applications-with-the-adobe-pdf-library" title="Permalink to this headline">¶</a></h3>
+<span id="id37"></span><h3>Developing applications with the Adobe PDF Library<a class="headerlink" href="#developing-applications-with-the-adobe-pdf-library" title="Permalink to this headline">¶</a></h3>
 <p>This section details the compiler environment variables (macros) required to build applications against the Adobe PDF Library. On all platforms, you must define the PRODUCT macro for the preprocessor.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PRODUCT</span><span class="o">=</span><span class="s2">&quot;HFTLibrary.h&quot;</span>
 </pre></div>
 </div>
 <p>This macro is used as a trigger for conditional compilation and allows the same headers to be used for both the Acrobat core API and the Adobe PDF Library.</p>
 <div class="section" id="windows">
-<h4>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h4>
+<span id="id38"></span><h4>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h4>
 <p>The following macros must also be defined in the IDE project settings for applications to compile correctly on the Windows platform:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">WIN_ENV</span></code></p></li>
@@ -1333,12 +1333,12 @@ $ helowrld
 <p>The operating system must be able to access the Adobe PDF Library at runtime. It does so by searching the paths specified by the PATH environment variable, as well as the folder in which the application was launched.</p>
 </div>
 <div class="section" id="mac-os">
-<h4>Mac OS<a class="headerlink" href="#mac-os" title="Permalink to this headline">¶</a></h4>
+<span id="id39"></span><h4>Mac OS<a class="headerlink" href="#mac-os" title="Permalink to this headline">¶</a></h4>
 <p>The Mac OS libraries use a precompiled header and prefix file to define the appropriate macros. See Precompile.pch in the Samples:utils directory of the Adobe PDF Library SDK for the macros required to successfully compile the samples.</p>
 </div>
 </div>
 <div class="section" id="initialization-and-termination">
-<h3>Initialization and termination<a class="headerlink" href="#initialization-and-termination" title="Permalink to this headline">¶</a></h3>
+<span id="id40"></span><h3>Initialization and termination<a class="headerlink" href="#initialization-and-termination" title="Permalink to this headline">¶</a></h3>
 <p>Applications must initialize and terminate the Adobe PDF Library appropriately:</p>
 <ul class="simple">
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">PDFLInit</span></code> to set up internal data structures, locate required resources such as fonts, and perform initialization (such as setting client-provided memory allocation routines). Calling most library functions without successfully initializing the library results in error conditions. The rest of this section provides details on using PDFLInit.</p></li>
@@ -1362,7 +1362,7 @@ $ helowrld
 <p>For more details, see the functions <code class="docutils literal notranslate"><span class="pre">PDFLGetDirList_Win</span></code> and <code class="docutils literal notranslate"><span class="pre">PDFLGetDirList_Mac</span></code> in the MyPDFLibUtils.cpp file in the <code class="docutils literal notranslate"><span class="pre">Samples/utils</span></code> directory.</p>
 </div>
 <div class="section" id="multithreading">
-<h3>Multithreading<a class="headerlink" href="#multithreading" title="Permalink to this headline">¶</a></h3>
+<span id="id41"></span><h3>Multithreading<a class="headerlink" href="#multithreading" title="Permalink to this headline">¶</a></h3>
 <p>When using the thread-safe PDF Library, initialization and termination now additionally need to be performed for each thread that calls into the library, as well as at the process level. The interfaces for per-thread initialization/termination are the same as before.</p>
 <p>Since each thread acquires an independent PDF Library memory context, you should not share PDF Library data and resources among threads. This includes sharing the same PDF file.</p>
 <p>The Adobe PDF libraries are thread-safe. To use threads, simply make the appropriate system call (<code class="docutils literal notranslate"><span class="pre">beginthreadex</span></code> on Windows). Multiple threads cannot share PDF Library data types. However, they share the same process heap; therefore, an application can share generic data types between threads. Multiple threads can open the same file read-only; however, multiple threads should not attempt to write to the same PDF document.</p>
@@ -1370,11 +1370,11 @@ $ helowrld
 </div>
 </div>
 <div class="section" id="upgrading-existing-plugins">
-<h2>Upgrading existing plugins<a class="headerlink" href="#upgrading-existing-plugins" title="Permalink to this headline">¶</a></h2>
+<span id="id42"></span><h2>Upgrading existing plugins<a class="headerlink" href="#upgrading-existing-plugins" title="Permalink to this headline">¶</a></h2>
 <p>This section discusses how to upgrade an existing Acrobat plugin to work with a newer version of Acrobat.</p>
 <p>Refer to the Release Notes.</p>
 <div class="section" id="detecting-supported-apis">
-<h3>Detecting supported APIs<a class="headerlink" href="#detecting-supported-apis" title="Permalink to this headline">¶</a></h3>
+<span id="id43"></span><h3>Detecting supported APIs<a class="headerlink" href="#detecting-supported-apis" title="Permalink to this headline">¶</a></h3>
 <p>Acrobat Pro and Acrobat Pro Extended support the full set of APIs. For Acrobat Standard and Adobe Reader, if you try to use an API that is not supported, nothing will happen. The same HFT version numbers are used across products, so all APIs are callable on all products, but some APIs simply do not work on certain products.</p>
 <p>Additionally, the Extended APIs provided by plugins do not work if an Acrobat product does not support the use of those APIs. The HFTs do not load, so you must check whether the HFT was successfully imported.</p>
 <p>It is possible to determine in your code whether the HFT you are expecting is in fact the one that you are importing, and whether it imported at all: simply check for a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> return value. For example, a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> will be returned in the following call if <code class="docutils literal notranslate"><span class="pre">AcroColorHFTNAME</span></code> with the specified version is not available:</p>
@@ -1388,7 +1388,7 @@ $ helowrld
 </div>
 </div>
 <div class="section" id="migrating-pdfl-apps-to-xcode">
-<h2>Migrating PDFL apps to Xcode<a class="headerlink" href="#migrating-pdfl-apps-to-xcode" title="Permalink to this headline">¶</a></h2>
+<span id="id44"></span><h2>Migrating PDFL apps to Xcode<a class="headerlink" href="#migrating-pdfl-apps-to-xcode" title="Permalink to this headline">¶</a></h2>
 <p>For the PDF Library, the supported Mac OS X development environment is Xcode (formerly the supported environment was Metrowerks CodeWarrior). With this change comes a new set of headers, frameworks and libraries that may or may not be compatible with existing plugin code and with existing CodeWarrior projects.</p>
 <p>You can migrate a PDF Library application that was created using CodeWarrior to Xcode. As a starting point, it is recommended that you read the information that is located at the following URL: <a class="reference external" href="http://developer.apple.com/documentation/DeveloperTools/Conceptual/MovingProjectsToXcode/index.html">http://developer.apple.com/documentation/DeveloperTools/Conceptual/MovingProjectsToXcode/index.html</a>.</p>
 <p>The PDF Library SDK samples have debug and release targets that are built against the MacOSX10.4u.sdk SDK. These are carbon applications that create universal binaries linked to universal Adobe libraries. For a complete list of compatible application build settings, see the MacSDKConfiguration Xcode configuration files and ProjectConfigurations files included in the PDF Library SDK.</p>
@@ -1407,7 +1407,7 @@ $ helowrld
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

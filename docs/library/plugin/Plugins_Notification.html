@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,7 +871,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="registering-for-event-notifications">
-<h1>Registering for Event Notifications<a class="headerlink" href="#registering-for-event-notifications" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Registering for Event Notifications<a class="headerlink" href="#registering-for-event-notifications" title="Permalink to this headline">¶</a></h1>
 <p>This chapter explains how to register for notification of a specific event. The Acrobat core API provides a notification mechanism so that plugins can synchronize their actions with Acrobat or Adobe Reader. Notifications enable plugins to indicate that they are interested in a specified event (such as the initialization of Adobe Reader or Acrobat) and to provide a callback function that is invoked by Adobe Reader or Acrobat each time an event occurs.</p>
 <p>The order in which notifications occur may vary depending on the platform. For example, after opening a PDF document on the Windows platform, notifications occur in this order:</p>
 <ol class="arabic simple">
@@ -888,7 +888,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">AVDocDidOpen</span></code></p></li>
 </ol>
 <div class="section" id="registering-event-notifications">
-<h2>Registering event notifications<a class="headerlink" href="#registering-event-notifications" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Registering event notifications<a class="headerlink" href="#registering-event-notifications" title="Permalink to this headline">¶</a></h2>
 <p>Register for an event notification when you want your plugin to be notified when a specific event occurs. For example, you can register for a notification when Acrobat or Adobe Reader is finished initializing. To register for an event notification, you provide a callback function that Acrobat or Adobe Reader invokes when the event occurs. To view a list of notification methods used to register an event notification, see the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
 <p>You can register for an event notification by performing the following tasks:</p>
 <ol class="arabic simple">
@@ -907,7 +907,7 @@
 </ul>
 </li>
 </ol>
-<p>The following code example registers for the event that occurs when Adobe Reader or Acrobat is finished initializing. The name of the callback function is <code class="docutils literal notranslate"><span class="pre">myNotificationCallback</span></code>. This function simply displays an alert box. Note that <code class="docutils literal notranslate"><span class="pre">AVAppRegisterNotification</span></code> is invoked within the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> method. For information about this method, see <a class="reference external" href="Plugins_Pimech.html#50618406_89824">Handshaking</a>.</p>
+<p>The following code example registers for the event that occurs when Adobe Reader or Acrobat is finished initializing. The name of the callback function is <code class="docutils literal notranslate"><span class="pre">myNotificationCallback</span></code>. This function simply displays an alert box. Note that <code class="docutils literal notranslate"><span class="pre">AVAppRegisterNotification</span></code> is invoked within the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> method. For information about this method, see <a class="reference internal" href="Plugins_Pimech.html#handshaking"><span class="std std-ref">Handshaking</span></a>.</p>
 <ol class="arabic simple">
 <li><p>Registering for an event notification</p></li>
 </ol>
@@ -940,7 +940,7 @@
 </div>
 </div>
 <div class="section" id="unregistering-event-notifications">
-<h2>Unregistering event notifications<a class="headerlink" href="#unregistering-event-notifications" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Unregistering event notifications<a class="headerlink" href="#unregistering-event-notifications" title="Permalink to this headline">¶</a></h2>
 <p>You can unregister an event notification that you previously registered for by using the Acrobat core API. To unregister an event notification, invoke the <code class="docutils literal notranslate"><span class="pre">AVAppUnregisterNotification</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>The name of the Acrobat core API method that corresponds to the event notification. For example, to register for the event that occurs when Adobe Reader or Acrobat has initialized, pass <code class="docutils literal notranslate"><span class="pre">AVAppDidInitialize</span></code>. Append the value <code class="docutils literal notranslate"><span class="pre">NSEL</span></code> to the end of the method name.</p></li>
@@ -966,7 +966,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Pass the same arguments that you specified when you registered for the event notification. (See <a class="reference external" href="Plugins_Notification.html#50618408_85504">Registering event notifications</a>.)</p>
+<p>Pass the same arguments that you specified when you registered for the event notification. (See <a class="reference internal" href="#registering-event-notifications"><span class="std std-ref">Registering event notifications</span></a>.)</p>
 </div>
 </div>
 </div>
@@ -983,7 +983,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

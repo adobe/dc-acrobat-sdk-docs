@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,17 +871,17 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-words">
-<h1>Working with Words<a class="headerlink" href="#working-with-words" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Words<a class="headerlink" href="#working-with-words" title="Permalink to this headline">¶</a></h1>
 <p>You can use the Acrobat core API to search for words, extract and display words, and highlight words. Using the Acrobat core API, you can, for example, create application logic that extracts words from a PDF document and places each word in a repository.</p>
 <div class="section" id="about-searching-for-words">
-<h2>About searching for words<a class="headerlink" href="#about-searching-for-words" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About searching for words<a class="headerlink" href="#about-searching-for-words" title="Permalink to this headline">¶</a></h2>
 <p>The Acrobat core API provides typedefs and methods for working with words. Two primary typedefs that you will use when working with words located in a PDF document are <code class="docutils literal notranslate"><span class="pre">PDWord</span></code> and <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code>. The following are two word-finding indicators:</p>
 <ul class="simple">
 <li><p>Presence of non-alphanumeric characters such as dashes.</p></li>
 <li><p>Offsets between characters. (While character offsets are well-defined quantities in a PDF file, word numbers are calculated by the Acrobat or Adobe Reader word finder algorithm).</p></li>
 </ul>
 <div class="section" id="about-pdword-typedefs">
-<h3>About PDWord typedefs<a class="headerlink" href="#about-pdword-typedefs" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3>About PDWord typedefs<a class="headerlink" href="#about-pdword-typedefs" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">PDWord</span></code> object represents a word in a PDF file. Each word contains a sequence of characters in one or more styles. All characters in a word are not necessarily physically adjacent. For example, words can be hyphenated across line breaks on a page.</p>
 <p>Each character in a word has a character type. Character types include: control code, lowercase letter, uppercase letter, digit, punctuation mark, hyphen, soft hyphen, ligature, white space, comma, period, unmapped glyph, end-of-phrase glyph, wildcard, word break, and glyphs that cannot be represented in the destination font encoding. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">PDWordGetCharacterTypes</span></code> method can get the character type for each character in a word. The <code class="docutils literal notranslate"><span class="pre">PDWordGetAttr</span></code> method returns a mask containing information on the types of characters in a word. The mask is the logical OR of several flags, including the following:</p>
@@ -899,11 +899,11 @@
 <p>A word also has a character delta, which is the difference between the number of characters representing the word in the PDF file and the number of characters in the word. The character delta is non-zero, for example, when a word contains a ligature.</p>
 </div>
 <div class="section" id="about-pdwordfinder-typedefs">
-<h3>About PDWordFinder typedefs<a class="headerlink" href="#about-pdwordfinder-typedefs" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>About PDWordFinder typedefs<a class="headerlink" href="#about-pdwordfinder-typedefs" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> extracts words from a PDF file, and enumerates the words on a single page or on all pages in a document. The Acrobat core API provides methods to extract words from a document, obtain information on the word finder, and to release a list of words.</p>
 <p>Two primary methods of working with word finders are:</p>
 <ul class="simple">
-<li><p>Invoking the <code class="docutils literal notranslate"><span class="pre">PDWordFinderEnumWords</span></code> method, which invokes a user-defined callback function each time a word is recognized on a page. (See <a class="reference external" href="Plugins_Words.html#50618422_65675">Extracting and displaying words</a>.)</p></li>
+<li><p>Invoking the <code class="docutils literal notranslate"><span class="pre">PDWordFinderEnumWords</span></code> method, which invokes a user-defined callback function each time a word is recognized on a page. (See <a class="reference internal" href="#extracting-and-displaying-words"><span class="std std-ref">Extracting and displaying words</span></a>.)</p></li>
 <li><p>Using <code class="docutils literal notranslate"><span class="pre">PDWordFinderAcquireWordList</span></code>, which builds a word list for an entire page before it returns. This method can return the recognized words in two possible orders:</p>
 <ul>
 <li><p>The order in which the words are encountered in the PDF file.</p></li>
@@ -914,7 +914,7 @@
 </div>
 </div>
 <div class="section" id="creating-a-pdwordfinder-object">
-<h2>Creating a PDWordFinder object<a class="headerlink" href="#creating-a-pdwordfinder-object" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>Creating a PDWordFinder object<a class="headerlink" href="#creating-a-pdwordfinder-object" title="Permalink to this headline">¶</a></h2>
 <p>To perform word operations, such as extracting and displaying words located in a PDF document, you must create a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object. You can create a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object by getting the active document (the frontmost document in Acrobat or Adobe Reader).</p>
 <p>Optionally, you can create a <code class="docutils literal notranslate"><span class="pre">PDWordFinderConfigRec</span></code> object when creating a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object. A <code class="docutils literal notranslate"><span class="pre">PDWordFinderConfigRec</span></code> object enables you to customize how text is extracted. After you create an <code class="docutils literal notranslate"><span class="pre">PDWordFinderConfigRec</span></code> object, allocate its buffer size and set the following attributes:</p>
 <ul class="simple">
@@ -930,7 +930,7 @@
 </div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object that is based on an active document by performing the following tasks:</p>
 <ol class="arabic simple">
-<li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppGetActiveDoc</span></code> method. (See <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDF documents</a>.)</p></li>
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppGetActiveDoc</span></code> method. (See <span class="xref std std-ref">Opening PDF documents</span>.)</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPDDoc</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object.</p></li>
 <li><p>If desired, create a <code class="docutils literal notranslate"><span class="pre">PDWordFinderConfigRec</span></code> object. If you do not create a <code class="docutils literal notranslate"><span class="pre">PDWordFinderConfigRec</span></code> object, then default configuration is used. That is, all attributes that belong to an <code class="docutils literal notranslate"><span class="pre">PDWordFinderConfigRec</span></code> object are false.</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocCreateWordFinderEx</span></code> method and passing the following arguments:</p>
@@ -967,7 +967,7 @@
 </div>
 </div>
 <div class="section" id="extracting-and-displaying-words">
-<h2>Extracting and displaying words<a class="headerlink" href="#extracting-and-displaying-words" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>Extracting and displaying words<a class="headerlink" href="#extracting-and-displaying-words" title="Permalink to this headline">¶</a></h2>
 <p>You can use a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object to extract and display all words that are located either in the entire document or the current page by creating a callback function that is invoked for each word found. To create a callback function that is invoked when a word is found, declare a <code class="docutils literal notranslate"><span class="pre">PDWordProc</span></code> object that represents the callback:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDWordProc</span> <span class="n">wordProc</span><span class="p">;</span>
 </pre></div>
@@ -996,7 +996,7 @@
 <li><p>Invokes the <code class="docutils literal notranslate"><span class="pre">PDWordGetString</span></code> method to get the word as a string.</p></li>
 <li><p>Displays the string in an alert box by invoking the <code class="docutils literal notranslate"><span class="pre">AVAlertConfirm</span></code> method. If the user clicks OK, the next word is displayed until all words for the document page have been displayed. If the user clicks Cancel, this callback function returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
 </ul>
-<p>The following code example extracts and displays all words that are located on the current PDF document page. Included in this code example is application logic that creates a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object. (See <a class="reference external" href="Plugins_Words.html#50618422_28279">Creating a PDWordFinder object</a>.)</p>
+<p>The following code example extracts and displays all words that are located on the current PDF document page. Included in this code example is application logic that creates a <code class="docutils literal notranslate"><span class="pre">PDWordFinder</span></code> object. (See <a class="reference internal" href="#creating-a-pdwordfinder-object"><span class="std std-ref">Creating a PDWordFinder object</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">DisplayWords</span><span class="p">(</span><span class="n">void</span> <span class="o">*</span><span class="n">data</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="o">//</span><span class="n">Get</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PDF</span> <span class="n">document</span> <span class="n">page</span> <span class="n">number</span>
@@ -1053,7 +1053,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the previous code example, assume that the <code class="docutils literal notranslate"><span class="pre">DisplayWords</span></code> function was invoked from a menu item. (See <a class="reference external" href="Plugins_Menu.html#50618409_98126">Creating Menus and Menu Commands</a>.)</p>
+<p>In the previous code example, assume that the <code class="docutils literal notranslate"><span class="pre">DisplayWords</span></code> function was invoked from a menu item. (See <a class="reference internal" href="Plugins_Menu.html#creating-menus-and-menu-commands"><span class="std std-ref">Creating Menus and Menu Commands</span></a>.)</p>
 </div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -1061,16 +1061,16 @@
 </div>
 </div>
 <div class="section" id="highlighting-words">
-<h2>Highlighting words<a class="headerlink" href="#highlighting-words" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>Highlighting words<a class="headerlink" href="#highlighting-words" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to highlight a word or a group of words located within a PDF document. By highlighting a word, you can make a specific word or group of words stand out. The following illustration shows the word <em>Adobe</em> highlighted.</p>
 <img alt="_images/highlight.png" src="_images/highlight.png" />
 <p>To highlight a word you must create a <code class="docutils literal notranslate"><span class="pre">HiliteEntry</span></code> object and set its <code class="docutils literal notranslate"><span class="pre">offset</span></code> and length <code class="docutils literal notranslate"><span class="pre">attributes</span></code>. The <code class="docutils literal notranslate"><span class="pre">offset</span></code> attribute specifies the location of the word from the beginning of the document. For example, if you specify 1, then the second word in the document is highlighted (this value is a 0-based index). The <code class="docutils literal notranslate"><span class="pre">length</span></code> attribute specifies the number of words that are highlighted. If you specify 1, then a single word is highlighted.</p>
 <p>You can highlight a word that is located in the current page by performing the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">HiliteEntry</span></code> object and set its <code class="docutils literal notranslate"><span class="pre">offset</span></code> and length <code class="docutils literal notranslate"><span class="pre">attributes</span></code>.</p></li>
-<li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppGetActiveDoc</span></code> method. (See <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDF documents</a>.)</p></li>
+<li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppGetActiveDoc</span></code> method. (See <span class="xref std std-ref">Opening PDF documents</span>.)</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPDDoc</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object.</p></li>
-<li><p>Get the page view by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPageView</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object. This method returns an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object. (See <a class="reference external" href="Plugins_Pages.html#50618407_52579">Displaying page views</a>.)</p></li>
+<li><p>Get the page view by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPageView</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object. This method returns an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object. (See <a class="reference internal" href="Plugins_Pages.html#displaying-page-views"><span class="std std-ref">Displaying page views</span></a>.)</p></li>
 <li><p>Get the current page number by invoking the <code class="docutils literal notranslate"><span class="pre">AVPageViewGetPageNum</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object. This method returns the page number of the current page view, which is required to highlight a word or group of words.</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocAcquirePage</span></code> method and passing the following arguments:</p>
 <ul class="simple">
@@ -1143,7 +1143,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

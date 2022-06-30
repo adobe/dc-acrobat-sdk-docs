@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,15 +871,15 @@
            <div itemprop="articleBody">
             
   <div class="section" id="understanding-plugins">
-<h1>Understanding Plugins<a class="headerlink" href="#understanding-plugins" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="plugin-loading-and-initialization">
-<h2>Plugin loading and initialization<a class="headerlink" href="#plugin-loading-and-initialization" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h1>Understanding Plugins<a class="headerlink" href="#understanding-plugins" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="about-plugin-initialization">
+<span id="plugin-loading-and-initialization"></span><span id="id2"></span><h2>Plugin loading and initialization<a class="headerlink" href="#about-plugin-initialization" title="Permalink to this headline">¶</a></h2>
 <p>When Acrobat or Adobe Reader is started, it searches the plugins directory (co-located with the Acrobat executable) to locate and load plugins. In addition, Acrobat or Adobe Reader searches folders that may be located within this folder. This search goes one level deep.</p>
 <p>Acrobat and Adobe Reader display a progress message in the bottom line of the splash screen at start-up. As each plugin is loaded, the progress message shows the plugin name. No plugins are loaded if the Shift key is held down while Acrobat or Adobe Reader start. Also, if Acrobat or Adobe Reader are running in certified mode, no third-party plugins are loaded.</p>
 <p>When creating methods for your plugin, keep the following rule in mind:</p>
 <p>Implement <code class="docutils literal notranslate"><span class="pre">PluginUnload</span></code> procedure: This procedure frees allocated memory. This routine is invoked if any of the initialization routines returns <code class="docutils literal notranslate"><span class="pre">false</span></code>. Under normal conditions, this procedure is not invoked until the user closes Acrobat or Adobe Reader.</p>
 <div class="section" id="handshaking">
-<h3>Handshaking<a class="headerlink" href="#handshaking" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3>Handshaking<a class="headerlink" href="#handshaking" title="Permalink to this headline">¶</a></h3>
 <p>Acrobat and Adobe Reader perform a handshake with each plugin as it is opened and loaded. During handshaking, the plugin specifies its name, several initialization procedures, and an optional unload procedure.</p>
 <p>A plugin must implement the following handshaking function:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PIHandshake</span><span class="p">(</span><span class="n">ASUns32</span> <span class="n">handshakeVersion</span><span class="p">,</span> <span class="n">void</span><span class="p">,</span> <span class="o">*</span><span class="n">hsData</span><span class="p">)</span>
@@ -899,7 +899,7 @@
 <p class="admonition-title">Note</p>
 <p>The handshaking function is located in the PIMain.c file. This source code located in this file is functional and must not be modified.</p>
 </div>
-<p>The following example shows how a plugin’s <code class="docutils literal notranslate"><span class="pre">PIHandshake</span></code> method specifies the plugin callbacks provided during handshake and initialization. The tasks performed by each function is described in the next sections. For general information about creating callback functions, see <a class="reference external" href="Plugins_Pimech.html#50618406_20671">Using callback functions</a>.</p>
+<p>The following example shows how a plugin’s <code class="docutils literal notranslate"><span class="pre">PIHandshake</span></code> method specifies the plugin callbacks provided during handshake and initialization. The tasks performed by each function is described in the next sections. For general information about creating callback functions, see <a class="reference internal" href="#using-callback-functions"><span class="std std-ref">Using callback functions</span></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">ASBool</span> <span class="n">ACCB2</span> <span class="n">PIHandshake</span><span class="p">(</span><span class="n">Uns32</span> <span class="n">handshakeVersion</span><span class="p">,</span> <span class="n">void</span> <span class="o">*</span><span class="n">handshakeData</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">if</span><span class="p">(</span><span class="n">handshakeVersion</span> <span class="o">==</span> <span class="n">HANDSHAKE_V0200</span><span class="p">)</span>
@@ -924,21 +924,21 @@
 </div>
 </div>
 <div class="section" id="exporting-hfts">
-<h3>Exporting HFTs<a class="headerlink" href="#exporting-hfts" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Exporting HFTs<a class="headerlink" href="#exporting-hfts" title="Permalink to this headline">¶</a></h3>
 <p>A Host Function Table (HFT) is the mechanism through which plugins invoke methods in Adobe Reader or Acrobat, as well as in other plugins. After Acrobat finishes handshaking with all the plugins, it invokes each plug-in’s <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> callback procedure.</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> procedure, a plugin may export any HFTs it intends to make available to other plugins. This callback should only export an HFT, not invoke other Acrobat core API methods. (See <a class="reference external" href="Plugins_Hft.html#50618412_37928">Working with Host Function Tables</a>.)</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> procedure, a plugin may export any HFTs it intends to make available to other plugins. This callback should only export an HFT, not invoke other Acrobat core API methods. (See <a class="reference internal" href="Plugins_Hft.html#working-with-host-function-tables"><span class="std std-ref">Working with Host Function Tables</span></a>.)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The only time a plugin can export an HFT is during execution of its <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> procedure.</p>
 </div>
 </div>
 <div class="section" id="importing-hfts-and-registering-for-notifications">
-<h3>Importing HFTs and registering for notifications<a class="headerlink" href="#importing-hfts-and-registering-for-notifications" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>Importing HFTs and registering for notifications<a class="headerlink" href="#importing-hfts-and-registering-for-notifications" title="Permalink to this headline">¶</a></h3>
 <p>After Acrobat or Adobe Reader completes invoking each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> callback method, it invokes each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> callback method. In this method, plugins perform three tasks:</p>
 <ol class="arabic simple">
 <li><p>Import any special HFTs they use (the standard Acrobat HFTs are automatically imported). Plugins also may import HFTs any time after this while the plugin is running.</p></li>
 <li><p>Register for notifications by using the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterNotification</span></code> method. Plugins also may register and unregister for notifications while the plugin is running. A plugin may receive a notification any time after it has registered for it, even if the plugin’s initialization callback has not yet been called. This can occur if another plugin initializes first and performs an operation, such as creating a PDF document, which causes a notification to be sent. Plugins must be prepared to correctly handle notifications as soon as they register for them.</p></li>
-<li><p>Replace any of the Acrobat API’s replaceable HFT methods. (See <a class="reference external" href="Plugins_Hft.html#50618412_19489">Replacing HFT methods</a>.)</p></li>
+<li><p>Replace any of the Acrobat API’s replaceable HFT methods. (See <a class="reference internal" href="Plugins_Hft.html#replacing-hft-methods"><span class="std std-ref">Replacing HFT methods</span></a>.)</p></li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -946,7 +946,7 @@
 </div>
 </div>
 <div class="section" id="initialization">
-<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
 <p>After Acrobat or Adobe Reader completes calling each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> callback method, it invokes each plugin’s <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> procedure. Plugins can use their initialization procedures to hook into Acrobat’s user interface by adding menu items, toolbar buttons, windows, and so on. It is also acceptable to modify Acrobat’s user interface later when the plugin is running.</p>
 <p>When creating the initialization portion of a plugin, keep the following rules in mind:</p>
 <p><strong>Avoid creating dialog boxes:</strong> Do not create a dialog box in your plugin’s initialization or do anything else that may interfere with the successful startup of Acrobat or Adobe Reader. The application may be started by using an interapplication communication (IAC) event, in which case a user would not be present to respond to your dialog box.</p>
@@ -966,7 +966,7 @@
 <p>If your plugin must carry out a task after all plugins are initialized, it should register for the <code class="docutils literal notranslate"><span class="pre">AVAppDidInitialize</span></code> notification. This notification is invoked when Acrobat finishes initializing and is about to enter its event loop.</p>
 </div>
 <div class="section" id="unloading">
-<h3>Unloading<a class="headerlink" href="#unloading" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3>Unloading<a class="headerlink" href="#unloading" title="Permalink to this headline">¶</a></h3>
 <p>A plugin’s <code class="docutils literal notranslate"><span class="pre">PluginUnload</span></code> procedure should free any memory the plugin allocated and remove any user interface changes it made. Acrobat invokes this procedure when it terminates or when any of the other handshaking callbacks return <code class="docutils literal notranslate"><span class="pre">false</span></code>. This function should perform the following tasks:</p>
 <ul class="simple">
 <li><p>Remove and release all menu items and other user interface elements, HFTs, and HFTServers.</p></li>
@@ -975,7 +975,7 @@
 <p>Currently, plugins unload only when Acrobat exits.</p>
 </div>
 <div class="section" id="summarizing-a-plugin-s-life-cycle">
-<h3>Summarizing a plugin’s life cycle<a class="headerlink" href="#summarizing-a-plugin-s-life-cycle" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Summarizing a plugin’s life cycle<a class="headerlink" href="#summarizing-a-plugin-s-life-cycle" title="Permalink to this headline">¶</a></h3>
 <p>The following steps describe the life cycle of a plugin:</p>
 <ol class="arabic simple">
 <li><p>At startup, Adobe Reader or Acrobat searches its plugin directory for plugin files.</p></li>
@@ -992,8 +992,8 @@
 </div>
 </div>
 <div class="section" id="using-callback-functions">
-<h2>Using callback functions<a class="headerlink" href="#using-callback-functions" title="Permalink to this headline">¶</a></h2>
-<p>Acrobat or Adobe Reader invokes callback functions that you define to perform a specific task. For example, when a user clicks a button located on a toolbar, a callback method is invoked. (See <a class="reference external" href="Plugins_Toolbutton.html#50618403_31936">Creating toolbar button callback functions</a>.)</p>
+<span id="id9"></span><h2>Using callback functions<a class="headerlink" href="#using-callback-functions" title="Permalink to this headline">¶</a></h2>
+<p>Acrobat or Adobe Reader invokes callback functions that you define to perform a specific task. For example, when a user clicks a button located on a toolbar, a callback method is invoked. (See <a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-button-callback-functions"><span class="std std-ref">Creating toolbar button callback functions</span></a>.)</p>
 <p>To create a callback function, you can invoke the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code>, <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateReplacement</span></code>, and <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateNotification</span></code> methods to convert functions into callback functions and to perform type checking. This enables the compiler to determine whether the correct prototypes are used for a specific callback function. For information about these methods, see the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
 <p>Type checking only occurs if the <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code> macro is set to 1 at the time your plug-in is compiled. Be sure to set it appropriately in your development environment and remove it when you build the shipping version of your plugin.</p>
 <p>The following code example shows the syntax to create a callback function:</p>
@@ -1009,32 +1009,32 @@
 </div>
 </div>
 <div class="section" id="notifications">
-<h2>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h2>
-<p>The Acrobat core API provides a notification mechanism so that plugins can synchronize their actions with Acrobat or Adobe Reader. Notifications enable a plugin to indicate that it has an interest in a specified event, such as an annotation being modified, and to provide a procedure that Acrobat invokes each time that event occurs. (See <a class="reference external" href="Plugins_Notification.html#50618408_14583">Registering for Event Notifications</a>.)</p>
+<span id="id10"></span><h2>Notifications<a class="headerlink" href="#notifications" title="Permalink to this headline">¶</a></h2>
+<p>The Acrobat core API provides a notification mechanism so that plugins can synchronize their actions with Acrobat or Adobe Reader. Notifications enable a plugin to indicate that it has an interest in a specified event, such as an annotation being modified, and to provide a procedure that Acrobat invokes each time that event occurs. (See <a class="reference internal" href="Plugins_Notification.html#registering-for-event-notifications"><span class="std std-ref">Registering for Event Notifications</span></a>.)</p>
 </div>
 <div class="section" id="handling-events">
-<h2>Handling events<a class="headerlink" href="#handling-events" title="Permalink to this headline">¶</a></h2>
+<span id="id11"></span><h2>Handling events<a class="headerlink" href="#handling-events" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to handle various types of events.</p>
 <div class="section" id="mouse-clicks">
-<h3>Mouse clicks<a class="headerlink" href="#mouse-clicks" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>Mouse clicks<a class="headerlink" href="#mouse-clicks" title="Permalink to this headline">¶</a></h3>
 <p>Mouse clicks are passed to any procedure registered using the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterForPageViewClicks</span></code> method. If all of those procedures return <code class="docutils literal notranslate"><span class="pre">false</span></code>, the click is passed to the active tool. If that returns <code class="docutils literal notranslate"><span class="pre">false</span></code>, the click is passed to any annotation at the current location.</p>
 <p>You can query the state of the mouse buttons in a manner appropriate for drag operations by invoking the <code class="docutils literal notranslate"><span class="pre">AVSysTrackMouse</span></code> method. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p>
 </div>
 <div class="section" id="adjust-cursor">
-<h3>Adjust cursor<a class="headerlink" href="#adjust-cursor" title="Permalink to this headline">¶</a></h3>
+<span id="id13"></span><h3>Adjust cursor<a class="headerlink" href="#adjust-cursor" title="Permalink to this headline">¶</a></h3>
 <p>Adjust cursor events are passed to any procedures registered using the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterForPageViewAdjustCursor</span></code> method. If all of those procedures return <code class="docutils literal notranslate"><span class="pre">false</span></code>, the event is passed to the active tool. If that returns <code class="docutils literal notranslate"><span class="pre">false</span></code>, the event is passed to any annotation at the current location.</p>
 </div>
 <div class="section" id="key-presses">
-<h3>Key presses<a class="headerlink" href="#key-presses" title="Permalink to this headline">¶</a></h3>
+<span id="id14"></span><h3>Key presses<a class="headerlink" href="#key-presses" title="Permalink to this headline">¶</a></h3>
 <p>Key presses are first passed to the currently active selection server. If the selection server’s <code class="docutils literal notranslate"><span class="pre">AVDocSelectionKeyDownProc</span></code> callback returns <code class="docutils literal notranslate"><span class="pre">false</span></code>, Acrobat or Adobe Reader handles special keys (Esc, Page Up, Page Down) or uses the key to select a tool from the toolbar.</p>
 </div>
 </div>
 <div class="section" id="using-plugin-prefixes">
-<h2>Using plugin prefixes<a class="headerlink" href="#using-plugin-prefixes" title="Permalink to this headline">¶</a></h2>
+<span id="id15"></span><h2>Using plugin prefixes<a class="headerlink" href="#using-plugin-prefixes" title="Permalink to this headline">¶</a></h2>
 <p>It is important to correctly name all items located in your plugin, such as HFTs, menus, toolbars, and so on, to ensure they function properly. Failure to do so may cause your plugin to produce unpredictable results when your plugin collides with a plugin of another developer who used the same names.</p>
 <p>Prevent spaces from being used in tokens you intend to use as names in a PDF file. This can happen, for example, if you allow a user to type a name into the PDF file and your plugin does not check the input before writing it to the file.</p>
 <div class="section" id="obtaining-a-developer-pdf-name-prefix">
-<h3>Obtaining a developer PDF name prefix<a class="headerlink" href="#obtaining-a-developer-pdf-name-prefix" title="Permalink to this headline">¶</a></h3>
+<span id="id16"></span><h3>Obtaining a developer PDF name prefix<a class="headerlink" href="#obtaining-a-developer-pdf-name-prefix" title="Permalink to this headline">¶</a></h3>
 <p>In support of ISO 32000, Adobe maintains a list of the prefixes of second class names for PDF. It is freely open to all developers and organizations following the specifications given in Annex E of ISO 32000. For example, Adobe uses ADBE or Acro. This chapter uses ADBE in the examples. Your plugins will use your unique PDF name. Register your name at <a class="reference external" href="https://github.com/adobe/pdf-names-list">https://github.com/adobe/pdf-names-list</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1042,25 +1042,25 @@
 </div>
 </div>
 <div class="section" id="using-a-developer-prefix">
-<h3>Using a developer prefix<a class="headerlink" href="#using-a-developer-prefix" title="Permalink to this headline">¶</a></h3>
+<span id="id17"></span><h3>Using a developer prefix<a class="headerlink" href="#using-a-developer-prefix" title="Permalink to this headline">¶</a></h3>
 <p>Every plugin must use the prefix to name its various elements as well as private data it writes into PDF documents. The following sections describe and provide an example of each element that must use a prefix.</p>
 <div class="section" id="plugin-name">
-<h4>Plugin name<a class="headerlink" href="#plugin-name" title="Permalink to this headline">¶</a></h4>
+<span id="id18"></span><h4>Plugin name<a class="headerlink" href="#plugin-name" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">ExtensionName</span></code>, used in plugin handshaking, must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_PluginName</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hsData</span><span class="o">-&gt;</span><span class="n">extensionName</span> <span class="o">=</span> <span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;ADBE_SuperCrop&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="menu-prefixes">
-<h4>Menu prefixes<a class="headerlink" href="#menu-prefixes" title="Permalink to this headline">¶</a></h4>
+<span id="id19"></span><h4>Menu prefixes<a class="headerlink" href="#menu-prefixes" title="Permalink to this headline">¶</a></h4>
 <p>Menu names must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:MenuName</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SuperCropMenu</span> <span class="o">=</span> <span class="n">AVMenuNew</span><span class="p">(</span><span class="n">SuperCrop</span><span class="p">,</span> <span class="s2">&quot;ADBE:SuperCropMenu&quot;</span><span class="p">,</span> <span class="n">gExtensionID</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>For information about invoking the <code class="docutils literal notranslate"><span class="pre">AVMenuNew</span></code> method, see <a class="reference external" href="Plugins_Menu.html#50618409_63428">Adding menu commands to menus</a>.</p>
+<p>For information about invoking the <code class="docutils literal notranslate"><span class="pre">AVMenuNew</span></code> method, see <a class="reference internal" href="Plugins_Menu.html#adding-menu-commands-to-menus"><span class="std std-ref">Adding menu commands to menus</span></a>.</p>
 </div>
 <div class="section" id="menu-items-prefixes">
-<h4>Menu items prefixes<a class="headerlink" href="#menu-items-prefixes" title="Permalink to this headline">¶</a></h4>
+<span id="id20"></span><h4>Menu items prefixes<a class="headerlink" href="#menu-items-prefixes" title="Permalink to this headline">¶</a></h4>
 <p>Menu item names must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:MenuItem</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SelSuperCropTool</span> <span class="o">=</span> <span class="n">AVMenuItemNew</span><span class="p">(</span><span class="n">SuperCrop</span><span class="p">,</span> <span class="s2">&quot;ADBE:SuperCropMItem&quot;</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span>
  <span class="n">false</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="n">AV_OPTION</span><span class="p">,</span> <span class="n">SuperCropIcon</span><span class="p">,</span> <span class="n">gExtensionID</span><span class="p">);</span>
@@ -1068,7 +1068,7 @@
 </div>
 </div>
 <div class="section" id="tool-prefixes">
-<h4>Tool prefixes<a class="headerlink" href="#tool-prefixes" title="Permalink to this headline">¶</a></h4>
+<span id="id21"></span><h4>Tool prefixes<a class="headerlink" href="#tool-prefixes" title="Permalink to this headline">¶</a></h4>
 <p>Tools names must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:Tool</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="n">ACCB1</span> <span class="n">ASAtom</span> <span class="n">ACCB2</span> <span class="n">SuperCropToolGetType</span><span class="p">(</span><span class="n">AVTool</span> <span class="n">tool</span><span class="p">)</span>
  <span class="p">{</span>
@@ -1078,16 +1078,16 @@
 </div>
 </div>
 <div class="section" id="toolbar-button-prefixes">
-<h4>Toolbar button prefixes<a class="headerlink" href="#toolbar-button-prefixes" title="Permalink to this headline">¶</a></h4>
+<span id="id22"></span><h4>Toolbar button prefixes<a class="headerlink" href="#toolbar-button-prefixes" title="Permalink to this headline">¶</a></h4>
 <p>Toolbar buttons must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix:ToolbarButton</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">myButton</span> <span class="o">=</span> <span class="n">AVToolButtonNew</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;ADBE:HelloWorld&quot;</span><span class="p">),</span> <span class="p">(</span><span class="n">void</span> <span class="o">*</span><span class="p">)</span>
  <span class="n">myBM</span><span class="p">,</span> <span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>For information about creating a toolbar button, see <a class="reference external" href="Plugins_Toolbutton.html#50618403_92880">Creating toolbar buttons</a>.</p>
+<p>For information about creating a toolbar button, see <a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-buttons"><span class="std std-ref">Creating toolbar buttons</span></a>.</p>
 </div>
 <div class="section" id="private-data-id-d-via-second-class-names">
-<h4>Private data ID’d via second-class names<a class="headerlink" href="#private-data-id-d-via-second-class-names" title="Permalink to this headline">¶</a></h4>
+<span id="id23"></span><h4>Private data ID’d via second-class names<a class="headerlink" href="#private-data-id-d-via-second-class-names" title="Permalink to this headline">¶</a></h4>
 <p>If you add private data to keys defined in a Cos dictionary and you want the document to be readable to others outside your company, you must identify the data using second-class names. Such key names use the syntax Prefix_PrivateDataName, where Prefix identifies the company or other entity that introduces the key, and PrivateDataName identifies the data.</p>
 <p>When adding keys that are directly referenced from private keys, it is not necessary to use the developer prefix. In the following example, the keys named <code class="docutils literal notranslate"><span class="pre">First</span></code> and <code class="docutils literal notranslate"><span class="pre">Second</span></code> cannot be referenced from any object in the PDF file except the private key that uses an appropriate prefix. Therefore, there is no need to use a prefix for the latter two keys.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">ACME_aName</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">First</span> <span class="mi">2</span> <span class="o">/</span><span class="n">Second</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Third</span> <span class="p">[</span> <span class="mi">2</span> <span class="mi">3</span> <span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span>
@@ -1095,58 +1095,58 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For information about Cos dictionaries, such as the one shown in the previous example, see <a class="reference external" href="Plugins_Cos.html#50618418_96656">Working with Cos dictionaries</a>.</p>
+<p>For information about Cos dictionaries, such as the one shown in the previous example, see <a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries"><span class="std std-ref">Working with Cos dictionaries</span></a>.</p>
 </div>
 </div>
 <div class="section" id="action-prefixes">
-<h4>Action prefixes<a class="headerlink" href="#action-prefixes" title="Permalink to this headline">¶</a></h4>
+<span id="id24"></span><h4>Action prefixes<a class="headerlink" href="#action-prefixes" title="Permalink to this headline">¶</a></h4>
 <p>Actions must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_ActionName</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVAppRegisterActionHandler</span><span class="p">(</span><span class="o">&amp;</span><span class="n">BkmkHandler</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="s2">&quot;ADBE_HWAction&quot;</span><span class="p">,</span> <span class="s2">&quot;HWAct&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="annotation-prefixes">
-<h4>Annotation prefixes<a class="headerlink" href="#annotation-prefixes" title="Permalink to this headline">¶</a></h4>
+<span id="id25"></span><h4>Annotation prefixes<a class="headerlink" href="#annotation-prefixes" title="Permalink to this headline">¶</a></h4>
 <p>Annotation prefixes must use the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_AnnotType</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">return</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="s2">&quot;ADBE_MarkUpAnnot&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="hft-prefixes">
-<h4>HFT prefixes<a class="headerlink" href="#hft-prefixes" title="Permalink to this headline">¶</a></h4>
+<span id="id26"></span><h4>HFT prefixes<a class="headerlink" href="#hft-prefixes" title="Permalink to this headline">¶</a></h4>
 <p>When your plugin exposes any HFTs of its own, it must use an HFT name that conforms to the following syntax: <code class="docutils literal notranslate"><span class="pre">Prefix_HFTName</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gDebuggWinHFTServer</span> <span class="o">=</span>
  <span class="n">HFTServerNew</span><span class="p">(</span><span class="s2">&quot;ADBE_DebugWin&quot;</span><span class="p">,</span><span class="n">provideDebugWinHFTCallback</span><span class="p">,</span> <span class="n">NULL</span><span class="p">,</span> <span class="n">NULL</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>For information about HFTs, see <a class="reference external" href="Plugins_Hft.html#50618412_37928">Working with Host Function Tables</a>.</p>
+<p>For information about HFTs, see <a class="reference internal" href="Plugins_Hft.html#working-with-host-function-tables"><span class="std std-ref">Working with Host Function Tables</span></a>.</p>
 </div>
 </div>
 </div>
 <div class="section" id="modifying-the-acrobat-or-adobe-reader-user-interface">
-<h2>Modifying the Acrobat or Adobe Reader user interface<a class="headerlink" href="#modifying-the-acrobat-or-adobe-reader-user-interface" title="Permalink to this headline">¶</a></h2>
-<p>This section describes typical operations that a plugin can perform to modify the Acrobat or Adobe Reader user interface. To modify the user interface, you must invoke methods that belong to the Acrobat Viewer Layer. As a result, you cannot modify the Acrobat or Adobe Reader user interface by using the PDF Library API. (See <a class="reference external" href="Plugins_Introduction.html#50618410_82715">Acrobat Viewer layer</a>.)</p>
+<span id="id27"></span><h2>Modifying the Acrobat or Adobe Reader user interface<a class="headerlink" href="#modifying-the-acrobat-or-adobe-reader-user-interface" title="Permalink to this headline">¶</a></h2>
+<p>This section describes typical operations that a plugin can perform to modify the Acrobat or Adobe Reader user interface. To modify the user interface, you must invoke methods that belong to the Acrobat Viewer Layer. As a result, you cannot modify the Acrobat or Adobe Reader user interface by using the PDF Library API. (See <span class="xref std std-ref">Acrobat Viewer layer</span>.)</p>
 <div class="section" id="adding-or-removing-menus-and-menu-items">
-<h3>Adding or removing menus and menu items<a class="headerlink" href="#adding-or-removing-menus-and-menu-items" title="Permalink to this headline">¶</a></h3>
+<span id="id28"></span><h3>Adding or removing menus and menu items<a class="headerlink" href="#adding-or-removing-menus-and-menu-items" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to add new menus and add commands to existing menus. You can also remove a menu or a menu command.</p>
 <p>Menu commands can have shortcuts (keyboard accelerators). Acrobat and Adobe Reader do not ensure that plugins add unique shortcuts, but it is possible to programmatic-ally check which shortcuts are already in use before adding them.</p>
-<p>You are encouraged to have your plugin add its menu commands to the Tools menu. When the plugin starts, Acrobat or Adobe Reader automatically adds this menu, as well as the About Plugins and Plugin Help menus. After Acrobat or Adobe Reader loads all plugins, it checks these three menus and removes any that are empty. (See <a class="reference external" href="Plugins_Menu.html#50618409_98126">Creating Menus and Menu Commands</a>.)</p>
+<p>You are encouraged to have your plugin add its menu commands to the Tools menu. When the plugin starts, Acrobat or Adobe Reader automatically adds this menu, as well as the About Plugins and Plugin Help menus. After Acrobat or Adobe Reader loads all plugins, it checks these three menus and removes any that are empty. (See <a class="reference internal" href="Plugins_Menu.html#creating-menus-and-menu-commands"><span class="std std-ref">Creating Menus and Menu Commands</span></a>.)</p>
 </div>
 <div class="section" id="modifying-toolbars">
-<h3>Modifying toolbars<a class="headerlink" href="#modifying-toolbars" title="Permalink to this headline">¶</a></h3>
-<p>You can add new buttons to the toolbar, although the size and resolution of the user’s monitor can limit the number of tool buttons that are displayed. You can also remove buttons from an existing toolbar. (See <a class="reference external" href="Plugins_Toolbutton.html#50618403_37598">Creating Toolbars and Buttons</a>.)</p>
+<span id="id29"></span><h3>Modifying toolbars<a class="headerlink" href="#modifying-toolbars" title="Permalink to this headline">¶</a></h3>
+<p>You can add new buttons to the toolbar, although the size and resolution of the user’s monitor can limit the number of tool buttons that are displayed. You can also remove buttons from an existing toolbar. (See <a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbars-and-buttons"><span class="std std-ref">Creating Toolbars and Buttons</span></a>.)</p>
 </div>
 <div class="section" id="controlling-the-about-box-and-splash-screen">
-<h3>Controlling the About box and splash screen<a class="headerlink" href="#controlling-the-about-box-and-splash-screen" title="Permalink to this headline">¶</a></h3>
+<span id="id30"></span><h3>Controlling the About box and splash screen<a class="headerlink" href="#controlling-the-about-box-and-splash-screen" title="Permalink to this headline">¶</a></h3>
 <p>You can set values in the preferences file by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppSetPreference</span></code> method to prevent the Acrobat or Adobe Reader About box or splash screen from appearing before displaying the first document. These changes take effect the next time Acrobat or Adobe Reader is started.</p>
 <p>About Adobe Plugins is a standard menu command in the Help menu. This menu command contains a submenu. You are encouraged to have your plugin add a menu command to the submenu to bring up its own About box.</p>
 </div>
 <div class="section" id="creating-help-files">
-<h3>Creating help files<a class="headerlink" href="#creating-help-files" title="Permalink to this headline">¶</a></h3>
+<span id="id31"></span><h3>Creating help files<a class="headerlink" href="#creating-help-files" title="Permalink to this headline">¶</a></h3>
 <p>The Help directory that accompanies Acrobat or Adobe Reader provides a standard location for your plug-in help files. You can place a help file either in the Help directory or in a subdirectory of the Help directory. If, for example, your plugin is localized for Japanese, you may want to place its Japanese help file in a Help_JPN subdirectory. To help open locale-specific help files, the Acrobat core API provides the <code class="docutils literal notranslate"><span class="pre">AVAppOpenHelpFile</span></code> method. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p>
 </div>
 <div class="section" id="user-interface-guidelines">
-<h3>User interface guidelines<a class="headerlink" href="#user-interface-guidelines" title="Permalink to this headline">¶</a></h3>
+<span id="id32"></span><h3>User interface guidelines<a class="headerlink" href="#user-interface-guidelines" title="Permalink to this headline">¶</a></h3>
 <p>Follow these guidelines when modifying the Acrobat or Adobe Reader user interface:</p>
 <ul class="simple">
 <li><p>During time-consuming operations, provide feedback to the user by using features such as progress monitors, cancel button, hourglass cursor, or status dialog boxes.</p></li>
@@ -1156,7 +1156,7 @@
 </div>
 </div>
 <div class="section" id="acquiring-and-releasing-objects">
-<h2>Acquiring and releasing objects<a class="headerlink" href="#acquiring-and-releasing-objects" title="Permalink to this headline">¶</a></h2>
+<span id="id33"></span><h2>Acquiring and releasing objects<a class="headerlink" href="#acquiring-and-releasing-objects" title="Permalink to this headline">¶</a></h2>
 <p>Ensure that calls to <code class="docutils literal notranslate"><span class="pre">Acquire</span></code> and <code class="docutils literal notranslate"><span class="pre">Release</span></code> methods match. Objects obtained by <code class="docutils literal notranslate"><span class="pre">Acquire</span></code> methods must ultimately be released. If they are not released, Acrobat or Adobe Reader raises exceptions when a non-zero reference count is discovered. An exception can occur when Acrobat or Adobe Reader quits or when a document is closed.</p>
 <p>When allocating memory to objects, follow these guidelines:</p>
 <ul class="simple">
@@ -1178,10 +1178,10 @@
 <span class="n">PDPageRelease</span> <span class="p">(</span><span class="n">page</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Notice that the <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object is acquired by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocAcquirePage</span></code> method and is released by invoking the <code class="docutils literal notranslate"><span class="pre">PDPageRelease</span></code> method. For information about working with pages, see <a class="reference external" href="Plugins_Pages.html#50618407_48762">Working with Page Views and Contents</a>.</p>
+<p>Notice that the <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object is acquired by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocAcquirePage</span></code> method and is released by invoking the <code class="docutils literal notranslate"><span class="pre">PDPageRelease</span></code> method. For information about working with pages, see <a class="reference internal" href="Plugins_Pages.html#working-with-page-views-and-contents"><span class="std std-ref">Working with Page Views and Contents</span></a>.</p>
 </div>
 <div class="section" id="debugging-plugins">
-<h2>Debugging plugins<a class="headerlink" href="#debugging-plugins" title="Permalink to this headline">¶</a></h2>
+<span id="id34"></span><h2>Debugging plugins<a class="headerlink" href="#debugging-plugins" title="Permalink to this headline">¶</a></h2>
 <p>When debugging your plugin, consider the following points:</p>
 <ul class="simple">
 <li><p>Include the <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">DEBUG</span> <span class="pre">1</span></code> statement to ensure that parameter type checking is performed by macros such as <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateProto</span></code> and to enable the debug exception-handling macros.</p></li>
@@ -1190,7 +1190,7 @@
 </ul>
 </div>
 <div class="section" id="page-view-layers">
-<h2>Page view layers<a class="headerlink" href="#page-view-layers" title="Permalink to this headline">¶</a></h2>
+<span id="id35"></span><h2>Page view layers<a class="headerlink" href="#page-view-layers" title="Permalink to this headline">¶</a></h2>
 <p>Acrobat and Adobe Reader drawing and mouse click processing rely on the concept of page view layers, which are numbers of type <code class="docutils literal notranslate"><span class="pre">ASFixed</span></code> that are associated with the document itself and each annotation type.</p>
 <p>The following table shows the predefined layers used by Acrobat and Adobe Reader.</p>
 <table class="docutils align-default">
@@ -1217,22 +1217,22 @@
 </table>
 <p>These layers are used in the following situations:</p>
 <p><strong>Drawing</strong>: The layers are drawn from lowest to highest. As indicated in the table, the page contents are drawn first, followed by links, closed annotations, and finally open annotations. As a result, open annotations are drawn over any closed annotations that they overlap.</p>
-<p><strong>Mouse click processing</strong>: Occurs from highest layer to lowest layer. When a mouse click occurs, it is first passed to any open text note at the mouse click’s location, then any closed text note, then any link, and finally to the page view itself. However, mouse clicks are passed to a lower layer only if a higher layer declines to handle the mouse click by returning <code class="docutils literal notranslate"><span class="pre">false</span></code> from its <code class="docutils literal notranslate"><span class="pre">DoClick</span></code> callback. (See <a class="reference external" href="Plugins_Handlers.html#50618413_51937">Tool callbacks</a>.)</p>
+<p><strong>Mouse click processing</strong>: Occurs from highest layer to lowest layer. When a mouse click occurs, it is first passed to any open text note at the mouse click’s location, then any closed text note, then any link, and finally to the page view itself. However, mouse clicks are passed to a lower layer only if a higher layer declines to handle the mouse click by returning <code class="docutils literal notranslate"><span class="pre">false</span></code> from its <code class="docutils literal notranslate"><span class="pre">DoClick</span></code> callback. (See <a class="reference internal" href="Plugins_Handlers.html#tool-callbacks"><span class="std std-ref">Tool callbacks</span></a>.)</p>
 <p>Annotation handlers provided by plugins can reside in any layer. For example, a plugin could choose for its annotations to be between the page contents and links, such as in layer 0.5 (because layers are numbers of type <code class="docutils literal notranslate"><span class="pre">ASFixed</span></code> ).</p>
 <p>An annotation handler’s <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerGetLayerProc</span></code> callback is called during screen updates and mouse clicks to return its layer. Using a callback rather than a constant value allows an annotation’s layer to change. For example, Acrobat’s built-in text annotation changes its layer, allowing open text annotations to receive mouse clicks before closed annotations, if both are at the mouse click location (on the other hand, Acrobat’s built-in link annotation does not change its layer).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Acrobat and Adobe Reader do not invoke <code class="docutils literal notranslate"><span class="pre">AVAnnotHandlerGetLayerProc</span></code> callbacks for changes in value, so be sure to invalidate the page rectangle of an annotation when its layer changes.</p>
 </div>
-<p>For information about page views, see <a class="reference external" href="Plugins_Pages.html#50618407_48762">Working with Page Views and Contents</a>.</p>
+<p>For information about page views, see <a class="reference internal" href="Plugins_Pages.html#working-with-page-views-and-contents"><span class="std std-ref">Working with Page Views and Contents</span></a>.</p>
 </div>
 <div class="section" id="minimizing-screen-redrawing">
-<h2>Minimizing screen redrawing<a class="headerlink" href="#minimizing-screen-redrawing" title="Permalink to this headline">¶</a></h2>
+<span id="id36"></span><h2>Minimizing screen redrawing<a class="headerlink" href="#minimizing-screen-redrawing" title="Permalink to this headline">¶</a></h2>
 <p>Minimize screen redrawing by using the <code class="docutils literal notranslate"><span class="pre">AVPageViewBeginOperation</span></code> and <code class="docutils literal notranslate"><span class="pre">AVPageViewEndOperation</span></code> methods to bracket any sequence of view changes you may perform. For example, the sequence of changing to another page, scrolling, and zooming would normally redraw the screen three times. But, by invoking the <code class="docutils literal notranslate"><span class="pre">AVPageViewBeginOperation</span></code> method before the sequence and the <code class="docutils literal notranslate"><span class="pre">AVPageViewEndOperation</span></code> method after it, only one redraw occurs.</p>
 </div>
 <div class="section" id="storing-private-data-in-pdf-files">
-<h2>Storing private data in PDF files<a class="headerlink" href="#storing-private-data-in-pdf-files" title="Permalink to this headline">¶</a></h2>
-<p>Plugins can store private data in PDF files, although private data must be stored in such a way that the file can still be drawn by Acrobat. Adobe maintains a registry of private PDF dictionary key names to reduce the possibility of a plugin’s key names conflicting with names belonging to other plugins. For information about dictionaries, see <a class="reference external" href="Plugins_Cos.html#50618418_96656">Working with Cos dictionaries</a>.</p>
+<span id="id37"></span><h2>Storing private data in PDF files<a class="headerlink" href="#storing-private-data-in-pdf-files" title="Permalink to this headline">¶</a></h2>
+<p>Plugins can store private data in PDF files, although private data must be stored in such a way that the file can still be drawn by Acrobat. Adobe maintains a registry of private PDF dictionary key names to reduce the possibility of a plugin’s key names conflicting with names belonging to other plugins. For information about dictionaries, see <a class="reference internal" href="Plugins_Cos.html#working-with-cos-dictionaries"><span class="std std-ref">Working with Cos dictionaries</span></a>.</p>
 <p>Private dictionary keys exist in the following categories:</p>
 <ul class="simple">
 <li><p>Specific keys that are proposed by third parties but are generally useful. Adobe maintains a registry of these names.</p></li>
@@ -1241,7 +1241,7 @@
 </ul>
 </div>
 <div class="section" id="exporting-data-from-pdf-document-objects">
-<h2>Exporting data from PDF document objects<a class="headerlink" href="#exporting-data-from-pdf-document-objects" title="Permalink to this headline">¶</a></h2>
+<span id="id38"></span><h2>Exporting data from PDF document objects<a class="headerlink" href="#exporting-data-from-pdf-document-objects" title="Permalink to this headline">¶</a></h2>
 <p>Using the Acrobat core API, you can export data from PDF document objects to XML files. Object data contain property-value pairs. For example, consider a PDF document object that contains the following XML elements:</p>
 <table class="docutils align-default" id="section-1">
 <colgroup>
@@ -1275,7 +1275,7 @@
 <img alt="_images/ExtractXML.png" src="_images/ExtractXML.png" />
 <p>To retrieve data from a PDF document object, invoke the <code class="docutils literal notranslate"><span class="pre">PDDocExportUserProperties</span></code> method and pass the following arguments:</p>
 <ul class="simple">
-<li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents a PDF document that contains the object from which data is extracted. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents a PDF document that contains the object from which data is extracted. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p></li>
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDSElement</span></code> instance that represents PDF structural elements.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object that represents XML content converted from information from labels.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> value that specifies whether to save object data of the specified element (<code class="docutils literal notranslate"><span class="pre">false</span></code> ) or the whole subtree (<code class="docutils literal notranslate"><span class="pre">true</span></code> ).</p></li>
@@ -1297,7 +1297,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

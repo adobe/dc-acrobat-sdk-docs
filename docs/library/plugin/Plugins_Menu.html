@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,10 +871,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="creating-menus-and-menu-commands">
-<h1>Creating Menus and Menu Commands<a class="headerlink" href="#creating-menus-and-menu-commands" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Creating Menus and Menu Commands<a class="headerlink" href="#creating-menus-and-menu-commands" title="Permalink to this headline">¶</a></h1>
 <p>The Acrobat core API supports creating new menu commands and modify existing menus. A menu command lets a user interact with your plugin by clicking a menu command that is displayed in an Adobe Reader or Acrobat menu. When the user clicks the menu command, application logic that is defined in the callback function associated with the menu command is executed. It is your responsibility to define the application logic that is located in the callback function.</p>
 <div class="section" id="about-menus">
-<h2>About menus<a class="headerlink" href="#about-menus" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About menus<a class="headerlink" href="#about-menus" title="Permalink to this headline">¶</a></h2>
 <p>Adobe Reader and Acrobat have a standard menu bar and menu that let a user invoke specific functionality. You can, for example, click the Open command that is located on the File menu to open an existing PDF file. Using the Acrobat core API, you can programmatic-ally modify the menu bar. The following illustration shows the menu bar located in Acrobat.</p>
 <img alt="_images/menu.png" src="_images/menu.png" />
 <table class="docutils align-default">
@@ -900,18 +900,18 @@
 </tbody>
 </table>
 <div class="section" id="about-avmenubar-typedefs">
-<h3>About AVmenubar typedefs<a class="headerlink" href="#about-avmenubar-typedefs" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3>About AVmenubar typedefs<a class="headerlink" href="#about-avmenubar-typedefs" title="Permalink to this headline">¶</a></h3>
 <p>An <code class="docutils literal notranslate"><span class="pre">AVmenubar</span></code> typedef represents the menu bar located within Adobe Reader or Acrobat and contains a list of all menus. A plugin can only have one <code class="docutils literal notranslate"><span class="pre">AVmenubar</span></code> object. You can add new menus to the menu bar, remove menus from the menu bar, or hide the menu bar by using the Acrobat core API.</p>
 </div>
 <div class="section" id="about-avmenu-typedefs">
-<h3>About AVMenu typedefs<a class="headerlink" href="#about-avmenu-typedefs" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>About AVMenu typedefs<a class="headerlink" href="#about-avmenu-typedefs" title="Permalink to this headline">¶</a></h3>
 <p>An <code class="docutils literal notranslate"><span class="pre">AVMenu</span></code> typedef represents a menu in the Adobe Reader or Acrobat menu bar. You can create new menus, add menu commands to a menu, and remove menu items. Deleting an <code class="docutils literal notranslate"><span class="pre">AVMenu</span></code> removes it from the menu bar (if it was attached) and deletes all the menu items it contains.</p>
 <p>Submenus (also called pull right menus) are <code class="docutils literal notranslate"><span class="pre">AVMenu</span></code> objects that are attached to an <code class="docutils literal notranslate"><span class="pre">AVMenuItem</span></code> object instead of to the menu bar.</p>
 <p>Each menu has a title and a language-independent name. The title is the string that appears in the user interface, while the language-independent name is the same regardless of the language used in the user interface. Language-independent names enable a plugin to locate a specific menu, such as the File menu, without knowing, for example, that it is called Fichier in French.</p>
-<p>You are strongly encouraged to begin your language-independent menu names with the plugin name (separated by a colon) to avoid name collisions when more than one plugin is present. For example, if a plugin is named myPlug, it may add a menu whose name is <code class="docutils literal notranslate"><span class="pre">myPlug:Options</span></code>. (See <a class="reference external" href="Plugins_Pimech.html#50618406_30769">Using plugin prefixes</a>.)</p>
+<p>You are strongly encouraged to begin your language-independent menu names with the plugin name (separated by a colon) to avoid name collisions when more than one plugin is present. For example, if a plugin is named myPlug, it may add a menu whose name is <code class="docutils literal notranslate"><span class="pre">myPlug:Options</span></code>. (See <a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes"><span class="std std-ref">Using plugin prefixes</span></a>.)</p>
 </div>
 <div class="section" id="about-avmenuitem-typedefs">
-<h3>About AVMenuItem typedefs<a class="headerlink" href="#about-avmenuitem-typedefs" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>About AVMenuItem typedefs<a class="headerlink" href="#about-avmenuitem-typedefs" title="Permalink to this headline">¶</a></h3>
 <p>An <code class="docutils literal notranslate"><span class="pre">AVMenuItem</span></code> is a menu command within a menu. It contains the following attributes:</p>
 <ul class="simple">
 <li><p>A name</p></li>
@@ -923,11 +923,11 @@
 <p>An <code class="docutils literal notranslate"><span class="pre">AVMenuItem</span></code> object can also serve as a separators between menu commands. You are encouraged to position your plugin menu commands relative to a separator. This helps ensure that if a block of menu commands is moved in a future version of Acrobat, your plugin menu commands also are moved.</p>
 <p>A plugin can simulate a user selecting a menu command by invoking the <code class="docutils literal notranslate"><span class="pre">AVMenuItemExecute</span></code> method. If the menu command is disabled, the <code class="docutils literal notranslate"><span class="pre">AVMenuItemExecute</span></code> method returns without performing a task. The <code class="docutils literal notranslate"><span class="pre">AVMenuItemExecute</span></code> method works even when the menu item is not displayed (for example, if it has not been attached to a menu or if the menu bar is not visible). You can set the attributes of all menu commands that you create; however, do not modify the <code class="docutils literal notranslate"><span class="pre">Execute</span></code> procedure of the Acrobat built-in menu commands.</p>
 <p>Your plugin can specify menu command names using either the names seen by a user, or language-independent names. The latter allows your plugin to locate a specific menu command without knowing, for example, that it is called Imprimer in French.</p>
-<p>You are strongly encouraged to avoid name collisions when naming menu commands by using your plugin name and a colon. For example, if a plugin is named <code class="docutils literal notranslate"><span class="pre">myPlug</span></code>, you can name a menu command <code class="docutils literal notranslate"><span class="pre">myPlug:Open</span></code> or <code class="docutils literal notranslate"><span class="pre">myPlug:Find</span></code>. (See <a class="reference external" href="Plugins_Pimech.html#50618406_30769">Using plugin prefixes</a>.)</p>
+<p>You are strongly encouraged to avoid name collisions when naming menu commands by using your plugin name and a colon. For example, if a plugin is named <code class="docutils literal notranslate"><span class="pre">myPlug</span></code>, you can name a menu command <code class="docutils literal notranslate"><span class="pre">myPlug:Open</span></code> or <code class="docutils literal notranslate"><span class="pre">myPlug:Find</span></code>. (See <a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes"><span class="std std-ref">Using plugin prefixes</span></a>.)</p>
 </div>
 </div>
 <div class="section" id="adding-menu-commands-to-menus">
-<h2>Adding menu commands to menus<a class="headerlink" href="#adding-menu-commands-to-menus" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>Adding menu commands to menus<a class="headerlink" href="#adding-menu-commands-to-menus" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to add a new menu command to an existing menu. For example, you can add a menu named Acrobat SDK to the Adobe Reader or Acrobat menu bar.</p>
 <p>To add a new menu command to an existing menu, perform the following tasks:</p>
 <ol class="arabic simple">
@@ -954,7 +954,7 @@
 <li><p>If necessary, programmatically create a new menu by invoking the <code class="docutils literal notranslate"><span class="pre">AVMenuNew</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A string value that represents the text displayed in Adobe Reader or Acrobat.</p></li>
-<li><p>A unique, language-independent name for the menu. (See <a class="reference external" href="Plugins_Pimech.html#50618406_30769">Using plugin prefixes</a>.)</p></li>
+<li><p>A unique, language-independent name for the menu. (See <a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes"><span class="std std-ref">Using plugin prefixes</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASExtension</span></code> value that registers the menu. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p></li>
 </ul>
 </li>
@@ -964,17 +964,17 @@
  <span class="n">gExtensionID</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>After you create a new menu, you must attach it to the menu bar. (See <a class="reference external" href="Plugins_Menu.html#50618409_95514">Adding a menu command to a new menu</a>.)</p>
+<p>After you create a new menu, you must attach it to the menu bar. (See <a class="reference internal" href="#adding-a-menu-command-to-a-new-menu"><span class="std std-ref">Adding a menu command to a new menu</span></a>.)</p>
 <ol class="arabic simple" start="4">
 <li><p>Create a new menu command by invoking the <code class="docutils literal notranslate"><span class="pre">AVMenuItemNew</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A string value that represents the menu command’s text. On Windows only, you can specify a keyboard shortcut by including an ampersand character (&amp;) in the title.[I wonder whether an example would help here.] In Acrobat or Adobe Reader, an underscore character (_) is placed under the character following the ampersand ( <em>char</em> ).[I wonder whether an example would help here.] The user can then press alt+ <em>char</em> to select the item.</p></li>
-<li><p>The language-independent name of the menu command to create. (See <a class="reference external" href="Plugins_Pimech.html#50618406_30769">Using plugin prefixes</a>.)</p></li>
+<li><p>The language-independent name of the menu command to create. (See <a class="reference internal" href="Plugins_Pimech.html#using-plugin-prefixes"><span class="std std-ref">Using plugin prefixes</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">AVMenu</span></code> object that represents a submenu for which this menu command is the parent. Pass <code class="docutils literal notranslate"><span class="pre">null</span></code> if this menu item does not have a submenu.</p></li>
 <li><p>A Boolean value. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the menu item is visible only when the user selects Full Menus. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the menu item is visible for both Full Menus and Short Menus modes. This value is ignored in Adobe Reader or Acrobat 3.0 or later.</p></li>
 <li><p>The key to use as a shortcut for the menu command (an ASCII character). Use <code class="docutils literal notranslate"><span class="pre">NO_SHORTCUT</span></code> if the menu command does not have a shortcut.</p></li>
 <li><p>Modifier keys, if any, that are used as part of the shortcut. Must be an OR of the Modifier Keys values, except that <code class="docutils literal notranslate"><span class="pre">AV_COMMAND</span></code> cannot be specified.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">AVIcon</span></code> object that represents the icon to show in the menu command, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if no icon is shown. In Windows, a valid icon is a 24x24 sample monochrome <code class="docutils literal notranslate"><span class="pre">HBITMAP</span></code>. In Mac OS, an icon is a handle to a standard SICN resource. For information about creating an <code class="docutils literal notranslate"><span class="pre">AVIcon</span></code> object, see <a class="reference external" href="Plugins_Toolbutton.html#50618403_92880">Creating toolbar buttons</a>.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">AVIcon</span></code> object that represents the icon to show in the menu command, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if no icon is shown. In Windows, a valid icon is a 24x24 sample monochrome <code class="docutils literal notranslate"><span class="pre">HBITMAP</span></code>. In Mac OS, an icon is a handle to a standard SICN resource. For information about creating an <code class="docutils literal notranslate"><span class="pre">AVIcon</span></code> object, see <a class="reference internal" href="Plugins_Toolbutton.html#creating-toolbar-buttons"><span class="std std-ref">Creating toolbar buttons</span></a>.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASExtension</span></code> value that registers this menu command. For information about an <code class="docutils literal notranslate"><span class="pre">ASExtension</span></code> value, see the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p></li>
 </ul>
 </li>
@@ -1001,7 +1001,7 @@
 </div>
 <p>#6 Release the typedef instances to free memory. To release an <code class="docutils literal notranslate"><span class="pre">AVMenu</span></code> instance, invoke the <code class="docutils literal notranslate"><span class="pre">AVMenuRelease</span></code> method and pass the <code class="docutils literal notranslate"><span class="pre">AVMenu</span></code> instance. To release an <code class="docutils literal notranslate"><span class="pre">AVMenuItem</span></code> instance, invoke the <code class="docutils literal notranslate"><span class="pre">AVMenuItemRelease</span></code> method and pass the <code class="docutils literal notranslate"><span class="pre">AVMenuItem</span></code> instance.</p>
 <div class="section" id="adding-a-menu-command-to-an-existing-menu">
-<h3>Adding a menu command to an existing menu<a class="headerlink" href="#adding-a-menu-command-to-an-existing-menu" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3>Adding a menu command to an existing menu<a class="headerlink" href="#adding-a-menu-command-to-an-existing-menu" title="Permalink to this headline">¶</a></h3>
 <p>The following code example creates a new menu command that displays the text <code class="docutils literal notranslate"><span class="pre">Show</span></code> <code class="docutils literal notranslate"><span class="pre">Message</span></code> and attaches it to the File menu.</p>
 <ol class="arabic simple">
 <li><p>Adding a menu command to an existing menu</p></li>
@@ -1037,7 +1037,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This code example creates a new menu command that displays Show Message in the File menu. However, before the menu command performs an action, you have to create a callback menu function. (See <a class="reference external" href="Plugins_Menu.html#50618409_73167">Creating menu callback functions</a>.)</p>
+<p>This code example creates a new menu command that displays Show Message in the File menu. However, before the menu command performs an action, you have to create a callback menu function. (See <a class="reference internal" href="#creating-menu-callback-functions"><span class="std std-ref">Creating menu callback functions</span></a>.)</p>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -1045,7 +1045,7 @@
 </div>
 </div>
 <div class="section" id="adding-a-menu-command-to-a-new-menu">
-<h3>Adding a menu command to a new menu<a class="headerlink" href="#adding-a-menu-command-to-a-new-menu" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Adding a menu command to a new menu<a class="headerlink" href="#adding-a-menu-command-to-a-new-menu" title="Permalink to this headline">¶</a></h3>
 <p>The following code example creates a new menu command that displays the text <code class="docutils literal notranslate"><span class="pre">Show</span></code> <code class="docutils literal notranslate"><span class="pre">Message</span></code> and attaches it to a new menu. The new menu is attached to the menu bar by invoking the <code class="docutils literal notranslate"><span class="pre">AVmenubarAddMenu</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Declare</span> <span class="n">menu</span> <span class="n">variables</span>
    <span class="n">AVMenubar</span> <span class="n">Themenubar</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
@@ -1093,7 +1093,7 @@
 </div>
 </div>
 <div class="section" id="creating-menu-callback-functions">
-<h2>Creating menu callback functions<a class="headerlink" href="#creating-menu-callback-functions" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>Creating menu callback functions<a class="headerlink" href="#creating-menu-callback-functions" title="Permalink to this headline">¶</a></h2>
 <p>When creating menus, you must create menu callback functions that are invoked by Adobe Reader or Acrobat. These types of callback functions can be created:</p>
 <ul class="simple">
 <li><p><strong>Execute</strong>: Invoked by Adobe Reader or Acrobat in response to a user selecting a menu command. This callback is required.</p></li>
@@ -1107,7 +1107,7 @@
  <span class="p">}</span>
 </pre></div>
 </div>
-<p>The data parameter for this and the other callbacks can be used to maintain private data for the menu command. Notice that this user-defined function is declared using the <code class="docutils literal notranslate"><span class="pre">ACCB1</span></code> and <code class="docutils literal notranslate"><span class="pre">ACCB2</span></code> macros. (See <a class="reference external" href="Plugins_Pimech.html#50618406_20671">Using callback functions</a>.)</p>
+<p>The data parameter for this and the other callbacks can be used to maintain private data for the menu command. Notice that this user-defined function is declared using the <code class="docutils literal notranslate"><span class="pre">ACCB1</span></code> and <code class="docutils literal notranslate"><span class="pre">ACCB2</span></code> macros. (See <a class="reference internal" href="Plugins_Pimech.html#using-callback-functions"><span class="std std-ref">Using callback functions</span></a>.)</p>
 <p>For each callback that you create, you declare pointers to callbacks that are defined in the Acrobat core API:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVExecuteProc</span> <span class="n">ExecProcPtr</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
  <span class="n">AVComputeEnabledProc</span> <span class="n">CompEnabledProcPtr</span> <span class="o">=</span> <span class="n">NULL</span><span class="p">;</span>
@@ -1208,11 +1208,11 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Notice that the application logic that creates a menu command is located in the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> procedure. (See <a class="reference external" href="Plugins_Pimech.html#50618406_58810">About plugin initialization</a>.)</p>
+<p>Notice that the application logic that creates a menu command is located in the <code class="docutils literal notranslate"><span class="pre">PluginInit</span></code> procedure. (See <a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization"><span class="std std-ref">Plugin loading and initialization</span></a>.)</p>
 </div>
 </div>
 <div class="section" id="determining-if-a-menu-item-can-be-executed">
-<h2>Determining if a menu item can be executed<a class="headerlink" href="#determining-if-a-menu-item-can-be-executed" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Determining if a menu item can be executed<a class="headerlink" href="#determining-if-a-menu-item-can-be-executed" title="Permalink to this headline">¶</a></h2>
 <p>In previous versions of Adobe Reader and Acrobat, it was possible for a document to execute a menu item in the viewing application using a Named action or the <code class="docutils literal notranslate"><span class="pre">app.execMenuItem</span></code> JavaScript method. These two features, referred to as <code class="docutils literal notranslate"><span class="pre">ExecMenu</span></code> expose all menu items to the document, potentially allowing a malicious document to compromise a user’s privacy or system. For example, it was possible to use the <code class="docutils literal notranslate"><span class="pre">app.execMenuItem</span></code> JavaScript method to obtain data from a document by creating the equivalent to a user selecting the menu sequence of Select All, Copy, and Paste.</p>
 <p>Acrobat and Adobe Reader 8.0 and later contain a list of menu items that can be executed using <code class="docutils literal notranslate"><span class="pre">ExecMenu</span></code>. Any menu item not on the list cannot be programmatically executed.</p>
 <p>You can determine if a menu item can be programmatically executed by invoking the <code class="docutils literal notranslate"><span class="pre">AVMenuItemIsScriptable</span></code> method and passing an <code class="docutils literal notranslate"><span class="pre">AVMenuItem</span></code>. This method returns a Boolean value. That is, if the menu item that corresponds to the <code class="docutils literal notranslate"><span class="pre">AVMenuItem</span></code> argument can be executed, <code class="docutils literal notranslate"><span class="pre">True</span></code> is returned; otherwise, <code class="docutils literal notranslate"><span class="pre">False</span></code> is returned.</p>
@@ -1231,7 +1231,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

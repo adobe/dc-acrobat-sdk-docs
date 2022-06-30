@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,10 +871,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="creating-handlers">
-<h1>Creating Handlers<a class="headerlink" href="#creating-handlers" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Creating Handlers<a class="headerlink" href="#creating-handlers" title="Permalink to this headline">¶</a></h1>
 <p>Adobe Reader and Acrobat plugins and PDF Library applications can add new types of tools, annotations, actions, file systems, and so on, thereby expanding the number of supported object types. To accomplish this task, the Acrobat core API provides a collection of callback routines called handlers that support objects. Handlers perform operations, such as creating and destroy objects, handling mouse clicks, handling keyboard events, and so on.</p>
 <div class="section" id="about-handlers">
-<h2>About handlers<a class="headerlink" href="#about-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About handlers<a class="headerlink" href="#about-handlers" title="Permalink to this headline">¶</a></h2>
 <p>To add a new handler, you must write callback functions, create the appropriate data structure containing the callbacks and other data, and pass the structure to Acrobat by invoking the appropriate method. Subsequently, Acrobat automatically invokes the correct callback when it encounters an object of the type handled by the handler.</p>
 <p>It is possible to subclass existing handlers or to create entirely new handler types. For example, a plugin can subclass the built-in text annotation handler by adding the ability to hide annotations. To accomplish this task, perform the following tasks:</p>
 <ol class="arabic simple">
@@ -891,7 +891,7 @@
 </div>
 </div>
 <div class="section" id="action-handlers">
-<h2>Action handlers<a class="headerlink" href="#action-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Action handlers<a class="headerlink" href="#action-handlers" title="Permalink to this headline">¶</a></h2>
 <p>Support for action types can be added by defining and registering an action handler. For example, the Acrobat Weblink plugin uses this ability to add support for URL links.</p>
 <p>To add a new action type, you must provide a set of callbacks. Specify them in the <code class="docutils literal notranslate"><span class="pre">AVActionHandlerProcs</span></code> structure, and invoke the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterActionHandler</span></code> method to register them.</p>
 <p>By using an action handler, you can perform the following tasks:</p>
@@ -905,7 +905,7 @@
 </ul>
 </div>
 <div class="section" id="annotation-handlers">
-<h2>Annotation handlers<a class="headerlink" href="#annotation-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Annotation handlers<a class="headerlink" href="#annotation-handlers" title="Permalink to this headline">¶</a></h2>
 <p>Support for annotation types in Acrobat can be added by defining and registering an annotation handler. For example, the Acrobat movie plugin uses an annotation handler to support video annotations.</p>
 <p>To add an annotation type, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVAnnotHandler</span></code> structure, and register them with <code class="docutils literal notranslate"><span class="pre">AVAppRegisterAnnotHandler</span></code>.</p>
 <p>By using an annotation handler, you can perform the following tasks:</p>
@@ -921,14 +921,14 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>For information about working with annotations, see <a class="reference external" href="Plugins_Annotations.html#50618420_98126">Creating Annotations</a>.</p>
+<p>For information about working with annotations, see <a class="reference internal" href="Plugins_Annotations.html#creating-annotations"><span class="std std-ref">Creating Annotations</span></a>.</p>
 </div>
 </div>
 <div class="section" id="avcommand-handlers">
-<h2>AVCommand handlers<a class="headerlink" href="#avcommand-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>AVCommand handlers<a class="headerlink" href="#avcommand-handlers" title="Permalink to this headline">¶</a></h2>
 <p>An <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> represents an action that a user can perform on the current document or the current selection in the current document. <code class="docutils literal notranslate"><span class="pre">AVCommands</span></code> are exposed to Adobe Reader or Acrobat through <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handlers. You can add new command types by defining and registering an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handler. Commands can be executed interactively, programmatically, or through batch processing.</p>
 <div class="section" id="creating-an-avcommand-handler">
-<h3>Creating an AVCommand handler<a class="headerlink" href="#creating-an-avcommand-handler" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>Creating an AVCommand handler<a class="headerlink" href="#creating-an-avcommand-handler" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handlers consist of a series of callback functions contained in the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure (see AVExpt.h). To create a command handler, perform the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Initialize an instance of the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure.</p></li>
@@ -958,11 +958,11 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To view a complete example, see <a class="reference external" href="Plugins_Handlers.html#50618413_55225">Running commands</a>.</p>
+<p>To view a complete example, see <a class="reference internal" href="#running-commands"><span class="std std-ref">Running commands</span></a>.</p>
 </div>
 </div>
 <div class="section" id="invoking-avcommands">
-<h3>Invoking AVCommands<a class="headerlink" href="#invoking-avcommands" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3>Invoking AVCommands<a class="headerlink" href="#invoking-avcommands" title="Permalink to this headline">¶</a></h3>
 <p>To programmatically invoke <code class="docutils literal notranslate"><span class="pre">AVCommands</span></code> using <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> methods, perform the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Instantiate the command by invoking the <code class="docutils literal notranslate"><span class="pre">AVCommandNew</span></code> method, providing the registered name of the command:</p></li>
@@ -979,7 +979,7 @@
 </ol>
 </div>
 <div class="section" id="configuring-avcommands">
-<h3>Configuring AVCommands<a class="headerlink" href="#configuring-avcommands" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Configuring AVCommands<a class="headerlink" href="#configuring-avcommands" title="Permalink to this headline">¶</a></h3>
 <p>Prior to executing an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code>, you configure three categories of properties:</p>
 <ul class="simple">
 <li><p>Input parameters (required)</p></li>
@@ -987,8 +987,8 @@
 <li><p>AVCommand parameters (optional - initialized to defaults)</p></li>
 </ul>
 <div class="section" id="setting-input-parameters">
-<h4>Setting input parameters<a class="headerlink" href="#setting-input-parameters" title="Permalink to this headline">¶</a></h4>
-<p>At minimum, you must configure input parameters. The command must be provided with a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document on which to operate, as shown in the following example. For information about a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object, see <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.</p>
+<span id="id9"></span><h4>Setting input parameters<a class="headerlink" href="#setting-input-parameters" title="Permalink to this headline">¶</a></h4>
+<p>At minimum, you must configure input parameters. The command must be provided with a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document on which to operate, as shown in the following example. For information about a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object, see <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">PDDoc</span> <span class="nb">object</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PDF</span> <span class="n">document</span>
 <span class="n">AVDoc</span> <span class="n">avDoc</span> <span class="o">=</span> <span class="n">AVAppGetActiveDoc</span><span class="p">();</span>
 <span class="n">AVPageView</span> <span class="n">pageView</span> <span class="o">=</span> <span class="n">AVDocGetPageView</span><span class="p">(</span><span class="n">avDoc</span><span class="p">);</span>
@@ -1013,7 +1013,7 @@
 </div>
 </div>
 <div class="section" id="setting-configuration-parameters">
-<h4>Setting configuration parameters<a class="headerlink" href="#setting-configuration-parameters" title="Permalink to this headline">¶</a></h4>
+<span id="id10"></span><h4>Setting configuration parameters<a class="headerlink" href="#setting-configuration-parameters" title="Permalink to this headline">¶</a></h4>
 <p>Optionally you can set configuration parameters. The default UI policy is for commands to be fully interactive. To invoke the command programmatically, create an <code class="docutils literal notranslate"><span class="pre">ASCab</span></code> object and populate it with the appropriate parameters, as shown in the following example.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Create</span> <span class="n">an</span> <span class="n">ASCab</span> <span class="nb">object</span> <span class="n">to</span> <span class="n">store</span> <span class="n">config</span> <span class="n">parameters</span>
 <span class="n">ASCab</span> <span class="n">config</span> <span class="o">=</span> <span class="n">ACabNew</span><span class="p">();</span>
@@ -1028,7 +1028,7 @@
 </div>
 </div>
 <div class="section" id="setting-avcommand-parameters">
-<h4>Setting AVCommand parameters<a class="headerlink" href="#setting-avcommand-parameters" title="Permalink to this headline">¶</a></h4>
+<span id="id11"></span><h4>Setting AVCommand parameters<a class="headerlink" href="#setting-avcommand-parameters" title="Permalink to this headline">¶</a></h4>
 <p>An <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> parameter set is specific to each command. For example, the Document Summary command accepts values for these parameters: <code class="docutils literal notranslate"><span class="pre">Title</span></code>, <code class="docutils literal notranslate"><span class="pre">Subject</span></code>, <code class="docutils literal notranslate"><span class="pre">Author</span></code>, <code class="docutils literal notranslate"><span class="pre">Keywords</span></code>, <code class="docutils literal notranslate"><span class="pre">Binding</span></code>, and <code class="docutils literal notranslate"><span class="pre">LeaveAsIs</span></code>. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p>
 <p>You can create an <code class="docutils literal notranslate"><span class="pre">ASCab</span></code> object to store the appropriate parameters; then create empty <code class="docutils literal notranslate"><span class="pre">ASText</span></code> objects to hold the parameter values and place these values into the <code class="docutils literal notranslate"><span class="pre">ASCabs</span></code> object. The following example uses this approach to set the Document Summary <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">Subject</span></code> values.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">docTitleValue</span> <span class="o">=</span> <span class="s2">&quot;Document Title&quot;</span><span class="p">;</span>
@@ -1049,7 +1049,7 @@
 </div>
 </div>
 <div class="section" id="running-commands">
-<h3>Running commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>Running commands<a class="headerlink" href="#running-commands" title="Permalink to this headline">¶</a></h3>
 <p>The following code example shows an entire example of creating an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> and running it.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">InitializeCommandHandler</span><span class="p">()</span>
 
@@ -1122,10 +1122,10 @@
 </div>
 </div>
 <div class="section" id="exposing-avcommands-to-the-batch-framework">
-<h3>Exposing AVCommands to the batch framework<a class="headerlink" href="#exposing-avcommands-to-the-batch-framework" title="Permalink to this headline">¶</a></h3>
+<span id="id13"></span><h3>Exposing AVCommands to the batch framework<a class="headerlink" href="#exposing-avcommands-to-the-batch-framework" title="Permalink to this headline">¶</a></h3>
 <p>Acrobat or Adobe Reader builds the list of commands that users see in the <code class="docutils literal notranslate"><span class="pre">Batch</span> <span class="pre">Sequences</span></code> and <code class="docutils literal notranslate"><span class="pre">Batch</span> <span class="pre">Edit</span> <span class="pre">Sequence</span></code> dialog boxes from an internal list of <code class="docutils literal notranslate"><span class="pre">AVCommands</span></code> referred to as the global command list.</p>
 <div class="section" id="adding-a-handler-to-the-global-command-list">
-<h4>Adding a handler to the global command list<a class="headerlink" href="#adding-a-handler-to-the-global-command-list" title="Permalink to this headline">¶</a></h4>
+<span id="id14"></span><h4>Adding a handler to the global command list<a class="headerlink" href="#adding-a-handler-to-the-global-command-list" title="Permalink to this headline">¶</a></h4>
 <p>To expose a command to the batch framework, the <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handler must first add an instance of the command to this global list by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterGlobalCommand</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVCommand</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">AVCommandNew</span><span class="p">(</span><span class="n">ASAtomFromString</span><span class="p">(</span><span class="n">kCmdName</span><span class="p">));</span>
  <span class="n">AVAppRegisterGlobalCommand</span><span class="p">(</span><span class="n">cmd</span><span class="p">);</span>
@@ -1134,7 +1134,7 @@
 <p>Although this step can be performed at any time once the command handler is registered, handlers commonly register commands from within the <code class="docutils literal notranslate"><span class="pre">AVCommandRegisterCommandsProc</span></code> callback (of the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure).</p>
 </div>
 <div class="section" id="supporting-properties">
-<h4>Supporting properties<a class="headerlink" href="#supporting-properties" title="Permalink to this headline">¶</a></h4>
+<span id="id15"></span><h4>Supporting properties<a class="headerlink" href="#supporting-properties" title="Permalink to this headline">¶</a></h4>
 <p>When building a list of batchable commands, Adobe Reader or Acrobat iterates through its internal command list, querying each command for the <code class="docutils literal notranslate"><span class="pre">CanBatch</span></code> and <code class="docutils literal notranslate"><span class="pre">GroupTitle</span></code> properties. To be exposed through the batch framework user interface, a command must support these properties (that is, return <code class="docutils literal notranslate"><span class="pre">true</span></code> and a valid <code class="docutils literal notranslate"><span class="pre">ASText</span></code> object, respectively). The <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> handler must implement the <code class="docutils literal notranslate"><span class="pre">GetProps</span></code> callback of the <code class="docutils literal notranslate"><span class="pre">AVCommandHandlerRec</span></code> structure.</p>
 <p>If an <code class="docutils literal notranslate"><span class="pre">AVCommand</span></code> supports these properties, Adobe Reader or Acrobat queries a number of additional properties as the user interacts with the batch framework. Of these additional properties, only two are required: <code class="docutils literal notranslate"><span class="pre">Title</span></code> and <code class="docutils literal notranslate"><span class="pre">Generic</span> <span class="pre">Title</span></code>. A command must provide the title strings that will be displayed in the Batch Sequences and Batch Edit Sequence dialog boxes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">char</span> <span class="o">*</span><span class="n">kCmdTitle</span> <span class="o">=</span> <span class="s2">&quot;Command Title&quot;</span><span class="p">;</span>
@@ -1176,13 +1176,13 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">params</span></code> object was declared in <a class="reference external" href="Plugins_Handlers.html#50618413_70559">Running an AVCommand</a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">params</span></code> object was declared in <span class="xref std std-ref">Running an AVCommand</span>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="section" id="file-format-conversion-handlers">
-<h2>File format conversion handlers<a class="headerlink" href="#file-format-conversion-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id16"></span><h2>File format conversion handlers<a class="headerlink" href="#file-format-conversion-handlers" title="Permalink to this headline">¶</a></h2>
 <p>A plugin can add file conversion handlers to Acrobat (but not Adobe Reader) for performing the following file conversion operations:</p>
 <ul class="simple">
 <li><p>To import a PDF document from another file format.</p></li>
@@ -1199,7 +1199,7 @@
 </ul>
 </div>
 <div class="section" id="file-specification-handlers">
-<h2>File specification handlers<a class="headerlink" href="#file-specification-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id17"></span><h2>File specification handlers<a class="headerlink" href="#file-specification-handlers" title="Permalink to this headline">¶</a></h2>
 <p>A file specification handler converts between a <code class="docutils literal notranslate"><span class="pre">PDFileSpec</span></code> object and an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object. Each file specification handler works with a single file system, which the handler specifies.</p>
 <p>To create a new file specification handler, a plugin or application must provide callbacks that:</p>
 <ul class="simple">
@@ -1208,7 +1208,7 @@
 </ul>
 </div>
 <div class="section" id="selection-servers">
-<h2>Selection servers<a class="headerlink" href="#selection-servers" title="Permalink to this headline">¶</a></h2>
+<span id="id18"></span><h2>Selection servers<a class="headerlink" href="#selection-servers" title="Permalink to this headline">¶</a></h2>
 <p>A selection server enables the selection of specific data types such as annotations, text, or graphics. You can also create selection servers to enable the selection of data types not already supported. To add a new selection server, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVDocSelectionServer</span></code> data structure, and register them using an <code class="docutils literal notranslate"><span class="pre">AVDocRegisterSelectionServer</span></code> object.</p>
 <p>By using a selection server, you can perform the following tasks:</p>
 <ul class="simple">
@@ -1231,7 +1231,7 @@
 </div>
 </div>
 <div class="section" id="tool-callbacks">
-<h2>Tool callbacks<a class="headerlink" href="#tool-callbacks" title="Permalink to this headline">¶</a></h2>
+<span id="id19"></span><h2>Tool callbacks<a class="headerlink" href="#tool-callbacks" title="Permalink to this headline">¶</a></h2>
 <p>To add a new tool, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVTool</span></code> data structure, and register them using <code class="docutils literal notranslate"><span class="pre">AVAppRegisterTool</span></code>. By using tool callbacks, you can perform the following tasks:</p>
 <ul class="simple">
 <li><p>Activate the tool when the tool is selected by using the <code class="docutils literal notranslate"><span class="pre">ActivateProcType</span></code> callback method.</p></li>
@@ -1249,8 +1249,8 @@
 </div>
 </div>
 <div class="section" id="window-handlers">
-<h2>Window handlers<a class="headerlink" href="#window-handlers" title="Permalink to this headline">¶</a></h2>
-<p>When a plugin creates a window, it can register the window, so that it behaves like other windows in Acrobat; for example, when Adobe Reader or Acrobat is minimized or hidden. For each window that a plugin provides, a window handler must be provided. Window handlers are used only in the Mac OS version of Adobe Reader or Acrobat. Windows versions of Acrobat instead use the platform’s native window handling mechanisms. (See <a class="reference external" href="Plugins_Documents.html#50618416_74021">Opening a PDF document in an external window</a>.)</p>
+<span id="id20"></span><h2>Window handlers<a class="headerlink" href="#window-handlers" title="Permalink to this headline">¶</a></h2>
+<p>When a plugin creates a window, it can register the window, so that it behaves like other windows in Acrobat; for example, when Adobe Reader or Acrobat is minimized or hidden. For each window that a plugin provides, a window handler must be provided. Window handlers are used only in the Mac OS version of Adobe Reader or Acrobat. Windows versions of Acrobat instead use the platform’s native window handling mechanisms. (See <span class="xref std std-ref">Opening a PDF document in an external window</span>.)</p>
 <p>To define a window handler, you must provide a set of callbacks, specify them in an <code class="docutils literal notranslate"><span class="pre">AVWindowHandler</span></code> structure, and pass the structure to <code class="docutils literal notranslate"><span class="pre">AVWindowNew</span></code> or <code class="docutils literal notranslate"><span class="pre">AVWindowNewFromPlatformThing</span></code>. The window handler’s callbacks are automatically called by Acrobat. Default behavior is used for any missing callbacks.</p>
 <p>By using a window handler, you can perform the following tasks:</p>
 <ul class="simple">
@@ -1268,7 +1268,7 @@
 <p>For a complete list of callbacks in a window handler, see the description of <code class="docutils literal notranslate"><span class="pre">AVWindowHandler</span></code> in the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
 </div>
 <div class="section" id="file-systems">
-<h2>File systems<a class="headerlink" href="#file-systems" title="Permalink to this headline">¶</a></h2>
+<span id="id21"></span><h2>File systems<a class="headerlink" href="#file-systems" title="Permalink to this headline">¶</a></h2>
 <p>Plugins can add new file systems to Acrobat or Adobe Reader, to access files on a device that cannot be accessed as a local hard disk, such as a socket or a modem line.</p>
 <p>To add a new file system, you must provide a set of callbacks and specify them in the <code class="docutils literal notranslate"><span class="pre">ASFileSysRec</span></code> structure. This structure is passed as a parameter to calls that require a file system. A file system handler does not require explicit registration.</p>
 <p>By using a file system handler, you can perform the following tasks:</p>
@@ -1296,7 +1296,7 @@
 <p>For details about each of the callbacks in a file system, see the description of <code class="docutils literal notranslate"><span class="pre">ASFileSysRec</span></code> in the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
 </div>
 <div class="section" id="progress-monitors">
-<h2>Progress monitors<a class="headerlink" href="#progress-monitors" title="Permalink to this headline">¶</a></h2>
+<span id="id22"></span><h2>Progress monitors<a class="headerlink" href="#progress-monitors" title="Permalink to this headline">¶</a></h2>
 <p>Progress monitors provide feedback to a user on the progress of a time-consuming operation. Some potentially time-consuming methods in the Acrobat core API require a progress monitor as a parameter. Acrobat has a default progress monitor, which generally is sufficient for plugins to use. The built-in progress monitor can be obtained by using the <code class="docutils literal notranslate"><span class="pre">AVAppGetDocProgressMonitor</span></code> method.</p>
 <p>Plugins can use the default progress monitor or implement their own by providing a set of callbacks, specifying them in the <code class="docutils literal notranslate"><span class="pre">ASProgressMonitorRec</span></code> data structure, and passing a pointer to the structure to the methods that require a progress monitor (there is no explicit registration method).</p>
 <p>Using a progress monitor, you can perform the following tasks:</p>
@@ -1311,7 +1311,7 @@
 <p>For details, see the description of <code class="docutils literal notranslate"><span class="pre">ASProgressMonitorRec</span></code> in the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
 </div>
 <div class="section" id="transition-handlers">
-<h2>Transition handlers<a class="headerlink" href="#transition-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id23"></span><h2>Transition handlers<a class="headerlink" href="#transition-handlers" title="Permalink to this headline">¶</a></h2>
 <p>Transitions allow effects such as dissolves or wipe-downs when displaying a new page. New transition types can be added by defining and registering a transition handler.</p>
 <p>To add a new transition, you must provide a set of callbacks, specify them in the <code class="docutils literal notranslate"><span class="pre">AVTransHandler</span></code> data structure, and register them by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppRegisterTransHandler</span></code> method.</p>
 <p>Using a transition handler, you can perform the following tasks:</p>
@@ -1323,8 +1323,8 @@
 </ul>
 </div>
 <div class="section" id="adding-message-handling">
-<h2>Adding message handling<a class="headerlink" href="#adding-message-handling" title="Permalink to this headline">¶</a></h2>
-<p>Plugins can add their own DDE messages and Apple events to those supported by Acrobat and Adobe Reader. On Windows, plugins can register to receive DDE messages directly. On Mac OS, plugins must hook into Acrobat or Adobe Reader’s Apple event handling loop to handle Apple events. To do this, replace the API’s AVAppHandleAppleEvent method. For information about replacing methods, see <a class="reference external" href="Plugins_Hft.html#50618412_19489">Replacing HFT methods</a>.</p>
+<span id="id24"></span><h2>Adding message handling<a class="headerlink" href="#adding-message-handling" title="Permalink to this headline">¶</a></h2>
+<p>Plugins can add their own DDE messages and Apple events to those supported by Acrobat and Adobe Reader. On Windows, plugins can register to receive DDE messages directly. On Mac OS, plugins must hook into Acrobat or Adobe Reader’s Apple event handling loop to handle Apple events. To do this, replace the API’s AVAppHandleAppleEvent method. For information about replacing methods, see <a class="reference internal" href="Plugins_Hft.html#replacing-hft-methods"><span class="std std-ref">Replacing HFT methods</span></a>.</p>
 <p>If a plugin receives an Apple event it does not want to handle, it should invoke the implementation of the method it replaced, allowing other plugins or Acrobat or Adobe Reader the opportunity to handle the Apple event.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1345,7 +1345,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,10 +871,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-host-function-tables">
-<h1>Working with Host Function Tables<a class="headerlink" href="#working-with-host-function-tables" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Host Function Tables<a class="headerlink" href="#working-with-host-function-tables" title="Permalink to this headline">¶</a></h1>
 <p>A host function table (HFT) is the mechanism through which plugins and PDF Library applications invoke methods in Adobe Reader and Acrobat, as well as other plugins. Acrobat and Adobe Reader have HFTs containing pointers to all Acrobat core API methods. In addition, a plugin may create its own HFT to export its methods to other plugins. This chapter illustrates how to export and import HFTs.</p>
 <div class="section" id="about-host-function-tables">
-<h2>About host function tables<a class="headerlink" href="#about-host-function-tables" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About host function tables<a class="headerlink" href="#about-host-function-tables" title="Permalink to this headline">¶</a></h2>
 <p>An HFT is a table of function pointers where each HFT contains the following information:</p>
 <ul class="simple">
 <li><p>A name</p></li>
@@ -884,13 +884,13 @@
 <p>Each entry represents a single method that a plugin can invoke, and is defined as a linked list of function pointers. Adobe Reader or Acrobat uses linked lists because some HFT entries may be marked so that they can be replaced by a plugin. Also, it is useful to keep a list of each implementation of a method that was replaced to allow methods to call the implementations they replaced.</p>
 <p>The following diagram shows the relationship between Adobe Reader or Acrobat, other plugins, and HFTs.</p>
 <img alt="_images/hft.png" src="_images/hft.png" />
-<p>Plugins must use the <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method to import each HFT they intend to use. A plugin requests an HFT by its name and version number. An HFT is imported during plugin initialization. (See <a class="reference external" href="Plugins_Pimech.html#50618406_19533">Importing HFTs and registering for notifications</a>.)</p>
+<p>Plugins must use the <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method to import each HFT they intend to use. A plugin requests an HFT by its name and version number. An HFT is imported during plugin initialization. (See <a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications"><span class="std std-ref">Importing HFTs and registering for notifications</span></a>.)</p>
 <p>When a plugin invokes a method in Adobe Reader, Acrobat, or another plugin, the function pointer at the appropriate location in the appropriate HFT is dereferenced and executed. Macros in the Acrobat SDK header files hide this functionality so that plugins contain only what appear to be normal function calls.</p>
 <p>Each HFT is serviced by an HFT server. The HFT server is responsible for handling requests to obtain or destroy its HFT. As part of its responsibility to handle requests, an HFT server can choose to support multiple versions of the HFT. These versions generally correspond to versions of Acrobat, Adobe Reader or the plugin that exposes the HFT.</p>
 <p>The ability to provide more than one version of an HFT improves backward-compatibility by allowing existing plugins to continue to work when new versions of Acrobat or Adobe Reader (or other plugins whose HFTs they use) become available. It is expected that HFT versions typically will differ only in the number, not the order, of methods they contain.</p>
 </div>
 <div class="section" id="exporting-host-function-tables">
-<h2>Exporting host function tables<a class="headerlink" href="#exporting-host-function-tables" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Exporting host function tables<a class="headerlink" href="#exporting-host-function-tables" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to export HFTs that result in a plugin’s methods being available to other plugins. To export an HFT, perform the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Create the HFT methods that you want to make available to other plugins.</p></li>
@@ -903,7 +903,7 @@
 <p>The remaining parts of this section examine each task in detail.</p>
 </div>
 <div class="section" id="creating-hft-methods">
-<h3>Creating HFT methods<a class="headerlink" href="#creating-hft-methods" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Creating HFT methods<a class="headerlink" href="#creating-hft-methods" title="Permalink to this headline">¶</a></h3>
 <p>The first step in exporting HFTs is to create the methods that will be exported and made available to other plugins. For the purpose of this discussion, assume that the following three methods exist.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">void</span> <span class="n">ACCB2</span> <span class="n">BeepOnceImplementation</span><span class="p">()</span>
  <span class="p">{</span>
@@ -927,7 +927,7 @@
 </div>
 </div>
 <div class="section" id="creating-hft-method-definitions">
-<h3>Creating HFT method definitions<a class="headerlink" href="#creating-hft-method-definitions" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>Creating HFT method definitions<a class="headerlink" href="#creating-hft-method-definitions" title="Permalink to this headline">¶</a></h3>
 <p>When you invoke a method in an HFT, the methods are accessed through a function pointer. Part of the process of defining a function pointer through which HFT methods are accessed is to create an enumeration that specifies the index of each method that you want to include within an HFT. The following enumeration enables indexing into the HFT. Note that the first element is not used.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span>
  <span class="p">{</span>
@@ -947,9 +947,9 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extern</span> <span class="n">HFT</span> <span class="n">gMyHFT</span>
 </pre></div>
 </div>
-<p>For example, to define an HFT method name, you must specify an HFT object. (See <a class="reference external" href="Plugins_Hft.html#50618412_60887">Defining an HFT method name</a>.)</p>
+<p>For example, to define an HFT method name, you must specify an HFT object. (See <a class="reference internal" href="#defining-an-hft-method-name"><span class="std std-ref">Defining an HFT method name</span></a>.)</p>
 <div class="section" id="defining-function-prototypes">
-<h4>Defining function prototypes<a class="headerlink" href="#defining-function-prototypes" title="Permalink to this headline">¶</a></h4>
+<span id="id6"></span><h4>Defining function prototypes<a class="headerlink" href="#defining-function-prototypes" title="Permalink to this headline">¶</a></h4>
 <p>After you define an enumeration and an HFT object, you can define a function pointer for each method by using the following syntax:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typdef</span> <span class="n">ACCBPROTO1</span> <span class="n">return_type</span> <span class="p">(</span><span class="n">ACCBPROTO2</span>   <span class="o">*</span><span class="n">function_nameSELPROTO</span><span class="p">)(</span><span class="n">parameters</span><span class="p">);</span>
 </pre></div>
@@ -982,7 +982,7 @@
 </div>
 </div>
 <div class="section" id="defining-an-hft-method-name">
-<h4>Defining an HFT method name<a class="headerlink" href="#defining-an-hft-method-name" title="Permalink to this headline">¶</a></h4>
+<span id="id7"></span><h4>Defining an HFT method name<a class="headerlink" href="#defining-an-hft-method-name" title="Permalink to this headline">¶</a></h4>
 <p>You must specify a name for each method that is used to invoke the HFT method from other plugins. You can define an HFT method name by using the following syntax:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#define method_name (*((method_nameSELPROTO)(HFTname [method_nameSEL])))</span>
 </pre></div>
@@ -1014,8 +1014,8 @@
 </div>
 </div>
 <div class="section" id="creating-hft-callback-functions">
-<h3>Creating HFT callback functions<a class="headerlink" href="#creating-hft-callback-functions" title="Permalink to this headline">¶</a></h3>
-<p>You must create an HFT callback function in order to successfully export an HFT. It is recommended that you place the application logic to create an HFT callback in the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> method. This is a handshaking method that enables your plugin to export an HFT. For information about handshaking, see <a class="reference external" href="Plugins_Pimech.html#50618406_89824">Handshaking</a>.</p>
+<span id="id8"></span><h3>Creating HFT callback functions<a class="headerlink" href="#creating-hft-callback-functions" title="Permalink to this headline">¶</a></h3>
+<p>You must create an HFT callback function in order to successfully export an HFT. It is recommended that you place the application logic to create an HFT callback in the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> method. This is a handshaking method that enables your plugin to export an HFT. For information about handshaking, see <a class="reference internal" href="Plugins_Pimech.html#handshaking"><span class="std std-ref">Handshaking</span></a>.</p>
 <p>To create an HFT callback function, declare an HFT <code class="docutils literal notranslate"><span class="pre">ServerProvideHFTProc</span></code> object that represents the callback:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">HFTServerProvideHFTProc</span> <span class="n">provideMyHFTCallback</span>
 </pre></div>
@@ -1034,7 +1034,7 @@
 <p>The callback function is invoked when another plugin attempts to use the HFT. After you create an HFT callback function, you can invoke the <code class="docutils literal notranslate"><span class="pre">HFTServerNew</span></code> method to obtain an HFT <code class="docutils literal notranslate"><span class="pre">Server</span></code> object, which is responsible for handling requests to obtain or destroy its HFT. An <code class="docutils literal notranslate"><span class="pre">HFTServe</span></code> r object is required in order to create a new <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">HFTServerNew</span></code> method requires the following arguments:</p>
 <ul class="simple">
-<li><p>A character pointer that specifies the name of the HFT server. An HFT server name is used to import the HFT. (See <a class="reference external" href="Plugins_Hft.html#50618412_72145">Importing an existing HFT</a>.)</p></li>
+<li><p>A character pointer that specifies the name of the HFT server. An HFT server name is used to import the HFT. (See <a class="reference internal" href="#importing-an-existing-hft"><span class="std std-ref">Importing an existing HFT</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">HFTServerProvideHFTProc</span></code> object that specifies the HFT callback function.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">HFTServerDestroyProc</span></code> object that specifies the HFT callback function that releases memory from the HFT. This argument is optional and you can specify <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
 <li><p>A pointer to user-supplied data to pass to the HFT server. This argument is optional and you can specify <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
@@ -1064,18 +1064,18 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the previous code example, the <code class="docutils literal notranslate"><span class="pre">gMyHFT</span></code>, <code class="docutils literal notranslate"><span class="pre">gMyHFTServer</span></code>, and <code class="docutils literal notranslate"><span class="pre">gSomethingWentWrong</span></code> variables are declared as global variables. To view the complete code example, including the location of where these global variables are declared, see <a class="reference external" href="Plugins_Hft.html#50618412_55636">Examining HFT header and source files</a>.</p>
+<p>In the previous code example, the <code class="docutils literal notranslate"><span class="pre">gMyHFT</span></code>, <code class="docutils literal notranslate"><span class="pre">gMyHFTServer</span></code>, and <code class="docutils literal notranslate"><span class="pre">gSomethingWentWrong</span></code> variables are declared as global variables. To view the complete code example, including the location of where these global variables are declared, see <a class="reference internal" href="#examining-hft-header-and-source-files"><span class="std std-ref">Examining HFT header and source files</span></a>.</p>
 </div>
 </div>
 <div class="section" id="creating-new-host-function-tables">
-<h3>Creating new Host Function Tables<a class="headerlink" href="#creating-new-host-function-tables" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>Creating new Host Function Tables<a class="headerlink" href="#creating-new-host-function-tables" title="Permalink to this headline">¶</a></h3>
 <p>You can create a new HFT by performing the following tasks within the HFT callback function that you define:</p>
 <ol class="arabic simple">
 <li><p>Create an <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">HFTNew</span></code> method. This method requires an <code class="docutils literal notranslate"><span class="pre">HFTServer</span></code> object and the number of entries in the new HFT as arguments. The number of entries determines how many methods that the HFT contains. Each method occupies one entry.</p></li>
 <li><p>Invoke the <code class="docutils literal notranslate"><span class="pre">HFTReplaceEntry</span></code> method to populate the entries in the <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object with pointers to the HFT methods. This method requires the following arguments:</p>
 <ul class="simple">
 <li><p>An HFT object that you want to populate.</p></li>
-<li><p>The entry in the <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object to replace. You can specify an index value that is specified in the enumeration that you created. For example, you can specify <code class="docutils literal notranslate"><span class="pre">BeepTwiceSEL</span></code>. (See <a class="reference external" href="Plugins_Hft.html#50618412_49266">Creating HFT method definitions</a>.)</p></li>
+<li><p>The entry in the <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object to replace. You can specify an index value that is specified in the enumeration that you created. For example, you can specify <code class="docutils literal notranslate"><span class="pre">BeepTwiceSEL</span></code>. (See <a class="reference internal" href="#creating-hft-method-definitions"><span class="std std-ref">Creating HFT method definitions</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">HFTEntry</span></code> object that represents a method that will become available through the HFT. You can, for example, reference the <code class="docutils literal notranslate"><span class="pre">BeepTwiceImplementation</span></code> method by passing the <code class="docutils literal notranslate"><span class="pre">ASCallbackCreateReplacement</span></code> method, as shown in the following example:</p></li>
 </ul>
 </li>
@@ -1087,7 +1087,7 @@
 <li><p>The new entry’s properties. Currently, only <code class="docutils literal notranslate"><span class="pre">HFTEntryReplaceable</span></code> is defined.</p></li>
 </ul>
 <p>You must invoke the <code class="docutils literal notranslate"><span class="pre">HFTReplaceEntry</span></code> method for each method that you expose through the HFT. For example, if you expose three methods through the HFT, then you invoke the <code class="docutils literal notranslate"><span class="pre">HFTReplaceEntry</span></code> method three times.</p>
-<p>The following code example shows the syntax of the <code class="docutils literal notranslate"><span class="pre">ProvideMyHFT</span></code> method, which is the HFT callback function defined in the previous section. Within this method, a new HFT is created. For information about HFT callback methods, see <a class="reference external" href="Plugins_Hft.html#50618412_88064">Creating HFT callback functions</a>.</p>
+<p>The following code example shows the syntax of the <code class="docutils literal notranslate"><span class="pre">ProvideMyHFT</span></code> method, which is the HFT callback function defined in the previous section. Within this method, a new HFT is created. For information about HFT callback methods, see <a class="reference internal" href="#creating-hft-callback-functions"><span class="std std-ref">Creating HFT callback functions</span></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCB1</span> <span class="n">HFT</span> <span class="n">ACCB2</span> <span class="n">ProvideMyHFT</span><span class="p">(</span><span class="n">HFTServer</span> <span class="n">server</span><span class="p">,</span> <span class="n">ASUns32</span> <span class="n">version</span><span class="p">,</span><span class="n">void</span> <span class="o">*</span><span class="n">rock</span><span class="p">)</span>
 <span class="p">{</span>
 
@@ -1130,10 +1130,10 @@
 </div>
 </div>
 <div class="section" id="examining-hft-header-and-source-files">
-<h3>Examining HFT header and source files<a class="headerlink" href="#examining-hft-header-and-source-files" title="Permalink to this headline">¶</a></h3>
+<span id="id10"></span><h3>Examining HFT header and source files<a class="headerlink" href="#examining-hft-header-and-source-files" title="Permalink to this headline">¶</a></h3>
 <p>To make it clear how to create HFTs, this section shows a typical header and source file that is used to create an HFT. All concepts that are discussed up to this point are shown.</p>
 <div class="section" id="examining-an-hft-header-file">
-<h4>Examining an HFT header file<a class="headerlink" href="#examining-an-hft-header-file" title="Permalink to this headline">¶</a></h4>
+<span id="id11"></span><h4>Examining an HFT header file<a class="headerlink" href="#examining-an-hft-header-file" title="Permalink to this headline">¶</a></h4>
 <p>The following code example shows the syntax of a header file named myhft.h that is used to define HFT constructs.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &quot;corcalls.h&quot;</span>
 <span class="c1">#include &quot;avcalls.h&quot;</span>
@@ -1169,8 +1169,8 @@
 </div>
 </div>
 <div class="section" id="examining-an-hft-source-file">
-<h4>Examining an HFT source file<a class="headerlink" href="#examining-an-hft-source-file" title="Permalink to this headline">¶</a></h4>
-<p>The following code example shows the syntax of a source file used to create an HFT. Notice that the methods (<code class="docutils literal notranslate"><span class="pre">BeepOnceImplementation</span></code>, <code class="docutils literal notranslate"><span class="pre">BeepTwiceImplementation</span></code>, and <code class="docutils literal notranslate"><span class="pre">BeepNTimesImplementation</span></code> ) that the HFT will make available to other plugins are defined. Also notice that the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> method is defined. For information about this method, see <a class="reference external" href="Plugins_Pimech.html#50618406_19533">Importing HFTs and registering for notifications</a>.</p>
+<span id="id12"></span><h4>Examining an HFT source file<a class="headerlink" href="#examining-an-hft-source-file" title="Permalink to this headline">¶</a></h4>
+<p>The following code example shows the syntax of a source file used to create an HFT. Notice that the methods (<code class="docutils literal notranslate"><span class="pre">BeepOnceImplementation</span></code>, <code class="docutils literal notranslate"><span class="pre">BeepTwiceImplementation</span></code>, and <code class="docutils literal notranslate"><span class="pre">BeepNTimesImplementation</span></code> ) that the HFT will make available to other plugins are defined. Also notice that the <code class="docutils literal notranslate"><span class="pre">PluginExportHFTs</span></code> method is defined. For information about this method, see <a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications"><span class="std std-ref">Importing HFTs and registering for notifications</span></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="c1">#include &quot;corcalls.h&quot;</span>
  <span class="c1">#include &quot;avcalls.h&quot;</span>
  <span class="c1">#include &quot;coscalls.h&quot;</span>
@@ -1287,7 +1287,7 @@
 </div>
 </div>
 <div class="section" id="importing-an-existing-hft">
-<h2>Importing an existing HFT<a class="headerlink" href="#importing-an-existing-hft" title="Permalink to this headline">¶</a></h2>
+<span id="id13"></span><h2>Importing an existing HFT<a class="headerlink" href="#importing-an-existing-hft" title="Permalink to this headline">¶</a></h2>
 <p>You must import an existing HFT to invoke methods that are exposed through the HFT. To import an existing HFT, you must invoke the <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method within the <code class="docutils literal notranslate"><span class="pre">PluginImportReplaceAndRegister</span></code> handshaking method. The <code class="docutils literal notranslate"><span class="pre">ASExtensionMgrGetHFT</span></code> method requires the following arguments:</p>
 <ul class="simple">
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> object that specifies the HFT server that corresponds to the HFT to import</p></li>
@@ -1307,7 +1307,7 @@
 </div>
 </div>
 <div class="section" id="invoking-hft-methods">
-<h2>Invoking HFT methods<a class="headerlink" href="#invoking-hft-methods" title="Permalink to this headline">¶</a></h2>
+<span id="id14"></span><h2>Invoking HFT methods<a class="headerlink" href="#invoking-hft-methods" title="Permalink to this headline">¶</a></h2>
 <p>After you import an HFT, you can invoke a method that it has made available. For example, after you import the <code class="docutils literal notranslate"><span class="pre">MyHFT</span></code> HFT, you can invoke the following methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">BeepOnce</span></code></p></li>
@@ -1321,7 +1321,7 @@
 <p>If you do not include the appropriate header file, you will receive a compile error.</p>
 </div>
 <div class="section" id="replacing-hft-methods">
-<h2>Replacing HFT methods<a class="headerlink" href="#replacing-hft-methods" title="Permalink to this headline">¶</a></h2>
+<span id="id15"></span><h2>Replacing HFT methods<a class="headerlink" href="#replacing-hft-methods" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to replace methods that are located in existing HFTs. For example, a plugin could use this mechanism to change the appearance of all alert boxes displayed by Acrobat or Adobe Reader, or to override file opening behavior.</p>
 <p>The following table lists all the replaceable Acrobat and Adobe Reader methods.</p>
 <table class="docutils align-default">
@@ -1419,11 +1419,11 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the previous code example, an <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object named <code class="docutils literal notranslate"><span class="pre">gMyHTF</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">REPLACE</span></code> macro. To execute this example, you must create this object. (See <a class="reference external" href="Plugins_Hft.html#50618412_31298">Exporting host function tables</a>.)</p>
+<p>In the previous code example, an <code class="docutils literal notranslate"><span class="pre">HFT</span></code> object named <code class="docutils literal notranslate"><span class="pre">gMyHTF</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">REPLACE</span></code> macro. To execute this example, you must create this object. (See <a class="reference internal" href="#exporting-host-function-tables"><span class="std std-ref">Exporting host function tables</span></a>.)</p>
 </div>
 </div>
 <div class="section" id="migrating-non-hft-pdf-library-applications-to-hft-applications">
-<h2>Migrating non-HFT PDF Library applications to HFT applications<a class="headerlink" href="#migrating-non-hft-pdf-library-applications-to-hft-applications" title="Permalink to this headline">¶</a></h2>
+<span id="id16"></span><h2>Migrating non-HFT PDF Library applications to HFT applications<a class="headerlink" href="#migrating-non-hft-pdf-library-applications-to-hft-applications" title="Permalink to this headline">¶</a></h2>
 <p>In previous versions of Acrobat, a PDF Library application did not support use of HFTs. However, as of Acrobat 8, PDF Library applications are able to link to the PDF Library DLL file using HFTs. As a result, the PDF Library API is more closely aligned to the Acrobat core API.</p>
 <p>You can migrate existing non-HFT PDF Library applications to HFT PDF Library applications by performing the following tasks:</p>
 <ol class="arabic simple">
@@ -1478,7 +1478,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

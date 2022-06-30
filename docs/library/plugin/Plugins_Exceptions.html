@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,14 +871,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="handling-exceptions">
-<h1>Handling Exceptions<a class="headerlink" href="#handling-exceptions" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Handling Exceptions<a class="headerlink" href="#handling-exceptions" title="Permalink to this headline">¶</a></h1>
 <p>This chapter explains how to handle exceptions that are raised by Acrobat core API methods. Acrobat core API methods generally do not return error codes; instead, they raise exceptions when errors occur. Exceptions are handled by exception handlers. It is recommended that you create your own exception handlers to trap and handle exceptions.</p>
 <div class="section" id="creating-exception-handlers">
-<h2>Creating exception handlers<a class="headerlink" href="#creating-exception-handlers" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Creating exception handlers<a class="headerlink" href="#creating-exception-handlers" title="Permalink to this headline">¶</a></h2>
 <p>Exception handlers typically perform object cleanup (such as releasing memory) when an exception occurs. Your exception handler can either deal with the exception or pass it along to the next handler on the exception handler stack.</p>
 <p>You use the <code class="docutils literal notranslate"><span class="pre">DURING</span></code>, <code class="docutils literal notranslate"><span class="pre">HANDLER</span></code>, and <code class="docutils literal notranslate"><span class="pre">END_HANDLER</span></code> macros to define exception handlers. Application logic that may raise an exception appears between the <code class="docutils literal notranslate"><span class="pre">DURING</span></code> and <code class="docutils literal notranslate"><span class="pre">HANDLER</span></code> macros. Application logic that handles exceptions appears between the <code class="docutils literal notranslate"><span class="pre">HANDLER</span></code> and <code class="docutils literal notranslate"><span class="pre">END_HANDLER</span></code> macros.</p>
 <p>If the method raises an exception, the handler code is executed; otherwise, it is not executed. When an exception occurs, your handler can access the exception error code by using the <code class="docutils literal notranslate"><span class="pre">ERRORCODE</span></code> macro. The value returned by the <code class="docutils literal notranslate"><span class="pre">ERRORCODE</span></code> macro does not change until another exception is raised. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p>
-<p>The following code example declares an error handler that is active during a call to the <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromFile</span></code> method. If an exception occurs, an error message is displayed to the user. For information about opening a PDF document by using the <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromFile</span></code> method, see <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDF documents</a>.</p>
+<p>The following code example declares an error handler that is active during a call to the <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromFile</span></code> method. If an exception occurs, an error message is displayed to the user. For information about opening a PDF document by using the <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromFile</span></code> method, see <span class="xref std std-ref">Opening PDF documents</span>.</p>
 <ol class="arabic simple">
 <li><p>Creating an exception handler</p></li>
 </ol>
@@ -895,7 +895,7 @@
 </div>
 </div>
 <div class="section" id="returning-a-value-from-an-exception-handler">
-<h2>Returning a value from an exception handler<a class="headerlink" href="#returning-a-value-from-an-exception-handler" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Returning a value from an exception handler<a class="headerlink" href="#returning-a-value-from-an-exception-handler" title="Permalink to this headline">¶</a></h2>
 <p>To return a value from a <code class="docutils literal notranslate"><span class="pre">DURING</span></code> <code class="docutils literal notranslate"><span class="pre">HANDLER</span></code> block, do not use a return statement. Instead, use the <code class="docutils literal notranslate"><span class="pre">E_RETURN(x)</span></code> or <code class="docutils literal notranslate"><span class="pre">E_RTRN_VOID</span></code> macros. The <code class="docutils literal notranslate"><span class="pre">E_RETURN(x)</span></code> macro returns a value and the <code class="docutils literal notranslate"><span class="pre">E_RTRN_VOID</span></code> macro does not return a value (this is equivalent to a <code class="docutils literal notranslate"><span class="pre">void</span></code> function).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">E_RETURN(x)</span></code> macro must not invoke a function that might raise an exception, because the macro pops an exception frame off the stack before evaluating the expression to return. If this evaluation raises an exception, it does not call your handler, but instead calls the next handler up the stack. For example, consider the following application logic:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E_RETURN</span><span class="p">(</span><span class="n">myfn</span><span class="p">());</span>
@@ -910,7 +910,7 @@
 <p>Now, if <code class="docutils literal notranslate"><span class="pre">myfn</span></code> raises an exception, your handler will be executed.</p>
 </div>
 <div class="section" id="raising-exceptions">
-<h2>Raising exceptions<a class="headerlink" href="#raising-exceptions" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Raising exceptions<a class="headerlink" href="#raising-exceptions" title="Permalink to this headline">¶</a></h2>
 <p>Although many Acrobat core API methods raise exceptions, some methods do return error codes or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if something goes wrong. Inside a <code class="docutils literal notranslate"><span class="pre">DURING</span> <span class="pre">HANDLER</span></code> block, if your plugin detects one of these cases, it can invoke the <code class="docutils literal notranslate"><span class="pre">ASRaise</span></code> method, which generates an exception. This has the effect of causing the <code class="docutils literal notranslate"><span class="pre">HANDLER</span> <span class="pre">END_HANDLER</span></code> code to execute, just as if the original method raised an exception.</p>
 <p>You can also use the <code class="docutils literal notranslate"><span class="pre">RERAISE</span></code> macro when you do not want your exception handler to handle an exception, but want to pass the exception to the next exception handler on the stack.</p>
 <div class="admonition note">
@@ -919,7 +919,7 @@
 </div>
 </div>
 <div class="section" id="exception-handling-scenarios">
-<h2>Exception handling scenarios<a class="headerlink" href="#exception-handling-scenarios" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>Exception handling scenarios<a class="headerlink" href="#exception-handling-scenarios" title="Permalink to this headline">¶</a></h2>
 <p>This section discusses the following potential problems with exception handling:</p>
 <ul class="simple">
 <li><p>Goto statements</p></li>
@@ -927,7 +927,7 @@
 <li><p>Register usage</p></li>
 </ul>
 <div class="section" id="using-goto-statements">
-<h3>Using goto statements<a class="headerlink" href="#using-goto-statements" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>Using goto statements<a class="headerlink" href="#using-goto-statements" title="Permalink to this headline">¶</a></h3>
 <p>It is recommended that you not use a <code class="docutils literal notranslate"><span class="pre">goto</span></code> within a <code class="docutils literal notranslate"><span class="pre">DURING</span> <span class="pre">HANDLER</span></code> block. Jumping outside a <code class="docutils literal notranslate"><span class="pre">DURING</span> <span class="pre">HANDLER</span></code> block disrupts the stack frame, as shown in the following example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DURING</span>
      <span class="n">goto</span> <span class="n">error</span><span class="p">;</span>
@@ -949,7 +949,7 @@
 <p>For information about the <code class="docutils literal notranslate"><span class="pre">goto</span></code> statement, see the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
 </div>
 <div class="section" id="using-nested-exception-handlers">
-<h3>Using nested exception handlers<a class="headerlink" href="#using-nested-exception-handlers" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3>Using nested exception handlers<a class="headerlink" href="#using-nested-exception-handlers" title="Permalink to this headline">¶</a></h3>
 <p>Avoid using nested exception handlers within a single function. The exception handling macros change the call stack, and nesting them can disrupt the stack. Your plugin can safely nest an exception handler if the nested handler is in another function called inside the <code class="docutils literal notranslate"><span class="pre">DURING</span> <span class="pre">HANDLER</span></code> block, as shown in the following example.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DURING</span>
 <span class="o">...</span>
@@ -1004,7 +1004,7 @@
 </div>
 </div>
 <div class="section" id="using-register-variables">
-<h3>Using register variables<a class="headerlink" href="#using-register-variables" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Using register variables<a class="headerlink" href="#using-register-variables" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">DURING</span></code> and <code class="docutils literal notranslate"><span class="pre">HANDLER</span></code> macros use the standard C <code class="docutils literal notranslate"><span class="pre">setjmp/longjmp</span></code> mechanism. The <code class="docutils literal notranslate"><span class="pre">DURING</span></code> macro calls <code class="docutils literal notranslate"><span class="pre">setjmp</span></code>. An exception results in a <code class="docutils literal notranslate"><span class="pre">longjmp</span></code> to the context that was saved by the most recent <code class="docutils literal notranslate"><span class="pre">setjmp</span></code>. When a <code class="docutils literal notranslate"><span class="pre">longjmp</span></code> occurs, all registers, including those containing variables the compiler optimized into register variables, are restored to the values they held when the <code class="docutils literal notranslate"><span class="pre">setjmp</span></code> occurred.</p>
 <p>As a result, the state of local variables that have been optimized into registers is unpredictable when the exception handler is invoked. To avoid this situation, declare all variables that are set in the main body of the code and used in the exception handler or beyond (if the handler lets execution continue) as volatile. This ensures that they are never optimized into register variables, but are always referenced from memory.</p>
 <p>When using the <code class="docutils literal notranslate"><span class="pre">volatile</span></code> statement, place the keyword in the correct location, such as the following:</p>
@@ -1032,7 +1032,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

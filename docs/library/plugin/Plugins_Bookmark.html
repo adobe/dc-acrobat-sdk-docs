@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,10 +871,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-bookmarks">
-<h1>Working with Bookmarks<a class="headerlink" href="#working-with-bookmarks" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Bookmarks<a class="headerlink" href="#working-with-bookmarks" title="Permalink to this headline">¶</a></h1>
 <p>You can use the core API to create new bookmarks and search for existing ones. A bookmark is a link with representative text on the Bookmarks tab in the navigation pane. Each bookmark navigates to a different view or page within a PDF document. You can also use a bookmark to navigate to a specific destination within a PDF document, to another document (PDF or other), or to a web page. Bookmarks can also perform actions, such as executing a menu item or displaying a graphic file.</p>
 <div class="section" id="about-bookmarks">
-<h2>About bookmarks<a class="headerlink" href="#about-bookmarks" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About bookmarks<a class="headerlink" href="#about-bookmarks" title="Permalink to this headline">¶</a></h2>
 <p>Bookmarks are represented by a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object. All bookmarks have the following attributes:</p>
 <ul class="simple">
 <li><p>A title that appears in Adobe Reader or Acrobat.</p></li>
@@ -891,15 +891,15 @@
 </ul>
 </div>
 <div class="section" id="creating-bookmarks">
-<h2>Creating bookmarks<a class="headerlink" href="#creating-bookmarks" title="Permalink to this headline">¶</a></h2>
-<p>Before you can create a bookmark, you must create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document to which the bookmark is added. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p>
+<span id="id3"></span><h2>Creating bookmarks<a class="headerlink" href="#creating-bookmarks" title="Permalink to this headline">¶</a></h2>
+<p>Before you can create a bookmark, you must create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document to which the bookmark is added. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p>
 <p>To create bookmarks for a PDF document, perform the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Get the root of the PDF document’s bookmark tree by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method. This method requires a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object and returns a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the document’s root bookmark. The document’s root bookmark does not appear in Adobe Reader or Acrobat.</p></li>
 <li><p>Create another <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the bookmark to add to the document’s root bookmark by invoking the <code class="docutils literal notranslate"><span class="pre">PDBookmarkAddNewChild</span></code> method. This method requires a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the parent bookmark (in this case the parent bookmark is also the document’s root bookmark) and an <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> object that represents the bookmark’s title.</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents a sibling bookmark to the bookmark that was added to the document’s root bookmark (the sibling bookmark is also a child of the document’s root bookmark). You can perform this task by invoking the <code class="docutils literal notranslate"><span class="pre">PDBookmarkAddNewSibling</span></code> method. This method requires a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the new bookmark’s sibling bookmark and an <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> object that represents the bookmark’s title.</p></li>
 </ol>
-<p>The following code example adds two new bookmarks to a PDF document. After each bookmark is created, the <code class="docutils literal notranslate"><span class="pre">PDBookmarkIsValid</span></code> method is invoked to determine whether the bookmark is valid. The name of the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object used in this code example is <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code>. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p>
+<p>The following code example adds two new bookmarks to a PDF document. After each bookmark is created, the <code class="docutils literal notranslate"><span class="pre">PDBookmarkIsValid</span></code> method is invoked to determine whether the bookmark is valid. The name of the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object used in this code example is <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code>. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Declare</span> <span class="n">a</span> <span class="n">bookmark</span> <span class="nb">object</span>
 <span class="n">PDBookmark</span> <span class="n">rootBookmark</span><span class="p">;</span>
 <span class="n">PDBookmark</span> <span class="n">childBookmark</span> <span class="p">;</span>
@@ -925,22 +925,22 @@
 </pre></div>
 </div>
 <div class="section" id="defining-bookmark-actions">
-<h3>Defining bookmark actions<a class="headerlink" href="#defining-bookmark-actions" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Defining bookmark actions<a class="headerlink" href="#defining-bookmark-actions" title="Permalink to this headline">¶</a></h3>
 <p>After you create a new bookmark, you must define an action that occurs when a user clicks on the bookmark. Otherwise, nothing occurs when a user clicks on the bookmark.</p>
-<p>To create an action for a bookmark, you must create a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object that represents the action that occurs when a user clicks on a bookmark. Once you create a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object, you can assign it to a bookmark. (See <a class="reference external" href="Plugins_Bookmark.html#50618419_70965">Assigning an action to a bookmark</a>.)</p>
+<p>To create an action for a bookmark, you must create a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object that represents the action that occurs when a user clicks on a bookmark. Once you create a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object, you can assign it to a bookmark. (See <a class="reference internal" href="#assigning-an-action-to-a-bookmark"><span class="std std-ref">Assigning an action to a bookmark</span></a>.)</p>
 <p>As specified earlier in this chapter, a typical bookmark action is to move to another location in the current document. To illustrate how to create a bookmark action, this section defines a bookmark action that displays a specific page in a PDF document when a user clicks the bookmark.</p>
 <p>To define a bookmark action that generates a specific view of a PDF document, you create a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">PDActionNewFromDest</span></code> method. This method creates a new action that directs the user to the specified destination view and requires the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> that represents the PDF document for which the action is created.</p></li>
-<li><p>A <code class="docutils literal notranslate"><span class="pre">PDViewDestination</span></code> object that represents a specific view in the PDF document. (See <a class="reference external" href="Plugins_Bookmark.html#50618419_74543">Creating a PDViewDestination object</a>.)</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDViewDestination</span></code> object that represents a specific view in the PDF document. (See <a class="reference internal" href="#creating-a-pdviewdestination-object"><span class="std std-ref">Creating a PDViewDestination object</span></a>.)</p></li>
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> that represents the destination document. This object is the same object that is specified as the first parameter.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">PDActionNewFromDest</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> method.</p>
 <div class="section" id="creating-a-pdviewdestination-object">
-<h4>Creating a PDViewDestination object<a class="headerlink" href="#creating-a-pdviewdestination-object" title="Permalink to this headline">¶</a></h4>
+<span id="id5"></span><h4>Creating a PDViewDestination object<a class="headerlink" href="#creating-a-pdviewdestination-object" title="Permalink to this headline">¶</a></h4>
 <p>You must create a <code class="docutils literal notranslate"><span class="pre">PDViewDestination</span></code> object in order to invoke the <code class="docutils literal notranslate"><span class="pre">PDActionNewFromDest</span></code> method. To create a <code class="docutils literal notranslate"><span class="pre">PDViewDestination</span></code> object, invoke the <code class="docutils literal notranslate"><span class="pre">AVPageViewToViewDest</span></code> method and pass the following arguments:</p>
 <ul class="simple">
-<li><p>An <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that represents the page view from which the destination is created. For information about creating this object, see <a class="reference external" href="Plugins_Bookmark.html#50618419_24473">Creating a AVPageView object</a>.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that represents the page view from which the destination is created. For information about creating this object, see <a class="reference internal" href="#creating-a-avpageview-object"><span class="std std-ref">Creating a AVPageView object</span></a>.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> object that specifies the fit type of the view destination (see the table that follows this list).</p></li>
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document for which the view is established.</p></li>
 </ul>
@@ -984,7 +984,7 @@
 </table>
 </div>
 <div class="section" id="creating-a-avpageview-object">
-<h4>Creating a AVPageView object<a class="headerlink" href="#creating-a-avpageview-object" title="Permalink to this headline">¶</a></h4>
+<span id="id6"></span><h4>Creating a AVPageView object<a class="headerlink" href="#creating-a-avpageview-object" title="Permalink to this headline">¶</a></h4>
 <p>You must create an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object that represents the page view in order to invoke the <code class="docutils literal notranslate"><span class="pre">AVPageViewToViewDest</span></code> method. You can create an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocGetPageView</span></code> method. This method requires an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> that represents a PDF document whose page view is obtained and returns an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object.</p>
 <p>You can create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object that is based on the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that already exists by invoking the <code class="docutils literal notranslate"><span class="pre">AVDocFromPDDo</span></code> c method and passing the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object. You can invoke this method as an argument for the <code class="docutils literal notranslate"><span class="pre">AVDocGetPageView</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">AVPageView</span> <span class="n">myPageView</span> <span class="o">=</span> <span class="n">AVDocGetPageView</span><span class="p">(</span><span class="n">AVDocFromPDDoc</span><span class="p">(</span><span class="n">myPDDoc</span><span class="p">));</span>
@@ -997,7 +997,7 @@
 </div>
 </div>
 <div class="section" id="assigning-an-action-to-a-bookmark">
-<h4>Assigning an action to a bookmark<a class="headerlink" href="#assigning-an-action-to-a-bookmark" title="Permalink to this headline">¶</a></h4>
+<span id="id7"></span><h4>Assigning an action to a bookmark<a class="headerlink" href="#assigning-an-action-to-a-bookmark" title="Permalink to this headline">¶</a></h4>
 <p>After you create both an <code class="docutils literal notranslate"><span class="pre">AVPageView</span></code> object and an <code class="docutils literal notranslate"><span class="pre">PDViewDestination</span></code> object, you can create a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object and assign it to a specific bookmark by invoking the <code class="docutils literal notranslate"><span class="pre">PDBookmarkSetAction</span></code> method and passing the <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object and the <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object as arguments.</p>
 <p>The following code example creates a <code class="docutils literal notranslate"><span class="pre">PDAction</span></code> object and assigns it to a bookmark that is represented by a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object named <code class="docutils literal notranslate"><span class="pre">childBookmark</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">PDDoc</span> <span class="nb">object</span> <span class="n">based</span> <span class="n">on</span> <span class="n">the</span> <span class="n">current</span> <span class="n">PDF</span> <span class="n">document</span>
@@ -1030,23 +1030,23 @@
 </div>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>When running this code example, you must have the PDF document on which the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object is based open. Otherwise, a run-time error occurs. Also, you must create a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object named <code class="docutils literal notranslate"><span class="pre">childBookmark</span></code>. (See <a class="reference external" href="Plugins_Bookmark.html#50618419_40935">Creating bookmarks</a>.)</p>
+<p>When running this code example, you must have the PDF document on which the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object is based open. Otherwise, a run-time error occurs. Also, you must create a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object named <code class="docutils literal notranslate"><span class="pre">childBookmark</span></code>. (See <a class="reference internal" href="#creating-bookmarks"><span class="std std-ref">Creating bookmarks</span></a>.)</p>
 </div>
 </div>
 </div>
 <div class="section" id="removing-bookmark-actions">
-<h3>Removing bookmark actions<a class="headerlink" href="#removing-bookmark-actions" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Removing bookmark actions<a class="headerlink" href="#removing-bookmark-actions" title="Permalink to this headline">¶</a></h3>
 <p>You can remove an action from a bookmark by invoking the <code class="docutils literal notranslate"><span class="pre">PDBookmarkRemoveAction</span></code> method. After you remove a bookmark, you can add a new action. The <code class="docutils literal notranslate"><span class="pre">PDBookmarkRemoveAction</span></code> method requires a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the bookmark from which the action is removed.</p>
 </div>
 <div class="section" id="opening-and-closing-bookmarks">
-<h3>Opening and closing bookmarks<a class="headerlink" href="#opening-and-closing-bookmarks" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>Opening and closing bookmarks<a class="headerlink" href="#opening-and-closing-bookmarks" title="Permalink to this headline">¶</a></h3>
 <p>You can programmatically open and close a bookmark. To open and close a bookmark, invoke the <code class="docutils literal notranslate"><span class="pre">PDBookmarkSetOpen</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object to open or close.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> value that specifies whether to open or close the bookmark. The value <code class="docutils literal notranslate"><span class="pre">true</span></code> specifies to open the bookmark and the value <code class="docutils literal notranslate"><span class="pre">false</span></code> specifies to close the bookmark.</p></li>
 </ul>
 <p>Before you invoke the <code class="docutils literal notranslate"><span class="pre">PDBookmarkSetOpen</span></code> method, it is recommended that you invoke the <code class="docutils literal notranslate"><span class="pre">PDBookmarkIsOpen</span></code> method to determine whether the bookmark is open. This method requires a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object and returns an <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> value. If the bookmark is open, then <code class="docutils literal notranslate"><span class="pre">true</span></code> is returned.</p>
-<p>The following code example retrieves and opens a bookmark whose title is <em>Samples</em>. For information about retrieving a specific bookmark, see <a class="reference external" href="Plugins_Bookmark.html#50618419_90691">Retrieving a specific bookmark</a>.</p>
+<p>The following code example retrieves and opens a bookmark whose title is <em>Samples</em>. For information about retrieving a specific bookmark, see <a class="reference internal" href="#retrieving-a-specific-bookmark"><span class="std std-ref">Retrieving a specific bookmark</span></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>//Retrieve a bookmark whose title is Samples
 PDBookmark rootBookmark, myBookmark;
 char* bookmarkTitle = &quot;Samples&quot;;
@@ -1076,12 +1076,12 @@ else
 </div>
 </div>
 <div class="section" id="retrieving-bookmarks">
-<h2>Retrieving bookmarks<a class="headerlink" href="#retrieving-bookmarks" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Retrieving bookmarks<a class="headerlink" href="#retrieving-bookmarks" title="Permalink to this headline">¶</a></h2>
 <p>You can retrieve the root bookmark, retrieve a specific bookmark, or retrieve all bookmarks that are located within a PDF document.</p>
 <div class="section" id="retrieving-the-root-bookmark">
-<h3>Retrieving the root bookmark<a class="headerlink" href="#retrieving-the-root-bookmark" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3>Retrieving the root bookmark<a class="headerlink" href="#retrieving-the-root-bookmark" title="Permalink to this headline">¶</a></h3>
 <p>Every PDF document has a root bookmark. The root bookmark does not represent a physical bookmark, but is the root from which all bookmarks in the tree are descended.</p>
-<p>The following code example shows how to get a PDF document’s root bookmark by creating application logic within a user-defined function named <code class="docutils literal notranslate"><span class="pre">GetFirstBookmark</span></code>. First, the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method is invoked to get the bookmark root. This method requires a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document from which the root bookmark is retrieved and returns a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the root bookmark. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p>
+<p>The following code example shows how to get a PDF document’s root bookmark by creating application logic within a user-defined function named <code class="docutils literal notranslate"><span class="pre">GetFirstBookmark</span></code>. First, the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method is invoked to get the bookmark root. This method requires a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document from which the root bookmark is retrieved and returns a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the root bookmark. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p>
 <p>Next, the <code class="docutils literal notranslate"><span class="pre">PDBookmarkGetFirstChild</span></code> method is invoked to get the first child of the root. If there are no bookmarks, <code class="docutils literal notranslate"><span class="pre">PDBookmarkGetFirstChild</span></code> returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDBookmark</span> <span class="n">GetFirstBookmark</span><span class="p">(</span><span class="n">PDDoc</span> <span class="n">doc</span><span class="p">)</span>
 <span class="p">{</span>
@@ -1094,7 +1094,7 @@ else
 </div>
 </div>
 <div class="section" id="retrieving-a-specific-bookmark">
-<h3>Retrieving a specific bookmark<a class="headerlink" href="#retrieving-a-specific-bookmark" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>Retrieving a specific bookmark<a class="headerlink" href="#retrieving-a-specific-bookmark" title="Permalink to this headline">¶</a></h3>
 <p>You can retrieve a specific bookmark by specifying its title. The following code example retrieves a specific bookmark by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method to get the document’s root bookmark as a starting point for the search. It then invokes the <code class="docutils literal notranslate"><span class="pre">PDBookmarkGetByTitle</span></code> method to retrieve the first bookmark whose title matches the specified title. This method requires the following arguments:</p>
 <ul class="simple">
 <li><p>The root of the bookmark tree that is searched.</p></li>
@@ -1122,11 +1122,11 @@ else
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the previous code example, a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method. For information about creating this object, see <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.</p>
+<p>In the previous code example, a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method. For information about creating this object, see <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.</p>
 </div>
 </div>
 <div class="section" id="retrieving-all-bookmarks">
-<h3>Retrieving all bookmarks<a class="headerlink" href="#retrieving-all-bookmarks" title="Permalink to this headline">¶</a></h3>
+<span id="id13"></span><h3>Retrieving all bookmarks<a class="headerlink" href="#retrieving-all-bookmarks" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to retrieve all bookmarks located within a PDF document. For example, you can retrieve the title of every bookmark that is located within a PDF document.</p>
 <p>The following code example creates a recursive user-defined function named <code class="docutils literal notranslate"><span class="pre">VisitAllBookmarks</span></code>. First it invokes the <code class="docutils literal notranslate"><span class="pre">PDBookmarkIsValid</span></code> method to ensure that the bookmark that is passed is valid (the root bookmark is always valid.)</p>
 <p>Second, this user-defined function retrieves the title of the bookmark by invoking the <code class="docutils literal notranslate"><span class="pre">PDBookmarkGetTitle</span></code> method. This method requires the following arguments:</p>
@@ -1182,11 +1182,11 @@ void VisitAllBookmarks (PDBookmark aBookmark)
 </div>
 </div>
 <div class="section" id="deleting-bookmarks">
-<h2>Deleting bookmarks<a class="headerlink" href="#deleting-bookmarks" title="Permalink to this headline">¶</a></h2>
+<span id="id14"></span><h2>Deleting bookmarks<a class="headerlink" href="#deleting-bookmarks" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to delete an existing bookmark. Deleting a bookmark deletes child bookmarks; however, PDF document content is not affected. To delete a bookmark, you must invoke the <code class="docutils literal notranslate"><span class="pre">PDBookmarkDestroy</span></code> method and pass a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents the bookmark to delete. For example, consider the bookmark structure shown in the following diagram.</p>
 <img alt="_images/bookmarkDel.png" src="_images/bookmarkDel.png" />
 <p>Assume, for example, that you want to delete the bookmark titled Copying Print files. Once you delete this bookmark, the API files and XDC files bookmarks are also deleted. To delete the Copying Print files bookmark, you must create a <code class="docutils literal notranslate"><span class="pre">PDBookmark</span></code> object that represents this bookmark and pass this object to the <code class="docutils literal notranslate"><span class="pre">PDBookmarkDestroy</span></code> method.</p>
-<p>The following code example deletes a bookmark. Included in this code example is application logic that retrieves a specific bookmark. (See <a class="reference external" href="Plugins_Bookmark.html#50618419_90691">Retrieving a specific bookmark</a>.)</p>
+<p>The following code example deletes a bookmark. Included in this code example is application logic that retrieves a specific bookmark. (See <a class="reference internal" href="#retrieving-a-specific-bookmark"><span class="std std-ref">Retrieving a specific bookmark</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Retrieve</span> <span class="n">a</span> <span class="n">bookmark</span> <span class="n">whose</span> <span class="n">title</span> <span class="ow">is</span> <span class="n">Samples</span>
  <span class="n">PDBookmark</span> <span class="n">rootBookmark</span><span class="p">,</span> <span class="n">myBookmark</span><span class="p">;</span>
 <span class="n">char</span><span class="o">*</span> <span class="n">bookmarkTitle</span> <span class="o">=</span> <span class="s2">&quot;Copying Print files&quot;</span><span class="p">;</span>
@@ -1210,7 +1210,7 @@ void VisitAllBookmarks (PDBookmark aBookmark)
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In the previous code example, a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method. For information about creating this object, see <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.</p>
+<p>In the previous code example, a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetBookmarkRoot</span></code> method. For information about creating this object, see <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.</p>
 </div>
 </div>
 </div>
@@ -1227,7 +1227,7 @@ void VisitAllBookmarks (PDBookmark aBookmark)
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

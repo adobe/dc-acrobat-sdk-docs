@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,7 +871,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="inserting-text-into-pdf-documents">
-<h1>Inserting Text into PDF Documents<a class="headerlink" href="#inserting-text-into-pdf-documents" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Inserting Text into PDF Documents<a class="headerlink" href="#inserting-text-into-pdf-documents" title="Permalink to this headline">¶</a></h1>
 <p>As stated earlier in this guide, the PDF Library API is a subset of the Acrobat core API that enables your application to interact and manipulate PDF documents. The PDF Library API is not used to create plugins for Adobe Reader or Acrobat. It is also not used to modify the user interface of Adobe Reader or Acrobat, such as by adding a toolbar or menu item.</p>
 <p>You can use the PDF Library API to programmatically insert text into a PDF document. This functionality is useful for dynamically updating a PDF document with information obtained during run-time. You can insert text into a PDF document by performing the following tasks:</p>
 <ol class="arabic simple">
@@ -890,8 +890,8 @@
 <p>Assume that all code examples specified in this chapter are located in an entry function named <code class="docutils literal notranslate"><span class="pre">MainProc</span></code>.</p>
 </div>
 <div class="section" id="creating-a-new-pdf-document">
-<h2>Creating a new PDF document<a class="headerlink" href="#creating-a-new-pdf-document" title="Permalink to this headline">¶</a></h2>
-<p>You can programmatic-ally create a new PDF document by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocCreate</span></code> method. This method returns a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that only contains one COS object, which is a Catalog. For information about COS objects, see <a class="reference external" href="Plugins_Cos.html#50618418_86959">Working with Cos Objects</a>.</p>
+<span id="id2"></span><h2>Creating a new PDF document<a class="headerlink" href="#creating-a-new-pdf-document" title="Permalink to this headline">¶</a></h2>
+<p>You can programmatic-ally create a new PDF document by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocCreate</span></code> method. This method returns a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that only contains one COS object, which is a Catalog. For information about COS objects, see <a class="reference internal" href="Plugins_Cos.html#working-with-cos-objects"><span class="std std-ref">Working with Cos Objects</span></a>.</p>
 <p>The following code example creates a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object by invoking <code class="docutils literal notranslate"><span class="pre">PDDocCreate</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PDDoc</span> <span class="n">pdDoc</span> <span class="p">;</span>
 <span class="n">pdDoc</span> <span class="o">=</span> <span class="n">DDocCreate</span><span class="p">();</span>
@@ -899,7 +899,7 @@
 </div>
 </div>
 <div class="section" id="creating-a-new-page">
-<h2>Creating a new page<a class="headerlink" href="#creating-a-new-page" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Creating a new page<a class="headerlink" href="#creating-a-new-page" title="Permalink to this headline">¶</a></h2>
 <p>You can create a new page by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocCreatePage</span></code> method. However, before invoking this method, set the page size by creating an <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object, which represents a rectangle region that specifies the page size. After you declare an <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object, you can specify the page size by setting the <code class="docutils literal notranslate"><span class="pre">ASFixedRect</span></code> object’s <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, and <code class="docutils literal notranslate"><span class="pre">bottom</span></code> attributes.</p>
 <p>Next, invoke the <code class="docutils literal notranslate"><span class="pre">PDDocCreatePage</span></code> method and pass the following arguments:</p>
 <ul class="simple">
@@ -923,7 +923,7 @@
 </div>
 </div>
 <div class="section" id="creating-a-container">
-<h2>Creating a container<a class="headerlink" href="#creating-a-container" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2>Creating a container<a class="headerlink" href="#creating-a-container" title="Permalink to this headline">¶</a></h2>
 <p>To insert text into a PDF document, you must create a PDF container. A container contains the modifiable contents of a PDF page. To create a PDF container, invoke the <code class="docutils literal notranslate"><span class="pre">PDPageAcquirePDEContent</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object.</p></li>
@@ -936,7 +936,7 @@
 </div>
 </div>
 <div class="section" id="acquiring-fonts">
-<h2>Acquiring fonts<a class="headerlink" href="#acquiring-fonts" title="Permalink to this headline">¶</a></h2>
+<span id="id5"></span><h2>Acquiring fonts<a class="headerlink" href="#acquiring-fonts" title="Permalink to this headline">¶</a></h2>
 <p>You must acquire the font that you will use to insert text into a PDF document. You can reference a font that is installed on the host computer by creating a <code class="docutils literal notranslate"><span class="pre">PDSysFont</span></code> object and use this object to create a <code class="docutils literal notranslate"><span class="pre">PDEFont</span></code> object, which represents the font that is used to draw text on a page. To acquire a font, perform the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDEFontAttrs</span></code> object.</p></li>
@@ -974,7 +974,7 @@
 </div>
 </div>
 <div class="section" id="creating-a-pdegraphicstate-object">
-<h2>Creating a PDEGraphicState object<a class="headerlink" href="#creating-a-pdegraphicstate-object" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2>Creating a PDEGraphicState object<a class="headerlink" href="#creating-a-pdegraphicstate-object" title="Permalink to this headline">¶</a></h2>
 <p>You must create a <code class="docutils literal notranslate"><span class="pre">PDEGraphicState</span></code> object that is used to define attributes of the <code class="docutils literal notranslate"><span class="pre">PDEText</span></code> object. After you create a <code class="docutils literal notranslate"><span class="pre">PDEGraphicState</span></code> object, set the following attributes:</p>
 <ul class="simple">
 <li><p><strong>strokeColorSpec</strong>: The stroke color specification. The default value is <code class="docutils literal notranslate"><span class="pre">DeviceGray</span></code>.</p></li>
@@ -996,7 +996,7 @@
 </div>
 </div>
 <div class="section" id="creating-an-asfixedmatrix-object">
-<h2>Creating an ASFixedMatrix object<a class="headerlink" href="#creating-an-asfixedmatrix-object" title="Permalink to this headline">¶</a></h2>
+<span id="id7"></span><h2>Creating an ASFixedMatrix object<a class="headerlink" href="#creating-an-asfixedmatrix-object" title="Permalink to this headline">¶</a></h2>
 <p>Create an <code class="docutils literal notranslate"><span class="pre">ASFixedMatrix</span></code> object that represents the transformation matrix for the text. By creating this object, you can set text properties such as the font size and the width and height of the text. The following code example creates an <code class="docutils literal notranslate"><span class="pre">ASFixedMatrix</span></code> object and sets its attributes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">an</span> <span class="n">ASFixedMatrix</span> <span class="nb">object</span>
 <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">textMatrix</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">textMatrix</span><span class="p">));</span>    <span class="o">/*</span> <span class="n">Set</span> <span class="n">the</span> <span class="n">buffer</span> <span class="n">size</span> <span class="o">*/</span>
@@ -1008,7 +1008,7 @@
 </div>
 </div>
 <div class="section" id="inserting-text">
-<h2>Inserting text<a class="headerlink" href="#inserting-text" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2>Inserting text<a class="headerlink" href="#inserting-text" title="Permalink to this headline">¶</a></h2>
 <p>You can insert text into the PDF document by performing the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDEText</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">PDETextCreate</span></code> method. This method does not require arguments.</p></li>
@@ -1019,12 +1019,12 @@
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> value that specifies the index after which to add the text run. You can specify <code class="docutils literal notranslate"><span class="pre">0</span></code> to add the text run to the beginning.</p></li>
 <li><p>A character pointer that specifies the text to insert into the PDF document.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> value that specifies the length of the text run.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">PDEFont</span></code> object that you created. (See <a class="reference external" href="Plugins_Insertext.html#50618411_68991">Acquiring fonts</a>.)</p></li>
-<li><p>The address of the <code class="docutils literal notranslate"><span class="pre">PDEGraphicState</span></code> object that you created. (See <a class="reference external" href="Plugins_Insertext.html#50618411_19751">Creating a PDEGraphicState object</a>.)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PDEFont</span></code> object that you created. (See <a class="reference internal" href="#acquiring-fonts"><span class="std std-ref">Acquiring fonts</span></a>.)</p></li>
+<li><p>The address of the <code class="docutils literal notranslate"><span class="pre">PDEGraphicState</span></code> object that you created. (See <a class="reference internal" href="#creating-a-pdegraphicstate-object"><span class="std std-ref">Creating a PDEGraphicState object</span></a>.)</p></li>
 <li><p>The size of the <code class="docutils literal notranslate"><span class="pre">PDEGraphicState</span></code> object. You can use the <code class="docutils literal notranslate"><span class="pre">sizeof</span></code> method to get this information.</p></li>
 <li><p>The address of the <code class="docutils literal notranslate"><span class="pre">PDETextState</span></code> object. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
 <li><p>The size of the <code class="docutils literal notranslate"><span class="pre">PDETextState</span></code> object.</p></li>
-<li><p>The address of the <code class="docutils literal notranslate"><span class="pre">ASFixedMatrix</span></code> object that you created. (See <a class="reference external" href="Plugins_Insertext.html#50618411_76571">Creating an ASFixedMatrix object</a>.)</p></li>
+<li><p>The address of the <code class="docutils literal notranslate"><span class="pre">ASFixedMatrix</span></code> object that you created. (See <a class="reference internal" href="#creating-an-asfixedmatrix-object"><span class="std std-ref">Creating an ASFixedMatrix object</span></a>.)</p></li>
 <li><p>The address of the <code class="docutils literal notranslate"><span class="pre">ASFixedMatrix</span></code> object that holds the matrix for the line width when stroking text. It is recommended that you pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
 </ul>
 </li>
@@ -1032,14 +1032,14 @@
 <ol class="arabic simple" start="3">
 <li><p>Insert text into the page content by invoking the <code class="docutils literal notranslate"><span class="pre">PDEContentAddElem</span></code> method and passing the following arguments:</p>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object that you created. (See <a class="reference external" href="Plugins_Insertext.html#50618411_53549">Creating a container</a>.)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object that you created. (See <a class="reference internal" href="#creating-a-container"><span class="std std-ref">Creating a container</span></a>.)</p></li>
 <li><p>The location to where the text is added. Pass <code class="docutils literal notranslate"><span class="pre">kPDEAfterLast</span></code> to add the text to the end of the <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> object.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">PDEText</span></code> object and cast this object to <code class="docutils literal notranslate"><span class="pre">PDEElement</span></code>.</p></li>
 </ul>
 </li>
 <li><p>Set the page’s <code class="docutils literal notranslate"><span class="pre">PDEContent</span></code> back into the page by invoking the <code class="docutils literal notranslate"><span class="pre">PDPageSetPDEContent</span></code> method and passing the following arguments:</p>
 <ul class="simple">
-<li><p>A <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object that you created. (See <a class="reference external" href="Plugins_Insertext.html#50618411_72186">Creating a new page</a>.)</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object that you created. (See <a class="reference internal" href="#creating-a-new-page"><span class="std std-ref">Creating a new page</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASExtension</span></code> object that represents the caller. If you invoke this method from a PDF Library project, you can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. In contrast, if you invoke this method from a plugin, you would pass the <code class="docutils literal notranslate"><span class="pre">gExtensionID</span></code> extension.</p></li>
 </ul>
 </li>
@@ -1070,13 +1070,13 @@
 </div>
 </div>
 <div class="section" id="saving-the-pdf-document">
-<h2>Saving the PDF document<a class="headerlink" href="#saving-the-pdf-document" title="Permalink to this headline">¶</a></h2>
+<span id="id9"></span><h2>Saving the PDF document<a class="headerlink" href="#saving-the-pdf-document" title="Permalink to this headline">¶</a></h2>
 <p>You can save the PDF document by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocSave</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that represents the PDF document.</p></li>
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDSaveFlags</span></code> object that specifies save options. For example, you can pass <code class="docutils literal notranslate"><span class="pre">PDSaveFull</span></code> to this argument, which results in the entire document being saved. For more information about this parameter, see the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object that represents the path to which the file is saved.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system. (See <a class="reference external" href="Plugins_Unicode.html#50618402_67382">Creating an ASFileSys object</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system. (See <a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object"><span class="std std-ref">Creating an ASFileSys object</span></a>.)</p></li>
 <li><p>A progress monitor value. Invoke the <code class="docutils literal notranslate"><span class="pre">AVAppGetDocProgressMonitor</span></code> method to obtain the default. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, in which case no progress monitor is used.</p></li>
 <li><p>The address of a <code class="docutils literal notranslate"><span class="pre">progMonClientData</span></code> object that contains user-supplied data to pass to <code class="docutils literal notranslate"><span class="pre">progMon</span></code> each time it is called. Pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if the previous argument (progMon) is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
 </ul>
@@ -1093,7 +1093,7 @@
 </div>
 </div>
 <div class="section" id="examining-a-pdfl-app-source-file">
-<h2>Examining a PDFL app source file<a class="headerlink" href="#examining-a-pdfl-app-source-file" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Examining a PDFL app source file<a class="headerlink" href="#examining-a-pdfl-app-source-file" title="Permalink to this headline">¶</a></h2>
 <p>This section shows the entire source file that is responsible for importing text into a PDF document.</p>
 <p>The following image shows the PDF that is created when this source file is executed.</p>
 <img alt="_images/inserttext.png" src="_images/inserttext.png" />
@@ -1273,7 +1273,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,29 +871,29 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-documents-and-files">
-<h1>Working with Documents and Files<a class="headerlink" href="#working-with-documents-and-files" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Documents and Files<a class="headerlink" href="#working-with-documents-and-files" title="Permalink to this headline">¶</a></h1>
 <p>You can use the Acrobat core API to perform operations on PDFs and files, including opening a PDF in an external window. When working with documents and files, use the following typedefs:</p>
 <ul class="simple">
 <li><p>An <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> typedef (from the AV layer) represents a document as a window in Acrobat or Adobe Reader. A single <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object exists for each displayed document. Operations on <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> objects are usually visual modifications to the document’s view.</p></li>
 <li><p>A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> typedef (from the PD layer) represents a document as a PDF file. You work with <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> objects to make changes to a document’s contents. Using a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object, you can access components, such as a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> typedef (from the AS layer) represents a document as an open file.</p></li>
 </ul>
-<div class="section" id="opening-pdfs">
-<h2>Opening PDFs<a class="headerlink" href="#opening-pdfs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="opening-pdf-documents">
+<span id="opening-pdfs"></span><h2>Opening PDF documents<a class="headerlink" href="#opening-pdf-documents" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to create application logic that opens a PDF in Acrobat or Adobe Reader. The method that opens a PDF file is <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromFile</span></code>. Before you invoke this method, you must create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object, which is a platform-independent path value that specifies the PDF file to open.</p>
-<p>With Acrobat or Adobe Reader 8.0 and later, you can open PDFs that are based on Unicode-named files. (See <a class="reference external" href="Plugins_Unicode.html#50618402_14583">Working with Unicode Paths</a>.)</p>
+<p>With Acrobat or Adobe Reader 8.0 and later, you can open PDFs that are based on Unicode-named files. (See <a class="reference internal" href="Plugins_Unicode.html#working-with-unicode-paths"><span class="std std-ref">Working with Unicode Paths</span></a>.)</p>
 <p>You can create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object by using different techniques. This section describes how to create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">ASFileSysCreatePathName</span></code> method to convert a platform specific path name to an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object. This method requires the following arguments:</p>
 <ul class="simple">
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which you are creating an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object. (See <a class="reference external" href="Plugins_Unicode.html#50618402_67382">Creating an ASFileSys object</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which you are creating an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object. (See <a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object"><span class="std std-ref">Creating an ASFileSys object</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> object that specifies the data type of the third argument. You can specify <code class="docutils literal notranslate"><span class="pre">Cstring</span></code>, which is accepted by the default file system on all platforms. In Windows, the path can be absolute (<code class="docutils literal notranslate"><span class="pre">C:folderfile.pdf</span></code> ) or relative (<code class="docutils literal notranslate"><span class="pre">...folderfile.pdf</span></code> ). In Mac OS, it must be an absolute path separated by colons (<code class="docutils literal notranslate"><span class="pre">VolumeName:Folder:file.pdf</span></code> ). For information about additional supported values, see the <code class="docutils literal notranslate"><span class="pre">ASFileSysCreatePathName</span></code> method in the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p></li>
 <li><p>A null- terminated character that specifies the PDF file on which the <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object is based.</p></li>
 <li><p>A null- terminated character that specifies additional data that you can use. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. For more information, see the <code class="docutils literal notranslate"><span class="pre">ASFileSysCreatePathName</span></code> method in the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p></li>
 </ul>
-<p>The <code class="docutils literal notranslate"><span class="pre">ASFileSysCreatePathName</span></code> method returns an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object. You can also create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object by displaying an open dialog box. (See <a class="reference external" href="Plugins_Documents.html#50618416_57499">Displaying an open dialog box</a>.)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ASFileSysCreatePathName</span></code> method returns an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object. You can also create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object by displaying an open dialog box. (See <a class="reference internal" href="#displaying-an-open-dialog-box"><span class="std std-ref">Displaying an open dialog box</span></a>.)</p>
 <p>To programmatic-ally open a PDF file in Acrobat or Adobe Reader, invoke the <code class="docutils literal notranslate"><span class="pre">AVDocOpenFromFile</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object that specifies the PDF file to open.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which the PDF file is located. (See <a class="reference external" href="Plugins_Unicode.html#50618402_67382">Creating an ASFileSys object</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which the PDF file is located. (See <a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object"><span class="std std-ref">Creating an ASFileSys object</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASText</span></code> object that specifies a string value to display in the Adobe Reader or Acrobat title bar.</p></li>
 </ul>
 <p>The following code example opens a PDF that is based on a file named PurchaseOrder.pdf.</p>
@@ -920,7 +920,7 @@
 </div>
 </div>
 <div class="section" id="opening-a-pdf-in-an-external-window">
-<h2>Opening a PDF in an external window<a class="headerlink" href="#opening-a-pdf-in-an-external-window" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Opening a PDF in an external window<a class="headerlink" href="#opening-a-pdf-in-an-external-window" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to open a PDF in an external window. For example, from within Adobe Reader or Acrobat, you can let a user select a PDF file and then display the PDF in an external window. This lets a user view two separate PDFs at the same time.</p>
 <p>The following image shows a PDF displayed in an external window.</p>
 <img alt="_images/ExterWin.png" src="_images/ExterWin.png" />
@@ -938,15 +938,15 @@
 <li><p>Display the PDF that the user selected within a window.</p></li>
 </ol>
 <div class="section" id="creating-a-window">
-<h3>Creating a Window<a class="headerlink" href="#creating-a-window" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3>Creating a Window<a class="headerlink" href="#creating-a-window" title="Permalink to this headline">¶</a></h3>
 <p>You must programmatic-ally create the external window in which to display a PDF. To create a window, you invoke standard platform C functions and not the Acrobat core API. For example, if you are creating your plugin in Windows, you can use the Win32 API to create a window. In this situation, part of the process of creating a window is to register the window class and define the window procedure. After you perform these tasks, you can obtain a handle to the window by invoking the <code class="docutils literal notranslate"><span class="pre">CreateWindow</span></code> function. For information about this function, see the MSDN online help at <a class="reference external" href="http://msdn.microsoft.com/library/default.asp">http://msdn.microsoft.com/library/default.asp</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Application logic that creates a window is shown in <a class="reference external" href="Plugins_Documents.html#50618416_11768">Opening a PDF in an external window</a>.</p>
+<p>Application logic that creates a window is shown in <a class="reference internal" href="#opening-a-pdf-in-an-external-window"><span class="std std-ref">Opening a PDF in an external window</span></a>.</p>
 </div>
 </div>
 <div class="section" id="defining-the-parameters-for-an-external-window">
-<h3>Defining the parameters for an external window<a class="headerlink" href="#defining-the-parameters-for-an-external-window" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Defining the parameters for an external window<a class="headerlink" href="#defining-the-parameters-for-an-external-window" title="Permalink to this headline">¶</a></h3>
 <p>You must create an <code class="docutils literal notranslate"><span class="pre">AVDocOpenParamsRec</span></code> object in order to open and display a PDF in an external window. This object defines required parameters for opening a PDF within an external window. After you create an <code class="docutils literal notranslate"><span class="pre">AVDocOpenParamsRec</span></code> object, allocate its buffer size and set the following attributes:</p>
 <ul class="simple">
 <li><p><strong>size</strong>: The size of the data structure. This attribute must be set to <code class="docutils literal notranslate"><span class="pre">sizeof(AVDocOpenParamsRec)</span></code>.</p></li>
@@ -976,11 +976,11 @@
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Application logic that creates an <code class="docutils literal notranslate"><span class="pre">AVDocOpenParamsRec</span></code> object is shown in <a class="reference external" href="Plugins_Documents.html#50618416_11768">Opening a PDF in an external window</a>.</p>
+<p>Application logic that creates an <code class="docutils literal notranslate"><span class="pre">AVDocOpenParamsRec</span></code> object is shown in <a class="reference internal" href="#opening-a-pdf-in-an-external-window"><span class="std std-ref">Opening a PDF in an external window</span></a>.</p>
 </div>
 </div>
 <div class="section" id="creating-a-handler-for-an-external-window">
-<h3>Creating a handler for an external window<a class="headerlink" href="#creating-a-handler-for-an-external-window" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>Creating a handler for an external window<a class="headerlink" href="#creating-a-handler-for-an-external-window" title="Permalink to this headline">¶</a></h3>
 <p>You must create an <code class="docutils literal notranslate"><span class="pre">ExternalDocServerCreationDataRec</span></code> object in order to open a PDF in an external window. This object contains callback functions that implement a window handler. After you create an <code class="docutils literal notranslate"><span class="pre">ExternalDocServerCreationDataRec</span></code> object, allocate its buffer size and set the following attributes:</p>
 <ul class="simple">
 <li><p><strong>size</strong>: The size of the data structure. This attribute must be set to <code class="docutils literal notranslate"><span class="pre">sizeof(ExternalDocServerCreationDataRec)</span></code>.</p></li>
@@ -996,11 +996,11 @@
 <p>For a complete list of attributes that belong to an <code class="docutils literal notranslate"><span class="pre">ExternalDocServerCreationDataRec</span></code> object, see the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Application logic that creates an <code class="docutils literal notranslate"><span class="pre">ExternalDocServerCreationDataRec</span></code> object is shown in <a class="reference external" href="Plugins_Documents.html#50618416_11768">Opening a PDF in an external window</a>.</p>
+<p>Application logic that creates an <code class="docutils literal notranslate"><span class="pre">ExternalDocServerCreationDataRec</span></code> object is shown in <a class="reference internal" href="#opening-a-pdf-in-an-external-window"><span class="std std-ref">Opening a PDF in an external window</span></a>.</p>
 </div>
 </div>
 <div class="section" id="displaying-an-open-dialog-box">
-<h3>Displaying an open dialog box<a class="headerlink" href="#displaying-an-open-dialog-box" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3>Displaying an open dialog box<a class="headerlink" href="#displaying-an-open-dialog-box" title="Permalink to this headline">¶</a></h3>
 <p>You can display an open dialog box that enables a user to select a PDF to open. In addition to describing how to create an open dialog box, this section also describes how to use a dialog box to create an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object and an <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object, which are both used to open a PDF.</p>
 <p>The Acrobat core API has a typedef named <code class="docutils literal notranslate"><span class="pre">AVOpenSaveDialogParamsRec</span></code> that you use to display an open dialog box. The <code class="docutils literal notranslate"><span class="pre">AVOpenSaveDialogParamsRec</span></code> typedef contains the following attributes that you programmatic-ally set:</p>
 <ul>
@@ -1123,17 +1123,17 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This application logic is shown in <a class="reference external" href="Plugins_Documents.html#50618416_11768">Opening a PDF in an external window</a>.</p>
+<p>This application logic is shown in <a class="reference internal" href="#opening-a-pdf-in-an-external-window"><span class="std std-ref">Opening a PDF in an external window</span></a>.</p>
 </div>
 </div>
 <div class="section" id="displaying-a-pdf-in-a-window">
-<h3>Displaying a PDF in a window<a class="headerlink" href="#displaying-a-pdf-in-a-window" title="Permalink to this headline">¶</a></h3>
-<p>Before you attempt to display a PDF in an external window, you must programmatic-ally create the window. (See <a class="reference external" href="Plugins_Documents.html#50618416_99182">Creating a Window</a>.)</p>
+<span id="id7"></span><h3>Displaying a PDF in a window<a class="headerlink" href="#displaying-a-pdf-in-a-window" title="Permalink to this headline">¶</a></h3>
+<p>Before you attempt to display a PDF in an external window, you must programmatic-ally create the window. (See <a class="reference internal" href="#creating-a-window"><span class="std std-ref">Creating a Window</span></a>.)</p>
 <p>To display a PDF within an external window, perform the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Open a PDF file by invoking the <code class="docutils literal notranslate"><span class="pre">ASFileSysOpenFile</span></code> method and passing the following arguments:</p>
 <ul class="simple">
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which the PDF file is located. (See <a class="reference external" href="Plugins_Unicode.html#50618402_67382">Creating an ASFileSys object</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which the PDF file is located. (See <a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object"><span class="std std-ref">Creating an ASFileSys object</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object that represents the path in which the PDF file is located.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileMode</span></code> object that represents the mode in which to open the file. For example, specify <code class="docutils literal notranslate"><span class="pre">ASFILE_READ</span></code> to open the PDF in read mode.</p></li>
 <li><p>The address of an <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object. This method populates this argument with the file that was opened (file information is obtained from the <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object).</p></li>
@@ -1146,13 +1146,13 @@
 <ul class="simple">
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object that specifies a PDF file to display (you can use the same <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> object whose address was passed to the <code class="docutils literal notranslate"><span class="pre">ASFileSysOpenFile</span></code> method).</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASText</span></code> object that specifies the text to display in the window’s title bar. Create an <code class="docutils literal notranslate"><span class="pre">ASText</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">ASTextFromScriptText</span></code> method.</p></li>
-<li><p>The address of the <code class="docutils literal notranslate"><span class="pre">AVDocOpenParamsRec</span></code> object that you created. (See <a class="reference external" href="Plugins_Documents.html#50618416_64706">Defining the parameters for an external window</a>.)</p></li>
+<li><p>The address of the <code class="docutils literal notranslate"><span class="pre">AVDocOpenParamsRec</span></code> object that you created. (See <a class="reference internal" href="#defining-the-parameters-for-an-external-window"><span class="std std-ref">Defining the parameters for an external window</span></a>.)</p></li>
 </ul>
 </li>
 </ol>
 <p>The following code example opens a PDF in an external window. The application logic that is located within the <code class="docutils literal notranslate"><span class="pre">OpenExternalWindow</span></code> user-defined function creates the window and displays a PDF within the window. A structure named <code class="docutils literal notranslate"><span class="pre">gDocInfo</span></code> that stores information such as the file to open is also defined.</p>
 <p>This code example contains a user-defined method named <code class="docutils literal notranslate"><span class="pre">AVWndProc</span></code> that acts as a window procedure and another user-defined function named <code class="docutils literal notranslate"><span class="pre">InitializeWindowHandler</span></code> that registers the windows class that is specified as an argument to <code class="docutils literal notranslate"><span class="pre">CreateWindow</span></code>.</p>
-<p>Also shown in this code example is application logic that displays an open dialog box that enables a user to select a PDF file to open. This application logic is located within a user-defined function named <code class="docutils literal notranslate"><span class="pre">OpenPDFFile</span></code>. (See <a class="reference external" href="Plugins_Documents.html#50618416_57499">Displaying an open dialog box</a>.)</p>
+<p>Also shown in this code example is application logic that displays an open dialog box that enables a user to select a PDF file to open. This application logic is located within a user-defined function named <code class="docutils literal notranslate"><span class="pre">OpenPDFFile</span></code>. (See <a class="reference internal" href="#displaying-an-open-dialog-box"><span class="std std-ref">Displaying an open dialog box</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   struct t_ExternDocInfo
    {
       AVDoc doc;
@@ -1341,15 +1341,15 @@
 </div>
 </div>
 <div class="section" id="determining-the-pdf-version">
-<h2>Determining the PDF version<a class="headerlink" href="#determining-the-pdf-version" title="Permalink to this headline">¶</a></h2>
+<span id="id8"></span><h2>Determining the PDF version<a class="headerlink" href="#determining-the-pdf-version" title="Permalink to this headline">¶</a></h2>
 <p>All PDFs contain PDF version information in the header, such as 1.7. Additionally, PDF files that conform to ISO 32000 can include PDF version extension information that indicates that the PDF may contain PDF extensions added by third-party developers.</p>
 <p>The Acrobat API provides methods that let you obtain the PDF version and the PDF version extension information.</p>
 <div class="section" id="pdf-version">
-<h3>PDF version<a class="headerlink" href="#pdf-version" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>PDF version<a class="headerlink" href="#pdf-version" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">PDDocGetVersion</span></code> method lets you obtain the PDF version of a PDF. This PDF version indicates the PDF specification to which the document conforms, such as 1.4 or 1.7.</p>
 </div>
 <div class="section" id="pdf-version-extensions">
-<h3>PDF version extensions<a class="headerlink" href="#pdf-version-extensions" title="Permalink to this headline">¶</a></h3>
+<span id="id10"></span><h3>PDF version extensions<a class="headerlink" href="#pdf-version-extensions" title="Permalink to this headline">¶</a></h3>
 <p>Acrobat 8.1 and later add extensions to the PDF specification. These extensions are specified in the <em>Adobe Supplement to ISO 32000</em>. Each extension in that supplement is associated with a base version and an extension level. The <code class="docutils literal notranslate"><span class="pre">Extensions</span></code> dictionary located in the <code class="docutils literal notranslate"><span class="pre">Catalog</span></code> dictionary specifies PDF extensions added by Adobe or others.</p>
 <p>For example, Acrobat 8.1 added a PDF extension to 3D annotations that enabled support for the PRC format, a highly compressed 3D representation. If a PDF contains a 3D annotation that specifies a PRC file, the PDF also contains an <code class="docutils literal notranslate"><span class="pre">Extensions</span></code> dictionary in the <code class="docutils literal notranslate"><span class="pre">Catalog</span></code> dictionary that specifies a base version of 1.7 and an extension level of “1” or greater. The following PDF segment shows the appearance of such an <code class="docutils literal notranslate"><span class="pre">Extensions</span></code> dictionary.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">PDF</span> <span class="mf">1.7</span>
@@ -1363,28 +1363,28 @@
 </div>
 </div>
 <div class="section" id="setting-the-extension-level-of-a-document">
-<h3>Setting the extension level of a document<a class="headerlink" href="#setting-the-extension-level-of-a-document" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3>Setting the extension level of a document<a class="headerlink" href="#setting-the-extension-level-of-a-document" title="Permalink to this headline">¶</a></h3>
 <p>When you add PDF extensions specified by Adobe or others, you must ensure that the <code class="docutils literal notranslate"><span class="pre">Catalog</span></code> dictionary contains an <code class="docutils literal notranslate"><span class="pre">Extensions</span></code> dictionary that describes the greatest extension level that can appear in the PDF. The <code class="docutils literal notranslate"><span class="pre">Extensions</span></code> dictionary can contain one dictionary for each company or other entity that adds PDF extensions.</p>
-<p>To set the extension level, use the <code class="docutils literal notranslate"><span class="pre">Cos</span></code> object methods described in <a class="reference external" href="Plugins_Cos.html#50618418_86959">Working with Cos Objects</a>.</p>
+<p>To set the extension level, use the <code class="docutils literal notranslate"><span class="pre">Cos</span></code> object methods described in <a class="reference internal" href="Plugins_Cos.html#working-with-cos-objects"><span class="std std-ref">Working with Cos Objects</span></a>.</p>
 </div>
 <div class="section" id="getting-the-extension-level-of-a-document">
-<h3>Getting the extension level of a document<a class="headerlink" href="#getting-the-extension-level-of-a-document" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>Getting the extension level of a document<a class="headerlink" href="#getting-the-extension-level-of-a-document" title="Permalink to this headline">¶</a></h3>
 <p>Beginning with Acrobat 9.0, the <code class="docutils literal notranslate"><span class="pre">PDDocGetVersionEx</span></code> method lets you obtain the Adobe-specific version extension information and the PDF version.</p>
-<p>To obtain version extension information introduced by entities other than Adobe, use the <code class="docutils literal notranslate"><span class="pre">Cos</span></code> object methods described in <a class="reference external" href="Plugins_Cos.html#50618418_86959">Working with Cos Objects</a>.</p>
+<p>To obtain version extension information introduced by entities other than Adobe, use the <code class="docutils literal notranslate"><span class="pre">Cos</span></code> object methods described in <a class="reference internal" href="Plugins_Cos.html#working-with-cos-objects"><span class="std std-ref">Working with Cos Objects</span></a>.</p>
 </div>
 </div>
 <div class="section" id="bridging-core-api-layers">
-<h2>Bridging core API layers<a class="headerlink" href="#bridging-core-api-layers" title="Permalink to this headline">¶</a></h2>
-<p>To operate on the contents of a PDF, and not just manipulate its representation in Adobe Reader or Acrobat, you must use a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object. For example, to create an annotation for a PDF, you must create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object. (See <a class="reference external" href="Plugins_Annotations.html#50618420_98126">Creating Annotations</a>.)</p>
+<span id="id13"></span><h2>Bridging core API layers<a class="headerlink" href="#bridging-core-api-layers" title="Permalink to this headline">¶</a></h2>
+<p>To operate on the contents of a PDF, and not just manipulate its representation in Adobe Reader or Acrobat, you must use a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object. For example, to create an annotation for a PDF, you must create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object. (See <a class="reference internal" href="Plugins_Annotations.html#creating-annotations"><span class="std std-ref">Creating Annotations</span></a>.)</p>
 <p>You can create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object by using an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object. To get a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that corresponds to an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object, invoke the <code class="docutils literal notranslate"><span class="pre">AVDocGetPDDoc</span></code> method. This method is referred to as a bridge method because it allows your plugin to access other layers from the AV layer. There are several bridge methods which connect the different API layers (AV, PD, and Cos).</p>
 <p>All <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> objects have an underlying <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object. Operations on an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object usually result in visible modifications to the document’s view. If you just want your plugin to make changes to a document’s contents, it can open a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object directly (that is, without going through an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object to get the <code class="docutils literal notranslate"><span class="pre">PDDo</span></code> c object) and use PD layer methods.</p>
 <div class="section" id="creating-a-pddoc-object">
-<h3>Creating a PDDoc object<a class="headerlink" href="#creating-a-pddoc-object" title="Permalink to this headline">¶</a></h3>
+<span id="id14"></span><h3>Creating a PDDoc object<a class="headerlink" href="#creating-a-pddoc-object" title="Permalink to this headline">¶</a></h3>
 <p>You can access a PDF file’s contents without displaying the PDF file in Acrobat or Adobe Reader. To perform this task, create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocOpen</span></code> method and passing the following arguments:</p>
 <ul class="simple">
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object that specifies the PDF file on which the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> is based. For information about creating an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object, see <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDFs</a>.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which the PDF file is located. (See <a class="reference external" href="Plugins_Unicode.html#50618402_67382">Creating an ASFileSys object</a>.)</p></li>
-<li><p>A <code class="docutils literal notranslate"><span class="pre">PDAuthProc</span></code> authorization callback that is invoked only if the file has been secured (that is, if the file has either the user or the master password set). This callback must obtain required information to determine whether the user is authorized to open the file. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an authorization callback is not required. For information about callbacks, see <a class="reference external" href="Plugins_Pimech.html#50618406_20671">Using callback functions</a>.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object that specifies the PDF file on which the <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> is based. For information about creating an <code class="docutils literal notranslate"><span class="pre">ASPathName</span></code> object, see <a class="reference internal" href="#opening-pdfs"><span class="std std-ref">Opening PDF documents</span></a>.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASFileSys</span></code> object that represents the file system in which the PDF file is located. (See <a class="reference internal" href="Plugins_Unicode.html#creating-an-asfilesys-object"><span class="std std-ref">Creating an ASFileSys object</span></a>.)</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">PDAuthProc</span></code> authorization callback that is invoked only if the file has been secured (that is, if the file has either the user or the master password set). This callback must obtain required information to determine whether the user is authorized to open the file. You can pass <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an authorization callback is not required. For information about callbacks, see <a class="reference internal" href="Plugins_Pimech.html#using-callback-functions"><span class="std std-ref">Using callback functions</span></a>.</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> value. When set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, an attempt to repair a damaged file is performed. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, an attempt to repair a damaged file is not performed.</p></li>
 </ul>
 <p>The following code example creates a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that is based on a PDF file named PurchaseOrder.pdf and located in the root of the C drive. This code example is located within a user-defined function named <code class="docutils literal notranslate"><span class="pre">getDocument</span></code>.</p>
@@ -1434,7 +1434,7 @@
 </div>
 </div>
 <div class="section" id="creating-a-pddoc-object-for-an-open-pdf">
-<h3>Creating a PDDoc object for an open PDF<a class="headerlink" href="#creating-a-pddoc-object-for-an-open-pdf" title="Permalink to this headline">¶</a></h3>
+<span id="id15"></span><h3>Creating a PDDoc object for an open PDF<a class="headerlink" href="#creating-a-pddoc-object-for-an-open-pdf" title="Permalink to this headline">¶</a></h3>
 <p>You can create a <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object that is based on a PDF that is currently open by performing the following tasks:</p>
 <ol class="arabic simple">
 <li><p>Create an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object by invoking the <code class="docutils literal notranslate"><span class="pre">AVAppGetActiveDoc</span></code> method. This method gets the frontmost document located in Adobe Reader or Acrobat.</p></li>
@@ -1446,7 +1446,7 @@
 </div>
 </div>
 <div class="section" id="accessing-non-pdf-files">
-<h3>Accessing non-PDF files<a class="headerlink" href="#accessing-non-pdf-files" title="Permalink to this headline">¶</a></h3>
+<span id="id16"></span><h3>Accessing non-PDF files<a class="headerlink" href="#accessing-non-pdf-files" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to access non-PDF files. Your plugin can open a non-PDF file, write data to it, and then read the data at a later time by using <code class="docutils literal notranslate"><span class="pre">ASFile</span></code> methods. For example, your plugin can use a text file to track log information or other type of information.</p>
 <p>The following code example invokes the Acrobat core API methods to open a file, write data, and read data.</p>
 <ul class="simple">
@@ -1554,7 +1554,7 @@
 </div>
 </div>
 <div class="section" id="printing-documents">
-<h2>Printing documents<a class="headerlink" href="#printing-documents" title="Permalink to this headline">¶</a></h2>
+<span id="id17"></span><h2>Printing documents<a class="headerlink" href="#printing-documents" title="Permalink to this headline">¶</a></h2>
 <p>You can use the Acrobat core API to print documents by using one of the following methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">AVDocPrintPages</span></code></p></li>
@@ -1564,12 +1564,12 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">AVDocPrintPagesWithParams</span></code> method prints a document with a full range of options. Printing is complete when this method returns. It performs embedded printing; that is, it allows a PDF page to print within a bounding rectangle on a page. It allows interactive printing to the specified printer.</p>
 <p>To print a document with a range of options, invoke the <code class="docutils literal notranslate"><span class="pre">AVDocPrintPagesWithParams</span></code> method and pass the following arguments:</p>
 <ul class="simple">
-<li><p>An <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object that represents the PDF from which to print page. For information about creating an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object, see <a class="reference external" href="Plugins_Documents.html#50618416_65430">Opening PDFs</a>.</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object that represents the PDF from which to print page. For information about creating an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object, see <a class="reference internal" href="#opening-pdfs"><span class="std std-ref">Opening PDF documents</span></a>.</p></li>
 <li><p>An instance of the <code class="docutils literal notranslate"><span class="pre">AVDocPrintParams</span></code> data structure that defines printing parameters. (See the <a class="reference external" href="https://www.adobe.com/go/apireference">Acrobat and PDF Library API Reference</a>.)</p></li>
 </ul>
 </div>
 <div class="section" id="working-with-the-pdf-x-format">
-<h2>Working with the PDF/X format<a class="headerlink" href="#working-with-the-pdf-x-format" title="Permalink to this headline">¶</a></h2>
+<span id="id18"></span><h2>Working with the PDF/X format<a class="headerlink" href="#working-with-the-pdf-x-format" title="Permalink to this headline">¶</a></h2>
 <p>Beginning PDF Library XI, you can convert an existing PDF file to the PDF/X format. The converter aims at creating an output PDF/X document that is self-contained and whose visual fidelity is maintained over time. The converter manages operations like font embedding, changes in colors while printing, etc., to give a seamless PDF/X conversion process. PDF/X-1a:2001 and PDF/X-3:2003 are the two PDF/X standards that are supported by the PDF processor plugin. For files containing objects that cannot be converted as per the PDF/X standards, the conversion process is aborted.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1609,7 +1609,7 @@
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

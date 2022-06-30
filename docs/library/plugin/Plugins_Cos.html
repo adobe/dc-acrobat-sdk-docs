@@ -167,7 +167,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Pimech.html">Understanding Plugins</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#plugin-loading-and-initialization">Plugin loading and initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Pimech.html#about-plugin-initialization">Plugin loading and initialization</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#handshaking">Handshaking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#exporting-hfts">Exporting HFTs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Pimech.html#importing-hfts-and-registering-for-notifications">Importing HFTs and registering for notifications</a></li>
@@ -291,7 +291,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Plugins_Documents.html">Working with Documents and Files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdfs">Opening PDFs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-pdf-documents">Opening PDF documents</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Plugins_Documents.html#opening-a-pdf-in-an-external-window">Opening a PDF in an external window</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#creating-a-window">Creating a Window</a></li>
 <li class="toctree-l3"><a class="reference internal" href="Plugins_Documents.html#defining-the-parameters-for-an-external-window">Defining the parameters for an external window</a></li>
@@ -871,15 +871,15 @@
            <div itemprop="articleBody">
             
   <div class="section" id="working-with-cos-objects">
-<h1>Working with Cos Objects<a class="headerlink" href="#working-with-cos-objects" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Working with Cos Objects<a class="headerlink" href="#working-with-cos-objects" title="Permalink to this headline">¶</a></h1>
 <p>A PDF file is structured as a tree of low-level objects, called Cos objects. Cos objects form all PDF document components, such as bookmarks, pages, fonts, images, and annotations. The Acrobat core API contains methods (the Cos layer) that enable you to operate directly on these low-level objects. You may encounter a situation where you want to perform a task that is not supported by using AV and PD layer methods. In such a situation, it is necessary to use Cos methods.</p>
-<p>For example, the <a class="reference external" href="Plugins_Annotations.html#50618420_98126">Creating Annotations</a> chapter explains how to set text annotations properties by using <code class="docutils literal notranslate"><span class="pre">PDTextAnnot</span></code> methods. Some newer types of annotations, such as 3D annotations, have properties that cannot be accessed directly by PD layer methods. As a result, you must use Cos layer methods to access the PDF dictionary that represents the annotation. (See <a class="reference external" href="Plugins_3D_samples.html#50618421_43763">Creating 3D Annotations</a>.)</p>
+<p>For example, the <a class="reference internal" href="Plugins_Annotations.html#creating-annotations"><span class="std std-ref">Creating Annotations</span></a> chapter explains how to set text annotations properties by using <code class="docutils literal notranslate"><span class="pre">PDTextAnnot</span></code> methods. Some newer types of annotations, such as 3D annotations, have properties that cannot be accessed directly by PD layer methods. As a result, you must use Cos layer methods to access the PDF dictionary that represents the annotation. (See <a class="reference internal" href="Plugins_3D_samples.html#creating-3d-annotations"><span class="std std-ref">Creating 3D annotations</span></a>.)</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Care is required when working with Cos objects. Unlike using AV and PD objects, Cos objects can produce invalid PDF files. Before working with Cos objects, it is strongly recommended that you be familiar with concepts such as resource dictionaries as discussed in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a></p>
 </div>
 <div class="section" id="about-cos-objects">
-<h2>About Cos objects<a class="headerlink" href="#about-cos-objects" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>About Cos objects<a class="headerlink" href="#about-cos-objects" title="Permalink to this headline">¶</a></h2>
 <p>PDF files contain various Cos object types. In addition to basic data types such as integer, fixed, and Boolean values, Cos objects also contain the following object types:</p>
 <ul class="simple">
 <li><p>Array</p></li>
@@ -889,7 +889,7 @@
 <li><p>Stream</p></li>
 </ul>
 <div class="section" id="about-direct-and-indirect-objects">
-<h3>About direct and indirect objects<a class="headerlink" href="#about-direct-and-indirect-objects" title="Permalink to this headline">¶</a></h3>
+<span id="id3"></span><h3>About direct and indirect objects<a class="headerlink" href="#about-direct-and-indirect-objects" title="Permalink to this headline">¶</a></h3>
 <p>You can create Cos objects as either direct or indirect objects; the choice is specified as a parameter to the method that creates the object. A direct object is placed directly into another object (such as an array or dictionary). Direct objects cannot be shared between two or more dictionaries or arrays. An indirect object is labeled so that it can be referenced by other objects multiple times. The following is the syntax of an indirect object.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">object</span> <span class="n">number</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">generation</span> <span class="n">number</span><span class="o">&gt;</span> <span class="n">obj</span>
     <span class="o">&lt;</span><span class="n">direct</span> <span class="nb">object</span><span class="o">&gt;</span>
@@ -924,14 +924,14 @@
 </div>
 </div>
 <div class="section" id="about-cos-object-types">
-<h3>About Cos object types<a class="headerlink" href="#about-cos-object-types" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>About Cos object types<a class="headerlink" href="#about-cos-object-types" title="Permalink to this headline">¶</a></h3>
 <p>Two API objects exist in the Cos layer:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">CosDoc</span></code>, which represents an entire PDF file.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CosObj</span></code>, which represents all the individual object types, such as a Cos string, described in this section. There are various methods to create the different types of Cos objects mentioned in this section, as well as getting and setting their values.</p></li>
 </ul>
 <div class="section" id="cos-strings">
-<h4>Cos strings<a class="headerlink" href="#cos-strings" title="Permalink to this headline">¶</a></h4>
+<span id="id5"></span><h4>Cos strings<a class="headerlink" href="#cos-strings" title="Permalink to this headline">¶</a></h4>
 <p>A string object consists of a series of bytes—unsigned integer values in the range 0 to 255. The string elements are not integer objects, but are stored in a more compact format. String objects can be written in the following ways:</p>
 <ul class="simple">
 <li><p>As a sequence of literal characters enclosed in parentheses</p></li>
@@ -1000,7 +1000,7 @@ special characters (*!&amp;}^% and so on).)
 </div>
 </div>
 <div class="section" id="hexadecimal-strings">
-<h4>Hexadecimal strings<a class="headerlink" href="#hexadecimal-strings" title="Permalink to this headline">¶</a></h4>
+<span id="id6"></span><h4>Hexadecimal strings<a class="headerlink" href="#hexadecimal-strings" title="Permalink to this headline">¶</a></h4>
 <p>Strings may also be written in hexadecimal form, which is useful for including arbitrary binary data in a PDF file. A hexadecimal string is written as a sequence of hexadecimal digits (0–9 and either A–F or a–f) enclosed within angle brackets (&lt; and &gt;). Consider the following example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="mf">4E6</span><span class="n">F762073686D6F7A206B6120706F702E</span> <span class="o">&gt;</span>
 </pre></div>
@@ -1012,14 +1012,14 @@ special characters (*!&amp;}^% and so on).)
 <p>This is a 3-byte string consisting of the characters whose hexadecimal codes are 90, 1F, and A3, but <code class="docutils literal notranslate"><span class="pre">&lt;901FA&gt;</span></code> is a 3-byte string containing the characters whose hexadecimal codes are 90, 1F, and A0.</p>
 </div>
 <div class="section" id="cos-arrays">
-<h4>Cos arrays<a class="headerlink" href="#cos-arrays" title="Permalink to this headline">¶</a></h4>
+<span id="id7"></span><h4>Cos arrays<a class="headerlink" href="#cos-arrays" title="Permalink to this headline">¶</a></h4>
 <p>Arrays are one-dimensional collections of objects accessed by a numeric index. Array indexes are zero-based and may be any combination of the Cos data types. The following array has seven elements: three integers, a string, a Boolean value, a dictionary (containing one key-value pair), and an indirect object reference.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="p">(</span><span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">string</span><span class="p">)</span> <span class="n">true</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Key</span> <span class="p">(</span><span class="n">The</span> <span class="n">value</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">6</span> <span class="mi">0</span> <span class="n">R</span> <span class="p">]</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="cos-names">
-<h4>Cos names<a class="headerlink" href="#cos-names" title="Permalink to this headline">¶</a></h4>
+<span id="id8"></span><h4>Cos names<a class="headerlink" href="#cos-names" title="Permalink to this headline">¶</a></h4>
 <p>A name object is an atomic symbol uniquely defined by a sequence of characters. Uniquely defined means that any two name objects made up of the same sequence of characters are identically the same object. Atomic means that a name has no internal structure; although it is defined by a sequence of characters, those characters are not considered elements of the name.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">AName</span>
 </pre></div>
@@ -1068,7 +1068,7 @@ special characters (*!&amp;}^% and so on).)
 <p>In such situations, it is recommended that the sequence of bytes (after expansion of # sequences, if any) be interpreted according to UTF-8, a variable-length byte-encoded representation of Unicode in which the printable ASCII characters have the same representations as in ASCII. This enables a name object to represent text in any natural language, subject to the implementation limit on the length of a name.</p>
 </div>
 <div class="section" id="cos-dictionaries">
-<h4>Cos dictionaries<a class="headerlink" href="#cos-dictionaries" title="Permalink to this headline">¶</a></h4>
+<span id="id9"></span><h4>Cos dictionaries<a class="headerlink" href="#cos-dictionaries" title="Permalink to this headline">¶</a></h4>
 <p>A dictionary object is an associative table containing pairs of objects, known as the dictionary’s entries. The first element of each entry is the key and the second element is the value. The key must be a name. The value can be any kind of object, including other dictionaries and streams. A dictionary entry whose value is null is equivalent to an absent entry.</p>
 <p>A dictionary is a table data structure whose elements are object pairs:</p>
 <ul class="simple">
@@ -1079,10 +1079,10 @@ special characters (*!&amp;}^% and so on).)
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;</span> <span class="o">/</span><span class="n">Name</span> <span class="n">John</span> <span class="o">/</span><span class="n">Age</span> <span class="mi">27</span> <span class="o">/</span><span class="n">AnArray</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span><span class="o">&gt;&gt;</span>
 </pre></div>
 </div>
-<p>The value associated with the <code class="docutils literal notranslate"><span class="pre">Name</span></code> key is the value <code class="docutils literal notranslate"><span class="pre">John</span></code>. The value for the <code class="docutils literal notranslate"><span class="pre">Age</span></code> key is <code class="docutils literal notranslate"><span class="pre">27</span></code>. And the value for the <code class="docutils literal notranslate"><span class="pre">AnArray</span></code> key is an array with the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, and <code class="docutils literal notranslate"><span class="pre">3</span></code>. For information about creating a Cos dictionary, see <a class="reference external" href="Plugins_Cos.html#50618418_10844">Creating Cos dictionaries</a>.</p>
+<p>The value associated with the <code class="docutils literal notranslate"><span class="pre">Name</span></code> key is the value <code class="docutils literal notranslate"><span class="pre">John</span></code>. The value for the <code class="docutils literal notranslate"><span class="pre">Age</span></code> key is <code class="docutils literal notranslate"><span class="pre">27</span></code>. And the value for the <code class="docutils literal notranslate"><span class="pre">AnArray</span></code> key is an array with the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, and <code class="docutils literal notranslate"><span class="pre">3</span></code>. For information about creating a Cos dictionary, see <a class="reference internal" href="#creating-cos-dictionaries"><span class="std std-ref">Creating Cos dictionaries</span></a>.</p>
 </div>
 <div class="section" id="cos-streams">
-<h4>Cos streams<a class="headerlink" href="#cos-streams" title="Permalink to this headline">¶</a></h4>
+<span id="id10"></span><h4>Cos streams<a class="headerlink" href="#cos-streams" title="Permalink to this headline">¶</a></h4>
 <p>A stream is a sequence of bytes that can be read a portion at a time. For this reason, objects with potentially large amounts of data, such as images and page descriptions, are represented as streams. A stream consists of a dictionary followed by zero or more bytes bracketed between the keywords <code class="docutils literal notranslate"><span class="pre">stream</span></code> and <code class="docutils literal notranslate"><span class="pre">endstream</span></code>. The following example shows the basic syntax of a stream:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>dictionary
 stream
@@ -1090,7 +1090,7 @@ stream
 endstream
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">stream</span></code> keyword should be followed by an end-of-line marker consisting of either a carriage return and a line feed or just a line feed, and not by a carriage return alone. The sequence of bytes that make up a stream is located between the <code class="docutils literal notranslate"><span class="pre">stream</span></code> and <code class="docutils literal notranslate"><span class="pre">endstream</span></code> keywords. Streams must be indirect objects and the stream dictionary must be a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_86862">About direct and indirect objects</a>.)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">stream</span></code> keyword should be followed by an end-of-line marker consisting of either a carriage return and a line feed or just a line feed, and not by a carriage return alone. The sequence of bytes that make up a stream is located between the <code class="docutils literal notranslate"><span class="pre">stream</span></code> and <code class="docutils literal notranslate"><span class="pre">endstream</span></code> keywords. Streams must be indirect objects and the stream dictionary must be a direct object. (See <a class="reference internal" href="#about-direct-and-indirect-objects"><span class="std std-ref">About direct and indirect objects</span></a>.)</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For more information about streams, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p>
@@ -1099,10 +1099,10 @@ endstream
 </div>
 </div>
 <div class="section" id="working-with-cos-strings">
-<h2>Working with Cos strings<a class="headerlink" href="#working-with-cos-strings" title="Permalink to this headline">¶</a></h2>
-<p>This section discusses ways in which you can work with Cos strings. (See <a class="reference external" href="Plugins_Cos.html#50618418_36150">Cos strings</a>.)</p>
+<span id="id11"></span><h2>Working with Cos strings<a class="headerlink" href="#working-with-cos-strings" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses ways in which you can work with Cos strings. (See <a class="reference internal" href="#cos-strings"><span class="std std-ref">Cos strings</span></a>.)</p>
 <div class="section" id="creating-cos-strings">
-<h3>Creating Cos strings<a class="headerlink" href="#creating-cos-strings" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>Creating Cos strings<a class="headerlink" href="#creating-cos-strings" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on a Cos string.</p>
 <p>To create a Cos string:</p>
 <ol class="arabic simple">
@@ -1110,13 +1110,13 @@ endstream
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on a Cos string by invoking the <code class="docutils literal notranslate"><span class="pre">CosNewString</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_86862">About direct and indirect objects</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference internal" href="#about-direct-and-indirect-objects"><span class="std std-ref">About direct and indirect objects</span></a>.)</p></li>
 <li><p>A character pointer that specifies the string. Cos strings can contain NULL characters.</p></li>
 <li><p>The length of the character pointer.</p></li>
 </ul>
 </li>
 </ol>
-<p>The following code example creates a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> that is based on a Cos string. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p>
+<p>The following code example creates a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> that is based on a Cos string. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Cos</span> <span class="n">string</span>
 <span class="n">char</span><span class="o">*</span> <span class="n">mystr</span> <span class="o">=</span> <span class="s2">&quot;New String&quot;</span><span class="p">;</span>
 <span class="n">CosDoc</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">PDDocGetCosDoc</span><span class="p">(</span><span class="n">myPDDoc</span><span class="p">);</span>
@@ -1125,7 +1125,7 @@ endstream
 </div>
 </div>
 <div class="section" id="retrieving-the-string-value">
-<h3>Retrieving the string value<a class="headerlink" href="#retrieving-the-string-value" title="Permalink to this headline">¶</a></h3>
+<span id="id13"></span><h3>Retrieving the string value<a class="headerlink" href="#retrieving-the-string-value" title="Permalink to this headline">¶</a></h3>
 <p>You can retrieve the string value from a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> that is based on a Cos string. To retrieve the string value, invoke the <code class="docutils literal notranslate"><span class="pre">CosStringValue</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> that is based on a Cos string.</p></li>
@@ -1151,10 +1151,10 @@ endstream
 </div>
 </div>
 <div class="section" id="working-with-cos-arrays">
-<h2>Working with Cos arrays<a class="headerlink" href="#working-with-cos-arrays" title="Permalink to this headline">¶</a></h2>
+<span id="id14"></span><h2>Working with Cos arrays<a class="headerlink" href="#working-with-cos-arrays" title="Permalink to this headline">¶</a></h2>
 <p>This section discusses ways in which you can work with <code class="docutils literal notranslate"><span class="pre">Cos</span></code> arrays.</p>
 <div class="section" id="creating-cos-arrays">
-<h3>Creating Cos arrays<a class="headerlink" href="#creating-cos-arrays" title="Permalink to this headline">¶</a></h3>
+<span id="id15"></span><h3>Creating Cos arrays<a class="headerlink" href="#creating-cos-arrays" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on a <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array. You specify the number of elements that the <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array stores when you create it. However, you can add elements dynamically as needed. For example, assume that you create a <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array that stores three elements. If required, you can add a fourth element. An exception is thrown if the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is added to the <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array is a direct object that is already located in another <code class="docutils literal notranslate"><span class="pre">Cos</span></code> collection object.</p>
 <ol class="arabic simple">
 <li><p>To create a Cos array:</p></li>
@@ -1162,7 +1162,7 @@ endstream
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on a <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array by invoking the <code class="docutils literal notranslate"><span class="pre">CosNewArray</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_86862">About direct and indirect objects</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference internal" href="#about-direct-and-indirect-objects"><span class="std std-ref">About direct and indirect objects</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASTArraySize</span></code> object that specifies the number of elements.</p></li>
 </ul>
 </li>
@@ -1171,7 +1171,7 @@ endstream
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that stores a value to add to the <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array. For example, to create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on an integer value, invoke the <code class="docutils literal notranslate"><span class="pre">CosNewInteger</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_86862">About direct and indirect objects</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference internal" href="#about-direct-and-indirect-objects"><span class="std std-ref">About direct and indirect objects</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> value that specifies the integer value.</p></li>
 </ul>
 </li>
@@ -1183,7 +1183,7 @@ endstream
 </ul>
 </li>
 </ol>
-<p>The following code example creates a <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array and adds the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, and <code class="docutils literal notranslate"><span class="pre">5</span></code> to it. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p>
+<p>The following code example creates a <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array and adds the values <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">3</span></code>, <code class="docutils literal notranslate"><span class="pre">4</span></code>, and <code class="docutils literal notranslate"><span class="pre">5</span></code> to it. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">new</span> <span class="n">Cos</span> <span class="n">array</span>
 <span class="n">CosObj</span> <span class="n">ArrayObj</span><span class="p">,</span> <span class="n">IntObj</span><span class="p">;</span>
 <span class="n">CosDoc</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">PDDocGetCosDoc</span><span class="p">(</span><span class="n">myPDDoc</span><span class="p">);</span>
@@ -1203,7 +1203,7 @@ endstream
 </div>
 </div>
 <div class="section" id="retrieving-cos-array-values">
-<h3>Retrieving Cos array values<a class="headerlink" href="#retrieving-cos-array-values" title="Permalink to this headline">¶</a></h3>
+<span id="id16"></span><h3>Retrieving Cos array values<a class="headerlink" href="#retrieving-cos-array-values" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to retrieve values from a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on a <code class="docutils literal notranslate"><span class="pre">Cos</span></code> array.</p>
 <p>To retrieve values from a Cos array:</p>
 <ol class="arabic simple">
@@ -1253,10 +1253,10 @@ endstream
 </div>
 </div>
 <div class="section" id="working-with-cos-dictionaries">
-<h2>Working with Cos dictionaries<a class="headerlink" href="#working-with-cos-dictionaries" title="Permalink to this headline">¶</a></h2>
-<p>This section discusses ways in which you can work with Cos dictionaries. (See <a class="reference external" href="Plugins_Cos.html#50618418_50984">Cos dictionaries</a>.)</p>
+<span id="id17"></span><h2>Working with Cos dictionaries<a class="headerlink" href="#working-with-cos-dictionaries" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses ways in which you can work with Cos dictionaries. (See <a class="reference internal" href="#cos-dictionaries"><span class="std std-ref">Cos dictionaries</span></a>.)</p>
 <div class="section" id="creating-cos-dictionaries">
-<h3>Creating Cos dictionaries<a class="headerlink" href="#creating-cos-dictionaries" title="Permalink to this headline">¶</a></h3>
+<span id="id18"></span><h3>Creating Cos dictionaries<a class="headerlink" href="#creating-cos-dictionaries" title="Permalink to this headline">¶</a></h3>
 <p>You can create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on a Cos dictionary. Both the key and its value are <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> objects that you create and add to the Cos dictionary, which is also a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object.</p>
 <p>To create a Cos dictionary:</p>
 <ol class="arabic simple">
@@ -1264,7 +1264,7 @@ endstream
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the dictionary by invoking the <code class="docutils literal notranslate"><span class="pre">CosNewDict</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_16671">About Cos objects</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference internal" href="#about-cos-objects"><span class="std std-ref">About Cos objects</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASTArraySize</span></code> object that specifies the number of dictionary entries (the number of key and value pairs).</p></li>
 </ul>
 </li>
@@ -1274,7 +1274,7 @@ endstream
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents a dictionary value. You must invoke a method that corresponds to the value’s data type. For example, to add an integer value, invoke the <code class="docutils literal notranslate"><span class="pre">CosNewInteger</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_86862">About direct and indirect objects</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference internal" href="#about-direct-and-indirect-objects"><span class="std std-ref">About direct and indirect objects</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASInt32</span></code> value that specifies the integer value.</p></li>
 </ul>
 </li>
@@ -1287,7 +1287,7 @@ endstream
 </li>
 <li><p>Repeat steps 3 and 4 for each dictionary entry that you want to add.</p></li>
 </ol>
-<p>The following code example creates a Cos dictionary with the following entries: <code class="docutils literal notranslate"><span class="pre">/Key1</span> <span class="pre">1</span> <span class="pre">/Key2</span></code>. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p>
+<p>The following code example creates a Cos dictionary with the following entries: <code class="docutils literal notranslate"><span class="pre">/Key1</span> <span class="pre">1</span> <span class="pre">/Key2</span></code>. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">Cos</span> <span class="n">dictionary</span>
 <span class="n">CosObj</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">IntObj</span><span class="p">;</span>
 <span class="n">CosDoc</span> <span class="n">cd</span><span class="p">;</span>
@@ -1313,7 +1313,7 @@ endstream
 </div>
 </div>
 <div class="section" id="retrieving-values-from-a-cos-dictionary">
-<h3>Retrieving values from a Cos dictionary<a class="headerlink" href="#retrieving-values-from-a-cos-dictionary" title="Permalink to this headline">¶</a></h3>
+<span id="id19"></span><h3>Retrieving values from a Cos dictionary<a class="headerlink" href="#retrieving-values-from-a-cos-dictionary" title="Permalink to this headline">¶</a></h3>
 <p>You can retrieve a dictionary element value by performing the following steps:</p>
 <ol class="arabic simple">
 <li><p>Get a dictionary key value by invoking the <code class="docutils literal notranslate"><span class="pre">CosDictGet</span></code> method and passing the following arguments:</p>
@@ -1346,11 +1346,11 @@ endstream
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Dict</span></code> object is a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> that represents the dictionary. (See <a class="reference external" href="Plugins_Cos.html#50618418_10844">Creating Cos dictionaries</a>.)</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Dict</span></code> object is a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> that represents the dictionary. (See <a class="reference internal" href="#creating-cos-dictionaries"><span class="std std-ref">Creating Cos dictionaries</span></a>.)</p>
 </div>
 </div>
 <div class="section" id="querying-a-cos-dictionary-for-a-key">
-<h3>Querying a Cos dictionary for a key<a class="headerlink" href="#querying-a-cos-dictionary-for-a-key" title="Permalink to this headline">¶</a></h3>
+<span id="id20"></span><h3>Querying a Cos dictionary for a key<a class="headerlink" href="#querying-a-cos-dictionary-for-a-key" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to determine whether a specific key-value pair exists. To perform this task, invoke the <code class="docutils literal notranslate"><span class="pre">CosDictKnown</span></code> method and pass the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the dictionary.</p></li>
@@ -1368,10 +1368,10 @@ endstream
 </div>
 </div>
 <div class="section" id="working-with-cos-names">
-<h2>Working with Cos names<a class="headerlink" href="#working-with-cos-names" title="Permalink to this headline">¶</a></h2>
-<p>This section discusses ways in which you can work with Cos names. (See <a class="reference external" href="Plugins_Cos.html#50618418_29290">Cos names</a>.)</p>
+<span id="id21"></span><h2>Working with Cos names<a class="headerlink" href="#working-with-cos-names" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses ways in which you can work with Cos names. (See <a class="reference internal" href="#cos-names"><span class="std std-ref">Cos names</span></a>.)</p>
 <div class="section" id="creating-cos-names">
-<h3>Creating Cos names<a class="headerlink" href="#creating-cos-names" title="Permalink to this headline">¶</a></h3>
+<span id="id22"></span><h3>Creating Cos names<a class="headerlink" href="#creating-cos-names" title="Permalink to this headline">¶</a></h3>
 <p>You can use the Acrobat core API to create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that is based on a Cos name.</p>
 <p>To create a Cos name:</p>
 <ol class="arabic simple">
@@ -1379,13 +1379,13 @@ endstream
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the name by invoking the <code class="docutils literal notranslate"><span class="pre">CosNewName</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_86862">About direct and indirect objects</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference internal" href="#about-direct-and-indirect-objects"><span class="std std-ref">About direct and indirect objects</span></a>.)</p></li>
 <li><p>An <code class="docutils literal notranslate"><span class="pre">ASAtom</span></code> object that represent the name to create.</p></li>
 </ul>
 </li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">CosNewName</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the new Cos name.</p>
-<p>The following code example creates a Cos name with the value <code class="docutils literal notranslate"><span class="pre">Name1</span></code>. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference external" href="Plugins_Documents.html#50618416_97094">Creating a PDDoc object</a>.)</p>
+<p>The following code example creates a Cos name with the value <code class="docutils literal notranslate"><span class="pre">Name1</span></code>. A <code class="docutils literal notranslate"><span class="pre">PDDoc</span></code> object named <code class="docutils literal notranslate"><span class="pre">myPDDoc</span></code> is passed to the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method. (See <a class="reference internal" href="Plugins_Documents.html#creating-a-pddoc-object"><span class="std std-ref">Creating a PDDoc object</span></a>.)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">Cos</span> <span class="n">name</span>
 <span class="n">CosObj</span> <span class="n">nameObj</span><span class="p">;</span>
 <span class="n">CosDoc</span> <span class="n">cd</span> <span class="o">=</span> <span class="n">PDDocGetCosDoc</span><span class="p">(</span><span class="n">myPDDoc</span><span class="p">);</span>
@@ -1394,7 +1394,7 @@ endstream
 </div>
 </div>
 <div class="section" id="retrieving-the-value-of-a-name-object">
-<h3>Retrieving the value of a name object<a class="headerlink" href="#retrieving-the-value-of-a-name-object" title="Permalink to this headline">¶</a></h3>
+<span id="id23"></span><h3>Retrieving the value of a name object<a class="headerlink" href="#retrieving-the-value-of-a-name-object" title="Permalink to this headline">¶</a></h3>
 <p>You can retrieve the value of a name object by using the Acrobat core API. For example, assume that you retrieve the value from the Cos name object created in the previous code example. In this situation, the value that is retrieved is <code class="docutils literal notranslate"><span class="pre">Name1</span></code>.</p>
 <p>To retrieve the value from a Cos name object:</p>
 <ol class="arabic simple">
@@ -1420,15 +1420,15 @@ endstream
 </div>
 </div>
 <div class="section" id="working-with-cos-streams">
-<h2>Working with Cos streams<a class="headerlink" href="#working-with-cos-streams" title="Permalink to this headline">¶</a></h2>
-<p>This section discusses ways in which you can work with Cos streams. (See <a class="reference external" href="Plugins_Cos.html#50618418_63762">Cos streams</a>.)</p>
+<span id="id24"></span><h2>Working with Cos streams<a class="headerlink" href="#working-with-cos-streams" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses ways in which you can work with Cos streams. (See <a class="reference internal" href="#cos-streams"><span class="std std-ref">Cos streams</span></a>.)</p>
 <p>A stream is represented by an <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object definition. A data stream can be a buffer in memory, a file, or an arbitrary user-written procedure. When writing or extracting data streams, an <code class="docutils literal notranslate"><span class="pre">ASStm</span></code> object must be converted to a Cos stream.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Before reading this section, it is strongly recommended that you are familiar with concepts discussed earlier in this chapter, such as <code class="docutils literal notranslate"><span class="pre">Cos</span></code> arrays and Cos dictionaries.</p>
 </div>
 <div class="section" id="creating-cos-streams">
-<h3>Creating Cos streams<a class="headerlink" href="#creating-cos-streams" title="Permalink to this headline">¶</a></h3>
+<span id="id25"></span><h3>Creating Cos streams<a class="headerlink" href="#creating-cos-streams" title="Permalink to this headline">¶</a></h3>
 <p>You can create a data stream in memory and then insert the stream into a PDF document page. The following diagram shows the result of a data stream that creates a thin black line segment being inserted into a PDF document.</p>
 <img alt="_images/lineStream.png" src="_images/lineStream.png" />
 <p>The following example shows the syntax of a stream that creates a thin line segment:</p>
@@ -1444,7 +1444,7 @@ endstream
 <p>For information about stream syntax, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p>
 </div>
 <div class="section" id="creating-a-stream-dictionary">
-<h4>Creating a stream dictionary<a class="headerlink" href="#creating-a-stream-dictionary" title="Permalink to this headline">¶</a></h4>
+<span id="id26"></span><h4>Creating a stream dictionary<a class="headerlink" href="#creating-a-stream-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>Each Cos stream has a stream dictionary that contains a <code class="docutils literal notranslate"><span class="pre">Length</span></code> entry that indicates how many bytes are used for the stream’s data (if the stream has a filter, the <code class="docutils literal notranslate"><span class="pre">Length</span></code> entry is the number of bytes of encoded data). A limit of 4096 bytes exists for the <code class="docutils literal notranslate"><span class="pre">Length</span></code> entry. A stream dictionary also has optional entries that are not discussed in this section. For more information about stream dictionaries, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a></p>
 <p>In addition, most filters are defined so that the data is self-limiting; that is, they use an encoding scheme in which an explicit end-of-data (EOD) marker delimits the extent of the data. Finally, streams are used to represent many objects from whose length attributes can be inferred. All of these constraints must be consistent.</p>
 <p>For example, an image with 10 rows and 20 columns, using a single color component and 8 bits per component, requires exactly 200 bytes of image data. If the stream uses a filter, there must be enough bytes of encoded data in the PDF file to produce those 200 bytes. An error occurs if the <code class="docutils literal notranslate"><span class="pre">Length</span></code> entry is too small, if an explicit EOD marker occurs too soon, or if the decoded data does not contain 200 bytes. It is also an error if the stream contains too much data, with the exception that there may be an extra end-of-line marker in the PDF file before the <code class="docutils literal notranslate"><span class="pre">endstream</span></code> keyword. All streams created in this section have a stream dictionary defined.</p>
@@ -1459,14 +1459,14 @@ endstream
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the length of the stream by invoking the <code class="docutils literal notranslate"><span class="pre">CosNewInteger</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object that you created in step 1.</p></li>
-<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference external" href="Plugins_Cos.html#50618418_86862">About direct and indirect objects</a>.)</p></li>
+<li><p>An <code class="docutils literal notranslate"><span class="pre">ASBool</span></code> object that specifies whether the <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object is an indirect or direct object. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, the string is an indirect object. If <code class="docutils literal notranslate"><span class="pre">false</span></code>, the string is a direct object. (See <a class="reference internal" href="#about-direct-and-indirect-objects"><span class="std std-ref">About direct and indirect objects</span></a>.)</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">ASUns32</span></code> object created in step 2 that represents the stream length.</p></li>
 </ul>
 </li>
 </ol>
 <p>The <code class="docutils literal notranslate"><span class="pre">CosNewInteger</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the stream length.</p>
 <ol class="arabic simple">
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the Cos dictionary. (See <a class="reference external" href="Plugins_Cos.html#50618418_10844">Creating Cos dictionaries</a>.)</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the Cos dictionary. (See <a class="reference internal" href="#creating-cos-dictionaries"><span class="std std-ref">Creating Cos dictionaries</span></a>.)</p></li>
 <li><p>Set the stream dictionary key and value by invoking the <code class="docutils literal notranslate"><span class="pre">CosDictPutKeyString</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that you created in step 4 that represents the dictionary.</p></li>
@@ -1475,7 +1475,7 @@ endstream
 </ul>
 </li>
 </ol>
-<p>The following code example creates a stream dictionary. The first part of this code example creates a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object by using an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object. For information about this application logic, see <a class="reference external" href="Plugins_Pages.html#50618407_91421">Creating a PDEContent object</a>.</p>
+<p>The following code example creates a stream dictionary. The first part of this code example creates a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object by using an <code class="docutils literal notranslate"><span class="pre">AVDoc</span></code> object. For information about this application logic, see <a class="reference internal" href="Plugins_Pages.html#creating-a-pdecontent-object"><span class="std std-ref">Creating a PDEContent object</span></a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span><span class="n">Create</span> <span class="n">a</span> <span class="n">PDPage</span> <span class="nb">object</span> <span class="n">using</span> <span class="n">the</span> <span class="n">current</span> <span class="n">page</span>
 <span class="n">AVDoc</span> <span class="n">avDoc</span> <span class="o">=</span> <span class="n">AVAppGetActiveDoc</span><span class="p">();</span>
 <span class="n">AVPageView</span> <span class="n">pageView</span> <span class="o">=</span> <span class="n">AVDocGetPageView</span><span class="p">(</span><span class="n">avDoc</span><span class="p">);</span>
@@ -1523,15 +1523,15 @@ endstream
 </div>
 </div>
 <div class="section" id="inserting-a-cos-stream-into-a-pdf-document">
-<h4>Inserting a Cos stream into a PDF document<a class="headerlink" href="#inserting-a-cos-stream-into-a-pdf-document" title="Permalink to this headline">¶</a></h4>
+<span id="id27"></span><h4>Inserting a Cos stream into a PDF document<a class="headerlink" href="#inserting-a-cos-stream-into-a-pdf-document" title="Permalink to this headline">¶</a></h4>
 <p>When inserting a stream into a PDF document, ensure that the stream is valid; otherwise, a run-time error occurs. This section explains how to create a stream that draws a thin black line segment and then inserts the stream into the current PDF page.</p>
 <p>To insert a stream into the current PDF document page:</p>
 <ol class="arabic simple">
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object that represents the current PDF page. (See <a class="reference external" href="Plugins_Pages.html#50618407_91421">Creating a PDEContent object</a>.)</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">PDPage</span></code> object that represents the current PDF page. (See <a class="reference internal" href="Plugins_Pages.html#creating-a-pdecontent-object"><span class="std std-ref">Creating a PDEContent object</span></a>.)</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosDoc</span></code> object that represents a PDF file by invoking the <code class="docutils literal notranslate"><span class="pre">PDDocGetCosDoc</span></code> method.</p></li>
 <li><p>Define the stream that draws a thin black line segment. You can populate a character array with a stream by invoking the <code class="docutils literal notranslate"><span class="pre">sprintf</span></code> method.</p></li>
 <li><p>Create an <code class="docutils literal notranslate"><span class="pre">ASUns32</span></code> object that represents the stream length.</p></li>
-<li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the stream dictionary. (See <a class="reference external" href="Plugins_Cos.html#50618418_71942">Creating a stream dictionary</a>.)</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">CosObj</span></code> object that represents the stream dictionary. (See <a class="reference internal" href="#creating-a-stream-dictionary"><span class="std std-ref">Creating a stream dictionary</span></a>.)</p></li>
 <li><p>Read the stream into memory by invoking the <code class="docutils literal notranslate"><span class="pre">ASMemStmRdOpen</span></code> method and passing the following arguments:</p>
 <ul class="simple">
 <li><p>A character pointer that contains the data stream</p></li>
@@ -1646,7 +1646,7 @@ endstream
 </div>
 </div>
 <div class="section" id="populating-a-pdf-with-a-content-stream">
-<h3>Populating a PDF with a content stream<a class="headerlink" href="#populating-a-pdf-with-a-content-stream" title="Permalink to this headline">¶</a></h3>
+<span id="id28"></span><h3>Populating a PDF with a content stream<a class="headerlink" href="#populating-a-pdf-with-a-content-stream" title="Permalink to this headline">¶</a></h3>
 <p>This section explains how to use the Acrobat core API to create a new PDF document, insert a page into the document, and populate the page with a Cos content stream that inserts the text <code class="docutils literal notranslate"><span class="pre">Hello</span></code> <code class="docutils literal notranslate"><span class="pre">There</span></code>. When inserting a content stream into a PDF document, in addition to creating a stream dictionary, you must also create a resource dictionary and a page dictionary. A resource dictionary defines attributes such as the font that a content stream uses and a page dictionary defines attributes such as the page’s height and width. For information about these dictionaries, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a></p>
 <p>The following example shows the resource dictionary that is created in this section.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span> <span class="mi">0</span> <span class="n">obj</span>
@@ -2067,7 +2067,7 @@ END_HANDLER
     <p>
         &#169; Copyright 2021, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jun 30, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 
