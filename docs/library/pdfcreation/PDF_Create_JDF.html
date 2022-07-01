@@ -533,7 +533,7 @@
   <div class="section" id="conversions-related-to-jdf">
 <h1>Conversions Related to JDF<a class="headerlink" href="#conversions-related-to-jdf" title="Permalink to this headline">¶</a></h1>
 <p>This appendix describes how Distiller converts <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> -type PostScript key-word pairs and parameters into a job description file (JDF). Distiller creates a JDF file if the <code class="docutils literal notranslate"><span class="pre">CreateJDFFile</span></code> parameter is set to true. The version of JDF created is 1.1. For more information, see the JDF specification at <a class="reference external" href="http://www.cip4.org/documents/jdf_specifications">http://www.cip4.org/documents/jdf_specifications</a> .</p>
-<p>This appendix uses XPath expressions to identify specific attributes. <em>XPath</em> is a language for addressing parts of an XML document, as defined in XML Path Language (XPath) Version 1.0, which is available from http <a class="reference external" href="http://www.w3.org/TR/xpath">://www.w3.org/TR/xpath</a> . The conventions that appear in the following tables are shown below:</p>
+<p>This appendix uses XPath expressions to identify specific attributes. <em>XPath</em> is a language for addressing parts of an XML document, as defined in XML Path Language (XPath) Version 1.0, which is available from http <a class="reference external" href="http://www.w3.org/TR/xpath">://www.w3.org/TR/xpath</a>. The conventions that appear in the following tables are shown below:</p>
 <ul class="simple">
 <li><p>Expression = JDFRoot’/’Attribute | JDFRoot’/’Children’/’Attribute</p></li>
 <li><p>JDFRoot = ‘/JDF’</p></li>
@@ -553,140 +553,153 @@
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> - <em>type operators</em> . Whenever Distiller encounters a supported <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> -type operator, it represents the key value as an entry in one of the parameter resources associated with the <code class="docutils literal notranslate"><span class="pre">ResourceDedfinition</span></code> process. (<a class="reference external" href="PDF_Create_JDF.html#10930">Representation of PostScript keys as JDF entries</a>)</p></li>
 <li><p><em>DSC comments</em> . Whenever Distiller encounters certain DSC comments, it represents those comments in the RunList for the PDF file. (<a class="reference external" href="PDF_Create_JDF.html#35100">Mapping of DSC comments into JDF elements and attributes</a>)</p></li>
-<li><p><em>Parameters</em> . Distiller creates a <code class="docutils literal notranslate"><span class="pre">PSToPDFConversionParams</span></code> resource which it populates with attributes that correspond to the settings of the parameters as of the end of the first page of the job. If the parameter <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is NOT <code class="docutils literal notranslate"><span class="pre">LeaveColorUnchanged</span></code> , Distiller also creates a <code class="docutils literal notranslate"><span class="pre">ColorSpaceConversionParams</span></code> resource, which it populates as it does for <code class="docutils literal notranslate"><span class="pre">PSToPDFConversionParams</span></code> . (<a class="reference external" href="PDF_Create_JDF.html#32105">Mapping of parameters into JDF elements and attributes</a>)</p></li>
+<li><p><em>Parameters</em> . Distiller creates a <code class="docutils literal notranslate"><span class="pre">PSToPDFConversionParams</span></code> resource which it populates with attributes that correspond to the settings of the parameters as of the end of the first page of the job. If the parameter <code class="docutils literal notranslate"><span class="pre">ColorConversionStrategy</span></code> is NOT <code class="docutils literal notranslate"><span class="pre">LeaveColorUnchanged</span></code> , Distiller also creates a <code class="docutils literal notranslate"><span class="pre">ColorSpaceConversionParams</span></code> resource, which it populates as it does for <code class="docutils literal notranslate"><span class="pre">PSToPDFConversionParams</span></code>.  (<a class="reference external" href="PDF_Create_JDF.html#32105">Mapping of parameters into JDF elements and attributes</a>)</p></li>
 </ul>
 <a name="10930"></a></div>
 <div class="section" id="representation-of-postscript-keys-as-jdf-entries">
 <h2>Representation of PostScript keys as JDF entries<a class="headerlink" href="#representation-of-postscript-keys-as-jdf-entries" title="Permalink to this headline">¶</a></h2>
 <p>Distiller represents selected <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> , <code class="docutils literal notranslate"><span class="pre">settrapparams</span></code> , or <code class="docutils literal notranslate"><span class="pre">settrapzone</span></code> PostScript key-word pairs as JDF entries. It does so by creating and populating corresponding JDF resource elements in a <code class="docutils literal notranslate"><span class="pre">ResourceDefinition</span></code> resource pool, as described in the table <a class="reference external" href="PDF_Create_JDF.html#43338">PostScript keys converted into JDF ResourceDefinition resources</a>.</p>
 <p>On occasion, a PostScript key contradicts a Distiller parameter. For information on how this conflict is resolved, see <em>Using Adobe Normalizer Server, Version 6.0.4</em> , section 7.2.</p>
-<p>PostScript keys converted into JDF ResourceDefinition resources</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>PostScript key</p></th>
-<th class="head"><p>Representation in JDF ResourceDefinition resources</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>setpagedevice</p></td>
-<td><p>Distiller converts the <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> key-word pairs into the <code class="docutils literal notranslate"><span class="pre">ResourceDefinition</span></code> attributes described in the table <a class="reference external" href="PDF_Create_JDF.html#91897">Mapping from setpagedevice keys to JDF entries</a>. Some keys are omitted from the table because they do not have logical equivalents in the <em>JDF Specification</em> .</p></td>
-</tr>
-<tr class="row-odd"><td><p>settrapparms</p></td>
-<td><p>Distiller converts the <code class="docutils literal notranslate"><span class="pre">settrapparam</span></code> key-word pairs into the ResourceDefinition attributes described in the table <a class="reference external" href="PDF_Create_JDF.html#92800">Mapping from settrapparms keys to JDF TrappingDetails entries</a>.</p></td>
-</tr>
-<tr class="row-even"><td><p>settrapzone</p></td>
-<td><p>Distiller converts the <code class="docutils literal notranslate"><span class="pre">settrapzone</span></code> key-word pairs into the ResourceDefinition attributes described in the table <a class="reference external" href="PDF_Create_JDF.html#75642">Mapping from settrapzone keys to JDF TrappingDetails entries</a>.</p></td>
-</tr>
-</tbody>
-</table>
-<p>Mapping from setpagedevice keys to JDF entries</p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 36%" />
-<col style="width: 64%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Key Name</p></th>
-<th class="head"><p>Entry in /JDF / ResourcePool</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Collate</p></td>
-<td><p>DigitalPrintingParams /&#64; Collate</p></td>
-</tr>
-<tr class="row-odd"><td><p>DeviceRenderingInfo</p>
-<p>&lt;&lt;ValuesPerColorComponent&gt;&gt;</p>
-</td>
-<td><p>RenderingParams /&#64; ColorantDepth</p></td>
-</tr>
-<tr class="row-even"><td><p>Duplex</p></td>
-<td><p>LayoutPreparationParams /&#64; Sides</p></td>
-</tr>
-<tr class="row-odd"><td><p>HWResolution</p></td>
-<td><p>RenderingParams / ObjectResolution /&#64; Resolution</p></td>
-</tr>
-<tr class="row-even"><td><p>Jog</p></td>
-<td><p>Component / Disjointing /&#64; OffsetAmount</p></td>
-</tr>
-<tr class="row-odd"><td><p>ManualFeed</p></td>
-<td><p>DigitalPrintingParams /&#64; ManualFeed</p></td>
-</tr>
-<tr class="row-even"><td><p>MediaColor</p></td>
-<td><p>DigitalPrintingParams / Media /&#64; MediaColorName</p></td>
-</tr>
-<tr class="row-odd"><td><p>MediaPosition</p></td>
-<td><p>DigitalPrintingParams / Media / Location /&#64; LocationName</p></td>
-</tr>
-<tr class="row-even"><td><p>MediaType</p></td>
-<td><p>DigitalPrintingParams / Media /&#64; UserMediaType</p></td>
-</tr>
-<tr class="row-odd"><td><p>MediaWeight</p></td>
-<td><p>DigitalPrintingParams / Media /&#64; Weight</p></td>
-</tr>
-<tr class="row-even"><td><p>MirrorPrint</p></td>
-<td><p>ImageSetterParams /&#64; MirrorAround</p></td>
-</tr>
-<tr class="row-odd"><td><p>NegativePrint</p></td>
-<td><p>ImageSetterParams /&#64; Polarity</p></td>
-</tr>
-<tr class="row-even"><td><p>NumCopies</p></td>
-<td><p>If <code class="docutils literal notranslate"><span class="pre">Collate</span></code> is <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> , <code class="docutils literal notranslate"><span class="pre">RunList</span> <span class="pre">/&#64;</span> <span class="pre">PageCopies</span></code> .</p>
-<p>Otherwise, <code class="docutils literal notranslate"><span class="pre">RunList</span> <span class="pre">/&#64;</span> <span class="pre">DocCopies</span></code></p>
-</td>
-</tr>
-<tr class="row-odd"><td><p>PageSize</p></td>
-<td><p>DigitalPrintingParams / Media /&#64; Dimension</p></td>
-</tr>
-<tr class="row-even"><td><p>ProcessColorModel</p></td>
-<td><p>ColorantControl /&#64; ProcessColorModel</p></td>
-</tr>
-<tr class="row-odd"><td><p>SeparationColorNames</p></td>
-<td><p>ColorantControl /&#64; ColorantParams</p></td>
-</tr>
-<tr class="row-even"><td><p>SeparationOrder</p></td>
-<td><p>ColorantControl /&#64; ColorantOrder</p></td>
-</tr>
-<tr class="row-odd"><td><p>Separations</p></td>
-<td><p>ColorantControl /&#64; ForceSeparations</p></td>
-</tr>
-<tr class="row-even"><td><p>Trapping</p></td>
-<td><p>TrappingDetails /&#64; Trapping</p></td>
-</tr>
-<tr class="row-odd"><td><p>TrappingDetails &lt;&lt;Type&gt;&gt;</p></td>
-<td><p>TrappingDetails /&#64; TrappingType</p></td>
-</tr>
-<tr class="row-even"><td><p>TrappingDetails</p>
-<p>&lt;&lt;ColorantDetails</p>
-<p>&lt;&lt;ColorantName&gt;&gt; &gt;&gt;</p>
-</td>
-<td><p>ColorantControl / ColorPool /&#64; ColorName</p></td>
-</tr>
-<tr class="row-odd"><td><p>TrappingDetails</p>
-<p>&lt;&lt;ColorantDetails</p>
-<p>&lt;&lt;ColorantType&gt;&gt; &gt;&gt;</p>
-</td>
-<td><p>ColorantControl / ColorPool / Color /&#64; ColorType</p></td>
-</tr>
-<tr class="row-even"><td><p>TrappingDetails</p>
-<p>&lt;&lt;ColorantDetails</p>
-<p>&lt;&lt;NeutralDensity&gt;&gt; &gt;&gt;</p>
-</td>
-<td><p>ColorantControl / ColorPool / Color /&#64; NeutralDensity</p></td>
-</tr>
-<tr class="row-odd"><td><p>TrappingDetails</p>
-<p>&lt;&lt;TrappingOrder&gt;&gt;</p>
-</td>
-<td><p>TrappingDetails /&#64; TrappingOrder</p></td>
-</tr>
-<tr class="row-even"><td><p>Tumble</p></td>
-<td><p>LayoutPreparation /&#64; Sides</p></td>
-</tr>
-</tbody>
-</table>
+<p>PostScript keys converted into JDF ResourceDefinition resources
++———————————–+————————————————————————————————————————————————————————————————————————————————————————————————————————–+
+| PostScript key                    | Representation in JDF ResourceDefinition resources                                                                                                                                                                                                                                                                       |
++===================================+==========================================================================================================================================================================================================================================================================================================================+
+|                                   | Distiller converts the <code class="docutils literal notranslate"><span class="pre">setpagedevice</span></code> key-word pairs into the <code class="docutils literal notranslate"><span class="pre">ResourceDefinition</span></code> attributes described in the table “Mapping from setpagedevice keys to JDF entries”. Some keys are omitted from the table because they do not have logical equivalents in the <em>JDF Specification</em> .                               |
+|                                   |                                                                                                                                                                                                                                                                                                                          |
+|    setpagedevice                  |                                                                                                                                                                                                                                                                                                                          |
++———————————–+————————————————————————————————————————————————————————————————————————————————————————————————————————–+
+|                                   | Distiller converts the <code class="docutils literal notranslate"><span class="pre">settrapparam</span></code> key-word pairs into the ResourceDefinition attributes described in the table “Mapping from settrapparms keys to JDF TrappingDetails entries”.                                                                                                                                    |
+|                                   |                                                                                                                                                                                                                                                                                                                          |
+|    settrapparms                   |                                                                                                                                                                                                                                                                                                                          |
++———————————–+————————————————————————————————————————————————————————————————————————————————————————————————————————–+
+|                                   | Distiller converts the <code class="docutils literal notranslate"><span class="pre">settrapzone</span></code> key-word pairs into the ResourceDefinition attributes described in the table “Mapping from settrapzone keys to JDF TrappingDetails entries”.                                                                                                        |
+|                                   |                                                                                                                                                                                                                                                                                                                          |
+|    settrapzone                    |                                                                                                                                                                                                                                                                                                                          |
++———————————–+————————————————————————————————————————————————————————————————————————————————————————————————————————–+</p>
+<p>Mapping from setpagedevice keys to JDF entries
++———————————–+————————————————————-+
+| Key Name                          | Entry in /JDF / ResourcePool                                |
++===================================+=============================================================+
+|                                   |                                                             |
+|                                   |                                                             |
+|    Collate                        |    DigitalPrintingParams /&#64; Collate                         |
+|                                   |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    DeviceRenderingInfo            |    RenderingParams /&#64; ColorantDepth                         |
+|                                   |                                                             |
+|    &lt;&lt;ValuesPerColorComponent&gt;&gt;    |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    Duplex                         |    LayoutPreparationParams /&#64; Sides                         |
+|                                   |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    HWResolution                   |    RenderingParams / ObjectResolution /&#64; Resolution         |
+|                                   |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    Jog                            |    Component / Disjointing /&#64; OffsetAmount                  |
+|                                   |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    ManualFeed                     |    DigitalPrintingParams /&#64; ManualFeed                      |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    MediaColor                     |    DigitalPrintingParams / Media /&#64; MediaColorName          |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    MediaPosition                  |    DigitalPrintingParams / Media / Location /&#64; LocationName |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    MediaType                      |    DigitalPrintingParams / Media /&#64; UserMediaType           |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    MediaWeight                    |    DigitalPrintingParams / Media /&#64; Weight                  |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    MirrorPrint                    |    ImageSetterParams /&#64; MirrorAround                        |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    NegativePrint                  |    ImageSetterParams /&#64; Polarity                            |
++———————————–+————————————————————-+
+|                                   | If <code class="docutils literal notranslate"><span class="pre">Collate</span></code> is <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> , <code class="docutils literal notranslate"><span class="pre">RunList</span> <span class="pre">/&#64;</span> <span class="pre">PageCopies</span></code>.     |
+|                                   |                                                             |
+|    NumCopies                      | Otherwise, <code class="docutils literal notranslate"><span class="pre">RunList</span> <span class="pre">/&#64;</span> <span class="pre">DocCopies</span></code>                         |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    PageSize                       |    DigitalPrintingParams / Media /&#64; Dimension               |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    ProcessColorModel              |    ColorantControl /&#64; ProcessColorModel                     |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    SeparationColorNames           |    ColorantControl /&#64; ColorantParams                        |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    SeparationOrder                |    ColorantControl /&#64; ColorantOrder                         |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    Separations                    |    ColorantControl /&#64; ForceSeparations                      |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    Trapping                       |    TrappingDetails /&#64; Trapping                              |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    TrappingDetails &lt;&lt;Type&gt;&gt;       |    TrappingDetails /&#64; TrappingType                          |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    TrappingDetails                |    ColorantControl / ColorPool /&#64; ColorName                 |
+|                                   |                                                             |
+|    &lt;&lt;ColorantDetails              |                                                             |
+|                                   |                                                             |
+|    &lt;&lt;ColorantName&gt;&gt; &gt;&gt;            |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    TrappingDetails                |    ColorantControl / ColorPool / Color /&#64; ColorType         |
+|                                   |                                                             |
+|    &lt;&lt;ColorantDetails              |                                                             |
+|                                   |                                                             |
+|    &lt;&lt;ColorantType&gt;&gt; &gt;&gt;            |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    TrappingDetails                |    ColorantControl / ColorPool / Color /&#64; NeutralDensity    |
+|                                   |                                                             |
+|    &lt;&lt;ColorantDetails              |                                                             |
+|                                   |                                                             |
+|    &lt;&lt;NeutralDensity&gt;&gt; &gt;&gt;          |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    TrappingDetails                |    TrappingDetails /&#64; TrappingOrder                         |
+|                                   |                                                             |
+|    &lt;&lt;TrappingOrder&gt;&gt;              |                                                             |
++———————————–+————————————————————-+
+|                                   |                                                             |
+|                                   |                                                             |
+|    Tumble                         |    LayoutPreparation /&#64; Sides                               |
++———————————–+————————————————————-+</p>
 <p>Mapping from settrapparms keys to JDF TrappingDetails entries</p>
 <table class="docutils align-default" id="section-2">
 <colgroup>
@@ -821,13 +834,13 @@
 <div class="section" id="pre-separated-jobs-with-interleaved-separations">
 <h3>Pre-separated jobs with interleaved separations<a class="headerlink" href="#pre-separated-jobs-with-interleaved-separations" title="Permalink to this headline">¶</a></h3>
 <p>Pre-separated jobs with interleaved separations are indicated by the appearance of <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> comments soon after each <code class="docutils literal notranslate"><span class="pre">%%Page</span></code> comment, with each <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> specifying the next colorant in the sequence. That is, the separations that compose a single page appear sequentially, (i.e. cyan separation, magenta separation, yellow separation, and black separation).</p>
-<p>When processing pre-separated jobs with interleaved separations, Distiller uses the <code class="docutils literal notranslate"><span class="pre">%%Page</span></code> and <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> DSC comments to create a <code class="docutils literal notranslate"><span class="pre">RunList</span></code> element partitioned on the keys <code class="docutils literal notranslate"><span class="pre">Run</span></code> and <code class="docutils literal notranslate"><span class="pre">Separation</span></code> and to create a <code class="docutils literal notranslate"><span class="pre">RunIndex</span></code> that references the pages in that <code class="docutils literal notranslate"><span class="pre">RunList</span></code> .</p>
+<p>When processing pre-separated jobs with interleaved separations, Distiller uses the <code class="docutils literal notranslate"><span class="pre">%%Page</span></code> and <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> DSC comments to create a <code class="docutils literal notranslate"><span class="pre">RunList</span></code> element partitioned on the keys <code class="docutils literal notranslate"><span class="pre">Run</span></code> and <code class="docutils literal notranslate"><span class="pre">Separation</span></code> and to create a <code class="docutils literal notranslate"><span class="pre">RunIndex</span></code> that references the pages in that <code class="docutils literal notranslate"><span class="pre">RunList</span></code>.</p>
 <p>Distiller creates an additional <code class="docutils literal notranslate"><span class="pre">RunIndex</span></code> range for the pages that apply to each set of page device key values.</p>
 </div>
 <div class="section" id="pre-separated-single-colorant-jobs">
 <h3>Pre-separated single-colorant jobs<a class="headerlink" href="#pre-separated-single-colorant-jobs" title="Permalink to this headline">¶</a></h3>
 <p>Pre-separated single-colorant jobs are the same as <a class="reference external" href="PDF_Create_JDF.html#26538">Pre-separated jobs with interleaved separations</a>, except all <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> comments describe a single colorant.</p>
-<p>When processing pre-separated single-colorant jobs, Distiller uses the <code class="docutils literal notranslate"><span class="pre">%%Page</span></code> and <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> DSC comments as described for pre-separated jobs with interleaved separations, except the RunList contains a single partition with <code class="docutils literal notranslate"><span class="pre">Run=1</span></code> and <code class="docutils literal notranslate"><span class="pre">Separation</span></code> set to the colorant name provided in <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> .</p>
+<p>When processing pre-separated single-colorant jobs, Distiller uses the <code class="docutils literal notranslate"><span class="pre">%%Page</span></code> and <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code> DSC comments as described for pre-separated jobs with interleaved separations, except the RunList contains a single partition with <code class="docutils literal notranslate"><span class="pre">Run=1</span></code> and <code class="docutils literal notranslate"><span class="pre">Separation</span></code> set to the colorant name provided in <code class="docutils literal notranslate"><span class="pre">%%PlateColor</span></code>.</p>
 <a name="32105"></a></div>
 </div>
 <div class="section" id="mapping-of-parameters-into-jdf-elements-and-attributes">
@@ -963,7 +976,7 @@
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ColorImageFilter</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageFilter</span></code> , or <code class="docutils literal notranslate"><span class="pre">MonoImageFilter</span></code></p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">ImageFilter</span></code> or <code class="docutils literal notranslate"><span class="pre">ADBE:ImageFilter</span></code></p>
-<p>The latter being used to represent the value <code class="docutils literal notranslate"><span class="pre">JPXEncode</span></code> , <code class="docutils literal notranslate"><span class="pre">LZWEncode</span></code> , or <code class="docutils literal notranslate"><span class="pre">RunLengthEncode</span></code> .</p>
+<p>The latter being used to represent the value <code class="docutils literal notranslate"><span class="pre">JPXEncode</span></code> , <code class="docutils literal notranslate"><span class="pre">LZWEncode</span></code> , or <code class="docutils literal notranslate"><span class="pre">RunLengthEncode</span></code>.</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ColorImageResolution</span></code> , <code class="docutils literal notranslate"><span class="pre">GrayImageResolution</span></code> , or <code class="docutils literal notranslate"><span class="pre">MonoImageResolution</span></code></p></td>
@@ -980,7 +993,7 @@
 <td><blockquote>
 <div><p>&#64; ConvertImagesToIndexed</p>
 </div></blockquote>
-<p>(Represented only in an <code class="docutils literal notranslate"><span class="pre">ImageCompressionParams</span></code> element with <code class="docutils literal notranslate"><span class="pre">ImageType</span> <span class="pre">=</span> <span class="pre">&quot;Color&quot;</span></code> .)</p>
+<p>(Represented only in an <code class="docutils literal notranslate"><span class="pre">ImageCompressionParams</span></code> element with <code class="docutils literal notranslate"><span class="pre">ImageType</span> <span class="pre">=</span> <span class="pre">&quot;Color&quot;</span></code>. )</p>
 </td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DownsampleColorImages</span></code> , <code class="docutils literal notranslate"><span class="pre">DownsampleGrayImages</span></code> , or <code class="docutils literal notranslate"><span class="pre">DownsampleMonoImages</span></code></p></td>
@@ -1338,7 +1351,7 @@
     <p>
         &#169; Copyright 2022, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jul 01, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 
