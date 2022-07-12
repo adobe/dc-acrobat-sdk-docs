@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
   
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  <meta name="description" content="Learn how to integrate PDF products and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with Adobe's enterprise-class product lineup."/>
+  <meta name=viewport content="width=device-width, initial-scale=1">
   
-  <!-- Ben removed the title tag -->
+  <title>Reading PDF Files Through MSAA &mdash; Acrobat-PDFL SDK:  Accessibility</title>
   
 
   
@@ -376,7 +377,7 @@
 <p>Acrobat implements and exports a set of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects of different types to represent a document, its pages, and other elements of the document hierarchy.</p>
 <p>An MSAA client can retrieve an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for a user interface element in the following four ways:</p>
 <ul class="simple">
-<li><p>Set a <code class="docutils literal notranslate"><span class="pre">WinEvent</span></code> hook, receive a notification, and call <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFromEvent</span></code> to retrieve an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> interface pointer for the user interface element that generated the event. See <a class="reference external" href="AccessOverview.html#21082">Handling event notifications</a> for details.</p></li>
+<li><p>Set a <code class="docutils literal notranslate"><span class="pre">WinEvent</span></code> hook, receive a notification, and call <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFromEvent</span></code> to retrieve an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> interface pointer for the user interface element that generated the event. See <a class="reference external" href="index.html#21082">Handling event notifications</a> for details.</p></li>
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFromWindow</span></code> and pass the user interface element’s window handle. Each open document in Acrobat is associated with its own window handle.</p></li>
 <li><p>Call <code class="docutils literal notranslate"><span class="pre">AccessibleObjectFromPoint</span></code> and pass a screen location that lies within the user interface element’s bounding rectangle.</p></li>
 <li><p>Call an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> method such as <code class="docutils literal notranslate"><span class="pre">accNavigate</span></code> or <code class="docutils literal notranslate"><span class="pre">get_accParent</span></code> to move to a different <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object.</p></li>
@@ -392,7 +393,7 @@
 <p class="admonition-title">Note</p>
 <p>These elements are explicit in the DOM interface; see <a class="reference external" href="Access_DOM.html#30124">Reading PDF Files Through the DOM Interface</a>.</p>
 </div>
-<p>For each document, Acrobat builds a tree of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects representing the document and its internal structure. Because there is just one window handle associated with the document, Acrobat posts all event notifications to that window. In each notification, a <code class="docutils literal notranslate"><span class="pre">childID</span></code> identifies an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for an element in the document. For example, when the user tabs to the next link, the <code class="docutils literal notranslate"><span class="pre">EVENT_OBJECT_FOCUS</span></code> notification includes a <code class="docutils literal notranslate"><span class="pre">childID</span></code> that is the UID of the link object. See <a class="reference external" href="AccessOverview.html#21082">Handling event notifications</a>.</p>
+<p>For each document, Acrobat builds a tree of <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects representing the document and its internal structure. Because there is just one window handle associated with the document, Acrobat posts all event notifications to that window. In each notification, a <code class="docutils literal notranslate"><span class="pre">childID</span></code> identifies an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object for an element in the document. For example, when the user tabs to the next link, the <code class="docutils literal notranslate"><span class="pre">EVENT_OBJECT_FOCUS</span></code> notification includes a <code class="docutils literal notranslate"><span class="pre">childID</span></code> that is the UID of the link object. See <a class="reference external" href="index.html#21082">Handling event notifications</a>.</p>
 <p>The following interfaces are exported from the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object by Acrobat:</p>
 <a name="10950"></a></div>
 <div class="section" id="igetpddomnode-interface">
@@ -427,7 +428,7 @@
 <div class="section" id="identifying-iaccessible-objects-in-a-document">
 <h2>Identifying IAccessible objects in a document<a class="headerlink" href="#identifying-iaccessible-objects-in-a-document" title="Permalink to this headline">¶</a></h2>
 <p>You can identify the type of an <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object by using the <code class="docutils literal notranslate"><span class="pre">get_accRole</span></code> method to get its Role attribute. However, you must also distinguish individual objects from others of the same type. You can do this by means of a unique identifier (UID) defined by Acrobat.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects defined by Acrobat export a private interface, <code class="docutils literal notranslate"><span class="pre">IAccID</span></code> , defined in the file <code class="docutils literal notranslate"><span class="pre">IAccID.h</span></code> . It contains one function, <code class="docutils literal notranslate"><span class="pre">get_accID</span></code> . Use this UID to determine when two <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects refer to the same element in the document.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects defined by Acrobat export a private interface, <code class="docutils literal notranslate"><span class="pre">IAccID</span></code> , defined in the file <code class="docutils literal notranslate"><span class="pre">IAccID.h</span></code>.  It contains one function, <code class="docutils literal notranslate"><span class="pre">get_accID</span></code>.  Use this UID to determine when two <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> objects refer to the same element in the document.</p>
 <p>When a value-change notification or a focus notification has a non-zero <code class="docutils literal notranslate"><span class="pre">childID</span></code> , the value of <code class="docutils literal notranslate"><span class="pre">childID</span></code> is the UID of one of the objects on the page or document. Use the UID to uniquely identify the object that is the target of the notification.</p>
 <div class="section" id="get-accid">
 <h3>get_accID<a class="headerlink" href="#get-accid" title="Permalink to this headline">¶</a></h3>
@@ -443,12 +444,12 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>id</p></td>
-<td><p>(Filled by the method) Returns the unique identifier of the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object. Must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>(Filled by the method) Returns the unique identifier of the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object. Must not be <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Returns</strong></p>
-<p>Always returns <code class="docutils literal notranslate"><span class="pre">s_ok</span></code> .</p>
+<p>Always returns <code class="docutils literal notranslate"><span class="pre">s_ok</span></code>.</p>
 <p><strong>Example</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>IAccID *pID;
  long uid;
@@ -478,7 +479,7 @@
 </div>
 <div class="section" id="iaccessible-method-summary">
 <h2>IAccessible method summary<a class="headerlink" href="#iaccessible-method-summary" title="Permalink to this headline">¶</a></h2>
-<p>This section provides a brief syntax summary of the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> interface methods as defined by MSAA. All methods return <code class="docutils literal notranslate"><span class="pre">HRESULT</span></code> . The methods and properties are organized into the following groups:</p>
+<p>This section provides a brief syntax summary of the <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> interface methods as defined by MSAA. All methods return <code class="docutils literal notranslate"><span class="pre">HRESULT</span></code>.  The methods and properties are organized into the following groups:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="MSAA&amp;PDF.html#73526">Navigation and hierarchy</a></p></li>
 <li><p><a class="reference external" href="MSAA&amp;PDF.html#89440">Descriptive properties and methods</a></p></li>
@@ -1100,16 +1101,16 @@ SELFLAG_REMOVESELECTION</p>
 <td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accParent</p></td>
-<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_DOCUMENT</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_DOCUMENT</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
-<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accValue</p></td>
 <td><p>If the root of the structure tree has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute, the value is the contents of the <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute.</p></td>
@@ -1160,16 +1161,16 @@ SELFLAG_REMOVESELECTION</p>
 <td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accParent</p></td>
-<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accRole</p></td>
 <td><p>A custom role, <code class="docutils literal notranslate"><span class="pre">Page</span></code> , is defined for this object.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
-<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accValue</p></td>
 <td><p>If the root of the structure tree has an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute, the value is the contents of the <code class="docutils literal notranslate"><span class="pre">Alt</span></code> attribute</p></td>
@@ -1192,7 +1193,7 @@ SELFLAG_REMOVESELECTION</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>accHitTest</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>accLocation</p></td>
 <td><p>The screen coordinates of the visible part of the document.</p></td>
@@ -1201,28 +1202,28 @@ SELFLAG_REMOVESELECTION</p>
 <td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
 </tr>
 <tr class="row-odd"><td><p>accSelect</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accChildCount</p></td>
 <td><p>The child count is 0.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accFocus</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accName</p></td>
 <td><p>The name is “Alert: Protection Failure”.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accParent</p></td>
-<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accState</p></td>
-<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_ALERT_MEDIUM</span> <span class="pre">+</span> <span class="pre">STATE_SYSTEM_UNAVAILABLE</span> <span class="pre">+</span> <span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_ALERT_MEDIUM</span> <span class="pre">+</span> <span class="pre">STATE_SYSTEM_UNAVAILABLE</span> <span class="pre">+</span> <span class="pre">STATE_SYSTEM_READONLY</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accValue</p></td>
 <td><p>The value is “This document’s security settings prevent access.”</p></td>
@@ -1245,7 +1246,7 @@ SELFLAG_REMOVESELECTION</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>accHitTest</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>accLocation</p></td>
 <td><p>Returns the screen coordinates of the visible part of the document.</p></td>
@@ -1254,28 +1255,28 @@ SELFLAG_REMOVESELECTION</p>
 <td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
 </tr>
 <tr class="row-odd"><td><p>accSelect</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accChildCount</p></td>
 <td><p>The child count is 0.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accFocus</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accName</p></td>
 <td><p>The name is “Alert: Empty document”.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accParent</p></td>
-<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>The parent is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accState</p></td>
-<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code> .</p></td>
+<td><p>The state is <code class="docutils literal notranslate"><span class="pre">STATE_SYSTEM_READONLY</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accValue</p></td>
 <td><p>The value is “This document appears to be empty. It may be a scanned image that needs OCR or it may have malformed structure.”</p></td>
@@ -1346,7 +1347,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 </td>
 </tr>
 <tr class="row-odd"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accState</p></td>
 <td><p>The state is a logical OR of one or more of the following:</p>
@@ -1423,7 +1424,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
 <td><p>The state is a logical OR of one or more of the following:</p>
@@ -1515,7 +1516,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 </td>
 </tr>
 <tr class="row-even"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
 <td><p>The state is a logical OR of one or more of the following:</p>
@@ -1588,16 +1589,16 @@ ROLE_SYSTEM_ROWHEADER</p>
 <td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accName</p></td>
-<td><p>If there is an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> attribute associated with this link, the name is the associated <code class="docutils literal notranslate"><span class="pre">Alt</span></code> text or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> . Otherwise, the name is the value of the first content child.</p></td>
+<td><p>If there is an <code class="docutils literal notranslate"><span class="pre">Alt</span></code> or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code> attribute associated with this link, the name is the associated <code class="docutils literal notranslate"><span class="pre">Alt</span></code> text or <code class="docutils literal notranslate"><span class="pre">ActualText</span></code>.  Otherwise, the name is the value of the first content child.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accParent</p></td>
 <td><p>The parent is either a structure element or the document structure root.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LINK</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LINK</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accSelection</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
 <td><p>The state is a logical OR of the following:</p>
@@ -1663,7 +1664,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 <td><p>Returns the parent object.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_TEXT</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
 <td><p>The state of the text field is a logical OR of one of more of:</p>
@@ -1731,7 +1732,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 <td><p>Returns the parent object.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_PUSHBUTTON</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_PUSHBUTTON</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
 <td><p>The state of the button is a logical OR of one or more of:</p>
@@ -1798,7 +1799,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 <td><p>Returns the parent object.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_CHECKBUTTON</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_CHECKBUTTON</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
 <td><p>The state of the check box is a logical OR of one or more of:</p>
@@ -1862,7 +1863,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 <td><p>Returns the parent object.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_RADIOBUTTON</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_RADIOBUTTON</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accState</p></td>
 <td><p>The state of the radio button is a logical OR of one or more of:</p>
@@ -1971,14 +1972,14 @@ ROLE_SYSTEM_ROWHEADER</p>
 </tr>
 <tr class="row-odd"><td><p>get_accSelection</p></td>
 <td><ul class="simple">
-<li><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></li>
+<li><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
 </ul>
 </td>
 </tr>
 <tr class="row-even"><td><p>get_accRole</p></td>
 <td><ul class="simple">
-<li><p>For a combo box, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_COMBOBOX</span></code> .</p></li>
-<li><p>For a list item, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LISTITEM</span></code> .</p></li>
+<li><p>For a combo box, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_COMBOBOX</span></code>.</p></li>
+<li><p>For a list item, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LISTITEM</span></code>.</p></li>
 </ul>
 </td>
 </tr>
@@ -2111,8 +2112,8 @@ ROLE_SYSTEM_ROWHEADER</p>
 </tr>
 <tr class="row-odd"><td><p>get_accRole</p></td>
 <td><ul class="simple">
-<li><p>For a list box, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LIST</span></code> .</p></li>
-<li><p>For a list item, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LISTITEM</span></code> .</p></li>
+<li><p>For a list box, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LIST</span></code>.</p></li>
+<li><p>For a list item, the role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_LISTITEM</span></code>.</p></li>
 </ul>
 </td>
 </tr>
@@ -2144,7 +2145,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 </tr>
 <tr class="row-odd"><td><p>get_accSelection</p></td>
 <td><ul class="simple">
-<li><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></li>
+<li><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></li>
 </ul>
 </td>
 </tr>
@@ -2185,13 +2186,13 @@ ROLE_SYSTEM_ROWHEADER</p>
 <td><p>Does not support spatial navigation (<code class="docutils literal notranslate"><span class="pre">NAVDIR_UP</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_DOWN</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_RIGHT</span></code> , <code class="docutils literal notranslate"><span class="pre">NAVDIR_LEFT</span></code> ).</p></td>
 </tr>
 <tr class="row-even"><td><p>accSelect</p></td>
-<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code> .</p></td>
+<td><p>Supports <code class="docutils literal notranslate"><span class="pre">SELFLAG_TAKEFOCUS</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accChildCount</p></td>
 <td><p>The child count is 0.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accDefaultAction</p></td>
-<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> .</p></td>
+<td><p>Returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accFocus</p></td>
 <td><p>Returns the object that has the keyboard focus if it is this object or its child.</p></td>
@@ -2263,7 +2264,7 @@ ROLE_SYSTEM_ROWHEADER</p>
 <td><p>The parent is the field containing the caret. However, the caret <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object is not listed among the children of that field’s <code class="docutils literal notranslate"><span class="pre">IAccessible</span></code> object.</p></td>
 </tr>
 <tr class="row-odd"><td><p>get_accRole</p></td>
-<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_CARET</span></code> .</p></td>
+<td><p>The role is <code class="docutils literal notranslate"><span class="pre">ROLE_SYSTEM_CARET</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>get_accState</p></td>
 <td><p>The state is 0.</p></td>
@@ -2289,7 +2290,7 @@ ROLE_SYSTEM_ROWHEADER</p>
     <p>
         &#169; Copyright 2022, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jul 11, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 

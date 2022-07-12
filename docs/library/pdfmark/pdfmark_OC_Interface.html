@@ -2,12 +2,13 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
   
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Learn how to integrate PDF product and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with and leverage features across Adobe's enterprise-class product lineup."
+  <meta name="description" content="Learn how to integrate PDF products and features in your apps with the Acrobat and PDFL APIs. Create apps that integrate with Adobe's enterprise-class product lineup."/>
+  <meta name=viewport content="width=device-width, initial-scale=1">
   
-  <!-- Ben removed the title tag -->
+  <title>Distilling Optional Content &mdash; Acrobat-PDFL SDK:  PDFMark Reference</title>
   
 
   
@@ -352,16 +353,16 @@
            <div itemprop="articleBody">
             
   <div class="section" id="distilling-optional-content">
-<h1>Distilling Optional Content<a class="headerlink" href="#distilling-optional-content" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Distilling Optional Content<a class="headerlink" href="#distilling-optional-content" title="Permalink to this headline">¶</a></h1>
 <p>The ProcSet entry in a content stream’s resource dictionary holds an array consisting of the names of the procedure sets used in that content stream. This section describes the ProcSet used to build optional content into a PDF document.</p>
 <p>Optional content refers to content in a PDF document that can be selectively viewed or hidden. Optional content is a feature that became available with Acrobat 6.</p>
-<p>For more information on ProcSet entries and optional content, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a> .</p>
+<p>For more information on ProcSet entries and optional content, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>While the optional content ProcSet makes extensive use of pdfmark internally, clients of the optional content ProcSet should not have to use pdfmark to add optional content to a PDF file.</p>
 </div>
 <div class="section" id="initialization-and-termination-code">
-<h2>Initialization and termination code<a class="headerlink" href="#initialization-and-termination-code" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2>Initialization and termination code<a class="headerlink" href="#initialization-and-termination-code" title="Permalink to this headline">¶</a></h2>
 <p>To use the optional content ProcSet, clients must insert the following code into the document setup section of the PostScript job. This places definitions of the optional content ProcSet procedures in <code class="docutils literal notranslate"><span class="pre">userdict</span></code> for easy access by the client.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">/</span><span class="n">OCProcSet</span> <span class="o">/</span><span class="n">ProcSet</span> <span class="n">findresource</span><span class="p">}</span> <span class="n">stopped</span> <span class="ow">not</span>
  <span class="p">{</span><span class="o">/</span><span class="n">initialize</span> <span class="n">get</span> <span class="n">exec</span><span class="p">}</span>
@@ -383,18 +384,18 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">/</span><span class="n">OCProcSet</span> <span class="o">/</span><span class="n">ProcSet</span> <span class="n">findresource</span> <span class="o">/</span><span class="n">terminate</span> <span class="n">get</span> <span class="n">exec</span><span class="p">}</span> <span class="n">stopped</span> <span class="n">pop</span>
 </pre></div>
 </div>
-<p>When using the optional content ProcSet, the optional content group is the primary data item. It is referred to by the group’s name, which is a string object. (See the description of the entries in the optional content group dictionary in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a> .) Clients of the ProcSet do not need to do anything to set up optional content groups—they simply refer to them by their name strings, and the ProcSet takes care of creating them on-the-fly. Clients can set the initial state, intent, and usage info for optional content groups, using <code class="docutils literal notranslate"><span class="pre">SetOCGInitState</span></code> , <code class="docutils literal notranslate"><span class="pre">SetOCGIntent</span></code> , and <code class="docutils literal notranslate"><span class="pre">SetOCGUsage</span></code> , respectively.</p>
+<p>When using the optional content ProcSet, the optional content group is the primary data item. It is referred to by the group’s name, which is a string object. (See the description of the entries in the optional content group dictionary in the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.) Clients of the ProcSet do not need to do anything to set up optional content groups—they simply refer to them by their name strings, and the ProcSet takes care of creating them on-the-fly. Clients can set the initial state, intent, and usage info for optional content groups, using <code class="docutils literal notranslate"><span class="pre">SetOCGInitState</span></code> , <code class="docutils literal notranslate"><span class="pre">SetOCGIntent</span></code> , and <code class="docutils literal notranslate"><span class="pre">SetOCGUsage</span></code> , respectively.</p>
 <p>There are two techniques for using the ProcSet to make content optional: one for non-nested optional content, and one for nested optional content:</p>
 <ul class="simple">
-<li><p>The simplest technique is for non-nested optional content using the <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> procedure. Simply pass in a string for the optional content group name, and all marks up to the next <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> belong to the optional content group with that name. Passing in <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code> makes subsequent content non-optional. At the end of the page, before the <code class="docutils literal notranslate"><span class="pre">showpage</span></code> , issue <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code> .</p></li>
+<li><p>The simplest technique is for non-nested optional content using the <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> procedure. Simply pass in a string for the optional content group name, and all marks up to the next <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> belong to the optional content group with that name. Passing in <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code> makes subsequent content non-optional. At the end of the page, before the <code class="docutils literal notranslate"><span class="pre">showpage</span></code> , issue <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code>.</p></li>
 <li><p>For nested optional content, the technique is for documents that have nested visibility control. For these the ProcSet provides stack-style optional content control. This is also the style of control used if you have content that requires an Optional Content Membership Dictionary (OCMD), because it belongs to more than one optional content group and can require a visibility policy entry in the OCMD. For this sort of optional content, use the <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code> and <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> procedures. With this style, you should call <code class="docutils literal notranslate"><span class="pre">OCEndPage</span></code> at the end of the page (before <code class="docutils literal notranslate"><span class="pre">showpage</span></code> ). This ensures that the marked content is closed properly.</p></li>
 </ul>
 </div>
 <div class="section" id="procedure-definitions">
-<h2>Procedure definitions<a class="headerlink" href="#procedure-definitions" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Procedure definitions<a class="headerlink" href="#procedure-definitions" title="Permalink to this headline">¶</a></h2>
 <p>This section describes the optional content procedures and provides their syntax and examples.</p>
 <div class="section" id="addasevent">
-<h3>AddASEvent<a class="headerlink" href="#addasevent" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>AddASEvent<a class="headerlink" href="#addasevent" title="Permalink to this headline">¶</a></h3>
 <p>Adds an auto state event to the PDF’s default configuration. See the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a> for a description of auto state control for optional content.</p>
 <p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">event_type</span> <span class="n">event_categories</span> <span class="n">ocgnames</span> <span class="n">AddASEvent</span>
@@ -408,7 +409,7 @@
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>event_type</p></td>
-<td><p>Must be a PostScript name. Either <code class="docutils literal notranslate"><span class="pre">/View</span></code> , <code class="docutils literal notranslate"><span class="pre">/Print</span></code> , or <code class="docutils literal notranslate"><span class="pre">/Export</span></code> .</p></td>
+<td><p>Must be a PostScript name. Either <code class="docutils literal notranslate"><span class="pre">/View</span></code> , <code class="docutils literal notranslate"><span class="pre">/Print</span></code> , or <code class="docutils literal notranslate"><span class="pre">/Export</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p>event_categories</p></td>
 <td><p>Must be a PostScript array of name objects (typically matching keys in optional content group usage dictionaries). For a description of usage dictionaries, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a></p></td>
@@ -418,14 +419,14 @@
 </tr>
 </tbody>
 </table>
-<p><strong>**Example**</strong></p>
+<p><strong>Example</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">View</span> <span class="p">[</span><span class="o">/</span><span class="n">Zoom</span><span class="p">]</span> <span class="p">[(</span><span class="mi">30</span><span class="p">,</span><span class="mi">000</span> <span class="n">Feet</span><span class="p">)</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">000</span> <span class="n">Feet</span><span class="p">)</span> <span class="p">(</span><span class="mi">100</span> <span class="n">Feet</span><span class="p">)]</span> <span class="n">AddASEvent</span>
 </pre></div>
 </div>
 <p>The example declares that the three optional content groups named <code class="docutils literal notranslate"><span class="pre">30,000</span> <span class="pre">Feet</span></code> , <code class="docutils literal notranslate"><span class="pre">5,000</span> <span class="pre">Feet</span></code> , and <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">Feet</span></code> are to be controlled for on-screen viewing, based on the current zoom level and the <code class="docutils literal notranslate"><span class="pre">/Zoom</span></code> information in each optional content group’s <code class="docutils literal notranslate"><span class="pre">Usage</span></code> dictionary.</p>
 </div>
 <div class="section" id="beginoc">
-<h3>BeginOC<a class="headerlink" href="#beginoc" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3>BeginOC<a class="headerlink" href="#beginoc" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code> procedure is used to begin a span of content that belongs to the optional content groups supplied. It is used for nested visibility control when content can belong to more than one optional content group. Both multiple membership (using the array of optional content group names) and stack-based nesting are supported. The <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> calls must come before the <code class="docutils literal notranslate"><span class="pre">showpage</span></code> call of any page. Every <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code> call should have a matching <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> call.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -442,8 +443,8 @@
  <span class="n">BeginOC</span>
 </pre></div>
 </div>
-<p id="parameters-1"><strong>Parameters</strong></p>
-<table class="colwidths-given docutils align-default" id="section-1">
+<p><strong>Parameters</strong></p>
+<table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -462,18 +463,18 @@
 </table>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference external" href="pdfmark_OC_Interface.html#50454551_83170">EndOC</a></p>
+<p><a class="reference internal" href="#endoc"><span class="std std-ref">EndOC</span></a></p>
 </div>
 </div>
 <div class="section" id="endoc">
-<h3>EndOC<a class="headerlink" href="#endoc" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> procedure is used to end a span of optional content. It is used to close a span of optional content started by <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code> . Both multiple membership (using an array of optional content group names) and stack-based nesting are supported. The <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> calls must come before the <code class="docutils literal notranslate"><span class="pre">showpage</span></code> call of any page.</p>
+<span id="id6"></span><h3>EndOC<a class="headerlink" href="#endoc" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> procedure is used to end a span of optional content. It is used to close a span of optional content started by <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code>.  Both multiple membership (using an array of optional content group names) and stack-based nesting are supported. The <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> calls must come before the <code class="docutils literal notranslate"><span class="pre">showpage</span></code> call of any page.</p>
 <p>Every <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code> call should have a matching <code class="docutils literal notranslate"><span class="pre">EndOC</span></code> call.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You cannot mix <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> and <code class="docutils literal notranslate"><span class="pre">BeginOC/EndOC</span></code> on the same page.</p>
 </div>
-<p id="syntax-2"><strong>Syntax</strong></p>
+<p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EndOC</span>
 </pre></div>
 </div>
@@ -481,7 +482,7 @@
 <p><a class="reference external" href="pdfmark_OC_Interface.html#50454551_51091">BeginOC</a></p>
 </div>
 <div class="section" id="getocgpdfmarktag">
-<h3>GetOCGPdfmarkTag<a class="headerlink" href="#getocgpdfmarktag" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3>GetOCGPdfmarkTag<a class="headerlink" href="#getocgpdfmarktag" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GetOCGPdfmarkTag</span></code> returns the object that the ProcSet implementation uses to identify the optional content group object for pdfmark. Using this object, the client can use the <code class="docutils literal notranslate"><span class="pre">/PUT</span></code> pdfmark command to add additional key/value pairs to the optional content group dictionary.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">GetOCGPdfmarkTag</span></code> is not available in the OCProcSet <code class="docutils literal notranslate"><span class="pre">userdict</span></code> by default. To use this procedure, you can add the following to the OCProcSet initialization code within its <code class="docutils literal notranslate"><span class="pre">{/initialize</span> <span class="pre">get</span> <span class="pre">exec</span> <span class="pre">...</span> <span class="pre">end}</span></code> clause:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">userdict</span> <span class="n">begin</span>
@@ -489,14 +490,14 @@
    <span class="nf">end</span>
 </pre></div>
 </div>
-<p id="syntax-3"><strong>Syntax</strong></p>
+<p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ocgname</span>
  <span class="n">GetOCGPdfmarkTag</span>
 <span class="n">procedure</span>
 </pre></div>
 </div>
-<p id="parameters-2"><strong>Parameters</strong></p>
-<table class="colwidths-given docutils align-default" id="section-2">
+<p><strong>Parameters</strong></p>
+<table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -511,7 +512,7 @@
 <p>The optional content group’s <code class="docutils literal notranslate"><span class="pre">/OBJ</span></code> pdfmark tag.</p>
 <p id="see-also-2">See also</p>
 <p>pdfmark <code class="docutils literal notranslate"><span class="pre">/OBJ</span></code> and <code class="docutils literal notranslate"><span class="pre">/PUT</span></code> commands.</p>
-<p id="example-1"><strong>**Example**</strong></p>
+<p><strong>Example</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[(</span><span class="n">MyLayer</span><span class="p">)</span> <span class="n">GetOCGPdfmarkTag</span> <span class="o">&lt;&lt;/</span><span class="n">key1</span> <span class="p">(</span><span class="n">easy</span> <span class="k">as</span><span class="p">)</span> <span class="o">/</span><span class="n">key2</span> <span class="mf">3.14159</span><span class="o">&gt;&gt;</span> <span class="o">/</span><span class="n">PUT</span> <span class="n">pdfmark</span>
 </pre></div>
 </div>
@@ -520,25 +521,25 @@
  <span class="o">/</span><span class="n">key2</span> <span class="mf">3.14159</span>
 </pre></div>
 </div>
-<p>to the dictionary for the optional content group with the name <code class="docutils literal notranslate"><span class="pre">MyLayer</span></code> .</p>
+<p>to the dictionary for the optional content group with the name <code class="docutils literal notranslate"><span class="pre">MyLayer</span></code>.</p>
 </div>
 <div class="section" id="ocendpage">
-<h3>OCEndPage<a class="headerlink" href="#ocendpage" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">OCEndPage</span></code> is called at the end of the page in a multi-page PostScript file to allow the ProcSet to close any open optional content on the current page. It can be used to close a call to either <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> or <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code> .</p>
-<p id="syntax-4"><strong>Syntax</strong></p>
+<span id="id8"></span><h3>OCEndPage<a class="headerlink" href="#ocendpage" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">OCEndPage</span></code> is called at the end of the page in a multi-page PostScript file to allow the ProcSet to close any open optional content on the current page. It can be used to close a call to either <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> or <code class="docutils literal notranslate"><span class="pre">BeginOC</span></code>.</p>
+<p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OCEndPage</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="setocginitstate">
-<h3>SetOCGInitState<a class="headerlink" href="#setocginitstate" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>SetOCGInitState<a class="headerlink" href="#setocginitstate" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SetOCGInitState</span></code> procedure sets the initial state of an optional content group to be either ON (<code class="docutils literal notranslate"><span class="pre">true</span></code> ) or OFF (<code class="docutils literal notranslate"><span class="pre">false</span></code> ).</p>
-<p id="syntax-5"><strong>Syntax</strong></p>
+<p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ocgname</span> <span class="nb">bool</span> <span class="n">SetOCGInitState</span>
 </pre></div>
 </div>
-<p id="parameters-3"><strong>Parameters</strong></p>
-<table class="colwidths-given docutils align-default" id="section-3">
+<p><strong>Parameters</strong></p>
+<table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -548,20 +549,20 @@
 <td><p>Valid PostScript string variable representing an optional content group.</p></td>
 </tr>
 <tr class="row-even"><td><p>bool</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code> . Value of ocgname’s initial state. For a description of an optional content group’s state, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>.  Value of ocgname’s initial state. For a description of an optional content group’s state, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="setocgintent">
-<h3>SetOCGIntent<a class="headerlink" href="#setocgintent" title="Permalink to this headline">¶</a></h3>
+<span id="id10"></span><h3>SetOCGIntent<a class="headerlink" href="#setocgintent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SetOCGIntent</span></code> procedure sets the <code class="docutils literal notranslate"><span class="pre">Intent</span></code> key in ocgname to intent.</p>
-<p id="syntax-6"><strong>Syntax</strong></p>
+<p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ocgname</span> <span class="n">intent</span> <span class="n">SetOCGIntent</span>
 </pre></div>
 </div>
-<p id="parameters-4"><strong>Parameters</strong></p>
-<table class="colwidths-given docutils align-default" id="section-4">
+<p><strong>Parameters</strong></p>
+<table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -577,14 +578,14 @@
 </table>
 </div>
 <div class="section" id="setocgusage">
-<h3>SetOCGUsage<a class="headerlink" href="#setocgusage" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3>SetOCGUsage<a class="headerlink" href="#setocgusage" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SetOCGUsage</span></code> procedure sets the <code class="docutils literal notranslate"><span class="pre">Usage</span></code> key in ocgname to the dict supplied. This is the top level usage dictionary, not a usage category dictionary. Only one call per optional content group is honored, so the client must collect all usage subdictionaries and issue a single call to set the <code class="docutils literal notranslate"><span class="pre">Usage</span></code> dictionary for the optional content group.</p>
-<p id="syntax-7"><strong>Syntax</strong></p>
+<p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ocgname</span> <span class="nb">dict</span> <span class="n">SetOCGUsage</span>
 </pre></div>
 </div>
-<p id="parameters-5"><strong>Parameters</strong></p>
-<table class="colwidths-given docutils align-default" id="section-5">
+<p><strong>Parameters</strong></p>
+<table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -594,11 +595,11 @@
 <td><p>Valid PostScript string variable representing an optional content group.</p></td>
 </tr>
 <tr class="row-even"><td><p>dict</p></td>
-<td><p>Value of ocgname’s <code class="docutils literal notranslate"><span class="pre">Usage</span></code> key, which is a dictionary. For a description of an optional content group’s <code class="docutils literal notranslate"><span class="pre">Usage</span></code> key, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a> . By default, there is no <code class="docutils literal notranslate"><span class="pre">Usage</span></code> key in the optional content group’s dictionary. Th</p></td>
+<td><p>Value of ocgname’s <code class="docutils literal notranslate"><span class="pre">Usage</span></code> key, which is a dictionary. For a description of an optional content group’s <code class="docutils literal notranslate"><span class="pre">Usage</span></code> key, see the <a class="reference external" href="https://www.adobe.com/go/pdfreference">PDF Reference</a>. By default, there is no <code class="docutils literal notranslate"><span class="pre">Usage</span></code> key in the optional content group’s dictionary. Th</p></td>
 </tr>
 </tbody>
 </table>
-<p id="example-2"><strong>**Example**</strong></p>
+<p><strong>Example</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="mi">000</span> <span class="n">Feet</span><span class="p">)</span> <span class="o">&lt;&lt;/</span><span class="n">Zoom</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="nb">max</span> <span class="mf">0.5</span> <span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span> <span class="n">SetOCGUsage</span>
  <span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">000</span> <span class="n">Feet</span><span class="p">)</span> <span class="o">&lt;&lt;/</span><span class="n">Zoom</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="nb">min</span> <span class="mf">0.5</span> <span class="o">/</span><span class="nb">max</span> <span class="mi">4</span><span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span> <span class="n">SetOCGUsage</span>
  <span class="p">(</span><span class="mi">100</span> <span class="n">Feet</span><span class="p">)</span> <span class="o">&lt;&lt;/</span><span class="n">Zoom</span> <span class="o">&lt;&lt;</span> <span class="o">/</span><span class="nb">min</span> <span class="mi">4</span> <span class="o">&gt;&gt;</span> <span class="o">&gt;&gt;</span> <span class="n">SetOCGUsage</span>
@@ -607,19 +608,19 @@
 <p>This example specifies, in conjunction with the <code class="docutils literal notranslate"><span class="pre">AddASEvent</span></code> example, that the objects in the <code class="docutils literal notranslate"><span class="pre">30,000</span> <span class="pre">Feet</span></code> optional content group should be visible when the zoom level is less than 50%, the objects in the <code class="docutils literal notranslate"><span class="pre">5,000</span> <span class="pre">Feet</span></code> optional content group should be visible between 50% and 400%, and the objects in the <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">Feet</span></code> optional content group should be visible when the zoom level is at least 400%.</p>
 </div>
 <div class="section" id="simpleoc">
-<h3>SimpleOC<a class="headerlink" href="#simpleoc" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> procedure ends any current optional content span, and begins a new one where the content belongs to <code class="docutils literal notranslate"><span class="pre">ocgname</span></code> .</p>
-<p>To use the <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> procedure, simply pass in a string for the optional content group name, and all marks up to the next <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> belong to the optional content group with that name. Passing in <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code> makes subsequent content non-optional. At the end of the page, before the <code class="docutils literal notranslate"><span class="pre">showpage</span></code> , issue <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code> .</p>
+<span id="id12"></span><h3>SimpleOC<a class="headerlink" href="#simpleoc" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> procedure ends any current optional content span, and begins a new one where the content belongs to <code class="docutils literal notranslate"><span class="pre">ocgname</span></code>.</p>
+<p>To use the <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> procedure, simply pass in a string for the optional content group name, and all marks up to the next <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> belong to the optional content group with that name. Passing in <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code> makes subsequent content non-optional. At the end of the page, before the <code class="docutils literal notranslate"><span class="pre">showpage</span></code> , issue <code class="docutils literal notranslate"><span class="pre">null</span> <span class="pre">SimpleOC</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You cannot mix <code class="docutils literal notranslate"><span class="pre">SimpleOC</span></code> and <code class="docutils literal notranslate"><span class="pre">BeginOC/EndOC</span></code> on the same page.</p>
 </div>
-<p id="syntax-8"><strong>Syntax</strong></p>
+<p><strong>Syntax</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ocgname</span> <span class="n">SimpleOC</span>
 </pre></div>
 </div>
-<p id="parameters-6"><strong>Parameters</strong></p>
-<table class="colwidths-given docutils align-default" id="section-6">
+<p><strong>Parameters</strong></p>
+<table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -630,7 +631,7 @@
 </tr>
 </tbody>
 </table>
-<p id="example-3"><strong>Example</strong></p>
+<p><strong>Example</strong></p>
 <p>To show content on all layers (at all times):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">null</span> <span class="n">SimpleOC</span>
 </pre></div>
@@ -651,7 +652,7 @@
     <p>
         &#169; Copyright 2022, Adobe Inc..
       <span class="lastupdated">
-        Last update: Jun 24, 2022. 
+        Last update: Jul 11, 2022. 
         <img src="../../_static/adobelogo.png" class="logo"/> 
       </span>
 
