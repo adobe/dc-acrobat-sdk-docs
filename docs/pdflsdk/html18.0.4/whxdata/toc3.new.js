@@ -1,4 +1,0 @@
-(function() {
-var toc =  [{"type":"item","name":"The PDF Library and the PDF viewers","url":"PDFL_MasterBook/Adobe_PDF_Library_Overview/Adobe_PDF_Library_Overview.htm#TOC_The_PDF_Library_and_thebc-2"},{"type":"item","name":"New Guide for PDF Extensions","url":"PDFL_MasterBook/Adobe_PDF_Library_Overview/Adobe_PDF_Library_Overview.htm#TOC_New_Guide_for_PDFbc-3"},{"type":"item","name":"Packaging of the PDF Specification","url":"PDFL_MasterBook/Adobe_PDF_Library_Overview/Adobe_PDF_Library_Overview.htm#TOC_Packaging_of_the_PDFbc-4"}];
-window.rh.model.publish(rh.consts('KEY_TEMP_DATA'), toc, { sync:true });
-})();
