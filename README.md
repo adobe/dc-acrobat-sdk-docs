@@ -1,9 +1,4 @@
-# Welcome!
+# Details
 
-### Contributing
+Only API References live here. All other PDFL and Acrobat SDK docs reside at https://developer.adobe.com/acrobat-pdfl-sdk/
 
-Contributions are welcomed! Read the [Contributing Guide](.github/CONTRIBUTING.md) for more information.
-
-### Licensing
-
-This project is licensed under the MIT License. See [LICENSE](LICENSE.md) for more information.
